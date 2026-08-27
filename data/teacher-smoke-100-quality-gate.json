@@ -1,7 +1,7 @@
 {
   "dataset_path": "data/teacher-smoke-100.jsonl",
   "dataset_kind": "teacher",
-  "generated_at": "2026-08-27T10:52:35Z",
+  "generated_at": "2026-08-27T11:01:35Z",
   "version_lock": {
     "game_version": "v0.111.0",
     "game_commit": "41cef1ea",
@@ -135,7 +135,7 @@
     "sources": [
       {
         "file": "data/teacher-smoke-100.jsonl",
-        "sha256": "C0031E9610CEDA172566DFBFCBF554199AEBB276CF5D21D1A2AF349D3B6B0B63",
+        "sha256": "2F48CBF4851CDF5AA0B62F0E0D7631864B8F7C5EC34C227ED6BED4710029267C",
         "listed_in_manifest": true
       }
     ],

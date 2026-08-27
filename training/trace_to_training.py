@@ -154,6 +154,7 @@ def normalize(rows: list[dict]) -> list[dict]:
             "state_hash_teacher": teacher_hash,
             "public_state": public,
             "teacher_state_reference": teacher_row.get("post_state_hash") if teacher_row else None,
+            "teacher_snapshot": teacher_row.get("teacher_snapshot") if teacher_row else None,
             "legal_actions": legal_actions,
             "teacher_best_actions": [],
             "action_values": {},
