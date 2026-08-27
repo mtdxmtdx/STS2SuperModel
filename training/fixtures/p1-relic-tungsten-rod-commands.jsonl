@@ -1,0 +1,8 @@
+{"cmd":"start_run","character":"Ironclad","seed":"p1-tr-fixed","ascension":0}
+{"cmd":"set_player","relics":["TUNGSTEN_ROD"],"hp":50,"max_hp":80,"deck":["BLOODLETTING","BLOODLETTING","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD"]}
+{"cmd":"enter_room","type":"combat","encounter":"SEAPUNK_WEAK"}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":0}}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":0}}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"quit"}

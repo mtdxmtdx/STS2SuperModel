@@ -634,7 +634,8 @@ static RelicState BuildRelic(JsonElement relic)
     {
         "ANCHOR" or "VAJRA" or "NUNCHAKU" or "PEN_NIB" or "ORICHALCUM" or
         "ART_OF_WAR" or "HAPPY_FLOWER" or "INCENSE_BURNER" or "SUNDIAL" or
-        "CENTENNIAL_PUZZLE" => RelicEffectSupportStatus.SimulatorSupported,
+        "CENTENNIAL_PUZZLE" or "TOUGH_BANDAGES" or "TUNGSTEN_ROD" or
+        "UNCEASING_TOP" => RelicEffectSupportStatus.SimulatorSupported,
         _ => RelicEffectSupportStatus.StateCapturedOnly,
     };
     return new RelicState(

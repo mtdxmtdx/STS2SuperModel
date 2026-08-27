@@ -192,8 +192,8 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.ArchaicTooth",
       "runtime_type": "ArchaicTooth",
       "dynamic_var_names": [
-        "StarterCard",
-        "AncientCard"
+        "AncientCard",
+        "StarterCard"
       ],
       "dynamic_vars": {
         "AncientCard": 0,
@@ -530,8 +530,8 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.BigMushroom",
       "runtime_type": "BigMushroom",
       "dynamic_var_names": [
-        "MaxHp",
-        "Cards"
+        "Cards",
+        "MaxHp"
       ],
       "dynamic_vars": {
         "Cards": 2,
@@ -695,8 +695,8 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.BlessedAntler",
       "runtime_type": "BlessedAntler",
       "dynamic_var_names": [
-        "Energy",
-        "Cards"
+        "Cards",
+        "Energy"
       ],
       "dynamic_vars": {
         "Cards": 3,
@@ -1138,8 +1138,8 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.Brimstone",
       "runtime_type": "Brimstone",
       "dynamic_var_names": [
-        "SelfStrength",
-        "EnemyStrength"
+        "EnemyStrength",
+        "SelfStrength"
       ],
       "dynamic_vars": {
         "EnemyStrength": 1,
@@ -2080,8 +2080,8 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.DistinguishedCape",
       "runtime_type": "DistinguishedCape",
       "dynamic_var_names": [
-        "Curses",
-        "Cards"
+        "Cards",
+        "Curses"
       ],
       "dynamic_vars": {
         "Cards": 3,
@@ -3049,8 +3049,8 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.FragrantMushroom",
       "runtime_type": "FragrantMushroom",
       "dynamic_var_names": [
-        "HpLoss",
-        "Cards"
+        "Cards",
+        "HpLoss"
       ],
       "dynamic_vars": {
         "Cards": 2,
@@ -3221,12 +3221,12 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.GalacticDust",
       "runtime_type": "GalacticDust",
       "dynamic_var_names": [
-        "Stars",
-        "Block"
+        "Block",
+        "Stars"
       ],
       "dynamic_vars": {
-        "Stars": 10,
-        "Block": 10
+        "Block": 10,
+        "Stars": 10
       },
       "has_counter": true,
       "default_counter": 0,
@@ -3606,8 +3606,8 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.GremlinHorn",
       "runtime_type": "GremlinHorn",
       "dynamic_var_names": [
-        "Energy",
-        "Cards"
+        "Cards",
+        "Energy"
       ],
       "dynamic_vars": {
         "Cards": 1,
@@ -3874,12 +3874,12 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.InfusedCore",
       "runtime_type": "InfusedCore",
       "dynamic_var_names": [
-        "Lightning",
-        "ExtraDamage"
+        "ExtraDamage",
+        "Lightning"
       ],
       "dynamic_vars": {
-        "Lightning": 3,
-        "ExtraDamage": 1
+        "ExtraDamage": 1,
+        "Lightning": 3
       },
       "has_counter": false,
       "default_counter": null,
@@ -3914,8 +3914,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "Energy": 2,
-        "Block": 4
+        "Block": 4,
+        "Energy": 2
       },
       "has_counter": false,
       "default_counter": null,
@@ -4077,8 +4077,8 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.JossPaper",
       "runtime_type": "JossPaper",
       "dynamic_var_names": [
-        "ExhaustAmount",
-        "Cards"
+        "Cards",
+        "ExhaustAmount"
       ],
       "dynamic_vars": {
         "Cards": 1,
@@ -4245,8 +4245,8 @@
         "Damage"
       ],
       "dynamic_vars": {
-        "Damage": 6,
-        "Cards": 3
+        "Cards": 3,
+        "Damage": 6
       },
       "has_counter": false,
       "default_counter": null,
@@ -4540,8 +4540,8 @@
         "Damage"
       ],
       "dynamic_vars": {
-        "Damage": 5,
-        "Cards": 3
+        "Cards": 3,
+        "Damage": 5
       },
       "has_counter": false,
       "default_counter": null,
@@ -4956,12 +4956,12 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.MeatOnTheBone",
       "runtime_type": "MeatOnTheBone",
       "dynamic_var_names": [
-        "HpThreshold",
-        "Heal"
+        "Heal",
+        "HpThreshold"
       ],
       "dynamic_vars": {
-        "HpThreshold": 50,
-        "Heal": 12
+        "Heal": 12,
+        "HpThreshold": 50
       },
       "has_counter": false,
       "default_counter": null,
@@ -5343,12 +5343,12 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.NeowsBones",
       "runtime_type": "NeowsBones",
       "dynamic_var_names": [
-        "Relics",
-        "Curses"
+        "Curses",
+        "Relics"
       ],
       "dynamic_vars": {
-        "Relics": 2,
-        "Curses": 1
+        "Curses": 1,
+        "Relics": 2
       },
       "has_counter": false,
       "default_counter": null,
@@ -5772,12 +5772,12 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.OrnamentalFan",
       "runtime_type": "OrnamentalFan",
       "dynamic_var_names": [
-        "Cards",
-        "Block"
+        "Block",
+        "Cards"
       ],
       "dynamic_vars": {
-        "Cards": 3,
-        "Block": 4
+        "Block": 4,
+        "Cards": 3
       },
       "has_counter": false,
       "default_counter": null,
@@ -6098,12 +6098,12 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.PaelsTooth",
       "runtime_type": "PaelsTooth",
       "dynamic_var_names": [
-        "Cards",
-        "CardTitles"
+        "CardTitles",
+        "Cards"
       ],
       "dynamic_vars": {
-        "Cards": 5,
-        "CardTitles": 0
+        "CardTitles": 0,
+        "Cards": 5
       },
       "has_counter": false,
       "default_counter": null,
@@ -6301,8 +6301,8 @@
         "Damage"
       ],
       "dynamic_vars": {
-        "Damage": 6,
-        "Block": 10
+        "Block": 10,
+        "Damage": 6
       },
       "has_counter": false,
       "default_counter": null,
@@ -6524,8 +6524,8 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.PhilosophersStone",
       "runtime_type": "PhilosophersStone",
       "dynamic_var_names": [
-        "StrengthPower",
-        "Energy"
+        "Energy",
+        "StrengthPower"
       ],
       "dynamic_vars": {
         "Energy": 1,
@@ -6630,8 +6630,8 @@
         "Cards"
       ],
       "dynamic_vars": {
-        "Cards": 3,
-        "CardThreshold": 3
+        "CardThreshold": 3,
+        "Cards": 3
       },
       "has_counter": false,
       "default_counter": null,
@@ -6828,8 +6828,8 @@
         "Damage"
       ],
       "dynamic_vars": {
-        "Damage": 16,
-        "Cards": 2
+        "Cards": 2,
+        "Damage": 16
       },
       "has_counter": false,
       "default_counter": null,
@@ -6966,8 +6966,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "Energy": 1,
-        "CombatCount": 5
+        "CombatCount": 5,
+        "Energy": 1
       },
       "has_counter": true,
       "default_counter": 0,
@@ -7069,12 +7069,12 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.RainbowRing",
       "runtime_type": "RainbowRing",
       "dynamic_var_names": [
-        "StrengthPower",
-        "DexterityPower"
+        "DexterityPower",
+        "StrengthPower"
       ],
       "dynamic_vars": {
-        "StrengthPower": 1,
-        "DexterityPower": 1
+        "DexterityPower": 1,
+        "StrengthPower": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -7767,8 +7767,8 @@
         "Character"
       ],
       "dynamic_vars": {
-        "Character": 0,
-        "Cards": 15
+        "Cards": 15,
+        "Character": 0
       },
       "has_counter": false,
       "default_counter": null,
@@ -7839,8 +7839,8 @@
         "Wishes"
       ],
       "dynamic_vars": {
-        "Wishes": 3,
-        "HpLoss": 9
+        "HpLoss": 9,
+        "Wishes": 3
       },
       "has_counter": false,
       "default_counter": null,
@@ -8203,12 +8203,12 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.SparklingRouge",
       "runtime_type": "SparklingRouge",
       "dynamic_var_names": [
-        "StrengthPower",
-        "DexterityPower"
+        "DexterityPower",
+        "StrengthPower"
       ],
       "dynamic_vars": {
-        "StrengthPower": 1,
-        "DexterityPower": 1
+        "DexterityPower": 1,
+        "StrengthPower": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -8642,14 +8642,14 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.TeaOfDiscourtesy",
       "runtime_type": "TeaOfDiscourtesy",
       "dynamic_var_names": [
-        "Heal",
         "Combats",
-        "DazedCount"
+        "DazedCount",
+        "Heal"
       ],
       "dynamic_vars": {
         "Combats": 1,
-        "Heal": 1,
-        "DazedCount": 2
+        "DazedCount": 2,
+        "Heal": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -8717,8 +8717,8 @@
         "DamageThreshold"
       ],
       "dynamic_vars": {
-        "DamageThreshold": 4,
-        "DamageMinimum": 5
+        "DamageMinimum": 5,
+        "DamageThreshold": 4
       },
       "has_counter": false,
       "default_counter": null,
@@ -8946,8 +8946,8 @@
         "UpgradedRelic"
       ],
       "dynamic_vars": {
-        "UpgradedRelic": 0,
-        "StarterRelic": 0
+        "StarterRelic": 0,
+        "UpgradedRelic": 0
       },
       "has_counter": false,
       "default_counter": null,
@@ -8986,10 +8986,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "card_play",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.ToughBandages",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "fixed CLI/live shadow differential",
+      "evidence_reference": "p1-csharp-relic-tough-bandages-diff-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: AfterCardDiscarded"
     },
@@ -9043,8 +9043,8 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.ToyBox",
       "runtime_type": "ToyBox",
       "dynamic_var_names": [
-        "Relics",
-        "Combats"
+        "Combats",
+        "Relics"
       ],
       "dynamic_vars": {
         "Combats": 3,
@@ -9121,10 +9121,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "damage_trigger",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.TungstenRod",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "fixed CLI/live shadow differential",
+      "evidence_reference": "p1-csharp-relic-tungsten-rod-diff-report.json; p1-csharp-relic-tungsten-rod-diff-report-1.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: ModifyHpLostAfterOsty, AfterModifyingHpLostAfterOsty"
     },
@@ -9147,12 +9147,12 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.TuningFork",
       "runtime_type": "TuningFork",
       "dynamic_var_names": [
-        "Cards",
-        "Block"
+        "Block",
+        "Cards"
       ],
       "dynamic_vars": {
-        "Cards": 10,
-        "Block": 7
+        "Block": 7,
+        "Cards": 10
       },
       "has_counter": true,
       "default_counter": 0,
@@ -9221,10 +9221,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "non_combat",
-      "support_status": "unknown",
-      "evidence_level": "unknown",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.UnceasingTop",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "fixed CLI/live shadow differential",
+      "evidence_reference": "p1-csharp-relic-unceasing-top-diff-report.json; p1-csharp-relic-unceasing-top-diff-report-1.json; p1-csharp-relic-unceasing-top-diff-report-2.json",
       "verified_game_version": "0.111.0",
       "notes": "Non-combat relic; no in-combat action effect."
     },
@@ -9796,12 +9796,12 @@
       "model_type": "MegaCrit.Sts2.Core.Models.Relics.WongosMysteryTicket",
       "runtime_type": "WongosMysteryTicket",
       "dynamic_var_names": [
-        "Repeat",
-        "RemainingCombats"
+        "RemainingCombats",
+        "Repeat"
       ],
       "dynamic_vars": {
-        "Repeat": 3,
-        "RemainingCombats": 5
+        "RemainingCombats": 5,
+        "Repeat": 3
       },
       "has_counter": true,
       "default_counter": 5,

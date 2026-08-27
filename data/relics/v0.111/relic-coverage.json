@@ -10,13 +10,13 @@
     "structured_count": 299,
     "state_captured_count": 299,
     "il_inspected_count": 0,
-    "probed_count": 14,
-    "simulator_supported_count": 14,
+    "probed_count": 17,
+    "simulator_supported_count": 17,
     "no_combat_effect_count": 1,
     "partially_supported_count": 0,
-    "unsupported_known_count": 165,
-    "unknown_count": 119,
-    "reliable_eligible_count": 15
+    "unsupported_known_count": 163,
+    "unknown_count": 118,
+    "reliable_eligible_count": 18
   },
   "relics": [
     {
@@ -4906,14 +4906,14 @@
       "state_captured": true,
       "dynamic_state_captured": true,
       "il_inspected": false,
-      "runtime_probed": false,
-      "simulator_supported": false,
+      "runtime_probed": true,
+      "simulator_supported": true,
       "no_combat_effect": false,
       "training_feature_supported": true,
-      "evidence_level": "HeuristicInferred",
-      "support_status": "UnsupportedKnownEffect",
-      "blocking_reason": "In-combat hook not yet implemented in DeterministicSimulator",
-      "next_action": "Implement differential probe and simulator handler in next batch"
+      "evidence_level": "LiveObserved",
+      "support_status": "SimulatorSupported",
+      "blocking_reason": null,
+      "next_action": "None"
     },
     {
       "relic_id": "TOXIC_EGG",
@@ -4978,14 +4978,14 @@
       "state_captured": true,
       "dynamic_state_captured": true,
       "il_inspected": false,
-      "runtime_probed": false,
-      "simulator_supported": false,
+      "runtime_probed": true,
+      "simulator_supported": true,
       "no_combat_effect": false,
       "training_feature_supported": true,
-      "evidence_level": "HeuristicInferred",
-      "support_status": "UnsupportedKnownEffect",
-      "blocking_reason": "In-combat hook not yet implemented in DeterministicSimulator",
-      "next_action": "Implement differential probe and simulator handler in next batch"
+      "evidence_level": "LiveObserved",
+      "support_status": "SimulatorSupported",
+      "blocking_reason": null,
+      "next_action": "None"
     },
     {
       "relic_id": "TUNING_FORK",
@@ -5032,12 +5032,12 @@
       "state_captured": true,
       "dynamic_state_captured": false,
       "il_inspected": false,
-      "runtime_probed": false,
-      "simulator_supported": false,
+      "runtime_probed": true,
+      "simulator_supported": true,
       "no_combat_effect": false,
       "training_feature_supported": true,
-      "evidence_level": "Unknown",
-      "support_status": "Unknown",
+      "evidence_level": "LiveObserved",
+      "support_status": "SimulatorSupported",
       "blocking_reason": null,
       "next_action": "None"
     },

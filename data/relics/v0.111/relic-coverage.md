@@ -13,12 +13,12 @@
 | 已结构化数量 | **299** | 100.0% |
 | 已捕获状态数量 | **299** | 100.0% |
 | 已检查 IL 语义数量 | **0** | 0.0% |
-| 已完成真实引擎差分探针数量 | **14** | 4.7% |
-| 模拟器声明支持数量（其中仅探针项可视为 LiveObserved） | **14** | 4.7% |
+| 已完成真实引擎差分探针数量 | **17** | 5.7% |
+| 模拟器声明支持数量（其中仅探针项可视为 LiveObserved） | **17** | 5.7% |
 | 明确不影响当前回合数量 | **1** | 0.3% |
-| 能够产生 Reliable 教师标签数量 | **15** | 5% |
-| 已知不支持数量 (存在未支持战斗钩子) | **165** | 55.2% |
-| 未知遗物数量 | **119** | 39.8% |
+| 能够产生 Reliable 教师标签数量 | **18** | 6% |
+| 已知不支持数量 (存在未支持战斗钩子) | **163** | 54.5% |
+| 未知遗物数量 | **118** | 39.5% |
 
 ## P1 已验证支持遗物列表
 
@@ -37,5 +37,8 @@
 | `ORICHALCUM` | 奥利哈钢 | Orichalcum | Uncommon | 如果你在回合结束时没有任何[gold]格挡[/gold]，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。 | `LiveObserved` |
 | `PEN_NIB` | 钢笔尖 | Pen Nib | Uncommon | 你每打出的第[blue]10[/blue]张攻击牌将会造成双倍伤害。 | `LiveObserved` |
 | `RING_OF_THE_SNAKE` | 蛇之戒指 | Ring of the Snake | Starter | 在每场战斗开始时，额外抽[blue]{Cards}[/blue]张牌。 | `LiveObserved` |
+| `TOUGH_BANDAGES` | 结实绷带 | Tough Bandages | Rare | 你每在你的回合丢弃一张牌，就获得[blue]{Block}[/blue]点[gold]格挡[/gold]。 | `LiveObserved` |
+| `TUNGSTEN_ROD` | 钨合金棍 | Tungsten Rod | Rare | 你每次失去生命时，减少失去的生命值[blue]{HpLossReduction}[/blue]点。 | `LiveObserved` |
+| `UNCEASING_TOP` | 不休陀螺 | Unceasing Top | Rare | 在你的回合，当你没有[gold]手牌[/gold]时，抽一张牌。 | `LiveObserved` |
 | `VAJRA` | 金刚杵 | Vajra | Common | 在每场战斗开始时，获得[blue]{StrengthPower}[/blue]点[gold]力量[/gold]。 | `LiveObserved` |
 
