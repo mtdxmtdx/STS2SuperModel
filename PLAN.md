@@ -59,7 +59,8 @@ P0 的状态契约、Power/遗物结构化采集、public/teacher 双视图、�
 
 1. 对尚未行为探针验证的 59 个已声明 Power 和 163 个已知未支持战斗遗物逐批实现
    simulator handler，并在验证后才提升为 `Reliable`。
-2. 将 smoke 数据扩展至计划中的 1k/10k/100k 状态，并生成真实 Expectimax 教师标签。
+2. 将当前 100 状态 smoke（已生成 Estimated fallback 标签）扩展至计划中的 1k/10k/100k 状态，
+   并接入真实 CombatSearchSession/Expectimax evaluator 后生成 Reliable/Estimated 标签。
 3. 完成模型输入/ONNX manifest、离线 RL 环境和模型评测报告。
 
 ## 2. 运行时架构
@@ -663,6 +664,10 @@ action_score
 
 ### M3：1,000 状态 Smoke
 
+当前进度：已完成 100 状态 smoke 闭环；100/100 条记录具有非空
+`teacher_best_actions`，当前标签来自明确标记为 `Estimated` 的 fallback，尚未作为
+Reliable 教师数据使用。
+
 交付：
 
 - 原始 JSONL；
@@ -670,6 +675,8 @@ action_score
 - schema 统计；
 - 卡牌/遗物/Power/敌人覆盖报告；
 - teacher label 质量报告。
+- `training/collectors/teacher_worker.py` 与 `training/labels/teacher_label_schema_v1.json`；
+- `data/teacher-smoke-100.jsonl`、Parquet、manifest、隐藏状态聚合和 quality gate。
 
 出口：
 

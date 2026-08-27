@@ -199,6 +199,17 @@ Known pre-existing warnings remain in unrelated analyzer/Mod build output. The c
 
 ## Post-P0 Semantic Expansion Backlog
 
+## Teacher Smoke Status
+
+- `data/teacher-smoke-100.jsonl` contains 100 deterministic, schema-valid records.
+- All 100 records have non-empty `teacher_best_actions` and stable version metadata.
+- The current labels are explicitly `Estimated` from the fallback worker because the
+  CombatSearchSession/Expectimax evaluator bridge is not yet connected to this Python
+  collector; they are not admitted as Reliable policy labels.
+- `data/teacher-smoke-100-quality-gate.json` reports `verdict=pass`, with zero version,
+  leakage, stable-ID, malformed-line, split, and Parquet-manifest failures.
+- `data/teacher-smoke-100-hidden-states.json` contains the public-state aggregation sidecar.
+
 1. Expand real CLI/shadow Power probes beyond the 14 validated powers, prioritizing
    the remaining declared mappings.
 2. Relic probes now cover 17 simulator mappings; the next tier is the 163 known-unsupported
