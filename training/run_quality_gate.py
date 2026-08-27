@@ -74,7 +74,7 @@ def verify_parquet_manifest(manifest_path: Path) -> List[Dict[str, Any]]:
         source_path = try_resolve_recorded_path(
             source,
             (manifest_path.parent, manifest_path.parent.parent,
-             manifest_path.parent.parent / "training"),
+             manifest_path.parent.parent / "training", REPO_ROOT),
         )
         if source_path is None:
             failures.append(failure(location, 0, "source", f"Source file not found: {source}", "source_not_found"))
