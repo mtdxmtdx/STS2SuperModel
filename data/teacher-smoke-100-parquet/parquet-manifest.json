@@ -1,0 +1,36 @@
+{
+  "generator_config": {
+    "compression": "zstd",
+    "schema_version": 1,
+    "shard_rows": 10000
+  },
+  "generator_config_hash": "CA9A971A0F973AD7986EF3440474EDDB318C432F2DEC9C02BB0F9564F2C6EE03",
+  "row_count": 100,
+  "schema_version": 1,
+  "shard_count": 1,
+  "shards": [
+    {
+      "byte_count": 272292,
+      "path": "part-00000.parquet",
+      "row_count": 100,
+      "sha256": "F682B271E4FAEBCAE954AF79653045584F24D103DB73409FD98C4B426CB27E09"
+    }
+  ],
+  "source": "data\\teacher-smoke-100.jsonl",
+  "source_sha256": "C0031E9610CEDA172566DFBFCBF554199AEBB276CF5D21D1A2AF349D3B6B0B63",
+  "storage_format": "parquet",
+  "version_metadata": {
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "feature_schema_version": "1",
+    "game_commit": "41cef1ea",
+    "game_version": "v0.111.0",
+    "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383",
+    "model_version": "none",
+    "schema_version": 1,
+    "scorer_version": "not-applicable",
+    "semantic_database_version": "game-runtime-v0111",
+    "simulator_version": "cli-v0111-headless",
+    "trace_schema": 1
+  }
+}

@@ -28,7 +28,10 @@ def arrow_safe(value: Any) -> Any:
 
 def restore_empty_objects(value: Any) -> Any:
     if isinstance(value, dict):
-        if value == {EMPTY_OBJECT_SENTINEL: True}:
+        if value.get(EMPTY_OBJECT_SENTINEL) is True and all(
+            key == EMPTY_OBJECT_SENTINEL or item is None
+            for key, item in value.items()
+        ):
             return {}
         return {key: restore_empty_objects(item) for key, item in value.items()}
     if isinstance(value, list):

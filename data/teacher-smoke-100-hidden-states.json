@@ -1,0 +1,2438 @@
+[
+  {
+    "public_state_hash": "029AF06EA84DCF9D6368F3D8CA80901415DF1D4A61C9820A572390F1A346BFF7",
+    "teacher_state_hashes": [
+      "9d919674dbb985bc615fd739"
+    ],
+    "action_value_mean": {
+      "play:card:BARRICADE:007:none": -0.30000000000000004,
+      "play:card:DEFEND_IRONCLAD:012:none": 1.9,
+      "play:card:BARRICADE:008:none": -0.30000000000000004,
+      "play:card:BARRICADE:009:none": -0.30000000000000004,
+      "play:card:DEFEND_IRONCLAD:013:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:BARRICADE:007:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:012:none": 0.0,
+      "play:card:BARRICADE:008:none": 0.0,
+      "play:card:BARRICADE:009:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:013:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:012:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "09E273305D011E98498104AA6AA58600EDF9FF80A92CBEEAFAA6105133948737",
+    "teacher_state_hashes": [
+      "dce86564690d3411f7228761"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "potion:potion:ENERGY_POTION:000": 0.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "potion:potion:ENERGY_POTION:000": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "0A100F4297359004DE5560A145933D23397E9A9018552F6BFB24E2DF2EA4DA0F",
+    "teacher_state_hashes": [
+      "22c1ae3927abcc8682fd6232"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:006:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:007:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:006:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:007:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "0A17AF14F89A04DBC3F62072D552DF4080F3A9EDF95873ED6B7A93B6524827E6",
+    "teacher_state_hashes": [
+      "734c95d6ad73f7952d62fb47"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:006:none": 1.9,
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:007:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:006:none": 0.0,
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:007:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "0F8C00F8884673C9F9C6BBCDB6886B1F9A073A0A292737536F032D8D9D6EB055",
+    "teacher_state_hashes": [
+      "4343389e5a6acf63d9d22e4b"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:009:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:010:none": 1.9,
+      "play:card:BARRICADE:005:none": -0.30000000000000004,
+      "play:card:DEFEND_IRONCLAD:011:none": 1.9,
+      "play:card:BARRICADE:006:none": -0.30000000000000004,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:009:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:010:none": 0.0,
+      "play:card:BARRICADE:005:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:011:none": 0.0,
+      "play:card:BARRICADE:006:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:009:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "15EA188DDFB9CCD7EBDE61CB11F7379134A2D113EE374EAB750DBD9E5824CB28",
+    "teacher_state_hashes": [
+      "7f5ffab4ae4f90c33ba3b74f"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:011:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:012:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:013:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:014:enemy:SHRINKER_BEETLE:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:011:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:012:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:013:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:014:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:011:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "189CF07BE3EE2BF3D19E69B13033152E6310FABAEE990E0D82A2DFD9B8A0145D",
+    "teacher_state_hashes": [
+      "e7085e3051b0c0749807051e"
+    ],
+    "action_value_mean": {
+      "play:card:INFLAME:005:none": -0.1,
+      "play:card:INFLAME:006:none": -0.1,
+      "play:card:INFLAME:007:none": -0.1,
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 5.9,
+      "play:card:INFLAME:008:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:INFLAME:005:none": 0.0,
+      "play:card:INFLAME:006:none": 0.0,
+      "play:card:INFLAME:007:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 0.0,
+      "play:card:INFLAME:008:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "1B5E3D095A2DAD13D97F54E3F8B4A3B16BDBACF9655E7EA82B276412951398AA",
+    "teacher_state_hashes": [
+      "d97421df0899eadf71dffc8d"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "1C5910FB138736419277C99F4F89901A243C4053BADC2F5A5C5BD7F590F7EDC8",
+    "teacher_state_hashes": [
+      "548954a503f9382d39e5a0ce"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "1D4C76B7CA24B6408EF0FDE5496DE3C1131E741408F56115F4A8E2C94B6292BC",
+    "teacher_state_hashes": [
+      "e5ce16bb39cfc14d78085573"
+    ],
+    "action_value_mean": {
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "202264BD685275368627BAE008449C718C8B28F3B0DD9F39801303BDAFE507BD",
+    "teacher_state_hashes": [
+      "69f5c936b3637c69bc64e4e0"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:016:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:013:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:014:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:015:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:017:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:016:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:018:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:019:enemy:SEAPUNK:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:016:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:013:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:014:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:015:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:017:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:016:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:018:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:019:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:016:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "2365FA3BF20D6A3A747A5F50BE9F9E2D55FF173CA7FFC2C023B68CDDEE67149D",
+    "teacher_state_hashes": [
+      "dba86485c6e867a8880a5aed"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "26FE780B89474FD759046A0BE3687E7DB581E1CAF4BC207CB9FA5C65A9B4627D",
+    "teacher_state_hashes": [
+      "0405f18da46590c7b4662ac6"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "potion:potion:ENTROPIC_BREW:000": 0.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "potion:potion:ENTROPIC_BREW:000": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "2BE2874600820AC7E31931331413D7AA3F8CDB085CC796EA360A75DCDC7C602A",
+    "teacher_state_hashes": [
+      "b87eeebcdd62e3f4c427c04a"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "potion:potion:ENTROPIC_BREW:000": 0.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "potion:potion:ENTROPIC_BREW:000": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "3060F05DA976D58F6F5C5A697352A346697F5182B5B3E85EFA3778B8970BF09E",
+    "teacher_state_hashes": [
+      "11a238906c8d9365da7caa4f"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "34DF6492E26170257D9373A01BE8C01BA1BC2A3D04E2D443BCD88CC80E6C2579",
+    "teacher_state_hashes": [
+      "4d8d8f4a55b90d2a1116acc7"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_M:2": 5.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:3": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_S:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_M:2": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:3": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_S:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_M:2": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_S:3": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_M:2": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:3": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_M:2": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:3": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_M:2": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_S:3": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_M:2": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "370AD08F691CC45F029D15B9E87E882D9063782BF8AFF02789045BABBCABD236",
+    "teacher_state_hashes": [
+      "09039bff46a6aafe8981cfa9"
+    ],
+    "action_value_mean": {
+      "play:card:DEMON_FORM:010:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:011:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:012:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:013:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:014:none": -0.30000000000000004,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEMON_FORM:010:none": 0.0,
+      "play:card:DEMON_FORM:011:none": 0.0,
+      "play:card:DEMON_FORM:012:none": 0.0,
+      "play:card:DEMON_FORM:013:none": 0.0,
+      "play:card:DEMON_FORM:014:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "3796AC61DB461243342CCC4FFDA56C7F7F62D16307A1707E5576F718BDE87B75",
+    "teacher_state_hashes": [
+      "392aa6da508ea6596a4da791"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:007:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:008:none": 1.9,
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:009:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:007:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:008:none": 0.0,
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:009:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "3D3ABA3B70DE18804763DC86FF442E51553D7F9EF814247468120977C50623A8",
+    "teacher_state_hashes": [
+      "e5039a8f0098947e609bedab"
+    ],
+    "action_value_mean": {
+      "play:card:INFLAME:006:none": -0.1,
+      "play:card:INFLAME:007:none": -0.1,
+      "play:card:INFLAME:008:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:INFLAME:006:none": 0.0,
+      "play:card:INFLAME:007:none": 0.0,
+      "play:card:INFLAME:008:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "4197A4A1DE5E179B11571DFE64EAC809DD1FD56E99E2B74A2014366464156993",
+    "teacher_state_hashes": [
+      "7d460831cf9c5ed427358429"
+    ],
+    "action_value_mean": {
+      "play:card:BARRICADE:007:none": -0.30000000000000004,
+      "play:card:DEFEND_IRONCLAD:012:none": 1.9,
+      "play:card:BARRICADE:008:none": -0.30000000000000004,
+      "play:card:BARRICADE:009:none": -0.30000000000000004,
+      "play:card:DEFEND_IRONCLAD:013:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:BARRICADE:007:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:012:none": 0.0,
+      "play:card:BARRICADE:008:none": 0.0,
+      "play:card:BARRICADE:009:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:013:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:012:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "4A6FAF35AB4BCF4C3CAAA5F03FCB2A243C493774BC4A3DF6C82A595C6FE7A9D2",
+    "teacher_state_hashes": [
+      "3e4ff33b946fa5579c7a6a6c"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "527414EE89FD4668720B599F023FB5BFB462A0384D1F65879B6432CC5562499E",
+    "teacher_state_hashes": [
+      "5c3243e6f8494649a8e3e98d"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "potion:potion:ENERGY_POTION:000": 0.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "potion:potion:ENERGY_POTION:000": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "53B65A63A54D2E98647EFD264273FE27374082CA79FA6BB83FE2E15E8A4E8642",
+    "teacher_state_hashes": [
+      "3ea1c1d84198f375a0e38e5b"
+    ],
+    "action_value_mean": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "potion:potion:FIRE_POTION:000": 0.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "potion:potion:FIRE_POTION:000": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "556273625105214012120E36C4742911CFC86AAFF8A78A72742F7FA24D077457",
+    "teacher_state_hashes": [
+      "9390686adcd42f3d1e149fbd"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:006:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:007:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:006:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:007:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "5663B502B1E19A44491D75EB349DE4D5DA1DDD524911EC5109E96599A0066E69",
+    "teacher_state_hashes": [
+      "60075c2c937e7e9b17b6e7c6"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_S:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_M:2": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:3": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_S:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_M:2": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_S:3": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_M:2": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:3": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_M:2": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_S:3": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_M:2": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "566DC0FD12AE66A55C4F586A8BCA03CECA11F24AE8FD21F49326F9F70C47291F",
+    "teacher_state_hashes": [
+      "5891a4573b4b075566b9789e"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:007:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:008:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:009:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:007:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:008:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:009:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "568470EBA3CD492A2EB33BAD4E3771DE1A496EA6FEC90E364BF148767F8E4A07",
+    "teacher_state_hashes": [
+      "dfdf535f6b56f314eb096151"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "581FDB9E745D4463F605F13D4A6559EEAE7EBD3B5ED93E33CFE76AABF1722B81",
+    "teacher_state_hashes": [
+      "1053634adc34954c396c9775"
+    ],
+    "action_value_mean": {
+      "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:022:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:023:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:024:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:025:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:026:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:027:enemy:SEAPUNK:1": 3.0,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:022:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:023:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:024:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:025:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:026:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:027:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "5C2F2A1CD82CECC0E7E448440B0FBCB898EEC3D9C1C58C7646E9C42C894A3F4D",
+    "teacher_state_hashes": [
+      "dfc350690c9513a9c0b4a9f2"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:010:none": 1.9,
+      "play:card:BARRICADE:005:none": -0.30000000000000004,
+      "play:card:DEFEND_IRONCLAD:011:none": 1.9,
+      "play:card:BARRICADE:006:none": -0.30000000000000004,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:010:none": 0.0,
+      "play:card:BARRICADE:005:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:011:none": 0.0,
+      "play:card:BARRICADE:006:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:010:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "5E2A19CAD0280E10512AB306CD32AFA8FD4852F9E1CD5FE3A8D7D1D0DDBA367A",
+    "teacher_state_hashes": [
+      "5861d7e5b5d9bbcfe51225d4"
+    ],
+    "action_value_mean": {
+      "play:card:AFTERIMAGE:012:none": -0.1,
+      "play:card:AFTERIMAGE:013:none": -0.1,
+      "play:card:AFTERIMAGE:014:none": -0.1,
+      "play:card:AFTERIMAGE:015:none": -0.1,
+      "play:card:AFTERIMAGE:016:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:AFTERIMAGE:012:none": 0.0,
+      "play:card:AFTERIMAGE:013:none": 0.0,
+      "play:card:AFTERIMAGE:014:none": 0.0,
+      "play:card:AFTERIMAGE:015:none": 0.0,
+      "play:card:AFTERIMAGE:016:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "638DF5D39A0F2E34BECCF98BA65D9DDC6A7EBDAA1068A250ABFE8E63B8306327",
+    "teacher_state_hashes": [
+      "1dc2b9abb03cd2265cc1b534"
+    ],
+    "action_value_mean": {
+      "play:card:NEUTRALIZE:028:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:029:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:030:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:031:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:032:enemy:SEAPUNK:1": 3.0,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:NEUTRALIZE:028:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:029:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:030:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:031:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:032:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:NEUTRALIZE:028:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "63F3ADB0A890D5C28641C7EF066EE784494BAE18A6AC3C86F6D956539912C9E0",
+    "teacher_state_hashes": [
+      "36a9f0917ef88297aa66a1f1"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "64E65D572BD686F854B342159C940BAD7FEB06A7956AAB789E4CB10617D13CD3",
+    "teacher_state_hashes": [
+      "1ece17a7bff2877ed621c2e5"
+    ],
+    "action_value_mean": {
+      "play:card:AFTERIMAGE:011:none": -0.1,
+      "play:card:AFTERIMAGE:012:none": -0.1,
+      "play:card:AFTERIMAGE:013:none": -0.1,
+      "play:card:AFTERIMAGE:014:none": -0.1,
+      "play:card:AFTERIMAGE:015:none": -0.1,
+      "play:card:AFTERIMAGE:016:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:AFTERIMAGE:011:none": 0.0,
+      "play:card:AFTERIMAGE:012:none": 0.0,
+      "play:card:AFTERIMAGE:013:none": 0.0,
+      "play:card:AFTERIMAGE:014:none": 0.0,
+      "play:card:AFTERIMAGE:015:none": 0.0,
+      "play:card:AFTERIMAGE:016:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "65EF7817C0E5143398662F3754EF3C2C265CB77F3A56CBF04672A699A76C9056",
+    "teacher_state_hashes": [
+      "eb7af3e7b1bc4f57d528448d"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "potion:potion:DROPLET_OF_PRECOGNITION:000": 0.8,
+      "potion:potion:POWER_POTION:000": 0.8,
+      "potion:potion:SPEED_POTION:000": 0.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "potion:potion:DROPLET_OF_PRECOGNITION:000": 0.0,
+      "potion:potion:POWER_POTION:000": 0.0,
+      "potion:potion:SPEED_POTION:000": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "68D61B09995CA987D308439C9FB1469B6A7B1E46223C7F3E0F75BDF81DEBE0BD",
+    "teacher_state_hashes": [
+      "c37a275b7ecb9436d194a0c4"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 7.8,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "6F29CFECB836E5087604C2EED9F35076A8E661E77E0291ACB3A082D3FF06B4FE",
+    "teacher_state_hashes": [
+      "18a6fbbc07f2f55d300d0407"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:006:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:007:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:009:enemy:SEAPUNK:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:006:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:007:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:009:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "70D55AB0E8956ED70764FAFE4E67BBB4932966004DE139E8B065B2CD274DBB57",
+    "teacher_state_hashes": [
+      "2cb4cd7cc81f150dc83e934e"
+    ],
+    "action_value_mean": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "potion:potion:FIRE_POTION:000": 0.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "potion:potion:FIRE_POTION:000": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "7105BA2707686B3501AB40091CBCFB051B805A2F257075D4CAFCB7068E281DC4",
+    "teacher_state_hashes": [
+      "dc4c2b44ca966dda9166761f"
+    ],
+    "action_value_mean": {
+      "play:card:INFLAME:005:none": -0.1,
+      "play:card:INFLAME:006:none": -0.1,
+      "play:card:INFLAME:007:none": -0.1,
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 5.9,
+      "play:card:INFLAME:008:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:INFLAME:005:none": 0.0,
+      "play:card:INFLAME:006:none": 0.0,
+      "play:card:INFLAME:007:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 0.0,
+      "play:card:INFLAME:008:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "74B2545846D652C9094BBF47C5D563A895AEAF6588E72C0A8ECAD7E73304428B",
+    "teacher_state_hashes": [
+      "fbd3dd2ddf4bcb87966eeabc"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 7.8,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "753130E5833A6AD91F27A95E8A75345FDD84A83C2C1C0B0AAC4DEAE9353AEE8B",
+    "teacher_state_hashes": [
+      "1edf28b9f65cb9432d9c77ed"
+    ],
+    "action_value_mean": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "7634072E48564953FD5864D2A84B942224FD78AF18C367CF9B88400C007C5146",
+    "teacher_state_hashes": [
+      "9776d4fe17b75ba236298337"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:007:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:008:none": 1.9,
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:009:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:007:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:008:none": 0.0,
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:009:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "795E2A9AD673834272913E2A5D2E50877DB5846AC6FECD30BEDED63AA2CE742D",
+    "teacher_state_hashes": [
+      "8edb5e7035e7c7ea83930297"
+    ],
+    "action_value_mean": {
+      "play:card:INFLAME:006:none": -0.1,
+      "play:card:INFLAME:007:none": -0.1,
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 7.9,
+      "play:card:INFLAME:008:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:INFLAME:006:none": 0.0,
+      "play:card:INFLAME:007:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 0.0,
+      "play:card:INFLAME:008:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "7ADD50CB535912CFCBC806EFF91F0A2A7C07BE4973A1D308536D719825DEC3FF",
+    "teacher_state_hashes": [
+      "d973b37c009a10a651b1b6e9"
+    ],
+    "action_value_mean": {
+      "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:022:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:023:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:024:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:025:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:026:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:027:enemy:SEAPUNK:1": 3.0,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:022:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:023:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:024:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:025:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:026:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:027:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "83A70C24A51726C629BB6BE9D0B1878C244D6CB714CD8F6FE33AC88407095FE8",
+    "teacher_state_hashes": [
+      "58d8a1a1123090bf37dda1a6"
+    ],
+    "action_value_mean": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "870DFA4A0BA402C142B5C813FB8A5FEC784E1057345D48641AD861E53A12A33D",
+    "teacher_state_hashes": [
+      "ee38773750302221ce4a3eec"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "88D5CDF0EB78ABB604505AF3C1E8189F0EF72EB16FC207E1D750D3B5BC1133B5",
+    "teacher_state_hashes": [
+      "02365ae388ccd6c4e90c8524"
+    ],
+    "action_value_mean": {
+      "play:card:DEMON_FORM:015:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:016:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:017:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:018:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:019:none": -0.30000000000000004,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEMON_FORM:015:none": 0.0,
+      "play:card:DEMON_FORM:016:none": 0.0,
+      "play:card:DEMON_FORM:017:none": 0.0,
+      "play:card:DEMON_FORM:018:none": 0.0,
+      "play:card:DEMON_FORM:019:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "89428C5A0766435C57B1E419A1898956CC472F831B8007B283FA4BD82CE8FF27",
+    "teacher_state_hashes": [
+      "028ab0b4c181be94e2e5fab2"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 13.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 13.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 13.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 15.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "8FBDF16E93BF738216C19EA04995328CE1FEDEDC5343574E7AA3E0CA8DC6AABF",
+    "teacher_state_hashes": [
+      "11abd27313d778fbadb3bffe"
+    ],
+    "action_value_mean": {
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "90D162F443F50592341B26046B494C41B28A69A6E9176053EE5F4B7F894359BB",
+    "teacher_state_hashes": [
+      "28b9cd0c62a1822ac01e2bfc"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "93CAB3512AA088AF348CCA727AFCD1F8660710187322B90B2B940A5DCA3EBD13",
+    "teacher_state_hashes": [
+      "4ab99bb010fd3b441a61c89a"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:011:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:015:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:012:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:011:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:015:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:012:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "94E54D7A59BE1E57F2459290BBCB1D6264602DEAA8DBAF3A0FD478C6C0CDCF6A",
+    "teacher_state_hashes": [
+      "9d9dcb8cf35a6ed01cd89e64"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "97D861F41E6B6255AB8D883883DA9836AC31A908C43097F25EAB2E57B1A220AE",
+    "teacher_state_hashes": [
+      "a7e3171038690c0c772def94"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "984D8D638FE9F16D4E9B6DBA91306E714888CE7BA135F2757B415D484CFA2DBC",
+    "teacher_state_hashes": [
+      "696c95467f7476aaf04959d5"
+    ],
+    "action_value_mean": {
+      "play:card:INFLAME:006:none": -0.1,
+      "play:card:INFLAME:007:none": -0.1,
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 7.9,
+      "play:card:INFLAME:008:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:INFLAME:006:none": 0.0,
+      "play:card:INFLAME:007:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 0.0,
+      "play:card:INFLAME:008:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "98D6F2831F8913BA95B33B53CCBF89CAFD67B449945FD3BABFFA223D06CA5201",
+    "teacher_state_hashes": [
+      "b6be7628e75273c55e4c9327"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_M:2": 5.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:3": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_S:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_M:2": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:3": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_S:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_M:2": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_S:3": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_M:2": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:3": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_M:2": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:3": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_M:2": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_S:3": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_M:2": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "9E1785380391CFC37D2F193FCCA76A9666B5F1982B01B6F37A6F01D2E67FE457",
+    "teacher_state_hashes": [
+      "1abeef839c1039c915d0b18e"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "A08C717C584A0F4D1674D1C74FD232D12712C511D0D33AC21DDA4C6193C4F12C",
+    "teacher_state_hashes": [
+      "f0626570621ea27bc341b770"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:009:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:010:none": 1.9,
+      "play:card:BARRICADE:005:none": -0.30000000000000004,
+      "play:card:DEFEND_IRONCLAD:011:none": 1.9,
+      "play:card:BARRICADE:006:none": -0.30000000000000004,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:009:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:010:none": 0.0,
+      "play:card:BARRICADE:005:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:011:none": 0.0,
+      "play:card:BARRICADE:006:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:009:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "A1B246E9C1D831853B68749EBD751742D4D154571E23E6D5E0AB7101CCDFA4AD",
+    "teacher_state_hashes": [
+      "5b65f055ca2a381943ea10fd"
+    ],
+    "action_value_mean": {
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "A2E1A3CC49B6489A6880734E30DAE09A40D14DA933D5DAAEEAE3B13FC850B3C4",
+    "teacher_state_hashes": [
+      "391599c50920ee101d9ea1ef"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "A3DB14B63EA18BAC01B87B5562F854920482C9E065B2D34804BAFBF7E6A3668A",
+    "teacher_state_hashes": [
+      "2d1949a563dab65b81628991"
+    ],
+    "action_value_mean": {
+      "play:card:AFTERIMAGE:011:none": -0.1,
+      "play:card:AFTERIMAGE:012:none": -0.1,
+      "play:card:AFTERIMAGE:013:none": -0.1,
+      "play:card:AFTERIMAGE:014:none": -0.1,
+      "play:card:AFTERIMAGE:015:none": -0.1,
+      "play:card:AFTERIMAGE:016:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:AFTERIMAGE:011:none": 0.0,
+      "play:card:AFTERIMAGE:012:none": 0.0,
+      "play:card:AFTERIMAGE:013:none": 0.0,
+      "play:card:AFTERIMAGE:014:none": 0.0,
+      "play:card:AFTERIMAGE:015:none": 0.0,
+      "play:card:AFTERIMAGE:016:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "A5A0B8917D0952BC28B0FCB6A2EDDDFC1533F64FBDB0A555E5860A5501447324",
+    "teacher_state_hashes": [
+      "3975f225368d1d9f6ea39f6a"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "A63B373BCD3B8A78FC3638818F89F398EE101C63FEF9DEEC576963A60B98F87B",
+    "teacher_state_hashes": [
+      "6ae04af22b33b3f7c03d199e"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 7.8,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "A671CB4516590123CA0BE0E4D1F6DB2192B646FAC2939F8AEBCE8B53B20ED15F",
+    "teacher_state_hashes": [
+      "60b9b02624f83a06bbaba93d"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:006:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 5.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 7.8,
+      "play:card:STRIKE_IRONCLAD:009:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:007:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:006:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:009:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:007:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "A849A45B8684CF2BBDD189D925930F15B20740FD53FB7D1C744E792593BC39B8",
+    "teacher_state_hashes": [
+      "e28575cd612d6952db25c4a4"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:006:none": 1.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:006:none": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "AAA004CC3CABCE8F0368F64E5619A8E0CE2A0347F915548880017140CE21E26D",
+    "teacher_state_hashes": [
+      "5511f4e4e42b766acabfa1d3"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "B0B4635C4973B7A9EF79FFB7AF792FE7121796822BFA9F6EA97EFF19B52D6B4E",
+    "teacher_state_hashes": [
+      "35b8a9cee59fbee9e3bb4fd8"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "B265582328F16622EE6E2D722DE1BBAFFFB6C4051FBC206C3B1A1E365BCA23B9",
+    "teacher_state_hashes": [
+      "566668c69683f5fd61d163aa"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "B4632424D7B21F14EC7B7F32C8574C886776DA8C94EAE7AF2BF42D249A13EF5B",
+    "teacher_state_hashes": [
+      "82ead5f8675a72d466714465"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:006:none": 1.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "potion:potion:BLOCK_POTION:000": 0.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:006:none": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "potion:potion:BLOCK_POTION:000": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "B861E6579D81904410BBF0EA7021D6903D5A5AA7F3ED8742799CB40FB5E98835",
+    "teacher_state_hashes": [
+      "f1c4c6311f2da9b7cb76589c"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:006:none": 1.9,
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:007:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:006:none": 0.0,
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:007:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "B88816770694E86A990803E2ACCEFEA44DB07438C4A7A6FE187A2CF9EBEACDE5",
+    "teacher_state_hashes": [
+      "5bceb7ba3a986cb318c31f77"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_S:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_M:2": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:3": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_S:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_M:2": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_S:3": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_M:2": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:3": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:LEAF_SLIME_M:2": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_S:3": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_M:2": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "BE18841EE06174FFF73B948637EC73093DC9976F989C59ABB9F2C0F6CB7232BC",
+    "teacher_state_hashes": [
+      "9021d8e34901b92881ca1312"
+    ],
+    "action_value_mean": {
+      "play:card:NEUTRALIZE:022:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:023:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:024:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:025:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:026:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:027:enemy:SEAPUNK:1": 3.0,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:NEUTRALIZE:022:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:023:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:024:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:025:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:026:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:027:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:NEUTRALIZE:022:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "BF93FD570F58072396B4BE6B5368A60302634757B50FB31F3F9ACF348264A6B1",
+    "teacher_state_hashes": [
+      "86b65e35cac8a043d793590f"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 7.8,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "C355A239EE3F46D973C3E0B0267C066F6F59C13D367F694E972EC64B50DA52A9",
+    "teacher_state_hashes": [
+      "84c2b437ee330d304f43215b"
+    ],
+    "action_value_mean": {
+      "play:card:AFTERIMAGE:010:none": -0.1,
+      "play:card:AFTERIMAGE:011:none": -0.1,
+      "play:card:AFTERIMAGE:012:none": -0.1,
+      "play:card:AFTERIMAGE:013:none": -0.1,
+      "play:card:AFTERIMAGE:014:none": -0.1,
+      "play:card:AFTERIMAGE:015:none": -0.1,
+      "play:card:AFTERIMAGE:016:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:AFTERIMAGE:010:none": 0.0,
+      "play:card:AFTERIMAGE:011:none": 0.0,
+      "play:card:AFTERIMAGE:012:none": 0.0,
+      "play:card:AFTERIMAGE:013:none": 0.0,
+      "play:card:AFTERIMAGE:014:none": 0.0,
+      "play:card:AFTERIMAGE:015:none": 0.0,
+      "play:card:AFTERIMAGE:016:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "C54ECB92FF7C6FD16A833257248101BB7E2E7694A507DCC963A50640AB232A8C",
+    "teacher_state_hashes": [
+      "055ed34e34a9988caf1745aa"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 7.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "CC31852396A8CFC7CDBB4EB429997CC6B0BDB1FE66A57D0440F3EABD005557E3",
+    "teacher_state_hashes": [
+      "a5fc8a2a8d3fd0802103a33b"
+    ],
+    "action_value_mean": {
+      "play:card:DEMON_FORM:015:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:016:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:017:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:018:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:019:none": -0.30000000000000004,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEMON_FORM:015:none": 0.0,
+      "play:card:DEMON_FORM:016:none": 0.0,
+      "play:card:DEMON_FORM:017:none": 0.0,
+      "play:card:DEMON_FORM:018:none": 0.0,
+      "play:card:DEMON_FORM:019:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "D07B00F245DABFE2A1CFA174F1AF37C6320B0A008582553F5354C7CD256A9E31",
+    "teacher_state_hashes": [
+      "b6298daab9149dc100d3f0f2"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "D216CFA2E3F6DC429F6B5978ED89CE65E2A5C2581DF2324C1363724CE029DC7E",
+    "teacher_state_hashes": [
+      "9dd96540a3216457b9675e59"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "potion:potion:DROPLET_OF_PRECOGNITION:000": 0.8,
+      "potion:potion:POWER_POTION:000": 0.8,
+      "potion:potion:SPEED_POTION:000": 0.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "potion:potion:DROPLET_OF_PRECOGNITION:000": 0.0,
+      "potion:potion:POWER_POTION:000": 0.0,
+      "potion:potion:SPEED_POTION:000": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "D23AE4E17B7E6DBCF83E4D544F41DA663FDB739739EB745F3E1B67DABCB02927",
+    "teacher_state_hashes": [
+      "a3f3085024d412f3d8dda078"
+    ],
+    "action_value_mean": {
+      "play:card:NEUTRALIZE:028:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:029:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:030:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:031:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:032:enemy:SEAPUNK:1": 3.0,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:NEUTRALIZE:028:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:029:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:030:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:031:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:032:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:NEUTRALIZE:028:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "D508405729A8B470D862E7BB992C637D96A7E66512A19D7D4E402DB18E32BA9D",
+    "teacher_state_hashes": [
+      "efdb29e5ad3fff12fe306202"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "D6E2E16E8E0F21F64F900B0394EF115056524EBD3DABB2E0C87222CD760EC8AC",
+    "teacher_state_hashes": [
+      "8e1a6b5b941906bb57fae3f2"
+    ],
+    "action_value_mean": {
+      "play:card:INFLAME:006:none": -0.1,
+      "play:card:INFLAME:007:none": -0.1,
+      "play:card:INFLAME:008:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:INFLAME:006:none": 0.0,
+      "play:card:INFLAME:007:none": 0.0,
+      "play:card:INFLAME:008:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "D78B2B58A2894736ADC0BF212DB1BA9D8EF2897B8DD71998C1CE1A3FB800093B",
+    "teacher_state_hashes": [
+      "be6287cff3307dc0f70bcbfe"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:007:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:008:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:009:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:007:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:008:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:009:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "D801DE8DBB444D48CD19F0B4EAB5F6C10BD66E55278D53B956EA2AD28E3B18A7",
+    "teacher_state_hashes": [
+      "c76e552e86444b6fc651ce74"
+    ],
+    "action_value_mean": {
+      "play:card:NEUTRALIZE:022:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:023:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:024:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:025:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:026:enemy:SEAPUNK:1": 3.0,
+      "play:card:NEUTRALIZE:027:enemy:SEAPUNK:1": 3.0,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:NEUTRALIZE:022:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:023:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:024:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:025:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:026:enemy:SEAPUNK:1": 0.0,
+      "play:card:NEUTRALIZE:027:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:NEUTRALIZE:022:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "DF783DCD3EF2C70362183DA7B87FCC718D4A6E98034109D380A7B51D23EF9701",
+    "teacher_state_hashes": [
+      "682f6ff37aa6b245b857abfe"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:006:none": 1.9,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "potion:potion:BLOCK_POTION:000": 0.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:006:none": 0.0,
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "potion:potion:BLOCK_POTION:000": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "E034E8E957AE93224BB87323686125261CFC062432BFDE8FFE57FFD1415B7095",
+    "teacher_state_hashes": [
+      "44360bbe9ac9810901ae16e3"
+    ],
+    "action_value_mean": {
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "E30EC5F243E459328D2FC772320535FB2753AC75B3E2632F7AC88A0E24584309",
+    "teacher_state_hashes": [
+      "c200efffc26b03cce785ff29"
+    ],
+    "action_value_mean": {
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "EA3B96C75E0403455A5888BAF87E59C163EB0AB8E31F5D886A5E37152466D377",
+    "teacher_state_hashes": [
+      "4fa325f801fa22f27bc07558"
+    ],
+    "action_value_mean": {
+      "play:card:AFTERIMAGE:012:none": -0.1,
+      "play:card:AFTERIMAGE:013:none": -0.1,
+      "play:card:AFTERIMAGE:014:none": -0.1,
+      "play:card:AFTERIMAGE:015:none": -0.1,
+      "play:card:AFTERIMAGE:016:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:AFTERIMAGE:012:none": 0.0,
+      "play:card:AFTERIMAGE:013:none": 0.0,
+      "play:card:AFTERIMAGE:014:none": 0.0,
+      "play:card:AFTERIMAGE:015:none": 0.0,
+      "play:card:AFTERIMAGE:016:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "EA5FAE512FB4A5C93C2E5D544B65DEB6ABBCC03EED972E16C5B8296E7BC5EB91",
+    "teacher_state_hashes": [
+      "cb67b52cdaf2cecd209cfc3b"
+    ],
+    "action_value_mean": {
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "ED2822D16D5DC9AACD93976A9A6FA7F102639430877DDD648483A18D311340B8",
+    "teacher_state_hashes": [
+      "e783af0dd7d1883ec10e828a"
+    ],
+    "action_value_mean": {
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "ED6270C48B62E7DA69CC7BC5B6FE60012D086BB680E30EE31D32C1BEB07D85FC",
+    "teacher_state_hashes": [
+      "d2d039a761a31f10172bebc8"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:DEFEND_IRONCLAD:005:none": 1.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:005:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "EE68F7B92ACCB822F6B0436C64AB2C17AF71B99C293FCBAA088C4A428FA1068C",
+    "teacher_state_hashes": [
+      "a8d86836d07957503c02cd09"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 13.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 13.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 13.9,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 15.8,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:BASH:001:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "F3E764BBB02F8A7FF77268DC3CF701C7678038D8DF9368BB37D90D837EF2BE9B",
+    "teacher_state_hashes": [
+      "04e0672d3d5f29e54179ea57"
+    ],
+    "action_value_mean": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 7.8,
+      "play:card:DEFEND_IRONCLAD:004:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SHRINKER_BEETLE:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:001:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "FC5C77B7E65703BC4612CCA6E3198DBFB49F5B06F1BBDC69F5AF6A73BDEBAB43",
+    "teacher_state_hashes": [
+      "a4ff7a969148937164f7857d"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:010:none": 1.9,
+      "play:card:BARRICADE:005:none": -0.30000000000000004,
+      "play:card:DEFEND_IRONCLAD:011:none": 1.9,
+      "play:card:BARRICADE:006:none": -0.30000000000000004,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:010:none": 0.0,
+      "play:card:BARRICADE:005:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:011:none": 0.0,
+      "play:card:BARRICADE:006:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:010:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "FD4100D3B395B763D8E52C70086A1AC51E996E209E498A7351CBFB7E8E21F086",
+    "teacher_state_hashes": [
+      "9d8abb496614ac336292be9d"
+    ],
+    "action_value_mean": {
+      "play:card:DEMON_FORM:010:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:011:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:012:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:013:none": -0.30000000000000004,
+      "play:card:DEMON_FORM:014:none": -0.30000000000000004,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEMON_FORM:010:none": 0.0,
+      "play:card:DEMON_FORM:011:none": 0.0,
+      "play:card:DEMON_FORM:012:none": 0.0,
+      "play:card:DEMON_FORM:013:none": 0.0,
+      "play:card:DEMON_FORM:014:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "FD78FC81001193D9C6DB07BBEDAB48A981FA25D8989529B8F7C7C7E4F0E86205",
+    "teacher_state_hashes": [
+      "5ca24017de809d0e1c7f187d"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:007:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:009:enemy:SEAPUNK:1": 5.9,
+      "play:card:DEFEND_IRONCLAD:006:none": 1.9,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 5.9,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 5.9,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:007:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:009:enemy:SEAPUNK:1": 0.0,
+      "play:card:DEFEND_IRONCLAD:006:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:008:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "FF519DA906BDDE2203295D5F7E632AAFADFD6D6E1C6226DFA2F0F8761FE96D58",
+    "teacher_state_hashes": [
+      "17004e94f84a5314d572a753"
+    ],
+    "action_value_mean": {
+      "play:card:AFTERIMAGE:010:none": -0.1,
+      "play:card:AFTERIMAGE:011:none": -0.1,
+      "play:card:AFTERIMAGE:012:none": -0.1,
+      "play:card:AFTERIMAGE:013:none": -0.1,
+      "play:card:AFTERIMAGE:014:none": -0.1,
+      "play:card:AFTERIMAGE:015:none": -0.1,
+      "play:card:AFTERIMAGE:016:none": -0.1,
+      "end_turn": 0.0
+    },
+    "action_value_variance": {
+      "play:card:AFTERIMAGE:010:none": 0.0,
+      "play:card:AFTERIMAGE:011:none": 0.0,
+      "play:card:AFTERIMAGE:012:none": 0.0,
+      "play:card:AFTERIMAGE:013:none": 0.0,
+      "play:card:AFTERIMAGE:014:none": 0.0,
+      "play:card:AFTERIMAGE:015:none": 0.0,
+      "play:card:AFTERIMAGE:016:none": 0.0,
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  }
+]

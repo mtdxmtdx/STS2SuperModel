@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "STS2 Teacher Label v1",
+  "type": "object",
+  "required": [
+    "objectives",
+    "teacher_best_actions",
+    "teacher_top_k",
+    "action_values",
+    "death_probability",
+    "search_budget_ms",
+    "expanded_nodes",
+    "chance_branch",
+    "confidence",
+    "search_complete",
+    "risk_events"
+  ],
+  "properties": {
+    "objectives": {
+      "type": "object",
+      "required": ["Balanced", "HighestDamage", "MinimumLoss"],
+      "additionalProperties": {"$ref": "#/$defs/objective"}
+    },
+    "teacher_best_actions": {"type": "array", "items": {"type": "string"}},
+    "teacher_top_k": {"type": "array", "items": {"$ref": "#/$defs/top_action"}},
+    "action_values": {"type": "object", "additionalProperties": {"type": "number"}},
+    "death_probability": {"type": "number", "minimum": 0, "maximum": 1},
+    "search_budget_ms": {"type": "integer", "minimum": 0},
+    "expanded_nodes": {"type": "integer", "minimum": 0},
+    "chance_branch": {"type": "object"},
+    "confidence": {"type": "string", "enum": ["Reliable", "Estimated", "LowConfidence", "Uncalculable"]},
+    "search_complete": {"type": "boolean"},
+    "risk_events": {"type": "array", "items": {"type": "string"}},
+    "hidden_state_sensitive": {"type": "boolean"}
+  },
+  "$defs": {
+    "objective": {
+      "type": "object",
+      "required": ["best_actions", "value"],
+      "properties": {
+        "best_actions": {"type": "array", "items": {"type": "string"}},
+        "value": {"type": "number"},
+        "action_values": {"type": "object", "additionalProperties": {"type": "number"}}
+      },
+      "additionalProperties": true
+    },
+    "top_action": {
+      "type": "object",
+      "required": ["action_id", "value", "rank"],
+      "properties": {
+        "action_id": {"type": "string"},
+        "value": {"type": "number"},
+        "rank": {"type": "integer", "minimum": 1},
+        "death_probability": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    }
+  }
+}
