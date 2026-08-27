@@ -1,0 +1,3 @@
+{"cmd":"start_run","character":"Ironclad","seed":"p0-fixed-smoke","ascension":0}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"get_combat_snapshot","view":"teacher"}

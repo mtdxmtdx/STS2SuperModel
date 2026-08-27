@@ -1,0 +1,9 @@
+{"cmd":"start_run","character":"Ironclad","seed":"p0-inflame-strength-fixed","ascension":0}
+{"cmd":"set_player","deck":["INFLAME","INFLAME","INFLAME","INFLAME","INFLAME","STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD"]}
+{"cmd":"enter_room","type":"combat","encounter":"SEAPUNK_WEAK"}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":0}}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"action","action":"play_card","args":{"card_index":2,"target_index":0}}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"quit"}

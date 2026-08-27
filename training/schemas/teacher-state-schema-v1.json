@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TeacherStateViewV1",
+  "description": "Teacher privileged observation snapshot schema. Exposes hidden piles and RNG counters; strictly requires rng_raw_words_exposed=false.",
+  "type": "object",
+  "required": [
+    "available",
+    "rng_raw_words_exposed"
+  ],
+  "properties": {
+    "available": { "type": "boolean" },
+    "rng_raw_words_exposed": { "type": "boolean", "const": false },
+    "reason": { "type": "string" },
+    "rng_runtime_type": { "type": "string" },
+    "rng_runtime_members": { "type": "array", "items": { "type": "string" } },
+    "round": { "type": "integer" },
+    "hand": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["instance_id", "id", "type"],
+        "properties": {
+          "instance_id": { "type": "string" },
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "upgraded": { "type": "boolean" }
+        }
+      }
+    },
+    "draw_pile": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["instance_id", "id", "type"],
+        "properties": {
+          "instance_id": { "type": "string" },
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "upgraded": { "type": "boolean" }
+        }
+      }
+    },
+    "discard_pile": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["instance_id", "id", "type"],
+        "properties": {
+          "instance_id": { "type": "string" },
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "upgraded": { "type": "boolean" }
+        }
+      }
+    },
+    "exhaust_pile": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "instance_id": { "type": "string" },
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "upgraded": { "type": "boolean" }
+        }
+      }
+    },
+    "relics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string" },
+          "counter": { "type": ["integer", "null"] },
+          "runtime_type": { "type": "string" }
+        }
+      }
+    },
+    "player_powers": { "type": "array" },
+    "enemy_powers": { "type": "array" },
+    "rng_counters": {
+      "type": "object",
+      "additionalProperties": { "type": "integer" }
+    },
+    "rng_counters_available": { "type": "boolean" }
+  },
+  "additionalProperties": true
+}

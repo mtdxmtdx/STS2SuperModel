@@ -1,0 +1,8 @@
+{"cmd":"start_run","character":"Ironclad","seed":"p0-multi-target-fixed","ascension":0}
+{"cmd":"enter_room","type":"combat","encounter":"SLIMES_WEAK"}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":0}}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":1}}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":2}}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"quit"}

@@ -1,0 +1,5 @@
+{"cmd":"start_run","character":"Ironclad","seed":"p0-combat-bash-fixed","ascension":0}
+{"cmd":"enter_room","type":"combat","encounter":"SHRINKER_BEETLE_WEAK"}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"action","action":"play_card","args":{"card_index":4,"target_index":0}}
+{"cmd":"get_combat_snapshot","view":"teacher"}

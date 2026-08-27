@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "validation_status": "passed",
+  "total_files_checked": 1,
+  "total_rows_checked": 6,
+  "public_leakage_count": 0,
+  "error_count": 0,
+  "errors": [],
+  "checked_files": [
+    "..\\data\\p0-chance-entropic-trace.jsonl"
+  ]
+}

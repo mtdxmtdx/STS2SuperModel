@@ -1,0 +1,17 @@
+# Build/cache outputs
+**/bin/
+**/obj/
+**/.pytest_cache/
+**/__pycache__/
+**/test-output/
+.python-deps/
+
+# Local game/runtime binaries (obtain from a local installation)
+sts2-cli-v0111/lib/*.dll
+sts2-cli-v0111/lib/*.pdb
+sts2-cli-v0111/lib/*.exe
+sts2-cli-v0111/lib/decompiled/
+
+# Local runtime data
+sts2-cli-v0111/logs/
+sts2-cli-v0111/saves/

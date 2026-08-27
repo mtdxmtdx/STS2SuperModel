@@ -1,0 +1,62 @@
+{
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "schema_version": 1,
+  "live_cli_checks": {
+    "same_instance_across_adjacent_decisions": true,
+    "duplicate_model_instances_are_distinct": true,
+    "index_shift_replay": true,
+    "potion_slot_shift_replay": true,
+    "single_target_mapping": true,
+    "dual_run_hash_match": true
+  },
+  "unit_fixture_checks": {
+    "multi_enemy_target_mapping": true,
+    "already_played_card_id_rejected": true,
+    "already_used_potion_id_rejected": true,
+    "unknown_or_dead_target_rejected": true,
+    "mapping_failure_does_not_send_cli_command": true,
+    "duplicate_instance_id_rejected": true
+  },
+  "not_live_verified": [
+    "multi_enemy_target_mapping"
+  ],
+  "passed": 12,
+  "failed": 0,
+  "duplicate_instance_ids": {
+    "detected_in_live_state": 0,
+    "handling": "rejected_before_execution"
+  },
+  "unresolved_action_ids": {
+    "count": 0,
+    "fallback_to_model_id_allowed": false
+  },
+  "index_shift_replay": {
+    "status": "passed",
+    "first_action": "play:card:DEFEND_IRONCLAD:004:none",
+    "resolved_first_index": 0,
+    "second_action": "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1",
+    "resolved_second_index": 0
+  },
+  "potion_slot_shift_replay": {
+    "status": "passed",
+    "verified_live_cli": true,
+    "first_action": "potion:potion:BLOCK_POTION:000",
+    "second_action": "potion:potion:FIRE_POTION:000",
+    "resolved_second_index": 0
+  },
+  "target_mapping": {
+    "status": "partially_verified",
+    "single_target_verified_live_cli": true,
+    "multi_enemy_verified_unit_fixture": true,
+    "multi_enemy_verified_live_cli": false
+  },
+  "dual_run_hash_match": {
+    "status": "passed",
+    "steps_compared": 9,
+    "match": true
+  }
+}

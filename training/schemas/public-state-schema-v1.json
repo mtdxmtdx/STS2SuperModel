@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PublicStateViewV1",
+  "description": "Public student observation schema. Forbids run_seed, raw RNG words, full draw order, and teacher internal states.",
+  "type": "object",
+  "$defs": {
+    "powerState": {
+      "type": "object",
+      "required": [
+        "id", "runtime_type", "owner_id", "amount", "dynamic_vars",
+        "internal_counters", "trigger_phases", "source", "support",
+        "evidence", "source_version"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "runtime_type": { "type": "string" },
+        "owner_id": { "type": "string" },
+        "applier_id": { "type": ["string", "null"] },
+        "amount": { "type": "number" },
+        "dynamic_vars": { "type": "object" },
+        "internal_counters": { "type": "object" },
+        "trigger_phases": { "type": "array", "items": { "type": "string" } },
+        "source": { "type": "string" },
+        "support": { "type": "string" },
+        "evidence": { "type": "string" },
+        "trigger_phase_evidence": { "type": "string" },
+        "source_version": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "relicState": {
+      "type": "object",
+      "required": ["id", "dynamic_vars", "counter", "runtime_type", "source", "evidence", "source_version"],
+      "properties": {
+        "id": { "type": "string" },
+        "counter": { "type": ["integer", "number", "null"] },
+        "dynamic_vars": { "type": "object" },
+        "runtime_type": { "type": "string" },
+        "source": { "type": "string" },
+        "evidence": { "type": "string" },
+        "source_version": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "type",
+    "decision",
+    "context",
+    "player",
+    "action_candidates"
+  ],
+  "properties": {
+    "type": { "type": "string" },
+    "decision": { "type": "string" },
+    "context": {
+      "type": "object",
+      "required": ["act", "floor", "room_type"],
+      "properties": {
+        "act": { "type": "integer" },
+        "act_name": { "type": "string" },
+        "floor": { "type": "integer" },
+        "room_type": { "type": "string" },
+        "boss": {
+          "type": ["object", "null"],
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" }
+          }
+        }
+      }
+    },
+    "round": { "type": "integer", "minimum": 0 },
+    "energy": { "type": "integer", "minimum": 0 },
+    "max_energy": { "type": "integer", "minimum": 0 },
+    "hand": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["index", "instance_id", "id", "name", "cost", "type", "can_play", "target_type"],
+        "properties": {
+          "index": { "type": "integer", "minimum": 0 },
+          "instance_id": { "type": "string" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "cost": { "type": "integer" },
+          "type": { "type": "string" },
+          "rarity": { "type": "string" },
+          "can_play": { "type": "boolean" },
+          "target_type": { "type": "string" },
+          "stats": { "type": ["object", "null"] },
+          "description": { "type": "string" },
+          "damage_by_target": {
+            "type": ["array", "null"],
+            "items": {
+              "type": "object",
+              "properties": {
+                "target_index": { "type": "integer" },
+                "name": { "type": "string" },
+                "damage": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "enemies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["index", "instance_id", "name", "hp", "max_hp", "block"],
+        "properties": {
+          "index": { "type": "integer", "minimum": 0 },
+          "instance_id": { "type": "string" },
+          "name": { "type": "string" },
+          "hp": { "type": "number" },
+          "max_hp": { "type": "number" },
+          "block": { "type": "number" },
+          "intents": { "type": ["array", "null"] },
+          "intends_attack": { "type": "boolean" },
+          "powers": {
+            "type": ["array", "null"],
+            "items": { "$ref": "#/$defs/powerState" }
+          }
+        }
+      }
+    },
+    "player": {
+      "type": "object",
+      "required": ["name", "hp", "max_hp", "block", "gold", "relics", "potions"],
+      "properties": {
+        "name": { "type": "string" },
+        "hp": { "type": "number" },
+        "max_hp": { "type": "number" },
+        "block": { "type": "number" },
+        "gold": { "type": "integer" },
+        "relics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/$defs/relicState"
+          }
+        },
+        "potions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["index", "instance_id", "id", "name"],
+            "properties": {
+              "index": { "type": "integer" },
+              "instance_id": { "type": "string" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "vars": { "type": ["object", "null"] },
+              "target_type": { "type": "string" }
+            }
+          }
+        },
+        "deck_size": { "type": "integer" },
+        "deck": { "type": ["array", "null"] }
+      }
+    },
+    "player_powers": {
+      "type": ["array", "null"],
+      "items": { "$ref": "#/$defs/powerState" }
+    },
+    "action_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "action_id", "effective_energy_cost", "legal"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["PlayCard", "UsePotion", "Choice", "EndTurn"] },
+          "action_id": { "type": "string" },
+          "source_model_id": { "type": ["string", "null"] },
+          "source_instance_id": { "type": ["string", "null"] },
+          "target_id": { "type": ["string", "null"] },
+          "choice_id": { "type": ["string", "null"] },
+          "selected_card_instance_ids": { "type": "array", "items": { "type": "string" } },
+          "effective_energy_cost": { "type": "integer" },
+          "legal": { "type": "boolean" },
+          "restriction": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "draw_pile_count": { "type": "integer", "minimum": 0 },
+    "discard_pile_count": { "type": "integer", "minimum": 0 }
+    ,
+    "cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["index", "instance_id", "id"],
+        "properties": {
+          "index": { "type": "integer", "minimum": 0 },
+          "instance_id": { "type": "string" },
+          "id": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      }
+    },
+    "choice_id": { "type": "string" },
+    "min_select": { "type": "integer", "minimum": 0 },
+    "max_select": { "type": "integer", "minimum": 0 },
+    "action_candidates_complete": { "type": "boolean" },
+    "choice_restriction": { "type": ["string", "null"] }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "decision": { "const": "combat_play" } } },
+      "then": { "required": ["round", "energy", "max_energy", "hand", "enemies"] }
+    },
+    {
+      "if": { "properties": { "decision": { "const": "card_select" } } },
+      "then": {
+        "required": [
+          "cards", "choice_id", "min_select", "max_select",
+          "action_candidates_complete"
+        ]
+      }
+    }
+  ],
+  "not": {
+    "anyOf": [
+      { "required": ["run_seed"] },
+      { "required": ["rng_raw_words"] },
+      { "required": ["future_draw_order"] },
+      { "required": ["teacher_only_state"] }
+    ]
+  },
+  "additionalProperties": true
+}

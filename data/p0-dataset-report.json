@@ -1,0 +1,59 @@
+{
+  "action_count": 17,
+  "action_kind_counts": {
+    "EndTurn": 3,
+    "PlayCard": 14
+  },
+  "ascension_counts": {
+    "0": 3
+  },
+  "character_counts": {
+    "The Ironclad": 3
+  },
+  "combat_count": 1,
+  "confidence_counts": {
+    "LowConfidence": 1,
+    "Uncalculable": 2
+  },
+  "coverage": {
+    "card_ids": {
+      "CARD.BASH": 3,
+      "CARD.DEFEND_IRONCLAD": 2,
+      "CARD.STRIKE_IRONCLAD": 9
+    },
+    "enemy_ids": {
+      "Shrinker Beetle": 3
+    },
+    "potion_ids": {},
+    "power_ids": {},
+    "relic_ids": {
+      "BURNING_BLOOD": 3
+    }
+  },
+  "episode_count": 1,
+  "metadata": {
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "feature_schema_version": "1",
+    "game_commit": "41cef1ea",
+    "game_version": "v0.111.0",
+    "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383",
+    "model_version": "none",
+    "scorer_version": "not-applicable",
+    "semantic_database_version": "game-runtime-v0111",
+    "simulator_version": "cli-v0111-headless"
+  },
+  "missing_metadata": {},
+  "report_kind": "p0_tooling_smoke",
+  "restriction_counts": {},
+  "risk_event_counts": {
+    "teacher_label_missing": 1,
+    "teacher_snapshot_missing": 2
+  },
+  "row_count": 3,
+  "schema_version": 1,
+  "source": "..\\data\\p0-combat-action-training.jsonl",
+  "source_sha256": "BE235C95179788C057519F0B4F94CD5C6C9646957B27052ABA528A1C9A1F8611",
+  "teacher_pair_count": 1,
+  "teacher_pair_rate": 0.3333333333333333
+}

@@ -1,0 +1,8 @@
+{"cmd":"start_run","character":"Ironclad","seed":"p0-probe-fixed","ascension":0}
+{"cmd":"set_player","deck":["RUPTURE","RUPTURE","RUPTURE","RUPTURE","RUPTURE","BLOODLETTING","BLOODLETTING","BLOODLETTING","BLOODLETTING","BLOODLETTING"]}
+{"cmd":"enter_room","type":"combat","encounter":"SEAPUNK_WEAK"}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":0}}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":0}}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"quit"}

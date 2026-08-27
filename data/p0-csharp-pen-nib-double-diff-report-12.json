@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 12,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:STRIKE_IRONCLAD:026:enemy:TERROR_EEL:1",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Reliable",
+  "match": true,
+  "mismatch_count": 0,
+  "fields": [
+    {
+      "field": "round",
+      "projected": 4,
+      "actual": 4,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 33,
+      "actual": 33,
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 6,
+      "actual": 6,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand",
+      "projected": [
+        "card:STRIKE_IRONCLAD:019",
+        "card:STRIKE_IRONCLAD:017",
+        "card:STRIKE_IRONCLAD:025",
+        "card:STRIKE_IRONCLAD:018"
+      ],
+      "actual": [
+        "card:STRIKE_IRONCLAD:019",
+        "card:STRIKE_IRONCLAD:017",
+        "card:STRIKE_IRONCLAD:025",
+        "card:STRIKE_IRONCLAD:018"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.hp",
+      "projected": 74,
+      "actual": 74,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.status.SHRIEK.amount",
+      "projected": 70,
+      "actual": 70,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 20,
+      "actual": 20,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "PEN_NIB"
+      ],
+      "actual": [
+        "PEN_NIB"
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.PEN_NIB.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.PEN_NIB.dynamic_vars",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.enemy:TERROR_EEL:1.SHRIEK_POWER.present",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "power.enemy:TERROR_EEL:1.SHRIEK_POWER.amount",
+      "projected": 70,
+      "actual": 70,
+      "match": true
+    },
+    {
+      "field": "power.enemy:TERROR_EEL:1.SHRIEK_POWER.applier",
+      "projected": "enemy:TERROR_EEL:1",
+      "actual": "enemy:TERROR_EEL:1",
+      "match": true
+    },
+    {
+      "field": "power.enemy:TERROR_EEL:1.SHRIEK_POWER.dynamic_vars",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.enemy:TERROR_EEL:1.SHRIEK_POWER.counters",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    }
+  ]
+}

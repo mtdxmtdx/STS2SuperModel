@@ -1,0 +1,4 @@
+{"cmd":"start_run","character":"Ironclad","seed":"p0-probe-fixed","ascension":0}
+{"cmd":"enter_room","type":"combat","encounter":"SLIMES_WEAK"}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"quit"}

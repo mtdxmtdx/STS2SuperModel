@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TraceRecordV1",
+  "type": "object",
+  "required": [
+    "trace_id",
+    "trace_schema",
+    "game_version",
+    "game_commit",
+    "assembly_sha256",
+    "cli_protocol_version",
+    "simulator_version",
+    "scorer_version",
+    "semantic_database_version",
+    "feature_schema_version",
+    "model_version",
+    "step",
+    "decision",
+    "pre_state_hash",
+    "post_state_hash",
+    "normalized_action_id",
+    "rng_before",
+    "rng_after",
+    "produced_chance_branch",
+    "chance_branch",
+    "status"
+  ],
+  "properties": {
+    "trace_id": { "type": "string" },
+    "trace_schema": { "type": "integer", "const": 1 },
+    "game_version": { "type": "string", "const": "v0.111.0" },
+    "game_commit": { "type": "string", "const": "41cef1ea" },
+    "assembly_sha256": { "type": "string", "const": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9" },
+    "cli_protocol_version": { "type": "string", "const": "0.2.0" },
+    "simulator_version": { "type": "string" },
+    "scorer_version": { "type": "string" },
+    "semantic_database_version": { "type": "string" },
+    "feature_schema_version": { "type": "string" },
+    "model_version": { "type": "string" },
+    "step": { "type": "integer", "minimum": 0 },
+    "decision": { "type": "string" },
+    "pre_state_hash": { "type": ["string", "null"] },
+    "post_state_hash": { "type": "string", "pattern": "^[0-9A-Fa-f]{64}$" },
+    "normalized_action_id": { "type": ["string", "null"] },
+    "rng_before": {
+      "type": ["object", "null"],
+      "additionalProperties": { "type": "integer" }
+    },
+    "rng_after": {
+      "type": ["object", "null"],
+      "additionalProperties": { "type": "integer" }
+    },
+    "produced_chance_branch": { "type": "boolean" },
+    "chance_branch": {
+      "type": "object",
+      "required": [
+        "produced", "kind", "rng_counters_available", "rng_deltas",
+        "streams_changed", "realized_outcome_hash", "probability_known",
+        "branch_enumerated"
+      ],
+      "properties": {
+        "produced": { "type": "boolean" },
+        "kind": { "type": "string", "enum": ["none", "realized_rng_consumption"] },
+        "rng_counters_available": { "type": "boolean" },
+        "rng_deltas": { "type": "object", "additionalProperties": { "type": "integer" } },
+        "streams_changed": { "type": "array", "items": { "type": "string" } },
+        "realized_outcome_hash": { "type": "string", "pattern": "^[0-9A-Fa-f]{64}$" },
+        "probability_known": { "type": "boolean" },
+        "probability": { "type": ["number", "null"] },
+        "branch_enumerated": { "type": "boolean" }
+      }
+    },
+    "failure": {
+      "type": "object",
+      "required": ["message", "failed_step", "recovery_required", "recovery_status"],
+      "properties": {
+        "message": { "type": "string" },
+        "failed_step": { "type": "integer", "minimum": 0 },
+        "recovery_required": { "type": "boolean" },
+        "recovery_status": { "type": "string" },
+        "prior_trace_hash": { "type": ["string", "null"] }
+      }
+    },
+    "status": { "type": "string", "enum": ["ok", "failed", "rejected"] },
+    "public_observation": { "$ref": "public-state-schema-v1.json" },
+    "teacher_snapshot": { "$ref": "teacher-state-schema-v1.json" },
+    "observation_view": { "type": "string", "enum": ["public", "teacher"] }
+  },
+  "additionalProperties": true
+}

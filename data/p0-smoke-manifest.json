@@ -1,0 +1,25 @@
+{
+  "dataset_id": "p0-smoke-manifest",
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "simulator_version": "unknown",
+  "scorer_version": "unknown",
+  "feature_config_hash": "unknown",
+  "split_policy": "episode_or_seed_group",
+  "row_count": 1,
+  "state_count": 1,
+  "action_count": 1,
+  "reliable_count": 0,
+  "estimated_count": 0,
+  "uncalculable_count": 1,
+  "confidence_counts": {
+    "Uncalculable": 1
+  },
+  "source_hashes": [
+    "844C8D6AC5DF18891F6D8DF64C15BD86C00F815545700C3F580BFB590A348EDC"
+  ],
+  "created_at_utc": "2026-08-26T01:34:24Z"
+}

@@ -1,0 +1,10 @@
+{
+  "match": true,
+  "projection_match": true,
+  "hash_comparable": true,
+  "hash_match": true,
+  "engine_rows": 6,
+  "shadow_rows": 6,
+  "mismatches": [],
+  "hash_mismatches": []
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PowerCatalogSchemaV1",
+  "type": "object",
+  "required": ["schema_version", "game_version", "game_commit", "assembly_sha256", "cli_protocol_version", "powers"],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "game_version": { "type": "string", "const": "0.111.0" },
+    "game_commit": { "type": "string", "const": "41cef1ea" },
+    "assembly_sha256": { "type": "string", "const": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9" },
+    "cli_protocol_version": { "type": "string", "const": "0.2.0" },
+    "generated_at_utc": { "type": "string" },
+    "powers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "stable_id", "canonical_name", "localized_name_zh", "runtime_type",
+          "owner_type", "applier_type", "amount_supported", "trigger_phases",
+          "canonical_status_ids", "affects_current_turn", "state_capture_support",
+          "simulator_support", "evidence", "source_version", "assembly_sha256"
+        ],
+        "properties": {
+          "stable_id": { "type": "string" },
+          "canonical_name": { "type": "string" },
+          "localized_name_zh": { "type": "string" },
+          "runtime_type": { "type": "string" },
+          "owner_type": { "type": "string" },
+          "applier_type": { "type": "string" },
+          "amount_supported": { "type": "boolean" },
+          "trigger_phases": { "type": "array", "items": { "type": "string" } },
+          "canonical_status_ids": { "type": "array", "items": { "type": "string" } },
+          "affects_current_turn": { "type": "boolean" },
+          "state_capture_support": { "type": "boolean" },
+          "simulator_support": {
+            "type": "string",
+            "enum": ["simulator_supported", "partially_supported", "state_captured_only", "no_combat_effect", "unsupported_known_effect", "unknown"]
+          },
+          "evidence": {
+            "type": "string",
+            "enum": ["ILConfirmed", "LiveObserved", "OfficialPatchNote", "VersionedText", "HeuristicInferred", "Unknown"]
+          },
+          "source_version": { "type": "string" },
+          "assembly_sha256": { "type": "string" }
+        }
+      }
+    }
+  }
+}
