@@ -1,7 +1,7 @@
 {
   "dataset_path": "data/p0-combat-action-training.jsonl",
   "dataset_kind": "tool_smoke",
-  "generated_at": "2026-08-27T05:53:55Z",
+  "generated_at": "2026-08-27T06:01:57Z",
   "version_lock": {
     "game_version": "v0.111.0",
     "game_commit": "41cef1ea",
