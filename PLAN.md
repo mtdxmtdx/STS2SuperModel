@@ -36,27 +36,28 @@
 
 ### 当前真实覆盖
 
-根据 `docs/CURRENT_STATE.md`：
+根据当前代码、catalog 和验证报告：
 
 - v0.111 全局卡牌语义：`1108/1176` fully structured；
 - 单人战斗范围：`1099/1099` fully structured、simulator-executable、runtime-handler-resolvable；
 - 剩余 `68` 个主要为多人/盟友效果，不属于当前单人范围；
 - Core/Mod/SemanticCoverage Release 回归：`706 passed`；
 - 仍有一个 Mod 侧预先存在的 `CS0436` warning；
-- CLI v0.111 combat/consistency 定向回归：`21 passed`；完整 CLI 测试集仍需单独完成。
+- CLI v0.111 combat-scope 门禁：`36/36 GREEN`，`public_leakage_count=0`。
 - P0 契约、结构化采集、数据导出和真实引擎↔影子差分的验收证据见
   [P0_VERIFICATION.md](D:/STS2BestChoice/STS2SuperModel/data/P0_VERIFICATION.md)。
 
 ### P0 已完成与后续缺口
 
 P0 的状态契约、Power/遗物结构化采集、public/teacher 双视图、稳定动作 ID、
-训练 trace/manifest、版本门禁以及真实 CLI↔影子差分闭环已经实现；固定矩阵当前
-为 21 个夹具、41 个零差异报告。详细命令和证据以
+训练 trace/manifest、版本门禁以及真实 CLI↔影子差分闭环已经实现；当前固定矩阵
+包含 P0/P1 Power/Relic 差分报告，所有已提交报告均为 `Reliable` 且
+`mismatch_count=0`。详细命令和证据以
 `data/P0_VERIFICATION.md` 为准。
 
 仍需在 P0 之后逐步扩展的内容（不影响契约使用）：
 
-1. 对尚未行为探针验证的 55 个已声明 Power 和 165 个已知未支持战斗遗物逐批实现
+1. 对尚未行为探针验证的 59 个已声明 Power 和 163 个已知未支持战斗遗物逐批实现
    simulator handler，并在验证后才提升为 `Reliable`。
 2. 将 smoke 数据扩展至计划中的 1k/10k/100k 状态，并生成真实 Expectimax 教师标签。
 3. 完成模型输入/ONNX manifest、离线 RL 环境和模型评测报告。

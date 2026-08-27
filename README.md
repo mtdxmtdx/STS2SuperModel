@@ -29,11 +29,22 @@ Slay the Spire 2 v0.111.0 单人战斗回合模型基础设施：真实 CLI 状�
 ```powershell
 # CLI
 dotnet build .\sts2-cli-v0111\src\Sts2Headless\Sts2Headless.csproj -c Debug --no-restore
- python -m pytest -q .\sts2-cli-v0111\tests\test_v0111_consistency.py .\sts2-cli-v0111\tests\test_combat.py
+python -m pytest -q .\sts2-cli-v0111\tests\test_v0111_consistency.py .\sts2-cli-v0111\tests\test_combat.py
 
 # Training tools（需 Python 3.12、PyArrow、jsonschema、pytest）
 $env:PYTHONPATH='.python-deps'
 python -m pytest -q .\training --ignore=.\training\test-output
+
+# Dataset quality gate (requires Python 3.12 + PyArrow)
+python .\training\run_quality_gate.py `
+  --dataset-path data\p0-combat-action-training.jsonl `
+  --dataset-kind tool_smoke `
+  --training data\p0-combat-action-training.jsonl `
+  --trace data\p0-combat-action-trace.jsonl `
+  --manifest data\p0-combat-action-manifest.json `
+  --parquet-manifest data\p0-combat-action-parquet\parquet-manifest.json `
+  --split-dir data\p0-combat-action-splits `
+  --output data\dataset-quality-gate.json
 ```
 
 P0 验收证据见 `data/P0_VERIFICATION.md`。教师数据的大规模生成、PyTorch 训练和 ONNX 接入属于后续阶段。

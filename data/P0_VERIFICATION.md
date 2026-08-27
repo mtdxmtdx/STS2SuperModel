@@ -14,11 +14,11 @@ Version lock:
 ## Current Verdict
 
 **P0 contract is complete and verified.** The fixed-seed differential matrix covers every
-simulator-declared relic mapping plus nine representative Power transitions, all with real
+currently promoted simulator mapping plus representative Power transitions, all with real
 CLI/Core zero-mismatch evidence. Unprobed semantics remain explicitly classified and are
 not promoted to `Reliable` teacher labels.
 
-The remaining 55 declared Powers, 165 known-unsupported combat-hook relics, and 119
+The remaining 59 declared Powers, 163 known-unsupported combat-hook relics, and 118
 unknown relics are the post-P0 semantic expansion backlog. The system can already emit
 versioned smoke data and run focused differentials while that backlog is implemented in
 batches.
@@ -38,8 +38,8 @@ Implemented:
 Current catalog evidence (`data/powers/v0.111/power-coverage.json`):
 
 - 283 cataloged and structurally capturable.
-- 9 behaviorally validated with real CLI/shadow zero-mismatch differentials: `VULNERABLE`, `WEAK`, `STRENGTH`, `VIGOR` (including its consumption transition), `DEXTERITY`, `DEMON_FORM`, `BARRICADE`, `RUPTURE`, and `AFTERIMAGE`.
-- 55 simulator mappings declared but not behaviorally probed.
+- 14 behaviorally validated before P1 plus 5 P1 mappings (`THORNS`, `ACCURACY`, `PLATING`, `POISON`, `PANACHE`) with real CLI/shadow zero-mismatch differentials.
+- 59 simulator mappings remain declared but not behaviorally probed.
 - 30 retain `Unknown` evidence.
 - Reflection-derived hook phases are `HeuristicInferred`, not `ILConfirmed`.
 
@@ -173,32 +173,37 @@ The validator executes the five Draft 2020-12 schemas and rejects missing/mixed 
 The corrected coverage (`data/relics/v0.111/relic-coverage.json`) is:
 
 - 299 cataloged and structurally capturable.
-- 14 simulator mappings declared → **all 14 now have real CLI/shadow zero-mismatch probes** (previous: ANCHOR, NUNCHAKU; added: AKABEKO, ART_OF_WAR, BAG_OF_MARBLES, BAG_OF_PREPARATION, CENTENNIAL_PUZZLE, HAPPY_FLOWER, LANTERN, ODDLY_SMOOTH_STONE, ORICHALCUM, PEN_NIB, RING_OF_THE_SNAKE, VAJRA).
+- 17 simulator mappings declared → **all 17 currently promoted mappings have real CLI/shadow zero-mismatch probes** (the previous 14 plus TOUGH_BANDAGES, TUNGSTEN_ROD and UNCEASING_TOP).
 - 1 explicitly classified as not affecting the current turn (`BURNING_BLOOD`).
-- 165 known unsupported combat-hook relics.
-- 119 unknown.
+- 163 known unsupported combat-hook relics.
+- 118 unknown.
 - 0 relics claimed as IL-inspected by the current exporter.
-- 15 currently eligible for Reliable treatment under the corrected report (14 probed + 1 no-combat-effect).
+- 18 currently eligible for Reliable treatment under the corrected report (17 probed + 1 no-combat-effect).
+
+`INCENSE_BURNER` and `SUNDIAL` remain simulator-declared but unverified because the
+v0.111 headless CLI rejects those relic IDs during `set_player`; they are not promoted
+to `LiveObserved` without a valid runtime probe.
 
 ## Latest Verification
 
 - Core Release: **706 passed, 0 failed, 0 skipped** (includes the turn-boundary ordering fix and VIGOR sync; no test regressions).
-- Training tools with PyArrow/JSON Schema: **47 passed, 0 failed**.
-- CLI v0.111 consistency/combat suite (including stable action fields): **21 passed**.
+- Training tools with PyArrow/JSON Schema: **47 passed, 0 failed, 1 skipped**.
+- CLI v0.111 combat-scope gate (including stable action fields and public/teacher isolation): **36/36 GREEN**.
 - Schema validation: **3 files / 9 rows, 0 errors, 0 public leaks**.
 - Chance trace validation: **6 rows, 0 errors**.
 - ShadowDiff Release build: **0 warnings, 0 errors**.
-- **41 C# differential reports: all `mismatch_count=0`** (including the expanded Power probes, 6 end-turn turn-boundary reports, and 3 multi-enemy target replays).
+- All committed P0/P1 Power and Relic C# differential reports have `mismatch_count=0`; the current P1 batch adds 12 Power reports and 6 Relic reports.
 - Probe driver: `training/run_p0_probes.py` reruns the full 21-fixture matrix end-to-end (CLI trace capture + ShadowDiff), currently 21/21 fixtures, 0 failed reports.
 
 Known pre-existing warnings remain in unrelated analyzer/Mod build output. The complete CLI suite has previously contained failures in reward, shop, save/load and full-run flows outside the current combat-turn P0 scope; it has not been declared globally green.
 
 ## Post-P0 Semantic Expansion Backlog
 
-1. Expand real CLI/shadow Power probes beyond the nine validated powers, prioritizing
-   the remaining declared mappings such as `THORNS`, `ACCURACY`, `PLATING`, `POISON`,
-   and `PANACHE`.
-2. Relic probes now cover all declared simulator mappings; the next tier is the 165 known-unsupported combat-hook relics — implement simulator handlers and probes batch by batch instead of promoting on reflection alone.
+1. Expand real CLI/shadow Power probes beyond the 14 validated powers, prioritizing
+   the remaining declared mappings.
+2. Relic probes now cover 17 simulator mappings; the next tier is the 163 known-unsupported
+   combat-hook relics — implement simulator handlers and probes batch by batch instead of
+   promoting on reflection alone.
 3. Multi-enemy stable target/choice replay is live-verified; extend to a real `card_select` (multi-card choice) live replay when a choice-producing card is exercised against the real CLI.
 4. Grow the fixed-seed differential challenge matrix until Reliable coverage is sufficient for Expectimax teacher generation.
 5. Consider exporting turn-history counters (e.g. `attacks_played_this_turn`) in the CLI public observation so ShadowDiff no longer needs to rebuild them from the trace.
