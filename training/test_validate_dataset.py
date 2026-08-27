@@ -184,7 +184,7 @@ class TestValidateDataset(unittest.TestCase):
 
         try:
             validator.validate_trace_file(path)
-            errors = [e for e in validator.errors if e.error_type == "json_syntax_error"]
+            errors = [e for e in validator.errors if e.error_type in ("invalid_json", "truncated_json_line")]
             self.assertGreater(len(errors), 0)
         finally:
             path.unlink(missing_ok=True)

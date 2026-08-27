@@ -1,0 +1,88 @@
+{
+  "dataset_path": "data/p0-combat-action-training.jsonl",
+  "dataset_kind": "tool_smoke",
+  "generated_at": "2026-08-27T05:53:55Z",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol": "0.2.0",
+    "trace_schema": 1,
+    "training_schema": 1
+  },
+  "row_counts": {
+    "trace_rows": 6,
+    "training_rows": 3,
+    "episodes": 1,
+    "states_unique": 3,
+    "actions_total": 17
+  },
+  "split_violations": [],
+  "public_leakage_count": 0,
+  "stable_id_missing": 0,
+  "label_stats": {
+    "reliable": 0,
+    "estimated": 0,
+    "low_confidence": 1,
+    "uncalculable": 2,
+    "unknown": 0,
+    "empty_teacher_best_actions": 3,
+    "empty_teacher_categories": {
+      "low_confidence_label_missing": 1,
+      "uncalculable_teacher_unavailable": 2
+    }
+  },
+  "duplicate_states": {
+    "warning_count": 0,
+    "error_count": 0,
+    "entries": [],
+    "classification_legend": {
+      "warning_identical_duplicate": "same hash + same combo + same labels: redundant, merge recommended",
+      "error_conflicting_labels": "same hash + same combo but differing labels/confidence: dataset corruption"
+    }
+  },
+  "malformed_lines": [],
+  "metadata_checks": {
+    "manifest_count_cross_check": "ok",
+    "sources": [
+      {
+        "file": "data/p0-combat-action-training.jsonl",
+        "sha256": "BE235C95179788C057519F0B4F94CD5C6C9646957B27052ABA528A1C9A1F8611",
+        "listed_in_manifest": true
+      }
+    ],
+    "parquet_manifest": {
+      "file": "data/p0-combat-action-parquet/parquet-manifest.json",
+      "status": "ok"
+    },
+    "splits": {
+      "dir": "data/p0-combat-action-splits",
+      "stats": {
+        "train": {
+          "row_count": 3,
+          "episode_count": 1
+        },
+        "validation": {
+          "row_count": 0,
+          "episode_count": 0
+        },
+        "test": {
+          "row_count": 0,
+          "episode_count": 0
+        },
+        "challenge": {
+          "row_count": 0,
+          "episode_count": 0
+        }
+      }
+    }
+  },
+  "warnings": [],
+  "verdict": "pass",
+  "failures": [],
+  "checked_files": [
+    "data/p0-combat-action-manifest.json",
+    "data/p0-combat-action-trace.jsonl",
+    "data/p0-combat-action-training.jsonl"
+  ]
+}
