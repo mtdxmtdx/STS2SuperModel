@@ -1,0 +1,18 @@
+{
+  "total": 36,
+  "passed_count": 36,
+  "failed": [],
+  "skipped": [],
+  "version_lock": {
+    "game": "v0.111.0",
+    "commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "protocol": "0.2.0",
+    "trace_schema": 1
+  },
+  "stable_replay_ok": true,
+  "trace_schema_ok": true,
+  "public_leakage_count": 0,
+  "pytest_exit_code": 0,
+  "generated_at": "2026-08-27T04:51:16+00:00"
+}
