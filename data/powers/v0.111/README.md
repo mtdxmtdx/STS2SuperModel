@@ -13,9 +13,9 @@
 | 已结构化数量 | **283** | 100.0% |
 | 已捕获状态数量 | **283** | 100.0% |
 | 已检查 IL 语义数量 | **0** | 0.0% |
-| 已完成运行时探针数量 | **9** | 3.2% |
-| 模拟器声明映射数量（未由本目录验证行为完整性） | **64** | 22.6% |
-| 模拟器行为验证完整支持数量 | **9** | 3.2% |
+| 已完成运行时探针数量 | **14** | 4.9% |
+| 模拟器声明映射数量（未由本目录验证行为完整性） | **59** | 20.8% |
+| 模拟器行为验证完整支持数量 | **14** | 4.9% |
 | 仅状态捕获数量 | **210** | 74.2% |
 | 无战斗动作影响数量 | **0** | 0% |
 | 未知证据 Power 数量 | **30** | 10.6% |
@@ -25,7 +25,7 @@
 | Stable ID | 中文名 | 英文名 | 触发阶段 | 证据等级 | 状态映射 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `ACCELERANT` | 触媒 | Accelerant | Passive | `Unknown` | `ACCELERANT` |
-| `ACCURACY` | 精准 | Accuracy | DamageReceived | `HeuristicInferred` | `ACCURACY` |
+| `ACCURACY` | 精准 | Accuracy | DamageReceived | `LiveObserved` | `ACCURACY` |
 | `AFTERIMAGE` | 余像 | Afterimage | CardPlay | `LiveObserved` | `AFTERIMAGE` |
 | `ARTIFACT` | 人工制品 | Artifact | Passive | `HeuristicInferred` | `ARTIFACT` |
 | `AUTOMATION` | 自动化 | Automation | CardPlay | `HeuristicInferred` | `AUTOMATION` |
@@ -69,10 +69,10 @@
 | `ORBIT` | 环绕轨道 | Orbit | Passive | `HeuristicInferred` | `ORBIT` |
 | `PAGESTORM` | 书页风暴 | Pagestorm | CardPlay | `HeuristicInferred` | `PAGESTORM` |
 | `PALE_BLUE_DOT` | 暗淡蓝点 | Pale Blue Dot | TurnEnd, CardPlay | `HeuristicInferred` | `PALE_BLUE_DOT` |
-| `PANACHE` | 神气制胜 | Panache | TurnEnd, CardPlay | `HeuristicInferred` | `PANACHE` |
+| `PANACHE` | 神气制胜 | Panache | TurnEnd, CardPlay | `LiveObserved` | `PANACHE` |
 | `PHANTOM_BLADES` | 幻影之刃 | Phantom Blades | CardPlay, DamageReceived | `HeuristicInferred` | `PHANTOM_BLADES` |
-| `PLATING` | 覆甲 | Plating | TurnStart, TurnEnd | `HeuristicInferred` | `PLATING` |
-| `POISON` | 中毒 | Poison | TurnStart, DamageReceived | `HeuristicInferred` | `POISON` |
+| `PLATING` | 覆甲 | Plating | TurnStart, TurnEnd | `LiveObserved` | `PLATING` |
+| `POISON` | 中毒 | Poison | TurnStart, DamageReceived | `LiveObserved` | `POISON` |
 | `PREP_TIME` | 准备时间 | Prep Time | TurnStart | `HeuristicInferred` | `PREP_TIME` |
 | `RAGE` | 狂怒 | Rage | TurnEnd, CardPlay | `HeuristicInferred` | `RAGE` |
 | `REAPER_FORM` | 死神形态 | Reaper Form | DamageReceived | `HeuristicInferred` | `REAPER_FORM` |
@@ -89,7 +89,7 @@
 | `STRENGTH` | 力量 | Strength | DamageReceived | `LiveObserved` | `STRENGTH` |
 | `SUBROUTINE` | 子程序 | Subroutine | CardPlay | `HeuristicInferred` | `SUBROUTINE` |
 | `THE_GAMBIT` | 孤注一掷 | The Gambit | DamageReceived | `HeuristicInferred` | `THE_GAMBIT` |
-| `THORNS` | 荆棘 | Thorns | DamageReceived | `HeuristicInferred` | `THORNS` |
+| `THORNS` | 荆棘 | Thorns | DamageReceived | `LiveObserved` | `THORNS` |
 | `TRACKING` | 跟踪 | Tracking | DamageReceived | `HeuristicInferred` | `TRACKING` |
 | `UNMOVABLE` | 不动 | Unmovable | BlockGain | `HeuristicInferred` | `UNMOVABLE` |
 | `VICIOUS` | 凶恶 | Vicious | Passive | `HeuristicInferred` | `VICIOUS` |

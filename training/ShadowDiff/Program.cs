@@ -71,6 +71,27 @@ if (isEndTurn)
     }
 }
 
+// Exhausted-card count ground truth: the public observation does not export an
+// exhaust counter, but any teacher snapshot in the settled window after the
+// action carries the real exhaust pile. Last one before the next gameplay
+// action wins; without a teacher snapshot the fallback stays 0 (unchanged P0
+// behavior, where exhaust piles were always empty).
+var hasTeacherExhaustCount = false;
+var teacherExhaustCount = 0;
+for (var index = actionIndex; index < rows.Length; index++)
+{
+    if (rows[index].TryGetProperty("normalized_action_id", out var nextActionId) &&
+        IsGameplayActionId(nextActionId.GetString()) &&
+        index != actionIndex)
+        break;
+    if (!rows[index].TryGetProperty("teacher_snapshot", out var teacherSnapshot2) ||
+        !teacherSnapshot2.TryGetProperty("exhaust_pile", out var exhaustElement) ||
+        exhaustElement.ValueKind != JsonValueKind.Array)
+        continue;
+    teacherExhaustCount = exhaustElement.GetArrayLength();
+    hasTeacherExhaustCount = true;
+}
+
 // Count attack cards played earlier in the same turn. The public observation
 // does not export turn history counters, so end-turn projections rebuild them
 // from the realized trace (needed for turn-start effects like Art of War).
@@ -126,6 +147,26 @@ var playerPowersElement = pre.TryGetProperty("player_powers", out var capturedPl
     ? capturedPlayerPowers
     : default;
 var playerStatuses = BuildStatuses(playerPowersElement);
+// PANACHE_POWER exposes its internal CardsLeft countdown as a dynamic var; the
+// simulator tracks that countdown as the companion status PANACHE_CARDS_LEFT,
+// so restore it here to keep later projections stepping the real counter.
+if (playerPowersElement.ValueKind == JsonValueKind.Array)
+{
+    foreach (var power in playerPowersElement.EnumerateArray())
+    {
+        if (!CanonicalPowerId(power.GetProperty("id").GetString() ?? "").Equals("PANACHE", StringComparison.Ordinal))
+            continue;
+        if (!power.TryGetProperty("dynamic_vars", out var dynVars) ||
+            !dynVars.TryGetProperty("CardsLeft", out var cardsLeft) ||
+            cardsLeft.ValueKind != JsonValueKind.Number ||
+            !cardsLeft.TryGetInt32(out var cardsLeftValue) ||
+            cardsLeftValue <= 0)
+            continue;
+        playerStatuses = playerStatuses.SetItem(
+            "PANACHE_CARDS_LEFT",
+            new StatusState("PANACHE_CARDS_LEFT", cardsLeftValue));
+    }
+}
 var relics = playerElement.GetProperty("relics").EnumerateArray().Select(BuildRelic).ToImmutableArray();
 // When Pen Nib is charged (counter >= 9), the CLI damage preview for attack
 // cards already includes the doubling, so BuildCard must halve it back.
@@ -187,6 +228,19 @@ else
         .Select(i => new CardState($"dummy_draw_{i}", "DUMMY", "Dummy", 0, TargetKind.None, [], CardDestination.Discard))
         .ToImmutableArray();
 }
+// Exhausted cards already burned before this action come from the nearest
+// earlier teacher snapshot, so post-action exhaust counts compare deltas from
+// a truthful baseline instead of an empty pile.
+var preExhaustPile = ImmutableArray<CardState>.Empty;
+for (var index = Math.Min(actionIndex - 1, rows.Length - 1); index >= 0; index--)
+{
+    if (!rows[index].TryGetProperty("teacher_snapshot", out var preTeacherSnapshot) ||
+        !preTeacherSnapshot.TryGetProperty("exhaust_pile", out var preExhaustElement) ||
+        preExhaustElement.ValueKind != JsonValueKind.Array)
+        continue;
+    preExhaustPile = preExhaustElement.EnumerateArray().Select(BuildTeacherPileCard).ToImmutableArray();
+    break;
+}
 var snapshot = CombatSnapshot.Create(
     "shadow-diff",
     player,
@@ -194,7 +248,7 @@ var snapshot = CombatSnapshot.Create(
     cards,
     drawPile: drawPile,
     discardPile: Enumerable.Range(0, preDiscardCount).Select(i => new CardState($"dummy_disc_{i}", "DUMMY", "Dummy", 0, TargetKind.None, [], CardDestination.Discard)).ToImmutableArray(),
-    exhaustPile: [],
+    exhaustPile: preExhaustPile,
     potions: potions,
     rngStreams: rngStreams,
     round: pre.GetProperty("round").GetInt32(),
@@ -230,7 +284,9 @@ Compare("player.block", projected.Player.Block, actual.GetProperty("player").Get
 Compare("player.energy", projected.Player.Energy, actual.GetProperty("energy").GetInt32());
 Compare("draw_pile_count", projected.DrawPile.Count, actual.TryGetProperty("draw_pile_count", out var actDpc) ? actDpc.GetInt32() : 0);
 Compare("discard_pile_count", projected.DiscardPile.Count, actual.GetProperty("discard_pile_count").GetInt32());
-Compare("exhaust_pile_count", projected.ExhaustPile.Count, actual.TryGetProperty("exhaust_pile_count", out var actExp) ? actExp.GetInt32() : 0);
+Compare("exhaust_pile_count",
+    projected.ExhaustPile.Count,
+    hasTeacherExhaustCount ? teacherExhaustCount : (actual.TryGetProperty("exhaust_pile_count", out var actExp) ? actExp.GetInt32() : 0));
 if (isEndTurn && !hasTeacherDrawPile)
 {
     // Without the teacher draw-pile order the projected hand contains placeholder
@@ -420,6 +476,10 @@ static CardState BuildCard(JsonElement card, ImmutableDictionary<string, StatusS
         if (stats.TryGetProperty("damage", out var damage) && damage.GetDecimal() > 0)
         {
             var additive = StatusAmount(playerStatuses, "STRENGTH") + StatusAmount(playerStatuses, "VIGOR");
+            // Accuracy's Shiv bonus is also already inside the live preview for
+            // Shiv cards, and the simulator re-applies it via SHIV_DAMAGE_BONUS.
+            if (modelId.Equals("SHIV", StringComparison.OrdinalIgnoreCase))
+                additive += StatusAmount(playerStatuses, "SHIV_DAMAGE_BONUS");
             var baseDamage = damage.GetDecimal() - additive;
             var isAttack = card.GetProperty("type").GetString() is "Attack" or "攻击";
             if (penNibCharged && isAttack)
@@ -459,6 +519,61 @@ static CardState BuildCard(JsonElement card, ImmutableDictionary<string, StatusS
                 Duration: -1,
                 FutureValuePerTurn: afterimage.GetDecimal() * 2m));
         }
+        if (stats.TryGetProperty("accuracypower", out var accuracy) && accuracy.GetDecimal() > 0)
+        {
+            effects.Add(new EffectSpec(
+                EffectKind.ApplyStatus,
+                accuracy.GetDecimal(),
+                "SHIV_DAMAGE_BONUS",
+                Duration: -1,
+                FutureValuePerTurn: StatusValuation.IntrinsicFutureValue("SHIV_DAMAGE_BONUS", accuracy.GetDecimal())));
+        }
+        if (stats.TryGetProperty("thornspower", out var thorns) && thorns.GetDecimal() > 0)
+        {
+            effects.Add(new EffectSpec(
+                EffectKind.ApplyStatus,
+                thorns.GetDecimal(),
+                "THORNS",
+                Duration: -1,
+                FutureValuePerTurn: StatusValuation.IntrinsicFutureValue("THORNS", thorns.GetDecimal())));
+        }
+        if (stats.TryGetProperty("dexteritypower", out var dexterity) && dexterity.GetDecimal() != 0)
+        {
+            effects.Add(new EffectSpec(
+                EffectKind.ApplyStatus,
+                dexterity.GetDecimal(),
+                "DEXTERITY",
+                Duration: -1,
+                FutureValuePerTurn: StatusValuation.IntrinsicFutureValue("DEXTERITY", dexterity.GetDecimal())));
+        }
+        if (stats.TryGetProperty("platingpower", out var plating) && plating.GetDecimal() > 0)
+        {
+            effects.Add(new EffectSpec(
+                EffectKind.ApplyStatus,
+                plating.GetDecimal(),
+                "PLATING",
+                Duration: -1,
+                FutureValuePerTurn: StatusValuation.IntrinsicFutureValue("PLATING", plating.GetDecimal())));
+        }
+        if (stats.TryGetProperty("poisonpower", out var poison) && poison.GetDecimal() > 0)
+        {
+            effects.Add(new EffectSpec(
+                EffectKind.ApplyStatus,
+                poison.GetDecimal(),
+                "POISON",
+                Duration: -1,
+                IsDebuff: true,
+                FutureValuePerTurn: StatusValuation.IntrinsicFutureValue("POISON", poison.GetDecimal())));
+        }
+        if (stats.TryGetProperty("panachedamage", out var panache) && panache.GetDecimal() > 0)
+        {
+            effects.Add(new EffectSpec(
+                EffectKind.ApplyStatus,
+                panache.GetDecimal(),
+                "TRIGGER_EVERY_FIVE_CARDS_ALL_DAMAGE",
+                Duration: -1,
+                XBonus: 5));
+        }
         if (stats.TryGetProperty("weakpower", out var weak) && weak.GetDecimal() > 0)
         {
             effects.Add(new EffectSpec(
@@ -481,6 +596,12 @@ static CardState BuildCard(JsonElement card, ImmutableDictionary<string, StatusS
         "Self" => TargetKind.Self,
         _ => TargetKind.None
     };
+    var keywords = card.TryGetProperty("keywords", out var keywordsElement) && keywordsElement.ValueKind == JsonValueKind.Array
+        ? keywordsElement.EnumerateArray().Select(static k => k.GetString() ?? "").ToArray()
+        : Array.Empty<string>();
+    var destination = keywords.Any(static k => k.Equals("Exhaust", StringComparison.OrdinalIgnoreCase))
+        ? CardDestination.Exhaust
+        : CardDestination.Discard;
     var cardEffects = effects.ToImmutable();
     return new CardState(
         card.GetProperty("instance_id").GetString()!,
@@ -489,6 +610,7 @@ static CardState BuildCard(JsonElement card, ImmutableDictionary<string, StatusS
         card.GetProperty("cost").GetInt32(),
         target,
         cardEffects,
+        destination,
         RestrictionReason: cardEffects.Length == 0 ? "shadow_unsupported_card_effect" : null,
         CardType: card.GetProperty("type").GetString(),
         Rarity: card.TryGetProperty("rarity", out var rarity) ? rarity.GetString() : null);
@@ -583,6 +705,9 @@ static string StatusIdForPower(string id) => CanonicalPowerId(id) switch
     "DEMON_FORM" => "TURN_START_STRENGTH",
     "RUPTURE" => "TRIGGER_PLAYER_HP_LOST_STRENGTH",
     "AFTERIMAGE" => "TRIGGER_CARD_PLAYED_BLOCK",
+    // Simulator-internal status ids backing live engine powers (see SyncPowerState).
+    "ACCURACY" => "SHIV_DAMAGE_BONUS",
+    "PANACHE" => "TRIGGER_EVERY_FIVE_CARDS_ALL_DAMAGE",
     _ => CanonicalPowerId(id),
 };
 

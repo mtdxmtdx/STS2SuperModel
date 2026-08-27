@@ -35,9 +35,10 @@ class TestPowerCatalog(unittest.TestCase):
         self.assertEqual(len(catalog["powers"]), summary["total_powers"])
         self.assertEqual(summary["cataloged_count"], summary["total_powers"])
         self.assertEqual(summary["il_inspected_count"], 0)
-        # Zero-mismatch v0.111 CLI/Core behavior probes; see P0_VERIFICATION.md.
-        self.assertEqual(summary["runtime_probed_count"], 9)
-        self.assertEqual(summary["simulator_supported_count"], 9)
+        # Zero-mismatch v0.111 CLI/Core behavior probes; see P0_VERIFICATION.md
+        # and P1_POWER_VERIFICATION.md (9 P0 powers + 5 P1 powers).
+        self.assertEqual(summary["runtime_probed_count"], 14)
+        self.assertEqual(summary["simulator_supported_count"], 14)
         self.assertGreater(summary["simulator_declared_count"], 50)
 
         # Check critical powers are simulator_supported
@@ -55,6 +56,12 @@ class TestPowerCatalog(unittest.TestCase):
         self.assertIn("BARRICADE", power_map)
         self.assertEqual(power_map["BARRICADE"]["simulator_support"], "simulator_supported")
         for power_id in ("WEAK", "DEMON_FORM", "RUPTURE", "AFTERIMAGE"):
+            self.assertEqual(power_map[power_id]["simulator_support"], "simulator_supported")
+            self.assertEqual(power_map[power_id]["evidence"], "LiveObserved")
+
+        # P1 promoted powers (data/P1_POWER_VERIFICATION.md).
+        for power_id in ("THORNS", "ACCURACY", "PLATING", "POISON", "PANACHE"):
+            self.assertIn(power_id, power_map)
             self.assertEqual(power_map[power_id]["simulator_support"], "simulator_supported")
             self.assertEqual(power_map[power_id]["evidence"], "LiveObserved")
 

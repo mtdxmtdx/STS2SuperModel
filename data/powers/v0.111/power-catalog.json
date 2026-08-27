@@ -54,8 +54,8 @@
       ],
       "affects_current_turn": true,
       "state_capture_support": true,
-      "simulator_support": "simulator_declared",
-      "evidence": "HeuristicInferred",
+      "simulator_support": "simulator_supported",
+      "evidence": "LiveObserved",
       "source_version": "0.111.0",
       "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
       "notes": "Declared methods: ModifyDamageAdditive"
@@ -1212,8 +1212,8 @@
         "Block"
       ],
       "dynamic_vars": {
-        "StrengthPower": 6,
-        "Block": 99
+        "Block": 99,
+        "StrengthPower": 6
       },
       "internal_counters": [],
       "trigger_phases": [
@@ -2731,8 +2731,8 @@
         "DamageDecrease"
       ],
       "dynamic_vars": {
-        "Applier": 0,
-        "DamageDecrease": 0.5
+        "DamageDecrease": 0.5,
+        "Applier": 0
       },
       "internal_counters": [],
       "trigger_phases": [
@@ -4415,8 +4415,8 @@
         "StrengthApplied"
       ],
       "dynamic_vars": {
-        "StrengthPower": 1,
-        "StrengthApplied": 0
+        "StrengthApplied": 0,
+        "StrengthPower": 1
       },
       "internal_counters": [],
       "trigger_phases": [
@@ -4908,8 +4908,8 @@
       ],
       "affects_current_turn": true,
       "state_capture_support": true,
-      "simulator_support": "simulator_declared",
-      "evidence": "HeuristicInferred",
+      "simulator_support": "simulator_supported",
+      "evidence": "LiveObserved",
       "source_version": "0.111.0",
       "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
       "notes": "Declared methods: InitInternalData, AfterCardPlayed, AfterSideTurnEnd"
@@ -5103,8 +5103,8 @@
       ],
       "affects_current_turn": true,
       "state_capture_support": true,
-      "simulator_support": "simulator_declared",
-      "evidence": "HeuristicInferred",
+      "simulator_support": "simulator_supported",
+      "evidence": "LiveObserved",
       "source_version": "0.111.0",
       "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
       "notes": "Declared methods: AfterApplied, BeforeSideTurnStart, BeforeSideTurnEndEarly, AfterSideTurnStart, GetScaledAmountForMultiplayer"
@@ -5158,8 +5158,8 @@
       ],
       "affects_current_turn": true,
       "state_capture_support": true,
-      "simulator_support": "simulator_declared",
-      "evidence": "HeuristicInferred",
+      "simulator_support": "simulator_supported",
+      "evidence": "LiveObserved",
       "source_version": "0.111.0",
       "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
       "notes": "Declared methods: CalculateTotalDamageNextTurn, AfterSideTurnStart, Trigger"
@@ -6006,8 +6006,8 @@
         "ApplierName"
       ],
       "dynamic_vars": {
-        "ApplierName": 0,
-        "DamageDecrease": 30
+        "DamageDecrease": 30,
+        "ApplierName": 0
       },
       "internal_counters": [],
       "trigger_phases": [
@@ -7090,8 +7090,8 @@
         "DamageDecrease"
       ],
       "dynamic_vars": {
-        "DamageDecrease": 0.5,
-        "DamageIncrease": 1.5
+        "DamageIncrease": 1.5,
+        "DamageDecrease": 0.5
       },
       "internal_counters": [],
       "trigger_phases": [
@@ -7328,8 +7328,8 @@
       ],
       "affects_current_turn": true,
       "state_capture_support": true,
-      "simulator_support": "simulator_declared",
-      "evidence": "HeuristicInferred",
+      "simulator_support": "simulator_supported",
+      "evidence": "LiveObserved",
       "source_version": "0.111.0",
       "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
       "notes": "Declared methods: BeforeDamageReceived"

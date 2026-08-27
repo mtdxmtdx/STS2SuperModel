@@ -1,0 +1,11 @@
+{"cmd": "start_run", "character": "Silent", "seed": "p1-accuracy-fixed", "ascension": 0}
+{"cmd": "set_player", "deck": ["ACCURACY", "ACCURACY", "ACCURACY", "ACCURACY", "SHIV", "SHIV", "SHIV", "SHIV", "SHIV", "SHIV"]}
+{"cmd": "enter_room", "type": "combat", "encounter": "SEAPUNK_WEAK"}
+{"cmd": "get_combat_snapshot", "view": "public"}
+{"cmd": "action", "action": "play_card", "args": {"card_index": 1, "target_index": 0}}
+{"cmd": "get_combat_snapshot", "view": "teacher"}
+{"cmd": "action", "action": "play_card", "args": {"card_index": 0, "target_index": 0}}
+{"cmd": "get_combat_snapshot", "view": "teacher"}
+{"cmd": "action", "action": "end_turn"}
+{"cmd": "get_combat_snapshot", "view": "public"}
+{"cmd": "quit"}

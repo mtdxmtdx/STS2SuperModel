@@ -1,0 +1,9 @@
+{"cmd": "start_run", "character": "Ironclad", "seed": "p1-plating-fixed", "ascension": 0}
+{"cmd": "set_player", "deck": ["ETERNAL_ARMOR", "ETERNAL_ARMOR", "ETERNAL_ARMOR", "ETERNAL_ARMOR", "ETERNAL_ARMOR", "ETERNAL_ARMOR", "ETERNAL_ARMOR", "ETERNAL_ARMOR", "ETERNAL_ARMOR", "ETERNAL_ARMOR"]}
+{"cmd": "enter_room", "type": "combat", "encounter": "SEAPUNK_WEAK"}
+{"cmd": "get_combat_snapshot", "view": "public"}
+{"cmd": "action", "action": "play_card", "args": {"card_index": 0, "target_index": 0}}
+{"cmd": "get_combat_snapshot", "view": "teacher"}
+{"cmd": "action", "action": "end_turn"}
+{"cmd": "get_combat_snapshot", "view": "public"}
+{"cmd": "quit"}
