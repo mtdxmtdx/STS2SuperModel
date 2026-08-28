@@ -57,10 +57,19 @@ def rebuild_combat_snapshot(teacher: dict[str, Any], public: dict[str, Any]) -> 
     discard = source.get("discard_pile") or []
     exhaust = source.get("exhaust_pile") or []
     cards: dict[str, list[dict[str, Any]]] = {}
+    public_cards = {
+        str(card.get("instance_id")): card
+        for card in public.get("hand", []) or []
+        if isinstance(card, dict) and card.get("instance_id")
+    }
     for key, values in (("hand", hand), ("draw_pile", draw), ("discard_pile", discard), ("exhaust_pile", exhaust)):
         converted = []
         for value in values:
-            card, card_warnings = _card(value)
+            # Teacher payloads often omit preview stats; merge the public
+            # observation for the same stable instance before compiling.
+            merged = dict(public_cards.get(str(value.get("instance_id")), {}))
+            merged.update(value)
+            card, card_warnings = _card(merged)
             warnings.extend(card_warnings)
             converted.append(card)
         cards[key] = converted
