@@ -19,7 +19,10 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Callable, Iterable
 
-from snapshot_adapter import rebuild_combat_snapshot
+try:
+    from .snapshot_adapter import rebuild_combat_snapshot
+except ImportError:  # direct script execution
+    from snapshot_adapter import rebuild_combat_snapshot
 
 
 LOCK = {
@@ -141,10 +144,13 @@ def _fallback_label(record: dict[str, Any], top_k: int) -> dict[str, Any]:
 
 class TeacherWorker:
     def __init__(self, evaluator: Callable[[dict[str, Any]], dict[str, Any]] | None = None,
-                 top_k: int = 5, allow_heuristic_fallback: bool = False) -> None:
+                 top_k: int = 5, allow_heuristic_fallback: bool = False,
+                 budget_ms: int = 500, maximum_expanded_nodes: int = 2_000_000) -> None:
         self.evaluator = evaluator
         self.top_k = max(1, top_k)
         self.allow_heuristic_fallback = allow_heuristic_fallback
+        self.budget_ms = max(1, budget_ms)
+        self.maximum_expanded_nodes = max(1, maximum_expanded_nodes)
 
     def _request(self, record: dict[str, Any]) -> dict[str, Any]:
         actions = legal_actions(record)
@@ -163,7 +169,9 @@ class TeacherWorker:
             "combat_snapshot": record.get("combat_snapshot") or reconstructed,
             "reconstruction_warnings": reconstruction_warnings,
             "legal_actions": actions,
-            "search": {"objectives": list(OBJECTIVES), "top_k": self.top_k},
+            "search": {"objectives": list(OBJECTIVES), "top_k": self.top_k,
+                        "budget_ms": self.budget_ms,
+                        "maximum_expanded_nodes": self.maximum_expanded_nodes},
             "version": LOCK,
         }
         if self.evaluator is not None:
@@ -184,6 +192,10 @@ class TeacherWorker:
             raise ValueError("evaluator response must be a JSON object")
         output = dict(record)
         output.update(label)
+        # Evaluator diagnostics are process-level details, not training
+        # features.  Keep failures represented by risk_events so Parquet's
+        # nested schema remains stable across rows.
+        output.pop("error", None)
         output.setdefault("risk_events", [])
         output.setdefault("label_quality", {
             "Reliable": "ExactComplete" if output.get("search_complete") else "BudgetBound",
@@ -196,6 +208,14 @@ class TeacherWorker:
             output["risk_events"] = sorted(set(output["risk_events"]) | set(reconstruction_warnings))
         if output.get("confidence") == "Reliable" and output.get("risk_events"):
             output["confidence"] = "Estimated"
+        if output.get("confidence") == "Estimated" and output.get("label_quality") in ("ExactComplete", "ExactWithKnownChance"):
+            output["label_quality"] = "BudgetBound" if not output.get("search_complete") else "EstimatedByHeuristic"
+        if not output.get("teacher_best_actions") and self.allow_heuristic_fallback:
+            fallback = _fallback_label(record, self.top_k)
+            fallback["risk_events"] = sorted(set(output["risk_events"]) | set(fallback["risk_events"]))
+            fallback["risk_events"].append("evaluator_label_unavailable")
+            fallback["risk_events"] = sorted(set(fallback["risk_events"]))
+            output.update(fallback)
         if not output.get("teacher_best_actions"):
             output["confidence"] = "Uncalculable"
             output["search_complete"] = False
@@ -256,10 +276,13 @@ def main() -> int:
     parser.add_argument("--aggregate-output", type=Path)
     parser.add_argument("--evaluator", help="Executable receiving teacher-evaluator.v1 JSON on stdin")
     parser.add_argument("--top-k", type=int, default=5)
+    parser.add_argument("--budget-ms", type=int, default=500)
+    parser.add_argument("--maximum-expanded-nodes", type=int, default=2_000_000)
     parser.add_argument("--allow-heuristic-fallback", action="store_true")
     args = parser.parse_args()
     evaluator = _command_evaluator(args.evaluator) if args.evaluator else None
-    worker = TeacherWorker(evaluator, args.top_k, args.allow_heuristic_fallback)
+    worker = TeacherWorker(evaluator, args.top_k, args.allow_heuristic_fallback,
+                           args.budget_ms, args.maximum_expanded_nodes)
     records = [json.loads(line) for line in args.input.read_text(encoding="utf-8").splitlines() if line.strip()]
     labelled = [worker.process(record) for record in records]
     args.output.parent.mkdir(parents=True, exist_ok=True)

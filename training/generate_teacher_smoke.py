@@ -53,6 +53,8 @@ def main() -> int:
     parser.add_argument("--count", type=int, default=100)
     parser.add_argument("--evaluator", help="Optional CombatSearchSession/Expectimax bridge executable")
     parser.add_argument("--top-k", type=int, default=5)
+    parser.add_argument("--budget-ms", type=int, default=500)
+    parser.add_argument("--maximum-expanded-nodes", type=int, default=2_000_000)
     parser.add_argument("--allow-heuristic-fallback", action="store_true")
     args = parser.parse_args()
     if args.count <= 0:
@@ -69,7 +71,9 @@ def main() -> int:
         from teacher_worker import _command_evaluator
         evaluator = _command_evaluator(args.evaluator)
     worker = TeacherWorker(evaluator=evaluator, top_k=args.top_k,
-                           allow_heuristic_fallback=args.allow_heuristic_fallback)
+                           allow_heuristic_fallback=args.allow_heuristic_fallback,
+                           budget_ms=args.budget_ms,
+                           maximum_expanded_nodes=args.maximum_expanded_nodes)
     labelled = [worker.process(row) for row in records]
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text("\n".join(json.dumps(row, ensure_ascii=False, separators=(",", ":"))

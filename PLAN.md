@@ -52,15 +52,15 @@
 P0 的状态契约、Power/遗物结构化采集、public/teacher 双视图、稳定动作 ID、
 训练 trace/manifest、版本门禁以及真实 CLI↔影子差分闭环已经实现；当前固定矩阵
 包含 P0/P1 Power/Relic 差分报告，所有已提交报告均为 `Reliable` 且
-`mismatch_count=0`。详细命令和证据以
-`data/P0_VERIFICATION.md` 为准。
+`mismatch_count=0`。教师数据闭环 Smoke 也已通过真实 `CombatSearchSession`
+完成，详细命令和证据以 `data/P0_VERIFICATION.md` 为准。
 
 仍需在 P0 之后逐步扩展的内容（不影响契约使用）：
 
 1. 对尚未行为探针验证的 59 个已声明 Power 和 163 个已知未支持战斗遗物逐批实现
    simulator handler，并在验证后才提升为 `Reliable`。
-2. 将当前 100 状态 smoke（已生成 Estimated fallback 标签）扩展至计划中的 1k/10k/100k 状态，
-   并接入真实 CombatSearchSession/Expectimax evaluator 后生成 Reliable/Estimated 标签。
+2. 将当前 1,000 状态 smoke（1,000 条记录、874 个唯一 public 状态，含 126 条重复
+   warning）扩展至计划中的 10k/100k 状态；继续补齐语义后才可提升为 Reliable 标签。
 3. 完成模型输入/ONNX manifest、离线 RL 环境和模型评测报告。
 
 ## 2. 运行时架构
@@ -664,11 +664,11 @@ action_score
 
 ### M3：1,000 状态 Smoke
 
-当前进度：已完成 100 状态 smoke 闭环；100/100 条记录具有非空
-`teacher_best_actions`，当前标签来自明确标记为 `Estimated` 的 fallback，尚未作为
-Reliable 教师数据使用。`training/TeacherEvaluator` 已提供调用
-`CombatSearchSession` 的协议端，剩余工作是完成 raw teacher snapshot 到完整
-`CombatSnapshot` 的重建，并将真实 evaluator 接入采集器。
+当前进度：已完成真实 evaluator 的 100 和 1,000 状态 smoke 闭环。1,000/1,000 条记录
+具有 teacher snapshot、非空 `teacher_best_actions` 和稳定版本 metadata；固定
+`maximum_expanded_nodes=20,000` 后 100 状态重复生成的 JSONL/隐藏聚合哈希一致。
+由于 snapshot 重建风险和 evaluator 回退，1,000 条标签全部明确标记为
+`EstimatedByHeuristic`，不得作为 Reliable policy 主标签。
 
 交付：
 
@@ -678,7 +678,7 @@ Reliable 教师数据使用。`training/TeacherEvaluator` 已提供调用
 - 卡牌/遗物/Power/敌人覆盖报告；
 - teacher label 质量报告。
 - `training/collectors/teacher_worker.py` 与 `training/labels/teacher_label_schema_v1.json`；
-- `data/teacher-smoke-100.jsonl`、Parquet、manifest、隐藏状态聚合和 quality gate。
+- `data/teacher-realsmoke-1000.jsonl`、Parquet、manifest、隐藏状态聚合和 quality gate。
 
 出口：
 

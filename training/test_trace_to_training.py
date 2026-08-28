@@ -19,6 +19,7 @@ class TraceToTrainingTests(unittest.TestCase):
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0]["confidence"], "Uncalculable")
         self.assertEqual(result[0]["teacher_best_actions"], [])
+        self.assertEqual(result[0]["public_state"]["action_candidates"], result[0]["legal_actions"])
 
     def test_teacher_row_is_not_leaked_as_public_action(self):
         base = {

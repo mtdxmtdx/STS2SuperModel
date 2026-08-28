@@ -42,19 +42,23 @@ while ((input = Console.ReadLine()) is not null)
         var result = new CombatSearchSession(snapshot, options).Continue(options.InitialBudget);
         var legalActions = root.TryGetProperty("legal_actions", out var legal) ? legal : default;
 
-        var balanced = BuildObjective(result.Balanced, result.EstimatedBalanced, legalActions, topK,
+        var balanced = BuildObjective(result.Balanced, result.EstimatedBalanced, result.Policies, ObjectiveKind.Balanced, legalActions, topK,
             static line => line.Score?.BalancedScore ?? decimal.MinValue);
-        var damage = BuildObjective(result.HighestDamage, result.EstimatedHighestDamage, legalActions, topK,
+        var damage = BuildObjective(result.HighestDamage, result.EstimatedHighestDamage, result.Policies, ObjectiveKind.HighestDamage, legalActions, topK,
             static line => line.Score?.EffectiveDamage ?? decimal.MinValue);
-        var loss = BuildObjective(result.MinimumLoss, result.EstimatedMinimumLoss, legalActions, topK,
+        var loss = BuildObjective(result.MinimumLoss, result.EstimatedMinimumLoss, result.Policies, ObjectiveKind.MinimumLoss, legalActions, topK,
             static line => -(line.Score?.PlayerHpLoss ?? decimal.MaxValue));
         var selectedLines = balanced.Lines;
-        var confidence = selectedLines.Length == 0
+        var confidence = selectedLines.Length == 0 && balanced.PolicyCount == 0
             ? PredictionConfidence.Uncalculable
+            : balanced.PolicyConfidence != PredictionConfidence.Reliable
+                ? balanced.PolicyConfidence
             : selectedLines.Any(static line => line.Confidence != PredictionConfidence.Reliable) || !result.Progress.IsComplete
                 ? PredictionConfidence.Estimated
-                : PredictionConfidence.Reliable;
-        var stochastic = selectedLines.Any(static line => line.OutcomeKind == OutcomeKind.Stochastic);
+            : PredictionConfidence.Reliable;
+        if (confidence == PredictionConfidence.Uncalculable && balanced.PolicyCount > 0)
+            confidence = PredictionConfidence.Estimated;
+        var stochastic = selectedLines.Any(static line => line.OutcomeKind == OutcomeKind.Stochastic) || balanced.PolicyCount > 0;
         var labelQuality = confidence switch
         {
             PredictionConfidence.Uncalculable => "Uncalculable",
@@ -130,6 +134,8 @@ static int ReadInt(JsonElement element, string name, int fallback, int minimum, 
 static ObjectiveResult BuildObjective(
     ImmutableArray<ActionLine> reliable,
     ImmutableArray<ActionLine> estimated,
+    ImmutableArray<PolicyLine> policies,
+    ObjectiveKind objective,
     JsonElement legalActions,
     int topK,
     Func<ActionLine, decimal> valueSelector)
@@ -155,6 +161,45 @@ static ObjectiveResult BuildObjective(
         ["rank"] = index + 1,
         ["death_probability"] = item.Line.Terminal?.PlayerDied == true ? 1m : 0m
     }).ToArray();
+    if (ranked.Length == 0)
+    {
+        var policyRows = policies
+            .Where(policyLine => policyLine.Objective == objective && !policyLine.DeterministicPrefix.IsDefaultOrEmpty)
+            .OrderByDescending(policyLine => PolicyValue(policyLine, objective))
+            .ThenBy(policyLine => ResolveActionId(policyLine.DeterministicPrefix[0], legalActions), StringComparer.Ordinal)
+            .GroupBy(policyLine => ResolveActionId(policyLine.DeterministicPrefix[0], legalActions), StringComparer.Ordinal)
+            .Where(group => group.Key is not null)
+            .Select(static group => group.First())
+            .Take(topK)
+            .ToArray();
+        if (policyRows.Length > 0)
+        {
+            var policyTop = policyRows.Select((policyLine, index) =>
+            {
+                var actionId = ResolveActionId(policyLine.DeterministicPrefix[0], legalActions) ?? "";
+                var value = PolicyValue(policyLine, objective);
+                return new Dictionary<string, object?>
+                {
+                    ["action_id"] = actionId,
+                    ["value"] = value,
+                    ["rank"] = index + 1,
+                    ["death_probability"] = PolicyDeathProbability(policyLine, objective)
+                };
+            }).ToArray();
+            var policyValues = policyTop.ToDictionary(item => (string)item["action_id"]!, item => Convert.ToDecimal(item["value"]), StringComparer.Ordinal);
+            var policyBest = policyTop.Length == 0 ? Array.Empty<string>() : new[] { (string)policyTop[0]["action_id"]! };
+            var policyPayload = new Dictionary<string, object?>
+            {
+                ["best_actions"] = policyBest,
+                ["value"] = policyTop.Length == 0 ? 0m : policyTop[0]["value"],
+                ["action_values"] = policyValues
+            };
+            return new ObjectiveResult(policyPayload, policyBest, policyTop, policyValues,
+                policyTop.Length == 0 ? 1m : Convert.ToDecimal(policyTop[0]["death_probability"]),
+                ImmutableArray<ActionLine>.Empty, policyRows.Length, policyRows.Max(static line => line.Confidence));
+        }
+    }
+
     var payload = new Dictionary<string, object?>
     {
         ["best_actions"] = bestActions,
@@ -167,8 +212,23 @@ static ObjectiveResult BuildObjective(
         top,
         values,
         ranked.Length == 0 ? 1m : ranked[0].Line.Terminal?.PlayerDied == true ? 1m : 0m,
-        ranked.Select(static item => item.Line).ToImmutableArray());
+        ranked.Select(static item => item.Line).ToImmutableArray(), 0,
+        ranked.Length == 0 ? PredictionConfidence.Uncalculable : ranked.Max(static item => item.Line.Confidence));
 }
+
+static decimal PolicyValue(PolicyLine policy, ObjectiveKind objective) => objective switch
+{
+    ObjectiveKind.HighestDamage => policy.DamageDistribution?.Expected ?? decimal.MinValue,
+    ObjectiveKind.MinimumLoss => -(policy.LossDistribution?.Expected ?? decimal.MaxValue),
+    _ => policy.BalancedDistribution?.Expected ?? decimal.MinValue
+};
+
+static decimal PolicyDeathProbability(PolicyLine policy, ObjectiveKind objective) => objective switch
+{
+    ObjectiveKind.HighestDamage => policy.DamageDistribution?.DeathProbability ?? 1m,
+    ObjectiveKind.MinimumLoss => policy.LossDistribution?.DeathProbability ?? 1m,
+    _ => policy.BalancedDistribution?.DeathProbability ?? 1m
+};
 
 static string? ResolveActionId(ActionStep step, JsonElement legalActions)
 {
@@ -211,4 +271,6 @@ internal sealed record ObjectiveResult(
     Dictionary<string, object?>[] TopK,
     Dictionary<string, decimal> ActionValues,
     decimal DeathProbability,
-    ImmutableArray<ActionLine> Lines);
+    ImmutableArray<ActionLine> Lines,
+    int PolicyCount,
+    PredictionConfidence PolicyConfidence);

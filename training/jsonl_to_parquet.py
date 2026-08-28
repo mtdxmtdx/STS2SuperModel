@@ -52,6 +52,19 @@ def canonical_round_trip(value: Any) -> Any:
     return value
 
 
+def align_optional_fields(value: Any, reference: Any) -> Any:
+    """Remove Arrow's null-filled optional struct fields for comparison."""
+    if isinstance(value, dict) and isinstance(reference, dict):
+        return {
+            key: align_optional_fields(value[key], reference[key])
+            for key in reference
+            if key in value
+        }
+    if isinstance(value, list) and isinstance(reference, list):
+        return [align_optional_fields(item, ref) for item, ref in zip(value, reference)]
+    return value
+
+
 def require_pyarrow():
     try:
         import pyarrow as pa
@@ -131,7 +144,8 @@ def convert(input_path: Path, output_dir: Path, shard_rows: int = 10_000) -> dic
             restored = [restore_empty_objects(row) for row in read_back.to_pylist()]
             if (
                 read_back.num_rows != len(rows)
-                or canonical_round_trip(restored) != canonical_round_trip(rows)
+                or align_optional_fields(canonical_round_trip(restored), canonical_round_trip(rows))
+                   != canonical_round_trip(rows)
             ):
                 raise RuntimeError(f"Parquet round-trip mismatch for {final_path.name}")
         except Exception:

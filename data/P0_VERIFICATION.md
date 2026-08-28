@@ -213,6 +213,27 @@ Known pre-existing warnings remain in unrelated analyzer/Mod build output. The c
   it accepts a full `combat_snapshot` payload and calls `CombatSearchSession`. Raw CLI teacher
   snapshots still need the snapshot reconstruction adapter before they can be passed to it.
 
+### Real evaluator smoke (2026-08-28)
+
+- `data/teacher-realsmoke-100.jsonl` contains 100 records produced through the real evaluator
+  bridge. All records have teacher snapshots and non-empty labels; labels remain Estimated
+  because lossy reconstruction is retained as a risk.
+- `data/teacher-realsmoke-1000.jsonl` contains 1,000 records from 250 deterministic CLI
+  fixture runs (10 seed variants). It has 874 unique public state hashes and 126 identical
+  duplicate warnings, with no conflicting-label errors.
+- The 1,000-row dataset has 1,000/1,000 teacher snapshots, 1,000/1,000 non-empty
+  `teacher_best_actions`, 0 public leakage findings, 0 missing stable IDs, and 0 malformed
+  lines. Quality gate and Parquet round-trip: **PASS**.
+- Label distribution: 1,000 `EstimatedByHeuristic`; 260 records carry the explicit
+  `evaluator_label_unavailable` fallback risk. No record is promoted to Reliable.
+- Generation uses `budget_ms=60000` and `maximum_expanded_nodes=20000`. Re-running the
+  100-row smoke twice produced identical JSONL and hidden-state hashes:
+  `F7662D7EEF486809A5BC2498B2923B8EBCA405D64DEAB4F55ADF04F94A337E2A` and
+  `50325C9982A976FB0052EE146B3A36B33F34A36760F361F20A1CF5C4FA411420`.
+- The 1,000-row artifacts are a pipeline Smoke, not a claim of 1,000 independent states or
+  exact teacher labels. Expand fixture diversity and semantic handlers before Reliable-label
+  policy training.
+
 1. Expand real CLI/shadow Power probes beyond the 14 validated powers, prioritizing
    the remaining declared mappings.
 2. Relic probes now cover 17 simulator mappings; the next tier is the 163 known-unsupported

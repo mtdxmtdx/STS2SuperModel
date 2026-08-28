@@ -54,6 +54,8 @@ def test_evaluator_response_is_attached_and_preserves_protocol():
     def evaluator(request):
         assert request["protocol"] == "sts2.teacher-evaluator.v1"
         assert request["version"] == LOCK
+        assert request["search"]["budget_ms"] == 500
+        assert request["search"]["maximum_expanded_nodes"] == 2_000_000
         return {
             "teacher_best_actions": ["play:c1"],
             "teacher_top_k": [{"action_id": "play:c1", "value": 6, "rank": 1, "death_probability": 0}],

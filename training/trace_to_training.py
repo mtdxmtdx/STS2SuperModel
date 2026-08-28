@@ -45,6 +45,12 @@ def config_hash(config: dict) -> str:
 GENERATOR_CONFIG_HASH = config_hash(GENERATOR_CONFIG)
 
 
+def observation_key(observation: object) -> str:
+    """Hash a public observation independently of trace command bookkeeping."""
+    encoded = json.dumps(observation, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+    return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
+
+
 def validate_lock(row: dict, line_no: int) -> None:
     for key, expected in LOCK.items():
         if row.get(key) != expected:
@@ -106,13 +112,17 @@ def validate_action_candidates(candidates: list[dict]) -> None:
 
 
 def normalize(rows: list[dict]) -> list[dict]:
-    teacher_by_pre_hash: dict[str, dict] = {
-        row.get("pre_state_hash", ""): row
-        for row in rows
-        if row.get("observation_view") == "teacher"
-        and row.get("teacher_snapshot") is not None
-        and row.get("pre_state_hash")
-    }
+    teacher_by_observation: dict[str, list[tuple[int, dict]]] = {}
+    teacher_by_pre_hash: dict[str, list[tuple[int, dict]]] = {}
+    for index, row in enumerate(rows):
+        if row.get("teacher_snapshot") is None:
+            continue
+        public_observation = row.get("public_observation")
+        if isinstance(public_observation, dict):
+            teacher_by_observation.setdefault(observation_key(public_observation), []).append((index, row))
+        pre_hash = row.get("pre_state_hash")
+        if pre_hash:
+            teacher_by_pre_hash.setdefault(str(pre_hash), []).append((index, row))
     records: list[dict] = []
     for line_no, row in enumerate(rows, 1):
         validate_lock(row, line_no)
@@ -122,7 +132,18 @@ def normalize(rows: list[dict]) -> list[dict]:
         public = row.get("public_observation")
         if not isinstance(public, dict):
             continue
-        teacher_row = teacher_by_pre_hash.get(row.get("post_state_hash", ""))
+        teacher_row = None
+        public_key = observation_key(public)
+        candidates = teacher_by_observation.get(public_key, [])
+        row_index = line_no - 1
+        if candidates:
+            # Prefer a teacher query at or after this public decision point;
+            # this is the ordering emitted by the teacher matrix collector.
+            teacher_row = min(candidates, key=lambda item: (item[0] < row_index, abs(item[0] - row_index)))[1]
+        if teacher_row is None:
+            legacy = teacher_by_pre_hash.get(row.get("post_state_hash", ""), [])
+            if legacy:
+                teacher_row = min(legacy, key=lambda item: abs(item[0] - row_index))[1]
         teacher_hash = stable_id(trace_id, row.get("post_state_hash"), "teacher-missing")
         confidence = "Uncalculable"
         if teacher_row is not None:
@@ -132,6 +153,10 @@ def normalize(rows: list[dict]) -> list[dict]:
                 confidence = "LowConfidence"
         legal_actions = public.get("action_candidates") or action_candidates(public)
         validate_action_candidates(legal_actions)
+        # Training records embed a schema-complete public state.  Some CLI
+        # event snapshots carry legal actions at the trace level only.
+        if "action_candidates" not in public:
+            public["action_candidates"] = legal_actions
         record = {
             "record_id": stable_id(trace_id, row.get("step"), row.get("post_state_hash")),
             "schema_version": 1,

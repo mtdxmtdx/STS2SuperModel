@@ -21,8 +21,10 @@ Slay the Spire 2 v0.111.0 单人战斗回合模型基础设施：真实 CLI 状�
 - `sts2-cli-v0111/`：v0.111 headless CLI、状态快照和训练 Trace 扩展
 - `杀戮尖塔种子机制研究.md`、`种子机制核验.md`：随机机制研究记录
 
-教师标签 smoke 产物位于 `data/teacher-smoke-100.jsonl`；该批次包含 100 条可重建记录，
-标签均明确标记为 `Estimated`，接入真实 Expectimax evaluator 后再提升为 Reliable。
+教师标签 smoke 产物位于 `data/teacher-realsmoke-1000.jsonl`；该批次包含 1,000 条
+经真实 `CombatSearchSession` evaluator 处理的记录（874 个唯一 public 状态）。标签
+仍明确标记为 `EstimatedByHeuristic`/`BudgetBound`，未知语义和 evaluator 回退不会
+被提升为 Reliable。
 
 ## 本地 CLI 准备
 
