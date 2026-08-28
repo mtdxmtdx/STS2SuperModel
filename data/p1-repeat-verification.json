@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "report_count": 59,
+  "run_a": [
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "training/run_p1_power_probes.py",
+        "--include-p0"
+      ],
+      "returncode": 0,
+      "stdout_tail": "nflame-strength ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-inflame-strength ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p0-demon-form ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-demon-form ordinal=1 kind=end_turn confidence=Reliable mismatches=0\nPASS p0-barricade ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-barricade ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p0-barricade ordinal=2 kind=end_turn confidence=Reliable mismatches=0\nPASS p0-rupture ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-rupture ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p0-neutralize-weak ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-neutralize-weak ordinal=1 kind=end_turn confidence=Reliable mismatches=0\nPASS p0-afterimage ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-afterimage ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-thorns ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-thorns ordinal=1 kind=end_turn confidence=Reliable mismatches=0\nPASS p1-power-accuracy ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-accuracy ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-plating ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-plating ordinal=1 kind=end_turn confidence=Reliable mismatches=0\nPASS p1-power-poison ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-poison ordinal=1 kind=end_turn confidence=Reliable mismatches=0\nPASS p1-power-panache ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-panache ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-panache ordinal=4 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-panache ordinal=5 kind=play_card confidence=Reliable mismatches=0\n\n26 fixtures, 43 reports, 0 failed reports\n",
+      "stderr_tail": ""
+    },
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "training/run_p1_relic_probes.py"
+      ],
+      "returncode": 0,
+      "stdout_tail": "PASS p1-relic-tough-bandages ordinal=0 confidence=Reliable mismatches=0\nPASS p1-relic-tungsten-rod ordinal=0 confidence=Reliable mismatches=0\nPASS p1-relic-tungsten-rod ordinal=1 confidence=Reliable mismatches=0\nPASS p1-relic-unceasing-top ordinal=0 confidence=Reliable mismatches=0\nPASS p1-relic-unceasing-top ordinal=1 confidence=Reliable mismatches=0\nPASS p1-relic-unceasing-top ordinal=2 confidence=Reliable mismatches=0\n\n3 fixtures, 6 reports, 0 failed reports\n",
+      "stderr_tail": ""
+    }
+  ],
+  "run_b": [
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "training/run_p1_power_probes.py",
+        "--include-p0"
+      ],
+      "returncode": 0,
+      "stdout_tail": "nflame-strength ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-inflame-strength ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p0-demon-form ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-demon-form ordinal=1 kind=end_turn confidence=Reliable mismatches=0\nPASS p0-barricade ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-barricade ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p0-barricade ordinal=2 kind=end_turn confidence=Reliable mismatches=0\nPASS p0-rupture ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-rupture ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p0-neutralize-weak ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-neutralize-weak ordinal=1 kind=end_turn confidence=Reliable mismatches=0\nPASS p0-afterimage ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p0-afterimage ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-thorns ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-thorns ordinal=1 kind=end_turn confidence=Reliable mismatches=0\nPASS p1-power-accuracy ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-accuracy ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-plating ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-plating ordinal=1 kind=end_turn confidence=Reliable mismatches=0\nPASS p1-power-poison ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-poison ordinal=1 kind=end_turn confidence=Reliable mismatches=0\nPASS p1-power-panache ordinal=0 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-panache ordinal=1 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-panache ordinal=4 kind=play_card confidence=Reliable mismatches=0\nPASS p1-power-panache ordinal=5 kind=play_card confidence=Reliable mismatches=0\n\n26 fixtures, 43 reports, 0 failed reports\n",
+      "stderr_tail": ""
+    },
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "training/run_p1_relic_probes.py"
+      ],
+      "returncode": 0,
+      "stdout_tail": "PASS p1-relic-tough-bandages ordinal=0 confidence=Reliable mismatches=0\nPASS p1-relic-tungsten-rod ordinal=0 confidence=Reliable mismatches=0\nPASS p1-relic-tungsten-rod ordinal=1 confidence=Reliable mismatches=0\nPASS p1-relic-unceasing-top ordinal=0 confidence=Reliable mismatches=0\nPASS p1-relic-unceasing-top ordinal=1 confidence=Reliable mismatches=0\nPASS p1-relic-unceasing-top ordinal=2 confidence=Reliable mismatches=0\n\n3 fixtures, 6 reports, 0 failed reports\n",
+      "stderr_tail": ""
+    }
+  ],
+  "different_reports": [],
+  "missing_reports": [],
+  "added_reports": [],
+  "sha256": {
+    "p0-csharp-afterimage-diff-report-0.json": "f6ae7ace137ebc4e8718e19ca828a341faf3ba799f529f45136eccef57695245",
+    "p0-csharp-afterimage-diff-report-1.json": "40fdf894574bc630361b262e8617ed9b04dbb69d304a058df29391d06db7c7fe",
+    "p0-csharp-akabeko-vigor-diff-report.json": "88a4a0b1295e7b2fdf5c691ad23c3ebeceb4423c37d24c6c9bcf789a1d679cb3",
+    "p0-csharp-anchor-diff-report.json": "de012768ec943db12d9f9480a83819017c02cba78998072fa915c4075eaf1827",
+    "p0-csharp-art-of-war-diff-report-0.json": "4414ff4742d5b974fa6864aa0f760ccd9e37f4430a054558274ba1dc2de449ae",
+    "p0-csharp-art-of-war-diff-report-1.json": "cbba764ef11c30ee60e76a423e5bdade6ffa341b877ba4d42de288e560e6f303",
+    "p0-csharp-bag-of-marbles-diff-report.json": "7a625f10d634afe8cd10bc5ab8864ad0c7564abd28de34adf5f70a3cbc3105d5",
+    "p0-csharp-bag-of-preparation-diff-report.json": "7831f648c8ef0550c5bff1a8e5689e3f7b9d9cc33525c00642aff69a12cd5606",
+    "p0-csharp-barricade-diff-report-0.json": "c7967e9fcb3eae0fbbb7a9809c6681d8b722c93c798572b3931fb662cb265634",
+    "p0-csharp-barricade-diff-report-1.json": "3c5277da4231a99c9a24a52fdb388f8a02b58dfc17c4d0b791a9d69b6de9df85",
+    "p0-csharp-barricade-diff-report-2.json": "fc1d2bf6d43544a058b36279237ee289a88dd45ec40e9b37aac4d75ca1afe33f",
+    "p0-csharp-bash-diff-report.json": "741e963e6cecde6783cde5156d497c0ed8a43a3a38ce34e295e71f317d2704d0",
+    "p0-csharp-bash-then-strike-diff-report.json": "a18ae4dda508a7c476f066f0073b4ed58887c00fcaf0849aae96aef334873159",
+    "p0-csharp-block-potion-diff-report.json": "6000f1303cb57bfeca41f6b28bbeadfd150a3045a6e24518d14694927481810e",
+    "p0-csharp-centennial-puzzle-diff-report.json": "c2236257f85eb294d5b4d55b2ae952bc5ebdca5ed2232a65586a2188af8343a9",
+    "p0-csharp-demon-form-diff-report-0.json": "82bcddfeb5f3bfe974962f40bda59376c1d55f21d65a1001463c0b9cff78cadb",
+    "p0-csharp-demon-form-diff-report-1.json": "7e41a782c85de1aae0ff860aadf700909a30c7b2120d986eb7eb053bba0738db",
+    "p0-csharp-energy-potion-diff-report.json": "2237620379906c965a456443a9a4a1080f1ab2e6241b3a80ccc35020c9f38e76",
+    "p0-csharp-fire-potion-diff-report.json": "c147eccabf40e33a406f4f311d9c87f35db5f9eabe2ed37e8229c1a84fc71022",
+    "p0-csharp-happy-flower-diff-report-0.json": "323b384637afb529936a7a53e2080ddc39a8021d263030c089fa0fd78956e24e",
+    "p0-csharp-happy-flower-diff-report.json": "323b384637afb529936a7a53e2080ddc39a8021d263030c089fa0fd78956e24e",
+    "p0-csharp-inflame-strength-diff-report-0.json": "63758aad0633d7f53e8a51eea6670ba2236f65961f76fd35f127f5ae617fd666",
+    "p0-csharp-inflame-strength-diff-report-1.json": "85ec7f299d6d0226232a5d1f3cd4c7691c7bbe07e00cebf55a60b7c76cd30a2a",
+    "p0-csharp-lantern-diff-report.json": "9bb13458937b8476522ea9c1cb01a6a55d6ffcc0e4768c04715a249231561e55",
+    "p0-csharp-multi-enemy-targets-diff-report-0.json": "3aa56d0b047de825ff7b1d6d2b38b8d88dd46abacd0bf52868ffccece32a8b73",
+    "p0-csharp-multi-enemy-targets-diff-report-1.json": "fcc89304d7be5a03263305ded5d781043342414591f0dbffdadf4a252397c32d",
+    "p0-csharp-multi-enemy-targets-diff-report-2.json": "240650eb5c5ff1482ecdc086c93745940f79814528eb53171ec3665124ae4e3f",
+    "p0-csharp-neutralize-weak-diff-report-0.json": "7657e30116cf89a3bc1abacabbc6186c2331711a9b1429d625f578815603e083",
+    "p0-csharp-neutralize-weak-diff-report-1.json": "75e1eb50312220ad2d325a6eda6fc41a51330e95b136f01385ba88857eb48458",
+    "p0-csharp-nunchaku-diff-report.json": "e26fde4b0004e1d06fff42bd5fb24e6dd82d0e4f866d3afd0554b6837a724f80",
+    "p0-csharp-orichalcum-diff-report.json": "50f1dae80b7be352b3d101cae92ec78b0b7121bfe028d3786767672bac733f15",
+    "p0-csharp-pen-nib-diff-report.json": "45d88fbf4c76481fc0877abb1470149673a3a3fd4416a72568bf859612cb6c4f",
+    "p0-csharp-pen-nib-double-diff-report-12.json": "db8c6e38a4d89d32bd201338acd9a9394d8ffdda54548afd1fe78c6fe33895b3",
+    "p0-csharp-ring-of-the-snake-diff-report.json": "5453224cc15cbfef4f82ff9b5d70e87fa418cdd902f9266a74891e09ef26bf53",
+    "p0-csharp-rupture-diff-report-0.json": "493e970d2a5dc61914a6a1720fe7d4f39bf1a70ec47b5199777dd1829daf9edf",
+    "p0-csharp-rupture-diff-report-1.json": "c921c391843dcff3580fc8d65aca49a85aaafa790c122e27871d4e47a64ed5e6",
+    "p0-csharp-shadow-diff-report.json": "fb542df1ac4698285fdd42ced9c0549298dff1ad06980327f285816678ebdd79",
+    "p0-csharp-smooth-stone-dexterity-diff-report.json": "f0d19cd0b3dc3a4fa84e39de9bd2aad617b03cb48a66533183d26a0de06d2c6f",
+    "p0-csharp-strike-diff-report.json": "2e677e62549804a29f4a8c15d48c169b763fbe64b05b057a086d15c4520ea387",
+    "p0-csharp-vajra-strength-diff-report.json": "5b136a8b92db0b3abbbe508f4b57fa1ca41f769ad851d83e4ab0e6856e77be64",
+    "p0-csharp-vajra-strength-end-turn-diff-report.json": "dda3799e10e6c5c7612934fba4b0b5e992b9b75f6c420ee1d2188853c053867d",
+    "p1-csharp-accuracy-diff-report-0.json": "ff8f46bb699998ef21d119c74a5392080c7cf871c3a5cf676e6177bee1c1df00",
+    "p1-csharp-accuracy-diff-report-1.json": "ddd3cb1736f99ccb8148f5244426a2d862492fc53d15d998e1d77f6aa789c9e7",
+    "p1-csharp-panache-diff-report-0.json": "3d4109b8ba211b9e25e60e125fe00f94f1053e878b0f96f94afe62720671712c",
+    "p1-csharp-panache-diff-report-1.json": "dc2f42117f8bc7c9345f4a200c69af93f7054728c2224086aa4734dae35a4235",
+    "p1-csharp-panache-diff-report-4.json": "b073cbd6fbb9944a3c06b65338bc44b991b82f3051e825ffafd0d26c71c47f96",
+    "p1-csharp-panache-diff-report-5.json": "5d16e08e35a1c251415a8ec47392cf67e7070894b5a4a78c35fe04f083cf3082",
+    "p1-csharp-plating-diff-report-0.json": "e4fe9e2f3e9bc7cb5ef41586c54474d2987e76299ba568927f1049b8390a999d",
+    "p1-csharp-plating-diff-report-1.json": "e86a58f195641b06d0973512f11a7142a9c93d412cab0798757d9b32d992fa29",
+    "p1-csharp-poison-diff-report-0.json": "88f15ac9ac692b34dfc384919e0aba265b9cc7151f7305130caa3c9eb7495288",
+    "p1-csharp-poison-diff-report-1.json": "82421521f2575d69359488ddb29e76a02dfa2133951358be203b47f316308a3c",
+    "p1-csharp-relic-tough-bandages-diff-report.json": "a6cca05d3186641c3fd5d0403cbf65b1cb81ff4c08b982482fde8288383bcdb4",
+    "p1-csharp-relic-tungsten-rod-diff-report-0.json": "21d0527f48ad6db3579720aff970ff166731f3fb09b7cad71e72c170010c9efb",
+    "p1-csharp-relic-tungsten-rod-diff-report-1.json": "c5ec1c31717bb73705532e736bdca1e996bf5b6c1314d0266ef6ef8387b6a6ed",
+    "p1-csharp-relic-unceasing-top-diff-report-0.json": "54cdc95dd2ff694b0449c2b829fa6b94fb3b16e1e4333cd13e2fe38651bb660b",
+    "p1-csharp-relic-unceasing-top-diff-report-1.json": "bb82732f71e162d356a019c546f25004c7e2fb11d932a585bc52c00fb74cceac",
+    "p1-csharp-relic-unceasing-top-diff-report-2.json": "6cb6e7a24ac43465853e5c24de90d26599df5ac944346e07c768b585f94cc2cc",
+    "p1-csharp-thorns-diff-report-0.json": "b9c3035b4a144c6180192c3f42e36e46c6c1df53ced4198c88046ba61418a2b0",
+    "p1-csharp-thorns-diff-report-1.json": "53f95603e7ff70aa2c8042abcc6b381f7fa83da101dedf90bd6958ce38752e74"
+  }
+}
