@@ -152,6 +152,9 @@ class TeacherWorker:
             "record_id": record.get("record_id"),
             "public_state": record.get("public_state"),
             "teacher_snapshot": teacher_snapshot,
+            # A C# bridge can skip lossy reconstruction when the producer has
+            # already emitted a full CombatSnapshot payload.
+            "combat_snapshot": record.get("combat_snapshot"),
             "legal_actions": actions,
             "search": {"objectives": list(OBJECTIVES), "top_k": self.top_k},
             "version": LOCK,

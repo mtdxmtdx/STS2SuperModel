@@ -17,6 +17,7 @@ Slay the Spire 2 v0.111.0 单人战斗回合模型基础设施：真实 CLI 状�
 - `PLAN.md`：完整实施计划与验收标准
 - `data/`：v0.111 Power/Relic catalog、P0 差分报告、Trace 和 smoke 数据
 - `training/`：Trace 转换、Schema、Manifest、Parquet、数据切分和 ShadowDiff
+- `training/TeacherEvaluator/`：接收 `sts2.teacher-evaluator.v1` 请求并调用 C# `CombatSearchSession` 的 evaluator bridge
 - `sts2-cli-v0111/`：v0.111 headless CLI、状态快照和训练 Trace 扩展
 - `杀戮尖塔种子机制研究.md`、`种子机制核验.md`：随机机制研究记录
 
@@ -48,6 +49,9 @@ python .\training\run_quality_gate.py `
   --parquet-manifest data\p0-combat-action-parquet\parquet-manifest.json `
   --split-dir data\p0-combat-action-splits `
   --output data\dataset-quality-gate.json
+
+# Build the C# evaluator bridge (requires the external Core checkout)
+dotnet build .\training\TeacherEvaluator\STS2BestChoice.TeacherEvaluator.csproj -c Release
 ```
 
 P0 验收证据见 `data/P0_VERIFICATION.md`。教师数据的大规模生成、PyTorch 训练和 ONNX 接入属于后续阶段。

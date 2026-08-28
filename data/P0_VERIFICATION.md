@@ -209,6 +209,9 @@ Known pre-existing warnings remain in unrelated analyzer/Mod build output. The c
 - `data/teacher-smoke-100-quality-gate.json` reports `verdict=pass`, with zero version,
   leakage, stable-ID, malformed-line, split, and Parquet-manifest failures.
 - `data/teacher-smoke-100-hidden-states.json` contains the public-state aggregation sidecar.
+- `training/TeacherEvaluator/` now provides a concrete `sts2.teacher-evaluator.v1` bridge;
+  it accepts a full `combat_snapshot` payload and calls `CombatSearchSession`. Raw CLI teacher
+  snapshots still need the snapshot reconstruction adapter before they can be passed to it.
 
 1. Expand real CLI/shadow Power probes beyond the 14 validated powers, prioritizing
    the remaining declared mappings.

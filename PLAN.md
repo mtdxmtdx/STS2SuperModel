@@ -666,7 +666,9 @@ action_score
 
 当前进度：已完成 100 状态 smoke 闭环；100/100 条记录具有非空
 `teacher_best_actions`，当前标签来自明确标记为 `Estimated` 的 fallback，尚未作为
-Reliable 教师数据使用。
+Reliable 教师数据使用。`training/TeacherEvaluator` 已提供调用
+`CombatSearchSession` 的协议端，剩余工作是完成 raw teacher snapshot 到完整
+`CombatSnapshot` 的重建，并将真实 evaluator 接入采集器。
 
 交付：
 
