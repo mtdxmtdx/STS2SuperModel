@@ -193,6 +193,14 @@ to `LiveObserved` without a valid runtime probe.
 - Chance trace validation: **6 rows, 0 errors**.
 - ShadowDiff Release build: **0 warnings, 0 errors**.
 - All committed P0/P1 Power and Relic C# differential reports have `mismatch_count=0`; the current P1 batch adds 12 Power reports and 6 Relic reports.
+- `training/verify_repeat_runs.py` reruns the P0/P1 Power and Relic probe drivers and compares
+  all report SHA-256 values. The current run verifies 59 reports with 0 changed, missing, or
+  added files.
+- `data/card-semantic-verification.json` records v0.111 card semantic coverage: 1,176
+  variants, 1,108 fully structured, 1,108 simulator-executable, and 1,099 in the
+  single-player combat scope. It also counts Exhaust, Ethereal, Retain, random, Choice, and
+  Power/Relic-trigger categories. This is descriptive coverage evidence; it does not promote
+  a card to Reliable without a real CLI/ShadowDiff fixture.
 - Probe driver: `training/run_p0_probes.py` reruns the full 21-fixture matrix end-to-end (CLI trace capture + ShadowDiff), currently 21/21 fixtures, 0 failed reports.
 
 Known pre-existing warnings remain in unrelated analyzer/Mod build output. The complete CLI suite has previously contained failures in reward, shop, save/load and full-run flows outside the current combat-turn P0 scope; it has not been declared globally green.

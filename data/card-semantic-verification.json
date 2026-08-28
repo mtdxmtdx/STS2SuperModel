@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "game_version": "0.111.0",
+  "source": {
+    "cards": "D:\\STS2BestChoice\\STS2BestChoice\\data\\cards\\generated\\0.111.0\\cards.json",
+    "cards_sha256": "03b75bd931b958599846288b20b4de5b2795ff1c4017dab126437b9fa3ef3736",
+    "semantics": "D:\\STS2BestChoice\\STS2BestChoice\\data\\cards\\generated\\0.111.0\\semantics.json",
+    "semantics_sha256": "cbe04b1d19d65167016cd3372073bf199b4aa93f129fe37c54c744e6ec0885a7"
+  },
+  "base_cards": 607,
+  "upgraded_variants": 569,
+  "all": {
+    "variants": 1176,
+    "fully_structured": 1108,
+    "immediately_executable": 458,
+    "simulator_executable": 1108,
+    "runtime_handler_resolvable": 1108,
+    "unparsed_clauses": 74,
+    "cards_by_character": {
+      "事件": 52,
+      "亡灵契约师": 182,
+      "任务": 4,
+      "储君": 182,
+      "故障机器人": 190,
+      "无色": 130,
+      "状态": 12,
+      "衍生": 24,
+      "诅咒": 18,
+      "铁甲战士": 188,
+      "静默猎手": 194
+    },
+    "cards_by_type": {
+      "任务": 4,
+      "技能": 500,
+      "攻击": 404,
+      "状态": 16,
+      "能力": 234,
+      "诅咒": 18
+    }
+  },
+  "single_player_combat_scope": {
+    "variants": 1099,
+    "fully_structured": 1099,
+    "immediately_executable": 458,
+    "simulator_executable": 1099,
+    "runtime_handler_resolvable": 1099,
+    "unparsed_clauses": 0,
+    "cards_by_character": {
+      "事件": 50,
+      "亡灵契约师": 172,
+      "任务": 3,
+      "储君": 172,
+      "故障机器人": 180,
+      "无色": 106,
+      "状态": 12,
+      "衍生": 24,
+      "诅咒": 18,
+      "铁甲战士": 178,
+      "静默猎手": 184
+    },
+    "cards_by_type": {
+      "任务": 3,
+      "技能": 450,
+      "攻击": 392,
+      "状态": 16,
+      "能力": 220,
+      "诅咒": 18
+    }
+  },
+  "multiplayer_only_variants": 77,
+  "semantic_categories": {
+    "exhaust": {
+      "all_variants": 222,
+      "single_player_variants": 204
+    },
+    "ethereal": {
+      "all_variants": 44,
+      "single_player_variants": 44
+    },
+    "retain": {
+      "all_variants": 47,
+      "single_player_variants": 45
+    },
+    "random": {
+      "all_variants": 105,
+      "single_player_variants": 97
+    },
+    "choice": {
+      "all_variants": 29,
+      "single_player_variants": 29
+    },
+    "power_or_relic_trigger": {
+      "all_variants": 400,
+      "single_player_variants": 393
+    }
+  },
+  "top_unparsed_clauses_all": [
+    [
+      "给予另一位玩家你当前格挡值的格挡",
+      2
+    ],
+    [
+      "承受双倍来自敌人的伤害",
+      2
+    ],
+    [
+      "敌人的伤害对盟友减半",
+      2
+    ],
+    [
+      "一名敌人在本回合受到的来自其他玩家的攻击伤害翻倍",
+      2
+    ],
+    [
+      "每当你铸造时，所有盟友也都铸造相同的数值",
+      2
+    ],
+    [
+      "使另一名玩家生成等离子充能球",
+      2
+    ],
+    [
+      "其他玩家的下一张攻击牌将在该名敌人身上额外生效一次",
+      2
+    ],
+    [
+      "将本回合所有要对另一名玩家发起的攻击转移到你的身上",
+      2
+    ],
+    [
+      "获得等同于另一位玩家格挡值的格挡",
+      2
+    ],
+    [
+      "每当你在你的回合获得格挡时，其他玩家获得相应一半的格挡",
+      2
+    ],
+    [
+      "每当其他玩家在本回合造成攻击伤害时，给予敌人相等的灾厄",
+      2
+    ],
+    [
+      "选择一名盟友",
+      2
+    ],
+    [
+      "每当你生成一张灵魂时，将一张灵魂，添加至他的抽牌堆",
+      2
+    ],
+    [
+      "在本回合，你的冰霜充能球会给予所有玩家格挡",
+      2
+    ],
+    [
+      "选择另一名玩家",
+      2
+    ],
+    [
+      "另一名玩家选择其抽牌堆中的一张牌放入其手牌",
+      2
+    ],
+    [
+      "每当其他玩家攻击一名敌人时，获得1点格挡",
+      1
+    ],
+    [
+      "每当其他玩家攻击一名敌人时，获得2点格挡",
+      1
+    ],
+    [
+      "将一张随机的无色牌添加至一位其他玩家的手牌中",
+      1
+    ],
+    [
+      "将一张随机的升级过的无色牌添加至一位其他玩家的手牌中",
+      1
+    ],
+    [
+      "所有玩家召唤6",
+      1
+    ],
+    [
+      "所有玩家召唤8",
+      1
+    ],
+    [
+      "在所有玩家的抽牌堆中加入3张灵魂",
+      1
+    ],
+    [
+      "在所有玩家的抽牌堆中加入4张灵魂",
+      1
+    ],
+    [
+      "所有玩家获得能量能量",
+      1
+    ]
+  ],
+  "top_unparsed_clauses_single_player": []
+}

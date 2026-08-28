@@ -4,6 +4,7 @@
 **/.pytest_cache/
 **/__pycache__/
 **/test-output/
+**/pytest-cache-files-*/
 .python-deps/
 
 # Local game/runtime binaries (obtain from a local installation)

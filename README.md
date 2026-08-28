@@ -18,6 +18,8 @@ Slay the Spire 2 v0.111.0 单人战斗回合模型基础设施：真实 CLI 状�
 - `data/`：v0.111 Power/Relic catalog、P0 差分报告、Trace 和 smoke 数据
 - `training/`：Trace 转换、Schema、Manifest、Parquet、数据切分和 ShadowDiff
 - `training/TeacherEvaluator/`：接收 `sts2.teacher-evaluator.v1` 请求并调用 C# `CombatSearchSession` 的 evaluator bridge
+- `training/verify_repeat_runs.py`：P0/P1 差分报告双跑 SHA-256 验证
+- `training/build_card_semantic_report.py`：生成 v0.111 卡牌语义专项统计
 - `sts2-cli-v0111/`：v0.111 headless CLI、状态快照和训练 Trace 扩展
 - `杀戮尖塔种子机制研究.md`、`种子机制核验.md`：随机机制研究记录
 
@@ -25,6 +27,15 @@ Slay the Spire 2 v0.111.0 单人战斗回合模型基础设施：真实 CLI 状�
 经真实 `CombatSearchSession` evaluator 处理的记录（874 个唯一 public 状态）。标签
 仍明确标记为 `EstimatedByHeuristic`/`BudgetBound`，未知语义和 evaluator 回退不会
 被提升为 Reliable。
+
+卡牌专项统计位于 `data/card-semantic-verification.json`。差分报告双跑验证使用：
+
+```powershell
+python training/verify_repeat_runs.py
+```
+
+测试临时目录由根目录 `pytest.ini` 排除；需要清理时使用
+`python training/clean_pytest_residue.py --apply`。
 
 ## 本地 CLI 准备
 

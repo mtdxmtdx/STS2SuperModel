@@ -16,6 +16,7 @@
 ```powershell
 python -m pytest training -q --disable-warnings --ignore=training/test_replay_action.py
 dotnet build training/TeacherEvaluator/STS2BestChoice.TeacherEvaluator.csproj -c Release --no-restore
+python training/verify_repeat_runs.py
 ```
 
 1,000 状态 Smoke 产物位于 `data/teacher-realsmoke-1000*`，质量门禁报告必须为
