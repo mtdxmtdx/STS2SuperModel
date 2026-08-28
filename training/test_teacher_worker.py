@@ -7,6 +7,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent / "collectors"))
 from teacher_worker import LOCK, TeacherWorker, aggregate_hidden_states
+from snapshot_adapter import rebuild_combat_snapshot
 
 
 def record():
@@ -68,7 +69,7 @@ def test_evaluator_response_is_attached_and_preserves_protocol():
 
     output = TeacherWorker(evaluator=evaluator).process(source)
     assert output["teacher_best_actions"] == ["play:c1"]
-    assert output["confidence"] == "Reliable"
+    assert output["confidence"] == "Estimated"
     assert output["expanded_nodes"] == 12
 
 
@@ -83,3 +84,13 @@ def test_hidden_state_aggregation_reports_variance_and_policy_sensitivity():
     assert rows[0]["teacher_state_hashes"] == ["B" * 64, "C" * 64]
     assert rows[0]["hidden_state_sensitive"] is True
     assert rows[0]["action_value_variance"]["play:c1"] > 0
+
+
+def test_snapshot_adapter_preserves_ids_and_marks_lossy_semantics():
+    snap, warnings = rebuild_combat_snapshot(
+        {"round": 2, "hand": [{"instance_id": "c1", "id": "CARD.STRIKE", "cost": 1, "stats": {"damage": 6}}]},
+        {"round": 1, "player": {"hp": 50, "max_hp": 80, "energy": 3}, "enemies": []},
+    )
+    assert snap["hand"][0]["instance_id"] == "c1"
+    assert snap["hand"][0]["effects"][0]["kind"] == "Damage"
+    assert "enemy_state_missing" in warnings

@@ -19,6 +19,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Callable, Iterable
 
+from snapshot_adapter import rebuild_combat_snapshot
+
 
 LOCK = {
     "game_version": "v0.111.0",
@@ -147,6 +149,8 @@ class TeacherWorker:
         teacher_snapshot = record.get("teacher_snapshot") or record.get("teacher_state")
         if teacher_snapshot is None and not self.allow_heuristic_fallback:
             raise ValueError("teacher snapshot is missing")
+        reconstructed, reconstruction_warnings = rebuild_combat_snapshot(
+            teacher_snapshot or {}, record.get("public_state") or {})
         request = {
             "protocol": "sts2.teacher-evaluator.v1",
             "record_id": record.get("record_id"),
@@ -154,13 +158,17 @@ class TeacherWorker:
             "teacher_snapshot": teacher_snapshot,
             # A C# bridge can skip lossy reconstruction when the producer has
             # already emitted a full CombatSnapshot payload.
-            "combat_snapshot": record.get("combat_snapshot"),
+            "combat_snapshot": record.get("combat_snapshot") or reconstructed,
+            "reconstruction_warnings": reconstruction_warnings,
             "legal_actions": actions,
             "search": {"objectives": list(OBJECTIVES), "top_k": self.top_k},
             "version": LOCK,
         }
         if self.evaluator is not None:
-            return self.evaluator(request)
+            label = dict(self.evaluator(request))
+            if reconstruction_warnings:
+                label["reconstruction_warnings"] = reconstruction_warnings
+            return label
         if self.allow_heuristic_fallback:
             return _fallback_label(record, self.top_k)
         raise ValueError("no CombatSearchSession/Expectimax evaluator configured")
@@ -175,6 +183,9 @@ class TeacherWorker:
         output = dict(record)
         output.update(label)
         output.setdefault("risk_events", [])
+        reconstruction_warnings = output.get("reconstruction_warnings") or []
+        if reconstruction_warnings:
+            output["risk_events"] = sorted(set(output["risk_events"]) | set(reconstruction_warnings))
         if output.get("confidence") == "Reliable" and output.get("risk_events"):
             output["confidence"] = "Estimated"
         if not output.get("teacher_best_actions"):
