@@ -1,7 +1,7 @@
 {
   "dataset_path": "data/teacher-smoke-100.jsonl",
   "dataset_kind": "teacher",
-  "generated_at": "2026-08-28T01:26:52Z",
+  "generated_at": "2026-08-28T01:28:30Z",
   "version_lock": {
     "game_version": "v0.111.0",
     "game_commit": "41cef1ea",

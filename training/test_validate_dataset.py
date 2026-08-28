@@ -210,6 +210,34 @@ class TestValidateDataset(unittest.TestCase):
         finally:
             path.unlink(missing_ok=True)
 
+    def test_reject_inconsistent_label_quality(self):
+        """Rejects Reliable labels declared as heuristic fallback."""
+        validator = DatasetValidator()
+        row = {
+            "record_id": "quality-1", "schema_version": 1, "trace_schema": 1,
+            "game_version": "v0.111.0", "game_commit": "41cef1ea",
+            "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+            "cli_protocol_version": "0.2.0", "simulator_version": "sim",
+            "scorer_version": "score", "semantic_database_version": "db",
+            "feature_schema_version": "1", "model_version": "none",
+            "generator_config_hash": "A" * 64, "episode_id": "ep", "character": "Ironclad",
+            "ascension": 0, "act": 1, "floor": 1, "combat_id": "c", "round": 1,
+            "state_hash_public": "A" * 64, "state_hash_teacher": "B" * 64,
+            "public_state": {"hand": []}, "legal_actions": [],
+            "teacher_best_actions": ["end_turn"], "action_values": {"end_turn": 0},
+            "confidence": "Reliable", "search_complete": True,
+            "label_quality": "EstimatedByHeuristic",
+        }
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8", delete=False, suffix=".jsonl") as tf:
+            tf.write(json.dumps(row) + "\n")
+            path = Path(tf.name)
+        try:
+            validator.validate_training_file(path)
+            errors = [e for e in validator.errors if e.error_type == "label_quality_contract"]
+            self.assertGreater(len(errors), 0)
+        finally:
+            path.unlink(missing_ok=True)
+
     def test_reject_missing_extended_version_metadata(self):
         validator = DatasetValidator()
         row = json.loads(TRAINING_PATH.read_text(encoding="utf-8").splitlines()[0])

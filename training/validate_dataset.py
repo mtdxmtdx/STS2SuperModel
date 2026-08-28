@@ -88,6 +88,10 @@ HEX64_PATTERN = re.compile(r"^[0-9A-Fa-f]{64}$")
 ACTION_SIGNATURE_FIELDS = ("kind", "action_id", "source_instance_id", "target_id", "choice_id", "legal")
 
 LABEL_VALUES = ("Reliable", "Estimated", "LowConfidence", "Uncalculable")
+LABEL_QUALITY_VALUES = (
+    "ExactComplete", "ExactWithKnownChance", "SampledWithConfidenceInterval",
+    "BudgetBound", "EstimatedByHeuristic", "Uncalculable",
+)
 
 
 @dataclass
@@ -341,6 +345,33 @@ class DatasetValidator:
                 "uncalculable_policy_label",
             )
 
+    def _check_label_quality(self, row: Dict[str, Any], file: str, line_no: int) -> None:
+        quality = row.get("label_quality")
+        if quality is None:
+            return
+        if quality not in LABEL_QUALITY_VALUES:
+            self.add_error(file, line_no, "label_quality", f"Invalid label_quality: {quality!r}", "invalid_value")
+            return
+        confidence = row.get("confidence")
+        actions = row.get("teacher_best_actions") or []
+        complete = row.get("search_complete") is True
+        if quality in ("ExactComplete", "ExactWithKnownChance") and (confidence != "Reliable" or not actions or not complete):
+            self.add_error(file, line_no, "label_quality",
+                           f"{quality} requires Reliable confidence, non-empty teacher_best_actions and search_complete=true",
+                           "label_quality_contract")
+        elif quality == "SampledWithConfidenceInterval" and confidence == "Reliable":
+            self.add_error(file, line_no, "label_quality",
+                           "SampledWithConfidenceInterval cannot be marked Reliable", "label_quality_contract")
+        elif quality == "BudgetBound" and complete:
+            self.add_error(file, line_no, "label_quality",
+                           "BudgetBound requires search_complete=false", "label_quality_contract")
+        elif quality == "EstimatedByHeuristic" and confidence == "Reliable":
+            self.add_error(file, line_no, "label_quality",
+                           "EstimatedByHeuristic cannot be marked Reliable", "label_quality_contract")
+        elif quality == "Uncalculable" and actions:
+            self.add_error(file, line_no, "label_quality",
+                           "Uncalculable records must not contain teacher_best_actions", "label_quality_contract")
+
     def _check_action_candidates(self, candidates: Any, file: str, line_no: int, path: str) -> None:
         if not isinstance(candidates, list):
             self.add_error(file, line_no, path, "Action candidates must be a list", "invalid_type")
@@ -529,6 +560,7 @@ class DatasetValidator:
             # Empty teacher label classification + policy-label position rule
             self._classify_empty_teacher_best_actions(row, str(path), line_no)
             self._check_policy_label_position(row, str(path), line_no)
+            self._check_label_quality(row, str(path), line_no)
 
         return count
 
