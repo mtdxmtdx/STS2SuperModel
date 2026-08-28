@@ -9,13 +9,14 @@
 - Game `v0.111.0` / commit `41cef1ea`
 - CLI protocol `0.2.0` / trace schema `1`
 - 主要入口：`training/collectors/teacher_worker.py`
-- C# evaluator：`training/TeacherEvaluator/`
+- C# shadow/evaluator：`core/STS2BestChoice.Core/`、`training/TeacherEvaluator/`、`training/ShadowDiff/`
 
 ## 常用验证
 
 ```powershell
 python -m pytest training -q --disable-warnings --ignore=training/test_replay_action.py
 dotnet build training/TeacherEvaluator/STS2BestChoice.TeacherEvaluator.csproj -c Release --no-restore
+dotnet build training/ShadowDiff/STS2BestChoice.ShadowDiff.csproj -c Release --no-restore
 python training/verify_repeat_runs.py
 ```
 
@@ -24,5 +25,5 @@ python training/verify_repeat_runs.py
 
 ## 当前状态
 
-P0 教师数据闭环已完成；提交 `553887a`。下一阶段是扩展角色/难度/场景多样性、补齐
+P0 教师数据闭环和仓库内影子模拟器已完成。下一阶段是扩展角色/难度/场景多样性、补齐
 语义 handler，再生成可用于 Reliable policy 主损失的 10k/100k 数据。

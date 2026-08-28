@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>STS2BestChoice.ShadowDiff</AssemblyName>
+    <LangVersion>13.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\..\core\STS2BestChoice.Core\STS2BestChoice.Core.csproj" />
+    <EmbeddedResource Include="..\..\data\relics\v0.111\relic-catalog.json"
+                      Link="Data\relics\v0.111\relic-catalog.json" />
   </ItemGroup>
 </Project>

@@ -16,8 +16,9 @@ Slay the Spire 2 v0.111.0 单人战斗回合模型基础设施：真实 CLI 状�
 
 - `PLAN.md`：完整实施计划与验收标准
 - `data/`：v0.111 Power/Relic catalog、P0 差分报告、Trace 和 smoke 数据
+- `core/STS2BestChoice.Core/`：纯 C# 确定性影子模拟器、CombatSnapshot、状态契约、评分器、语义编译器、Expectimax 和 CombatSearchSession；不包含游戏 Mod 或游戏 DLL
 - `training/`：Trace 转换、Schema、Manifest、Parquet、数据切分和 ShadowDiff
-- `training/TeacherEvaluator/`：接收 `sts2.teacher-evaluator.v1` 请求并调用 C# `CombatSearchSession` 的 evaluator bridge
+- `training/TeacherEvaluator/`：接收 `sts2.teacher-evaluator.v1` 请求并调用仓库内 C# `CombatSearchSession` 的 evaluator bridge
 - `training/verify_repeat_runs.py`：P0/P1 差分报告双跑 SHA-256 验证
 - `training/build_card_semantic_report.py`：生成 v0.111 卡牌语义专项统计
 - `sts2-cli-v0111/`：v0.111 headless CLI、状态快照和训练 Trace 扩展
@@ -63,8 +64,9 @@ python .\training\run_quality_gate.py `
   --split-dir data\p0-combat-action-splits `
   --output data\dataset-quality-gate.json
 
-# Build the C# evaluator bridge (requires the external Core checkout)
+# Build the C# evaluator bridge and the repository-local shadow simulator
 dotnet build .\training\TeacherEvaluator\STS2BestChoice.TeacherEvaluator.csproj -c Release
+dotnet build .\training\ShadowDiff\STS2BestChoice.ShadowDiff.csproj -c Release
 ```
 
 P0 验收证据见 `data/P0_VERIFICATION.md`。教师数据的大规模生成、PyTorch 训练和 ONNX 接入属于后续阶段。
