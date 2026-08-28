@@ -201,17 +201,16 @@ Known pre-existing warnings remain in unrelated analyzer/Mod build output. The c
 
 ## Teacher Smoke Status
 
-- `data/teacher-smoke-100.jsonl` contains 100 deterministic, schema-valid records.
+- `data/teacher-smoke-100.jsonl` is the legacy 100-record fallback baseline.
 - All 100 records have non-empty `teacher_best_actions` and stable version metadata.
-- The current labels are explicitly `Estimated` from the fallback worker because the
-  CombatSearchSession/Expectimax evaluator bridge is not yet connected to this Python
-  collector; they are not admitted as Reliable policy labels.
+- Those legacy labels are explicitly `Estimated` and are not admitted as Reliable policy
+  labels. The real evaluator bridge and snapshot reconstruction adapter are now connected;
+  current real-evaluator outputs are documented in the section below.
 - `data/teacher-smoke-100-quality-gate.json` reports `verdict=pass`, with zero version,
   leakage, stable-ID, malformed-line, split, and Parquet-manifest failures.
 - `data/teacher-smoke-100-hidden-states.json` contains the public-state aggregation sidecar.
-- `training/TeacherEvaluator/` now provides a concrete `sts2.teacher-evaluator.v1` bridge;
-  it accepts a full `combat_snapshot` payload and calls `CombatSearchSession`. Raw CLI teacher
-  snapshots still need the snapshot reconstruction adapter before they can be passed to it.
+- `training/TeacherEvaluator/` provides the `sts2.teacher-evaluator.v1` bridge; it accepts a
+  reconstructed `combat_snapshot` payload and calls `CombatSearchSession`.
 
 ### Real evaluator smoke (2026-08-28)
 
