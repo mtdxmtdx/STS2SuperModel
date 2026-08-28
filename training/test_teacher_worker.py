@@ -35,6 +35,7 @@ def test_heuristic_fallback_emits_nonempty_estimated_label():
     output = TeacherWorker(top_k=2, allow_heuristic_fallback=True).process(record())
     assert output["teacher_best_actions"]
     assert output["confidence"] == "Estimated"
+    assert output["label_quality"] == "EstimatedByHeuristic"
     assert output["search_complete"] is False
     assert len(output["teacher_top_k"]) == 2
     assert set(output["objectives"]) == {"Balanced", "HighestDamage", "MinimumLoss"}

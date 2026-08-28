@@ -12,6 +12,7 @@
     "expanded_nodes",
     "chance_branch",
     "confidence",
+    "label_quality",
     "search_complete",
     "risk_events"
   ],
@@ -29,6 +30,7 @@
     "expanded_nodes": {"type": "integer", "minimum": 0},
     "chance_branch": {"type": "object"},
     "confidence": {"type": "string", "enum": ["Reliable", "Estimated", "LowConfidence", "Uncalculable"]},
+    "label_quality": {"type": "string", "enum": ["ExactComplete", "ExactWithKnownChance", "SampledWithConfidenceInterval", "BudgetBound", "EstimatedByHeuristic", "Uncalculable"]},
     "search_complete": {"type": "boolean"},
     "risk_events": {"type": "array", "items": {"type": "string"}},
     "hidden_state_sensitive": {"type": "boolean"}

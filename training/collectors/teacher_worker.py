@@ -110,6 +110,7 @@ def _fallback_label(record: dict[str, Any], top_k: int) -> dict[str, Any]:
             "death_probability": 0.0, "search_budget_ms": 0, "expanded_nodes": 0,
             "chance_branch": {"produced": False, "kind": "none"},
             "confidence": "Uncalculable", "search_complete": False,
+            "label_quality": "Uncalculable",
             "risk_events": ["no_legal_actions"],
         }
     scores = _heuristic_scores(record, actions)
@@ -132,6 +133,7 @@ def _fallback_label(record: dict[str, Any], top_k: int) -> dict[str, Any]:
         "expanded_nodes": 0,
         "chance_branch": {"produced": False, "kind": "none"},
         "confidence": "Estimated",
+        "label_quality": "EstimatedByHeuristic",
         "search_complete": False,
         "risk_events": ["heuristic_teacher_fallback", "teacher_evaluator_unavailable"],
     }
@@ -183,6 +185,12 @@ class TeacherWorker:
         output = dict(record)
         output.update(label)
         output.setdefault("risk_events", [])
+        output.setdefault("label_quality", {
+            "Reliable": "ExactComplete" if output.get("search_complete") else "BudgetBound",
+            "Estimated": "EstimatedByHeuristic",
+            "LowConfidence": "EstimatedByHeuristic",
+            "Uncalculable": "Uncalculable",
+        }.get(output.get("confidence"), "Uncalculable"))
         reconstruction_warnings = output.get("reconstruction_warnings") or []
         if reconstruction_warnings:
             output["risk_events"] = sorted(set(output["risk_events"]) | set(reconstruction_warnings))
