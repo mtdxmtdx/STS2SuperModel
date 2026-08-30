@@ -1,0 +1,36 @@
+branch: global-decision-annotation-gui
+changed_field: teacher_branch_evaluation_and_dataset_export
+MODIFIED_FILE: ./MODIFIED_FILE
+DIFF_FILE: ./DIFF_FILE
+VERIFICATION_FILE: ./VERIFICATION.txt
+ROLLBACK_SCRIPT: ./ROLLBACK.sh
+
+BASELINE
+command: python -m unittest tests.test_mvp.GuiMvpTests.test_context_hash_is_stable -v
+literal output:
+test_context_hash_is_stable (tests.test_mvp.GuiMvpTests.test_context_hash_is_stable) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+exit status: 0
+
+MODIFIED
+command: python -W error::ResourceWarning -m unittest discover -s tests -v
+literal output:
+test_cli_map_decision_and_export (test_mvp.GuiMvpTests.test_cli_map_decision_and_export) ... ok
+test_cli_response_action_ids_are_stable (test_mvp.GuiMvpTests.test_cli_response_action_ids_are_stable) ... ok
+test_context_hash_is_stable (test_mvp.GuiMvpTests.test_context_hash_is_stable) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.126s
+
+OK
+exit status: 0
+
+ROLLBACK
+command: pwsh -NoProfile -Command "& ([scriptblock]::Create((Get-Content -Raw './ROLLBACK.sh'))) -Target 'test-output/rollback-copy'"
+literal output: restored test-output\rollback-copy\MODIFIED_FILE
+exit status: 0
+restored behavior/status: test-output/rollback-copy/MODIFIED_FILE matches MODIFIED_FILE.baseline (status=baseline); original ./MODIFIED_FILE remains changed (status=modified).
