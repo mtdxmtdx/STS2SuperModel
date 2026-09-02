@@ -7,6 +7,6 @@
     <AssemblyName>STS2BestChoice.TeacherEvaluator</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\core\STS2BestChoice.Core\STS2BestChoice.Core.csproj" />
+    <ProjectReference Include="..\..\..\STS2BestChoice\STS2BestChoice.Core\STS2BestChoice.Core.csproj" />
   </ItemGroup>
 </Project>
