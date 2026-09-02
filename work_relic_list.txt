@@ -1,0 +1,99 @@
+remaining unsupported: 98
+ARCHAIC_TOOTH | card_play | Upon pickup, [gold]Transform[/gold] {StarterCard.StringValue:cond:[gold]{StarterCard}[/g
+BELLOWS | turn_start | The first [gold]Hand[/gold] you draw each combat is [gold]Upgraded[/gold].
+BIG_HAT | turn_start | At the start of each combat, add [blue]{Cards}[/blue] random [gold]Ethereal[/gold] {Card
+BIG_MUSHROOM | combat_passive | Upon pickup, raise your Max HP by [blue]{MaxHp}[/blue]. At the start of each combat, dra
+BING_BONG | card_play | Whenever you add a card to your [gold]Deck[/gold], add one additional copy.
+BLESSED_ANTLER | combat_passive | Gain {Energy:energyIcons()} at the start of each turn. At the start of each combat, shuf
+BLOOD_SOAKED_ROSE | combat_passive | Upon pickup, add [blue]1[/blue] [red]Enthralled[/red] to your [gold]Deck[/gold]. Gain {E
+BONE_FLUTE | card_play | Whenever [gold]Osty[/gold] attacks, gain [blue]{Block}[/blue] [gold]Block[/gold].
+BONE_TEA | turn_start | At the start of the next {Combats:plural:combat|[blue]{}[/blue] combats}, [gold]Upgrade[
+BOOK_OF_FIVE_RINGS | card_play | Every [blue]{Cards}[/blue] {Cards:plural:card|cards} you add to your [gold]Deck[/gold], 
+BOOMING_CONCH | turn_start | At the start of [gold]Elite[/gold] combats, draw [blue]{Cards}[/blue] additional {Cards:
+BOUND_PHYLACTERY | combat_start | At the start of your turn, [gold]Summon[/gold] [blue]{Summon}[/blue].
+BURNING_STICKS | card_play | The first time each combat you [gold]Exhaust[/gold] a Skill, add a copy of it into your 
+BYRDPIP | combat_start | Upon pickup, gain the card [gold]Byrd Swoop[/gold]. A [gold]Byrdpip[/gold] will accompan
+CAPTAINS_WHEEL | combat_passive | At the start of your [blue]3rd[/blue] turn, gain [blue]{Block}[/blue] [gold]Block[/gold]
+CHARONS_ASHES | card_play | Whenever you [gold]Exhaust[/gold] a card, deal [blue]{Damage}[/blue] damage to ALL enemi
+CHEMICAL_X | card_play | The effects of your cost [blue]X[/blue] cards are increased by [blue]{Increase}[/blue].
+CHOICES_PARADOX | turn_start | At the start of each combat, add [blue]1[/blue] of [blue]{Cards}[/blue] random cards int
+CHOSEN_CHEESE | combat_end | At the end of combat, gain [blue]{MaxHp}[/blue] Max HP.
+CRACKED_CORE | turn_start | At the start of each combat, [gold]Channel[/gold] [blue]{Lightning}[/blue] [gold]Lightni
+CROSSBOW | turn_start | At the start of your turn, add a random [gold]Attack[/gold] into your [gold]Hand[/gold].
+DARKSTONE_PERIAPT | card_play | Whenever you obtain a [red]Curse[/red], raise your Max HP by [blue]{MaxHp}[/blue].
+DEMON_TONGUE | turn_start | The first time you lose HP on your turn, heal HP equal to the amount lost.
+DIAMOND_DIADEM | turn_start | Whenever you play [blue]{CardThreshold}[/blue] or fewer cards in a turn, take half damag
+DINGY_RUG | card_play | Card rewards can now contain Colorless cards.
+DIVINE_DESTINY | turn_start | At the start of each combat, gain {Stars:starIcons()}.
+ECTOPLASM | combat_passive | You can no longer gain [gold]Gold[/gold]. Gain {Energy:energyIcons()} at the start of ea
+EMOTION_CHIP | turn_start | If you lost HP during the previous turn, trigger the passive ability of all Orbs at the 
+FAKE_VENERABLE_TEA_SET | combat_passive | Whenever you enter a [gold]Rest Site[/gold], start the next combat with an additional {E
+FENCING_MANUAL | turn_start | At the start of each combat, [gold]Forge[/gold] [blue]{Forge}[/blue].
+FIDDLE | combat_passive | At the start of each turn, draw [blue]{Cards}[/blue] additional {Cards:plural:card|cards
+FORGOTTEN_SOUL | card_play | Whenever you [gold]Exhaust[/gold] a card, deal [blue]{Damage}[/blue] damage to a random 
+FRESNEL_LENS | card_play | Whenever you add a card that gains [gold]Block[/gold] to your [gold]Deck[/gold], [gold]E
+FROZEN_EGG | card_play | Whenever you add a Power into your [gold]Deck[/gold], [gold]Upgrade[/gold] it.
+FUNERARY_MASK | combat_passive | At the start of each combat, add [blue]{Cards}[/blue] [gold]{Cards:plural:Soul|Souls}[/g
+FUR_COAT | combat_start | Upon pickup, mark [blue]{Combats}[/blue] random combats. Enemies in those rooms have [bl
+GAMBLING_CHIP | turn_start | At the start of each combat, discard any number of cards then draw that many.
+GHOST_SEED | card_play | [gold]Strikes[/gold] and [gold]Defends[/gold] gain [gold]Ethereal[/gold].
+GLITTER | card_play | [gold]Enchant[/gold] all card rewards with [purple]Glam[/purple].
+GOLD_PLATED_CABLES | combat_passive | Your rightmost Orb triggers its passive an additional time.
+HAND_DRILL | combat_passive | Whenever you break an enemy's [gold]Block[/gold], apply [blue]{VulnerablePower}[/blue] [
+HELICAL_DART | card_play | Whenever you play a [gold]Shiv[/gold], gain [blue]{DexterityPower}[/blue] [gold]Dexterit
+HORN_CLEAT | combat_passive | At the start of your [blue]2nd[/blue] turn, gain [blue]{Block}[/blue] [gold]Block[/gold]
+INFUSED_CORE | turn_start | At the start of each combat, [gold]Channel[/gold] [blue]{Lightning}[/blue] [gold]Lightni
+JEWELED_MASK | combat_passive | At the start of each combat, put a random Power from your [gold]Draw Pile[/gold] into yo
+LASTING_CANDY | card_play | Every other combat, your card rewards gain an additional Power.
+LAVA_LAMP | card_play | At the end of combat, [gold]Upgrade[/gold] all card rewards if you took no damage.
+LUCKY_FYSH | card_play | Whenever you add a card to your [gold]Deck[/gold], gain [blue]{Gold}[/blue] [gold]Gold[/
+LUNAR_PASTRY | turn_end | At the end of your turn, gain {Stars:starIcons()}.
+METRONOME | combat_end | The first time you [gold]Channel[/gold] [blue]{OrbCount}[/blue] [gold]Orbs[/gold] each c
+MINIATURE_CANNON | damage_trigger | [gold]Upgraded[/gold] Attacks deal [blue]{ExtraDamage}[/blue] additional damage.
+MINI_REGENT | turn_start | The first time you spend {singleStarIcon} each turn, gain [blue]{StrengthPower}[/blue] [
+MOLTEN_EGG | card_play | Whenever you add an Attack card to your [gold]Deck[/gold], [gold]Upgrade[/gold] it.
+MUMMIFIED_HAND | card_play | Whenever you play a Power, a random card in your [gold]Hand[/gold] is free to play that 
+MUSIC_BOX | turn_start | Create an [gold]Ethereal[/gold] copy of the first Attack you play each turn.
+MYSTIC_LIGHTER | damage_trigger | [gold]Enchanted[/gold] Attacks deal [blue]{Damage}[/blue] additional damage.
+ORANGE_DOUGH | turn_start | At the start of each combat, add [blue]{Cards}[/blue] random Colorless {Cards:plural:car
+PAELS_BLOOD | combat_passive | At the start of your turn, draw [blue]{Cards}[/blue] additional {Cards:plural:card|cards
+PAELS_EYE | turn_start | The first time each combat you end your turn without playing cards, [gold]Exhaust[/gold]
+PAELS_LEGION | turn_start | Doubles [gold]Block[/gold] gained from a card, then goes to sleep for [blue]{Turns}[/blu
+PAELS_TOOTH | card_play | Upon pickup, remove [blue]{Cards}[/blue] {Cards:plural:card|cards} from your [gold]Deck[
+PAELS_WING | card_play | You may sacrifice card rewards to Pael. Every {Sacrifices:plural:sacrifice|[blue]{}[/blu
+PETRIFIED_TOAD | combat_start | At the start of each combat, procure a [gold]Potion-Shaped Rock[/gold].
+PHYLACTERY_UNBOUND | turn_start | At the start of each combat, [gold]Summon[/gold] [blue]{StartOfCombat}[/blue]. At the st
+POLLINOUS_CORE | combat_end | Every [blue]{Turns}[/blue] {Turns:plural:turn|turns}, draw [blue]{Cards}[/blue] addition
+POWER_CELL | turn_start | At the start of each combat, add [blue]{Cards}[/blue] zero-cost cards from your [gold]Dr
+PRISMATIC_GEM | card_play | Gain {Energy:energyIcons()} at the start of each turn. Card rewards now contain cards fr
+PUMPKIN_CANDLE | combat_end | Gain {Energy:energyIcons()} at the start of each turn. Extinguishes after [blue]{CombatC
+RADIANT_PEARL | combat_passive | At the start of each combat, add [blue]{Cards}[/blue] [gold]{Cards:plural:Luminesce|Lumi
+RAZOR_TOOTH | card_play | Every time you play an Attack or Skill, [gold]Upgrade[/gold] it for the remainder of com
+RED_SKULL | damage_trigger | While your HP is at or below [blue]{HpThreshold}%[/blue], you have [blue]{StrengthPower}
+REGALITE | turn_start | Whenever you create a card, gain [blue]{Block}[/blue] [gold]Block[/gold].
+REPTILE_TRINKET | combat_passive | Whenever you use a potion, gain [blue]{StrengthPower}[/blue] [gold]Strength[/gold] this 
+RING_OF_THE_DRAKE | combat_passive | At the start of your first {Turns:plural:turn|[blue]{}[/blue] turns}, draw [blue]{Cards}
+RUINED_HELMET | combat_end | The first time you gain [gold]Strength[/gold] each combat, double the amount gained.
+RUNIC_CAPACITOR | turn_start | Start each combat with [blue]{Repeat}[/blue] additional [gold]Orb Slots[/gold].
+SILKEN_TRESS | card_play | Upon pickup, lose all [gold]Gold[/gold]. [gold]Enchant[/gold] all cards in the first car
+SILVER_CRUCIBLE | card_play | The first [blue]{Cards}[/blue] card rewards you see are [gold]Upgraded[/gold]. The first
+SNECKO_SKULL | combat_passive | Whenever you apply [gold]Poison[/gold], apply an additional [blue]{PoisonPower}[/blue] [
+SOZU | combat_passive | Gain {Energy:energyIcons()} at the start of each turn. You can no longer obtain potions.
+SPARKLING_ROUGE | combat_passive | At the start of your [blue]3rd[/blue] turn, gain [blue]{StrengthPower}[/blue] [gold]Stre
+SPIKED_GAUNTLETS | combat_passive | Gain {Energy:energyIcons()} at the start of each turn. Powers cost [blue]1[/blue] more {
+STURDY_CLAMP | combat_passive | Up to [blue]{Block}[/blue] [gold]Block[/gold] persists across turns.
+SYMBIOTIC_VIRUS | turn_start | At the start of each combat, [gold]Channel[/gold] [blue]{Dark}[/blue] [gold]Dark[/gold].
+TEA_OF_DISCOURTESY | combat_start | At the start of the next combat, shuffle [blue]{DazedCount}[/blue] [gold]Dazed[/gold] in
+THROWING_AXE | card_play | The first card you play each combat is played an extra time.
+TINGSHA | card_play | Whenever you discard a card during your turn, deal [blue]{Damage}[/blue] damage to a ran
+TOASTY_MITTENS | turn_start | At the start of your turn, [gold]Exhaust[/gold] the top card of your [gold]Draw Pile[/go
+TOOLBOX | combat_passive | At the start of each combat, choose [blue]1[/blue] of [blue]{Cards}[/blue] random Colorl
+TOXIC_EGG | card_play | Whenever you add a Skill into your [gold]Deck[/gold], [gold]Upgrade[/gold] it.
+UNDYING_SIGIL | damage_trigger | Enemies with at least as much [gold]Doom[/gold] as HP deal [blue]50%[/blue] less damage.
+UNSETTLING_LAMP | combat_start | Each combat, the first time you play a card that [gold]Debuffs[/gold] an enemy, double i
+VENERABLE_TEA_SET | combat_passive | Whenever you enter a [gold]Rest Site[/gold], start the next combat with an additional {E
+VEXING_PUZZLEBOX | turn_start | At the start of each combat, add a random card into your [gold]Hand[/gold]. It's free to
+VITRUVIAN_MINION | damage_trigger | Cards containing “Minion” deal double damage and gain double [gold]Block[/gold].
+WAR_HAMMER | combat_end | Whenever you kill an [gold]Elite[/gold], [gold]Upgrade[/gold] [blue]{Cards}[/blue] rando
+WHITE_BEAST_STATUE | combat_passive | Potions always appear in combat rewards.
+WING_CHARM | card_play | A random card in each card reward is [gold]Enchanted[/gold] with [purple]Swift[/purple] 

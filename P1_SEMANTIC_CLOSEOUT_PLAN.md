@@ -37,16 +37,16 @@
  当前已知基线：
 
  - Power 总数：283；
- - Power 已行为探针：14；
- - Power 仍为 simulator_declared：59；
+ - Power 已行为探针：20；
+ - Power 仍为 simulator_declared：53；
  - 战斗遗物总数：299；
- - 遗物已探针：17；
- - 已知但未支持的战斗遗物：163；
- - 未知遗物：118；
+ - 遗物已探针：20；
+ - 已知但未支持的战斗遗物：161；
+ - 未知遗物：117；
  - v0.111 卡牌变体：1,176；
  - 单人战斗范围：1,099；
  - 单人战斗范围 fully structured：1,099；
- - 已验证 P0/P1 报告：59 份，全部 Reliable / 0 mismatch；
+ - 已验证 P0/P1 报告：71 份，全部 Reliable / 0 mismatch；
  - 当前 1,000 教师 Smoke：全部 Estimated，不得作为 Reliable Policy 主标签。
 
  基线产物：
