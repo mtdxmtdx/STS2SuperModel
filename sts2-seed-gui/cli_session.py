@@ -165,12 +165,8 @@ class CliSession:
 
 def default_cli_path(project_root: Path | None = None) -> Path:
     root = project_root or Path(__file__).resolve().parents[1]
-    candidates = [
-        root / "sts2-cli-v0111" / "src" / "Sts2Headless" / "bin" / "Debug" / "net9.0" / "Sts2Headless.exe",
-        root / "sts2-cli-v0111" / "src" / "Sts2Headless" / "bin" / "Release" / "net9.0" / "Sts2Headless.exe",
-        root / "sts2-cli-v0111" / "src" / "Sts2Headless" / "bin" / "Debug" / "net9.0" / "Sts2Headless",
-        root / "sts2-cli-v0111" / "src" / "Sts2Headless" / "bin" / "Release" / "net9.0" / "Sts2Headless",
-    ]
+    roots = [root, root.parent / "STS2SuperModel", root.parent.parent / "STS2SuperModel"]
+    candidates = [base / "sts2-cli-v0111" / "src" / "Sts2Headless" / "bin" / configuration / "net9.0" / executable for base in roots for configuration in ("Debug", "Release") for executable in ("Sts2Headless.exe", "Sts2Headless")]
     for candidate in candidates:
         if candidate.exists():
             return candidate

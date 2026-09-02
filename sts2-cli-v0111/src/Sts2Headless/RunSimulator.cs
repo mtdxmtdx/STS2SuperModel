@@ -228,10 +228,12 @@ public class RunSimulator
     private int _goldBeforeCombat;
     private int _lastKnownHp;
     private readonly HeadlessCardSelector _cardSelector = new();
+    private bool _cardSelectorRegistered;
     private readonly Dictionary<CardModel, string> _stableCardIds = new(ReferenceEqualityComparer.Instance);
     private readonly Dictionary<PotionModel, string> _stablePotionIds = new(ReferenceEqualityComparer.Instance);
     private readonly Dictionary<string, int> _cardOrdinals = new(StringComparer.Ordinal);
     private readonly Dictionary<string, int> _potionOrdinals = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, SortedDictionary<int, string>> _publicEnemyIntentHistory = new(StringComparer.Ordinal);
     // Pending bundle selection (Scroll Boxes: pick 1 of N packs)
     private IReadOnlyList<IReadOnlyList<CardModel>>? _pendingBundles;
     private TaskCompletionSource<IEnumerable<CardModel>>? _pendingBundleTcs;
@@ -244,6 +246,7 @@ public class RunSimulator
             _stablePotionIds.Clear();
             _cardOrdinals.Clear();
             _potionOrdinals.Clear();
+            _publicEnemyIntentHistory.Clear();
             _loc.Lang = lang;
             EnsureModelDbInitialized();
 
@@ -290,7 +293,11 @@ public class RunSimulator
             Log("Entered Act 0");
 
             // Register card selector for cards that need player choice
-            CardSelectCmd.UseSelector(_cardSelector);
+            if (!_cardSelectorRegistered)
+            {
+                CardSelectCmd.UseSelector(_cardSelector);
+                _cardSelectorRegistered = true;
+            }
             LocPatches._bundleSimRef = this;
 
             // Now we should be at the map — detect decision point
@@ -413,6 +420,71 @@ public class RunSimulator
         catch (Exception ex) { return ErrorWithTrace("SetPlayer failed", ex); }
     }
 
+    /// <summary>
+    /// Test/fixture-only override for combat resources.  This is deliberately
+    /// separate from SetPlayer because PlayerCombatState is created by the
+    /// engine when a combat room is entered.
+    /// </summary>
+    public Dictionary<string, object?> SetCombatResources(Dictionary<string, System.Text.Json.JsonElement> args)
+    {
+        try
+        {
+            if (_runState == null) return Error("No run in progress");
+            var pcs = _runState.Players[0].PlayerCombatState;
+            if (pcs == null || !CombatManager.Instance.IsInProgress)
+                return Error("Not in combat");
+
+            var unsupported = new List<string>();
+            SetCombatResource(pcs, args, "energy", "Energy", "_energy", unsupported);
+            SetCombatResource(pcs, args, "max_energy", "MaxEnergy", "_maxEnergy", unsupported);
+            SetCombatResource(pcs, args, "stars", "Stars", "_stars", unsupported);
+
+            Log($"SetCombatResources: energy={pcs.Energy} max_energy={pcs.MaxEnergy} stars={pcs.Stars}");
+            return new Dictionary<string, object?>
+            {
+                ["type"] = "ok",
+                ["energy"] = pcs.Energy,
+                ["max_energy"] = pcs.MaxEnergy,
+                ["stars"] = pcs.Stars,
+                ["unsupported"] = unsupported.Count > 0 ? unsupported : null,
+            };
+        }
+        catch (Exception ex) { return ErrorWithTrace("SetCombatResources failed", ex); }
+    }
+
+    private static void SetCombatResource(
+        object pcs,
+        Dictionary<string, System.Text.Json.JsonElement> args,
+        string argumentName, string propertyName, string fieldName,
+        List<string> unsupported)
+    {
+        if (!args.TryGetValue(argumentName, out var value)) return;
+        var number = value.GetInt32();
+        // Game builds have used both private backing fields and writable
+        // properties; support either without depending on a particular
+        // decompiler-generated member name.
+        var property = pcs.GetType().GetProperty(propertyName);
+        if (property?.CanWrite == true)
+        {
+            property.SetValue(pcs, Convert.ChangeType(number, property.PropertyType));
+            return;
+        }
+        var fields = pcs.GetType().GetFields(NonPublic | System.Reflection.BindingFlags.Public);
+        var field = fields.FirstOrDefault(candidate =>
+                        string.Equals(candidate.Name, fieldName, StringComparison.OrdinalIgnoreCase))
+                    ?? fields.FirstOrDefault(candidate =>
+                        string.Equals(candidate.Name, "<" + propertyName + ">k__BackingField", StringComparison.OrdinalIgnoreCase))
+                    ?? fields.FirstOrDefault(candidate =>
+                        candidate.FieldType == typeof(int) &&
+                        candidate.Name.Contains(propertyName, StringComparison.OrdinalIgnoreCase));
+        if (field == null)
+        {
+            unsupported.Add(argumentName);
+            return;
+        }
+        field.SetValue(pcs, Convert.ChangeType(number, field.FieldType));
+    }
+
     public Dictionary<string, object?> EnterRoom(string roomType, string? encounter, string? eventId)
     {
         try
@@ -420,6 +492,8 @@ public class RunSimulator
             if (_runState == null) return Error("No run in progress");
             var runState = _runState;
             Log($"EnterRoom: type={roomType} encounter={encounter} event={eventId}");
+            if (roomType.Equals("combat", StringComparison.OrdinalIgnoreCase))
+                _publicEnemyIntentHistory.Clear();
 
             AbstractRoom room;
             switch (roomType.ToLowerInvariant())
@@ -538,7 +612,11 @@ public class RunSimulator
 
             CombatManager.Instance.TurnStarted += _ => _turnStarted.Set();
             CombatManager.Instance.CombatEnded += _ => _combatEnded.Set();
-            CardSelectCmd.UseSelector(_cardSelector);
+            if (!_cardSelectorRegistered)
+            {
+                CardSelectCmd.UseSelector(_cardSelector);
+                _cardSelectorRegistered = true;
+            }
             LocPatches._bundleSimRef = this;
 
             var savedRoom = _runState.CurrentRoom;
@@ -934,6 +1012,29 @@ public class RunSimulator
     /// object returned by the legacy protocol. The teacher view adds hidden pile
     /// identities and raw runtime counters without changing ordinary actions.
     /// </summary>
+    /// <summary>
+    /// Best-effort full combat observation for an action that just ENDED the
+    /// combat (all enemies dead). Returns null when the combat state has
+    /// already been torn down. Used by the trace session so the terminal row
+    /// carries the post-combat public state (including combat-end relic
+    /// effects such as end-of-combat heals).
+    /// </summary>
+    public Dictionary<string, object?>? TryBuildTerminalCombatObservation()
+    {
+        try
+        {
+            var player = _runState?.Players[0];
+            if (player?.PlayerCombatState == null) return null;
+            if (CombatManager.Instance.IsInProgress) return null;
+            var observation = CombatPlayState(player);
+            return observation;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     public Dictionary<string, object?> GetCombatSnapshot(string view)
     {
         try
@@ -975,6 +1076,36 @@ public class RunSimulator
         catch { return null; }
     }
 
+    /// <summary>
+    /// Exports every boolean/int relic property whose name tracks per-combat or
+    /// per-turn use (ActivatedThisCombat, UsedThisTurn, ...) — relic state that
+    /// the public observation does not expose. Teacher-side only.
+    /// </summary>
+    private static Dictionary<string, object?> SafeRelicUseState(RelicModel relic)
+    {
+        var uses = new Dictionary<string, object?>(StringComparer.Ordinal);
+        try
+        {
+            foreach (var property in relic.GetType().GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance))
+            {
+                var name = property.Name;
+                if (!name.EndsWith("ThisCombat", StringComparison.Ordinal) &&
+                    !name.EndsWith("ThisTurn", StringComparison.Ordinal))
+                    continue;
+                try
+                {
+                    if (property.PropertyType == typeof(bool))
+                        uses[name] = (bool)property.GetValue(relic)!;
+                    else if (property.PropertyType == typeof(int))
+                        uses[name] = (int)property.GetValue(relic)!;
+                }
+                catch { }
+            }
+        }
+        catch { }
+        return uses;
+    }
+
     private Dictionary<string, object?> CaptureTeacherSnapshot()
     {
         var player = _runState?.Players.FirstOrDefault();
@@ -996,7 +1127,25 @@ public class RunSimulator
             ["id"] = card.Id.Entry,
             ["type"] = card.Type.ToString(),
             ["upgraded"] = card.IsUpgraded,
+            // Preview stats for the pile identity rebuild (trace extension,
+            // batch C1): the shadow's auto-play/move replay needs the played
+            // card's damage/block without exposing hidden RNG state.
+            ["stats"] = SafeCardPreviewStats(card),
         };
+
+        Dictionary<string, object?> SafeCardPreviewStats(CardModel card)
+        {
+            var stats = new Dictionary<string, object?>();
+            try
+            {
+                foreach (var dv in card.DynamicVars.Values)
+                    stats[dv.Name.ToLowerInvariant()] = (int)dv.PreviewValue;
+            }
+            catch
+            {
+            }
+            return stats;
+        }
 
         var rngCounters = new Dictionary<string, object?>(StringComparer.Ordinal);
         try
@@ -1040,6 +1189,7 @@ public class RunSimulator
             {
                 ["id"] = r.Id.Entry,
                 ["counter"] = SafeRelicCounter(r),
+                ["use_state"] = SafeRelicUseState(r),
                 ["runtime_type"] = r.GetType().FullName,
             }).ToList(),
             ["player_powers"] = player.Creature?.Powers?.Select(power => StructuredPower(power, "player")).ToList(),
@@ -1207,6 +1357,42 @@ public class RunSimulator
 
     private static string StableEnemyId(Creature enemy) =>
         $"enemy:{enemy.Monster?.Id.Entry ?? "UNKNOWN"}:{enemy.CombatId}";
+
+    private Dictionary<string, object?> ObserveEnemyPublicAi(
+        string enemyId,
+        int round,
+        IReadOnlyList<Dictionary<string, object?>> intents)
+    {
+        if (!_publicEnemyIntentHistory.TryGetValue(enemyId, out var byRound))
+        {
+            byRound = new SortedDictionary<int, string>();
+            _publicEnemyIntentHistory.Add(enemyId, byRound);
+        }
+        if (!byRound.ContainsKey(round))
+        {
+            var signature = string.Join('|', intents.Select(static intent =>
+            {
+                var type = intent.GetValueOrDefault("type")?.ToString() ?? "Unknown";
+                var hits = intent.GetValueOrDefault("hits")?.ToString() ?? "1";
+                return $"{type}:{hits}";
+            }));
+            byRound.Add(round, signature);
+        }
+
+        var firstRound = byRound.Keys.First();
+        var phase = byRound.Count == 1
+            ? firstRound <= 1 ? "initial" : "spawned"
+            : "active";
+        return new Dictionary<string, object?>
+        {
+            ["first_observed_round"] = firstRound,
+            ["last_observed_round"] = byRound.Keys.Last(),
+            ["observed_turns"] = byRound.Count,
+            ["phase"] = phase,
+            ["intent_history"] = byRound.Values.ToList(),
+            ["source"] = "public_observation",
+        };
+    }
 
     private static string? TryRuntimeIdentity(object source)
     {
@@ -2740,17 +2926,25 @@ public class RunSimulator
 
                 // Enemy powers
                 var ePowers = e.Powers?.Select(pw => StructuredPower(pw, StableEnemyId(e))).ToList();
+                var stableEnemyId = StableEnemyId(e);
+                var publicAi = ObserveEnemyPublicAi(stableEnemyId, combatState?.RoundNumber ?? 0, intents);
 
                 return new Dictionary<string, object?>
                 {
                     ["index"] = i,
-                    ["instance_id"] = StableEnemyId(e),
+                    ["instance_id"] = stableEnemyId,
                     ["name"] = _loc.Monster(e.Monster?.Id.Entry ?? "UNKNOWN"),
                     ["hp"] = e.CurrentHp,
                     ["max_hp"] = e.MaxHp,
                     ["block"] = e.Block,
                     ["intents"] = intents.Count > 0 ? intents : null,
                     ["intends_attack"] = e.Monster?.IntendsToAttack ?? false,
+                    ["is_hittable"] = e.IsHittable,
+                    ["is_primary_enemy"] = e.IsPrimaryEnemy,
+                    ["is_secondary_enemy"] = e.IsSecondaryEnemy,
+                    ["is_minion"] = e.Powers?.Any(power => power?.Id.Entry == "MINION_POWER") == true,
+                    ["target_restrictions"] = e.IsHittable ? null : new[] { "not_hittable" },
+                    ["public_ai"] = publicAi,
                     ["powers"] = ePowers?.Count > 0 ? ePowers : null,
                 };
             }).ToList() ?? new();
@@ -2773,6 +2967,12 @@ public class RunSimulator
             ["action_candidates"] = BuildActionCandidates(hand, enemies, player),
             ["draw_pile_count"] = pcs?.DrawPile?.Cards?.Count ?? 0,
             ["discard_pile_count"] = pcs?.DiscardPile?.Cards?.Count ?? 0,
+            // v0.111 resolves the played card's own exhaust (and end-of-turn
+            // Ethereal exhausts) asynchronously, so the exhaust pile grows
+            // between transitions without a card effect naming it. Export the
+            // count so the shadow can rebuild a truthful pre-action baseline
+            // (trace extension, plan batch C1).
+            ["exhaust_pile_count"] = pcs?.ExhaustPile?.Cards?.Count ?? 0,
         };
 
         // Character-specific mechanics
@@ -4509,6 +4709,13 @@ public class RunSimulator
         {
             Log($"CleanUp exception: {ex.Message}");
         }
+    }
+
+    /// <summary>Cancel any interactive selectors before a batch probe resets the run.</summary>
+    public void CancelPendingSelectionsForBatch()
+    {
+        _cardSelector.CancelPending();
+        _cardSelector.SkipReward();
     }
 
     #endregion

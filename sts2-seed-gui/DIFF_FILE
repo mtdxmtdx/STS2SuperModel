@@ -1,6 +1,7 @@
 --- MODIFIED_FILE.baseline
 +++ MODIFIED_FILE
  branch=global-decision-annotation-gui
- changed_field=teacher_branch_evaluation_and_dataset_export
+-changed_field=route_color_ancient_boss_type_labels
 -status=baseline
++changed_field=green_route_color_currentcoord_ancient_origin
 +status=modified

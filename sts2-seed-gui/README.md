@@ -1,22 +1,30 @@
 # STS2 Seed/Run GUI
 
-本目录提供一个轻量的本地人工标注工具，用于把高手视频中的局外决策录入为结构化数据。
+本目录提供一个轻量的本地人工标注工具，把 seed、CLI 状态和 `.run` 历史整理为结构化的局外决策数据。
 
-## 当前 MVP
+### 来源 ID与标注者 ID
 
-- 不播放或解析视频；用户在外部观看视频并手动填写选择；
+- **来源 ID（source ID）**：标识数据来自哪一局或哪一批记录，例如 `.run` 文件名、`seed+局号` 或 `run-20260831-001`。它不是动作 ID，也不会改变游戏状态。
+- **标注者 ID（annotator ID）**：标识实际录入、核对这条记录的人或程序，例如 `panyitong` 或 `agent-global-01`。同一批数据应保持一致，便于追溯和复核。
+
+## 当前能力
+
 - 输入固定 RunContext 和 seed；
-- 启动现有 `sts2-cli-v0111`，读取 `get_map` 和当前 JSON 状态；
+- 启动 `sts2-cli-v0111`，读取当前地图和 public state；
 - 显示地图节点和路线；
-- 录入路线、奖励、商店、篝火、事件和 Ancient 决策；
-- 保存 SQLite 草稿；
-- 导出 `global_behavior.jsonl`；
-- 导出 JSONL 旁车 `global_behavior.manifest.json`（行数、SHA-256、质量和 SL 统计）；
-- 提供会话级数据校验（seed/context、动作合法性、public view 泄漏）；
-- 提供 `dataset_export.py`，按 run/episode/seed/branch 稳定分组切分 train/validation/test JSONL；
-- 支持导入 `.run` 历史文件的基础聚合字段；
-- CLI 地图已加载时，对 `.run` 楼层节点类型执行基础对齐并报告 mismatch_count；
-- 默认不执行人工动作，避免把视频中的专家决策误执行到 CLI。
+- 创建会话后自动读取首个 Act 的 SVG 地图；左键高亮节点，右键在节点旁打开填写窗；
+- 节点填写窗支持生命、金币、卡牌、遗物、药水的获得/失去；每一项均可搜索、下拉选择并通过“＋添加”增加多行；失去项来自当前已知资源，获得项来自完整版本目录；
+- 目录接口提供 v0.111.0 的 607 条卡牌、299 条遗物和 69 条药水选项，界面显示中文名称并保存稳定 ID；
+- 服务端校验路线合法性：禁止回头、重复节点、跨 Act 和跳层；羽翼之靴最多 3 次且只能选下一层节点；
+- 已记录的路线节点使用绿色高亮；地图额外显示合成的“先古之民”起点和首领节点；`RestSite` 显示为“篝火”，`Unknown` 显示为“问号”。
+- 起始路线门禁以“先古之民”作为第 0 层起点，因此第一层所有合法节点都可以正常选择。
+- 手动录入路线、奖励、商店、篝火、事件和 Ancient 决策；
+- 保存 SQLite 草稿、checkpoint 和只读分支；
+- 导入 `.run` 的已发生路线与聚合结果；
+- 导出 JSONL、Manifest、Reliable 子集和分组切分数据；
+- 执行 public 状态校验和状态差异检查；
+- 通过显式概率树或外部 provider 运行 Expectimax 教师搜索；
+- 批量物化全局教师记录。
 
 ## 启动
 
@@ -29,13 +37,13 @@ python .\app.py --port 8765
 
 浏览器打开 <http://127.0.0.1:8765/>。
 
-默认 CLI 路径会尝试查找：
+默认 CLI 路径：
 
 ```text
 ..\sts2-cli-v0111\src\Sts2Headless\bin\Debug\net9.0\Sts2Headless.exe
 ```
 
-也可以在页面中填写 CLI 可执行文件路径。运行真实 CLI 前，需要按上游 CLI 文档准备本地游戏 DLL；这些文件不由本 GUI 保存或上传。
+也可以在页面中填写 CLI 可执行文件路径。运行真实 CLI 前，需要按上游 CLI 文档准备本地游戏 DLL。
 
 ## 数据输出
 
@@ -47,17 +55,22 @@ data\global_behavior.jsonl
 data\global_behavior.manifest.json
 ```
 
-每条记录保留 `run_context_hash`、来源、视频时间戳、`pre/post_state_hash`、动作来源、SL 状态和质量等级。视频本体不写入项目。
+记录保留 RunContext、来源、pre/post state hash、动作来源、SL 状态和质量等级。
 
 ## API
 
 ```text
 GET  /api/health
+GET  /api/catalogs
 GET  /api/sessions
 POST /api/sessions
 GET  /api/sessions/{id}
 POST /api/sessions/{id}/refresh-map
+GET  /api/sessions/{id}/route-state
+POST /api/sessions/{id}/route-validate
+POST /api/sessions/{id}/route-select
 POST /api/sessions/{id}/decisions
+POST /api/sessions/{id}/operations
 POST /api/sessions/{id}/checkpoints
 POST /api/sessions/{id}/restore-checkpoint
 POST /api/sessions/{id}/branches
@@ -74,13 +87,13 @@ POST /api/sessions/{id}/teacher-export
 POST /api/sessions/{id}/export-reliable
 ```
 
-分组切分：
+## 数据工具
+
+按 run/episode/seed/branch 稳定分组切分：
 
 ```powershell
 python .\dataset_export.py .\data\global_behavior.jsonl .\data\splits
 ```
-
-脚本生成三个 split JSONL 和 `global_behavior.split.manifest.json`，并报告组重叠数量；Parquet 转换在训练环境中执行。
 
 在已安装 PyArrow 的训练环境中转换 Parquet：
 
@@ -88,41 +101,36 @@ python .\dataset_export.py .\data\global_behavior.jsonl .\data\splits
 python .\parquet_export.py .\data\global_behavior.jsonl .\data\global_behavior.parquet
 ```
 
-会同时生成 `global_behavior.manifest.json`，并执行 Parquet 读回行数校验。
-
-全局教师结果通过独立接口写入，必须引用已有 checkpoint，不会修改人工行为记录：
-
-`teacher-evaluate` 可在带有 CLI save 的 checkpoint 上对一组动作执行一次分支评估；当前使用保守的一步启发式分数，输出标记为 `EstimatedByHeuristic`，用于替换为正式全局 evaluator 前的接口验证。
-
-`teacher-cli-tree` 在带有 CLI save 的 checkpoint 上逐个回放候选动作，记录每个确定性 post-state（概率 1.0），并可设置 `depth=1..4`；它不会猜测隐藏随机结果。
-
-`teacher-provider-tree` 连接外部影子/语义提供器（JSONL 协议 `enumerate_outcomes`），由提供器返回显式概率的隐藏分支，再交给同一套 Expectimax。提供器响应概率必须和为 1。
-
-`teacher-search` 接受显式概率的有限分支树，运行深度限制 Expectimax；概率必须由上游 CLI/模拟器提供，不按分支数量推断均匀分布。
-也可以传入 `cli_response` 与 `outcomes_by_action`，服务会从 CLI 的公开 `choices/options/cards` 生成稳定 action ID，再运行相同搜索。
-地图、事件、篝火、奖励和商店候选会同时生成可直接交给 v0.111 CLI 的 `cli_action` 与参数。
-
-`export-reliable` 只导出 `label_quality=ExactPublic` 且 `sl_status=verified_no_sl` 的记录，其他记录只在 manifest 中统计为排除项。
-
-批量生成教师标签（输入由 CLI/影子模拟器准备的概率树 JSONL）：
+批量生成教师标签：
 
 ```powershell
 python .\teacher_batch.py .\data\teacher_inputs.jsonl .\data\global_teacher.jsonl
 ```
 
-```json
-{
-  "parent_checkpoint_id": "checkpoint-…",
-  "action_values": [{"action_id": "map:1:0", "value": 0.82}],
-  "teacher_best_actions": ["map:1:0"],
-  "teacher_value": 0.82
-}
+外部概率 provider 使用 JSONL 协议：
+
+```text
+request:  {"cmd":"enumerate_outcomes", "state":{}, "action":{}, "depth":N}
+response: {"type":"outcomes", "outcomes":[{"probability":0.7,"next_node":{...}}]}
 ```
 
-## 设计边界
+概率必须显式提供且总和为 1；GUI 不自行猜测随机分布。
 
-- seed 只用于固定上下文下的地图重建，不作为模型特征；
-- CLI 返回的 teacher/audit 字段不会进入 `public_state`；
-- 没有战斗逐动作视频时，允许 `partial_episode` 和 `CombatSummary` 跳转；
-- 人工选择标记为 `human_expert_observed`，不自动标记为最优教师标签；
-- `sl_status=unknown` 的记录不会进入 Reliable NOSL 主集。
+## 数据边界
+
+- seed 只用于固定上下文重建、重放和切分，不作为模型特征；
+- `.run` 只提供已经发生的路线和聚合结果，缺失字段保持 unknown；
+- public state 不写 raw RNG、未来节点内容或 teacher-only 字段；
+- 人工行为、启发式教师和 CounterfactualTeacher 分开保存；
+- 只有 `ExactPublic + verified_no_sl` 记录进入 Reliable 导出；
+- 未知效果、缺失合法动作集和无法重放的记录保留为辅助数据。
+
+## 目录
+
+- `app.py`：HTTP API、会话、checkpoint、teacher 路由；
+- `models.py`：RunContext、DecisionRecord；
+- `cli_session.py`：CLI JSONL 会话；
+- `storage.py`：SQLite、JSONL、Manifest、质量导出；
+- `teacher_search.py` / `provider_tree.py`：Expectimax 和概率 provider；
+- `dataset_export.py` / `parquet_export.py` / `teacher_batch.py`：数据出口；
+- `static/`：前端；`tests/`：定向回归测试。

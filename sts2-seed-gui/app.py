@@ -1,4 +1,4 @@
-"""Local HTTP GUI backend for manually transcribing expert global decisions."""
+"""Local HTTP GUI backend for manually recording global decisions."""
 
 from __future__ import annotations
 
@@ -21,6 +21,69 @@ from provider_tree import JsonlProvider, build_tree
 ROOT = Path(__file__).resolve().parent
 PROJECT_ROOT = ROOT.parent
 DEFAULT_DATA_DIR = ROOT / "data"
+GAME_DATA_ROOT_CANDIDATES = (
+    ROOT.parents[1] / "STS2BestChoice" / "data",
+    ROOT.parents[2] / "STS2BestChoice" / "data",
+    Path("D:/STS2BestChoice/STS2BestChoice/data"),
+)
+
+# UI catalogues are read from the versioned semantic data already maintained by
+# the project.  The ids are kept for exports while the browser shows Chinese names.
+_POTION_CATALOG = [
+    ("ATTACK_POTION", "攻击药水"), ("BLOCK_POTION", "格挡药水"), ("BloodPotion", "血之药水"),
+    ("BlessingOfTheForge", "锻造祝福"), ("CunningPotion", "狡猾药水"), ("CURE_ALL", "万灵药"),
+    ("DexterityPotion", "敏捷药水"), ("DISTILLED_CHAOS", "蒸馏混沌"), ("DropletOfPrecognition", "预知水滴"),
+    ("EnergyPotion", "能量药水"), ("ENTROPIC_BREW", "熵酿"), ("ExplosiveAmpoule", "爆炸药瓶"),
+    ("FAIRY_IN_A_BOTTLE", "瓶中精灵"), ("FirePotion", "火焰药水"), ("FlexPotion", "力量药水"),
+    ("FocusPotion", "集中药水"), ("FOUL_POTION", "污秽药水"), ("FruitJuice", "果汁"),
+    ("GamblersBrew", "赌徒酿"), ("GhostInAJar", "瓶中幽灵"), ("GigantificationPotion", "巨化药水"),
+    ("HeartOfIron", "钢铁之心"), ("LiquidBronze", "液态青铜"), ("LiquidMemories", "液态记忆"),
+    ("LuckyTonic", "幸运补剂"), ("PoisonPotion", "毒素药水"), ("PotionOfBinding", "束缚药水"),
+    ("PotionOfCapacity", "容量药水"), ("PotionOfDoom", "厄运药水"), ("PowerPotion", "能力药水"),
+    ("RegenPotion", "再生药水"), ("ShacklingPotion", "镣铐药水"), ("SpeedPotion", "速度药水"),
+    ("StrengthPotion", "力量药水"), ("VulnerablePotion", "易伤药水"), ("WeakPotion", "虚弱药水"),
+    ("CLARITY", "澄明"), ("COLORLESS_POTION", "无色药水"), ("DUPLICATOR", "复制药水"),
+    ("ESSENCE_OF_DARKNESS", "黑暗精华"), ("GLOWWATER_POTION", "辉光水"), ("OROBIC_ACID", "奥罗比克酸"),
+    ("POTION_OF_CAPACITY", "容量药水"), ("POWER_POTION", "能力药水"), ("SKILL_POTION", "技能药水"),
+    ("SNECKO_OIL", "蛇油"), ("STRENGTH_POTION", "力量药水"), ("SWIFT_POTION", "迅捷药水"),
+    ("Ambergris", "琥珀脂"), ("Ashwater", "灰烬水"), ("BeetleJuice", "甲虫汁"), ("BoneBrew", "骨酿"),
+    ("BOTTLED_POTENTIAL", "潜能瓶"), ("COSMIC_CONCOCTION", "宇宙调和"), ("EntropicBrew", "熵酿"),
+    ("Fortifier", "强化剂"), ("FyshOil", "鱼油"), ("GLOWWATER_POTION", "辉光水"),
+    ("KingsCourage", "王者勇气"), ("MazalethsGift", "玛扎勒斯的礼物"), ("PotOfGhouls", "食尸鬼之罐"),
+    ("PowderedDemise", "粉末死神"), ("PotionShapedRock", "药水形岩石"), ("RadiantTincture", "辉光酊剂"),
+    ("SoldiersStew", "士兵炖菜"), ("StableSerum", "稳定血清"), ("StarPotion", "星辰药水"),
+    ("TouchOfInsanity", "疯狂触媒"), ("VulnerablePotion", "易伤药水"), ("WeakPotion", "虚弱药水"),
+    ("ATTACK_POTION", "攻击药水"), ("BLOTTED_POTION", "污迹药水"), ("DUPLICATOR", "复制药水"),
+    ("ESSENCE_OF_DARKNESS", "黑暗精华"), ("FoulPotion", "污秽药水"), ("GhostInAJar", "瓶中幽灵"),
+    ("LiquidMemories", "液态记忆"), ("PotionOfDoom", "厄运药水"), ("PotionOfBinding", "束缚药水"),
+    ("RegenPotion", "再生药水"), ("ShacklingPotion", "镣铐药水"), ("SpeedPotion", "速度药水"),
+]
+
+
+def load_catalogs() -> dict[str, Any]:
+    cards: list[dict[str, Any]] = []
+    relics: list[dict[str, Any]] = []
+    data_root = next((candidate for candidate in GAME_DATA_ROOT_CANDIDATES if candidate.exists()), GAME_DATA_ROOT_CANDIDATES[0])
+    card_path = data_root / "cards" / "generated" / "0.111.0" / "cards.json"
+    relic_path = data_root / "relics" / "generated" / "0.111.0" / "relics.json"
+    try:
+        raw = json.loads(card_path.read_text(encoding="utf-8-sig"))
+        cards = [{"id": str(item.get("id")), "name_zh": str(item.get("name_zh") or item.get("id")), "character": item.get("character"), "type": item.get("type")} for item in raw.get("cards", []) if item.get("id")]
+    except (OSError, ValueError):
+        cards = []
+    try:
+        raw = json.loads(relic_path.read_text(encoding="utf-8-sig"))
+        relics = [{"id": str(item.get("relic_id")), "name_zh": str(item.get("localized_name_zh") or item.get("canonical_name") or item.get("relic_id")), "rarity": item.get("rarity")} for item in raw.get("relics", []) if item.get("relic_id")]
+    except (OSError, ValueError):
+        relics = []
+    potions: list[dict[str, str]] = []
+    seen_potions: set[str] = set()
+    for item_id, name in _POTION_CATALOG:
+        if item_id in seen_potions:
+            continue
+        seen_potions.add(item_id)
+        potions.append({"id": item_id, "name_zh": name})
+    return {"game_version": "0.111.0", "cards": cards, "relics": relics, "potions": potions}
 
 
 def json_response(handler: BaseHTTPRequestHandler, value: Any, status: int = 200) -> None:
@@ -127,10 +190,12 @@ class Application:
 
     def create_session(self, payload: dict[str, Any]) -> dict[str, Any]:
         context = new_context(payload.get("context") or payload)
-        source = payload.get("source") or {}
+        raw_source = payload.get("source") or {}
+        source = {key: raw_source[key] for key in ("type", "id", "annotator_id", "sl_status") if key in raw_source}
         session = self.store.create_session(context, source)
         cli_path = payload.get("cli_path")
-        start_cli = bool(payload.get("start_cli", bool(cli_path)))
+        # A seed session is useful only when the CLI context is available; start it by default.
+        start_cli = bool(payload.get("start_cli", True))
         if start_cli:
             executable = Path(cli_path) if cli_path else default_cli_path(PROJECT_ROOT)
             try:
@@ -142,10 +207,130 @@ class Application:
                 if start_result.get("decision") == "map_select":
                     session["public_state"] = start_result
                     session["state_hash"] = start_result.get("post_state_hash")
+                # Fetch the first visible Act map immediately so the GUI opens on a map.
+                try:
+                    session["map"] = cli.get_map()
+                    nodes = self._map_nodes(session["map"])
+                    current = next((item["node_id"] for item in nodes.values() if item.get("current")), None)
+                    coord = session["map"].get("current_coord") if isinstance(session["map"], dict) else None
+                    if not current and isinstance(coord, dict) and {"row", "col"} <= coord.keys():
+                        current = f"map:{int(coord.get('act') or session['map'].get('act') or 1)}:{int(coord['row'])}:{int(coord['col'])}"
+                    if not current and nodes:
+                        current = min(nodes.values(), key=lambda item: (int(item.get("row", 0)), int(item.get("col", 0))))["node_id"]
+                    if current:
+                        session["route_state"] = {"selected": [], "current_node": current, "winged_boots_charges": 0}
+                except CliError:
+                    pass
             except (CliError, OSError) as exc:
                 session["cli"] = {"started": False, "error": str(exc), "executable": str(executable)}
         self.store.save_session(session)
         return session
+
+    @staticmethod
+    def _map_nodes(map_value: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
+        nodes: dict[str, dict[str, Any]] = {}
+        if not isinstance(map_value, dict):
+            return nodes
+        for row in map_value.get("rows", []):
+            if not isinstance(row, list):
+                continue
+            for node in row:
+                if not isinstance(node, dict):
+                    continue
+                act = int(node.get("act") or map_value.get("act") or 1)
+                key = f"map:{act}:{int(node.get('row', 0))}:{int(node.get('col', 0))}"
+                nodes[key] = {**node, "act": act, "node_id": key}
+        if nodes and not any(str(node.get("type", "")).lower() == "ancient" for node in nodes.values()):
+            act = int(map_value.get("act") or (map_value.get("context") or {}).get("act") or 1)
+            first_row = min(int(node.get("row", 0)) for node in nodes.values())
+            first_nodes = [node for node in nodes.values() if int(node.get("row", 0)) == first_row]
+            current_coord = map_value.get("current_coord")
+            ancient_row = int(current_coord.get("row")) if isinstance(current_coord, dict) and int(current_coord.get("row", first_row - 1)) < first_row else first_row - 1
+            ancient_col = int(current_coord.get("col")) if isinstance(current_coord, dict) and ancient_row < first_row else round(sum(int(node.get("col", 0)) for node in first_nodes) / max(1, len(first_nodes)))
+            ancient_key = f"map:{act}:{ancient_row}:{ancient_col}"
+            nodes.setdefault(ancient_key, {"act": act, "row": ancient_row, "col": ancient_col, "type": "Ancient", "children": [{"row": int(node["row"]), "col": int(node["col"])} for node in first_nodes], "synthetic_ancient": True, "node_id": ancient_key})
+        boss = map_value.get("boss")
+        if isinstance(boss, dict) and {"row", "col"} <= boss.keys():
+            act = int(boss.get("act") or map_value.get("act") or 1)
+            key = f"map:{act}:{int(boss['row'])}:{int(boss['col'])}"
+            nodes.setdefault(key, {**boss, "act": act, "node_id": key, "synthetic_boss": True})
+        return nodes
+
+    def route_state(self, session_id: str) -> dict[str, Any]:
+        session = self.store.get_session(session_id)
+        if session is None:
+            raise KeyError(session_id)
+        state = session.setdefault("route_state", {"selected": [], "current_node": None, "winged_boots_charges": 0})
+        if not state.get("selected") and state.get("current_node"):
+            nodes = self._map_nodes(session.get("map"))
+            current = nodes.get(str(state.get("current_node")))
+            if current and str(current.get("type", "")).lower() != "ancient" and any(str(node.get("type", "")).lower() == "ancient" for node in nodes.values()):
+                first_row = min(int(node.get("row", 0)) for node in nodes.values())
+                if int(current.get("row", 0)) == first_row:
+                    state["current_node"] = next(node["node_id"] for node in nodes.values() if str(node.get("type", "")).lower() == "ancient")
+        return state
+
+    def validate_route(self, session_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+        session = self.store.get_session(session_id)
+        if session is None:
+            raise KeyError(session_id)
+        target = str(payload.get("node_id") or "")
+        nodes = self._map_nodes(session.get("map"))
+        if target not in nodes:
+            return {"legal": False, "code": "unknown_node", "node_id": target}
+        state = self.route_state(session_id)
+        current = payload.get("current_node") or state.get("current_node")
+        selected = state.get("selected") or []
+        if target in selected:
+            return {"legal": False, "code": "already_visited", "node_id": target}
+        node = nodes[target]
+        if current:
+            cur = nodes.get(str(current))
+            if not cur:
+                return {"legal": False, "code": "unknown_current_node", "node_id": target}
+            if node["act"] != cur["act"]:
+                return {"legal": False, "code": "cross_act", "node_id": target}
+            boots = int(state.get("winged_boots_charges") or 0)
+            same_row = int(node.get("row", 0)) == int(cur.get("row", 0)) + 1
+            child_ids = {f"map:{cur['act']}:{int(c.get('row', 0))}:{int(c.get('col', 0))}" for c in (cur.get("children") or []) if isinstance(c, dict)}
+            is_next_floor_boss = str(node.get("type", "")).lower() == "boss" and int(node.get("row", 0)) == int(cur.get("row", 0)) + 1
+            if target not in child_ids and not is_next_floor_boss and not (boots > 0 and same_row):
+                return {"legal": False, "code": "not_reachable", "node_id": target, "allowed_children": sorted(child_ids), "winged_boots_charges": boots}
+            if boots > 0 and target not in child_ids and same_row:
+                return {"legal": True, "uses_winged_boots": True, "node_id": target, "winged_boots_charges": boots}
+        return {"legal": True, "uses_winged_boots": False, "node_id": target, "winged_boots_charges": int(state.get("winged_boots_charges") or 0)}
+
+    def select_route(self, session_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+        check = self.validate_route(session_id, payload)
+        if not check.get("legal"):
+            return check
+        session = self.store.get_session(session_id)
+        state = self.route_state(session_id)
+        target = check["node_id"]
+        state.setdefault("selected", []).append(target)
+        state["current_node"] = target
+        if check.get("uses_winged_boots"):
+            state["winged_boots_charges"] = max(0, int(state.get("winged_boots_charges") or 0) - 1)
+        session["current_node"] = target
+        session["route_state"] = state
+        self.store.save_session(session)
+        return {**check, "route_state": state}
+
+    def add_operation(self, session_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+        payload = dict(payload)
+        payload.setdefault("decision_type", "operation")
+        payload.setdefault("selected_action", {"action_id": payload.get("action_id") or payload.get("operation") or "operation:unknown"})
+        # Winged Boots is a Neow/relic annotation, not an implicit hidden-state change.
+        action_text = json.dumps({"action": payload.get("selected_action"), "outcome": payload.get("realized_outcome")}, ensure_ascii=False).lower()
+        result = self.add_decision(session_id, payload)
+        if "winged_boots" in action_text or "翼" in action_text:
+            state = self.route_state(session_id)
+            state["winged_boots_charges"] = max(int(state.get("winged_boots_charges") or 0), 3)
+            session = self.store.get_session(session_id)
+            session["route_state"] = state
+            self.store.save_session(session)
+            result["route_state"] = state
+        return result
 
     def get_cli(self, session_id: str) -> CliSession:
         with self.lock:
@@ -210,15 +395,14 @@ class Application:
             selected_action=selected,
             public_state_after=state_after,
             public_state_hash_after=payload.get("public_state_hash_after") or ((response or {}).get("post_state_hash") if response else None) or (context_hash(state_after) if state_after else None),
-            source_type=str(payload.get("source_type") or (session.get("source") or {}).get("type") or "expert_video"),
+            source_type=str(payload.get("source_type") or (session.get("source") or {}).get("type") or "manual_annotation"),
             source_id=str(payload.get("source_id") or (session.get("source") or {}).get("id") or "manual"),
-            action_source=str(payload.get("action_source") or "human_expert_observed"),
-            provenance=str(payload.get("provenance") or "video_manual_transcription"),
+            action_source=str(payload.get("action_source") or "human_observed"),
+            provenance=str(payload.get("provenance") or "manual_entered"),
             sl_status=str(payload.get("sl_status") or (session.get("source") or {}).get("sl_status") or "unknown"),
             label_quality=quality,
+            annotator_id=payload.get("annotator_id") or (session.get("source") or {}).get("annotator_id"),
             combat_summary=payload.get("combat_summary"),
-            video_timestamp=payload.get("video_timestamp"),
-            expert_id=payload.get("expert_id") or (session.get("source") or {}).get("expert_id"),
             outcome_source=str(payload.get("outcome_source") or ("cli_observed" if response else "not_observed")),
             notes=str(payload.get("notes") or ""),
             manual_override_fields=list(payload.get("manual_override_fields") or []),
@@ -591,6 +775,9 @@ class Handler(BaseHTTPRequestHandler):
             if path == "/api/health":
                 json_response(self, {"ok": True, "service": "sts2-seed-gui", "default_cli": str(default_cli_path(PROJECT_ROOT))})
                 return
+            if path == "/api/catalogs":
+                json_response(self, load_catalogs())
+                return
             if path == "/api/sessions":
                 json_response(self, {"sessions": self.application.store.list_sessions()})
                 return
@@ -602,6 +789,10 @@ class Handler(BaseHTTPRequestHandler):
                 else:
                     json_response(self, session)
                 return
+            get_parts = [part for part in path.split("/") if part]
+            if len(get_parts) == 4 and get_parts[:2] == ["api", "sessions"] and get_parts[3] == "route-state":
+                json_response(self, self.application.route_state(get_parts[2]))
+                return
             if path in {"/", "/index.html"}:
                 body = (ROOT / "static" / "index.html").read_bytes()
                 self.send_response(200)
@@ -611,7 +802,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.wfile.write(body)
                 return
             if path.startswith("/static/"):
-                file_path = (ROOT / path.removeprefix("/static/")).resolve()
+                file_path = (ROOT / "static" / path.removeprefix("/static/")).resolve()
                 static_root = (ROOT / "static").resolve()
                 if static_root not in file_path.parents or not file_path.is_file():
                     json_response(self, {"error": "not found"}, 404)
@@ -621,6 +812,7 @@ class Handler(BaseHTTPRequestHandler):
                     self.send_response(200)
                     self.send_header("Content-Type", f"{content_type}; charset=utf-8")
                     self.send_header("Content-Length", str(len(body)))
+                    self.send_header("Cache-Control", "no-store")
                     self.end_headers()
                     self.wfile.write(body)
                 return
@@ -643,8 +835,20 @@ class Handler(BaseHTTPRequestHandler):
             if len(parts) == 4 and parts[3] == "refresh-map":
                 json_response(self, self.application.refresh_map(session_id))
                 return
+            if len(parts) == 4 and parts[3] == "route-state":
+                json_response(self.application.route_state(session_id))
+                return
+            if len(parts) == 4 and parts[3] == "route-validate":
+                json_response(self.application.validate_route(session_id, payload))
+                return
+            if len(parts) == 4 and parts[3] == "route-select":
+                json_response(self.application.select_route(session_id, payload))
+                return
             if len(parts) == 4 and parts[3] == "decisions":
                 json_response(self, self.application.add_decision(session_id, payload), 201)
+                return
+            if len(parts) == 4 and parts[3] == "operations":
+                json_response(self.application.add_operation(session_id, payload), 201)
                 return
             if len(parts) == 4 and parts[3] == "checkpoints":
                 json_response(self, self.application.create_checkpoint(session_id, payload), 201)

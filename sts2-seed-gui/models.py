@@ -70,9 +70,8 @@ class DecisionRecord:
     provenance: str
     sl_status: str
     label_quality: str
+    annotator_id: str | None = None
     combat_summary: dict[str, Any] | None = None
-    video_timestamp: str | None = None
-    expert_id: str | None = None
     outcome_source: str = "not_observed"
     notes: str = ""
     manual_override_fields: list[str] = field(default_factory=list)

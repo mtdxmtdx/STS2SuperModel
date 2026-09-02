@@ -89,6 +89,12 @@ student-visible observation and stable `action_candidates`; `view:"teacher"`
 adds hidden pile identities and teacher-only counters without exposing raw RNG
 words.
 
+Fixture-only combat setup: after `enter_room` has returned `combat_play`,
+`{"cmd":"set_combat_resources","energy":10,"stars":10}` overrides the
+currently available Energy and Stars for semantic probes. `max_energy` is
+reported but read-only in v0.111 and is listed under `unsupported` when
+requested; this command is not used by ordinary gameplay clients.
+
 ## Game Logs
 
 Every run is automatically logged to `logs/` as a JSONL file (one JSON per line), recording each game state and action with timestamps. Logs older than 7 days are cleaned up automatically.

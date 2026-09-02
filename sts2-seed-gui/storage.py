@@ -69,6 +69,7 @@ class AnnotationStore:
             "public_state": {},
             "state_hash": None,
             "current_node": None,
+            "route_state": {"selected": [], "current_node": None, "winged_boots_charges": 0},
             "decisions": [],
             "checkpoints": [],
             "run_history": None,

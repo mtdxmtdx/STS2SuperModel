@@ -1,72 +1,23 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>STS2 Seed/Run 标注器</title>
-  <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-  <main>
-    <header>
-      <div>
-        <p class="eyebrow">STS2 GLOBAL DECISION</p>
-        <h1>Seed/Run 人工标注器</h1>
-        <p class="muted">外部观看高手视频，CLI 提供当时可见状态，你只录入专家的局外选择。</p>
-      </div>
-      <span id="health" class="pill">连接中…</span>
-    </header>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>STS2 全局决策标注器</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><main>
+  <header><div><p class="eyebrow">STS2 GLOBAL DECISION</p><h1>全局决策数据标注器</h1><p class="muted">输入种子后查看地图。左键高亮节点，右键在节点旁填写本节点发生的资源变化。</p></div><span id="health" class="pill">正在连接后端…</span></header>
+  <section class="card" id="context-card"><h2>一、创建局面</h2><div class="grid two">
+    <label>种子<input id="seed" placeholder="例如 ZWVCV8EKV8RG"></label>
+    <label>角色<select id="character"><option>IRONCLAD</option><option>SILENT</option><option>DEFECT</option><option>NECROBINDER</option><option>REGENT</option></select></label>
+    <label>进阶等级<input id="ascension" type="number" min="0" max="30" value="0"></label>
+    <label>游戏版本<input id="game-version" value="v0.111.0"></label>
+    <label>来源 ID<input id="source-id" placeholder="例如 run-20260831-001"><small class="hint">标识哪一局或哪一批数据。</small></label>
+    <label>标注者 ID<input id="annotator-id" placeholder="例如 panyitong"><small class="hint">标识录入和核对数据的人。</small></label>
+    <label class="wide">CLI 路径（可选）<input id="cli-path" placeholder="留空使用默认 CLI"></label>
+  </div><div class="row"><button id="create">创建并显示地图</button></div><pre id="context-output" class="output"></pre></section>
 
-    <section class="card" id="context-card">
-      <h2>1. 创建 RunContext</h2>
-      <div class="grid two">
-        <label>Seed<input id="seed" placeholder="例如 ZWVCV8EKV8RG"></label>
-        <label>角色<select id="character"><option>IRONCLAD</option><option>SILENT</option><option>DEFECT</option><option>NECROBINDER</option><option>REGENT</option></select></label>
-        <label>Ascension<input id="ascension" type="number" min="0" max="30" value="0"></label>
-        <label>游戏版本<input id="game-version" value="v0.111.0"></label>
-        <label>视频/来源 ID<input id="source-id" placeholder="video-id-or-run-id"></label>
-        <label>专家 ID<input id="expert-id" placeholder="可选"></label>
-        <label class="wide">视频 URL（不上传视频）<input id="source-url" placeholder="https://…"></label>
-        <label class="wide">CLI 可执行文件（可选）<input id="cli-path" placeholder="留空使用默认 v0.111 CLI"></label>
-      </div>
-      <div class="row">
-        <label class="check"><input id="start-cli" type="checkbox"> 启动 CLI 并读取地图</label>
-        <button id="create">创建会话</button>
-      </div>
-      <pre id="context-output" class="output"></pre>
-    </section>
-
-    <section class="card hidden" id="workspace-card">
-      <div class="section-head"><h2>2. 地图与当前状态</h2><div class="row"><button id="refresh-map" class="secondary">刷新地图</button><button id="checkpoint" class="secondary">保存 checkpoint</button><button id="restore" class="secondary">恢复最近 checkpoint</button><button id="branch" class="secondary">创建只读分支</button><button id="validate" class="secondary">校验数据</button><button id="export" class="secondary">导出 JSONL</button><button id="export-reliable" class="secondary">导出 Reliable</button></div></div>
-      <div id="map" class="map"></div>
-      <pre id="validation-output" class="output"></pre>
-      <div class="grid two">
-        <div><h3>当前 public state</h3><pre id="state" class="output tall">{}</pre></div>
-        <div><h3>Run 历史导入</h3><label>.run 路径<input id="run-path" placeholder="D:\\…\\history\\xxxx.run"></label><button id="import-run" class="secondary">导入 .run</button><pre id="run-summary" class="output tall"></pre></div>
-      </div>
-    </section>
-
-    <section class="card hidden" id="decision-card">
-      <h2>3. 手动录入专家局外决策</h2>
-      <div class="grid three">
-        <label>决策类型<select id="decision-type"><option value="route">路线</option><option value="reward">战斗后奖励</option><option value="shop">商店</option><option value="campfire">篝火</option><option value="event">事件</option><option value="ancient">先古之民</option></select></label>
-        <label>Act<input id="act" type="number" min="1"></label>
-        <label>Floor<input id="floor" type="number" min="1"></label>
-        <label>Node ID<input id="node-id" placeholder="例如 act1:row7:col3"></label>
-        <label>视频时间戳<input id="timestamp" placeholder="00:32:15"></label>
-        <label>标注置信度<input id="confidence" type="number" min="0" max="1" step="0.01" placeholder="0-1"></label>
-        <label>SL 状态<select id="sl-status"><option value="verified_no_sl">已确认无 SL</option><option value="unknown">未知</option><option value="explicit_sl">明确使用 SL</option></select></label>
-        <label class="wide">Selected action ID<input id="action-id" placeholder="event:EVENT_ID:option:OPTION_ID"></label>
-        <label class="wide">下一节点 ID<input id="next-node" placeholder="可选"></label>
-        <label class="wide">合法/可选动作 JSON（可选）<input id="legal-actions" placeholder='[{"action_id":"…"}]'></label>
-        <label class="wide">备注<textarea id="notes" rows="2" placeholder="可选：专家理由、视频状态说明"></textarea></label>
-        <label class="wide">CombatSummary JSON（可选）<textarea id="combat-summary" rows="3" placeholder='{"expected_win_probability":0.9,"expected_hp_loss":8,"death_probability":0.01}'></textarea></label>
-      </div>
-      <div class="row"><label class="check"><input id="execute" type="checkbox"> 同时在 CLI 执行（默认关闭）</label><button id="record">保存决策</button></div>
-      <pre id="decision-output" class="output"></pre>
-      <h3>已录入决策</h3><div id="decisions" class="decision-list"></div>
-    </section>
-  </main>
-  <script src="/static/app.js"></script>
-</body>
-</html>
+  <section class="card hidden" id="workspace-card"><div class="section-head"><h2>二、地图</h2><div class="row compact"><button id="refresh-map" class="secondary">刷新地图</button><button id="checkpoint" class="secondary">保存检查点</button><button id="restore" class="secondary">恢复检查点</button><button id="validate" class="secondary">校验</button><button id="export" class="secondary">导出 JSONL</button></div></div>
+    <div class="map-help"><span id="route-status" class="pill">尚未选择路线</span><span id="selected-node-label" class="muted">未高亮节点</span><span class="muted">左键：高亮　右键：打开节点填写窗</span></div>
+    <div id="map-stage" class="map-stage"><div id="map" class="map"></div><div id="node-popup" class="node-popup hidden"></div></div>
+    <pre id="validation-output" class="output"></pre>
+    <div class="grid two"><div><h3>当前状态</h3><pre id="state" class="output tall">{}</pre></div><div><h3>当前已知资源</h3><div id="inventory" class="inventory"></div><h3>导入 .run（可选）</h3><input id="run-path" placeholder="D:\\…\\history\\xxxx.run"><button id="import-run" class="secondary">导入</button><pre id="run-summary" class="output tall"></pre></div></div>
+  </section>
+  <section class="card hidden" id="records-card"><h2>三、已记录节点</h2><div id="decisions" class="decision-list"></div><pre id="decision-output" class="output"></pre></section>
+</main><script src="/static/app.js?v=map-structured-2"></script></body></html>

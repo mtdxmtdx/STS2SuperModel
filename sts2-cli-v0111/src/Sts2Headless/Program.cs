@@ -115,10 +115,41 @@ class Program
                 var normalizedActionId = commandName == "action" ? sim.NormalizeTraceAction(cmd) : null;
                 result = HandleCommand(sim, cmd);
                 if (commandName == "start_run")
+                {
+                    // A batch probe may start several isolated runs in one
+                    // CLI process. Close the previous trace writer before
+                    // replacing it so the same STS2_TRACE_PATH can be
+                    // appended without a file-lock error.
+                    if (_trace is not null)
+                    {
+                        _trace.Flush();
+                        _trace.Dispose();
+                    }
                     _trace = TraceSession.Create(cmd);
+                }
                 if (_trace is not null)
                 {
                     var rngAfter = commandName == "action" ? sim.GetTraceRngCounters() : null;
+                    // When an action just ENDED the combat, the reply is a
+                    // reward/game-over decision without a combat snapshot.
+                    // Attach the final combat observation so the terminal trace
+                    // row carries the post-combat public state (combat-end
+                    // relic effects included).
+                    if (commandName == "action")
+                    {
+                        var decision = result?.GetValueOrDefault("decision") as string;
+                        if (!string.IsNullOrEmpty(decision) &&
+                            !string.Equals(decision, "combat_play", StringComparison.Ordinal) &&
+                            (result == null || !result.ContainsKey("public_observation")))
+                        {
+                            var terminalObservation = sim.TryBuildTerminalCombatObservation();
+                            if (terminalObservation != null)
+                            {
+                                terminalObservation["decision"] = decision;
+                                result["public_observation"] = terminalObservation;
+                            }
+                        }
+                    }
                     result = _trace.Attach(cmd, result ?? new Dictionary<string, object?>
                     {
                         ["type"] = "error",
@@ -198,12 +229,23 @@ class Program
         switch (cmdType)
         {
             case "start_run":
+                // `reset_run` is used by the direct-card probe matrix to
+                // isolate successive engine runs in a single process.
                 return sim.StartRun(
                     cmd.TryGetProperty("character", out var ch) ? ch.GetString() ?? "Ironclad" : "Ironclad",
                     cmd.TryGetProperty("ascension", out var asc) ? asc.GetInt32() : 0,
                     cmd.TryGetProperty("seed", out var s) ? s.GetString() : null,
                     cmd.TryGetProperty("lang", out var lang) ? lang.GetString() ?? "en" : "en"
                 );
+
+            case "reset_run":
+                sim.CancelPendingSelectionsForBatch();
+                sim.CleanUp();
+                return new Dictionary<string, object?>
+                {
+                    ["type"] = "ok",
+                    ["reset"] = true,
+                };
 
             case "action":
             {
@@ -255,6 +297,14 @@ class Program
                 foreach (var prop in cmd.EnumerateObject())
                     if (prop.Name != "cmd") args[prop.Name] = prop.Value;
                 return sim.SetPlayer(args);
+            }
+
+            case "set_combat_resources":
+            {
+                var args = new Dictionary<string, JsonElement>();
+                foreach (var prop in cmd.EnumerateObject())
+                    if (prop.Name != "cmd") args[prop.Name] = prop.Value;
+                return sim.SetCombatResources(args);
             }
 
             case "enter_room":

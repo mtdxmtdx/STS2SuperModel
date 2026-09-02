@@ -1,9 +1,9 @@
 branch: global-decision-annotation-gui
-changed_field: teacher_branch_evaluation_and_dataset_export
-MODIFIED_FILE: ./MODIFIED_FILE
-DIFF_FILE: ./DIFF_FILE
-VERIFICATION_FILE: ./VERIFICATION.txt
-ROLLBACK_SCRIPT: ./ROLLBACK.sh
+changed_field: green_route_color_currentcoord_ancient_origin
+MODIFIED_FILE: D:\STS2BestChoice\STS2SuperModel\sts2-seed-gui\MODIFIED_FILE
+DIFF_FILE: D:\STS2BestChoice\STS2SuperModel\sts2-seed-gui\DIFF_FILE
+VERIFICATION_FILE: D:\STS2BestChoice\STS2SuperModel\sts2-seed-gui\VERIFICATION.txt
+ROLLBACK_SCRIPT: D:\STS2BestChoice\STS2SuperModel\sts2-seed-gui\ROLLBACK.sh
 
 BASELINE
 command: python -m unittest tests.test_mvp.GuiMvpTests.test_context_hash_is_stable -v
@@ -17,20 +17,42 @@ OK
 exit status: 0
 
 MODIFIED
-command: python -W error::ResourceWarning -m unittest discover -s tests -v
+command: python -m unittest discover -s tests -v
 literal output:
 test_cli_map_decision_and_export (test_mvp.GuiMvpTests.test_cli_map_decision_and_export) ... ok
 test_cli_response_action_ids_are_stable (test_mvp.GuiMvpTests.test_cli_response_action_ids_are_stable) ... ok
 test_context_hash_is_stable (test_mvp.GuiMvpTests.test_context_hash_is_stable) ... ok
 
 ----------------------------------------------------------------------
-Ran 3 tests in 0.126s
+Ran 3 tests in 0.115s
 
 OK
 exit status: 0
+command: python -m py_compile app.py storage.py cli_session.py
+literal output: (no output; compile succeeded)
+exit status: 0
+command: node --check static/app.js
+literal output: (no output; syntax check succeeded)
+exit status: 0
+
+ROUTE/MAP
+command: actual v0.111 CLI start + first-floor route-select
+literal output: origin=map:1:0:3; target=map:1:1:2; legal=True; selected persisted
+exit status: 0
+result: current_coord is represented by the synthetic Ancient origin; completed route color is green (#2c9f63).
+
+MAP LABELS
+command: Node VM map render with current_coord, route-selected node and boss
+literal output: groups=3 classes=map-node-svg,route-selected|map-node-svg,current,ancient|map-node-svg; texts=战斗|先古之民|首领
+exit status: 0
+
+CATALOG/WORKTREE
+command: load_catalogs() and default_cli_path() from both GUI copies
+literal output: direct=607/299/69; work=607/299/69; work_cli=True
+exit status: 0
 
 ROLLBACK
-command: pwsh -NoProfile -Command "& ([scriptblock]::Create((Get-Content -Raw './ROLLBACK.sh'))) -Target 'test-output/rollback-copy'"
-literal output: restored test-output\rollback-copy\MODIFIED_FILE
+command: pwsh -NoProfile -Command "& ([scriptblock]::Create((Get-Content -Raw 'ROLLBACK.sh'))) -Target 'test-output/rollback-copy'"
+literal output: restored test-output/rollback-copy\MODIFIED_FILE
 exit status: 0
-restored behavior/status: test-output/rollback-copy/MODIFIED_FILE matches MODIFIED_FILE.baseline (status=baseline); original ./MODIFIED_FILE remains changed (status=modified).
+restored behavior/status: rollback copy matches baseline; original MODIFIED_FILE remains changed.
