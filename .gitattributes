@@ -1,0 +1,25 @@
+# 换行符规范化
+#
+# 目标：版本库内一律存 LF（当前 412 个文本文件已全是 LF，此规则不触发重新规范化）；
+# 工作树保持各平台习惯（Windows 上仍是 CRLF），因此不指定 eol=。
+# 作用：消除 24 个混合换行符文件，并让行为不依赖协作者的 core.autocrlf 设置。
+* text=auto
+
+# 必须保持 LF，否则无法执行
+*.sh text eol=lf
+
+# 二进制：禁止任何换行符或差分处理
+*.parquet binary
+*.pt binary
+*.onnx binary
+*.dll binary
+*.pdb binary
+*.exe binary
+*.gif binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.zip binary
+
+# 大型数据文件：不做差分，减少 git 操作开销
+*.jsonl -diff
