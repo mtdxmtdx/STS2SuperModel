@@ -28,6 +28,11 @@ sts2-cli-v0111/saves/
 # 本地临时工作区（脚本中间产物，可随时重建）
 work/
 
+# 标注 GUI 的运行时数据库（本机标注状态，非源码）
+sts2-seed-gui/data/*.sqlite
+sts2-seed-gui/data/*.sqlite-journal
+sts2-seed-gui/data/*.db
+
 # 误建文件：曾因 shell 重定向手误产生
 ignored
 
