@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GlobalActionCandidateV1",
+  "type": "object",
+  "required": ["action_type", "transport_action", "candidate_index", "legal", "candidate_role"],
+  "properties": {
+    "action_id": {"type": ["string", "null"]},
+    "action_type": {"type": "string"},
+    "semantic_id": {"type": ["string", "null"]},
+    "transport_action": {"type": "string"},
+    "transport_args": {"type": "object"},
+    "target_id": {"type": ["string", "null"]},
+    "legal": {"type": "boolean"},
+    "restriction_reason": {"type": ["string", "null"]},
+    "candidate_index": {"type": "integer", "minimum": 0},
+    "offer_snapshot_hash": {"type": "string"},
+    "parent_decision_id": {"type": "string"},
+    "continuation_id": {"type": ["string", "null"]},
+    "candidate_role": {"type": "string"},
+    "candidate_semantic_features_hash": {"type": "string"},
+    "opportunity_cost": {"type": "object"},
+    "source_confidence": {"type": "string"}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sts2bestchoice.local/schema/nosl-belief-state-v1.json",
+  "title": "STS2 NOSL Belief State v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "known_deck_composition",
+    "known_hand",
+    "visible_relics",
+    "visible_powers",
+    "remaining_card_multiset",
+    "publicly_observable_history",
+    "random_effect_distributions",
+    "round_context",
+    "belief_signature"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "known_deck_composition": {
+      "type": "array",
+      "items": {"type": "array", "prefixItems": [{"type": "string"}, {"type": "integer", "minimum": 0}], "items": false, "minItems": 2, "maxItems": 2}
+    },
+    "known_hand": {"type": "array", "items": {"type": "string"}},
+    "visible_relics": {"type": "array", "items": {"type": "object"}},
+    "visible_powers": {"type": "array", "items": {"type": "object"}},
+    "remaining_card_multiset": {
+      "type": "array",
+      "items": {"type": "array", "prefixItems": [{"type": "string"}, {"type": "integer", "minimum": 0}], "items": false, "minItems": 2, "maxItems": 2}
+    },
+    "publicly_observable_history": {"type": "object"},
+    "random_effect_distributions": {"type": "object"},
+    "round_context": {"type": "object"},
+    "belief_signature": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "not": {
+    "anyOf": [
+      {"required": ["rng_state_words"]},
+      {"required": ["future_draw_order"]},
+      {"required": ["hidden_discard_order"]},
+      {"required": ["realized_hidden_outcome"]}
+    ]
+  }
+}

@@ -23,6 +23,91 @@ PROBES: dict[str, list[int]] = {
     "p1-relic-tough-bandages": [0],
     "p1-relic-tungsten-rod": [0, 1],
     "p1-relic-unceasing-top": [0, 1, 2],
+    "p1-relic-unceasing-top-empty": [0, 1, 2, 3, 4],
+    "p1-relic-bronze-scales": [0, 1],
+    "p1-relic-blood-vial": [0],
+    "p1-relic-brimstone": [0, 1],
+    "p1-relic-nunchaku": [0, 1],
+    "p1-relic-anchor": [0],
+    # Batch 1 (v0.111 attack/turn relics).
+    "p1-relic-attack-counters": [2, 3, 4, 5],
+    "p1-relic-letter-opener": [2, 3],
+    "p1-relic-rainbow-ring": [1, 2],
+    "p1-relic-mercury-hourglass": [0, 1],
+    "p1-relic-mr-struggles": [0, 1],
+    "p1-relic-sai": [0],
+    "p1-relic-candelabra": [0, 1],
+    # Chandelier triggers at the start of turn 3 (ordinal 1). Ordinal 2 spans
+    # the round 3->4 transition where SEAPUNK_WEAK runs a Buff+Defend intent
+    # whose amounts the public observation does not export (known simulator
+    # gap), so that transition is not part of the diff matrix.
+    "p1-relic-chandelier": [0, 1],
+    "p1-relic-fake-happy-flower": [0, 4],
+    "p1-relic-fake-orichalcum": [0],
+    # Batch 2 (v0.111 turn-end/damage-modifier/combat-start relics).
+    "p1-relic-turn-end-block": [0, 1],
+    "p1-relic-parrying-shield": [2],
+    "p1-relic-parrying-shield-multi": [2],
+    "p1-relic-screaming-flagon": [5],
+    "p1-relic-kusarigama": [2, 3, 4, 5],
+    "p1-relic-paels-tears": [1, 2],
+    "p1-relic-strike-dummy": [0, 1, 2, 3],
+    "p1-relic-snecko-eye": [1, 2],
+    "p1-relic-whispering-earring": [0, 1],
+    "p1-relic-combat-start-carried": [0, 1],
+    # Batch 3 (scheduled block/draw, turn-7 strike, exhaust counter, carry-over).
+    "p1-relic-self-forming-clay": [0, 1],
+    "p1-relic-pocketwatch": [0, 1],
+    "p1-relic-stone-calendar": [6],
+    "p1-relic-joss-paper": [2, 4],
+    "p1-relic-ice-cream": [1, 2],
+    "p1-relic-ninja-scroll": [0],
+    # Batch 4 (combat-start carried: potions / conditional DEX / Confused).
+    "p1-relic-delicate-frond": [0, 1],
+    "p1-relic-belt-buckle": [0, 1],
+    "p1-relic-fake-snecko-eye": [0, 1],
+    # Batch 5 (damage floor / heal trigger / block double / free 5th card).
+    "p1-relic-the-boot": [0, 1, 2],
+    "p1-relic-vambrace": [0, 1],
+    "p1-relic-brilliant-scarf": [3, 5],
+    "p1-relic-pantograph": [0, 1],
+    # Batch 6 (combat-start effect relics carried by the snapshot; verified
+    # empirically that they do NOT re-apply on later turns).
+    "p1-relic-festive-popper": [0, 1],
+    "p1-relic-royal-poison": [0, 1],
+    "p1-relic-red-mask": [0, 1],
+    "p1-relic-twisted-funnel": [0, 1],
+    # Batch 7 (max-energy growth relics).
+    "p1-relic-bread": [0, 1],
+    "p1-relic-paels-flesh": [0, 1],
+    # Batch 8 (combat-end heals, unlocked by the CLI terminal trace row).
+    "p1-relic-combat-end-heal": [2],
+    # Batch 9 (cycle draws, turn-start exhaust, cross-combat carried counters).
+    "p1-relic-pendulum": [0, 1],
+    
+    
+    
+    "p1-relic-cross-combat-carried": [0, 1],
+    # Batch 10 (per-play trigger relics).
+    "p1-relic-wind-block": [0, 1, 2],
+    "p1-relic-cost-gated": [0, 1, 2],
+    # Batch 11 (conditional/limit relics).
+    "p1-relic-beating-remnant": [0, 1],
+    "p1-relic-seal-of-gold": [0, 1],
+    "p1-relic-velvet-choker": [0, 1],
+    "p1-relic-power-triggers": [0, 1],
+    # Batch 13 (exhaust triggers + shiv/count relics, teacher-disambiguated).
+    "p1-relic-tuning-fork": [0, 1, 2, 3],
+    "p1-relic-booming-conch": [0],
+    # Batch 14 (turn-N triggers, per-turn draw, max-energy carried family).
+    "p1-relic-turn-n-triggers": [0, 1],
+    "p1-relic-per-turn-draw": [0, 1],
+    "p1-relic-max-energy-carried": [0, 1],
+    # Batch 15 (block-break / potion / block-persist relics).
+    "p1-relic-hand-drill": [1],
+    # Batch 15b (per-turn draw + carried max-energy/tea family).
+    "p1-relic-fiddle": [0, 1],
+    "p1-relic-tea-carried": [0, 1],
 }
 
 
@@ -101,6 +186,7 @@ def run_fixture(name: str, ordinals: list[int]) -> list[dict]:
 def main() -> int:
     names = sys.argv[1:] or list(PROBES)
     failures = 0
+    degraded = 0
     reports_count = 0
     for name in names:
         if name not in PROBES:
@@ -113,9 +199,12 @@ def main() -> int:
                 print(f"FAIL {report['fixture']} ordinal={report.get('ordinal')}: "
                       f"{report.get('error', report.get('mismatched_fields'))}")
             else:
-                print(f"PASS {report['fixture']} ordinal={report['ordinal']} "
+                status = "PASS" if report.get("confidence") == "Reliable" else "DEGRADED"
+                if status == "DEGRADED":
+                    degraded += 1
+                print(f"{status} {report['fixture']} ordinal={report['ordinal']} "
                       f"confidence={report['confidence']} mismatches={report['mismatch_count']}")
-    print(f"\n{len(names)} fixtures, {reports_count} reports, {failures} failed reports")
+    print(f"\n{len(names)} fixtures, {reports_count} reports, {failures} failed reports, {degraded} degraded reports")
     return 1 if failures else 0
 
 

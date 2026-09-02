@@ -20,9 +20,9 @@ from pathlib import Path
 from typing import Any, Callable, Iterable
 
 try:
-    from .snapshot_adapter import rebuild_combat_snapshot
+    from .snapshot_adapter import build_nosl_belief_state, rebuild_nosl_combat_snapshot
 except ImportError:  # direct script execution
-    from snapshot_adapter import rebuild_combat_snapshot
+    from snapshot_adapter import build_nosl_belief_state, rebuild_nosl_combat_snapshot
 
 
 LOCK = {
@@ -145,33 +145,39 @@ def _fallback_label(record: dict[str, Any], top_k: int) -> dict[str, Any]:
 class TeacherWorker:
     def __init__(self, evaluator: Callable[[dict[str, Any]], dict[str, Any]] | None = None,
                  top_k: int = 5, allow_heuristic_fallback: bool = False,
-                 budget_ms: int = 500, maximum_expanded_nodes: int = 2_000_000) -> None:
+                 budget_ms: int = 500, maximum_expanded_nodes: int = 2_000_000,
+                 nosl_exact: bool = False, maximum_chance_branches: int = 32,
+                 chance_sample_count: int = 32) -> None:
         self.evaluator = evaluator
         self.top_k = max(1, top_k)
         self.allow_heuristic_fallback = allow_heuristic_fallback
         self.budget_ms = max(1, budget_ms)
         self.maximum_expanded_nodes = max(1, maximum_expanded_nodes)
+        self.nosl_exact = nosl_exact
+        self.maximum_chance_branches = max(1, maximum_chance_branches)
+        self.chance_sample_count = max(1, chance_sample_count)
 
     def _request(self, record: dict[str, Any]) -> dict[str, Any]:
         actions = legal_actions(record)
-        teacher_snapshot = record.get("teacher_snapshot") or record.get("teacher_state")
-        if teacher_snapshot is None and not self.allow_heuristic_fallback:
-            raise ValueError("teacher snapshot is missing")
-        reconstructed, reconstruction_warnings = rebuild_combat_snapshot(
-            teacher_snapshot or {}, record.get("public_state") or {})
+        public_state = record.get("public_state") or {}
+        belief = build_nosl_belief_state(public_state)
+        reconstructed, reconstruction_warnings = rebuild_nosl_combat_snapshot(public_state)
         request = {
             "protocol": "sts2.teacher-evaluator.v1",
             "record_id": record.get("record_id"),
-            "public_state": record.get("public_state"),
-            "teacher_snapshot": teacher_snapshot,
-            # A C# bridge can skip lossy reconstruction when the producer has
-            # already emitted a full CombatSnapshot payload.
-            "combat_snapshot": record.get("combat_snapshot") or reconstructed,
+            "public_state": public_state,
+            "nosl_belief_state": belief.to_dict(),
+            "combat_snapshot": reconstructed,
+            "audit_snapshot_reference": stable_hash(record.get("state_hash_teacher")),
             "reconstruction_warnings": reconstruction_warnings,
             "legal_actions": actions,
+            "teacher_mode": "NOSL_EXACT_OFFLINE" if self.nosl_exact else "NOSL_BOUNDED",
             "search": {"objectives": list(OBJECTIVES), "top_k": self.top_k,
                         "budget_ms": self.budget_ms,
-                        "maximum_expanded_nodes": self.maximum_expanded_nodes},
+                        "maximum_expanded_nodes": self.maximum_expanded_nodes,
+                        "maximum_chance_branches": 100_000_000 if self.nosl_exact else self.maximum_chance_branches,
+                        "chance_sample_count": self.chance_sample_count,
+                        "offline_exact": self.nosl_exact},
             "version": LOCK,
         }
         if self.evaluator is not None:
@@ -192,6 +198,10 @@ class TeacherWorker:
             raise ValueError("evaluator response must be a JSON object")
         output = dict(record)
         output.update(label)
+        output.setdefault("nosl_belief_state", build_nosl_belief_state(record.get("public_state") or {}).to_dict())
+        output.setdefault("teacher_mode", "NOSL_EXACT_OFFLINE" if self.nosl_exact else "NOSL_BOUNDED")
+        output.setdefault("belief_signature", belief_signature(record.get("public_state") or {}))
+        output.setdefault("audit_snapshot_reference", stable_hash(record.get("state_hash_teacher")))
         # Evaluator diagnostics are process-level details, not training
         # features.  Keep failures represented by risk_events so Parquet's
         # nested schema remains stable across rows.
@@ -221,6 +231,11 @@ class TeacherWorker:
             output["search_complete"] = False
             output["risk_events"] = sorted(set(output["risk_events"]) | {"teacher_label_missing"})
         return output
+
+
+def belief_signature(public_state: dict[str, Any]) -> str:
+    """Return the canonical NOSL belief signature for a public state."""
+    return build_nosl_belief_state(public_state).belief_signature
 
 
 def aggregate_hidden_states(records: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -279,10 +294,11 @@ def main() -> int:
     parser.add_argument("--budget-ms", type=int, default=500)
     parser.add_argument("--maximum-expanded-nodes", type=int, default=2_000_000)
     parser.add_argument("--allow-heuristic-fallback", action="store_true")
+    parser.add_argument("--nosl-exact", action="store_true")
     args = parser.parse_args()
     evaluator = _command_evaluator(args.evaluator) if args.evaluator else None
     worker = TeacherWorker(evaluator, args.top_k, args.allow_heuristic_fallback,
-                           args.budget_ms, args.maximum_expanded_nodes)
+                           args.budget_ms, args.maximum_expanded_nodes, args.nosl_exact)
     records = [json.loads(line) for line in args.input.read_text(encoding="utf-8").splitlines() if line.strip()]
     labelled = [worker.process(record) for record in records]
     args.output.parent.mkdir(parents=True, exist_ok=True)

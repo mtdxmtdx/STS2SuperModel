@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GlobalOfferSnapshotV1",
+  "type": "object",
+  "required": ["offer_snapshot_hash", "decision_type", "candidates", "candidate_order", "visible_context_hash", "legal_actions_complete", "source"],
+  "properties": {
+    "offer_snapshot_hash": {"type": "string", "pattern": "^[0-9A-Fa-f]{64}$"},
+    "decision_type": {"type": "string"},
+    "candidates": {"type": "array", "items": {"$ref": "global-action-candidate-v1.json"}},
+    "candidate_order": {"type": "array", "items": {"type": "string"}},
+    "visible_context_hash": {"type": "string", "pattern": "^[0-9A-Fa-f]{64}$"},
+    "legal_actions_complete": {"type": "boolean"},
+    "source": {"type": "string"},
+    "screen_version": {"type": "string"},
+    "omitted_ids": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

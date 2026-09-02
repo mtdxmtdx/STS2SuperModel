@@ -1,0 +1,9 @@
+{"cmd": "start_run", "character": "Ironclad", "seed": "p1-hand-drill-seed", "ascension": 0}
+{"cmd": "set_player", "relics": ["HAND_DRILL"], "hp": 60, "max_hp": 60, "deck": ["STRIKE_IRONCLAD", "STRIKE_IRONCLAD", "STRIKE_IRONCLAD", "STRIKE_IRONCLAD", "STRIKE_IRONCLAD", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD"]}
+{"cmd": "enter_room", "type": "combat", "encounter": "SHRINKER_BEETLE_WEAK"}
+{"cmd": "get_combat_snapshot", "view": "public"}
+{"cmd": "action", "action": "end_turn", "args": {}}
+{"cmd": "action", "action": "play_card", "args": {"card_index": 0, "target_index": 0}}
+{"cmd": "action", "action": "play_card", "args": {"card_index": 2, "target_index": 0}}
+{"cmd": "action", "action": "end_turn", "args": {}}
+{"cmd": "quit"}

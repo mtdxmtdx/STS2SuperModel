@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GlobalRunKeyV1",
+  "type": "object",
+  "required": ["schema_version", "feature_schema_version", "game_version", "game_branch", "game_commit", "assembly_sha256", "cli_protocol_version", "simulator_version", "semantic_catalog_version", "scorer_version", "model_version", "character", "player_count", "ascension", "game_mode"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "feature_schema_version": {"type": "string"},
+    "game_version": {"type": "string"},
+    "game_branch": {"type": "string", "enum": ["main", "beta", "unknown"]},
+    "game_commit": {"type": "string"},
+    "assembly_sha256": {"type": "string", "pattern": "^[0-9A-Fa-f]{64}$"},
+    "cli_protocol_version": {"type": "string"},
+    "simulator_version": {"type": "string"},
+    "semantic_catalog_version": {"type": "string"},
+    "scorer_version": {"type": "string"},
+    "model_version": {"type": "string"},
+    "character": {"type": "string"},
+    "player_count": {"type": "integer", "minimum": 1},
+    "ascension": {"type": "integer", "minimum": 0},
+    "game_mode": {"type": "string"},
+    "modifiers": {"type": "array", "items": {"type": "string"}},
+    "unlock_profile_hash": {"type": "string"},
+    "run_seed": {"type": ["string", "null"]},
+    "run_context_hash": {"type": "string"},
+    "manifest_hash": {"type": "string"}
+  },
+  "additionalProperties": true
+}

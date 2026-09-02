@@ -36,9 +36,9 @@ class TestPowerCatalog(unittest.TestCase):
         self.assertEqual(summary["cataloged_count"], summary["total_powers"])
         self.assertEqual(summary["il_inspected_count"], 0)
         # Zero-mismatch v0.111 CLI/Core behavior probes; see P0_VERIFICATION.md
-        # and P1_POWER_VERIFICATION.md (9 P0 powers + 5 P1 powers).
-        self.assertEqual(summary["runtime_probed_count"], 14)
-        self.assertEqual(summary["simulator_supported_count"], 14)
+        # and P1_POWER_VERIFICATION.md (9 P0 powers + 11 P1 powers).
+        self.assertEqual(summary["runtime_probed_count"], 20)
+        self.assertEqual(summary["simulator_supported_count"], 20)
         self.assertGreater(summary["simulator_declared_count"], 50)
 
         # Check critical powers are simulator_supported
@@ -60,7 +60,7 @@ class TestPowerCatalog(unittest.TestCase):
             self.assertEqual(power_map[power_id]["evidence"], "LiveObserved")
 
         # P1 promoted powers (data/P1_POWER_VERIFICATION.md).
-        for power_id in ("THORNS", "ACCURACY", "PLATING", "POISON", "PANACHE"):
+        for power_id in ("THORNS", "ACCURACY", "PLATING", "POISON", "PANACHE", "RAGE", "FLAME_BARRIER", "CORRUPTION", "INFINITE_BLADES", "ENVENOM", "BUFFER"):
             self.assertIn(power_id, power_map)
             self.assertEqual(power_map[power_id]["simulator_support"], "simulator_supported")
             self.assertEqual(power_map[power_id]["evidence"], "LiveObserved")

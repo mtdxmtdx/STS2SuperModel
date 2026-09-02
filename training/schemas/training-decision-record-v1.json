@@ -56,6 +56,7 @@
     "state_hash_public": { "type": "string" },
     "state_hash_teacher": { "type": "string" },
     "public_state": { "$ref": "public-state-schema-v1.json" },
+    "nosl_belief_state": { "$ref": "nosl-belief-state-v1.json" },
     "teacher_state_reference": { "type": ["string", "null"] },
     "legal_actions": {
       "type": "array",
@@ -76,6 +77,7 @@
         }
       }
     },
+    "legal_actions_complete": { "type": "boolean" },
     "teacher_best_actions": { "type": "array", "items": { "type": "string" } },
     "action_values": { "type": "object", "additionalProperties": { "type": "number" } },
     "confidence": { "type": "string", "enum": ["Reliable", "Estimated", "LowConfidence", "Uncalculable"] },

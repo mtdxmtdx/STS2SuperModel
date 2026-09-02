@@ -1,0 +1,3 @@
+{"cmd":"start_run","character":"Ironclad","seed":"m2-contingent-random-target-1","ascension":0}
+{"cmd":"set_player","relics":[],"hp":80,"max_hp":80,"deck":["SWORD_BOOMERANG","STRIKE_IRONCLAD","STRIKE_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD"]}
+{"cmd":"enter_room","type":"combat","encounter":"SLIMES_WEAK"}

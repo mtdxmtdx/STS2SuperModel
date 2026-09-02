@@ -7,7 +7,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent / "collectors"))
 from teacher_worker import LOCK, TeacherWorker, aggregate_hidden_states
-from snapshot_adapter import rebuild_combat_snapshot
+from snapshot_adapter import build_nosl_belief_state, rebuild_combat_snapshot, rebuild_nosl_combat_snapshot
 
 
 def record():
@@ -39,13 +39,29 @@ def test_heuristic_fallback_emits_nonempty_estimated_label():
     assert output["search_complete"] is False
     assert len(output["teacher_top_k"]) == 2
     assert set(output["objectives"]) == {"Balanced", "HighestDamage", "MinimumLoss"}
+    assert output["teacher_mode"] == "NOSL_BOUNDED"
+    assert len(output["belief_signature"]) == 64
 
 
-def test_missing_teacher_snapshot_is_not_silently_labelled():
+def test_missing_teacher_snapshot_does_not_block_public_evaluator_input():
     source = record()
     source.pop("teacher_snapshot")
-    with pytest.raises(ValueError, match="teacher snapshot"):
-        TeacherWorker().process(source)
+    seen = {}
+
+    def evaluator(request):
+        seen.update(request)
+        return {
+            "teacher_best_actions": ["play:c1"],
+            "teacher_top_k": [],
+            "action_values": {"play:c1": 6},
+            "confidence": "Estimated",
+            "search_complete": False,
+        }
+
+    output = TeacherWorker(evaluator=evaluator).process(source)
+    assert output["teacher_best_actions"] == ["play:c1"]
+    assert "teacher_snapshot" not in seen
+    assert seen["nosl_belief_state"]["belief_signature"]
 
 
 def test_evaluator_response_is_attached_and_preserves_protocol():
@@ -54,8 +70,11 @@ def test_evaluator_response_is_attached_and_preserves_protocol():
     def evaluator(request):
         assert request["protocol"] == "sts2.teacher-evaluator.v1"
         assert request["version"] == LOCK
+        assert request["teacher_mode"] == "NOSL_BOUNDED"
+        assert request["search"]["offline_exact"] is False
         assert request["search"]["budget_ms"] == 500
         assert request["search"]["maximum_expanded_nodes"] == 2_000_000
+        assert request["search"]["maximum_chance_branches"] == 32
         return {
             "teacher_best_actions": ["play:c1"],
             "teacher_top_k": [{"action_id": "play:c1", "value": 6, "rank": 1, "death_probability": 0}],
@@ -97,3 +116,89 @@ def test_snapshot_adapter_preserves_ids_and_marks_lossy_semantics():
     assert snap["hand"][0]["instance_id"] == "c1"
     assert snap["hand"][0]["effects"][0]["kind"] == "Damage"
     assert "enemy_state_missing" in warnings
+
+
+def test_nosl_belief_ignores_hidden_rng_and_draw_order():
+    public = {
+        "round": 1,
+        "hand": [{"instance_id": "h1", "id": "CARD.STRIKE", "stats": {"damage": 6}}],
+        "player": {"deck": [
+            {"instance_id": "d1", "id": "CARD.STRIKE"},
+            {"instance_id": "d2", "id": "CARD.DEFEND"},
+            {"instance_id": "d3", "id": "CARD.DEFEND"},
+        ]},
+    }
+    first = build_nosl_belief_state(public)
+    altered = json.loads(json.dumps(public))
+    altered["teacher_snapshot"] = {
+        "rng_streams": {"Shuffle": {"state0": 123, "state1": 456}},
+        "draw_pile": ["CARD.DEFEND", "CARD.STRIKE"],
+    }
+    second = build_nosl_belief_state(altered)
+    assert first.belief_signature == second.belief_signature
+    assert first.remaining_card_multiset == (("DEFEND", 2),)
+    snapshot, _ = rebuild_nosl_combat_snapshot(public)
+    assert snapshot["draw_pile"] == []
+    assert [card["model_id"] for card in snapshot["discard_pile"]] == ["DEFEND", "DEFEND"]
+    assert all(card["instance_id"].startswith("belief:draw:") for card in snapshot["discard_pile"])
+    assert snapshot["rng_streams"] is None
+    changed_public = copy.deepcopy(public)
+    changed_public["player"]["hp"] = 1
+    assert build_nosl_belief_state(changed_public).belief_signature != first.belief_signature
+
+
+def test_teacher_evaluator_receives_nosl_input_not_raw_teacher_snapshot():
+    source = record()
+    seen = {}
+
+    def evaluator(request):
+        seen.update(request)
+        return {
+            "teacher_best_actions": ["play:c1"],
+            "teacher_top_k": [{"action_id": "play:c1", "value": 6, "rank": 1, "death_probability": 0}],
+            "action_values": {"play:c1": 6},
+            "objectives": {name: {"best_actions": ["play:c1"], "value": 6} for name in ("Balanced", "HighestDamage", "MinimumLoss")},
+            "death_probability": 0, "search_budget_ms": 100, "expanded_nodes": 1,
+            "chance_branch": {"produced": False, "kind": "none"}, "confidence": "Reliable",
+            "search_complete": True, "risk_events": [],
+        }
+
+    TeacherWorker(evaluator=evaluator).process(source)
+    assert "teacher_snapshot" not in seen
+    assert seen["combat_snapshot"]["draw_pile"] == []
+    assert seen["combat_snapshot"]["rng_streams"] is None
+    assert "rng_state_words" not in seen["nosl_belief_state"]
+    assert "future_draw_order" not in seen["nosl_belief_state"]
+
+
+def test_nosl_exact_request_uses_large_chance_branch_cap():
+    source = record()
+    seen = {}
+
+    def evaluator(request):
+        seen.update(request)
+        return {
+            "teacher_best_actions": ["play:c1"],
+            "teacher_top_k": [],
+            "action_values": {"play:c1": 1},
+            "objectives": {},
+            "confidence": "Reliable",
+            "search_complete": True,
+            "risk_events": [],
+        }
+
+    TeacherWorker(evaluator=evaluator, nosl_exact=True).process(source)
+    assert seen["search"]["offline_exact"] is True
+    assert seen["search"]["maximum_chance_branches"] == 100_000_000
+
+
+def test_nosl_belief_state_matches_frozen_schema():
+    jsonschema = pytest.importorskip("jsonschema")
+    public = {
+        "round": 1,
+        "hand": [{"instance_id": "h1", "id": "CARD.STRIKE"}],
+        "player": {"deck": [{"instance_id": "h1", "id": "CARD.STRIKE"}]},
+    }
+    belief = build_nosl_belief_state(public)
+    schema = json.loads((Path(__file__).parent / "schemas" / "nosl-belief-state-v1.json").read_text(encoding="utf-8"))
+    jsonschema.Draft202012Validator(schema).validate(belief.to_dict())

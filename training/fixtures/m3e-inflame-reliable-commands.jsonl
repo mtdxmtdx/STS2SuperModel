@@ -1,0 +1,7 @@
+{"cmd":"start_run","character":"Ironclad","seed":"m3e-inflame-2","ascension":0}
+{"cmd":"set_player","relics":[],"hp":80,"max_hp":80,"deck":["INFLAME","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD"]}
+{"cmd":"enter_room","type":"combat","encounter":"SHRINKER_BEETLE_WEAK"}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"action","action":"play_card","args":{"card_index":1}}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"get_combat_snapshot","view":"teacher"}

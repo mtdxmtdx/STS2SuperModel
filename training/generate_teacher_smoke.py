@@ -56,6 +56,8 @@ def main() -> int:
     parser.add_argument("--budget-ms", type=int, default=500)
     parser.add_argument("--maximum-expanded-nodes", type=int, default=2_000_000)
     parser.add_argument("--allow-heuristic-fallback", action="store_true")
+    parser.add_argument("--nosl-exact", action="store_true",
+                        help="Use the offline NOSL exhaustive evaluator mode")
     args = parser.parse_args()
     if args.count <= 0:
         raise SystemExit("--count must be positive")
@@ -73,7 +75,8 @@ def main() -> int:
     worker = TeacherWorker(evaluator=evaluator, top_k=args.top_k,
                            allow_heuristic_fallback=args.allow_heuristic_fallback,
                            budget_ms=args.budget_ms,
-                           maximum_expanded_nodes=args.maximum_expanded_nodes)
+                           maximum_expanded_nodes=args.maximum_expanded_nodes,
+                           nosl_exact=args.nosl_exact)
     labelled = [worker.process(row) for row in records]
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text("\n".join(json.dumps(row, ensure_ascii=False, separators=(",", ":"))

@@ -61,21 +61,37 @@ def validate_lock(row: dict, line_no: int) -> None:
 
 def action_candidates(observation: dict) -> list[dict]:
     candidates: list[dict] = []
+    enemies = observation.get("enemies", []) or []
     for card in observation.get("hand", []) or []:
         if "index" not in card:
             continue
         instance = card.get("instance_id")
         if not instance:
             raise ValueError(f"card at hand index {card['index']} is missing stable instance_id")
-        candidates.append({
-            "kind": "PlayCard",
-            "action_id": f"play:{card.get('id', card.get('name', 'UNKNOWN'))}:{instance}",
-            "source_model_id": card.get("id"),
-            "source_instance_id": instance,
-            "effective_energy_cost": card.get("cost", 0),
-            "legal": bool(card.get("can_play", False)),
-            "restriction": None if card.get("can_play", False) else "engine_reported_not_playable",
-        })
+        target_type = str(card.get("target_type") or card.get("target") or "")
+        targets = [
+            enemy.get("instance_id")
+            for enemy in enemies
+            if isinstance(enemy, dict) and enemy.get("instance_id")
+        ] if target_type in {"AnyEnemy", "Enemy", "SingleEnemy"} else []
+        if not targets:
+            targets = [None]
+        for target_id in targets:
+            candidate = {
+                "kind": "PlayCard",
+                # Match sts2-cli-v0111 BuildActionCandidates exactly: the
+                # stable card instance is the source identity, and target is
+                # a separate suffix rather than a model-id prefix.
+                "action_id": f"play:{instance}:{target_id or 'none'}",
+                "source_model_id": card.get("id"),
+                "source_instance_id": instance,
+                "effective_energy_cost": card.get("cost", 0),
+                "legal": bool(card.get("can_play", False)),
+                "restriction": None if card.get("can_play", False) else "engine_reported_not_playable",
+            }
+            if target_id:
+                candidate["target_id"] = target_id
+            candidates.append(candidate)
     for potion in observation.get("player", {}).get("potions", []) or []:
         if "index" not in potion:
             continue
@@ -84,7 +100,7 @@ def action_candidates(observation: dict) -> list[dict]:
             raise ValueError(f"potion at slot {potion['index']} is missing stable instance_id")
         candidates.append({
             "kind": "UsePotion",
-            "action_id": f"potion:{potion.get('id', potion.get('name', 'UNKNOWN'))}:{instance}",
+            "action_id": f"potion:{instance}",
             "source_model_id": potion.get("id"),
             "source_instance_id": instance,
             "effective_energy_cost": 0,
@@ -151,12 +167,21 @@ def normalize(rows: list[dict]) -> list[dict]:
             teacher_snapshot = teacher_row.get("teacher_snapshot") or {}
             if teacher_snapshot.get("available") is True and teacher_snapshot.get("rng_raw_words_exposed") is False:
                 confidence = "LowConfidence"
-        legal_actions = public.get("action_candidates") or action_candidates(public)
+        provided_actions = public.get("action_candidates")
+        if isinstance(provided_actions, list):
+            legal_actions = provided_actions
+            legal_actions_complete = bool(public.get("action_candidates_complete", True))
+        else:
+            legal_actions = action_candidates(public)
+            # The fallback can recover basic card/potion/end-turn actions but
+            # cannot prove selectors, dynamic choices, or hidden restrictions.
+            legal_actions_complete = False
         validate_action_candidates(legal_actions)
         # Training records embed a schema-complete public state.  Some CLI
         # event snapshots carry legal actions at the trace level only.
         if "action_candidates" not in public:
             public["action_candidates"] = legal_actions
+        public["action_candidates_complete"] = legal_actions_complete
         record = {
             "record_id": stable_id(trace_id, row.get("step"), row.get("post_state_hash")),
             "schema_version": 1,
@@ -181,6 +206,7 @@ def normalize(rows: list[dict]) -> list[dict]:
             "teacher_state_reference": teacher_row.get("post_state_hash") if teacher_row else None,
             "teacher_snapshot": teacher_row.get("teacher_snapshot") if teacher_row else None,
             "legal_actions": legal_actions,
+            "legal_actions_complete": legal_actions_complete,
             "teacher_best_actions": [],
             "action_values": {},
             "confidence": confidence,

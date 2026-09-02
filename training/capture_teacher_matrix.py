@@ -47,6 +47,7 @@ def capture_fixture(fixture: Path, output: Path, seed_suffix: str = "") -> tuple
             for command in commands:
                 if command.get("cmd") == "start_run" and "seed" in command:
                     command["seed"] = f"{command['seed']}{seed_suffix}"
+        quit_sent = False
         for command in commands:
             response = send(proc, command)
             if response is None:
@@ -64,7 +65,12 @@ def capture_fixture(fixture: Path, output: Path, seed_suffix: str = "") -> tuple
                 if teacher_response is None:
                     return False, "teacher snapshot response missing"
             if command.get("cmd") == "quit":
+                quit_sent = True
                 break
+        if not quit_sent:
+            quit_response = send(proc, {"cmd": "quit"})
+            if quit_response is None:
+                return False, "quit response missing"
         try:
             if proc.stdin is not None:
                 proc.stdin.close()

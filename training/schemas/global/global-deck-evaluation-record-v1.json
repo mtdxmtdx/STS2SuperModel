@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GlobalDeckEvaluationRecordV1",
+  "type": "object",
+  "required": ["decision_id", "offer_snapshot_hash", "state_public_hash", "candidate_action_id", "label_source", "quality"],
+  "properties": {
+    "decision_id": {"type": "string"},
+    "offer_snapshot_hash": {"type": "string"},
+    "state_public_hash": {"type": "string"},
+    "candidate_action_id": {"type": ["string", "null"]},
+    "delta_v_next_fight": {"type": ["number", "null"]},
+    "delta_v_act": {"type": ["number", "null"]},
+    "delta_v_run": {"type": ["number", "null"]},
+    "delta_risk": {"type": ["number", "null"]},
+    "expected_hp_loss_delta": {"type": ["number", "null"]},
+    "teacher_mean": {"type": ["number", "null"]},
+    "teacher_variance": {"type": ["number", "null"]},
+    "teacher_ci95": {"type": ["number", "null"]},
+    "label_source": {"type": "string"},
+    "quality": {"type": "string"},
+    "version_metadata": {"type": "object"}
+  },
+  "additionalProperties": true
+}

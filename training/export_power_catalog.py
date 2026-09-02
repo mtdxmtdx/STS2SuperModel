@@ -46,10 +46,10 @@ def validate_catalog() -> bool:
     assert coverage["summary"]["total_powers"] > 250
     assert coverage["summary"]["il_inspected_count"] == 0
     # Zero-mismatch v0.111 CLI/Core behavior probes; see P0_VERIFICATION.md and
-    # P1_POWER_VERIFICATION.md. P0: 9 powers, P1: THORNS/ACCURACY/PLATING/
-    # POISON/PANACHE.
-    assert coverage["summary"]["runtime_probed_count"] == 14
-    assert coverage["summary"]["simulator_supported_count"] == 14
+    # P1_POWER_VERIFICATION.md. P0: 9 powers, P1 batch 1: THORNS/ACCURACY/PLATING/
+    # POISON/PANACHE, P1 batch 2: RAGE/FLAME_BARRIER/CORRUPTION/INFINITE_BLADES/ENVENOM/BUFFER.
+    assert coverage["summary"]["runtime_probed_count"] == 20
+    assert coverage["summary"]["simulator_supported_count"] == 20
     assert coverage["summary"]["simulator_declared_count"] > 0
 
     for power in catalog["powers"]:

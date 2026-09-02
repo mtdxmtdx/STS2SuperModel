@@ -20,6 +20,7 @@
 | `trace-schema-v1.json` | 原始 CLI 动作执行轨迹 | `data/*-trace.jsonl` |
 | `public-state-schema-v1.json` | 学生端公共战斗观测状态 | `public_observation` / `public_state` |
 | `teacher-state-schema-v1.json` | 教师端特权战斗状态快照 | `teacher_snapshot` |
+| `nosl-belief-state-v1.json` | 仅由 CLI 公共观测派生的 NOSL 教师信念 | `nosl_belief_state` |
 | `training-decision-record-v1.json` | 归一化训练决策记录 | `data/*-training.jsonl` |
 | `dataset-manifest-v1.json` | 版本化数据集清单 | `data/*-manifest.json` |
 

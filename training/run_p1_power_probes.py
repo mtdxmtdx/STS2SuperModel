@@ -11,6 +11,10 @@ Usage:
     python run_p1_power_probes.py thorns     # run selected probes (name substring)
     python run_p1_power_probes.py --include-p0
                                              # also rerun the 21 P0 fixtures
+    python run_p1_power_probes.py --allow-degraded
+                                             # keep zero-mismatch Estimated/
+                                             # Uncalculable reports for audit;
+                                             # strict promotion remains the default
 """
 
 from __future__ import annotations
@@ -40,6 +44,12 @@ PROBES: dict[str, list[int]] = {
     # PANACHE: power play, first Shiv (counter starts stepping), the Shiv that
     # exhausts four total cards, and the fifth-card AoE trigger.
     "p1-power-panache": [0, 1, 4, 5],
+    "p1-power-rage": [0, 1, 2, 3],
+    "p1-power-flame-barrier": [0, 1],
+    "p1-power-corruption": [0, 1],
+    "p1-power-infinite-blades": [0, 1],
+    "p1-power-envenom": [0, 1],
+    "p1-power-buffer": [0, 1],
 }
 
 # P0 matrix (fixtures and traces are already tracked); rerun for regression.
@@ -170,6 +180,7 @@ def run_fixture(name: str, ordinals: list[int]) -> list[dict]:
 def main() -> int:
     argv = sys.argv[1:]
     include_p0 = "--include-p0" in argv
+    allow_degraded = "--allow-degraded" in argv
     names = [a for a in argv if not a.startswith("--")]
     matrix: dict[str, list[int]] = {}
     if include_p0:
@@ -181,6 +192,7 @@ def main() -> int:
         matrix[name] = PROBES[name]
 
     failures = 0
+    degraded = 0
     total_reports = 0
     for name in matrix:
         for report in run_fixture(name, matrix[name]):
@@ -189,7 +201,13 @@ def main() -> int:
                 failures += 1
                 print(f"FAIL {report['fixture']} ordinal={report.get('ordinal')}: {report['error']}")
                 continue
-            status = "PASS" if report["match"] and report["confidence"] == "Reliable" else "MISMATCH"
+            if report["match"] and report["confidence"] == "Reliable":
+                status = "PASS"
+            elif report["match"] and allow_degraded and report["confidence"] in {"Estimated", "Uncalculable"}:
+                status = "DEGRADED"
+                degraded += 1
+            else:
+                status = "MISMATCH"
             if status == "MISMATCH":
                 failures += 1
             print(
@@ -198,7 +216,7 @@ def main() -> int:
                 f"mismatches={report['mismatch_count']}"
                 + (f" fields={report['mismatched_fields']}" if report["mismatched_fields"] else "")
             )
-    print(f"\n{len(matrix)} fixtures, {total_reports} reports, {failures} failed reports")
+    print(f"\n{len(matrix)} fixtures, {total_reports} reports, {failures} failed reports, {degraded} degraded reports")
     return 1 if failures else 0
 
 

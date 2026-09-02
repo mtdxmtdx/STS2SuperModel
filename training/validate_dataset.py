@@ -50,6 +50,7 @@ SCHEMA_FILES = {
     "trace": "trace-schema-v1.json",
     "public": "public-state-schema-v1.json",
     "teacher": "teacher-state-schema-v1.json",
+    "nosl": "nosl-belief-state-v1.json",
     "training": "training-decision-record-v1.json",
     "manifest": "dataset-manifest-v1.json",
 }
@@ -498,6 +499,12 @@ class DatasetValidator:
                         "raw_rng_words_leak"
                     )
 
+            # Legacy rows may omit this field; rows that carry it must obey
+            # the frozen public-only NOSL schema.
+            nosl_belief = row.get("nosl_belief_state")
+            if nosl_belief is not None:
+                self._check_schema("nosl", nosl_belief, str(path), line_no, "nosl_belief_state")
+
         return count
 
     def validate_training_file(self, path: Path) -> int:
@@ -550,6 +557,10 @@ class DatasetValidator:
             if public_state is not None:
                 self._check_schema("public", public_state, str(path), line_no, "public_state")
                 self._check_public_privacy(public_state, str(path), line_no, "public_state")
+
+            nosl_belief = row.get("nosl_belief_state")
+            if nosl_belief is not None:
+                self._check_schema("nosl", nosl_belief, str(path), line_no, "nosl_belief_state")
 
             # Legal actions check
             self._check_action_candidates(legal_actions, str(path), line_no, "legal_actions")

@@ -1,0 +1,7 @@
+{"cmd": "start_run", "character": "Necrobinder", "seed": "p1-card-ethereal", "ascension": 0}
+{"cmd": "set_player", "relics": [], "hp": 75, "max_hp": 75, "deck": ["DEFILE", "STRIKE_NECROBINDER", "STRIKE_NECROBINDER", "DEFEND_NECROBINDER", "DEFEND_NECROBINDER"]}
+{"cmd": "enter_room", "type": "combat", "encounter": "SEAPUNK_WEAK"}
+{"cmd": "get_combat_snapshot", "view": "public"}
+{"cmd": "action", "action": "end_turn", "args": {}}
+{"cmd": "action", "action": "end_turn", "args": {}}
+{"cmd": "get_combat_snapshot", "view": "teacher"}

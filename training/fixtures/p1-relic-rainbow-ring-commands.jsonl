@@ -1,0 +1,8 @@
+{"cmd": "start_run", "character": "Ironclad", "seed": "p1-rainbow-ring-seed", "ascension": 0}
+{"cmd": "set_player", "relics": ["RAINBOW_RING"], "hp": 80, "max_hp": 80, "deck": ["STRIKE_IRONCLAD", "DEFEND_IRONCLAD", "INFLAME", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD"]}
+{"cmd": "enter_room", "type": "combat", "encounter": "SEAPUNK_WEAK"}
+{"cmd": "get_combat_snapshot", "view": "public"}
+{"cmd": "action", "action": "play_card", "args": {"card_index": 1, "target_index": 0}}
+{"cmd": "action", "action": "play_card", "args": {"card_index": 0, "target_index": 0}}
+{"cmd": "action", "action": "play_card", "args": {"card_index": 2, "target_index": 0}}
+{"cmd": "quit"}

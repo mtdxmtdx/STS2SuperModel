@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GlobalRunStatePublicV1",
+  "type": "object",
+  "required": ["schema_version", "state_public_hash", "character", "act", "floor", "ascension", "current_room_type", "hp", "max_hp", "gold", "deck_public", "relic_public", "potion_public", "legal_actions", "legal_actions_complete", "field_completeness", "provenance"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "state_public_hash": {"type": "string", "pattern": "^[0-9A-Fa-f]{64}$"},
+    "character": {"type": "string"},
+    "act": {"type": "integer", "minimum": 0},
+    "floor": {"type": "integer", "minimum": 0},
+    "ascension": {"type": "integer", "minimum": 0},
+    "current_node": {"type": ["string", "null"]},
+    "current_room_type": {"type": "string"},
+    "hp": {"type": "number", "minimum": 0},
+    "max_hp": {"type": "number", "minimum": 0},
+    "gold": {"type": "integer", "minimum": 0},
+    "deck_public": {"type": "array", "items": {"type": "object"}},
+    "relic_public": {"type": "array", "items": {"type": "object"}},
+    "potion_public": {"type": "array", "items": {"type": "object"}},
+    "visible_map_graph": {"type": "object"},
+    "visible_encounter_profile": {"type": "object"},
+    "visible_options": {"type": "array", "items": {"type": "object"}},
+    "visible_offers": {"type": "array", "items": {"type": "object"}},
+    "legal_actions": {"type": "array", "items": {"$ref": "global-action-candidate-v1.json"}},
+    "public_history": {"type": "array", "items": {"type": "object"}},
+    "combat_summary": {"type": ["object", "null"]},
+    "field_completeness": {"type": "object"},
+    "provenance": {"type": "object"},
+    "legal_actions_complete": {"type": "boolean"}
+  },
+  "not": {"anyOf": [
+    {"required": ["seed"]},
+    {"required": ["run_seed"]},
+    {"required": ["rng_state"]},
+    {"required": ["future_draw_order"]},
+    {"required": ["teacher_snapshot"]},
+    {"required": ["teacher_only_state"]}
+  ]},
+  "additionalProperties": true
+}

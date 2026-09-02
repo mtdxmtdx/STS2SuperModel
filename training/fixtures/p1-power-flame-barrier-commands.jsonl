@@ -1,0 +1,9 @@
+{"cmd": "start_run", "character": "Ironclad", "seed": "probe-p1-flame-barrier-seed", "ascension": 0}
+{"cmd": "set_player", "deck": ["FLAME_BARRIER", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD", "DEFEND_IRONCLAD"]}
+{"cmd": "enter_room", "type": "combat", "encounter": "SEAPUNK_WEAK"}
+{"cmd": "get_combat_snapshot", "view": "public"}
+{"cmd": "action", "action": "play_card", "args": {"card_index": 0, "target_index": 0}}
+{"cmd": "get_combat_snapshot", "view": "public"}
+{"cmd": "action", "action": "end_turn"}
+{"cmd": "get_combat_snapshot", "view": "public"}
+{"cmd": "quit"}
