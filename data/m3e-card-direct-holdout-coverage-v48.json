@@ -1,0 +1,30 @@
+{
+  "schema_version": 48,
+  "dataset": "card-direct-matrix-results.json",
+  "witness_manifest": "card-direct-witness-manifest.json",
+  "matrix_rows": 607,
+  "executed_rows": 462,
+  "matched_rows": 414,
+  "mismatch_rows": 48,
+  "direct_reliable_rows": 207,
+  "repeat_verified_direct_reliable_rows": 108,
+  "matched_estimated_rows": 196,
+  "matched_uncalculable_rows": 10,
+  "fixture_not_entered_combat_rows": 37,
+  "choice_fixture_required_rows": 23,
+  "runtime_unavailable_rows": 80,
+  "runtime_error_rows": 5,
+  "true_timeout_rows": 0,
+  "closeout_progress": {
+    "v45": 182,
+    "v46": 79,
+    "v47": 64,
+    "v48": 48,
+    "random_generation_pool_closed": 6,
+    "random_attack_resource_closed": 2,
+    "damage_repeat_companion_closed": 7,
+    "reboot_closed": 1
+  },
+  "verdict": "partial",
+  "reason": "Mismatch reduced to 48; remaining work is concentrated in Forge/hand transforms, temporary Strength restoration/intent, Power DynamicVars/amounts, terminal effects and potion/random target edge cases."
+}

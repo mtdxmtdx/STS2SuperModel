@@ -1,0 +1,21 @@
+{
+  "split": "validation",
+  "row_count": 7,
+  "group_count": 4,
+  "groups_sha256": "B3F9866638F634A41FCA0E1053D4A8B8B890A4533F7B942D640D6C955AB7D038",
+  "source": "data\\m5-reliable-holdout-backed-v4.jsonl",
+  "source_sha256": "1FE1C1095D79D2BE6719C5D410A9E00BB7DAFD886FCD8567F6094580B8074785",
+  "output_sha256": "4DE06A2FE0F1B6788E941D74695E502126CAA3001EA34E72C31E12A548C3E1DA",
+  "byte_count": 147041,
+  "storage_format": "jsonl",
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "simulator_version": "cli-v0111-headless",
+  "semantic_database_version": "game-runtime-v0111",
+  "scorer_version": "not-applicable",
+  "feature_schema_version": "1",
+  "model_version": "none",
+  "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383"
+}

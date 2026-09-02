@@ -1,0 +1,25 @@
+{
+  "schema_version": 44,
+  "dataset": "card-direct-matrix-results.json",
+  "witness_manifest": "card-direct-witness-manifest.json",
+  "matrix_rows": 607,
+  "matched_rows": 141,
+  "mismatch_rows": 0,
+  "direct_reliable_rows": 108,
+  "repeat_verified_direct_reliable_rows": 108,
+  "matched_estimated_rows": 30,
+  "matched_uncalculable_rows": 2,
+  "fixture_not_entered_combat_rows": 358,
+  "choice_fixture_required_rows": 23,
+  "runtime_unavailable_rows": 80,
+  "runtime_error_rows": 5,
+  "true_shadowdiff_timeout_rows": 0,
+  "direct_execution_coverage_rate": 0.23228995057660626,
+  "reliable_repeat_verification": "m3e-card-direct-reliable-repeat-v43.json",
+  "conditional_cards_demoted_to_estimated": [
+    "DISMANTLE",
+    "SPITE"
+  ],
+  "verdict": "partial",
+  "reason": "All executable direct rows are zero-mismatch and all 108 Reliable rows are byte-repeat verified; remaining gaps require 358 owner/context fixtures, 23 stable Choice fixtures, and resolution/classification of 80 unavailable plus 5 runtime-error models."
+}

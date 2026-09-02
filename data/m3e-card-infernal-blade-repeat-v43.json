@@ -1,0 +1,20 @@
+{
+  "schema_version": 43,
+  "scope": "INFERNAL_BLADE v0.111 GetDistinctForCombat/TakeRandom counter closeout",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "input_trace": "card-direct-traces3/INFERNAL_BLADE.jsonl",
+  "candidate_pool_count": 33,
+  "engine_rng_counter_before": 0,
+  "engine_rng_counter_after": 32,
+  "projected_rng_counter_after": 32,
+  "sha256_a": "864DC870F49ACB100FFD7C5DC63D610CB0315D7D783669685B3E3ADED53346D9",
+  "sha256_b": "864DC870F49ACB100FFD7C5DC63D610CB0315D7D783669685B3E3ADED53346D9",
+  "byte_identical": true,
+  "verdict": "pass"
+}

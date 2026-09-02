@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "PIERCING_WAIL",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "sha256": "DD8523A012604B877798F70E9567C5EA34F8BCAC22B07A2BD650FFBE82A0C768",
+  "verdict": "pass"
+}

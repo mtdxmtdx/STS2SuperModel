@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "report_count": 212,
+  "quality_counts": {
+    "Reliable": 96,
+    "Estimated": 67,
+    "Uncalculable": 49,
+    "Unknown": 0
+  },
+  "relic_summary": {
+    "total_relics": 299,
+    "structured_count": 299,
+    "state_captured_count": 299,
+    "il_inspected_count": 0,
+    "probed_count": 100,
+    "runtime_evidence_valid_count": 100,
+    "evidence_eligible_count": 24,
+    "semantic_hold_count": 1,
+    "simulator_supported_count": 99,
+    "no_combat_effect_count": 1,
+    "partially_supported_count": 1,
+    "unsupported_known_count": 20,
+    "unknown_count": 0,
+    "out_of_scope_count": 97,
+    "reliable_eligible_count": 25,
+    "reliable_eligibility_definition": "strict version/schema-matched CLI ShadowDiff reports with confidence=Reliable, match=true, mismatch_count=0; semantic holds excluded"
+  },
+  "card_summary": {
+    "single_player_variants": 1099,
+    "signatures": 590,
+    "signatures_behavior_verified": 1,
+    "signatures_with_behavior_gap": 588,
+    "reliable_eligible_signatures": 1
+  },
+  "failures": [],
+  "verdict": "pass"
+}

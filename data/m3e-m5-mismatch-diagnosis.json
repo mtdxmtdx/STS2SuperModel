@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "source": "m3e-m5-holdout-run.json",
+  "mismatch_report_count": 9,
+  "mismatch_fields_total": 13,
+  "action_counts": {
+    "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1": 6,
+    "end_turn": 3
+  },
+  "field_counts": {
+    "enemy.enemy:SEAPUNK:1.intents": 6,
+    "enemy.enemy:SEAPUNK:1.block": 1,
+    "power.count": 3,
+    "power.enemy:SEAPUNK:1.STRENGTH_POWER.present": 1,
+    "enemy.enemy:TERROR_EEL:1.status.VIGOR.amount": 1,
+    "power.enemy:TERROR_EEL:1.VIGOR_POWER.present": 1
+  },
+  "reports": [
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-0-0-diff-report.json",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "mismatch_count": 1,
+      "fields": [
+        "enemy.enemy:SEAPUNK:1.intents"
+      ]
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-1-0-diff-report.json",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "mismatch_count": 1,
+      "fields": [
+        "enemy.enemy:SEAPUNK:1.intents"
+      ]
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-2-0-diff-report.json",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "mismatch_count": 1,
+      "fields": [
+        "enemy.enemy:SEAPUNK:1.intents"
+      ]
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-3-0-diff-report.json",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "mismatch_count": 1,
+      "fields": [
+        "enemy.enemy:SEAPUNK:1.intents"
+      ]
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-4-0-diff-report.json",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "mismatch_count": 1,
+      "fields": [
+        "enemy.enemy:SEAPUNK:1.intents"
+      ]
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-happy-flower-2-diff-report.json",
+      "action_id": "end_turn",
+      "mismatch_count": 3,
+      "fields": [
+        "enemy.enemy:SEAPUNK:1.block",
+        "power.count",
+        "power.enemy:SEAPUNK:1.STRENGTH_POWER.present"
+      ]
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-neutralize-weak-0-diff-report.json",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "mismatch_count": 1,
+      "fields": [
+        "enemy.enemy:SEAPUNK:1.intents"
+      ]
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-11-diff-report.json",
+      "action_id": "end_turn",
+      "mismatch_count": 2,
+      "fields": [
+        "enemy.enemy:TERROR_EEL:1.status.VIGOR.amount",
+        "power.count"
+      ]
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-7-diff-report.json",
+      "action_id": "end_turn",
+      "mismatch_count": 2,
+      "fields": [
+        "power.count",
+        "power.enemy:TERROR_EEL:1.VIGOR_POWER.present"
+      ]
+    }
+  ],
+  "status": "resolved_for_m5_holdout_batch",
+  "before_fix": {
+    "mismatch_report_count": 9,
+    "mismatch_fields_total": 13,
+    "action_counts": {
+      "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1": 6,
+      "end_turn": 3
+    },
+    "field_counts": {
+      "enemy.enemy:SEAPUNK:1.intents": 6,
+      "enemy.enemy:SEAPUNK:1.block": 1,
+      "power.count": 3,
+      "power.enemy:SEAPUNK:1.STRENGTH_POWER.present": 1,
+      "enemy.enemy:TERROR_EEL:1.status.VIGOR.amount": 1,
+      "power.enemy:TERROR_EEL:1.VIGOR_POWER.present": 1
+    }
+  },
+  "after_fix": {
+    "mismatch_report_count": 0,
+    "mismatch_fields_total": 0,
+    "report_count": 75,
+    "match_reports": 74,
+    "choice_or_error_reports": 1,
+    "repeat_all_byte_identical": true
+  },
+  "fixes": [
+    "Weak-adjusted public enemy intent comparison",
+    "v0.111 Seapunk Buff(+1 Strength)/Defend(+7 Block) intent mapping",
+    "v0.111 Terror Eel Buff(+6 Vigor) intent mapping",
+    "enemy Vigor consumption with PowerState synchronization"
+  ]
+}

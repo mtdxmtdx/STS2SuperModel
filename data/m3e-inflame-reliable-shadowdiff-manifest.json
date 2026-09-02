@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "fixture": "m3e-inflame-reliable",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "verdict": "pass"
+}

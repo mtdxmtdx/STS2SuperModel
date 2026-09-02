@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p0-neutralize-fixed-seed1",
+  "fixture": "m5-seed-probe-p0-neutralize-weak-1",
+  "seed": "p0-neutralize-fixed-seed1",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 0,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Reliable",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "strict_public_state",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "strict_public_state",
+    "identity_comparison": "compared"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "6FFBEEB8C269E6038A0585B1155FE8EDBA46A43BBDB548EA728FF1EA27AEC965",
+  "engine_post_state_hash": "6AE353018422716CFE00EA5DA1D95C145F200CDC20E919F47E0983BA99F7D542",
+  "projected_comparison_hash": "BB1A9277A06485CD5B7B9B571632B74E58458E5FA973BB71136C376E1A8D9D99",
+  "actual_comparison_hash": "BB1A9277A06485CD5B7B9B571632B74E58458E5FA973BB71136C376E1A8D9D99",
+  "rng_before": {
+    "Shuffle": 19,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 19,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 13,
+      "actual": 13,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 43,
+      "actual": 43,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.intents",
+      "projected": [
+        "Attack:8:1"
+      ],
+      "actual": [
+        "Attack:8:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.status.WEAK.amount",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand",
+      "projected": [
+        "card:NEUTRALIZE:022",
+        "card:NEUTRALIZE:023",
+        "card:NEUTRALIZE:024",
+        "card:NEUTRALIZE:025",
+        "card:NEUTRALIZE:026",
+        "card:NEUTRALIZE:027"
+      ],
+      "actual": [
+        "card:NEUTRALIZE:022",
+        "card:NEUTRALIZE:023",
+        "card:NEUTRALIZE:024",
+        "card:NEUTRALIZE:025",
+        "card:NEUTRALIZE:026",
+        "card:NEUTRALIZE:027"
+      ],
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 3,
+      "actual": 3,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 70,
+      "actual": 70,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.WEAK_POWER.amount",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.WEAK_POWER.applier",
+      "projected": "player",
+      "actual": "player",
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.WEAK_POWER.counters",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.WEAK_POWER.dynamic_vars",
+      "projected": [
+        {
+          "Key": "DamageDecrease",
+          "Value": "0.75"
+        }
+      ],
+      "actual": [
+        {
+          "Key": "DamageDecrease",
+          "Value": "0.75"
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.WEAK_POWER.present",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "relic.RING_OF_THE_SNAKE.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.RING_OF_THE_SNAKE.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Cards",
+          "Value": 2
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Cards",
+          "Value": 2
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "RING_OF_THE_SNAKE"
+      ],
+      "actual": [
+        "RING_OF_THE_SNAKE"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 19,
+      "actual": 19,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    }
+  ]
+}

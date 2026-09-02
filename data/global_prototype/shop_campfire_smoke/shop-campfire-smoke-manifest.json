@@ -1,0 +1,20 @@
+{
+  "candidate_counts": {
+    "campfire_high_hp": 3,
+    "campfire_low_hp": 3,
+    "shop_poor_gold": 5,
+    "shop_rich_gold": 5
+  },
+  "dataset_id": "global-shop-campfire-smoke-v0",
+  "mask_violations": 0,
+  "model_stage": "prototype",
+  "public_fields_only": true,
+  "quality": "EstimatedByHeuristic",
+  "reliable": false,
+  "report_sha256": "3f7f7af0bdddc4178388ada7f709eda25753885b71593174670bfe88f5f92738",
+  "scenario_count": 4,
+  "seed_input": false,
+  "source": "global-shop-campfire-prototype",
+  "stable_id_missing": 0,
+  "stage": "prototype"
+}

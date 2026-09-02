@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-direct4-TERRAFORMING",
+  "fixture": "TERRAFORMING",
+  "seed": "direct4-TERRAFORMING",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 0,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:TERRAFORMING:005:none",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Estimated",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "strict_public_state",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "strict_public_state",
+    "identity_comparison": "compared"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "7EBD1D7048487CC66152BFEDA57DC80C3F2E05AC394A1A1724D6AEC3C01D64C0",
+  "engine_post_state_hash": "D206B9FC9CCF39B6B149BFE45176068D4A3DE5527B510D9DBC4587CA0E31C720",
+  "projected_comparison_hash": "0C68C2F238747E7F2D3CD380FE120677CC11A5449EEA525A85E881FBC1F90A27",
+  "actual_comparison_hash": "0C68C2F238747E7F2D3CD380FE120677CC11A5449EEA525A85E881FBC1F90A27",
+  "rng_before": {
+    "Shuffle": 4,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 4,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 45,
+      "actual": 45,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.intents",
+      "projected": [
+        "Attack:11:1"
+      ],
+      "actual": [
+        "Attack:11:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand",
+      "projected": [
+        "card:TERRAFORMING:006",
+        "card:TERRAFORMING:007",
+        "card:TERRAFORMING:008",
+        "card:TERRAFORMING:009"
+      ],
+      "actual": [
+        "card:TERRAFORMING:006",
+        "card:TERRAFORMING:007",
+        "card:TERRAFORMING:008",
+        "card:TERRAFORMING:009"
+      ],
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 75,
+      "actual": 75,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.player.VIGOR_POWER.amount",
+      "projected": 7,
+      "actual": 7,
+      "match": true
+    },
+    {
+      "field": "power.player.VIGOR_POWER.applier",
+      "projected": "player",
+      "actual": "player",
+      "match": true
+    },
+    {
+      "field": "power.player.VIGOR_POWER.counters",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.player.VIGOR_POWER.dynamic_vars",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.player.VIGOR_POWER.present",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 4,
+      "actual": 4,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    }
+  ]
+}

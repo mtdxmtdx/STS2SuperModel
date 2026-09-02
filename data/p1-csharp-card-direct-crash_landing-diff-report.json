@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-direct4-CRASH_LANDING",
+  "fixture": "CRASH_LANDING",
+  "seed": "direct4-CRASH_LANDING",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 0,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:CRASH_LANDING:005:none",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Reliable",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "strict_public_state",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "strict_public_state",
+    "identity_comparison": "compared"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "7BFDABB4EF9814B7DF78AE39E277106AAA18B339B8B2F47BAC2650F953DD82CD",
+  "engine_post_state_hash": "C2931BF413C63156020C27BEE80187EB27A1DBA7D56A5E1C70C13E2E9406C581",
+  "projected_comparison_hash": "15969104B293468EEF6D7E8E53E11D0DE7F196EF9B2668BCD2CDA4AA2177E4A8",
+  "actual_comparison_hash": "15969104B293468EEF6D7E8E53E11D0DE7F196EF9B2668BCD2CDA4AA2177E4A8",
+  "rng_before": {
+    "Shuffle": 4,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 4,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 23,
+      "actual": 23,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.intents",
+      "projected": [
+        "Attack:11:1"
+      ],
+      "actual": [
+        "Attack:11:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand",
+      "projected": [
+        "card:CRASH_LANDING:006",
+        "card:CRASH_LANDING:007",
+        "card:CRASH_LANDING:008",
+        "card:CRASH_LANDING:009",
+        "card:DEBRIS:000",
+        "card:DEBRIS:001",
+        "card:DEBRIS:002",
+        "card:DEBRIS:003",
+        "card:DEBRIS:004",
+        "card:DEBRIS:005"
+      ],
+      "actual": [
+        "card:CRASH_LANDING:006",
+        "card:CRASH_LANDING:007",
+        "card:CRASH_LANDING:008",
+        "card:CRASH_LANDING:009",
+        "card:DEBRIS:000",
+        "card:DEBRIS:001",
+        "card:DEBRIS:002",
+        "card:DEBRIS:003",
+        "card:DEBRIS:004",
+        "card:DEBRIS:005"
+      ],
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 75,
+      "actual": 75,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 4,
+      "actual": 4,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    }
+  ]
+}

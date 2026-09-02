@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-probe-p1-infinite-blades-seed",
+  "fixture": "p1-power-infinite-blades",
+  "seed": "probe-p1-infinite-blades-seed",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 0,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:DEFEND_SILENT:017:none",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Reliable",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "strict_public_state",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "strict_public_state",
+    "identity_comparison": "compared"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "BC7F6FCC8BFF0988E7003D781C749144CE83362B427AD650D3A6090E0C07A900",
+  "engine_post_state_hash": "2901204CA69DC3E4FF20DD44658AF5F0B58A7460E59C7C7C19EF6D375E500DA3",
+  "projected_comparison_hash": "06506629B6A54FDDA8077FD6064BD1A60542FAC261E1E89DCD77C35587247502",
+  "actual_comparison_hash": "06506629B6A54FDDA8077FD6064BD1A60542FAC261E1E89DCD77C35587247502",
+  "rng_before": {
+    "Shuffle": 12,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 12,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 6,
+      "actual": 6,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 45,
+      "actual": 45,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.intents",
+      "projected": [
+        "Attack:11:1"
+      ],
+      "actual": [
+        "Attack:11:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand",
+      "projected": [
+        "card:DEFEND_SILENT:018",
+        "card:DEFEND_SILENT:019",
+        "card:DEFEND_SILENT:020",
+        "card:DEFEND_SILENT:021",
+        "card:DEFEND_SILENT:022",
+        "card:DEFEND_SILENT:023"
+      ],
+      "actual": [
+        "card:DEFEND_SILENT:018",
+        "card:DEFEND_SILENT:019",
+        "card:DEFEND_SILENT:020",
+        "card:DEFEND_SILENT:021",
+        "card:DEFEND_SILENT:022",
+        "card:DEFEND_SILENT:023"
+      ],
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 70,
+      "actual": 70,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.RING_OF_THE_SNAKE.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.RING_OF_THE_SNAKE.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Cards",
+          "Value": 2
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Cards",
+          "Value": 2
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "RING_OF_THE_SNAKE"
+      ],
+      "actual": [
+        "RING_OF_THE_SNAKE"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 12,
+      "actual": 12,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    }
+  ],
+  "repeat_sha256": "acf8a909e04f48353b9328e20ec0cda46caf3c4696939656cc1e6ebaf50317db"
+}

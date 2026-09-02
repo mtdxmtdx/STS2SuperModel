@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p1-cross-combat-carried-seed",
+  "fixture": "p1-relic-cross-combat-carried",
+  "seed": "p1-cross-combat-carried-seed",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 0,
+  "action_kind": "end_turn",
+  "normalized_action_id": "end_turn:",
+  "draw_pile_source": "placeholder_count_only",
+  "attacks_played_this_turn": 0,
+  "confidence": "Estimated",
+  "chance_present": true,
+  "random_operator": "Shuffle",
+  "probability_known": false,
+  "outcome_quality": "Unknown",
+  "probability_mass_covered": null,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "aggregate_count_only",
+  "identity_comparison": "omitted",
+  "chance_quality": {
+    "chance_present": true,
+    "random_operator": "Shuffle",
+    "probability_known": false,
+    "outcome_quality": "Unknown",
+    "probability_mass_covered": null,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "aggregate_count_only",
+    "identity_comparison": "omitted"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "18AA1DA1DF7873B1FEA34461B7D7BEC1C476A5D5539CCE481F18BCC5E6590D6C",
+  "engine_post_state_hash": "F0734AA35CAC6ACE928BE879851D7F223F30E9555AED7F3CC62C5FC9DACE9F9F",
+  "projected_comparison_hash": "70B77B182A5E4BD5230B3FD577AF4F336C488C8CA6CFFF80EA3DBB2CA32D8D53",
+  "actual_comparison_hash": "70B77B182A5E4BD5230B3FD577AF4F336C488C8CA6CFFF80EA3DBB2CA32D8D53",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 45,
+      "actual": 45,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 3,
+      "actual": 3,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 69,
+      "actual": 69,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.FISHING_ROD.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.FISHING_ROD.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Combats",
+          "Value": 3
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Combats",
+          "Value": 3
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.SWORD_OF_STONE.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.SWORD_OF_STONE.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Elites",
+          "Value": 5
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Elites",
+          "Value": 5
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.TOY_BOX.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.TOY_BOX.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Combats",
+          "Value": 3
+        },
+        {
+          "Key": "Relics",
+          "Value": 5
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Combats",
+          "Value": 3
+        },
+        {
+          "Key": "Relics",
+          "Value": 5
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.WONGOS_MYSTERY_TICKET.counter",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "relic.WONGOS_MYSTERY_TICKET.dynamic_vars",
+      "projected": [
+        {
+          "Key": "RemainingCombats",
+          "Value": 5
+        },
+        {
+          "Key": "Repeat",
+          "Value": 3
+        }
+      ],
+      "actual": [
+        {
+          "Key": "RemainingCombats",
+          "Value": 5
+        },
+        {
+          "Key": "Repeat",
+          "Value": 3
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "FISHING_ROD",
+        "SWORD_OF_STONE",
+        "TOY_BOX",
+        "WONGOS_MYSTERY_TICKET"
+      ],
+      "actual": [
+        "FISHING_ROD",
+        "SWORD_OF_STONE",
+        "TOY_BOX",
+        "WONGOS_MYSTERY_TICKET"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "operators": [
+    {
+      "operator_id": "draw_without_replacement",
+      "eligible_outcomes": "remaining card model IDs",
+      "probability_rule": "count(model_id) / remaining_count",
+      "replacement_policy": "without_replacement",
+      "conditioning_fields": ["known_deck_composition", "publicly_observable_history"],
+      "rng_stream_name": "Shuffle",
+      "evidence_level": "VersionedCardText",
+      "validation_fixtures": []
+    },
+    {
+      "operator_id": "shuffle_then_draw",
+      "eligible_outcomes": "remaining card multiset sequences",
+      "probability_rule": "uniform over equivalent multiset outcomes",
+      "replacement_policy": "without_replacement",
+      "conditioning_fields": ["remaining_card_multiset"],
+      "rng_stream_name": "Shuffle",
+      "evidence_level": "HeuristicInferred",
+      "validation_fixtures": []
+    },
+    {
+      "operator_id": "random_enemy_target",
+      "eligible_outcomes": "alive legal enemy IDs",
+      "probability_rule": "uniform over eligible targets unless runtime evidence specifies weights",
+      "replacement_policy": "with_replacement_per_hit",
+      "conditioning_fields": ["alive_enemies", "target_restrictions"],
+      "rng_stream_name": "CombatTargets",
+      "evidence_level": "LiveObserved",
+      "validation_fixtures": []
+    },
+    {
+      "operator_id": "random_card_selection",
+      "eligible_outcomes": "legal hand card combinations",
+      "probability_rule": "uniform combinations without replacement",
+      "replacement_policy": "without_replacement",
+      "conditioning_fields": ["hand", "selection_count", "card_restrictions"],
+      "rng_stream_name": "CombatCardSelection",
+      "evidence_level": "Unknown",
+      "validation_fixtures": []
+    },
+    {
+      "operator_id": "random_generated_card",
+      "eligible_outcomes": "versioned generated-card pool",
+      "probability_rule": "pool weight / total pool weight",
+      "replacement_policy": "declared_by_effect",
+      "conditioning_fields": ["card_pool", "upgrade_state", "character"],
+      "rng_stream_name": "CombatCardGeneration",
+      "evidence_level": "Unknown",
+      "validation_fixtures": []
+    },
+    {
+      "operator_id": "random_generated_potion",
+      "eligible_outcomes": "versioned generated-potion pool",
+      "probability_rule": "pool weight / total pool weight when the runtime pool is exposed",
+      "replacement_policy": "declared_by_effect",
+      "conditioning_fields": ["potion_pool", "upgrade_state", "character"],
+      "rng_stream_name": "CombatCardGeneration",
+      "evidence_level": "Unknown",
+      "validation_fixtures": [],
+      "status": "UncalculableUntilPoolEvidence"
+    }
+  ]
+}

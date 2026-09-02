@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "m3e-battle-defend-tie",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "sha256": "8FEABFB84F08D0544FEB8D58C5997AB2107CD0B15EDCC89D28FE1354B96E164E",
+  "verdict": "pass"
+}

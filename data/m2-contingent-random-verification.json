@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "fixture": "training/fixtures/m2-contingent-random-commands.jsonl",
+  "trace": "data/m2-contingent-random-trace.jsonl",
+  "labeled": "data/m2-contingent-random-labeled.jsonl",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol": "0.2.0",
+    "trace_schema": 1
+  },
+  "teacher_best_actions": [
+    "play:card:DEFEND_IRONCLAD:016:none",
+    "play:card:SWORD_BOOMERANG:001:none"
+  ],
+  "root_action": "play:card:SWORD_BOOMERANG:001:none",
+  "chance_nodes": 27,
+  "chance_probability_sum": 1.0,
+  "post_chance_max_nodes_with_actions": 27,
+  "post_chance_action_count_min": 3,
+  "confidence": "Reliable",
+  "label_quality": "ExactWithKnownChance",
+  "risk_events": [],
+  "trace_sha256": "966DED9234A4834C44048228A0079C65EA088DCADCE53FC69293A558EA072EE8",
+  "labeled_sha256": "832C66E9013A272951C1191D775E0BBF807702B5DDF7CE1DD25AD0D248EB8B22",
+  "shadowdiff": {
+    "path": "m2-contingent-random-shadowdiff-report.json",
+    "confidence": "Estimated",
+    "match": true,
+    "mismatch_count": 0,
+    "normalized_action_id": "play_card:card:SWORD_BOOMERANG:001:none",
+    "report_sha256": "2C47D4E86BF27BB6E82FA3097C9FF1B6406B222FD596DFE29F4F654F01479540",
+    "manifest": "m3e-contingent-random-shadowdiff-manifest.json",
+    "repeat_count": 2,
+    "byte_identical": true
+  },
+  "verdict": "pass",
+  "reliable_eligibility": "blocked_by_shadowdiff_estimated_random_outcome"
+}

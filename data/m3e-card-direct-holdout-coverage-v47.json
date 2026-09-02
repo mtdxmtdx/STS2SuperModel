@@ -1,0 +1,27 @@
+{
+  "schema_version": 47,
+  "dataset": "card-direct-matrix-results.json",
+  "witness_manifest": "card-direct-witness-manifest.json",
+  "matrix_rows": 607,
+  "executed_rows": 462,
+  "matched_rows": 398,
+  "mismatch_rows": 64,
+  "direct_reliable_rows": 204,
+  "repeat_verified_direct_reliable_rows": 108,
+  "matched_estimated_rows": 184,
+  "matched_uncalculable_rows": 9,
+  "fixture_not_entered_combat_rows": 37,
+  "choice_fixture_required_rows": 23,
+  "runtime_unavailable_rows": 80,
+  "runtime_error_rows": 5,
+  "true_timeout_rows": 0,
+  "mismatch_field_count": 105,
+  "closeout_progress": {
+    "v45_mismatch_rows": 182,
+    "v46_mismatch_rows": 79,
+    "deterministic_generation_and_draw_insertion_closed": 15,
+    "remaining": 64
+  },
+  "verdict": "partial",
+  "reason": "Mismatch reduced to 64; remaining work is dominated by random generation pools/RNG, hand transformations/Forge, temporary Strength restoration/intent, random attacks, and terminal effects."
+}

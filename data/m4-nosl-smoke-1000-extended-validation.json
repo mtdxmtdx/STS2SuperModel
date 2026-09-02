@@ -1,0 +1,3509 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "validation_status": "passed",
+  "total_files_checked": 1,
+  "total_rows_checked": 1000,
+  "row_counts": {
+    "trace_rows": 0,
+    "training_rows": 1000,
+    "episodes": 241,
+    "states_unique": 874,
+    "actions_total": 6006
+  },
+  "label_stats": {
+    "reliable": 0,
+    "estimated": 1000,
+    "low_confidence": 0,
+    "uncalculable": 0,
+    "unknown": 0,
+    "empty_teacher_best_actions": 0,
+    "empty_teacher_categories": {}
+  },
+  "stable_id_missing": 0,
+  "public_leakage_count": 0,
+  "duplicate_states": {
+    "warning_count": 126,
+    "error_count": 0,
+    "entries": [
+      {
+        "state_hash_public": "2FBD39B087025BDE3D04497070BC741BD12117B7B9CEB8191F1EC68D5BE77BC5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 7
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 13
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "3E3BCDCC8627E48EAA45F302DEE2962D8A11263ECD559DD648FF9D9314C36B33",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 8
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 14
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "4F0AC3407543F3CA81E5835FFC32DC9A91176D242DF2DB2B86C0AC9F140C78F2",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 9
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 15
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "D68732D1DF5BE10C6E4576B925E813DA5671CF914DD108FF44CB2A3EF94F1A7E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 10
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 16
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F5544C86C5B8869937020250B19E4C1A4F873072B266670140E78F53D672D382",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 11
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 17
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "FF892BC2A186F6154758C855ECD3D5F211B6D73691CA0D8421E87EF753218A89",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 12
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 18
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "0036346F96CE7CB5E5BE8484D27A3D7A5E3A6852916F7DDCFB491FAF93372793",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 31
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 43
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "252C498A4BAFA959255D9B2346C925086B527452DF6AFC03568536E9D8642846",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 32
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 44
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "2859FF28BE4BF1350CBBB172A427B695128B22A1B94B09503CFEA508C120FB1C",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 33
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 45
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "54C6E08EA94BA0B6B3D9EFC475A14201E48192584A95FED0E3402B3D804E4356",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 34
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 46
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9B0509FF2CA4AD055C22D7D88246DE6392ADF5D19BC0CBF69AC82849E410EC08",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 35
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 47
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "C37140A1E041B3507D56C81AB4744A2F297567A2C00D57277B922115A5F40AED",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 36
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 48
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "447E3484E1D5449933A7B29E161CE64DEE1A3422130FECFC50005DEFBECC81FF",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 25
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 49
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "44AA99147367C4283FDC614AE5BDDC1D33BB1D20183DA04B581A8D7498EB871E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 26
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 50
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "4822835D381D82DC6F0089FC48CB60123B0CD7FB3D30B8300901FBBF33C98B7A",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 27
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 51
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "ACD88DFC79FEF8AA637A5DCC752BC6240442ADABA117CC415CE7976020073F70",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 28
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 52
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "D9301BCEE86484155B0076C75A0928052ED78266B30D5FFB47724C10EEEDE588",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 29
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 53
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "EDF3D757A102F72AAF87E4410F27EBB5CFCBB65474F039BF69184B0C805D1C10",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 30
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 54
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "5E2A19CAD0280E10512AB306CD32AFA8FD4852F9E1CD5FE3A8D7D1D0DDBA367A",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 1
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 55
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "64E65D572BD686F854B342159C940BAD7FEB06A7956AAB789E4CB10617D13CD3",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 2
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 56
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "A3DB14B63EA18BAC01B87B5562F854920482C9E065B2D34804BAFBF7E6A3668A",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 3
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 57
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "C355A239EE3F46D973C3E0B0267C066F6F59C13D367F694E972EC64B50DA52A9",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 4
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 58
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "EA3B96C75E0403455A5888BAF87E59C163EB0AB8E31F5D886A5E37152466D377",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 5
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 59
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "FF519DA906BDDE2203295D5F7E632AAFADFD6D6E1C6226DFA2F0F8761FE96D58",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 6
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 60
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "462F8406CB1D530849339EAA5FCF7E68212EBDD2BA4530BE6150AE409CFDAA3C",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 241
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 242
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "81146260B9867C59243A06EB3496D49ACE0C83F1E157C13F013B8AB96C2DC76A",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 466
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 502
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9DCDB719D8017D38DFD01AF53DF4D1A6C5669085B3456834977B4D8B6F9EDC05",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 467
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 503
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9F7CF481E8C6A0B75BE7EAA41410918559176598205A666F1C17E7870816DF5E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 468
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 504
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "DED3FF2BB2E8563D3FD1C6082C444F8B6C7F793AD178EBB58CD2C860076A122E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 469
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 505
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F204776EA2EE8C5D9ACE3B76469551A0B4FB4C2DD8547E70FAD77C017485AEC5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 470
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 506
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F70D5572CA0E125E1F7D9C5FC3306D88497423857B3F5F7C560B0195AC71B7D8",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 471
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 507
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "52A699DDDC71BFD1B3CD9B8F4B66F23B24A4B265A8C8525453F01A287A73A9E3",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 472
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 514
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "6A175C5CDDC6343C615F49169B4AB52847C81568742C831A4A6E8D16BA2C6DD9",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 473
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 515
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "8E4EBBF1A7D8E0F30D17F4FA963E5757FF6D102D173423A8E9F0A69F59B56744",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 474
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 516
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "E2DCB70FB6524C6E679B728FC164E5693C8EE078CDEE0445B6481E9A4E710C36",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 475
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 517
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "CAF0801DFA09225BB8F78473B36F3DEA6A5E2467A5600B59728DED346A749EAC",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 476
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 518
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F93116D93711E6505C386AEA9E92377ED09320C114E658387985EBC207D401D9",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 477
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 519
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "581FDB9E745D4463F605F13D4A6559EEAE7EBD3B5ED93E33CFE76AABF1722B81",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 708
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 714
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "7ADD50CB535912CFCBC806EFF91F0A2A7C07BE4973A1D308536D719825DEC3FF",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 709
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 715
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "BE18841EE06174FFF73B948637EC73093DC9976F989C59ABB9F2C0F6CB7232BC",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 710
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 716
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "D801DE8DBB444D48CD19F0B4EAB5F6C10BD66E55278D53B956EA2AD28E3B18A7",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 711
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 717
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "638DF5D39A0F2E34BECCF98BA65D9DDC6A7EBDAA1068A250ABFE8E63B8306327",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 712
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 718
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "D23AE4E17B7E6DBCF83E4D544F41DA663FDB739739EB745F3E1B67DABCB02927",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 713
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 719
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "381B3B69E93C7DEB9654FA029A7C9CA8EA4C0F458575331E6F887C201DC59F94",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 732
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 738
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "425BBD2D6CF3656E4C3942E4C1A8597B93B019DA04C5762C32699EB6DAFAC332",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 733
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 739
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "E482282E76733718566BD3AAB94409BC02713AF54EE50A9191F21581648A334F",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 734
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 740
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F3D99765DD6F8C9374F9F4E301C9CAB59785A8BC836645208B63C4BABA3FE356",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 735
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 741
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "18AA28C4253B53202BD539EB402280406791F557E8CA52ECB634B78D0A1CC461",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 736
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 742
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "348C1C280BC4125CC3B1F8210C139FD167E1A63B645FA6828F07D37B47EA0459",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 737
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 743
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "28C2A5E37110C9D059676EE816A01C2B3990C93838C2672AB00A475F442E8A02",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 726
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 750
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "4A2CCCE20FB6A8906F79B4291C189125144DA655660BE96770C82E78DBC8D227",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 727
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 751
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "8BFD12A24A933C8530BE44A20879E9F25ACA35E28644543F2B45FB1C789E0983",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 728
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 752
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "C46064D5185CAE09A7F631A97C382B8D2B11F603C1AE86F915252E714A799E74",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 729
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 753
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "90CDE0E67B606AC05A451828B8F7AEB09B23DFB805A90FEDF7F3A724C36635F8",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 730
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 754
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "B81A944649D02DBDAF594E0E0EFF63D478F98BD757825917D53EA7386D776DE8",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 731
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 755
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "381B3B69E93C7DEB9654FA029A7C9CA8EA4C0F458575331E6F887C201DC59F94",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 732
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 738
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 762
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "425BBD2D6CF3656E4C3942E4C1A8597B93B019DA04C5762C32699EB6DAFAC332",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 733
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 739
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 763
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "E482282E76733718566BD3AAB94409BC02713AF54EE50A9191F21581648A334F",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 734
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 740
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 764
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F3D99765DD6F8C9374F9F4E301C9CAB59785A8BC836645208B63C4BABA3FE356",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 735
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 741
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 765
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "18AA28C4253B53202BD539EB402280406791F557E8CA52ECB634B78D0A1CC461",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 736
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 742
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 766
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "348C1C280BC4125CC3B1F8210C139FD167E1A63B645FA6828F07D37B47EA0459",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 737
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 743
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 767
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "75FAA8A9F169276555BCEB9D8578EABE6A63D78AA1F71A66F771F01A0D3B867E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 771
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 779
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "49A3F73D5A8DBC7D1735BFAE73C638241471C10C99C33E25C578025ECEC23485",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 788
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 818
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "4C1AEA6E7B8F125626A32B1D9DB15D38726297FA228C50269A0C680344B6164A",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 789
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 819
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "526BAFAF4EE88B43BA63703EBBD14955C6E3828295D0D2B4EAB5894684AD8B28",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 790
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 820
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "64AF16804DC5A6EC8682818F6600A488FABE2803266E65F3C27B63BCD4BAA858",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 791
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 821
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "A68C6A724C40242FB494621367A2C425CEB74E0E3E46F724E06A1FF6359565BB",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 792
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 822
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "4B891A294A79DE844B7351E432C067D462275CC52F9370D83D22AD0E768A6E25",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 793
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 823
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "678951ADB24DB11AC5C82610372874003245B83EA4F32F8BBBFD9BB8D6303E1E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 794
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 824
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "8391C069A6C47006D9FE78295A709EEDD8B43FE8B6CD1A85F411F274F2064853",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 795
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 825
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "A278D7048A5FE229D7C4860D6F01405D324FFB8E4E2050A9330F74040D2FE0B8",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 796
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 826
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "18C8C84B04FC2E5CA86F4725F44EE4FACB986207DE790ADE456D619F0B5E03F7",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 803
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 833
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "538743F05FF1BEF49D0E96A4C516F666DB170860FDDD9FE1EA11383CDFC218A2",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 804
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 834
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9F5157D1B56E012501D0A1DC56547C113447B7338B84EAA2F02E1C40FD2A39FC",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 805
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 835
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "B134BE41BE500EFB1A1D7BA3FAD5B80C0B289C5BA100BF777A02BC648F20DB75",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 806
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 836
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F794257771D9DF060CB73B9D28F78A88E8CD522EA4FF55FB1CB759CDADFBF2EB",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 807
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 837
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "77D214A1B90B117A86ADF8EA021F4B3213057E7505125109BC7213DF56B37D4E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 808
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 838
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9CD1929491AF292F539889664058DEEEEDC3D1D0A5B332EBB510F73E5D7060E5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 809
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 839
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "A80C4308A5A24ADBFDC9C8413E4DFBA045BF1311920E067AB22B1165FC59EEC5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 810
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 840
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "ABEF23C2343881C1627D46254767283917A27CF09744D2BBC10D0FF446CAA09C",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 811
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 841
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "18C8C84B04FC2E5CA86F4725F44EE4FACB986207DE790ADE456D619F0B5E03F7",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 803
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 833
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 848
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "538743F05FF1BEF49D0E96A4C516F666DB170860FDDD9FE1EA11383CDFC218A2",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 804
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 834
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 849
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9F5157D1B56E012501D0A1DC56547C113447B7338B84EAA2F02E1C40FD2A39FC",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 805
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 835
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 850
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "B134BE41BE500EFB1A1D7BA3FAD5B80C0B289C5BA100BF777A02BC648F20DB75",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 806
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 836
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 851
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F794257771D9DF060CB73B9D28F78A88E8CD522EA4FF55FB1CB759CDADFBF2EB",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 807
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 837
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 852
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "77D214A1B90B117A86ADF8EA021F4B3213057E7505125109BC7213DF56B37D4E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 808
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 838
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 853
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9CD1929491AF292F539889664058DEEEEDC3D1D0A5B332EBB510F73E5D7060E5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 809
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 839
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 854
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "A80C4308A5A24ADBFDC9C8413E4DFBA045BF1311920E067AB22B1165FC59EEC5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 810
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 840
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 855
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "ABEF23C2343881C1627D46254767283917A27CF09744D2BBC10D0FF446CAA09C",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 811
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 841
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 856
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "18C8C84B04FC2E5CA86F4725F44EE4FACB986207DE790ADE456D619F0B5E03F7",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 803
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 833
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 848
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 863
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "538743F05FF1BEF49D0E96A4C516F666DB170860FDDD9FE1EA11383CDFC218A2",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 804
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 834
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 849
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 864
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9F5157D1B56E012501D0A1DC56547C113447B7338B84EAA2F02E1C40FD2A39FC",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 805
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 835
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 850
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 865
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "B134BE41BE500EFB1A1D7BA3FAD5B80C0B289C5BA100BF777A02BC648F20DB75",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 806
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 836
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 851
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 866
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F794257771D9DF060CB73B9D28F78A88E8CD522EA4FF55FB1CB759CDADFBF2EB",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 807
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 837
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 852
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 867
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "77D214A1B90B117A86ADF8EA021F4B3213057E7505125109BC7213DF56B37D4E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 808
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 838
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 853
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 868
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9CD1929491AF292F539889664058DEEEEDC3D1D0A5B332EBB510F73E5D7060E5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 809
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 839
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 854
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 869
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "A80C4308A5A24ADBFDC9C8413E4DFBA045BF1311920E067AB22B1165FC59EEC5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 810
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 840
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 855
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 870
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "ABEF23C2343881C1627D46254767283917A27CF09744D2BBC10D0FF446CAA09C",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 811
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 841
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 856
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 871
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "18C8C84B04FC2E5CA86F4725F44EE4FACB986207DE790ADE456D619F0B5E03F7",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 803
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 833
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 848
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 863
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 878
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "538743F05FF1BEF49D0E96A4C516F666DB170860FDDD9FE1EA11383CDFC218A2",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 804
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 834
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 849
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 864
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 879
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9F5157D1B56E012501D0A1DC56547C113447B7338B84EAA2F02E1C40FD2A39FC",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 805
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 835
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 850
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 865
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 880
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "B134BE41BE500EFB1A1D7BA3FAD5B80C0B289C5BA100BF777A02BC648F20DB75",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 806
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 836
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 851
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 866
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 881
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F794257771D9DF060CB73B9D28F78A88E8CD522EA4FF55FB1CB759CDADFBF2EB",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 807
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 837
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 852
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 867
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 882
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "77D214A1B90B117A86ADF8EA021F4B3213057E7505125109BC7213DF56B37D4E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 808
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 838
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 853
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 868
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 883
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9CD1929491AF292F539889664058DEEEEDC3D1D0A5B332EBB510F73E5D7060E5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 809
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 839
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 854
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 869
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 884
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "A80C4308A5A24ADBFDC9C8413E4DFBA045BF1311920E067AB22B1165FC59EEC5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 810
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 840
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 855
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 870
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 885
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "ABEF23C2343881C1627D46254767283917A27CF09744D2BBC10D0FF446CAA09C",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 811
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 841
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 856
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 871
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 886
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9D33698A732B5E411F08D7707915D3915D0A6D85335D26169B7A0D30BD0061DD",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 843
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 890
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "18C8C84B04FC2E5CA86F4725F44EE4FACB986207DE790ADE456D619F0B5E03F7",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 803
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 833
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 848
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 863
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 878
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 893
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "538743F05FF1BEF49D0E96A4C516F666DB170860FDDD9FE1EA11383CDFC218A2",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 804
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 834
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 849
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 864
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 879
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 894
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9F5157D1B56E012501D0A1DC56547C113447B7338B84EAA2F02E1C40FD2A39FC",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 805
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 835
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 850
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 865
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 880
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 895
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "B134BE41BE500EFB1A1D7BA3FAD5B80C0B289C5BA100BF777A02BC648F20DB75",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 806
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 836
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 851
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 866
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 881
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 896
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F794257771D9DF060CB73B9D28F78A88E8CD522EA4FF55FB1CB759CDADFBF2EB",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 807
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 837
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 852
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 867
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 882
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 897
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "77D214A1B90B117A86ADF8EA021F4B3213057E7505125109BC7213DF56B37D4E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 808
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 838
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 853
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 868
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 883
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 898
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9CD1929491AF292F539889664058DEEEEDC3D1D0A5B332EBB510F73E5D7060E5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 809
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 839
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 854
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 869
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 884
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 899
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "A80C4308A5A24ADBFDC9C8413E4DFBA045BF1311920E067AB22B1165FC59EEC5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 810
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 840
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 855
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 870
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 885
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 900
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "ABEF23C2343881C1627D46254767283917A27CF09744D2BBC10D0FF446CAA09C",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 811
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 841
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 856
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 871
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 886
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 901
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "18C8C84B04FC2E5CA86F4725F44EE4FACB986207DE790ADE456D619F0B5E03F7",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 803
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 833
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 848
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 863
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 878
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 893
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 908
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "538743F05FF1BEF49D0E96A4C516F666DB170860FDDD9FE1EA11383CDFC218A2",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 804
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 834
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 849
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 864
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 879
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 894
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 909
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9F5157D1B56E012501D0A1DC56547C113447B7338B84EAA2F02E1C40FD2A39FC",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 805
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 835
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 850
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 865
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 880
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 895
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 910
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "B134BE41BE500EFB1A1D7BA3FAD5B80C0B289C5BA100BF777A02BC648F20DB75",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 806
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 836
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 851
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 866
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 881
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 896
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 911
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F794257771D9DF060CB73B9D28F78A88E8CD522EA4FF55FB1CB759CDADFBF2EB",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 807
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 837
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 852
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 867
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 882
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 897
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 912
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "77D214A1B90B117A86ADF8EA021F4B3213057E7505125109BC7213DF56B37D4E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 808
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 838
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 853
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 868
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 883
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 898
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 913
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "9CD1929491AF292F539889664058DEEEEDC3D1D0A5B332EBB510F73E5D7060E5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 809
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 839
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 854
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 869
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 884
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 899
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 914
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "A80C4308A5A24ADBFDC9C8413E4DFBA045BF1311920E067AB22B1165FC59EEC5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 810
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 840
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 855
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 870
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 885
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 900
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 915
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "ABEF23C2343881C1627D46254767283917A27CF09744D2BBC10D0FF446CAA09C",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 811
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 841
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 856
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 871
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 886
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 901
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+            "line": 916
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      }
+    ],
+    "classification_legend": {
+      "warning_identical_duplicate": "same hash + same combo + same labels: redundant, merge recommended",
+      "error_conflicting_labels": "same hash + same combo but differing labels/confidence: dataset corruption"
+    }
+  },
+  "malformed_lines": [],
+  "warning_count": 126,
+  "warnings": [
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 13,
+      "path": "state_hash_public",
+      "message": "(line 13) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:7; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 14,
+      "path": "state_hash_public",
+      "message": "(line 14) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:8; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 15,
+      "path": "state_hash_public",
+      "message": "(line 15) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:9; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 16,
+      "path": "state_hash_public",
+      "message": "(line 16) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:10; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 17,
+      "path": "state_hash_public",
+      "message": "(line 17) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:11; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 18,
+      "path": "state_hash_public",
+      "message": "(line 18) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:12; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 43,
+      "path": "state_hash_public",
+      "message": "(line 43) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:31; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 44,
+      "path": "state_hash_public",
+      "message": "(line 44) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:32; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 45,
+      "path": "state_hash_public",
+      "message": "(line 45) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:33; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 46,
+      "path": "state_hash_public",
+      "message": "(line 46) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:34; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 47,
+      "path": "state_hash_public",
+      "message": "(line 47) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:35; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 48,
+      "path": "state_hash_public",
+      "message": "(line 48) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:36; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 49,
+      "path": "state_hash_public",
+      "message": "(line 49) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:25; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 50,
+      "path": "state_hash_public",
+      "message": "(line 50) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:26; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 51,
+      "path": "state_hash_public",
+      "message": "(line 51) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:27; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 52,
+      "path": "state_hash_public",
+      "message": "(line 52) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:28; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 53,
+      "path": "state_hash_public",
+      "message": "(line 53) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:29; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 54,
+      "path": "state_hash_public",
+      "message": "(line 54) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:30; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 55,
+      "path": "state_hash_public",
+      "message": "(line 55) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:1; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 56,
+      "path": "state_hash_public",
+      "message": "(line 56) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:2; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 57,
+      "path": "state_hash_public",
+      "message": "(line 57) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:3; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 58,
+      "path": "state_hash_public",
+      "message": "(line 58) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:4; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 59,
+      "path": "state_hash_public",
+      "message": "(line 59) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:5; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 60,
+      "path": "state_hash_public",
+      "message": "(line 60) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:6; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 242,
+      "path": "state_hash_public",
+      "message": "(line 242) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:241; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 502,
+      "path": "state_hash_public",
+      "message": "(line 502) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:466; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 503,
+      "path": "state_hash_public",
+      "message": "(line 503) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:467; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 504,
+      "path": "state_hash_public",
+      "message": "(line 504) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:468; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 505,
+      "path": "state_hash_public",
+      "message": "(line 505) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:469; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 506,
+      "path": "state_hash_public",
+      "message": "(line 506) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:470; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 507,
+      "path": "state_hash_public",
+      "message": "(line 507) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:471; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 514,
+      "path": "state_hash_public",
+      "message": "(line 514) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:472; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 515,
+      "path": "state_hash_public",
+      "message": "(line 515) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:473; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 516,
+      "path": "state_hash_public",
+      "message": "(line 516) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:474; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 517,
+      "path": "state_hash_public",
+      "message": "(line 517) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:475; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 518,
+      "path": "state_hash_public",
+      "message": "(line 518) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:476; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 519,
+      "path": "state_hash_public",
+      "message": "(line 519) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:477; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 714,
+      "path": "state_hash_public",
+      "message": "(line 714) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:708; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 715,
+      "path": "state_hash_public",
+      "message": "(line 715) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:709; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 716,
+      "path": "state_hash_public",
+      "message": "(line 716) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:710; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 717,
+      "path": "state_hash_public",
+      "message": "(line 717) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:711; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 718,
+      "path": "state_hash_public",
+      "message": "(line 718) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:712; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 719,
+      "path": "state_hash_public",
+      "message": "(line 719) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:713; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 738,
+      "path": "state_hash_public",
+      "message": "(line 738) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:732; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 739,
+      "path": "state_hash_public",
+      "message": "(line 739) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:733; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 740,
+      "path": "state_hash_public",
+      "message": "(line 740) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:734; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 741,
+      "path": "state_hash_public",
+      "message": "(line 741) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:735; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 742,
+      "path": "state_hash_public",
+      "message": "(line 742) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:736; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 743,
+      "path": "state_hash_public",
+      "message": "(line 743) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:737; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 750,
+      "path": "state_hash_public",
+      "message": "(line 750) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:726; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 751,
+      "path": "state_hash_public",
+      "message": "(line 751) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:727; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 752,
+      "path": "state_hash_public",
+      "message": "(line 752) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:728; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 753,
+      "path": "state_hash_public",
+      "message": "(line 753) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:729; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 754,
+      "path": "state_hash_public",
+      "message": "(line 754) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:730; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 755,
+      "path": "state_hash_public",
+      "message": "(line 755) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:731; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 762,
+      "path": "state_hash_public",
+      "message": "(line 762) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:732; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 763,
+      "path": "state_hash_public",
+      "message": "(line 763) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:733; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 764,
+      "path": "state_hash_public",
+      "message": "(line 764) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:734; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 765,
+      "path": "state_hash_public",
+      "message": "(line 765) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:735; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 766,
+      "path": "state_hash_public",
+      "message": "(line 766) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:736; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 767,
+      "path": "state_hash_public",
+      "message": "(line 767) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:737; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 779,
+      "path": "state_hash_public",
+      "message": "(line 779) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:771; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 818,
+      "path": "state_hash_public",
+      "message": "(line 818) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:788; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 819,
+      "path": "state_hash_public",
+      "message": "(line 819) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:789; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 820,
+      "path": "state_hash_public",
+      "message": "(line 820) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:790; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 821,
+      "path": "state_hash_public",
+      "message": "(line 821) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:791; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 822,
+      "path": "state_hash_public",
+      "message": "(line 822) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:792; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 823,
+      "path": "state_hash_public",
+      "message": "(line 823) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:793; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 824,
+      "path": "state_hash_public",
+      "message": "(line 824) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:794; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 825,
+      "path": "state_hash_public",
+      "message": "(line 825) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:795; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 826,
+      "path": "state_hash_public",
+      "message": "(line 826) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:796; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 833,
+      "path": "state_hash_public",
+      "message": "(line 833) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:803; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 834,
+      "path": "state_hash_public",
+      "message": "(line 834) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:804; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 835,
+      "path": "state_hash_public",
+      "message": "(line 835) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:805; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 836,
+      "path": "state_hash_public",
+      "message": "(line 836) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:806; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 837,
+      "path": "state_hash_public",
+      "message": "(line 837) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:807; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 838,
+      "path": "state_hash_public",
+      "message": "(line 838) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:808; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 839,
+      "path": "state_hash_public",
+      "message": "(line 839) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:809; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 840,
+      "path": "state_hash_public",
+      "message": "(line 840) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:810; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 841,
+      "path": "state_hash_public",
+      "message": "(line 841) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:811; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 848,
+      "path": "state_hash_public",
+      "message": "(line 848) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:803; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 849,
+      "path": "state_hash_public",
+      "message": "(line 849) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:804; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 850,
+      "path": "state_hash_public",
+      "message": "(line 850) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:805; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 851,
+      "path": "state_hash_public",
+      "message": "(line 851) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:806; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 852,
+      "path": "state_hash_public",
+      "message": "(line 852) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:807; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 853,
+      "path": "state_hash_public",
+      "message": "(line 853) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:808; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 854,
+      "path": "state_hash_public",
+      "message": "(line 854) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:809; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 855,
+      "path": "state_hash_public",
+      "message": "(line 855) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:810; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 856,
+      "path": "state_hash_public",
+      "message": "(line 856) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:811; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 863,
+      "path": "state_hash_public",
+      "message": "(line 863) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:803; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 864,
+      "path": "state_hash_public",
+      "message": "(line 864) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:804; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 865,
+      "path": "state_hash_public",
+      "message": "(line 865) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:805; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 866,
+      "path": "state_hash_public",
+      "message": "(line 866) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:806; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 867,
+      "path": "state_hash_public",
+      "message": "(line 867) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:807; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 868,
+      "path": "state_hash_public",
+      "message": "(line 868) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:808; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 869,
+      "path": "state_hash_public",
+      "message": "(line 869) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:809; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 870,
+      "path": "state_hash_public",
+      "message": "(line 870) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:810; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 871,
+      "path": "state_hash_public",
+      "message": "(line 871) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:811; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 878,
+      "path": "state_hash_public",
+      "message": "(line 878) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:803; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 879,
+      "path": "state_hash_public",
+      "message": "(line 879) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:804; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 880,
+      "path": "state_hash_public",
+      "message": "(line 880) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:805; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 881,
+      "path": "state_hash_public",
+      "message": "(line 881) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:806; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 882,
+      "path": "state_hash_public",
+      "message": "(line 882) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:807; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 883,
+      "path": "state_hash_public",
+      "message": "(line 883) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:808; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 884,
+      "path": "state_hash_public",
+      "message": "(line 884) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:809; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 885,
+      "path": "state_hash_public",
+      "message": "(line 885) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:810; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 886,
+      "path": "state_hash_public",
+      "message": "(line 886) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:811; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 890,
+      "path": "state_hash_public",
+      "message": "(line 890) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:843; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 893,
+      "path": "state_hash_public",
+      "message": "(line 893) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:803; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 894,
+      "path": "state_hash_public",
+      "message": "(line 894) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:804; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 895,
+      "path": "state_hash_public",
+      "message": "(line 895) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:805; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 896,
+      "path": "state_hash_public",
+      "message": "(line 896) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:806; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 897,
+      "path": "state_hash_public",
+      "message": "(line 897) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:807; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 898,
+      "path": "state_hash_public",
+      "message": "(line 898) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:808; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 899,
+      "path": "state_hash_public",
+      "message": "(line 899) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:809; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 900,
+      "path": "state_hash_public",
+      "message": "(line 900) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:810; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 901,
+      "path": "state_hash_public",
+      "message": "(line 901) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:811; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 908,
+      "path": "state_hash_public",
+      "message": "(line 908) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:803; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 909,
+      "path": "state_hash_public",
+      "message": "(line 909) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:804; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 910,
+      "path": "state_hash_public",
+      "message": "(line 910) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:805; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 911,
+      "path": "state_hash_public",
+      "message": "(line 911) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:806; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 912,
+      "path": "state_hash_public",
+      "message": "(line 912) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:807; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 913,
+      "path": "state_hash_public",
+      "message": "(line 913) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:808; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 914,
+      "path": "state_hash_public",
+      "message": "(line 914) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:809; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 915,
+      "path": "state_hash_public",
+      "message": "(line 915) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:810; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+      "line_no": 916,
+      "path": "state_hash_public",
+      "message": "(line 916) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl:811; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    }
+  ],
+  "error_count": 0,
+  "errors": [],
+  "checked_files": [
+    "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl"
+  ]
+}

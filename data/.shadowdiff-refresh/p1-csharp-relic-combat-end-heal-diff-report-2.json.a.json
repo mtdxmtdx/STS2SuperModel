@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p1-combat-end-heal-seed",
+  "fixture": "p1-relic-combat-end-heal",
+  "seed": "p1-combat-end-heal-seed",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 2,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:BLUDGEON:008:enemy:SHRINKER_BEETLE:1",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Reliable",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "terminal_summary",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "terminal_summary",
+    "identity_comparison": "compared"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "71408174071AE57F0BAFC7DDAD9D278D448215B43A8A9457EDACE292025C3FDB",
+  "engine_post_state_hash": "3FF8E552EF5D59C9650797E9F712AAAA3BD080FFAD97CBF476F2FB4E4A71135B",
+  "projected_comparison_hash": "AC3D59D4DD45D01BA236DB01DE47937D2E75D6FAAB5156596FBEE5E43873F41B",
+  "actual_comparison_hash": "AC3D59D4DD45D01BA236DB01DE47937D2E75D6FAAB5156596FBEE5E43873F41B",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 30,
+      "actual": 30,
+      "match": true
+    },
+    {
+      "field": "relic.BLACK_BLOOD.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.BLACK_BLOOD.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Heal",
+          "Value": 12
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Heal",
+          "Value": 12
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.MEAT_ON_THE_BONE.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.MEAT_ON_THE_BONE.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Heal",
+          "Value": 12
+        },
+        {
+          "Key": "HpThreshold",
+          "Value": 50
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Heal",
+          "Value": 12
+        },
+        {
+          "Key": "HpThreshold",
+          "Value": 50
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "BLACK_BLOOD",
+        "MEAT_ON_THE_BONE"
+      ],
+      "actual": [
+        "BLACK_BLOOD",
+        "MEAT_ON_THE_BONE"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    }
+  ]
+}

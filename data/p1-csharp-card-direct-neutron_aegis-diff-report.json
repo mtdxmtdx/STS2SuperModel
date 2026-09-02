@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-direct4-NEUTRON_AEGIS",
+  "fixture": "NEUTRON_AEGIS",
+  "seed": "direct4-NEUTRON_AEGIS",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 0,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:NEUTRON_AEGIS:005:none",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Reliable",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "strict_public_state",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "strict_public_state",
+    "identity_comparison": "compared"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "716286399440CD2ADACAADB038CA5F4558EF2E30E575B778BB85C9C7EDA13799",
+  "engine_post_state_hash": "A4155CA0A3A2529DAA099EB7E17CE930D457E3AB10F271BAEAFC9E4B91444CA1",
+  "projected_comparison_hash": "A55EC419CB80E9466CAB61F452B631F135F47B53340755C1BD9EA6697507DA35",
+  "actual_comparison_hash": "A55EC419CB80E9466CAB61F452B631F135F47B53340755C1BD9EA6697507DA35",
+  "rng_before": {
+    "Shuffle": 4,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 4,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 44,
+      "actual": 44,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.intents",
+      "projected": [
+        "Attack:11:1"
+      ],
+      "actual": [
+        "Attack:11:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand",
+      "projected": [
+        "card:NEUTRON_AEGIS:006",
+        "card:NEUTRON_AEGIS:007",
+        "card:NEUTRON_AEGIS:008",
+        "card:NEUTRON_AEGIS:009"
+      ],
+      "actual": [
+        "card:NEUTRON_AEGIS:006",
+        "card:NEUTRON_AEGIS:007",
+        "card:NEUTRON_AEGIS:008",
+        "card:NEUTRON_AEGIS:009"
+      ],
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 75,
+      "actual": 75,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.player.PLATING_POWER.amount",
+      "projected": 8,
+      "actual": 8,
+      "match": true
+    },
+    {
+      "field": "power.player.PLATING_POWER.applier",
+      "projected": "player",
+      "actual": "player",
+      "match": true
+    },
+    {
+      "field": "power.player.PLATING_POWER.counters",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.player.PLATING_POWER.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Decrement",
+          "Value": "1"
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Decrement",
+          "Value": "1"
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "power.player.PLATING_POWER.present",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 4,
+      "actual": 4,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    }
+  ]
+}

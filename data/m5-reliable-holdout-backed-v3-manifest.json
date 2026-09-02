@@ -1,0 +1,29 @@
+{
+  "dataset_id": "m5-reliable-holdout-backed-v3-manifest",
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "simulator_version": "cli-v0111-headless",
+  "scorer_version": "not-applicable",
+  "semantic_database_version": "game-runtime-v0111",
+  "feature_schema_version": "1",
+  "model_version": "none",
+  "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383",
+  "feature_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383",
+  "split_policy": "episode_or_seed_group",
+  "row_count": 17,
+  "state_count": 17,
+  "action_count": 142,
+  "reliable_count": 17,
+  "estimated_count": 0,
+  "uncalculable_count": 0,
+  "confidence_counts": {
+    "Reliable": 17
+  },
+  "source_hashes": [
+    "BD5C5F33047C533120BDD1A22EF5D448F22496A9D0E2BAC7E88A195546EA54E0"
+  ],
+  "created_at_utc": "2026-08-31T07:38:50Z"
+}

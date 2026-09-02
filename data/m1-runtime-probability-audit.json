@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "scope": "all checked-in NOSL_EXACT_OFFLINE labeled records with policy_tree",
+  "files_scanned": 4,
+  "root_records": 6,
+  "chance_groups": 33,
+  "chance_nodes": 134,
+  "post_chance_max_with_actions": 110,
+  "probability_mass_bad_groups": 0,
+  "sampled_or_estimated_chance_nodes": 0,
+  "confidence_counts": {
+    "Estimated": 2,
+    "Reliable": 4
+  },
+  "errors": [],
+  "verdict": "pass"
+}

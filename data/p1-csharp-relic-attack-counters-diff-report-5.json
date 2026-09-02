@@ -1,0 +1,376 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p1-attack-counters-seed",
+  "fixture": "p1-relic-attack-counters",
+  "seed": "p1-attack-counters-seed",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 5,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:STRIKE_IRONCLAD:019:enemy:SEAPUNK:1",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Reliable",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "strict_public_state",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "strict_public_state",
+    "identity_comparison": "compared"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "79F355352FF324805D5F245E7A00D8E329EF7FC2B086948A7205E9C621F7E055",
+  "engine_post_state_hash": "1A381FF3885AC66DB2E6C476CD19B9BC42F50B8FA6F314A99AA15EC80DFD2923",
+  "projected_comparison_hash": "4C5D7F5521C95F608386B309740E97C61D5270FCD38FC68C7542C9C9284F3B5C",
+  "actual_comparison_hash": "4C5D7F5521C95F608386B309740E97C61D5270FCD38FC68C7542C9C9284F3B5C",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 7,
+      "actual": 7,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 12,
+      "actual": 12,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.intents",
+      "projected": [
+        "Attack:2:4"
+      ],
+      "actual": [
+        "Attack:2:4"
+      ],
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand",
+      "projected": [
+        "card:STRIKE_IRONCLAD:020",
+        "card:STRIKE_IRONCLAD:021",
+        "card:STRIKE_IRONCLAD:022"
+      ],
+      "actual": [
+        "card:STRIKE_IRONCLAD:020",
+        "card:STRIKE_IRONCLAD:021",
+        "card:STRIKE_IRONCLAD:022"
+      ],
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 73,
+      "actual": 73,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "power.player.DEXTERITY_POWER.amount",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.player.DEXTERITY_POWER.applier",
+      "projected": "player",
+      "actual": "player",
+      "match": true
+    },
+    {
+      "field": "power.player.DEXTERITY_POWER.counters",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.player.DEXTERITY_POWER.dynamic_vars",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.player.DEXTERITY_POWER.present",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "power.player.STRENGTH_POWER.amount",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.player.STRENGTH_POWER.applier",
+      "projected": "player",
+      "actual": "player",
+      "match": true
+    },
+    {
+      "field": "power.player.STRENGTH_POWER.counters",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.player.STRENGTH_POWER.dynamic_vars",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.player.STRENGTH_POWER.present",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "relic.KUNAI.counter",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "relic.KUNAI.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Cards",
+          "Value": 3
+        },
+        {
+          "Key": "DexterityPower",
+          "Value": 1
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Cards",
+          "Value": 3
+        },
+        {
+          "Key": "DexterityPower",
+          "Value": 1
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ORNAMENTAL_FAN.counter",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "relic.ORNAMENTAL_FAN.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Block",
+          "Value": 4
+        },
+        {
+          "Key": "Cards",
+          "Value": 3
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Block",
+          "Value": 4
+        },
+        {
+          "Key": "Cards",
+          "Value": 3
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.SHURIKEN.counter",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "relic.SHURIKEN.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Cards",
+          "Value": 3
+        },
+        {
+          "Key": "StrengthPower",
+          "Value": 1
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Cards",
+          "Value": 3
+        },
+        {
+          "Key": "StrengthPower",
+          "Value": 1
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "KUNAI",
+        "ORNAMENTAL_FAN",
+        "SHURIKEN"
+      ],
+      "actual": [
+        "KUNAI",
+        "ORNAMENTAL_FAN",
+        "SHURIKEN"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    }
+  ],
+  "repeat_sha256": "5b3695218e3b5561169416967accdd5b7fec9b20da6360b4d144361ef32b4143"
+}

@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-m3e-random-orb",
+  "fixture": "m3e-live-random-orb",
+  "seed": "m3e-random-orb",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 0,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:CHAOS:010:none",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Estimated",
+  "chance_present": true,
+  "random_operator": "CombatOrbGeneration",
+  "probability_known": false,
+  "outcome_quality": "Unknown",
+  "probability_mass_covered": null,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {
+    "CombatOrbGeneration": 1
+  },
+  "branch_enumerated": false,
+  "comparison_scope": "aggregate_count_only",
+  "identity_comparison": "omitted",
+  "chance_quality": {
+    "chance_present": true,
+    "random_operator": "CombatOrbGeneration",
+    "probability_known": false,
+    "outcome_quality": "Unknown",
+    "probability_mass_covered": null,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {
+      "CombatOrbGeneration": 1
+    },
+    "branch_enumerated": false,
+    "comparison_scope": "aggregate_count_only",
+    "identity_comparison": "omitted"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "932CF2F99C99A5CCF7A674EE5E64158464CA1902807B61A678C33C2EC2D75F06",
+  "engine_post_state_hash": "D1554CB8D8A34AA44557B03D973620673ABC82D474BE6F50577C23543D9549F7",
+  "projected_comparison_hash": "F8D34699F72D9839CD95A19BAEE52CAEB1156AAE7CF955C1AA5D2F2CAE0FAD9A",
+  "actual_comparison_hash": "F8D34699F72D9839CD95A19BAEE52CAEB1156AAE7CF955C1AA5D2F2CAE0FAD9A",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 1
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:3.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy_damage_total",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand_count",
+      "projected": 4,
+      "actual": 4,
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 75,
+      "actual": 75,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.CRACKED_CORE.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.CRACKED_CORE.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Lightning",
+          "Value": 1
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Lightning",
+          "Value": 1
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.NEOWS_TORMENT.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.NEOWS_TORMENT.dynamic_vars",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "CRACKED_CORE",
+        "NEOWS_TORMENT"
+      ],
+      "actual": [
+        "CRACKED_CORE",
+        "NEOWS_TORMENT"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    }
+  ]
+}

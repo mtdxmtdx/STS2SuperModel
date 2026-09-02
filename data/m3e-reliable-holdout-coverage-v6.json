@@ -1,0 +1,3016 @@
+{
+  "schema_version": 1,
+  "dataset": "m5-reliable-holdout-backed-v5.jsonl",
+  "candidate_root_key": "teacher_state_reference + teacher_best_action",
+  "report_count": 375,
+  "candidate_root_action_pairs": 12,
+  "covered_candidate_root_action_pairs": 12,
+  "coverage_rate": 1.0,
+  "mismatch_count": 0,
+  "all_matching_reports_zero_mismatch": true,
+  "verdict": "pass",
+  "holdout_status": "complete",
+  "missing_pairs": [],
+  "reports": [
+    {
+      "report": "m2-contingent-draw-shadowdiff-report-repeat.json",
+      "pre_state_hash": "1CF07B53E05D174B1A9EED41BCBD9948ABEFBAB253206703550C477E30A31DC1",
+      "action_id": "play:card:BATTLE_TRANCE:001:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m2-contingent-draw-shadowdiff-report.json",
+      "pre_state_hash": "1CF07B53E05D174B1A9EED41BCBD9948ABEFBAB253206703550C477E30A31DC1",
+      "action_id": "play:card:BATTLE_TRANCE:001:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m2-contingent-random-shadowdiff-report-repeat.json",
+      "pre_state_hash": "C818801632BBC10D0DAF31109EE2C0DB06E9F9A7AB0908302F1BE4D11FC74970",
+      "action_id": "play:card:SWORD_BOOMERANG:001:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m2-contingent-random-shadowdiff-report.json",
+      "pre_state_hash": "C818801632BBC10D0DAF31109EE2C0DB06E9F9A7AB0908302F1BE4D11FC74970",
+      "action_id": "play:card:SWORD_BOOMERANG:001:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m3e-bash-reliable-shadowdiff-report-repeat.json",
+      "pre_state_hash": "8D488E8AB18CF0D36EBBEB2A90F9C211F7399A93C21D2BE7C8CC268B3E50418D",
+      "action_id": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m3e-bash-reliable-shadowdiff-report.json",
+      "pre_state_hash": "8D488E8AB18CF0D36EBBEB2A90F9C211F7399A93C21D2BE7C8CC268B3E50418D",
+      "action_id": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m3e-battle-defend-tie-shadowdiff-report.json",
+      "pre_state_hash": "1CF07B53E05D174B1A9EED41BCBD9948ABEFBAB253206703550C477E30A31DC1",
+      "action_id": "play:card:DEFEND_IRONCLAD:012:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m3e-inflame-reliable-shadowdiff-report.json",
+      "pre_state_hash": "462C556B6FCA4ADA806CDB3C4789533C88FACD83C1D3D0AB83A9D1852946EB87",
+      "action_id": "play:card:DEFEND_IRONCLAD:016:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-0-0-diff-report.json",
+      "pre_state_hash": "CD6CD57B93C744F4C175F057771D0A3325430B9A3BCD07B23BF7FFF3C0EACFBB",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-0-1-diff-report.json",
+      "pre_state_hash": "6B824C8C96BFBC966F9409245D65523A8087CCBF568C6CA3E61039FDBA424C3D",
+      "action_id": "play:card:DEFEND_IRONCLAD:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-0-2-diff-report.json",
+      "pre_state_hash": "6A09FC94CCBE8DDFF3AD00CD17AE6D0B3FB1F1C8ABE77B61881A1D8D4A238998",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:3",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-1-0-diff-report.json",
+      "pre_state_hash": "C9C54E3811274BB0885EF3F3F049F0B0C42749C35912C4A95980DD43855A8A82",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-1-1-diff-report.json",
+      "pre_state_hash": "F704AB3C46DEBF90498D6C06ECF6403A5CB95A77516097F88EF05D1634E8B5B3",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-1-2-diff-report.json",
+      "pre_state_hash": "F7A8F206CB3194720BBEDC05B16DDE4A3B1638A7D95453A7FE15AC2DCABB25B5",
+      "action_id": "play:card:DEFEND_IRONCLAD:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-2-0-diff-report.json",
+      "pre_state_hash": "05E4180C71D0E2B647A4E55FD96B9A3F6D683602C88C234D5CD17731C5D33119",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-2-1-diff-report.json",
+      "pre_state_hash": "BA30538EAFB497B8ECC41090178A98EB7BEDF22408652A0BD4F71E2BDE08B6A0",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_M:2",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-2-2-diff-report.json",
+      "pre_state_hash": "C59AB009907464177613DA76025215F4202950CB4BA628969D147C546C0A508A",
+      "action_id": "play:card:DEFEND_IRONCLAD:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-3-0-diff-report.json",
+      "pre_state_hash": "2F2025A0A189E339FF10C058159F9B3420CBBE6BC5AE3BE4DD2CA449D6AB059D",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-3-1-diff-report.json",
+      "pre_state_hash": "7D8AE08EE4B5A4E7C00EE4FA5B611841EC1FA7E2E65EE17D9D8352927A815F14",
+      "action_id": "play:card:DEFEND_IRONCLAD:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-4-0-diff-report.json",
+      "pre_state_hash": "A3BA5B82ACD5028F23A553E800A2DCE27E37B886EBFD58E89E69E27BB793059E",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-4-1-diff-report.json",
+      "pre_state_hash": "E68D56154499934FD7C7B06312EEF334F02A38E349CC7DBCA0927C24BB0A2F79",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-4-2-diff-report.json",
+      "pre_state_hash": "F43EFAEBBD6B725D8851C0EA771958B5FC1383075B39E7015B14BE3D6F636783",
+      "action_id": "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_S:3",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-0-0-diff-report.json",
+      "pre_state_hash": "D5785B197394B6003EF4C3E29425BDAB5F26EFDBDC679440B34800971C965571",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-0-1-diff-report.json",
+      "pre_state_hash": "223EB48CC19E4B80603CFC3CD99C68DA311C83EF5E294166D38145F5D8D5692F",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-1-0-diff-report.json",
+      "pre_state_hash": "6FFBEEB8C269E6038A0585B1155FE8EDBA46A43BBDB548EA728FF1EA27AEC965",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-1-1-diff-report.json",
+      "pre_state_hash": "686772E970EC964C53E0F635753F149188426B9713D0FAAD54F3E7EB85BB4484",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-2-0-diff-report.json",
+      "pre_state_hash": "00F3CC68EC6E6632236BD6C7C989DBB1BB7B46A7260B3078227180ED4B2820DE",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-2-1-diff-report.json",
+      "pre_state_hash": "93320A30A4E14040B229CEEA74F5DAA2B043F91B117B4B804710E668AC35187A",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-3-0-diff-report.json",
+      "pre_state_hash": "B828102ACE087BD57CD6CFA13223C504B56AEF3524B69480FE5D9BC424CCF01F",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-3-1-diff-report.json",
+      "pre_state_hash": "C248B5436D5EC62A377DDE05A970BC30668CE160E4AD7762FD777DED8B6F77AA",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-4-0-diff-report.json",
+      "pre_state_hash": "3197EEB720A363ECB6FED899C33712E2900000C4E5EA05941EA77FB3F70FE52A",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-4-1-diff-report.json",
+      "pre_state_hash": "A00D1BEABB4153D741F29E25B63824A9E84D4BEC20EE440EAA469001067C8B0B",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-afterimage-0-diff-report.json",
+      "pre_state_hash": "74358E85D293EBEDCCBE17DE090D184DD7BA4E9E3F8D0C05B7B19290A1C3B52D",
+      "action_id": "play:card:AFTERIMAGE:010:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-afterimage-1-diff-report.json",
+      "pre_state_hash": "BDD0EEAACBA2CCE0639A306E70C0146557E55B56928A0D1D38885662444379F3",
+      "action_id": "play:card:AFTERIMAGE:011:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-akabeko-vigor-0-diff-report.json",
+      "pre_state_hash": "2A5873EDF39E9EFE012023AD6118E91E7E7B218CA699A8D78593FBF92B525C52",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-art-of-war-0-diff-report.json",
+      "pre_state_hash": "C581FA0E7865581102F590047E6FB0FB5F4100E635AB248389E3B1D25FB46D36",
+      "action_id": "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-art-of-war-1-diff-report.json",
+      "pre_state_hash": "755F4D19881A3F92E5649EBACB182915D7D344987B8B4108BF26408FD2F108D0",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-bag-of-marbles-0-diff-report.json",
+      "pre_state_hash": "0140ADAB34F7E8DF2C51ED8658EE9F076FC18FDB4C3A3746F6CCD6F3F44D2E22",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-bag-of-preparation-0-diff-report.json",
+      "pre_state_hash": "206DFF6BEDA179F27F6432C27597B35B2B3AFB3071A51AB40FCFEB8A89530E0E",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-barricade-0-diff-report.json",
+      "pre_state_hash": "C91ED860CB00E1407EF1C459511971FD2DE9E3FE227E8EC3C49F8CDDE9B79F52",
+      "action_id": "play:card:DEFEND_IRONCLAD:009:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-barricade-1-diff-report.json",
+      "pre_state_hash": "E02C87666D279814BEE7B00B9F7F80F025CAABBB8264D62046B4F51F0F170FDA",
+      "action_id": "play:card:BARRICADE:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-barricade-2-diff-report.json",
+      "pre_state_hash": "6E32BA463A0EC3D4C9F8B69DE31CDE2441C299B7F723031304261198F6104613",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-centennial-puzzle-0-diff-report.json",
+      "pre_state_hash": "F46373F405D93ED17780F53B21D0133864B1A92BF38C94AD98F6AF19BF093B26",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-combat-action-0-diff-report.json",
+      "pre_state_hash": "D456839DC9FBE4281682F1CFBAFA2FFC68774C01111798CF180A642D485B4F70",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-combat-anchor-0-diff-report.json",
+      "pre_state_hash": "0DF5302099163CA65CE7689AA95A879662826FD70B8DD15D37CF54DD4FF706AD",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-combat-bash-0-diff-report.json",
+      "pre_state_hash": "0F04DE308EFA852FF0B34DC3B34D45D69D567F6DE4FF9C6F81FD32D53AED9407",
+      "action_id": "play:card:STRIKE_IRONCLAD:007:enemy:SHRINKER_BEETLE:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-combat-block-potion-0-diff-report.json",
+      "pre_state_hash": "33ECB8128309988463014472D6F9BF448026B42E178D5CEE6EA21A2EC8A2F0CC",
+      "action_id": "potion:potion:BLOCK_POTION:000",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-combat-strike-0-diff-report.json",
+      "pre_state_hash": "B7B3AA39EF1E92B90AB6A514CEF3399EA9CE1DDF79A4125B894F806B35FEAD8B",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-demon-form-0-diff-report.json",
+      "pre_state_hash": "A48766C7D8A3B6C7060332A0A5FD95D383A431F324C1F1DCF821944FA2D027C5",
+      "action_id": "play:card:DEMON_FORM:010:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-demon-form-1-diff-report.json",
+      "pre_state_hash": "3BF03170576BF0E929C461F791025EBB171346368F75FCB237C058E5389AE5D6",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-happy-flower-0-diff-report.json",
+      "pre_state_hash": "C78D65CEF282A5634552CCE2F3ED23E8700604AFDDA6293EA1AEDD5C4268EB8E",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-happy-flower-1-diff-report.json",
+      "pre_state_hash": "AAC87013AB978987937142F76C625142B3BCE713EFB221B89B53A1814B2C2A7D",
+      "action_id": "end_turn",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-happy-flower-2-diff-report.json",
+      "pre_state_hash": "35ED86C5A921A4C7F3B6F09BA1E9022E31D9E31F31FBA1994B80B90F5DA86CE1",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-inflame-strength-0-diff-report.json",
+      "pre_state_hash": "B87CD02F7DC827E83F661BECA54D7366D617326BA598195290EB0576A04AA58D",
+      "action_id": "play:card:INFLAME:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-inflame-strength-1-diff-report.json",
+      "pre_state_hash": "4B7068D663B93A94276CB55B9B0FD476EEE435625D8F8FDA042D1906F98CC0F7",
+      "action_id": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-lantern-0-diff-report.json",
+      "pre_state_hash": "AA76566B480BFA1DC63EE70373509A3B88913BF94FD74611EB3D5820BCFA74B5",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-multi-enemy-targets-0-diff-report.json",
+      "pre_state_hash": "250582CB5BEC172ADDDC30BA8CB0C4D71C9C118E5B89ADCBEBF2F39506C9C234",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-multi-enemy-targets-1-diff-report.json",
+      "pre_state_hash": "588AFA55BF5331EE2C9956D1258F698C70C2D436399DC5A35F4835CEC30CDD8C",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-multi-enemy-targets-2-diff-report.json",
+      "pre_state_hash": "C02F861210A159F3C22D275AD8DF42E6A6E12BA62D41890D04B47DC021BDE8A5",
+      "action_id": "play:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:3",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-neutralize-weak-0-diff-report.json",
+      "pre_state_hash": "E19DE4B536782C2041320348AFE8538D0A87D8B33CA812E31BB40659C0F1D78B",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-neutralize-weak-1-diff-report.json",
+      "pre_state_hash": "D8FA1EC2B16338EDF8EF202136C184EF7732D105ABAC90898F0971C183EFB742",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-orichalcum-0-diff-report.json",
+      "pre_state_hash": "37BE4EB438D8E39F9011749247112E2744D7BB5DF6A256BE579079B54C32529B",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-0-diff-report.json",
+      "pre_state_hash": "639407E4F3F5C2A9BA6EADBC57C24081E02EB27B7DFEEDE07A355A69647C12BB",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-0-diff-report.json",
+      "pre_state_hash": "1DA7A04D55A3226E3831B31064B6CF45518F7DB15ACF98247B3C4E6FE023AE12",
+      "action_id": "play:card:STRIKE_IRONCLAD:017:enemy:TERROR_EEL:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-1-diff-report.json",
+      "pre_state_hash": "8E797FF14AB73278CE39BC072B7DEB745C97B4C86D0F96C1004CC09BE1B86C7D",
+      "action_id": "play:card:STRIKE_IRONCLAD:018:enemy:TERROR_EEL:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-10-diff-report.json",
+      "pre_state_hash": "170BB97BCE991A2C24DD41627226B8D993A1FC1242F7DCBE6C99BF5A19994C01",
+      "action_id": "play:card:STRIKE_IRONCLAD:023:enemy:TERROR_EEL:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-11-diff-report.json",
+      "pre_state_hash": "F61E9C0C439E31442E11A6141EBA19E5954FAB0F945EE07D533D73EA255680D1",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-12-diff-report.json",
+      "pre_state_hash": "405B0322C951029157BDB36A41913D4B7E2E94C2C97B66DB2CE323F8FCD5C0EC",
+      "action_id": "play:card:STRIKE_IRONCLAD:026:enemy:TERROR_EEL:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-2-diff-report.json",
+      "pre_state_hash": "998AC54A96F791BC11171EBE2E204437F0F7B532A40C4628E6A86C8DE3E56562",
+      "action_id": "play:card:STRIKE_IRONCLAD:019:enemy:TERROR_EEL:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-3-diff-report.json",
+      "pre_state_hash": "29E7C488BADF5AABBF3F7ECA1EC47DA8DE3BA3B46C2F05733ACCD382FDB01773",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-4-diff-report.json",
+      "pre_state_hash": "F5C705366C66D962EAC771B90D6D4DA1BA0AEB16C205425FA7BF142C430D0C63",
+      "action_id": "play:card:STRIKE_IRONCLAD:022:enemy:TERROR_EEL:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-5-diff-report.json",
+      "pre_state_hash": "FB71D7806C50F92B6292CE519F4D01F5AD34ECA267C4BBE1F7F3DCF153C5A9CF",
+      "action_id": "play:card:STRIKE_IRONCLAD:023:enemy:TERROR_EEL:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-6-diff-report.json",
+      "pre_state_hash": "A3D59D87B8E7BA5C6636111464EE7616E881068C51925FEAF66F11B17F9FBBD8",
+      "action_id": "play:card:STRIKE_IRONCLAD:024:enemy:TERROR_EEL:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-7-diff-report.json",
+      "pre_state_hash": "B0EE76414D236D59FA9A8116241149E2A57F7549746EAAFB1B66A68BA44CA134",
+      "action_id": "end_turn",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-8-diff-report.json",
+      "pre_state_hash": "5142B1589217BB477195630C2E82E157B3145F15EF020A02AFCAD32398C1579B",
+      "action_id": "play:card:STRIKE_IRONCLAD:027:enemy:TERROR_EEL:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": true
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-9-diff-report.json",
+      "pre_state_hash": "8AD7715639EC1CFB574D9574446907F41BFE71C76936A8C01F70339756448C4E",
+      "action_id": "play:card:STRIKE_IRONCLAD:028:enemy:TERROR_EEL:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-ring-of-the-snake-0-diff-report.json",
+      "pre_state_hash": "C9E6DDCCD95E311074FD42041800A52A63B8823BEE1B7F989884F59FEC3CFD2A",
+      "action_id": "play:card:DEFEND_SILENT:006:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-rupture-0-diff-report.json",
+      "pre_state_hash": "46C7B902B8EC763ADB50E91DDA8C3760069FE49C4E4C695888FDFD89454D49BE",
+      "action_id": "play:card:RUPTURE:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-rupture-1-diff-report.json",
+      "pre_state_hash": "2FCFDCDCE4E64335CA0554AC26B40B8975C384B3C31AAC7485FB9ABAF6274876",
+      "action_id": "play:card:BLOODLETTING:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-smooth-stone-dexterity-0-diff-report.json",
+      "pre_state_hash": "F29E568DC9FD0224739B5D70BC715479484D48B4582920F4448B7C2D8D305D6C",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-vajra-strength-0-diff-report.json",
+      "pre_state_hash": "137FF2ADC4A8087B08E7D21AE7001683976EB2EEF1765BDA3B12819F5CB047B4",
+      "action_id": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-vajra-strength-end-turn-0-diff-report.json",
+      "pre_state_hash": "EF84F1C1AB458211A448B61A0A7C39E67A2A754869D4A3FA5FD5F5BB239CFCC4",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-afterimage-diff-report-0.json",
+      "pre_state_hash": "1EE71D647212542BC253452079EEA3B32C9C579E3D4F642C7D23B93B6F94BB2D",
+      "action_id": "play:card:AFTERIMAGE:010:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-afterimage-diff-report-1.json",
+      "pre_state_hash": "8C401385BBD0B3A18BBA368F6F11CB2B59717F10211A44B19EDE4C82DA6A71DF",
+      "action_id": "play:card:AFTERIMAGE:011:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-akabeko-vigor-diff-report.json",
+      "pre_state_hash": "759968569998B3DB045ECEA9CBD08862C3317CA2D939839AD8CA8AD2C98F6552",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-art-of-war-diff-report-0.json",
+      "pre_state_hash": "FE451DC9B30FC71474A14085BEA18AAE9B624A4615376153659937883B6DDF8B",
+      "action_id": "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-art-of-war-diff-report-1.json",
+      "pre_state_hash": "755F4D19881A3F92E5649EBACB182915D7D344987B8B4108BF26408FD2F108D0",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-bag-of-marbles-diff-report.json",
+      "pre_state_hash": "A10F4D2EA23A544918DDECF4B50CB0D5EBD5F5997E4C36D06BBF1AD5D8053AA0",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-bag-of-preparation-diff-report.json",
+      "pre_state_hash": "6329E28F3FCA9E6FE5BB66B31A4513C3AB22D48BCFA8007BE35F8A4EBDB6275F",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-barricade-diff-report-0.json",
+      "pre_state_hash": "5E7AA30B60BA76F592681A2787C6560AB01CE31A73EEE68CC5AEC95A7F4AADA0",
+      "action_id": "play:card:DEFEND_IRONCLAD:009:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-barricade-diff-report-1.json",
+      "pre_state_hash": "5B2D5D2F15672FD99BDFFDC6085684E68E1765DEE12A76692166F1AE5FE967D0",
+      "action_id": "play:card:BARRICADE:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-barricade-diff-report-2.json",
+      "pre_state_hash": "801282F3D4D6D89A80C7EFBB655A85BF3A3F5EA0A8F6D40609F0087D4669113E",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-centennial-puzzle-diff-report.json",
+      "pre_state_hash": "F46373F405D93ED17780F53B21D0133864B1A92BF38C94AD98F6AF19BF093B26",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-demon-form-diff-report-0.json",
+      "pre_state_hash": "C397E7C8A041B53CAD9E166DA52F98C26E2BFB56F58EC002ED7F9D30DD0C3177",
+      "action_id": "play:card:DEMON_FORM:010:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-demon-form-diff-report-1.json",
+      "pre_state_hash": "4A0DC0BB4C6DBBCC8AEF13A91F1A0B19A2CD5F7E6C8B347ACFA3D4223B85147B",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-happy-flower-diff-report.json",
+      "pre_state_hash": "C78D65CEF282A5634552CCE2F3ED23E8700604AFDDA6293EA1AEDD5C4268EB8E",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-inflame-strength-diff-report-0.json",
+      "pre_state_hash": "7599D4E73FAD1D75F6E3B1A6357AF403A158795B65B4BE15764A27BE80099A28",
+      "action_id": "play:card:INFLAME:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-inflame-strength-diff-report-1.json",
+      "pre_state_hash": "924D4352C5507A1DCDFC87328BD64F9F4BA37ABCA59EBF641AD0039A014F599D",
+      "action_id": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-lantern-diff-report.json",
+      "pre_state_hash": "886C2FC95F7BE0AC77CF44BBEF809AAE30F73798D88DBD2E4BD7C1876579C560",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-multi-enemy-targets-diff-report-0.json",
+      "pre_state_hash": "4594D20F351DFCA1360AF7727D320D6A1C051B2B1F189409CC0266178ADFD160",
+      "action_id": "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-multi-enemy-targets-diff-report-1.json",
+      "pre_state_hash": "F5D79504051632E1118E69E1400EEFF37EACC6A570CCB678B5DA5CD02C290A44",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-multi-enemy-targets-diff-report-2.json",
+      "pre_state_hash": "38FFE42611F110DE16BC967B585709FBDDC88DD091772528068B948486DC79C2",
+      "action_id": "play:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:3",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-neutralize-weak-diff-report-0.json",
+      "pre_state_hash": "5AFFD7F143072F7298903231B509B089382D622E47D4FC45B4F8EF18C7BA6248",
+      "action_id": "play:card:NEUTRALIZE:021:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-neutralize-weak-diff-report-1.json",
+      "pre_state_hash": "D8FA1EC2B16338EDF8EF202136C184EF7732D105ABAC90898F0971C183EFB742",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-orichalcum-diff-report.json",
+      "pre_state_hash": "37BE4EB438D8E39F9011749247112E2744D7BB5DF6A256BE579079B54C32529B",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-pen-nib-diff-report.json",
+      "pre_state_hash": "C561E6D89D28853D774EC843CBB5E847FF243220C074FBD27ABAAFB0CA73DC83",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-pen-nib-double-diff-report-12.json",
+      "pre_state_hash": "8ADF754015E4C1AAFF3E3A5057CE73B10F79092CFA0E7B1746D1A5E309F3D93D",
+      "action_id": "play:card:STRIKE_IRONCLAD:026:enemy:TERROR_EEL:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-ring-of-the-snake-diff-report.json",
+      "pre_state_hash": "3C890BAC35998AA705406D48FB381004BDEEEE804BE0A4B9254AFE933726E7F0",
+      "action_id": "play:card:DEFEND_SILENT:006:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-rupture-diff-report-0.json",
+      "pre_state_hash": "55C351A0B619B044A19807A6DF5881C569B8569F2E536E6B1EC80E3396C2336D",
+      "action_id": "play:card:RUPTURE:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-rupture-diff-report-1.json",
+      "pre_state_hash": "D74BBB276EC02CFE80ED4ADFBA70031363A48E6F4BF9C44123F653AEDF7D02D8",
+      "action_id": "play:card:BLOODLETTING:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-smooth-stone-dexterity-diff-report.json",
+      "pre_state_hash": "20F874415E4726CDCD159313DEBF0CF908B7951AF4D206A6A9AC913266B5BF8E",
+      "action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-vajra-strength-diff-report.json",
+      "pre_state_hash": "25C5C1EF9E610C24454C338F023CF89E3A730541FBB01384113EB36F58635071",
+      "action_id": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p0-csharp-vajra-strength-end-turn-diff-report.json",
+      "pre_state_hash": "EF84F1C1AB458211A448B61A0A7C39E67A2A754869D4A3FA5FD5F5BB239CFCC4",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-accuracy-diff-report-0.json",
+      "pre_state_hash": "B0B1421940DDF395DE0E8BA46BF9CE1BFEA8F44B7033C12C8BD62D26898738C7",
+      "action_id": "play:card:ACCURACY:004:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-accuracy-diff-report-1.json",
+      "pre_state_hash": "1E47745A18D823C74CD474B364C5939BDCAB56E56E525CC4CA7C34931C100116",
+      "action_id": "play:card:SHIV:006:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-buffer-diff-report-0.json",
+      "pre_state_hash": "DFD733D56599442DE26FE11AA851819F20F7FFFE10D09799D0F88A27DB1B543B",
+      "action_id": "play:card:DEFEND_IRONCLAD:013:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-buffer-diff-report-1.json",
+      "pre_state_hash": "A00076677FC685A18037D042AB9DDBD9FC5254E04AC5F9DD6442B819CD0093B8",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-auto-play-diff-report-0.json",
+      "pre_state_hash": "A42107015C0C7C179A8948F1AC261BE5897166B7D8CDA687FDFE6ECE82E3176F",
+      "action_id": "play:card:HAVOC:001:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-auto-play-diff-report-1.json",
+      "pre_state_hash": "E2A46EE84A04BA4EACC0D664F90E422B796D2516EF929AAD83F65D5F0DF05242",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-choice-copy-diff-report.json",
+      "pre_state_hash": "8B9CB258173140E7AD0BD7C2A2F4A820E3A4C31ACC7E611EF59730FE5B12B746",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-accuracy-diff-report.json",
+      "pre_state_hash": "FBCC6459FE70E3F847DC44EDD15CAA54D064757A97D6023F359A34B2CAF6397F",
+      "action_id": "play:card:ACCURACY:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-anger-diff-report.json",
+      "pre_state_hash": "C301991A5B825BBDD4D65F71BD0EE36B307C2323FA8D1C42F9B53F89F4784BBE",
+      "action_id": "play:card:ANGER:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-assassinate-diff-report.json",
+      "pre_state_hash": "B9FA0335672EDEB81F56D863D984744762F5C53D9260FDD247F4B0D80F7ED3C8",
+      "action_id": "play:card:ASSASSINATE:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-backflip-diff-report.json",
+      "pre_state_hash": "BB8144C3C71D64B9A442F9C8A65C8FD799C9CDABABEE92AEC4C4FAA2F371D71D",
+      "action_id": "play:card:BACKFLIP:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-backstab-diff-report.json",
+      "pre_state_hash": "C36A3A9E0B12F326315E6689B3BC399FAFB111669065A4F0B2F93DEA9CE30070",
+      "action_id": "play:card:BACKSTAB:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-barricade-diff-report.json",
+      "pre_state_hash": "1BC5208B3B1F6199F77A36E0C68401E00FB28E19047E8D7F3E91F664503C0B85",
+      "action_id": "play:card:BARRICADE:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-bash-diff-report.json",
+      "pre_state_hash": "9C640480C5CB105AA8E25951E8339024F9AD82DC1C3982CA3140B489A3AA89D5",
+      "action_id": "play:card:BASH:006:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-blood_wall-diff-report.json",
+      "pre_state_hash": "07F0C205809BF4F609E24535AACC588F905CC4998C9858752FC6099D4FAD68FF",
+      "action_id": "play:card:BLOOD_WALL:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-bloodletting-diff-report.json",
+      "pre_state_hash": "96DF2B1C436324D58718A599014477BDE2C1DBC942010597E3E7BE48CFE45809",
+      "action_id": "play:card:BLOODLETTING:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-bludgeon-diff-report.json",
+      "pre_state_hash": "2BBDC0057A9063D2DAFE38FECF9298473D950C40174A5F1D62A0FB8EFE5E1124",
+      "action_id": "play:card:BLUDGEON:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-body_slam-diff-report.json",
+      "pre_state_hash": "0A2607F5F4AA680509F1B802FFCBA42AC53F1759BDE4B87AC55B0764B2005370",
+      "action_id": "play:card:BODY_SLAM:005:enemy:SEAPUNK:1",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-break-diff-report.json",
+      "pre_state_hash": "8976A1CF426F520D9DBD6FCBEB20BD608E03BA40DA83884870A03F328076CD10",
+      "action_id": "play:card:BREAK:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-breakthrough-diff-report.json",
+      "pre_state_hash": "F673C1ACCB95AC16939B8AA6C2201EBC8A66E6D4F7C71008B66B59B50FD27CD0",
+      "action_id": "play:card:BREAKTHROUGH:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-cinder-diff-report.json",
+      "pre_state_hash": "67D1E178E7F5FEB2EE2E96C633A4C49DA067D1D1A37849F5EE26D06612653A1F",
+      "action_id": "play:card:CINDER:005:enemy:SEAPUNK:1",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-clash-diff-report.json",
+      "pre_state_hash": "71E80420EF343CECD24A50D47CCEBC1A737AB371DDA7D38F4E44B0BE40A8CE63",
+      "action_id": "play:card:CLASH:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-corruption-diff-report.json",
+      "pre_state_hash": "51E8790C44C2A0668FFCB1391014E787C0C768788ABE55E2D605F7FF658D4FD4",
+      "action_id": "play:card:CORRUPTION:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-dash-diff-report.json",
+      "pre_state_hash": "2CDBEF87F91CA35684E06244791CD9138F582E75B64FD2082B8AEAB79DD2B4E3",
+      "action_id": "play:card:DASH:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-deadly_poison-diff-report.json",
+      "pre_state_hash": "BD77F25D716A34F828B93AD3D8FE693AB917EE491B0410E17B2FE0D15295CC95",
+      "action_id": "play:card:DEADLY_POISON:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-defend_ironclad-diff-report.json",
+      "pre_state_hash": "CF5E1A4E6D14B217C9538D6E7690744E25977C530419ADDB5445DD82CC64ADF9",
+      "action_id": "play:card:DEFEND_IRONCLAD:009:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-defend_silent-diff-report.json",
+      "pre_state_hash": "8A262361A0727B971A3650731554526F8821AE25D3DFEEBC0F7E6FB60F96E573",
+      "action_id": "play:card:DEFEND_SILENT:010:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-deflect-diff-report.json",
+      "pre_state_hash": "A6F5E769301A30CEE6B9BD262754048FF899574EA6189D3E522B6E156298E3E1",
+      "action_id": "play:card:DEFLECT:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-demon_form-diff-report.json",
+      "pre_state_hash": "9DC0602A1EEA9BD81F7B0A89AEED145CB354CA2361A234715EA4AC20952ED705",
+      "action_id": "play:card:DEMON_FORM:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-dismantle-diff-report.json",
+      "pre_state_hash": "46C88C081838129F098ACAF8739864DB52F4ECC2DAC985B9ECF309789D058F42",
+      "action_id": "play:card:DISMANTLE:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-dual_wield-diff-report.json",
+      "pre_state_hash": "F61996627D249A7A23170803E0EE875F7C6FCC8071E60214203BCB2EC2DC8BC5",
+      "action_id": "play:card:DUAL_WIELD:005:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-entrench-diff-report.json",
+      "pre_state_hash": "430AC870D4F982E86CEE1F0B7A97C3919387B9A1F506C4E95FDE83A950F5BDAF",
+      "action_id": "play:card:ENTRENCH:005:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-evil_eye-diff-report.json",
+      "pre_state_hash": "9A9046013B88AC956F65724138FB0D8BE698AC3317DB4F82BCB5C77A5BADE234",
+      "action_id": "play:card:EVIL_EYE:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-expertise-diff-report.json",
+      "pre_state_hash": "D39DE59F90B43E5461202378F1F8E2B28E1C321046DD1D751EF5AF8337BA4BBF",
+      "action_id": "play:card:EXPERTISE:005:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-feed-diff-report.json",
+      "pre_state_hash": "5BE34924171EA6FD20BEB2B6A18BAA729A98BC6397E59D15A9C37E1ECB8AB92D",
+      "action_id": "play:card:FEED:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-flame_barrier-diff-report.json",
+      "pre_state_hash": "BA7037D4BAF66691C3DE47B9E87972133C7AA241D86071DDDF9F9CF583138DA7",
+      "action_id": "play:card:FLAME_BARRIER:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-flick_flack-diff-report.json",
+      "pre_state_hash": "F5FFB8962AB3634429215BC48B91C74DACFAB9B2CBA280CD4BDE3414A028B909",
+      "action_id": "play:card:FLICK_FLACK:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-footwork-diff-report.json",
+      "pre_state_hash": "082F1640A774F82CC54DC26B6512CB75D31D8C8CF7964FE0D19D96A376AE087F",
+      "action_id": "play:card:FOOTWORK:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-forgotten_ritual-diff-report.json",
+      "pre_state_hash": "1DC3CA271A99C956D5E634BACEDEC5B5B21BD8F2C6DCA927DF47622057066DEB",
+      "action_id": "play:card:FORGOTTEN_RITUAL:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-havoc-diff-report.json",
+      "pre_state_hash": "C736027746A127194A0B5F62B37FEE932E7508F159DAAED4CDEFE70C0BA6EB97",
+      "action_id": "play:card:HAVOC:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-haze-diff-report.json",
+      "pre_state_hash": "9C4A2F33E2F9065E03FB067F6231B38F7E1C5AE8B8AA0F72CCE4BF3FE5D2FECE",
+      "action_id": "play:card:HAZE:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-headbutt-diff-report.json",
+      "pre_state_hash": "FF687E38E8CF5C4D937E0F0C2ED02E8EAF7B664C4456AC04A80307922001CDD0",
+      "action_id": "play:card:HEADBUTT:005:enemy:SEAPUNK:1",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-hemokinesis-diff-report.json",
+      "pre_state_hash": "90B8F8AE97CAEBDE210764E47D2E81633CB999F8C88311D050A872F0B1BF4A95",
+      "action_id": "play:card:HEMOKINESIS:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-howl_from_beyond-diff-report.json",
+      "pre_state_hash": "1D6C8831720FC48DE912F6EBD87CDF1E23B212B2AD0F67820188461BAA968BFD",
+      "action_id": "play:card:HOWL_FROM_BEYOND:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-impervious-diff-report.json",
+      "pre_state_hash": "650BE1978391CC9887B07D315EB084637E3570946039714C176B24D645E4B152",
+      "action_id": "play:card:IMPERVIOUS:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-infinite_blades-diff-report.json",
+      "pre_state_hash": "0C1AA7301B63A1948BE517AD51E835261608631CABA5EA81A9F1E0A9A4CBAF25",
+      "action_id": "play:card:INFINITE_BLADES:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-inflame-diff-report.json",
+      "pre_state_hash": "9DC54583F2D3AB4074C096B0B7AF93BC044FB4E8E889C349867E23E207461D5C",
+      "action_id": "play:card:INFLAME:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-iron_wave-diff-report.json",
+      "pre_state_hash": "971D1FEC20BDF7173B72F6A023D2A94F5B4B9910979452B7AEE192E5B35D5913",
+      "action_id": "play:card:IRON_WAVE:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-leading_strike-diff-report.json",
+      "pre_state_hash": "16D7A919A25DCC18C3381E545C22EC102EBE4CD39B7ECF11762A3A1F42C51565",
+      "action_id": "play:card:LEADING_STRIKE:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-leg_sweep-diff-report.json",
+      "pre_state_hash": "4E9CDB05D824479A42EC264132C83AD59A0A6BAD66F81F6776784C426EE8AC56",
+      "action_id": "play:card:LEG_SWEEP:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-mirage-diff-report.json",
+      "pre_state_hash": "253441184C18CBC5E1CA9D31CF00E8C0B096C94C7247EFFE9789408D5C097C95",
+      "action_id": "play:card:MIRAGE:005:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-molten_fist-diff-report.json",
+      "pre_state_hash": "6D8D8CFA244968E97F4409E12AB00E87C39207E2367D5258D216F784BA2B7AED",
+      "action_id": "play:card:MOLTEN_FIST:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-neutralize-diff-report.json",
+      "pre_state_hash": "F22667EF913FC716E43F525EF6F95860E141F5B148FEDD9C5C3630DC51B3D3CA",
+      "action_id": "play:card:NEUTRALIZE:006:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-not_yet-diff-report.json",
+      "pre_state_hash": "4C757A667914F21047079D86F47D1451F9A45285C38169AA538318A05247DC17",
+      "action_id": "play:card:NOT_YET:005:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-offering-diff-report.json",
+      "pre_state_hash": "B709296119A90B61C6DE98994D58F0C2B722EFFADBC87C65461E3A98C10EF112",
+      "action_id": "play:card:OFFERING:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-pillage-diff-report.json",
+      "pre_state_hash": "2C49AAB0A4CD9E5F7A5D8272B1BD8763E40C2516BBE12767026C8031A11D4878",
+      "action_id": "play:card:PILLAGE:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-pinpoint-diff-report.json",
+      "pre_state_hash": "F3FA52089CDF575938261D1D0263C1F4A75410D747EA50235845B6A8D6196FD7",
+      "action_id": "play:card:PINPOINT:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-poisoned_stab-diff-report.json",
+      "pre_state_hash": "5C20006983B0D7CAC487897E641CE9877140D2A59B60482ED8A1BBE4C5F3A66F",
+      "action_id": "play:card:POISONED_STAB:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-pommel_strike-diff-report.json",
+      "pre_state_hash": "9D25C646DDBE7DDAE5798B552D6B7981E236DA1A8782D4C1B4D2D3821C47BBB4",
+      "action_id": "play:card:POMMEL_STRIKE:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-primal_force-diff-report.json",
+      "pre_state_hash": "DBBAAEF1B79AC4061C93C10E6C781011977B7D488022871F10E18C147117D36B",
+      "action_id": "play:card:PRIMAL_FORCE:005:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-rage-diff-report.json",
+      "pre_state_hash": "87F17679A70DDF1BC8D0E9FF5E31678E49B73ABD1318ABC7A9B8555E6EB18E59",
+      "action_id": "play:card:RAGE:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-rampage-diff-report.json",
+      "pre_state_hash": "E7E42C317FA797E89FFD0C61ED53D3CD0EB80763100681439975218946CB1BDB",
+      "action_id": "play:card:RAMPAGE:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-reflex-diff-report.json",
+      "pre_state_hash": "8BAA8A279B1828FE4A116A9D71576FDC720623AD9284FDB0484206DC5ECFD5A5",
+      "action_id": "play:card:REFLEX:005:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-rupture-diff-report.json",
+      "pre_state_hash": "67F4884F9F0CAB59562E701F38D76C58258E8D09F51CB0054031B020D685D12E",
+      "action_id": "play:card:RUPTURE:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-shrug_it_off-diff-report.json",
+      "pre_state_hash": "59071E4F734D95B51B6872792FDE1D8101CFDA442B070C6864C8B794BE498181",
+      "action_id": "play:card:SHRUG_IT_OFF:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-skewer-diff-report.json",
+      "pre_state_hash": "EE92FC84F42D5E7E3FA6ECE76320604D22FC01CE08498F0BF72AB322EFC6BE9C",
+      "action_id": "play:card:SKEWER:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-slice-diff-report.json",
+      "pre_state_hash": "CF528015E7C56023BBC2A7CA4E58EF0C09D793EF6621FF69A353FAD7705888A6",
+      "action_id": "play:card:SLICE:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-snakebite-diff-report.json",
+      "pre_state_hash": "576FE4D082E84E4134D99AE03A419FD71EB3C2D547FC86C9C325D37CAF9CDC66",
+      "action_id": "play:card:SNAKEBITE:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-spite-diff-report.json",
+      "pre_state_hash": "C0DCFD9EE52BC00C713E710D292E05E51E0049873A4C908BD036D8A37DFCEE95",
+      "action_id": "play:card:SPITE:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-stomp-diff-report.json",
+      "pre_state_hash": "AD35C3C0DA9CDFEC9572EBAA29B01BBE168ABB5ADFF2FBF2107D892647102326",
+      "action_id": "play:card:STOMP:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-stone_armor-diff-report.json",
+      "pre_state_hash": "33A79EDC6F279014A70BA6C8A72418930D1A293E7750691A959AF6652F8F918D",
+      "action_id": "play:card:STONE_ARMOR:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-strike_ironclad-diff-report.json",
+      "pre_state_hash": "FE827F5A1F070FED3318F1FB58B213947333A5140B50B5C81D92EDDD92CD3D51",
+      "action_id": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-strike_silent-diff-report.json",
+      "pre_state_hash": "9968193E0A30305E670FD4E35BCE296104518ED036A7A3643088DEEFC50464D9",
+      "action_id": "play:card:STRIKE_SILENT:010:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-sucker_punch-diff-report.json",
+      "pre_state_hash": "7287615761BBA9A6A3E49D76F160653A8DA369772466791F72FF46BE221A756F",
+      "action_id": "play:card:SUCKER_PUNCH:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-tactician-diff-report.json",
+      "pre_state_hash": "281272EDE7DD25269914C3494DE0923DE689AFB4B35438467EB2687FE558F471",
+      "action_id": "play:card:TACTICIAN:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-taunt-diff-report.json",
+      "pre_state_hash": "3274D8F12C5A4A0093B425B17482BF15829F04AF146DB2580E79E6034AB8ABAB",
+      "action_id": "play:card:TAUNT:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-tear_asunder-diff-report.json",
+      "pre_state_hash": "91AF4AE1475C17AB02F5145F939DBB5C33D7F6486EFA637B399E758B9B427059",
+      "action_id": "play:card:TEAR_ASUNDER:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-thunderclap-diff-report.json",
+      "pre_state_hash": "97DC7FDF6F744B2CC5734FD38B1CC14883CE9764CF0B8E25BE7B055B68DF1EF4",
+      "action_id": "play:card:THUNDERCLAP:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-tremble-diff-report.json",
+      "pre_state_hash": "878EA940BB3419E86A5959462D0AE2357AE6AADC20D26C4BFE71EBE50AFC6F7B",
+      "action_id": "play:card:TREMBLE:005:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-true_grit-diff-report.json",
+      "pre_state_hash": "F502CCA91731205E97BAFD2818270730C3AF5EBB0AA6201A3EEDA958891371BF",
+      "action_id": "play:card:TRUE_GRIT:005:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-untouchable-diff-report.json",
+      "pre_state_hash": "C66C29D9A6EF4EB16D426C4393B4EE026BF39BEF6625956713139375DAF4728B",
+      "action_id": "play:card:UNTOUCHABLE:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-direct-whirlwind-diff-report.json",
+      "pre_state_hash": "2B3E1F432051EA05FE524E0601CA383638D9D5A16DFD0386FF1788D2B341F938",
+      "action_id": "play:card:WHIRLWIND:005:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-discard-select-diff-report.json",
+      "pre_state_hash": "77A9A0A805AEE4B939CA6FB00B58B97CA0B75ECF0567EC4DF2CD7E0D355B9792",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-ethereal-diff-report-0.json",
+      "pre_state_hash": "20DFC685A351F1DBF1AA562FC92F4E589BD77EA8D875C934F1E51EB189FD2C74",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-ethereal-diff-report-1.json",
+      "pre_state_hash": "D3D88159B5C17B0CD82696A24C5A77CBDC3E4DE0E9AA185B27F1BFE22A7FF6EE",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-exhaust-self-diff-report-0.json",
+      "pre_state_hash": "0DBD62E9114DF1231492B4334E0C9082BF3EE5A1486AC1C8CD1F3DC5DDC6CF81",
+      "action_id": "play:card:MOLTEN_FIST:001:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-exhaust-self-diff-report-1.json",
+      "pre_state_hash": "6FF9B7769662579D8C3A419B5D1B34C694727790974C9D5E4A259D8C46803C5A",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-generate-diff-report-0.json",
+      "pre_state_hash": "EBC7FF864DEF2D28DE7BFF631F93E830664BA885C67EF2BE1612C5215436E6FE",
+      "action_id": "play:card:ANGER:001:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-generate-diff-report-1.json",
+      "pre_state_hash": "603BBC2B7E1BE1FA60986BB4C6CE97342211828047A968FCBD36CD39F0F65513",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-generate-shiv-diff-report-0.json",
+      "pre_state_hash": "69408D505DDF42BB81613FC0D1CDB4071E226F461A6A7C15CF6383706DCB95AB",
+      "action_id": "play:card:LEADING_STRIKE:001:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-generate-shiv-diff-report-1.json",
+      "pre_state_hash": "37601A25DAC9A7AC0581FB700AA0C5C748D0EA5D859ED76E69149F2D2765261D",
+      "action_id": "play:card:SHIV:000:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-generate-shiv-diff-report-2.json",
+      "pre_state_hash": "8625770E4D6469C7E4DF8C671572FEE9F0E6E606ED1570DAD87845DF207C6CD4",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-innate-diff-report-0.json",
+      "pre_state_hash": "E9662B1C52BE35D08229711056BA1E1EE30E42D5843AA3AFA69A0106DEFF6065",
+      "action_id": "play:card:BACKSTAB:001:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-innate-diff-report-1.json",
+      "pre_state_hash": "31AF5361C948C497D245256D54DBBB968B95DBD5683032B15B6D427D7FF4BA04",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-move-upgrade-base-diff-report-0.json",
+      "pre_state_hash": "6415B3E4E56A41DEDF705B51FE1C7206A91F84EDE4AFEFE27E26228503B11B61",
+      "action_id": "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-move-upgrade-base-diff-report-1.json",
+      "pre_state_hash": "F2B8B66315D99CAED0713382BC8BE7BF1F9467853F4B98BCB03CD91EBD6D9063",
+      "action_id": "play:card:HEADBUTT:001:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-move-upgrade-base-diff-report-2.json",
+      "pre_state_hash": "36CCF9F28C05D55A9127140FBAD0F3C7E05F0A4AC8E27004860C92E7B0DF5606",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-move-upgrade-up-diff-report-0.json",
+      "pre_state_hash": "B89CC2313E2060CA7C82A8B05967B8A1E10D48765BD14587C34C68521B23DD42",
+      "action_id": "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-move-upgrade-up-diff-report-1.json",
+      "pre_state_hash": "654DA43F23F29B19C3AF98DF3EA38121FD6774F78C5EF574ACF5DF5A2CED383E",
+      "action_id": "play:card:HEADBUTT+:000:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-move-upgrade-up-diff-report-2.json",
+      "pre_state_hash": "970065733C11C4EC8A0B437834CAC138BB24F7ED384DA5EEAC302FAFCF83CBCE",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-random-exhaust-diff-report-0.json",
+      "pre_state_hash": "083C2F30BF809E1D1EEFEADE268A7495BAD222F3A5EAFB391FA4D41EFAE4E406",
+      "action_id": "play:card:TRUE_GRIT:001:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-random-exhaust-diff-report-1.json",
+      "pre_state_hash": "A6EE9201D6E3352A6EBAC65F91A4166BA3C6132E4B9824909B585DA5BE234E13",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-random-target-diff-report.json",
+      "pre_state_hash": "C0820B0C8F50A5EEB9BB79989C0F1C11DD82893F00F4E10367C79B0D7594D4EA",
+      "action_id": "play:card:SWORD_BOOMERANG:001:none",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-retain-diff-report-0.json",
+      "pre_state_hash": "F46863184B6E42399E365D3BBBE91304159088AA2D666AB9D0755435F587B4CB",
+      "action_id": "play:card:STRIKE_SILENT:009:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-retain-diff-report-1.json",
+      "pre_state_hash": "9E4E58258F69779911A1E8910F1EDC13BC843C9015B14293D81E29D17DE9627B",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-retain-diff-report-2.json",
+      "pre_state_hash": "0BA31BB5D507B3303B065B4D7D3E2C86772E6EBC837F2B258D9CC401EB32C112",
+      "action_id": "play:card:SNAKEBITE:001:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-x-cost-diff-report-0.json",
+      "pre_state_hash": "749EC0A80B493BC6AC6518A3A54A9D91E287029C21CEE569447A222985BC534E",
+      "action_id": "play:card:WHIRLWIND:001:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-card-x-cost-diff-report-1.json",
+      "pre_state_hash": "50D95F11F042D79629F6AC03B71873C369C3F7B330F1147F23477AAF492B73DD",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-corruption-diff-report-0.json",
+      "pre_state_hash": "093495109297352701DCAF1018D1F707ACC6BE65926F7D06A097E4B652543B67",
+      "action_id": "play:card:DEFEND_IRONCLAD:013:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-corruption-diff-report-1.json",
+      "pre_state_hash": "35C6428B8C5A7B812FC6766AC32AB2CC8EF26D8AC2DE73D12121435710BE68A1",
+      "action_id": "play:card:DEFEND_IRONCLAD:014:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-envenom-diff-report-0.json",
+      "pre_state_hash": "F037EBCC731CC38D78E863ACEF0A457B451BAA99026F583FD0E8014F376AF28B",
+      "action_id": "play:card:DEFEND_SILENT:013:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-envenom-diff-report-1.json",
+      "pre_state_hash": "0B90D75CC5F8592AA5155225D77C4B9A95FDE38CB21CEBA797D5F604E2AEE608",
+      "action_id": "play:card:STRIKE_SILENT:006:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-flame-barrier-diff-report-0.json",
+      "pre_state_hash": "ED414643D1337B6D5F970BA90BBCC5AFE917035FAF145C00BAC79E8AF8ABE364",
+      "action_id": "play:card:DEFEND_IRONCLAD:013:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-flame-barrier-diff-report-1.json",
+      "pre_state_hash": "76EC954BF22F6AA955CFBCAC0D5BDA4271D2FF49DA0AE2F427D5CA08379BFCCF",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-infinite-blades-diff-report-0.json",
+      "pre_state_hash": "BC7F6FCC8BFF0988E7003D781C749144CE83362B427AD650D3A6090E0C07A900",
+      "action_id": "play:card:DEFEND_SILENT:017:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-infinite-blades-diff-report-1.json",
+      "pre_state_hash": "73276484C64937226311C09A373BAF34163849FE6002C887170F97A16B0E5BA8",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-panache-diff-report-0.json",
+      "pre_state_hash": "F25DEB8789CB41ABAD58AAEF6A80599E59D344D9F8C1B352908216D7BA46ECF3",
+      "action_id": "play:card:PANACHE:001:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-panache-diff-report-1.json",
+      "pre_state_hash": "CA6E05FA032FAFC12F2D688751A6353BDA3C90B4321BEED9DE4C4EA3DB33CEAB",
+      "action_id": "play:card:SHIV:009:enemy:TWIG_SLIME_S:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-panache-diff-report-4.json",
+      "pre_state_hash": "DB894AA008043050D5614BE6D146537C330B443008AB6702583B088639022281",
+      "action_id": "play:card:SHIV:012:enemy:LEAF_SLIME_M:2",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-panache-diff-report-5.json",
+      "pre_state_hash": "E67B214EDB98C62C665465F103CFEBAB2AD166FA66C5A04FAA280C1F16DD3B14",
+      "action_id": "play:card:SHIV:013:enemy:LEAF_SLIME_M:2",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-plating-diff-report-0.json",
+      "pre_state_hash": "CEF73489973915522B29D3D040983D4C836D2142BFC30A49739D574BD7F1E6D9",
+      "action_id": "play:card:ETERNAL_ARMOR:010:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-plating-diff-report-1.json",
+      "pre_state_hash": "982E501C4E89B1992FB060BB3D38D847132F6BA03612DB201C174646D715462E",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-poison-diff-report-0.json",
+      "pre_state_hash": "07BC25E559C5E370B549BC6D016AC17589B9A3A726B6C4C860DCBB1955BE2184",
+      "action_id": "play:card:POISONED_STAB:003:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-poison-diff-report-1.json",
+      "pre_state_hash": "E82CF2FBFBE5274539ED3ED8F47A7673CEB9DCB9FF6F4121C92266C1BF9C09DE",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-rage-diff-report-0.json",
+      "pre_state_hash": "AB6F4F2314928A0ABF4DDB8571BC6BCB1C08DDA3ABF331CE07F0C73198CE0496",
+      "action_id": "play:card:RAGE:001:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-rage-diff-report-1.json",
+      "pre_state_hash": "E483798D7AED2B0BB59EA3CFE2E8C4C0773A5A3C75AEDFF43153E18CCB68D5C3",
+      "action_id": "play:card:DEFEND_IRONCLAD:012:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-rage-diff-report-2.json",
+      "pre_state_hash": "ED45977B15B97E9FDAE963C25B05F837011021C602CF20C101357652C6EEE891",
+      "action_id": "play:card:DEFEND_IRONCLAD:013:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-rage-diff-report-3.json",
+      "pre_state_hash": "B20BD4A7CEC9567DD995C8B67C570BDD83AA41FF8C722884ADDB05416D187B11",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-anchor-diff-report.json",
+      "pre_state_hash": "0129F118B8A0B1A68DE7B53E84F63296E8E51DA193F4F7C11C66466191565091",
+      "action_id": "play:card:DEFEND_IRONCLAD:014:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-attack-counters-diff-report-2.json",
+      "pre_state_hash": "2F43A950293ABC74F404E86CE46455D4D2F4E597BFAFEE86F9EDD7E702A03339",
+      "action_id": "play:card:STRIKE_IRONCLAD:016:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-attack-counters-diff-report-3.json",
+      "pre_state_hash": "7431A8BE185A6D2227C74135AE40079563363BAC15DCEF54FAF92B0E4F8E959A",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-attack-counters-diff-report-4.json",
+      "pre_state_hash": "30D4713A9C33AFE7C577C08E9B445E6939126D15033D1DB0082EF6C9736BAE88",
+      "action_id": "play:card:STRIKE_IRONCLAD:018:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-attack-counters-diff-report-5.json",
+      "pre_state_hash": "79F355352FF324805D5F245E7A00D8E329EF7FC2B086948A7205E9C621F7E055",
+      "action_id": "play:card:STRIKE_IRONCLAD:019:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-beating-remnant-diff-report-0.json",
+      "pre_state_hash": "25B942D7376F4CE98DF2AB78B8CDB8C60536EA062A2A00EA8E359F1BA42CAECB",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-beating-remnant-diff-report-1.json",
+      "pre_state_hash": "1BF37DD3B8C7D96A342E3938A7A9F532B75FBE4A5CB14E741888DD44E5D562C7",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-belt-buckle-diff-report-0.json",
+      "pre_state_hash": "C352E007D04FA79C00B9099B35BB71D6606CA2930B039B7B94D2A924E6FC9054",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-belt-buckle-diff-report-1.json",
+      "pre_state_hash": "1155C1AFFC3BA3C2F9E0B5E52F7B034DF69421444E93818511E29E571459212D",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-blood-vial-diff-report.json",
+      "pre_state_hash": "A92B37149D66B1E6B3325F543B9273D1294AA770F42ABDDE745B1810B097F9E0",
+      "action_id": "play:card:DEFEND_IRONCLAD:014:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-booming-conch-diff-report.json",
+      "pre_state_hash": "B6B1FF995E83DA5215CABE79E5C52E4D34F0C784AE814838BBBA137EFE959FC3",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-bread-diff-report-0.json",
+      "pre_state_hash": "C1050BA8E6EEEF9579128BCDFD41B7073AC93E41CB51CFB857B3212C3C47ACAC",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-bread-diff-report-1.json",
+      "pre_state_hash": "DBE9BABABFE3896606F8FF977266F106FDDAFA017D15DA9684106869FA509B19",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-brilliant-scarf-diff-report-3.json",
+      "pre_state_hash": "93B3AD35B3DDA43D636A73A5E161093F9BCC0FFBB241C0811128A575CE68C033",
+      "action_id": "play:card:DEFEND_IRONCLAD:010:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-brilliant-scarf-diff-report-5.json",
+      "pre_state_hash": "A6A620BCBE911CCFF3911A89E6F3FA95E493E991F7B3041BD33FD9D9D2B285A4",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-brimstone-diff-report-0.json",
+      "pre_state_hash": "453AE8535B8CD8D6F5D95FDDCD42CDEAEA4AE9C0A7548B35D84BBC61E0C1EA36",
+      "action_id": "play:card:DEFEND_IRONCLAD:014:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-brimstone-diff-report-1.json",
+      "pre_state_hash": "84B531E7E44ADD218A45D1E63724304D165BC1247BEBD7D2CB4171A69A2072E1",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-bronze-scales-diff-report-0.json",
+      "pre_state_hash": "520408B1FF70D1237411A1C4E8F79BEBAC49B2B52A328AADBFD6D484F5EEC6CF",
+      "action_id": "play:card:DEFEND_IRONCLAD:014:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-bronze-scales-diff-report-1.json",
+      "pre_state_hash": "562B7F76BB9C63ED690CFA47777F9EF70C3C74270BD1F515FE81FD1041E68CD3",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-candelabra-diff-report-0.json",
+      "pre_state_hash": "CE14B616A774EF25821F77A0F6C848A37BF59AA070C5759A3F4CF807AC493BD2",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-candelabra-diff-report-1.json",
+      "pre_state_hash": "CD6F2AD38A1012199D2F9021E20194A0CF485EADD5EA53A3DAB94AEDAE67E364",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-chandelier-diff-report-0.json",
+      "pre_state_hash": "CF18D76C00A369E04BAC58E446E80A0D31161F2A89E5409E82917BFB4411479E",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-chandelier-diff-report-1.json",
+      "pre_state_hash": "A9AD57CE9C429E0C2B30B5ECFFEB312074DE098F2AD8B1AD08EBB3290E4CFC73",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-combat-end-heal-diff-report-2.json",
+      "pre_state_hash": "71408174071AE57F0BAFC7DDAD9D278D448215B43A8A9457EDACE292025C3FDB",
+      "action_id": "play:card:BLUDGEON:008:enemy:SHRINKER_BEETLE:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-combat-start-carried-diff-report-0.json",
+      "pre_state_hash": "D74468FBE10AAE9E41F4667168C1DD08075FF48FE8A77E31D1AC44FC2D6065C8",
+      "action_id": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-combat-start-carried-diff-report-1.json",
+      "pre_state_hash": "1141C0EF63D2120B1828AC838D56E2DFCB288C6D599E6FB142C6F1FDFFD029E4",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-cost-gated-diff-report-0.json",
+      "pre_state_hash": "2DA8E22F32AF29AE55332521948E602E191729B140EA09F8A76DEB991CC4ADD4",
+      "action_id": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-cost-gated-diff-report-1.json",
+      "pre_state_hash": "DA9E2C48D121B071A015749158D514E30415C82AC74BD2898AD8E3F32FF4B3B8",
+      "action_id": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-cost-gated-diff-report-2.json",
+      "pre_state_hash": "466B0B0E0E88940BA7969DF65ECF06697D77F57EBE234166CEF704DB0F6F16A8",
+      "action_id": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-cross-combat-carried-diff-report-0.json",
+      "pre_state_hash": "18AA1DA1DF7873B1FEA34461B7D7BEC1C476A5D5539CCE481F18BCC5E6590D6C",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-cross-combat-carried-diff-report-1.json",
+      "pre_state_hash": "F0734AA35CAC6ACE928BE879851D7F223F30E9555AED7F3CC62C5FC9DACE9F9F",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-delicate-frond-diff-report-0.json",
+      "pre_state_hash": "BCA983B9BC1865D751401085B58D73DB3C463B7B70B292C79A39613CDFB7CCB9",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-delicate-frond-diff-report-1.json",
+      "pre_state_hash": "6D0977A59567E43781E8BC525E489C9568F0C422954EE1AA32A3C7A804CC2600",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-fake-happy-flower-diff-report-0.json",
+      "pre_state_hash": "EC4A07AB72A605179C82A0D3D99D74D3D9210019FB6AFCE31555A15B7003BB50",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-fake-happy-flower-diff-report-4.json",
+      "pre_state_hash": "15132C7CBBC2D49A34C6D10B136E5E7373AF9F0A0DD2BDDBE3EDECED499C3CA6",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-fake-orichalcum-diff-report.json",
+      "pre_state_hash": "057AAE338AB640CC5D76395062C42789096FDA32963705C6D1AB4C22DF3420B2",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-fake-snecko-eye-diff-report-0.json",
+      "pre_state_hash": "33B25286568CEFB43B92A545742793DDF50FA128438B0C79143ECF2D7F937EA4",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-fake-snecko-eye-diff-report-1.json",
+      "pre_state_hash": "752D5D789D38E315E3FDC551019F0F64D598C29C869C865DD57C138F5923FDF0",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-festive-popper-diff-report-0.json",
+      "pre_state_hash": "30F6D4E93FFEACFEC17506018D122CE27DC37C054A8D967B25829736E2286DC8",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-festive-popper-diff-report-1.json",
+      "pre_state_hash": "A65AF86E905FC0AA507A9E41D933F23B41FE84911480CDDFB21B706FA2314054",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-fiddle-diff-report-0.json",
+      "pre_state_hash": "F6FFF6CB409EC863E5932B6C78534401AE7D2A57D9359C359F5406DBB4AA2A9E",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-fiddle-diff-report-1.json",
+      "pre_state_hash": "0EE0C4B940744A791C9402D9FE5A55616A2BAC0255BF655460AB4159DD40392D",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-hand-drill-diff-report-1.json",
+      "pre_state_hash": "50C7A011B2FA6AD989730580CFB6B06A89E2A67D24B5CB5970019157AD8DA9BE",
+      "action_id": "play:card:STRIKE_IRONCLAD:013:enemy:SHRINKER_BEETLE:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-ice-cream-diff-report-1.json",
+      "pre_state_hash": "362A537B98C67042CA6D7436FA10CCDD23D42471E161D55C68246AC20049E6BB",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-ice-cream-diff-report-2.json",
+      "pre_state_hash": "CAAC14FAEEF9CEF453E98AE269A9D895B465FDA4BBE7D7BB424C10103DF9B792",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-joss-paper-diff-report-2.json",
+      "pre_state_hash": "896A86102081D918533D34B3E5C7C0577DA2D985611EBC18BB0647E5E4675190",
+      "action_id": "play:card:TREMBLE:012:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-joss-paper-diff-report-4.json",
+      "pre_state_hash": "8AC0B98D8A2F87CDC201968DEC8FD654EF8A1C5E5BBC6F5DDBBED5D154093ECA",
+      "action_id": "play:card:TREMBLE:015:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-kusarigama-diff-report-2.json",
+      "pre_state_hash": "DA3FF42220E058C1108B5BD2CB5B5923B716F21D6514A500276CA4C3C31C1663",
+      "action_id": "play:card:STRIKE_IRONCLAD:016:enemy:SEAPUNK:1",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-kusarigama-diff-report-3.json",
+      "pre_state_hash": "BF013DB49D76E88CE9E99D80FBD9A44094CC78F1B85C0405F20797EEDA3E536E",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-kusarigama-diff-report-4.json",
+      "pre_state_hash": "0C609CC728B2B3216772E563A52F15CE2812764551D0421951C0B04579A2AFD3",
+      "action_id": "play:card:STRIKE_IRONCLAD:019:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-kusarigama-diff-report-5.json",
+      "pre_state_hash": "6A7AA971CBFBDFCAEDD53DEA4919095E7A8B45D7702FDC504CD3205D45E11027",
+      "action_id": "play:card:STRIKE_IRONCLAD:020:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-letter-opener-diff-report-2.json",
+      "pre_state_hash": "3980E2C34899683242FE83EE58EDEDD24B495FEF876C027C9A36F3CCBA4115D9",
+      "action_id": "play:card:DEFEND_IRONCLAD:015:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-letter-opener-diff-report-3.json",
+      "pre_state_hash": "907BB7EBE782D797788BFC18BC0DB5D70688F24DE8CC91ABFE2C86751F5358B6",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-max-energy-carried-diff-report-0.json",
+      "pre_state_hash": "143F6D31998F85BD4FA9F03B9F84DE073F67DD0869ACC2A42AB60D93907E0A02",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-max-energy-carried-diff-report-1.json",
+      "pre_state_hash": "D39C8F60D4C5A3B7C296781F150646D037E9D1470608835B53023A038B66F4F9",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-mercury-hourglass-diff-report-0.json",
+      "pre_state_hash": "1DA1086B5C1DB36CB3DFCC2E729C58554E3AD48FE6FB12B4B74BDE407F10C613",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-mercury-hourglass-diff-report-1.json",
+      "pre_state_hash": "D29224E98A4E156854B616512B218552032D6E8FFD0576DFABE4C29C7479B327",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-mr-struggles-diff-report-0.json",
+      "pre_state_hash": "EDFEAB98102E3CBC5E3F4E94B253B51788719E358AAE31105157925D1E35D0BB",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-mr-struggles-diff-report-1.json",
+      "pre_state_hash": "73E8CA0A42A1DF22C445935B0AB71BA506B54B4B5CE4E3B2FF4454990BC361CC",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-ninja-scroll-diff-report.json",
+      "pre_state_hash": "8922C677A52DAD2DDCC95F66D995327137CA3D8616152637B81984318E11EE30",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-nunchaku-diff-report-0.json",
+      "pre_state_hash": "FAFF8441E7CE0FA4ED72254FE9DA3086A1CF3C5CAFEC0AAC93117E824EDC103B",
+      "action_id": "play:card:DEFEND_IRONCLAD:012:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-nunchaku-diff-report-1.json",
+      "pre_state_hash": "9519872CA79B507BEC53B5B4C036733CED001470BDEB04804BE17B474555C86A",
+      "action_id": "play:card:DEFEND_IRONCLAD:013:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-paels-flesh-diff-report-0.json",
+      "pre_state_hash": "C70203D4B2A2F02246C6A71D629C8C50CF8EDB7931F522576B0A75D74FC07C71",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-paels-flesh-diff-report-1.json",
+      "pre_state_hash": "96B093132D1D0A3AC70F2EA4332FEAEEE41559ECD3FF9E67FA7CA65718FA129F",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-paels-tears-diff-report-1.json",
+      "pre_state_hash": "C08BD242BECD92E39E5441B0D92D0D942A9DCE34DF3DCEFF4424FF1F3C8AEDD4",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-paels-tears-diff-report-2.json",
+      "pre_state_hash": "FF9C5D859EF36BBFACA6B1412FA467AA733BF0A6BBA6E1166C8B17970E68F2E4",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-pantograph-diff-report-0.json",
+      "pre_state_hash": "BBDD42655F8DB1C46F72D1E658F978185DF31E626F8914DB329EE668D3B1C9DD",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-pantograph-diff-report-1.json",
+      "pre_state_hash": "EFBBD7F41BF94E3CCE28FD231A49389C51100F8F7597D02DFEBE6491EAC75963",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-parrying-shield-diff-report-2.json",
+      "pre_state_hash": "E5EE1A2A3C22BCE1D57C029FCA0CB27A989FADEF606075A06E4AB7FE5A20B6FE",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-parrying-shield-multi-diff-report-2.json",
+      "pre_state_hash": "021F830243D3B6A65616504B4FB2B4F0FC1647FA93B6AACA4D1FE24CD4D7BE15",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-pendulum-diff-report-0.json",
+      "pre_state_hash": "034C5527209BFCF78A4C06E071EED70E0F39A337DD7685A7DC76EE0CAFA2BF6D",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-pendulum-diff-report-1.json",
+      "pre_state_hash": "B1A33C1A25F5855BDF28201F6CE001E7977091F694BCA49388382B3CCA07159F",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-per-turn-draw-diff-report-0.json",
+      "pre_state_hash": "4CCE3BF82E9BF1B7B878B91713409AD35A764A838DEEE39FB063CC21684DE74C",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-per-turn-draw-diff-report-1.json",
+      "pre_state_hash": "BEB0697746A662D53CCAEC859653312923183BEBBC8F040AA263311B84F78F6B",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-pocketwatch-diff-report-0.json",
+      "pre_state_hash": "F54C04BEE0B29F4D78961D742D8B48A80FEBC8E10A9F57E9E8086DCCE50E915F",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-pocketwatch-diff-report-1.json",
+      "pre_state_hash": "DEA99C57AFF245A5630727BFE72437B2B794772FBE331F3209F130DF7F7895DE",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-power-triggers-diff-report-0.json",
+      "pre_state_hash": "29E6705D1A155622ED1D76E5C1F6C22DDA59516693D24029E3A9E9331EEE77E6",
+      "action_id": "play:card:INFLAME:002:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-power-triggers-diff-report-1.json",
+      "pre_state_hash": "111CA78D9CDEB6DE88479BB6E1A91E11C67F62D19B4C516D04DC6C3D3354DE53",
+      "action_id": "play:card:INFLAME:003:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-rainbow-ring-diff-report-1.json",
+      "pre_state_hash": "1081863E2B9054DA9354746E8796F1ABE9A8AA0A15D1D6B3C46624A02D776C17",
+      "action_id": "play:card:DEFEND_IRONCLAD:007:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-rainbow-ring-diff-report-2.json",
+      "pre_state_hash": "76EC11C2318449ED84CDC0E57911984454CE06C962C24D395467DDBF1A3FAEFF",
+      "action_id": "play:card:INFLAME:001:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-red-mask-diff-report-0.json",
+      "pre_state_hash": "F880B29ECC80FB2D5D3DD1992CE82EB4FD49C1390E300AAE945A80DEDE86F2F5",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-red-mask-diff-report-1.json",
+      "pre_state_hash": "2DC9506A9477E10550C564BE5817F784D29863B112C08FDFB318303B060760B7",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-royal-poison-diff-report-0.json",
+      "pre_state_hash": "DEB5E8DD8150F2EA4C18384095EC9C68E993DBDE28ABEECF575D63CE601E834C",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-royal-poison-diff-report-1.json",
+      "pre_state_hash": "4C6C153BF1AD16FBA61FF6FD0649B2DE430094088EEA1C49122088CB2339176B",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-sai-diff-report.json",
+      "pre_state_hash": "7865182C27A1D3C3438193AF0539B813F92B2C5C84B968502C9A3EE5173CF629",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-screaming-flagon-diff-report-5.json",
+      "pre_state_hash": "0AA8F7817469BE2EDBD3A248ECB9D6FDBB31F31FAFF368A5F8CD2CAB13EAC8AB",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-seal-of-gold-diff-report-0.json",
+      "pre_state_hash": "92E4C718880D0DC7FD9815587ADE85AA47411B2EC2D0CA902C4B4A8D88EBF7AC",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-seal-of-gold-diff-report-1.json",
+      "pre_state_hash": "C6D6F82F61E666E25E9B82C088962C88DD0A398AEA245CDD981FD3B4603D135F",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-self-forming-clay-diff-report-0.json",
+      "pre_state_hash": "940112C01813F36DE8BC8CD95E758EE61AE977988F975FC001842A386F66DC11",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-self-forming-clay-diff-report-1.json",
+      "pre_state_hash": "A02EBB62B4BFAA39D662A7A4FFE750FB2F2E7A0AA56477EE532D903B0D329F2E",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-snecko-eye-diff-report-1.json",
+      "pre_state_hash": "8FC67AC79443EAB15ADEC82C53A0E518EBDD06A694123B1D06852E792485C7E4",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-snecko-eye-diff-report-2.json",
+      "pre_state_hash": "DE7239B95281D6080EE08C1EF3456BC54D595C75BEAD043C08C8BB0DCB9810DD",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-stone-calendar-diff-report-6.json",
+      "pre_state_hash": "AD84B75A9C83C68BED53AB095A1EC2C75FE4A49958967C8C7E0093F1FE696F17",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-strike-dummy-diff-report-0.json",
+      "pre_state_hash": "967D9DDBCAED4E98EDDAB99A5D8A01006C3F0E1589A043A7D741745CCDBB2B5D",
+      "action_id": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-strike-dummy-diff-report-1.json",
+      "pre_state_hash": "A3F8624C0403612534DD4A649D23855FB574CDD281BB68568E1BF58B1D190598",
+      "action_id": "play:card:STRIKE_IRONCLAD:015:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-strike-dummy-diff-report-2.json",
+      "pre_state_hash": "1913835515DDB58A002CF20213135514A1D384F957D7138EC7B3E3D09D10AF08",
+      "action_id": "play:card:STRIKE_IRONCLAD:016:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-strike-dummy-diff-report-3.json",
+      "pre_state_hash": "8D7742E853BF462E9F7CC6727BC5A59B7B2422966B8F675FA67539989C298CAF",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-tea-carried-diff-report-0.json",
+      "pre_state_hash": "48BEEC90A0A241B35F635FEECBB6CA735B1E542F21B472E5CEDB1D4965201C6B",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-tea-carried-diff-report-1.json",
+      "pre_state_hash": "ADBD9F159BC461346E536370CA6E78675C495A2EBB660B9B05E63C5020355684",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-the-boot-diff-report-0.json",
+      "pre_state_hash": "D3702A8533891705B99D9D0DBCFE8684FB4926C1EEC539F7297349052F1F5286",
+      "action_id": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-the-boot-diff-report-1.json",
+      "pre_state_hash": "0040DA335C962DC8E8512596A7895A831F49B002E661836D0C0A8F69CE8E4D77",
+      "action_id": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-the-boot-diff-report-2.json",
+      "pre_state_hash": "80F71D83F4C99140413B29C2E466C88697627D2BD56B8650AEB9339AEBF637B7",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-tough-bandages-diff-report.json",
+      "pre_state_hash": "AF8558FBD9DD53A0B6DC602B99F68005FDD136829EE0A59B32A3ABF4244A55DE",
+      "action_id": "play:card:DEFEND_SILENT:007:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-tungsten-rod-diff-report-0.json",
+      "pre_state_hash": "17DA9BF011B54DCCBE4AB738E6FC0DF6BAA4FC62A38942793B948A839379B4CD",
+      "action_id": "play:card:BLOODLETTING:002:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-tungsten-rod-diff-report-1.json",
+      "pre_state_hash": "2AF8C057FC2AEF89AE97ACBB3DD92D307F8628202F3D230C0918531540BF8CC6",
+      "action_id": "play:card:DEFEND_IRONCLAD:007:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-tuning-fork-diff-report-0.json",
+      "pre_state_hash": "8731DEE0DEA2037E60CC34DD2F93443AC518A8F230122D2413D83AD3A9019AC6",
+      "action_id": "play:card:DEFEND_IRONCLAD:013:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-tuning-fork-diff-report-1.json",
+      "pre_state_hash": "A8C56AEF37FA6DEE649D4E6793479D64FE5D8A6095A425C59D8AE2C5515A86A2",
+      "action_id": "play:card:DEFEND_IRONCLAD:014:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-tuning-fork-diff-report-2.json",
+      "pre_state_hash": "24E7F219C59EB67ECC6D6C31F91AAA7980204D0051E60D0EFFFF959D2A7DC8A3",
+      "action_id": "play:card:DEFEND_IRONCLAD:015:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-tuning-fork-diff-report-3.json",
+      "pre_state_hash": "A04FDD27CBA94F701E2766BED2C62E82A26CB93B5FC6F7C055E162625E50EB5D",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-turn-end-block-diff-report-0.json",
+      "pre_state_hash": "90F8F04D44A3E90FCAE287B32F13214DF18E67727E0BE567AF6C9D6DCC90DC43",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-turn-end-block-diff-report-1.json",
+      "pre_state_hash": "72912AF693968E3DCEC5A606BAB0559192F878499586A5F9D8F3E57FD644E53E",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-turn-n-triggers-diff-report-0.json",
+      "pre_state_hash": "D916A1E96CF1F34F90ACC4694DE87405F077ECFA071958A13EE96038FD675606",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-turn-n-triggers-diff-report-1.json",
+      "pre_state_hash": "174E1521FBA062E37A2CCCE9C8306358728D5BEFFD0F42E28AA747E1AA26C866",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-twisted-funnel-diff-report-0.json",
+      "pre_state_hash": "0393CFD50CB951AB9709FE2B1A32280D11B17158A890D762024C5724CFAD0692",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-twisted-funnel-diff-report-1.json",
+      "pre_state_hash": "BF7E879FE5324DE08F4C7969FF74E9DBE46F5CC33874BA803C7E35CCC55232E2",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-unceasing-top-diff-report-0.json",
+      "pre_state_hash": "846FC863194D771FAC30B299AFDC99F52602D778F42C8B4ACB740BECFC01053F",
+      "action_id": "play:card:STRIKE_SILENT:011:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-unceasing-top-diff-report-1.json",
+      "pre_state_hash": "3110C0E7582BDF69C2DAC7EADE2FDEDFE29C416FCCA0B9BB09BDCB2D65555384",
+      "action_id": "play:card:STRIKE_SILENT:010:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-unceasing-top-diff-report-2.json",
+      "pre_state_hash": "FAC931BDD8FBF76F00D2DEA9024AFBD1172119095A0C9064EB4A6D4EBAC92F68",
+      "action_id": "play:card:STRIKE_SILENT:009:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-unceasing-top-empty-diff-report-0.json",
+      "pre_state_hash": "8912E3D78FBBA8E1660DAF0A496370E6CB85545F255EBD1EA41F60CE4AEC6708",
+      "action_id": "play:card:SHIV:010:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-unceasing-top-empty-diff-report-1.json",
+      "pre_state_hash": "2C58589EC1AD45C91A5D208CA8F2849B4FBF3639BCB70F9C0ABE55146589A38C",
+      "action_id": "play:card:SHIV:009:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-unceasing-top-empty-diff-report-2.json",
+      "pre_state_hash": "9A63288F1039F3751E8C556B4E5A9A60A5B2ED1DB0A7EC4E38BBCADFBFE30C5A",
+      "action_id": "play:card:SHIV:008:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-unceasing-top-empty-diff-report-3.json",
+      "pre_state_hash": "9AE1B024D64AC65C73197B0FDD5ECA4C531574803B206E7E05FFB4C08A8055F2",
+      "action_id": "play:card:SHIV:007:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-unceasing-top-empty-diff-report-4.json",
+      "pre_state_hash": "BED62C20B9418849AD31B7E16C8EBD9235299653CBE85A57536F5C0D93F2A6EC",
+      "action_id": "play:card:SHIV:006:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-vambrace-diff-report-0.json",
+      "pre_state_hash": "95989DD144D15CAF6A88A43933990984900B3C948CD35E00EFCF10679D84CAF0",
+      "action_id": "play:card:DEFEND_IRONCLAD:009:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-vambrace-diff-report-1.json",
+      "pre_state_hash": "588E3B89C380CC423CF4DFDD59DA9A11CB42C6DAE874C77EC0F74A32CABD8746",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-velvet-choker-diff-report-0.json",
+      "pre_state_hash": "3C8339CF65229521DB99A6CC072F1E374F0AE161AE730CB09A43D3DF2B0A7E8A",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-velvet-choker-diff-report-1.json",
+      "pre_state_hash": "7516E5F770B0C752C370A56764451BD263E2EFDF71667C1FAD4827BCCB595245",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-whispering-earring-diff-report-0.json",
+      "pre_state_hash": "6EEF9A7DA3A7C24FE291DDF81BC4162D589BAC77216674448CF6E4A959D2D8FF",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-whispering-earring-diff-report-1.json",
+      "pre_state_hash": "599516080EDD38FDC3F03C336DDE47A6CF3548759A1A14D436BCAB41FF22CBB1",
+      "action_id": "end_turn:",
+      "confidence": "Uncalculable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-wind-block-diff-report-0.json",
+      "pre_state_hash": "0350A8EE1D3E16CA4CA773B8F6AE8A32AAC449F3AF101B0EB6FFAA12551A3543",
+      "action_id": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-wind-block-diff-report-1.json",
+      "pre_state_hash": "A02757CBBE367322FB8BB18609BF0BBB177EA868466780DB724FFE99DF3374A3",
+      "action_id": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-relic-wind-block-diff-report-2.json",
+      "pre_state_hash": "18EA46D1EDC3B692D4EF8EC6A2FDA3CEA4F526394621B2E7BE5E985E899BB48A",
+      "action_id": "end_turn:",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-thorns-diff-report-0.json",
+      "pre_state_hash": "E7A9FAD9CFAC9650EA9E4A7FE615935BE8C994855A3D9ECAF6592ACC4C6E859B",
+      "action_id": "play:card:ABRASIVE:003:none",
+      "confidence": "Reliable",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    },
+    {
+      "report": "p1-csharp-thorns-diff-report-1.json",
+      "pre_state_hash": "A6DF5D70392D7719A53C53C0F143169E11CEA72A7ED0CB7075054F87FB31B2CF",
+      "action_id": "end_turn",
+      "confidence": "Estimated",
+      "mismatch_count": 0,
+      "candidate_root_present": false
+    }
+  ]
+}

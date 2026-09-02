@@ -13,9 +13,9 @@
 | 已结构化数量 | **283** | 100.0% |
 | 已捕获状态数量 | **283** | 100.0% |
 | 已检查 IL 语义数量 | **0** | 0.0% |
-| 已完成运行时探针数量 | **14** | 4.9% |
-| 模拟器声明映射数量（未由本目录验证行为完整性） | **59** | 20.8% |
-| 模拟器行为验证完整支持数量 | **14** | 4.9% |
+| 已完成运行时探针数量 | **20** | 7.1% |
+| 模拟器声明映射数量（未由本目录验证行为完整性） | **53** | 18.7% |
+| 模拟器行为验证完整支持数量 | **20** | 7.1% |
 | 仅状态捕获数量 | **210** | 74.2% |
 | 无战斗动作影响数量 | **0** | 0% |
 | 未知证据 Power 数量 | **30** | 10.6% |
@@ -31,11 +31,11 @@
 | `AUTOMATION` | 自动化 | Automation | CardPlay | `HeuristicInferred` | `AUTOMATION` |
 | `BARRICADE` | 壁垒 | Barricade | BlockGain | `LiveObserved` | `BARRICADE` |
 | `BORROWED_TIME` | 预借时间 | Borrowed Time | TurnEnd | `HeuristicInferred` | `BORROWED_TIME` |
-| `BUFFER` | 缓冲 | Buffer | DamageReceived | `HeuristicInferred` | `BUFFER` |
+| `BUFFER` | 缓冲 | Buffer | DamageReceived | `LiveObserved` | `BUFFER` |
 | `BURST` | 爆发 | Burst | TurnEnd, CardPlay | `HeuristicInferred` | `BURST` |
 | `COLOSSUS` | 巨像 | Colossus | TurnEnd, DamageReceived | `HeuristicInferred` | `COLOSSUS` |
 | `CORROSIVE_WAVE` | 腐蚀波 | Corrosive Wave | TurnEnd, CardPlay | `HeuristicInferred` | `CORROSIVE_WAVE` |
-| `CORRUPTION` | 腐化 | Corruption | CardPlay | `HeuristicInferred` | `CORRUPTION` |
+| `CORRUPTION` | 腐化 | Corruption | CardPlay | `LiveObserved` | `CORRUPTION` |
 | `CRIMSON_MANTLE` | 绯红披风 | Crimson Mantle | CardPlay, DamageReceived | `HeuristicInferred` | `CRIMSON_MANTLE` |
 | `DANSE_MACABRE` | 死亡之舞 | Danse Macabre | CardPlay | `HeuristicInferred` | `DANSE_MACABRE` |
 | `DEMON_FORM` | 恶魔形态 | Demon Form | TurnStart | `LiveObserved` | `DEMON_FORM` |
@@ -44,16 +44,16 @@
 | `DOUBLE_DAMAGE` | 双倍伤害 | Double Damage | TurnEnd, DamageReceived | `HeuristicInferred` | `DOUBLE_DAMAGE` |
 | `DUPLICATION` | 复制 | Duplication | TurnEnd, CardPlay | `HeuristicInferred` | `DUPLICATION` |
 | `ECHO_FORM` | 回响形态 | Echo Form | TurnStart, CardPlay | `HeuristicInferred` | `ECHO_FORM` |
-| `ENVENOM` | 涂毒 | Envenom | DamageReceived | `HeuristicInferred` | `ENVENOM` |
+| `ENVENOM` | 涂毒 | Envenom | DamageReceived | `LiveObserved` | `ENVENOM` |
 | `FAN_OF_KNIVES` | 刀扇 | Fan of Knives | Passive | `Unknown` | `FAN_OF_KNIVES` |
 | `FASTEN` | 勒紧 | Fasten | BlockGain | `HeuristicInferred` | `FASTEN` |
 | `FERAL` | 野性 | Feral | TurnStart, CardPlay | `HeuristicInferred` | `FERAL` |
-| `FLAME_BARRIER` | 火焰屏障 | Flame Barrier | TurnEnd, DamageReceived | `HeuristicInferred` | `FLAME_BARRIER` |
+| `FLAME_BARRIER` | 火焰屏障 | Flame Barrier | TurnEnd, DamageReceived | `LiveObserved` | `FLAME_BARRIER` |
 | `FOCUS` | 集中 | Focus | Passive | `HeuristicInferred` | `FOCUS` |
 | `HAUNT` | 纠缠 | Haunt | CardPlay | `HeuristicInferred` | `HAUNT` |
 | `HELLRAISER` | 地狱狂徒 | Hellraiser | TurnEnd, CardPlay | `HeuristicInferred` | `HELLRAISER` |
 | `INFERNO` | 狱火 | Inferno | CardPlay, DamageReceived | `HeuristicInferred` | `INFERNO` |
-| `INFINITE_BLADES` | 无尽刀刃 | Infinite Blades | Passive | `HeuristicInferred` | `INFINITE_BLADES` |
+| `INFINITE_BLADES` | 无尽刀刃 | Infinite Blades | Passive | `LiveObserved` | `INFINITE_BLADES` |
 | `ITERATION` | 迭代 | Iteration | CardPlay | `HeuristicInferred` | `ITERATION` |
 | `JUGGERNAUT` | 势不可当 | Juggernaut | BlockGain | `HeuristicInferred` | `JUGGERNAUT` |
 | `JUGGLING` | 杂耍 | Juggling | TurnEnd, CardPlay | `HeuristicInferred` | `JUGGLING` |
@@ -74,7 +74,7 @@
 | `PLATING` | 覆甲 | Plating | TurnStart, TurnEnd | `LiveObserved` | `PLATING` |
 | `POISON` | 中毒 | Poison | TurnStart, DamageReceived | `LiveObserved` | `POISON` |
 | `PREP_TIME` | 准备时间 | Prep Time | TurnStart | `HeuristicInferred` | `PREP_TIME` |
-| `RAGE` | 狂怒 | Rage | TurnEnd, CardPlay | `HeuristicInferred` | `RAGE` |
+| `RAGE` | 狂怒 | Rage | TurnEnd, CardPlay | `LiveObserved` | `RAGE` |
 | `REAPER_FORM` | 死神形态 | Reaper Form | DamageReceived | `HeuristicInferred` | `REAPER_FORM` |
 | `RUPTURE` | 撕裂 | Rupture | CardPlay, DamageReceived | `LiveObserved` | `RUPTURE` |
 | `SERPENT_FORM` | 群蛇形态 | Serpent Form | CardPlay | `HeuristicInferred` | `SERPENT_FORM` |

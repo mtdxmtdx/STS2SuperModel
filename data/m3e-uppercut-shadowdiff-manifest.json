@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "UPPERCUT",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "sha256": "791D6A8C14C13181EED69AE6E8A53A13A424F69249BF43FBCDE505606B9A045A",
+  "verdict": "pass"
+}

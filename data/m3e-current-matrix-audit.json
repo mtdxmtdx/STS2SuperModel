@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "matrix": "m3e-live-smoke-manifest-final",
+  "reports": [
+    {
+      "report": "m3e-live-report.json",
+      "repeat": "m3e-live-report-repeat.json",
+      "confidence": "Reliable",
+      "outcome_quality": "Exact",
+      "match": true,
+      "mismatch_count": 0,
+      "report_sha256": "AC306533EEA326810B77469CFA9AD1654E2AA113161EF7225E467B7C97E3E07E",
+      "repeat_sha256": "AC306533EEA326810B77469CFA9AD1654E2AA113161EF7225E467B7C97E3E07E",
+      "sha_equal": true,
+      "lock_ok": true
+    },
+    {
+      "report": "m3e-live-strike-report.json",
+      "repeat": "m3e-live-strike-report-repeat.json",
+      "confidence": "Reliable",
+      "outcome_quality": "Exact",
+      "match": true,
+      "mismatch_count": 0,
+      "report_sha256": "8555B33A86FECB244BC12EAF69DEE452589AAC5B6EA6E119167A45757107276E",
+      "repeat_sha256": "8555B33A86FECB244BC12EAF69DEE452589AAC5B6EA6E119167A45757107276E",
+      "sha_equal": true,
+      "lock_ok": true
+    },
+    {
+      "report": "m3e-live-potion-report.json",
+      "repeat": "m3e-live-potion-report-repeat.json",
+      "confidence": "Reliable",
+      "outcome_quality": "Exact",
+      "match": true,
+      "mismatch_count": 0,
+      "report_sha256": "17233DA01B153028C2D26B60749110B324215E7F97979EA69BCE3A13436ECD5F",
+      "repeat_sha256": "17233DA01B153028C2D26B60749110B324215E7F97979EA69BCE3A13436ECD5F",
+      "sha_equal": true,
+      "lock_ok": true
+    },
+    {
+      "report": "m3e-live-endturn-report.json",
+      "repeat": "m3e-live-endturn-report-repeat.json",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "report_sha256": "8859FA498C8D97EEAF1C118AEE700F512DF56B6218A2F4EC7320DBBEEAB12D79",
+      "repeat_sha256": "8859FA498C8D97EEAF1C118AEE700F512DF56B6218A2F4EC7320DBBEEAB12D79",
+      "sha_equal": true,
+      "lock_ok": true
+    },
+    {
+      "report": "m3e-live-random-target-report.json",
+      "repeat": "m3e-live-random-target-report-repeat.json",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "report_sha256": "BAE5BD7E9C34972387EE16DCFACD94A1F6BA80325652D4EACBFB40ADB5BEAA16",
+      "repeat_sha256": "BAE5BD7E9C34972387EE16DCFACD94A1F6BA80325652D4EACBFB40ADB5BEAA16",
+      "sha_equal": true,
+      "lock_ok": true
+    },
+    {
+      "report": "m3e-live-multi-random-target-report.json",
+      "repeat": "m3e-live-multi-random-target-report-repeat.json",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "report_sha256": "123176C5BB8C3D60A246BCCB65E21DAB493957F65AD434639F064B53383E2333",
+      "repeat_sha256": "123176C5BB8C3D60A246BCCB65E21DAB493957F65AD434639F064B53383E2333",
+      "sha_equal": true,
+      "lock_ok": true
+    },
+    {
+      "report": "m3e-live-random-orb-report.json",
+      "repeat": "m3e-live-random-orb-report-repeat.json",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "report_sha256": "2C5F1A773730595A6B685ED61482299A0E770D8DE86C4A6521072D69C02A0DE6",
+      "repeat_sha256": "2C5F1A773730595A6B685ED61482299A0E770D8DE86C4A6521072D69C02A0DE6",
+      "sha_equal": true,
+      "lock_ok": true
+    }
+  ],
+  "report_count": 7,
+  "repeat_count": 7,
+  "mismatch_count": 0,
+  "failure_count": 0,
+  "reliable_count": 3,
+  "estimated_count": 4,
+  "verdict": "pass",
+  "failures": []
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "DODGE_AND_ROLL",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "sha256": "8704EB020356DF2FD263EDEC9EEF2189E495FCFC74546562DEAF516060EDBB2B",
+  "verdict": "pass"
+}

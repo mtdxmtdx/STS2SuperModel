@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "manifest": "m3e-bash-reliable-shadowdiff-manifest",
+  "trace": "m3e-bash-reliable-trace.jsonl",
+  "report_count": 2,
+  "repeat_count": 2,
+  "mismatch_count": 0,
+  "all_match": true,
+  "byte_identical": true,
+  "reports": {
+    "m3e-bash-reliable-shadowdiff-report.json": {
+      "sha256": "F21E30BCF7F52EDAB1597E11B1C022DE16BC95AF8AA8503E6C05C5292A26E616",
+      "match": true,
+      "mismatch_count": 0,
+      "confidence": "Reliable"
+    },
+    "m3e-bash-reliable-shadowdiff-report-repeat.json": {
+      "sha256": "F21E30BCF7F52EDAB1597E11B1C022DE16BC95AF8AA8503E6C05C5292A26E616",
+      "match": true,
+      "mismatch_count": 0,
+      "confidence": "Reliable"
+    }
+  },
+  "verdict": "pass"
+}

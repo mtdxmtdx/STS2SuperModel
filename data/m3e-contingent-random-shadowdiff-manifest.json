@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "manifest": "m3e-contingent-random-shadowdiff-manifest",
+  "trace": "m2-contingent-random-trace.jsonl",
+  "report_count": 2,
+  "repeat_count": 2,
+  "mismatch_count": 0,
+  "all_match": true,
+  "byte_identical": true,
+  "reports": {
+    "m2-contingent-random-shadowdiff-report.json": {
+      "sha256": "2C47D4E86BF27BB6E82FA3097C9FF1B6406B222FD596DFE29F4F654F01479540",
+      "match": true,
+      "mismatch_count": 0,
+      "confidence": "Estimated"
+    },
+    "m2-contingent-random-shadowdiff-report-repeat.json": {
+      "sha256": "2C47D4E86BF27BB6E82FA3097C9FF1B6406B222FD596DFE29F4F654F01479540",
+      "match": true,
+      "mismatch_count": 0,
+      "confidence": "Estimated"
+    }
+  },
+  "verdict": "pass"
+}

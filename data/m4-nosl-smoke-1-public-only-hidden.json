@@ -1,0 +1,24 @@
+[
+  {
+    "public_state_hash": "5E2A19CAD0280E10512AB306CD32AFA8FD4852F9E1CD5FE3A8D7D1D0DDBA367A",
+    "teacher_state_hashes": [
+      "5861d7e5b5d9bbcfe51225d4"
+    ],
+    "action_value_mean": {
+      "play:card:AFTERIMAGE:012:none": -38.75,
+      "play:card:AFTERIMAGE:014:none": -38.75,
+      "play:card:AFTERIMAGE:015:none": -38.75,
+      "play:card:AFTERIMAGE:016:none": -38.75
+    },
+    "action_value_variance": {
+      "play:card:AFTERIMAGE:012:none": 0.0,
+      "play:card:AFTERIMAGE:014:none": 0.0,
+      "play:card:AFTERIMAGE:015:none": 0.0,
+      "play:card:AFTERIMAGE:016:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:AFTERIMAGE:012:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  }
+]

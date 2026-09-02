@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p1-strike-dummy-seed",
+  "fixture": "p1-relic-strike-dummy",
+  "seed": "p1-strike-dummy-seed",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 3,
+  "action_kind": "end_turn",
+  "normalized_action_id": "end_turn:",
+  "draw_pile_source": "placeholder_count_only",
+  "attacks_played_this_turn": 3,
+  "confidence": "Estimated",
+  "chance_present": true,
+  "random_operator": "Shuffle",
+  "probability_known": false,
+  "outcome_quality": "Unknown",
+  "probability_mass_covered": null,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "aggregate_count_only",
+  "identity_comparison": "omitted",
+  "chance_quality": {
+    "chance_present": true,
+    "random_operator": "Shuffle",
+    "probability_known": false,
+    "outcome_quality": "Unknown",
+    "probability_mass_covered": null,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "aggregate_count_only",
+    "identity_comparison": "omitted"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "8D7742E853BF462E9F7CC6727BC5A59B7B2422966B8F675FA67539989C298CAF",
+  "engine_post_state_hash": "C9A6066ED4888A95E0D8E7A71B06BF75999E274146B42F12ABFFEC4999AF6438",
+  "projected_comparison_hash": "70B871017B9DE3FD9DCAC8A41B642A12977C1FBF71FECF0B1F4B29433A287920",
+  "actual_comparison_hash": "70B871017B9DE3FD9DCAC8A41B642A12977C1FBF71FECF0B1F4B29433A287920",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 14,
+      "actual": 14,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 3,
+      "actual": 3,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 69,
+      "actual": 69,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.FAKE_STRIKE_DUMMY.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.FAKE_STRIKE_DUMMY.dynamic_vars",
+      "projected": [
+        {
+          "Key": "ExtraDamage",
+          "Value": 1
+        }
+      ],
+      "actual": [
+        {
+          "Key": "ExtraDamage",
+          "Value": 1
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.STRIKE_DUMMY.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.STRIKE_DUMMY.dynamic_vars",
+      "projected": [
+        {
+          "Key": "ExtraDamage",
+          "Value": 3
+        }
+      ],
+      "actual": [
+        {
+          "Key": "ExtraDamage",
+          "Value": 3
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "FAKE_STRIKE_DUMMY",
+        "STRIKE_DUMMY"
+      ],
+      "actual": [
+        "FAKE_STRIKE_DUMMY",
+        "STRIKE_DUMMY"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    }
+  ],
+  "repeat_sha256": "c77b42ff72e2b05855ba93f1d39aba18aa814eb21bce4a95e42beaaecedfe0ee"
+}

@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p1-twisted-funnel-seed",
+  "fixture": "p1-relic-twisted-funnel",
+  "seed": "p1-twisted-funnel-seed",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 0,
+  "action_kind": "end_turn",
+  "normalized_action_id": "end_turn:",
+  "draw_pile_source": "placeholder_count_only",
+  "attacks_played_this_turn": 0,
+  "confidence": "Estimated",
+  "chance_present": true,
+  "random_operator": "Shuffle",
+  "probability_known": false,
+  "outcome_quality": "Unknown",
+  "probability_mass_covered": null,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "aggregate_count_only",
+  "identity_comparison": "omitted",
+  "chance_quality": {
+    "chance_present": true,
+    "random_operator": "Shuffle",
+    "probability_known": false,
+    "outcome_quality": "Unknown",
+    "probability_mass_covered": null,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "aggregate_count_only",
+    "identity_comparison": "omitted"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "0393CFD50CB951AB9709FE2B1A32280D11B17158A890D762024C5724CFAD0692",
+  "engine_post_state_hash": "BF7E879FE5324DE08F4C7969FF74E9DBE46F5CC33874BA803C7E35CCC55232E2",
+  "projected_comparison_hash": "A045816F877D89F1F6125B9723706F4DC093199A919892A1B2EE429CA345BEC4",
+  "actual_comparison_hash": "A045816F877D89F1F6125B9723706F4DC093199A919892A1B2EE429CA345BEC4",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 42,
+      "actual": 42,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.status.POISON.amount",
+      "projected": 3,
+      "actual": 3,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 3,
+      "actual": 3,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 69,
+      "actual": 69,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.POISON_POWER.amount",
+      "projected": 3,
+      "actual": 3,
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.POISON_POWER.applier",
+      "projected": "player",
+      "actual": "player",
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.POISON_POWER.counters",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.POISON_POWER.dynamic_vars",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.POISON_POWER.present",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "relic.TWISTED_FUNNEL.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.TWISTED_FUNNEL.dynamic_vars",
+      "projected": [
+        {
+          "Key": "PoisonPower",
+          "Value": 4
+        }
+      ],
+      "actual": [
+        {
+          "Key": "PoisonPower",
+          "Value": 4
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "TWISTED_FUNNEL"
+      ],
+      "actual": [
+        "TWISTED_FUNNEL"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    }
+  ],
+  "repeat_sha256": "476aa40cf956001e7e27ec7119f07210b6ddb5d5c15b393ad9bf83008eb1c297"
+}

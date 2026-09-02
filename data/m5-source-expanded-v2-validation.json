@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "validation_status": "passed",
+  "total_files_checked": 1,
+  "total_rows_checked": 480,
+  "row_counts": {
+    "trace_rows": 0,
+    "training_rows": 480,
+    "episodes": 195,
+    "states_unique": 480,
+    "actions_total": 2842
+  },
+  "label_stats": {
+    "reliable": 65,
+    "estimated": 287,
+    "low_confidence": 0,
+    "uncalculable": 128,
+    "unknown": 0,
+    "empty_teacher_best_actions": 128,
+    "empty_teacher_categories": {
+      "uncalculable_teacher_unavailable": 128
+    }
+  },
+  "stable_id_missing": 0,
+  "public_leakage_count": 0,
+  "duplicate_states": {
+    "warning_count": 0,
+    "error_count": 0,
+    "entries": [],
+    "classification_legend": {
+      "warning_identical_duplicate": "same hash + same combo + same labels: redundant, merge recommended",
+      "error_conflicting_labels": "same hash + same combo but differing labels/confidence: dataset corruption"
+    }
+  },
+  "malformed_lines": [],
+  "warning_count": 0,
+  "warnings": [],
+  "error_count": 0,
+  "errors": [],
+  "checked_files": [
+    "D:\\STS2BestChoice\\STS2SuperModel\\data\\m5-source-expanded-v2-labeled.jsonl"
+  ]
+}

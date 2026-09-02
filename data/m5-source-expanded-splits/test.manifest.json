@@ -1,0 +1,21 @@
+{
+  "split": "test",
+  "row_count": 74,
+  "group_count": 33,
+  "groups_sha256": "2818865846EB5791FD871799EEEAAF446EA291A8E62838426781964D46C6508E",
+  "source": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m5-source-expanded-labeled.jsonl",
+  "source_sha256": "FAE8CE42D9FF72467FD6EB538BE5B85382BBE41AB10005A3461D24FE880ABFE1",
+  "output_sha256": "19DCD157B6E02915331F29A819FEA875025C1A274599DEA0500FD6593D00A578",
+  "byte_count": 1024541,
+  "storage_format": "jsonl",
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "simulator_version": "cli-v0111-headless",
+  "semantic_database_version": "game-runtime-v0111",
+  "scorer_version": "not-applicable",
+  "feature_schema_version": "1",
+  "model_version": "none",
+  "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383"
+}

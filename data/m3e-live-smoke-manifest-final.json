@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "reports": [
+    {
+      "report": "m3e-live-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-trace.jsonl",
+      "confidence": "Reliable",
+      "outcome_quality": "Exact",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "play_card:card:DEFEND_IRONCLAD:004:none",
+      "sha256": "AC306533EEA326810B77469CFA9AD1654E2AA113161EF7225E467B7C97E3E07E"
+    },
+    {
+      "report": "m3e-live-strike-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-strike-trace.jsonl",
+      "confidence": "Reliable",
+      "outcome_quality": "Exact",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "play_card:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1",
+      "sha256": "8555B33A86FECB244BC12EAF69DEE452589AAC5B6EA6E119167A45757107276E"
+    },
+    {
+      "report": "m3e-live-potion-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-potion-trace.jsonl",
+      "confidence": "Reliable",
+      "outcome_quality": "Exact",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "use_potion:potion:FIRE_POTION:000",
+      "sha256": "17233DA01B153028C2D26B60749110B324215E7F97979EA69BCE3A13436ECD5F"
+    },
+    {
+      "report": "m3e-live-endturn-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-endturn-trace.jsonl",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "end_turn",
+      "sha256": "8859FA498C8D97EEAF1C118AEE700F512DF56B6218A2F4EC7320DBBEEAB12D79"
+    },
+    {
+      "report": "m3e-live-random-target-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-random-target-trace.jsonl",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "play_card:card:SWORD_BOOMERANG:010:none",
+      "sha256": "BAE5BD7E9C34972387EE16DCFACD94A1F6BA80325652D4EACBFB40ADB5BEAA16"
+    },
+    {
+      "report": "m3e-live-multi-random-target-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-multi-random-target-trace.jsonl",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "play_card:card:SWORD_BOOMERANG:010:none",
+      "sha256": "123176C5BB8C3D60A246BCCB65E21DAB493957F65AD434639F064B53383E2333"
+    },
+    {
+      "report": "m3e-live-random-orb-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-random-orb-trace.jsonl",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "play_card:card:CHAOS:010:none",
+      "sha256": "2C5F1A773730595A6B685ED61482299A0E770D8DE86C4A6521072D69C02A0DE6"
+    }
+  ],
+  "report_count": 7,
+  "repeat_report_count": 7,
+  "quality_counts": {
+    "Reliable": 3,
+    "Estimated": 4
+  },
+  "reliable_mismatch_free_count": 3,
+  "failures": [],
+  "verdict": "pass"
+}

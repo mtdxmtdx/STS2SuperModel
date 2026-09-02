@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "report_count": 3,
+  "repeat_report_count": 3,
+  "reports": [
+    {
+      "report": "m3e-multi-target-report.json",
+      "repeat": "m3e-multi-target-report-repeat.json",
+      "action_id": "play_card:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0,
+      "sha256": "E04F4DF8FAEC4712492DC894753AC5359FC2000E50FE9EE09B36BC7118B24E3C"
+    },
+    {
+      "report": "m3e-multi-target-report-1.json",
+      "repeat": "m3e-multi-target-report-1-repeat.json",
+      "action_id": "play_card:card:DEFEND_IRONCLAD:004:none",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0,
+      "sha256": "9A6949F29B704488AA2099BE3C2363D5F3EB123CB48B0E66C2B53FF8ECEC21DD"
+    },
+    {
+      "report": "m3e-multi-target-report-2.json",
+      "repeat": "m3e-multi-target-report-2-repeat.json",
+      "action_id": "play_card:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:3",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0,
+      "sha256": "362046C742019C52B4665645425A36767F4E3A2A355341DF0CD401E0849C8A62"
+    }
+  ],
+  "failures": [],
+  "verdict": "pass"
+}

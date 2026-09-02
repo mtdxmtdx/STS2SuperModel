@@ -1,0 +1,88 @@
+{
+  "schema_version": 42,
+  "scope": "persistent Power installation plus discard/generation aggregate closeout",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "report_count": 8,
+  "different_count": 0,
+  "reports": [
+    {
+      "report": "p1-csharp-card-direct-hellraiser-diff-report.json",
+      "sha256_a": "B132A98897BBBC37A60211FA9DE2E2E2C82B761EDB743EE8836EA364FBB33A6E",
+      "sha256_b": "B132A98897BBBC37A60211FA9DE2E2E2C82B761EDB743EE8836EA364FBB33A6E",
+      "byte_identical": true,
+      "match": true,
+      "mismatch_count": 0,
+      "confidence": "Estimated"
+    },
+    {
+      "report": "p1-csharp-card-direct-one_two_punch-diff-report.json",
+      "sha256_a": "04ADCD38888B4F53D0783D6C870EC7F5698B0185033A768092E0B254F3E3C98B",
+      "sha256_b": "04ADCD38888B4F53D0783D6C870EC7F5698B0185033A768092E0B254F3E3C98B",
+      "byte_identical": true,
+      "match": true,
+      "mismatch_count": 0,
+      "confidence": "Estimated"
+    },
+    {
+      "report": "p1-csharp-card-direct-phantom_blades-diff-report.json",
+      "sha256_a": "CC3ED07671EBC56E56C878BB4D45D5CF40F1D928047CBAA77AF34AB8AA15EEE3",
+      "sha256_b": "CC3ED07671EBC56E56C878BB4D45D5CF40F1D928047CBAA77AF34AB8AA15EEE3",
+      "byte_identical": true,
+      "match": true,
+      "mismatch_count": 0,
+      "confidence": "Estimated"
+    },
+    {
+      "report": "p1-csharp-card-direct-well_laid_plans-diff-report.json",
+      "sha256_a": "E09CFEB0070A6D2476226BE8855BFFA0E23879FCD02BFAC1D0BF102E7EEE3AC4",
+      "sha256_b": "E09CFEB0070A6D2476226BE8855BFFA0E23879FCD02BFAC1D0BF102E7EEE3AC4",
+      "byte_identical": true,
+      "match": true,
+      "mismatch_count": 0,
+      "confidence": "Estimated"
+    },
+    {
+      "report": "p1-csharp-card-direct-calculated_gamble-diff-report.json",
+      "sha256_a": "54BB87797BDA641697CC9C6A872D57F969191F2C346F5AF23FD0C02F312D5C74",
+      "sha256_b": "54BB87797BDA641697CC9C6A872D57F969191F2C346F5AF23FD0C02F312D5C74",
+      "byte_identical": true,
+      "match": true,
+      "mismatch_count": 0,
+      "confidence": "Uncalculable"
+    },
+    {
+      "report": "p1-csharp-card-direct-flanking-diff-report.json",
+      "sha256_a": "8689E2594F35F6D3FD2703AF8DE832BA5CB3F7960F391E8F1D5918194FDA5468",
+      "sha256_b": "8689E2594F35F6D3FD2703AF8DE832BA5CB3F7960F391E8F1D5918194FDA5468",
+      "byte_identical": true,
+      "match": true,
+      "mismatch_count": 0,
+      "confidence": "Estimated"
+    },
+    {
+      "report": "p1-csharp-card-direct-infernal_blade-diff-report.json",
+      "sha256_a": "677E4EA232F8FA81F4F57D9CAB09E4841866A7E593070CA7783B2942DB0B0717",
+      "sha256_b": "677E4EA232F8FA81F4F57D9CAB09E4841866A7E593070CA7783B2942DB0B0717",
+      "byte_identical": true,
+      "match": false,
+      "mismatch_count": 1,
+      "confidence": "Estimated"
+    },
+    {
+      "report": "p1-csharp-card-direct-stoke-diff-report.json",
+      "sha256_a": "CEB55742AC973941A2FAD789E8A80A83DB48A5D9917821969CC3FAEC340BE513",
+      "sha256_b": "CEB55742AC973941A2FAD789E8A80A83DB48A5D9917821969CC3FAEC340BE513",
+      "byte_identical": true,
+      "match": true,
+      "mismatch_count": 0,
+      "confidence": "Estimated"
+    }
+  ],
+  "verdict": "pass"
+}

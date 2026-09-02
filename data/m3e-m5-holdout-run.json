@@ -1,0 +1,688 @@
+{
+  "schema_version": 1,
+  "dataset": "m5-source-expanded-v2-labeled.jsonl",
+  "report_count": 75,
+  "successful_replays": 75,
+  "match_reports": 74,
+  "mismatch_reports": 0,
+  "mismatch_fields_total": 0,
+  "choice_or_error_reports": 1,
+  "repeat_all_byte_identical": true,
+  "reports": [
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-0-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-0-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-0-2-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-1-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-1-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-1-2-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-2-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-2-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-2-2-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-3-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-3-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-3-2-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": false,
+      "confidence": "Uncalculable",
+      "reason": "no gameplay action with public post-state (choice/error-only trace)"
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-4-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-4-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-multi-enemy-targets-4-2-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-0-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-0-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-1-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-1-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-2-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-2-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-3-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-3-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-4-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-seed-probe-p0-neutralize-weak-4-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-afterimage-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-afterimage-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-akabeko-vigor-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-art-of-war-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-art-of-war-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-bag-of-marbles-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-bag-of-preparation-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-barricade-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-barricade-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-barricade-2-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-centennial-puzzle-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-combat-action-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-combat-anchor-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-combat-bash-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-combat-block-potion-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-combat-strike-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-demon-form-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-demon-form-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-happy-flower-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-happy-flower-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Uncalculable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-happy-flower-2-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-inflame-strength-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-inflame-strength-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-lantern-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-multi-enemy-targets-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-multi-enemy-targets-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-multi-enemy-targets-2-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-neutralize-weak-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-neutralize-weak-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-orichalcum-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-2-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-3-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-4-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-5-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-6-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-7-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Uncalculable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-8-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-9-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-10-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-11-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-double-12-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-pen-nib-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-ring-of-the-snake-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-rupture-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-rupture-1-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-smooth-stone-dexterity-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-vajra-strength-end-turn-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Estimated",
+      "reason": null
+    },
+    {
+      "report": "m5-csharp-m5-source-p0-vajra-strength-0-diff-report.json",
+      "repeat_identical": true,
+      "exit": 0,
+      "mismatch_count": 0,
+      "match": true,
+      "confidence": "Reliable",
+      "reason": null
+    }
+  ]
+}

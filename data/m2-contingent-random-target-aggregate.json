@@ -1,0 +1,18 @@
+[
+  {
+    "public_state_hash": "5356652AE22F186A5CB318113DA013AFDC7E9BE4FD0E4E9441C44EF236F1F3BD",
+    "teacher_state_hashes": [
+      "0eb99629d6d1d76252143329"
+    ],
+    "action_value_mean": {
+      "end_turn": -14.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  }
+]

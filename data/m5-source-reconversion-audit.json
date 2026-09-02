@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "trace_file_count": 28,
+  "trace_files_parse_ok": 28,
+  "trace_line_count": 304,
+  "training_reconversion_rows": 114,
+  "canonical_source_rows": 114,
+  "reconversion_sha256": "E0DFA0D08A05BBCF876538AB46E9214173596EE99C51BFA6F201904211D3B31F",
+  "canonical_source_sha256": "E0DFA0D08A05BBCF876538AB46E9214173596EE99C51BFA6F201904211D3B31F",
+  "sha256_match": true,
+  "stable_instance_id_missing": 0,
+  "parse_errors": [],
+  "verdict": "pass",
+  "files": [
+    {
+      "file": "m5-source-p0-afterimage-trace.jsonl",
+      "lines": 14,
+      "parse_ok": true,
+      "sha256": "4B8C024C46F56E926A5B6712B97ADDBBFAE48F4F4C9AC66A42ED81B366B023E9"
+    },
+    {
+      "file": "m5-source-p0-akabeko-vigor-trace.jsonl",
+      "lines": 9,
+      "parse_ok": true,
+      "sha256": "216685EAA16445A0CE353649D796883CB90CD29C528FEA591CD9D1C2BB98AEDA"
+    },
+    {
+      "file": "m5-source-p0-art-of-war-trace.jsonl",
+      "lines": 11,
+      "parse_ok": true,
+      "sha256": "A9D54BC324BB1536326180A7CF22DD6B754BCCD3A766FF64F9421FD2A4A84958"
+    },
+    {
+      "file": "m5-source-p0-bag-of-marbles-trace.jsonl",
+      "lines": 9,
+      "parse_ok": true,
+      "sha256": "AF2D1B6DCC30B2FC5565665F5740526D7E0FF22D2B0EBE544DD9A70C2F877B06"
+    },
+    {
+      "file": "m5-source-p0-bag-of-preparation-trace.jsonl",
+      "lines": 9,
+      "parse_ok": true,
+      "sha256": "912D5B654B4001C4F7B8B8997F2378008498E019E2B875F7EF684701568B0F2E"
+    },
+    {
+      "file": "m5-source-p0-barricade-trace.jsonl",
+      "lines": 18,
+      "parse_ok": true,
+      "sha256": "8C2506A3B278BEFD93935BBC6B472EB3714DEBEB8DCEBD035F0AA22BF16725CE"
+    },
+    {
+      "file": "m5-source-p0-centennial-puzzle-trace.jsonl",
+      "lines": 7,
+      "parse_ok": true,
+      "sha256": "C7D928695C19DA35877D7894446640BAEE5FE43F12B018C092EAD376FF6FBB67"
+    },
+    {
+      "file": "m5-source-p0-combat-action-trace.jsonl",
+      "lines": 8,
+      "parse_ok": true,
+      "sha256": "BC44A2FBB4F96BFC2D96709577CBBEDF6DCF9C8F824AD6D688658B204875CC33"
+    },
+    {
+      "file": "m5-source-p0-combat-anchor-trace.jsonl",
+      "lines": 9,
+      "parse_ok": true,
+      "sha256": "056A4102C84CA91B82D97F8A9BD4DDF52C7E4F332B662FEED3DA0BC93FCD77EC"
+    },
+    {
+      "file": "m5-source-p0-combat-bash-trace.jsonl",
+      "lines": 8,
+      "parse_ok": true,
+      "sha256": "0784D21CC1A017599F0DBF15DE3F67BBBFC0953910166A6361B6E5B7581DFE34"
+    },
+    {
+      "file": "m5-source-p0-combat-block-potion-trace.jsonl",
+      "lines": 9,
+      "parse_ok": true,
+      "sha256": "A756F1DCA655831C117B05DC97E1D6A8E27A96E8B1948124FC256325CD18D58A"
+    },
+    {
+      "file": "m5-source-p0-combat-strike-trace.jsonl",
+      "lines": 8,
+      "parse_ok": true,
+      "sha256": "F26EAB60351BCBA402BC6DF14AD110D8132B150C55B8B28AE9516CFA2F8AF827"
+    },
+    {
+      "file": "m5-source-p0-combat-trace.jsonl",
+      "lines": 6,
+      "parse_ok": true,
+      "sha256": "38567442DB909AEF93B6678CABFD523F067C9BFFDC6C7D1E014F183874BD503F"
+    },
+    {
+      "file": "m5-source-p0-demon-form-trace.jsonl",
+      "lines": 14,
+      "parse_ok": true,
+      "sha256": "2C2872471EC0C2943CF98393313565AE3DB50A8A427E0514239645B395E44505"
+    },
+    {
+      "file": "m5-source-p0-happy-flower-trace.jsonl",
+      "lines": 13,
+      "parse_ok": true,
+      "sha256": "BA4E3B9A51E69170DE2BB0E5A4FDBC0656A6F44EE46443FA2239D94AC2BA945B"
+    },
+    {
+      "file": "m5-source-p0-inflame-strength-trace.jsonl",
+      "lines": 14,
+      "parse_ok": true,
+      "sha256": "AACF8B9A5E793A31718F712FDBBCACD081251AA6F4A5A47BA208C4916B5BEA65"
+    },
+    {
+      "file": "m5-source-p0-lantern-trace.jsonl",
+      "lines": 9,
+      "parse_ok": true,
+      "sha256": "975F30657C77695603FEB4ECEDB90D873FF725D0E62AB68319F3DBD4C24B80FC"
+    },
+    {
+      "file": "m5-source-p0-multi-enemy-targets-trace.jsonl",
+      "lines": 12,
+      "parse_ok": true,
+      "sha256": "765E0745CF00F47F249F5CAF21C71F7E4D599BFA91BA76BF25C1764C75A3314F"
+    },
+    {
+      "file": "m5-source-p0-neutralize-weak-trace.jsonl",
+      "lines": 15,
+      "parse_ok": true,
+      "sha256": "1E321D82B713470BA961D37C7D758AD26BB11354A7ED95BC5B5F97BF428ABEC3"
+    },
+    {
+      "file": "m5-source-p0-orichalcum-trace.jsonl",
+      "lines": 7,
+      "parse_ok": true,
+      "sha256": "8681B93A120C8B7D4033144EDEB3DE867385DD04F6FDB90DE33F2021E98586AD"
+    },
+    {
+      "file": "m5-source-p0-pen-nib-double-trace.jsonl",
+      "lines": 33,
+      "parse_ok": true,
+      "sha256": "317DB6C9CEF4A44B8843871DF8330B1DF258479712F4479258DA4FE607CDBC5B"
+    },
+    {
+      "file": "m5-source-p0-pen-nib-trace.jsonl",
+      "lines": 9,
+      "parse_ok": true,
+      "sha256": "9234CA27C6A0D31867C294E3E0CBFAC3055733C96DA49A2CEC4BBFA07DC4F475"
+    },
+    {
+      "file": "m5-source-p0-ring-of-the-snake-trace.jsonl",
+      "lines": 9,
+      "parse_ok": true,
+      "sha256": "C9A14725932E09CC7DDE4543BC4B79D4F6AD565ED91726E12686FB980188E3B1"
+    },
+    {
+      "file": "m5-source-p0-rupture-trace.jsonl",
+      "lines": 14,
+      "parse_ok": true,
+      "sha256": "5BE412DED6E6814F15786FB1F803A01515D95FC35C8CE6DC4E02AD25E363A9B4"
+    },
+    {
+      "file": "m5-source-p0-smoke-trace.jsonl",
+      "lines": 5,
+      "parse_ok": true,
+      "sha256": "B361942EA047EBE8E7594E40F1F189365094F4276EF0EF64D1EF7CE62214F72D"
+    },
+    {
+      "file": "m5-source-p0-smooth-stone-dexterity-trace.jsonl",
+      "lines": 9,
+      "parse_ok": true,
+      "sha256": "44304DA7A87B0C8E4DACD2B4C83103D5FD87B41A27059F26AD8C111F453ACE51"
+    },
+    {
+      "file": "m5-source-p0-vajra-strength-end-turn-trace.jsonl",
+      "lines": 7,
+      "parse_ok": true,
+      "sha256": "6849D72463A1C555973605ABF24CB8201F63CD11E2F2071FF77FCC270CF88C29"
+    },
+    {
+      "file": "m5-source-p0-vajra-strength-trace.jsonl",
+      "lines": 9,
+      "parse_ok": true,
+      "sha256": "DCCD64293D6CC0F7D2751CD0EC08FA2E1C169775CE73DF534FED6325EDB64B7E"
+    }
+  ]
+}

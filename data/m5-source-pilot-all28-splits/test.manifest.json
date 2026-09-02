@@ -1,0 +1,21 @@
+{
+  "split": "test",
+  "row_count": 14,
+  "group_count": 3,
+  "groups_sha256": "86DC6B258C4BB3EB132E9EBBD9FB4E7D0F5258646F07A4E1CBAE14782ECB1C2B",
+  "source": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m5-source-pilot-all28-labeled.jsonl",
+  "source_sha256": "82775E334B49788E7AE8F32AD7C155466CF1348802C5BFC901035CD37FE06328",
+  "output_sha256": "7761D2FFDE39FCCCCC0C5E970751933020B6F8D5EC52965018BA3AA96C18BCB6",
+  "byte_count": 392358,
+  "storage_format": "jsonl",
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "simulator_version": "cli-v0111-headless",
+  "semantic_database_version": "game-runtime-v0111",
+  "scorer_version": "not-applicable",
+  "feature_schema_version": "1",
+  "model_version": "none",
+  "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383"
+}

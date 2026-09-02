@@ -1,0 +1,30 @@
+{
+  "schema_version": 46,
+  "dataset": "card-direct-matrix-results.json",
+  "witness_manifest": "card-direct-witness-manifest.json",
+  "recapture_manifest": "card-direct-context-recapture-v1.json",
+  "matrix_rows": 607,
+  "executed_rows": 462,
+  "matched_rows": 383,
+  "mismatch_rows": 79,
+  "direct_reliable_rows": 196,
+  "repeat_verified_direct_reliable_rows": 108,
+  "matched_estimated_rows": 178,
+  "matched_uncalculable_rows": 8,
+  "fixture_not_entered_combat_rows": 37,
+  "choice_fixture_required_rows": 23,
+  "runtime_unavailable_rows": 80,
+  "runtime_error_rows": 5,
+  "true_timeout_rows": 0,
+  "mismatch_field_count": 130,
+  "closeout_progress": {
+    "v45_mismatch_rows": 182,
+    "generic_power_install_closed": 48,
+    "direct_observed_power_closed": 32,
+    "energy_xcost_closed": 13,
+    "focus_debuff_conditional_closed": 10,
+    "remaining": 79
+  },
+  "verdict": "partial",
+  "reason": "Owner-correct matrix mismatch reduced from 182 to 79, but remaining pile/RNG, conditional temporary-strength, intent, random-generation, and terminal effects are not closed."
+}

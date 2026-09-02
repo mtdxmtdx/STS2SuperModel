@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p1-screaming-flagon-seed",
+  "fixture": "p1-relic-screaming-flagon",
+  "seed": "p1-screaming-flagon-seed",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 5,
+  "action_kind": "end_turn",
+  "normalized_action_id": "end_turn:",
+  "draw_pile_source": "placeholder_count_only",
+  "attacks_played_this_turn": 2,
+  "confidence": "Estimated",
+  "chance_present": true,
+  "random_operator": "Shuffle",
+  "probability_known": false,
+  "outcome_quality": "Unknown",
+  "probability_mass_covered": null,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "aggregate_count_only",
+  "identity_comparison": "omitted",
+  "chance_quality": {
+    "chance_present": true,
+    "random_operator": "Shuffle",
+    "probability_known": false,
+    "outcome_quality": "Unknown",
+    "probability_mass_covered": null,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "aggregate_count_only",
+    "identity_comparison": "omitted"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "0AA8F7817469BE2EDBD3A248ECB9D6FDBB31F31FAFF368A5F8CD2CAB13EAC8AB",
+  "engine_post_state_hash": "5C16894EF283CCA54A291D7C1C84C2FF8CAB8BD940B833A1959204519023E9C7",
+  "projected_comparison_hash": "B8F570E265DF09720EF735BE55949B0A5FB6558521119A53999AACD3CEEB2BAC",
+  "actual_comparison_hash": "B8F570E265DF09720EF735BE55949B0A5FB6558521119A53999AACD3CEEB2BAC",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 7,
+      "actual": 7,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.hp",
+      "projected": 102,
+      "actual": 102,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.status.SHRIEK.amount",
+      "projected": 70,
+      "actual": 70,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 3,
+      "actual": 3,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 79,
+      "actual": 79,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.enemy:TERROR_EEL:1.SHRIEK_POWER.amount",
+      "projected": 70,
+      "actual": 70,
+      "match": true
+    },
+    {
+      "field": "power.enemy:TERROR_EEL:1.SHRIEK_POWER.applier",
+      "projected": "enemy:TERROR_EEL:1",
+      "actual": "enemy:TERROR_EEL:1",
+      "match": true
+    },
+    {
+      "field": "power.enemy:TERROR_EEL:1.SHRIEK_POWER.counters",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.enemy:TERROR_EEL:1.SHRIEK_POWER.dynamic_vars",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.enemy:TERROR_EEL:1.SHRIEK_POWER.present",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "relic.SCREAMING_FLAGON.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.SCREAMING_FLAGON.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Damage",
+          "Value": 20
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Damage",
+          "Value": 20
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "SCREAMING_FLAGON"
+      ],
+      "actual": [
+        "SCREAMING_FLAGON"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    }
+  ],
+  "repeat_sha256": "6da2a56a0e8fa77390a17001de22f4be7153ea5201d4ff26b8a7d2a402064de3"
+}

@@ -1,0 +1,82 @@
+{
+  "dataset_path": "data/m5-source-expanded-v2-labeled.jsonl",
+  "dataset_kind": "teacher",
+  "generated_at": "2026-08-31T05:51:01Z",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol": "0.2.0",
+    "trace_schema": 1,
+    "training_schema": 1
+  },
+  "row_counts": {
+    "trace_rows": 0,
+    "training_rows": 480,
+    "episodes": 195,
+    "states_unique": 480,
+    "actions_total": 2842
+  },
+  "split_violations": [],
+  "public_leakage_count": 0,
+  "stable_id_missing": 0,
+  "label_stats": {
+    "reliable": 65,
+    "estimated": 287,
+    "low_confidence": 0,
+    "uncalculable": 128,
+    "unknown": 0,
+    "empty_teacher_best_actions": 128,
+    "empty_teacher_categories": {
+      "uncalculable_teacher_unavailable": 128
+    }
+  },
+  "duplicate_states": {
+    "warning_count": 0,
+    "error_count": 0,
+    "entries": [],
+    "classification_legend": {
+      "warning_identical_duplicate": "same hash + same combo + same labels: redundant, merge recommended",
+      "error_conflicting_labels": "same hash + same combo but differing labels/confidence: dataset corruption"
+    }
+  },
+  "malformed_lines": [],
+  "metadata_checks": {
+    "manifest_count_cross_check": "ok",
+    "sources": [
+      {
+        "file": "data/m5-source-expanded-v2-labeled.jsonl",
+        "sha256": "1D66B30126A08A463AC98E490A5190D0972756DB9B5C08C6D6D1E297237DEA3B",
+        "listed_in_manifest": true
+      }
+    ],
+    "splits": {
+      "dir": "data/m5-source-expanded-v2-splits",
+      "stats": {
+        "train": {
+          "row_count": 258,
+          "episode_count": 103
+        },
+        "validation": {
+          "row_count": 106,
+          "episode_count": 42
+        },
+        "test": {
+          "row_count": 78,
+          "episode_count": 34
+        },
+        "challenge": {
+          "row_count": 38,
+          "episode_count": 16
+        }
+      }
+    }
+  },
+  "warnings": [],
+  "verdict": "pass",
+  "failures": [],
+  "checked_files": [
+    "data/m5-source-expanded-v2-labeled.jsonl",
+    "data/m5-source-expanded-v2-manifest.json"
+  ]
+}

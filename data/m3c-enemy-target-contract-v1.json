@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "scope": "M3c public enemy targeting contract smoke",
+  "trace_path": "m3c-enemy-target-contract-v1-trace.jsonl",
+  "trace_sha256": "2224DDA408409F0B302B55043C7ED304726527E049665CD8AB72DBD70B75F258",
+  "report_path": "m3c-enemy-target-contract-v1-diff-report.json",
+  "report_sha256": "1F0109B979BAED5AEA39FFD5A2C99473917F36D2C4CD8D910C38D5CC46931000",
+  "fixture": "DEFEND_IRONCLAD",
+  "normalized_action_id": "play_card:card:DEFEND_IRONCLAD:009:none",
+  "comparison_scope": "strict_public_state",
+  "confidence": "Reliable",
+  "mismatch_count": 0,
+  "observed_fields": {
+    "is_hittable": true,
+    "is_primary_enemy": true,
+    "is_secondary_enemy": false,
+    "is_minion": false,
+    "target_restrictions": []
+  },
+  "multi_enemy_smoke": {
+    "fixture": "p0-multi-enemy-targets",
+    "trace_path": "m3c-enemy-target-contract-v1-multi-trace.jsonl",
+    "trace_sha256": "56F2AD944EF261DA908496C2E8940795BAEB7A7619C4A1C6FC5129CCE86EF239",
+    "enemy_count": 3,
+    "action_reports": [
+      {
+        "ordinal": 0,
+        "path": "m3c-enemy-target-contract-v1-multi-diff-report-0.json",
+        "sha256": "968F9AE5EE0E2496BC9C2EA2DDD0E885C482D29978E85D57211D13566F520C12",
+        "confidence": "Reliable",
+        "mismatch_count": 0
+      },
+      {
+        "ordinal": 1,
+        "path": "m3c-enemy-target-contract-v1-multi-diff-report-1.json",
+        "sha256": "F33C0ED6A747A34D49EB8DE52B28A87E1ED7479BBFDF254DDA852F90E64F15D3",
+        "confidence": "Reliable",
+        "mismatch_count": 0
+      },
+      {
+        "ordinal": 2,
+        "path": "m3c-enemy-target-contract-v1-multi-diff-report-2.json",
+        "sha256": "988CAEA0DFB1389A2E50471C3C349BE945999BD2C4BE88C83EFB39BFB9E46A58",
+        "confidence": "Reliable",
+        "mismatch_count": 0
+      }
+    ],
+    "target_field_comparisons_per_report": 12,
+    "verdict": "pass"
+  },
+  "contract_checks": {
+    "cli_exports_public_target_fields": true,
+    "shadow_parses_target_fields": true,
+    "shadowdiff_compares_exposed_target_fields": true,
+    "search_excludes_non_hittable_targets": true,
+    "nosl_keys_include_target_rules": true,
+    "future_intent_uses_enemy_ai_belief": true,
+    "incomplete_future_probability_mass_preserved": true,
+    "incomplete_future_probability_downgraded": true,
+    "overfull_future_probability_uncalculable": true,
+    "hidden_rng_exposed_to_student": false
+  },
+  "verdict": "pass",
+  "status": "single- and three-enemy public target fields verified; non-default target restrictions and future-AI state-machine coverage remain M3c work"
+}

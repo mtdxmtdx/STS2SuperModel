@@ -1,0 +1,21 @@
+{
+  "candidate_counts": {
+    "ancient_high_hp": 4,
+    "ancient_low_hp": 4,
+    "event_high_hp": 5,
+    "event_low_hp": 5
+  },
+  "dataset_id": "global-event-ancient-smoke-v0",
+  "mask_violations": 0,
+  "model_stage": "prototype",
+  "public_fields_only": true,
+  "quality": "EstimatedByHeuristic",
+  "reliable": false,
+  "report_sha256": "4a906dcf4402a328f2151f9558a61270c7cf157e01aaabd2d573be8cf806a0af",
+  "scenario_count": 4,
+  "seed_input": false,
+  "source": "global-event-ancient-prototype",
+  "stable_id_missing": 0,
+  "stage": "prototype",
+  "uncalculable_count": 0
+}

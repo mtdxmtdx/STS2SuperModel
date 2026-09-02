@@ -1,0 +1,92 @@
+{
+  "action_count": 624,
+  "action_kind_counts": {
+    "EndTurn": 100,
+    "PlayCard": 506,
+    "UsePotion": 18
+  },
+  "ascension_counts": {
+    "0": 100
+  },
+  "character_counts": {
+    "The Ironclad": 88,
+    "The Silent": 12
+  },
+  "combat_count": 23,
+  "confidence_counts": {
+    "Estimated": 93,
+    "Uncalculable": 7
+  },
+  "coverage": {
+    "card_ids": {
+      "CARD.AFTERIMAGE": 36,
+      "CARD.BARRICADE": 16,
+      "CARD.BASH": 40,
+      "CARD.DEFEND_IRONCLAD": 143,
+      "CARD.DEMON_FORM": 28,
+      "CARD.INFLAME": 20,
+      "CARD.NEUTRALIZE": 36,
+      "CARD.STRIKE_IRONCLAD": 165
+    },
+    "enemy_ids": {
+      "Leaf Slime (M)": 5,
+      "Leaf Slime (S)": 5,
+      "Seapunk": 54,
+      "Shrinker Beetle": 41,
+      "Twig Slime (S)": 5
+    },
+    "potion_ids": {
+      "BLOCK_POTION": 2,
+      "DROPLET_OF_PRECOGNITION": 2,
+      "ENERGY_POTION": 4,
+      "ENTROPIC_BREW": 2,
+      "FIRE_POTION": 4,
+      "POWER_POTION": 2,
+      "SPEED_POTION": 2
+    },
+    "power_ids": {
+      "STRENGTH_POWER": 1,
+      "VULNERABLE_POWER": 9,
+      "WEAK_POWER": 2
+    },
+    "relic_ids": {
+      "AKABEKO": 3,
+      "ANCHOR": 3,
+      "ART_OF_WAR": 4,
+      "BAG_OF_MARBLES": 3,
+      "BAG_OF_PREPARATION": 3,
+      "BURNING_BLOOD": 54,
+      "CENTENNIAL_PUZZLE": 2,
+      "HAPPY_FLOWER": 4,
+      "LANTERN": 11,
+      "NUNCHAKU": 1,
+      "RING_OF_THE_SNAKE": 12
+    }
+  },
+  "episode_count": 23,
+  "metadata": {
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "feature_schema_version": "1",
+    "game_commit": "41cef1ea",
+    "game_version": "v0.111.0",
+    "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383",
+    "model_version": "none",
+    "scorer_version": "not-applicable",
+    "semantic_database_version": "game-runtime-v0111",
+    "simulator_version": "cli-v0111-headless"
+  },
+  "missing_metadata": {},
+  "report_kind": "p0_tooling_smoke",
+  "restriction_counts": {},
+  "risk_event_counts": {
+    "budget_bound": 9,
+    "teacher_label_missing": 7
+  },
+  "row_count": 100,
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-100-clean2.jsonl",
+  "source_sha256": "92BF8E79DB368007A85E9AC8CB5D07B2BBFC84E69A52B2F5E010EBA22043D8ED",
+  "teacher_pair_count": 15,
+  "teacher_pair_rate": 0.15
+}

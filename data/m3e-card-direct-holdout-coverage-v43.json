@@ -1,0 +1,32 @@
+{
+  "schema_version": 43,
+  "dataset": "card-direct-matrix-results.json",
+  "witness_manifest": "card-direct-witness-manifest.json",
+  "matrix_rows": 607,
+  "matched_rows": 141,
+  "direct_reliable_rows": 110,
+  "matched_estimated_rows": 28,
+  "matched_uncalculable_rows": 2,
+  "mismatch_rows": 0,
+  "runtime_timeout_rows": 461,
+  "runtime_error_rows": 5,
+  "repeat_verified_direct_reliable_rows": 64,
+  "direct_execution_coverage_rate": 0.23228995057660626,
+  "infernal_blade": {
+    "candidate_pool_count": 33,
+    "excluded": [
+      "STRIKE_IRONCLAD (Starter)",
+      "BASH (Starter)",
+      "BREAK (Ancient)",
+      "FEED (CanBeGeneratedInCombat=false)",
+      "GRAPPLE (absent runtime model)"
+    ],
+    "selection": "FilterForCombat(...).TakeRandom(1): Fisher-Yates consumes pool_count-1=32 draws",
+    "report": "p1-csharp-card-direct-infernal_blade-diff-report.json",
+    "confidence": "Estimated",
+    "mismatch_count": 0,
+    "repeat_verification": "m3e-card-infernal-blade-repeat-v43.json"
+  },
+  "verdict": "partial",
+  "reason": "All 141 executable direct rows are zero-mismatch, but 461 rows remain timeout/non-combat, 5 runtime errors remain, and only 64/110 Reliable rows have current full repeat-hash evidence."
+}

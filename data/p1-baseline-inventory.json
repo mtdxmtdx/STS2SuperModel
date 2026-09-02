@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "game_version": "0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "inventory_timestamp_utc": "2026-08-28T12:00:00Z",
+  "powers": {
+    "total": 283,
+    "cataloged": 283,
+    "state_captured": 283,
+    "runtime_probed": 20,
+    "simulator_supported": 20,
+    "simulator_declared": 53,
+    "state_captured_only": 210,
+    "unknown": 30
+  },
+  "relics": {
+    "total": 299,
+    "cataloged": 299,
+    "state_captured": 299,
+    "runtime_probed": 20,
+    "simulator_supported": 20,
+    "no_combat_effect": 1,
+    "unsupported_known_combat_hooks": 161,
+    "unknown": 117,
+    "reliable_eligible": 21
+  },
+  "cards": {
+    "global_catalog": 1176,
+    "single_player_combat_scope": 1099,
+    "multiplayer_ally_out_of_scope": 77
+  },
+  "tests": {
+    "core_release_tests": {
+      "total": 709,
+      "passed": 709,
+      "failed": 0
+    },
+    "training_pytest": {
+      "collected": 57,
+      "passed": 56,
+      "skipped": 1,
+      "failed": 0
+    },
+    "p0_probes": {
+      "fixtures": 21,
+      "reports": 31,
+      "failures": 0
+    },
+    "p1_power_probes": {
+      "fixtures": 11,
+      "reports": 26,
+      "failures": 0
+    },
+    "p1_relic_probes": {
+      "fixtures": 8,
+      "reports": 14,
+      "failures": 0
+    },
+    "p0_plus_p1_power_runner": {
+      "fixtures": 32,
+      "reports": 57,
+      "failures": 0
+    }
+  }
+}

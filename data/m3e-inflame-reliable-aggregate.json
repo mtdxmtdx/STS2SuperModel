@@ -1,0 +1,68 @@
+[
+  {
+    "public_state_hash": "121EB5FB0953B83A7F2262058FC7EA9F39E017C09B289F72727B13FDB4E64FA2",
+    "teacher_state_hashes": [
+      "a635c44b004e4e9cb77925ef"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:017:none": 16.25,
+      "play:card:DEFEND_IRONCLAD:018:none": 16.25,
+      "play:card:DEFEND_IRONCLAD:019:none": 16.25,
+      "play:card:INFLAME:001:none": 16.25
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:017:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:018:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:019:none": 0.0,
+      "play:card:INFLAME:001:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:017:none": 1.0,
+      "play:card:DEFEND_IRONCLAD:018:none": 1.0,
+      "play:card:DEFEND_IRONCLAD:019:none": 1.0,
+      "play:card:INFLAME:001:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "56B8B50879E56C76F0812B0DA47F93DCA1C3DCAA15892926D6FF2F7B6EC7D8DC",
+    "teacher_state_hashes": [
+      "a635c44b004e4e9cb77925ef"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:017:none": 16.25,
+      "play:card:DEFEND_IRONCLAD:018:none": 16.25,
+      "play:card:DEFEND_IRONCLAD:019:none": 16.25,
+      "play:card:INFLAME:001:none": 16.25
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:017:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:018:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:019:none": 0.0,
+      "play:card:INFLAME:001:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:017:none": 1.0,
+      "play:card:DEFEND_IRONCLAD:018:none": 1.0,
+      "play:card:DEFEND_IRONCLAD:019:none": 1.0,
+      "play:card:INFLAME:001:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "B7C6B1A43AD3DF382145138891396E89DE399607EB605F008C08788C4E6146F1",
+    "teacher_state_hashes": [
+      "1179b0f478949ec8f2d22fbb"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:016:none": 16.25
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:016:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:016:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "public_state_hash": "3C39DF97D02EA0F618E1AD3EF9E704ED55842B41669DB040998EB48237E5A855",
+    "teacher_state_hashes": [
+      "b1de6cb84e3b19f1434e6b74"
+    ],
+    "action_value_mean": {
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 29.25
+    },
+    "action_value_variance": {
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BASH:002:enemy:SHRINKER_BEETLE:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "AGGRESSION",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "sha256": "AA7C69280F3B431389E0DC7D71E43EDA39EE742EB230D2BC9AEE92772C8EE808",
+  "verdict": "pass"
+}

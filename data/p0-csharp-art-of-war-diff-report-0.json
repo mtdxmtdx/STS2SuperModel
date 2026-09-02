@@ -3,6 +3,11 @@
   "game_version": "v0.111.0",
   "game_commit": "41cef1ea",
   "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p0-art-of-war-fixed",
+  "fixture": "p0-art-of-war",
+  "seed": "p0-art-of-war-fixed",
   "simulator": "STS2BestChoice.Core.DeterministicSimulator",
   "action_ordinal": 0,
   "action_kind": "play_card",
@@ -10,31 +15,70 @@
   "draw_pile_source": "not_applicable",
   "attacks_played_this_turn": null,
   "confidence": "Reliable",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "strict_public_state",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "strict_public_state",
+    "identity_comparison": "compared"
+  },
   "match": true,
   "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "FE451DC9B30FC71474A14085BEA18AAE9B624A4615376153659937883B6DDF8B",
+  "engine_post_state_hash": "F68DF787034F525197020ADA7F47032CFA954784490ABAF939EAA815A7B1F11D",
+  "projected_comparison_hash": "8816437CF28959E487A158F967B59074A50430B66B2F9BB4AD40EE021DC9997D",
+  "actual_comparison_hash": "8816437CF28959E487A158F967B59074A50430B66B2F9BB4AD40EE021DC9997D",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
   "fields": [
     {
-      "field": "round",
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
       "projected": 1,
       "actual": 1,
-      "match": true
-    },
-    {
-      "field": "player.hp",
-      "projected": 80,
-      "actual": 80,
-      "match": true
-    },
-    {
-      "field": "player.block",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "player.energy",
-      "projected": 2,
-      "actual": 2,
       "match": true
     },
     {
@@ -44,9 +88,25 @@
       "match": true
     },
     {
-      "field": "discard_pile_count",
-      "projected": 1,
-      "actual": 1,
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 40,
+      "actual": 40,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.intents",
+      "projected": [
+        "Attack:11:1"
+      ],
+      "actual": [
+        "Attack:11:1"
+      ],
       "match": true
     },
     {
@@ -72,67 +132,33 @@
       "match": true
     },
     {
-      "field": "enemy.enemy:SEAPUNK:1.hp",
-      "projected": 40,
-      "actual": 40,
-      "match": true
-    },
-    {
-      "field": "enemy.enemy:SEAPUNK:1.block",
+      "field": "player.block",
       "projected": 0,
       "actual": 0,
       "match": true
     },
     {
-      "field": "rng.Shuffle.counter",
-      "projected": 9,
-      "actual": 9,
+      "field": "player.energy",
+      "projected": 2,
+      "actual": 2,
       "match": true
     },
     {
-      "field": "rng.CombatCardGeneration.counter",
+      "field": "player.hp",
+      "projected": 80,
+      "actual": 80,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
       "projected": 0,
       "actual": 0,
-      "match": true
-    },
-    {
-      "field": "rng.CombatPotionGeneration.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "rng.CombatCardSelection.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "rng.CombatEnergyCosts.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "rng.CombatTargets.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "rng.CombatOrbGeneration.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "relic.ids",
-      "projected": [
-        "ART_OF_WAR"
-      ],
-      "actual": [
-        "ART_OF_WAR"
-      ],
       "match": true
     },
     {
@@ -158,22 +184,63 @@
       "match": true
     },
     {
-      "field": "power.count",
+      "field": "relic.ids",
+      "projected": [
+        "ART_OF_WAR"
+      ],
+      "actual": [
+        "ART_OF_WAR"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
       "projected": 0,
       "actual": 0,
       "match": true
     },
     {
-      "field": "potion.ids",
-      "projected": [],
-      "actual": [],
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
-      "field": "combat.is_terminal",
-      "projected": false,
-      "actual": false,
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
       "match": true
     }
-  ]
+  ],
+  "repeat_sha256": "f9f9fc8e1016598e0f3176734ebd92bf914943cce42bc732bab371db06c98f55"
 }

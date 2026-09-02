@@ -1,0 +1,55 @@
+{
+  "version": "v0.111.0",
+  "registry_operator_count": 7,
+  "registered_operators": [
+    "CombatCardGeneration",
+    "CombatCardSelection",
+    "CombatEnergyCosts",
+    "CombatOrbGeneration",
+    "CombatPotionGeneration",
+    "CombatTargets",
+    "Shuffle"
+  ],
+  "referenced_random_sources": [
+    "CombatCardGeneration",
+    "CombatCardSelection",
+    "CombatEnergyCosts",
+    "CombatOrbGeneration",
+    "CombatTargets",
+    "Shuffle"
+  ],
+  "unregistered_references": [],
+  "registered_but_unreferenced": [
+    "CombatPotionGeneration"
+  ],
+  "reference_files": {
+    "CombatCardGeneration": [
+      "Semantics\\CardTextSemanticCompiler.cs",
+      "Simulation\\DeterministicSimulator.cs",
+      "Simulation\\ShadowSimulationTransitions.cs"
+    ],
+    "CombatCardSelection": [
+      "Semantics\\CardTextSemanticCompiler.cs",
+      "Simulation\\DeterministicSimulator.cs",
+      "Simulation\\ShadowSimulationTransitions.cs"
+    ],
+    "CombatEnergyCosts": [
+      "Simulation\\DeterministicSimulator.cs"
+    ],
+    "CombatOrbGeneration": [
+      "Simulation\\DeterministicSimulator.cs",
+      "Simulation\\ShadowSimulationTransitions.cs"
+    ],
+    "CombatTargets": [
+      "Semantics\\CardTextSemanticCompiler.cs",
+      "Simulation\\DeterministicSimulator.cs",
+      "Simulation\\ShadowSimulationTransitions.cs"
+    ],
+    "Shuffle": [
+      "Semantics\\CardTextSemanticCompiler.cs",
+      "Simulation\\DeterministicSimulator.cs",
+      "Simulation\\ShadowSimulationTransitions.cs"
+    ]
+  },
+  "verdict": "pass"
+}

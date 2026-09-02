@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "dataset": "m5-reliable-candidate.jsonl",
+  "rows": 408,
+  "character_counts": {
+    "The Silent": 14,
+    "The Ironclad": 394
+  },
+  "enemy_instance_counts": {
+    "Seapunk": 224,
+    "Shrinker Beetle": 143,
+    "Leaf Slime (S)": 22,
+    "Leaf Slime (M)": 12,
+    "Twig Slime (S)": 22,
+    "Twig Slime (M)": 10,
+    "Terror Eel": 19
+  },
+  "round_counts": {
+    "1": 386,
+    "3": 22
+  },
+  "source_counts": {
+    "m4_final3": 1,
+    "p0": 407
+  },
+  "hand_card_occurrence_counts": {
+    "CARD.STRIKE_IRONCLAD": 874,
+    "CARD.DEFEND_IRONCLAD": 709,
+    "CARD.BASH": 175,
+    "CARD.BARRICADE": 50,
+    "CARD.DEMON_FORM": 90,
+    "CARD.INFLAME": 72,
+    "CARD.DEFEND_SILENT": 48,
+    "CARD.STRIKE_SILENT": 26,
+    "CARD.NEUTRALIZE": 9,
+    "CARD.SURVIVOR": 8
+  },
+  "relic_occurrence_counts": {
+    "AKABEKO": 22,
+    "ART_OF_WAR": 22,
+    "BAG_OF_MARBLES": 22,
+    "LANTERN": 44,
+    "BURNING_BLOOD": 183,
+    "ANCHOR": 22,
+    "HAPPY_FLOWER": 22,
+    "ORICHALCUM": 11,
+    "PEN_NIB": 41,
+    "RING_OF_THE_SNAKE": 13,
+    "ODDLY_SMOOTH_STONE": 2,
+    "VAJRA": 3
+  },
+  "notes": [
+    "Reliable-only experiment candidate; all rows passed row-level quality gate.",
+    "Not a production M5 dataset until semantic-stratum CLI-to-shadow holdout is complete."
+  ]
+}

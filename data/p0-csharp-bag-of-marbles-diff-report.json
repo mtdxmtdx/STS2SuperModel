@@ -3,6 +3,11 @@
   "game_version": "v0.111.0",
   "game_commit": "41cef1ea",
   "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p0-bag-of-marbles-fixed",
+  "fixture": "p0-bag-of-marbles",
+  "seed": "p0-bag-of-marbles-fixed",
   "simulator": "STS2BestChoice.Core.DeterministicSimulator",
   "action_ordinal": 0,
   "action_kind": "play_card",
@@ -10,31 +15,70 @@
   "draw_pile_source": "not_applicable",
   "attacks_played_this_turn": null,
   "confidence": "Reliable",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "strict_public_state",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "strict_public_state",
+    "identity_comparison": "compared"
+  },
   "match": true,
   "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "A10F4D2EA23A544918DDECF4B50CB0D5EBD5F5997E4C36D06BBF1AD5D8053AA0",
+  "engine_post_state_hash": "238EBC0FFA691B29B252D8312E7DAB523F1CA8BC7369B99CFA87F943D0F30A65",
+  "projected_comparison_hash": "EFB259DA370B239DBD353B7B9A41346E60B6820DE18510C140C5EF74ACA5C6B0",
+  "actual_comparison_hash": "EFB259DA370B239DBD353B7B9A41346E60B6820DE18510C140C5EF74ACA5C6B0",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
   "fields": [
     {
-      "field": "round",
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
       "projected": 1,
       "actual": 1,
-      "match": true
-    },
-    {
-      "field": "player.hp",
-      "projected": 80,
-      "actual": 80,
-      "match": true
-    },
-    {
-      "field": "player.block",
-      "projected": 5,
-      "actual": 5,
-      "match": true
-    },
-    {
-      "field": "player.energy",
-      "projected": 2,
-      "actual": 2,
       "match": true
     },
     {
@@ -44,7 +88,29 @@
       "match": true
     },
     {
-      "field": "discard_pile_count",
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 46,
+      "actual": 46,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.intents",
+      "projected": [
+        "Attack:11:1"
+      ],
+      "actual": [
+        "Attack:11:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.status.VULNERABLE.amount",
       "projected": 1,
       "actual": 1,
       "match": true
@@ -72,73 +138,73 @@
       "match": true
     },
     {
-      "field": "enemy.enemy:SEAPUNK:1.hp",
-      "projected": 46,
-      "actual": 46,
+      "field": "player.block",
+      "projected": 5,
+      "actual": 5,
       "match": true
     },
     {
-      "field": "enemy.enemy:SEAPUNK:1.block",
-      "projected": 0,
-      "actual": 0,
+      "field": "player.energy",
+      "projected": 2,
+      "actual": 2,
       "match": true
     },
     {
-      "field": "enemy.enemy:SEAPUNK:1.status.VULNERABLE.amount",
+      "field": "player.hp",
+      "projected": 80,
+      "actual": 80,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
       "projected": 1,
       "actual": 1,
       "match": true
     },
     {
-      "field": "rng.Shuffle.counter",
-      "projected": 9,
-      "actual": 9,
+      "field": "power.enemy:SEAPUNK:1.VULNERABLE_POWER.amount",
+      "projected": 1,
+      "actual": 1,
       "match": true
     },
     {
-      "field": "rng.CombatCardGeneration.counter",
-      "projected": 0,
-      "actual": 0,
+      "field": "power.enemy:SEAPUNK:1.VULNERABLE_POWER.applier",
+      "projected": "player",
+      "actual": "player",
       "match": true
     },
     {
-      "field": "rng.CombatPotionGeneration.counter",
-      "projected": 0,
-      "actual": 0,
+      "field": "power.enemy:SEAPUNK:1.VULNERABLE_POWER.counters",
+      "projected": [],
+      "actual": [],
       "match": true
     },
     {
-      "field": "rng.CombatCardSelection.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "rng.CombatEnergyCosts.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "rng.CombatTargets.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "rng.CombatOrbGeneration.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "relic.ids",
+      "field": "power.enemy:SEAPUNK:1.VULNERABLE_POWER.dynamic_vars",
       "projected": [
-        "BAG_OF_MARBLES"
+        {
+          "Key": "DamageIncrease",
+          "Value": "1.5"
+        }
       ],
       "actual": [
-        "BAG_OF_MARBLES"
+        {
+          "Key": "DamageIncrease",
+          "Value": "1.5"
+        }
       ],
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.VULNERABLE_POWER.present",
+      "projected": true,
+      "actual": true,
       "match": true
     },
     {
@@ -164,62 +230,63 @@
       "match": true
     },
     {
-      "field": "power.count",
-      "projected": 1,
-      "actual": 1,
-      "match": true
-    },
-    {
-      "field": "power.enemy:SEAPUNK:1.VULNERABLE_POWER.present",
-      "projected": true,
-      "actual": true,
-      "match": true
-    },
-    {
-      "field": "power.enemy:SEAPUNK:1.VULNERABLE_POWER.amount",
-      "projected": 1,
-      "actual": 1,
-      "match": true
-    },
-    {
-      "field": "power.enemy:SEAPUNK:1.VULNERABLE_POWER.applier",
-      "projected": "player",
-      "actual": "player",
-      "match": true
-    },
-    {
-      "field": "power.enemy:SEAPUNK:1.VULNERABLE_POWER.dynamic_vars",
+      "field": "relic.ids",
       "projected": [
-        {
-          "Key": "DamageIncrease",
-          "Value": "1.5"
-        }
+        "BAG_OF_MARBLES"
       ],
       "actual": [
-        {
-          "Key": "DamageIncrease",
-          "Value": "1.5"
-        }
+        "BAG_OF_MARBLES"
       ],
       "match": true
     },
     {
-      "field": "power.enemy:SEAPUNK:1.VULNERABLE_POWER.counters",
-      "projected": [],
-      "actual": [],
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
-      "field": "potion.ids",
-      "projected": [],
-      "actual": [],
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
-      "field": "combat.is_terminal",
-      "projected": false,
-      "actual": false,
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
       "match": true
     }
-  ]
+  ],
+  "repeat_sha256": "359a77e56c07492692ca888dda63aa6d92324b4520b3880e6809fd73469f266f"
 }

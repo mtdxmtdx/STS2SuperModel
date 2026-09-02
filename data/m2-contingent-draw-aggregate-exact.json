@@ -1,0 +1,20 @@
+[
+  {
+    "public_state_hash": "466E61A9171CCE1FE2B4F4D6C0D7801A31D88CDADF2F4CAB74668D694C6D0A0E",
+    "teacher_state_hashes": [
+      "a9e35d211086f6f4e32193c9"
+    ],
+    "action_value_mean": {
+      "play:card:BATTLE_TRANCE:001:none": 3.25,
+      "play:card:DEFEND_IRONCLAD:012:none": 3.25
+    },
+    "action_value_variance": {
+      "play:card:BATTLE_TRANCE:001:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:012:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:BATTLE_TRANCE:001:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  }
+]

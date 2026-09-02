@@ -1,0 +1,87 @@
+{
+  "action_count": 2815,
+  "action_kind_counts": {
+    "EndTurn": 428,
+    "PlayCard": 2365,
+    "UsePotion": 22
+  },
+  "ascension_counts": {
+    "0": 428
+  },
+  "character_counts": {
+    "The Ironclad": 414,
+    "The Silent": 14
+  },
+  "combat_count": 198,
+  "confidence_counts": {
+    "Reliable": 428
+  },
+  "coverage": {
+    "card_ids": {
+      "CARD.BARRICADE": 50,
+      "CARD.BASH": 187,
+      "CARD.DEFEND_IRONCLAD": 751,
+      "CARD.DEFEND_SILENT": 48,
+      "CARD.DEMON_FORM": 90,
+      "CARD.INFLAME": 72,
+      "CARD.NEUTRALIZE": 9,
+      "CARD.STRIKE_IRONCLAD": 920,
+      "CARD.STRIKE_SILENT": 26,
+      "CARD.SURVIVOR": 8
+    },
+    "enemy_ids": {
+      "Leaf Slime (M)": 14,
+      "Leaf Slime (S)": 32,
+      "Seapunk": 224,
+      "Shrinker Beetle": 153,
+      "Terror Eel": 19,
+      "Twig Slime (M)": 18,
+      "Twig Slime (S)": 32
+    },
+    "potion_ids": {
+      "BLOCK_POTION": 22
+    },
+    "power_ids": {
+      "SHRIEK_POWER": 19,
+      "VIGOR_POWER": 11,
+      "VULNERABLE_POWER": 22
+    },
+    "relic_ids": {
+      "AKABEKO": 22,
+      "ANCHOR": 22,
+      "ART_OF_WAR": 22,
+      "BAG_OF_MARBLES": 22,
+      "BURNING_BLOOD": 203,
+      "HAPPY_FLOWER": 22,
+      "LANTERN": 44,
+      "ODDLY_SMOOTH_STONE": 2,
+      "ORICHALCUM": 11,
+      "PEN_NIB": 41,
+      "RING_OF_THE_SNAKE": 13,
+      "VAJRA": 3
+    }
+  },
+  "episode_count": 198,
+  "metadata": {
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "feature_schema_version": "1",
+    "game_commit": "41cef1ea",
+    "game_version": "v0.111.0",
+    "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383",
+    "model_version": "none",
+    "scorer_version": "not-applicable",
+    "semantic_database_version": "game-runtime-v0111",
+    "simulator_version": "cli-v0111-headless"
+  },
+  "missing_metadata": {},
+  "report_kind": "p0_tooling_smoke",
+  "restriction_counts": {},
+  "risk_event_counts": {},
+  "row_count": 428,
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m5-reliable-candidate-v2.jsonl",
+  "source_sha256": "13C9CBB3C83093F1718EAF656CBCE75765F30F63E1A8902216DFA7D633B56E60",
+  "teacher_pair_count": 427,
+  "teacher_pair_rate": 0.9976635514018691
+}

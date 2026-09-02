@@ -1,0 +1,173 @@
+{
+  "audit_id": "global-prototype-quality-v0",
+  "candidate_statistics": {
+    "dataset_candidates": 4000,
+    "dataset_illegal": 0,
+    "smoke_candidates": 73,
+    "smoke_illegal": 8
+  },
+  "coverage": {
+    "coverage_failures": {},
+    "reward_skip_rows": 1000,
+    "smoke": {
+      "ancient_high_hp": {
+        "candidate_count": 4,
+        "has_unique_paths": true,
+        "kinds": [
+          "cancel",
+          "leave",
+          "normal",
+          "proceed"
+        ]
+      },
+      "ancient_low_hp": {
+        "candidate_count": 4,
+        "has_unique_paths": true,
+        "kinds": [
+          "cancel",
+          "leave",
+          "normal",
+          "proceed"
+        ]
+      },
+      "campfire_high_hp": {
+        "candidate_count": 3,
+        "has_unique_paths": true,
+        "kinds": [
+          "leave",
+          "rest",
+          "smith"
+        ]
+      },
+      "campfire_low_hp": {
+        "candidate_count": 3,
+        "has_unique_paths": true,
+        "kinds": [
+          "leave",
+          "rest",
+          "smith"
+        ]
+      },
+      "event_high_hp": {
+        "candidate_count": 5,
+        "has_unique_paths": true,
+        "kinds": [
+          "cancel",
+          "leave",
+          "normal",
+          "proceed"
+        ]
+      },
+      "event_low_hp": {
+        "candidate_count": 5,
+        "has_unique_paths": true,
+        "kinds": [
+          "cancel",
+          "leave",
+          "normal",
+          "proceed"
+        ]
+      },
+      "high_hp": {
+        "candidate_count": 4,
+        "has_unique_paths": true,
+        "kinds": [
+          "normal"
+        ]
+      },
+      "low_hp": {
+        "candidate_count": 4,
+        "has_unique_paths": true,
+        "kinds": [
+          "normal"
+        ]
+      },
+      "poor_gold": {
+        "candidate_count": 4,
+        "has_unique_paths": true,
+        "kinds": [
+          "normal"
+        ]
+      },
+      "rich_gold": {
+        "candidate_count": 4,
+        "has_unique_paths": true,
+        "kinds": [
+          "normal"
+        ]
+      },
+      "shop_poor_gold": {
+        "candidate_count": 5,
+        "has_unique_paths": true,
+        "kinds": [
+          "buy_card",
+          "buy_potion",
+          "buy_relic",
+          "leave",
+          "remove"
+        ]
+      },
+      "shop_rich_gold": {
+        "candidate_count": 5,
+        "has_unique_paths": true,
+        "kinds": [
+          "buy_card",
+          "buy_potion",
+          "buy_relic",
+          "leave",
+          "remove"
+        ]
+      }
+    }
+  },
+  "duplicate_action_ids": 0,
+  "forbidden_field_count": 0,
+  "jsonl": {
+    "malformed": 0,
+    "manifest_schema_version": "global-manifest-v1",
+    "rows": 1000,
+    "schema_versions": [
+      "global-prototype-v1"
+    ],
+    "state_schema_versions": [
+      "global-public-v1"
+    ]
+  },
+  "label_quality_violations": 0,
+  "manifest_sha256": "76814314397f42f39f3b842eb859bba0ec2c0f30667c446741c76adc12c3e915",
+  "passed": true,
+  "prototype_reliable_flags": {
+    "dataset_manifest_reliable_count": 0,
+    "smoke_reliable_true": 0
+  },
+  "public_leakage_count": 0,
+  "read_only": true,
+  "reliable_count": 0,
+  "repeatability": {
+    "model_prediction": {
+      "available": true,
+      "first_digest": "83dda2761a09a9a5412613c117a0a6895a72ddb8077a1f88a36959ff4b92e754",
+      "repeat_equal": true,
+      "second_digest": "83dda2761a09a9a5412613c117a0a6895a72ddb8077a1f88a36959ff4b92e754"
+    },
+    "repeat_jsonl_equal": true,
+    "smoke_report_hashes": {
+      "data\\global_prototype\\event_ancient_smoke\\event-ancient-smoke-report.json": true,
+      "data\\global_prototype\\orchestrator_smoke\\orchestrator-smoke-report.json": true,
+      "data\\global_prototype\\route_smoke\\route-smoke-report.json": true,
+      "data\\global_prototype\\shop_campfire_smoke\\shop-campfire-smoke-report.json": true
+    }
+  },
+  "source_data_sha256": "03011cfb8d9f9b27ae87a390ae24a2e09c545281162df06b8d3cd7118dd8ca7d",
+  "splits": {
+    "counts": {
+      "test": 98,
+      "train": 806,
+      "validation": 96
+    },
+    "scenario_count": 1000,
+    "scenario_split_conflicts": 0
+  },
+  "stable_id_missing": 0,
+  "unknown_or_uncalculable_count": 0
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "dataset_id": "m5-reliable-candidate",
+  "inputs": [
+    {
+      "path": "m4-nosl-smoke-1000-final3-dedup.jsonl",
+      "sha256": "6ECCFD20073DD0A73713C2D84A06275203DAF0B350DADAE5F2E287A0CD05FB8F"
+    },
+    {
+      "path": "m5-source-expanded-labeled.jsonl",
+      "sha256": "FAE8CE42D9FF72467FD6EB538BE5B85382BBE41AB10005A3461D24FE880ABFE1"
+    }
+  ],
+  "output": {
+    "path": "m5-reliable-candidate.jsonl",
+    "sha256": "37FD16C350B6C1DEBDFA1F636D2348BCDB359EB79CC95E75EBA23D62251E97CA",
+    "rows": 408,
+    "duplicates_removed": 0
+  },
+  "confidence_policy": "Reliable only",
+  "notes": [
+    "M4 final3 and M5 expanded candidate have disjoint Reliable state/action keys.",
+    "This is a training experiment candidate, not a full M5 10k production dataset."
+  ]
+}

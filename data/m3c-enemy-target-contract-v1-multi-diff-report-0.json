@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p0-multi-target-fixed",
+  "fixture": "p0-multi-enemy-targets",
+  "seed": "p0-multi-target-fixed",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 0,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Reliable",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "strict_public_state",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "strict_public_state",
+    "identity_comparison": "compared"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "99D208BE4DAA4F20AC298E0B8E2F6B222230492D17FE66E14E76BEA9699861D3",
+  "engine_post_state_hash": "2619AEBB4F065E521A3CACE0033BE4E653A7F069E310A3C6EBBA85730D48DEC6",
+  "projected_comparison_hash": "608DCFCA5EE21BC3FDA2C9BDCF75B8A7B9E58DAC9DE0A0B159BA50E6AA4AE97D",
+  "actual_comparison_hash": "608DCFCA5EE21BC3FDA2C9BDCF75B8A7B9E58DAC9DE0A0B159BA50E6AA4AE97D",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.hp",
+      "projected": 33,
+      "actual": 33,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.is_hittable",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.is_minion",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.is_primary_enemy",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.is_secondary_enemy",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.hp",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.intents",
+      "projected": [
+        "Attack:3:1"
+      ],
+      "actual": [
+        "Attack:3:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.is_hittable",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.is_minion",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.is_primary_enemy",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.is_secondary_enemy",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.hp",
+      "projected": 10,
+      "actual": 10,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.intents",
+      "projected": [
+        "Attack:4:1"
+      ],
+      "actual": [
+        "Attack:4:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.is_hittable",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.is_minion",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.is_primary_enemy",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.is_secondary_enemy",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand",
+      "projected": [
+        "card:DEFEND_IRONCLAD:004",
+        "card:STRIKE_IRONCLAD:006",
+        "card:STRIKE_IRONCLAD:007",
+        "card:DEFEND_IRONCLAD:005"
+      ],
+      "actual": [
+        "card:DEFEND_IRONCLAD:004",
+        "card:STRIKE_IRONCLAD:006",
+        "card:STRIKE_IRONCLAD:007",
+        "card:DEFEND_IRONCLAD:005"
+      ],
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 80,
+      "actual": 80,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.BURNING_BLOOD.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.BURNING_BLOOD.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Heal",
+          "Value": 6
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Heal",
+          "Value": 6
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "BURNING_BLOOD"
+      ],
+      "actual": [
+        "BURNING_BLOOD"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    }
+  ]
+}

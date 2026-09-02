@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "dataset_id": "m5-reliable-holdout-backed",
+  "source": "m5-reliable-candidate-v2.jsonl",
+  "source_sha256": "13C9CBB3C83093F1718EAF656CBCE75765F30F63E1A8902216DFA7D633B56E60",
+  "holdout_coverage_source": "m3e-reliable-holdout-coverage-v4.json",
+  "covered_root_action_pairs": 23,
+  "eligible_rows": 15,
+  "rejected_rows": 413,
+  "eligible_sha256": "042D761AA6FE697DFF94DB2DA46B7BFFC9B42515453277EB221BD2B99BFB225E",
+  "eligibility_rule": "teacher_best_actions intersects zero-mismatch Reliable CLI↔Shadow root/action evidence",
+  "status": "experiment_only_until_full_holdout"
+}

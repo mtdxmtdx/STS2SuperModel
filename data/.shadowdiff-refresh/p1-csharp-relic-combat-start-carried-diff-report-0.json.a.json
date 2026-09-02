@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p1-combat-start-carried-seed",
+  "fixture": "p1-relic-combat-start-carried",
+  "seed": "p1-combat-start-carried-seed",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 0,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Estimated",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "strict_public_state",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "strict_public_state",
+    "identity_comparison": "compared"
+  },
+  "match": false,
+  "mismatch_count": 1,
+  "mismatches": [
+    {
+      "field": "enemy.enemy:SEAPUNK:1.intents",
+      "projected": [
+        "Attack:11:1"
+      ],
+      "actual": [
+        "Attack:12:1"
+      ],
+      "match": false
+    }
+  ],
+  "engine_pre_state_hash": "D74468FBE10AAE9E41F4667168C1DD08075FF48FE8A77E31D1AC44FC2D6065C8",
+  "engine_post_state_hash": "1141C0EF63D2120B1828AC838D56E2DFCB288C6D599E6FB142C6F1FDFFD029E4",
+  "projected_comparison_hash": "6AB2DD0926E3DCA81FAD8842B70C656A9288F7D10D8D16D4165E67A7FF049BF8",
+  "actual_comparison_hash": "C233C5240CB16101FECBC098AAE8F91F3A965475D20C80B76736942976395BAE",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 38,
+      "actual": 38,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.intents",
+      "projected": [
+        "Attack:11:1"
+      ],
+      "actual": [
+        "Attack:12:1"
+      ],
+      "match": false
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.status.STRENGTH.amount",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand",
+      "projected": [
+        "card:STRIKE_IRONCLAD:015",
+        "card:STRIKE_IRONCLAD:016",
+        "card:STRIKE_IRONCLAD:017",
+        "card:STRIKE_IRONCLAD:018"
+      ],
+      "actual": [
+        "card:STRIKE_IRONCLAD:015",
+        "card:STRIKE_IRONCLAD:016",
+        "card:STRIKE_IRONCLAD:017",
+        "card:STRIKE_IRONCLAD:018"
+      ],
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 4,
+      "actual": 4,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 7,
+      "actual": 7,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 80,
+      "actual": 80,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.STRENGTH_POWER.amount",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.STRENGTH_POWER.applier",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.STRENGTH_POWER.counters",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.STRENGTH_POWER.dynamic_vars",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.STRENGTH_POWER.present",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "relic.FAKE_ANCHOR.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.FAKE_ANCHOR.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Block",
+          "Value": 4
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Block",
+          "Value": 4
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.FAKE_BLOOD_VIAL.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.FAKE_BLOOD_VIAL.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Heal",
+          "Value": 1
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Heal",
+          "Value": 1
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.PHILOSOPHERS_STONE.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.PHILOSOPHERS_STONE.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Energy",
+          "Value": 1
+        },
+        {
+          "Key": "StrengthPower",
+          "Value": 1
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Energy",
+          "Value": 1
+        },
+        {
+          "Key": "StrengthPower",
+          "Value": 1
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.VERY_HOT_COCOA.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.VERY_HOT_COCOA.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Energy",
+          "Value": 4
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Energy",
+          "Value": 4
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "FAKE_ANCHOR",
+        "FAKE_BLOOD_VIAL",
+        "PHILOSOPHERS_STONE",
+        "VERY_HOT_COCOA"
+      ],
+      "actual": [
+        "FAKE_ANCHOR",
+        "FAKE_BLOOD_VIAL",
+        "PHILOSOPHERS_STONE",
+        "VERY_HOT_COCOA"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    }
+  ]
+}

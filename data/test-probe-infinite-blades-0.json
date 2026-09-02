@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 0,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:DEFEND_SILENT:017:none",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Reliable",
+  "match": true,
+  "mismatch_count": 0,
+  "fields": [
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 70,
+      "actual": 70,
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 6,
+      "actual": 6,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand",
+      "projected": [
+        "card:DEFEND_SILENT:018",
+        "card:DEFEND_SILENT:019",
+        "card:DEFEND_SILENT:020",
+        "card:DEFEND_SILENT:021",
+        "card:DEFEND_SILENT:022",
+        "card:DEFEND_SILENT:023"
+      ],
+      "actual": [
+        "card:DEFEND_SILENT:018",
+        "card:DEFEND_SILENT:019",
+        "card:DEFEND_SILENT:020",
+        "card:DEFEND_SILENT:021",
+        "card:DEFEND_SILENT:022",
+        "card:DEFEND_SILENT:023"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 46,
+      "actual": 46,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 12,
+      "actual": 12,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "RING_OF_THE_SNAKE"
+      ],
+      "actual": [
+        "RING_OF_THE_SNAKE"
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.RING_OF_THE_SNAKE.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.RING_OF_THE_SNAKE.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Cards",
+          "Value": 2
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Cards",
+          "Value": 2
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    }
+  ]
+}

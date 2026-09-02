@@ -1,0 +1,18 @@
+{
+  "candidate_path_counts": {
+    "high_hp": 4,
+    "low_hp": 4,
+    "poor_gold": 4,
+    "rich_gold": 4
+  },
+  "dataset_id": "global-route-smoke-v0",
+  "model_stage": "prototype",
+  "public_fields_only": true,
+  "quality": "EstimatedByHeuristic",
+  "reliable": false,
+  "report_sha256": "51cb15717ffb90f54378e577ca6c73ed577fc919dc616bccbc2988c9b327cb9d",
+  "scenario_count": 4,
+  "seed_input": false,
+  "source": "global-route-prototype",
+  "stage": "prototype"
+}

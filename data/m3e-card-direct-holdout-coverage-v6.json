@@ -1,0 +1,28 @@
+{
+  "schema_version": 6,
+  "dataset": "m5-direct-matrix-training.jsonl",
+  "report_set": "p1-csharp-card-direct-*-diff-report.json",
+  "source_rows": 596,
+  "report_count": 608,
+  "aligned_report_count": 140,
+  "aligned_reliable_report_count": 95,
+  "aligned_estimated_report_count": 44,
+  "aligned_uncalculable_report_count": 1,
+  "aligned_mismatch_count": 111,
+  "coverage_rate": 0.2348993288590604,
+  "verdict": "partial",
+  "scope": "card semantic direct-matrix evidence; no teacher labels are promoted by this report",
+  "refreshes": [
+    "p1-csharp-card-direct-battle_trance-diff-report.json",
+    "p1-csharp-card-direct-piercing_wail-diff-report.json",
+    "p1-csharp-card-direct-uppercut-diff-report.json",
+    "p1-csharp-card-direct-dark_embrace-diff-report.json",
+    "p1-csharp-card-direct-feel_no_pain-diff-report.json"
+  ],
+  "fixed_semantics": [
+    "PIERCING_WAIL temporary all-enemy Strength loss and intent refresh",
+    "UPPERCUT shared power preview maps Weak/Vulnerable",
+    "DARK_EMBRACE exhaust trigger draw",
+    "FEEL_NO_PAIN exhaust trigger block"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 2,
+  "dataset": "m5-reliable-holdout-backed.jsonl",
+  "rows": 15,
+  "stats": {
+    "rows": 15,
+    "all_legal_action_evaluations": 15,
+    "null_actions_with_reason": 97,
+    "policy_tree_max_roots": 15,
+    "root_follow_on_actions": 41,
+    "chance_nodes": 245,
+    "chance_mass_bad": 0,
+    "recursive_max_children": 245,
+    "recursive_max_children_with_actions": 0,
+    "chance_roots": 15
+  },
+  "issues": [],
+  "verdict": "partial",
+  "notes": [
+    "action_values may omit unexplored actions; action_evaluations must carry null+reason.",
+    "Policy tree is checked recursively for Max roots, Chance mass and Max continuations.",
+    "Strict holdout now includes deterministic root follow-on actions; chance continuations are empty because these rows terminate after the chance event.",
+    "Full candidate still has Chance-to-Max nodes but no non-empty post-chance Max continuation; multi-action contingent policy remains unverified."
+  ],
+  "full_candidate": {
+    "rows": 540,
+    "tree_rows": 371,
+    "chance_nodes": 4262,
+    "chance_roots": 371,
+    "chance_mass_bad": 0,
+    "max_after_chance": 4262,
+    "max_after_chance_with_actions": 0,
+    "root_follow_on_actions": 0,
+    "contingent_depth_verified": false
+  },
+  "holdout_v2": {
+    "dataset": "m5-reliable-holdout-backed-v2.jsonl",
+    "rows": 16,
+    "all_legal_action_evaluations": 16,
+    "null_actions_with_reason": 101,
+    "chance_nodes": 301,
+    "chance_roots": 16,
+    "root_follow_on_actions": 41,
+    "chance_mass_bad": 0,
+    "verdict": "pass"
+  },
+  "real_cli_fixture": {
+    "path": "m2-contingent-policy-verification.json",
+    "root_action": "play:card:BATTLE_TRANCE:001:none",
+    "chance_nodes": 56,
+    "chance_probability_sum": 1.0,
+    "post_chance_max_nodes_with_actions": 56,
+    "post_chance_action_count_min": 4,
+    "structural_verdict": "pass",
+    "shadowdiff_match": true,
+    "shadowdiff_mismatch_count": 0,
+    "shadowdiff_confidence": "Reliable",
+    "confidence": "Reliable",
+    "reliable_eligibility": "reliable_exact_known_chance"
+  },
+  "real_cli_random_fixture": {
+    "path": "m2-contingent-random-verification.json",
+    "root_action": "play_card:card:SWORD_BOOMERANG:001:none",
+    "teacher_best_actions_count": 2,
+    "chance_nodes": 27,
+    "chance_probability_sum": 1.0,
+    "post_chance_max_nodes_with_actions": 27,
+    "post_chance_action_count_min": 3,
+    "structural_verdict": "pass",
+    "shadowdiff_match": true,
+    "shadowdiff_mismatch_count": 0,
+    "shadowdiff_confidence": "Estimated",
+    "shadowdiff_repeat_byte_identical": true,
+    "shadowdiff_manifest": "m3e-contingent-random-shadowdiff-manifest.json",
+    "confidence": "Reliable",
+    "reliable_eligibility": "blocked_by_shadowdiff_estimated_random_outcome"
+  },
+  "real_cli_bash_fixture": {
+    "manifest": "m3e-bash-reliable-shadowdiff-manifest.json",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "repeat_byte_identical": true,
+    "verdict": "pass"
+  }
+}

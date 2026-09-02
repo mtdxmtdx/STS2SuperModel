@@ -1,0 +1,12 @@
+[
+  {
+    "public_state_hash": "566DC0FD12AE66A55C4F586A8BCA03CECA11F24AE8FD21F49326F9F70C47291F",
+    "teacher_state_hashes": [
+      "5891a4573b4b075566b9789e"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  }
+]

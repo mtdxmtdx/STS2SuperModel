@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "relics": {
+    "total": 299,
+    "support_status": {
+      "simulator_supported": 100,
+      "unknown": 117,
+      "uncalculable": 56,
+      "unverifiable_by_cli": 25,
+      "no_combat_effect": 1
+    },
+    "unsupported_by_combat_relevance": {},
+    "unknown_by_combat_relevance": {
+      "non_combat": 117
+    },
+    "reliable_eligible": 101,
+    "batch1_completed": [
+      "SHURIKEN",
+      "KUNAI",
+      "ORNAMENTAL_FAN",
+      "LETTER_OPENER",
+      "RAINBOW_RING",
+      "MERCURY_HOURGLASS",
+      "MR_STRUGGLES",
+      "SAI",
+      "CANDELABRA",
+      "CHANDELIER",
+      "FAKE_HAPPY_FLOWER",
+      "FAKE_ORICHALCUM"
+    ],
+    "batch1_evidence": "18 fixtures / 34 ShadowDiff reports, all confidence=Reliable, mismatch_count=0",
+    "batch16_final": "All 181 combat relics carry terminal states: 100 simulator_supported, 25 unverifiable_by_cli, 56 uncalculable, 0 pending"
+  },
+  "cards": {
+    "total_variants": 1176,
+    "fully_structured": 1108,
+    "unstructured": 68,
+    "single_player_scope": 1099,
+    "single_player_fully_structured": 1099,
+    "single_player_unparsed_clauses": 0,
+    "immediately_executable": 458,
+    "multiplayer_only_variants": 77,
+    "attribution_note": "All 68 unstructured variants fall outside the single-player combat scope (multiplayer/ally-only). The 77 multiplayer-only variants are OutOfScope for the single-player Reliable set by contract.",
+    "high_risk_single_player_categories": {
+      "exhaust": {
+        "all_variants": 222,
+        "single_player_variants": 204
+      },
+      "ethereal": {
+        "all_variants": 44,
+        "single_player_variants": 44
+      },
+      "retain": {
+        "all_variants": 47,
+        "single_player_variants": 45
+      },
+      "random": {
+        "all_variants": 105,
+        "single_player_variants": 97
+      },
+      "choice": {
+        "all_variants": 29,
+        "single_player_variants": 29
+      },
+      "power_or_relic_trigger": {
+        "all_variants": 400,
+        "single_player_variants": 393
+      }
+    }
+  },
+  "shadow_diff_matrix": {
+    "registered_report_count": 91,
+    "p0_reports": 31,
+    "p1_power_reports": 26,
+    "p1_relic_reports": 34,
+    "repeat_verification": "verdict=pass, different=0, missing=0, added=0"
+  },
+  "known_simulator_gaps": [
+    "Enemy non-attack intents (Buff/Defend) carry no effect amounts in the public observation, so the shadow cannot replay those enemy turns (encountered on SEAPUNK_WEAK round 3->4).",
+    "Shuffle-stream card ORDER after a draw-pile reshuffle is not reproducible without live RNG state; counters are mirrored and hand comparison falls back to count-only."
+  ]
+}

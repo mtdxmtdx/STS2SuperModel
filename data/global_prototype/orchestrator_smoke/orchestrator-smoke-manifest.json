@@ -1,0 +1,36 @@
+{
+  "candidate_counts": {
+    "ancient": 2,
+    "campfire": 3,
+    "event": 5,
+    "reward": 4,
+    "route": 4,
+    "shop": 5
+  },
+  "dataset_id": "global-orchestrator-smoke-v0",
+  "decision_types": [
+    "ancient",
+    "campfire",
+    "event",
+    "reward",
+    "route",
+    "shop"
+  ],
+  "mask_violations": 0,
+  "model_stage": "prototype",
+  "public_fields_only": true,
+  "quality": "EstimatedByHeuristic",
+  "reliable": false,
+  "report_sha256": "c430dbc3f5665d79a74fd9f01feb858f00e9a1934ce2ea686f4fb81630eda04e",
+  "seed_input": false,
+  "selected_action_ids": {
+    "ancient": "ancient:ANCIENT_A:option:offer",
+    "campfire": "campfire:rest",
+    "event": "event:E1:option:gold",
+    "reward": "reward:offer:add9ea9eccb911b8c2b7a31854f36bfc2c9f4e94c04f44357899aed4ed98c281:reward-ironclad-0000-2",
+    "route": "route:path:e686f85c466b62af",
+    "shop": "shop:potion:screen-a:POTION_A"
+  },
+  "source": "global-orchestrator-prototype",
+  "stage": "prototype"
+}

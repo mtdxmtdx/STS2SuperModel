@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "scope": "M3c public enemy intent history, phase, and observed-turn counters",
+  "public_contract": {
+    "fields": [
+      "first_observed_round",
+      "last_observed_round",
+      "observed_turns",
+      "phase",
+      "intent_history"
+    ],
+    "history_unit": "one public intent signature per observed combat round",
+    "intent_signature": "visible IntentType:Hits",
+    "source": "public_observation",
+    "contains_internal_move_id": false,
+    "contains_state_machine_log": false,
+    "contains_monster_ai_rng": false
+  },
+  "multi_enemy": {
+    "fixture": "p0-multi-enemy-targets",
+    "enemy_count": 3,
+    "trace_path": "m3c-enemy-public-history-v1-multi-trace.jsonl",
+    "trace_sha256": "8D8EA80478210A0614CCDF876F46BFFA80F82DFE4B8B1829DDFD07E654738FCC",
+    "reports": [
+      {
+        "ordinal": 0,
+        "path": "m3c-enemy-public-history-v1-multi-diff-report-0.json",
+        "sha256": "B7858262E945E4B287A915518893B61528E240C3B57FBFF13522E273222821E8",
+        "mismatch_count": 0,
+        "confidence": "Reliable"
+      },
+      {
+        "ordinal": 1,
+        "path": "m3c-enemy-public-history-v1-multi-diff-report-1.json",
+        "sha256": "055596716272D4C292228BC1B473BA952A3AA33C78D1FB40DEA5A1B96A1AB373",
+        "mismatch_count": 0,
+        "confidence": "Reliable"
+      },
+      {
+        "ordinal": 2,
+        "path": "m3c-enemy-public-history-v1-multi-diff-report-2.json",
+        "sha256": "48496ACDFA0CFD14DDB91CCBB885FAEA2253C09077B2AC5D2C620E29EAFFE535",
+        "mismatch_count": 0,
+        "confidence": "Reliable"
+      }
+    ],
+    "public_ai_field_comparisons_per_report": 15
+  },
+  "turn_boundary": {
+    "fixture": "p0-vajra-strength-end-turn",
+    "trace_path": "m3c-enemy-public-history-v1-endturn-trace.jsonl",
+    "trace_sha256": "561455FF5F687DA82B4CC77714B3962ACF2A3E4964C32E253330D7CFD6FF2F3F",
+    "report_path": "m3c-enemy-public-history-v1-endturn-diff-report.json",
+    "report_sha256": "10564204C6FBA845BB9A1F80E92F9353A0ABA1299068C06FBC7EC6A8A7CE944F",
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "history_before": ["Attack:1"],
+    "history_after": ["Attack:1", "Attack:4"],
+    "observed_turns_after": 2,
+    "phase_after": "active"
+  },
+  "key_contract": {
+    "nosl_belief_signature_includes_public_history": true,
+    "public_observation_key_includes_public_history": true,
+    "search_behavior_key_includes_public_history": true,
+    "internal_monster_ai_state_excluded": true
+  },
+  "verdict": "pass",
+  "status": "public history contract and one turn boundary verified; internal AI state remains teacher-side only and summon/revive/multi-stage fixtures remain"
+}

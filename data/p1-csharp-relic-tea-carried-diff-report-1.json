@@ -1,0 +1,366 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p1-tea-carried-seed",
+  "fixture": "p1-relic-tea-carried",
+  "seed": "p1-tea-carried-seed",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 1,
+  "action_kind": "end_turn",
+  "normalized_action_id": "end_turn:",
+  "draw_pile_source": "placeholder_count_only",
+  "attacks_played_this_turn": 0,
+  "confidence": "Uncalculable",
+  "chance_present": true,
+  "random_operator": "Shuffle",
+  "probability_known": false,
+  "outcome_quality": "Unknown",
+  "probability_mass_covered": null,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {
+    "Shuffle": 7
+  },
+  "branch_enumerated": false,
+  "comparison_scope": "aggregate_count_only",
+  "identity_comparison": "omitted",
+  "chance_quality": {
+    "chance_present": true,
+    "random_operator": "Shuffle",
+    "probability_known": false,
+    "outcome_quality": "Unknown",
+    "probability_mass_covered": null,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {
+      "Shuffle": 7
+    },
+    "branch_enumerated": false,
+    "comparison_scope": "aggregate_count_only",
+    "identity_comparison": "omitted"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "ADBD9F159BC461346E536370CA6E78675C495A2EBB660B9B05E63C5020355684",
+  "engine_post_state_hash": "B7F10EC0151C39F86717DE634224C9536C29C27FFC907214D6C207C498E3EFA6",
+  "projected_comparison_hash": "C97BFDBFB627FA9F2F99D28B1F20B7885A5CAE58122FFCD90BF20939F194AE5A",
+  "actual_comparison_hash": "C97BFDBFB627FA9F2F99D28B1F20B7885A5CAE58122FFCD90BF20939F194AE5A",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 16,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy_damage_total",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 61,
+      "actual": 61,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.BIG_MUSHROOM.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.BIG_MUSHROOM.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Cards",
+          "Value": 2
+        },
+        {
+          "Key": "MaxHp",
+          "Value": 20
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Cards",
+          "Value": 2
+        },
+        {
+          "Key": "MaxHp",
+          "Value": 20
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.BLOOD_SOAKED_ROSE.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.BLOOD_SOAKED_ROSE.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Energy",
+          "Value": 1
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Energy",
+          "Value": 1
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.FAKE_VENERABLE_TEA_SET.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.FAKE_VENERABLE_TEA_SET.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Energy",
+          "Value": 1
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Energy",
+          "Value": 1
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.PUMPKIN_CANDLE.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "relic.PUMPKIN_CANDLE.dynamic_vars",
+      "projected": [
+        {
+          "Key": "CombatCount",
+          "Value": 5
+        },
+        {
+          "Key": "Energy",
+          "Value": 1
+        }
+      ],
+      "actual": [
+        {
+          "Key": "CombatCount",
+          "Value": 5
+        },
+        {
+          "Key": "Energy",
+          "Value": 1
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.SPIKED_GAUNTLETS.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.SPIKED_GAUNTLETS.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Energy",
+          "Value": 1
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Energy",
+          "Value": 1
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.VENERABLE_TEA_SET.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.VENERABLE_TEA_SET.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Energy",
+          "Value": 2
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Energy",
+          "Value": 2
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "BIG_MUSHROOM",
+        "BLOOD_SOAKED_ROSE",
+        "FAKE_VENERABLE_TEA_SET",
+        "PUMPKIN_CANDLE",
+        "SPIKED_GAUNTLETS",
+        "VENERABLE_TEA_SET"
+      ],
+      "actual": [
+        "BIG_MUSHROOM",
+        "BLOOD_SOAKED_ROSE",
+        "FAKE_VENERABLE_TEA_SET",
+        "PUMPKIN_CANDLE",
+        "SPIKED_GAUNTLETS",
+        "VENERABLE_TEA_SET"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 16,
+      "actual": 16,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 3,
+      "actual": 3,
+      "match": true
+    }
+  ],
+  "repeat_sha256": "1b4f345ad9719a2b2372329981ed0c6dc12dc07743253689ac031d687d4e9674"
+}

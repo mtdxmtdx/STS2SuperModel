@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p1-hand-drill-seed",
+  "fixture": "p1-relic-hand-drill",
+  "seed": "p1-hand-drill-seed",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 1,
+  "action_kind": "play_card",
+  "normalized_action_id": "play_card:card:STRIKE_IRONCLAD:013:enemy:SHRINKER_BEETLE:1",
+  "draw_pile_source": "not_applicable",
+  "attacks_played_this_turn": null,
+  "confidence": "Reliable",
+  "chance_present": false,
+  "random_operator": "None",
+  "probability_known": true,
+  "outcome_quality": "Exact",
+  "probability_mass_covered": 1,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "strict_public_state",
+  "identity_comparison": "compared",
+  "chance_quality": {
+    "chance_present": false,
+    "random_operator": "None",
+    "probability_known": true,
+    "outcome_quality": "Exact",
+    "probability_mass_covered": 1,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "strict_public_state",
+    "identity_comparison": "compared"
+  },
+  "match": true,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "50C7A011B2FA6AD989730580CFB6B06A89E2A67D24B5CB5970019157AD8DA9BE",
+  "engine_post_state_hash": "BEE7EE159A3222318F933AB2201E379DE5C54CFB0AD31D0E05E8A89A1B578D96",
+  "projected_comparison_hash": "48A3F71B6A921D28BCF8E3D566C82DE7C4392B18171E4CA121F4160CA6F14DA1",
+  "actual_comparison_hash": "48A3F71B6A921D28BCF8E3D566C82DE7C4392B18171E4CA121F4160CA6F14DA1",
+  "rng_before": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 9,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 6,
+      "actual": 6,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.hp",
+      "projected": 34,
+      "actual": 34,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.intents",
+      "projected": [
+        "Attack:7:1"
+      ],
+      "actual": [
+        "Attack:7:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand",
+      "projected": [
+        "card:DEFEND_IRONCLAD:011",
+        "card:DEFEND_IRONCLAD:012",
+        "card:STRIKE_IRONCLAD:014",
+        "card:DEFEND_IRONCLAD:013"
+      ],
+      "actual": [
+        "card:DEFEND_IRONCLAD:011",
+        "card:DEFEND_IRONCLAD:012",
+        "card:STRIKE_IRONCLAD:014",
+        "card:DEFEND_IRONCLAD:013"
+      ],
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 60,
+      "actual": 60,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.player.SHRINK_POWER.amount",
+      "projected": -1,
+      "actual": -1,
+      "match": true
+    },
+    {
+      "field": "power.player.SHRINK_POWER.applier",
+      "projected": "enemy:SHRINKER_BEETLE:1",
+      "actual": "enemy:SHRINKER_BEETLE:1",
+      "match": true
+    },
+    {
+      "field": "power.player.SHRINK_POWER.counters",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.player.SHRINK_POWER.dynamic_vars",
+      "projected": [
+        {
+          "Key": "ApplierName",
+          "Value": "0"
+        },
+        {
+          "Key": "DamageDecrease",
+          "Value": "30"
+        }
+      ],
+      "actual": [
+        {
+          "Key": "ApplierName",
+          "Value": "0"
+        },
+        {
+          "Key": "DamageDecrease",
+          "Value": "30"
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "power.player.SHRINK_POWER.present",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "relic.HAND_DRILL.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.HAND_DRILL.dynamic_vars",
+      "projected": [
+        {
+          "Key": "VulnerablePower",
+          "Value": 2
+        }
+      ],
+      "actual": [
+        {
+          "Key": "VulnerablePower",
+          "Value": 2
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "HAND_DRILL"
+      ],
+      "actual": [
+        "HAND_DRILL"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    }
+  ],
+  "repeat_sha256": "813e1ee8955ae73936e4747375df163d413084a4c8634ac8be7f21c4b261b9d7"
+}

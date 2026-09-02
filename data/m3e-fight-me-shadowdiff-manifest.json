@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "FIGHT_ME",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "sha256": "E97B4BFF67FD76613DBF79F81AEFB97A5496794C494B663971E6B9438773D488",
+  "verdict": "pass"
+}

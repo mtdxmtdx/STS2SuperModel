@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "m3e-flame-barrier-reliable",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "sha256": "05803C6FB0BBCB76BB8D8BFE839251F2879427CB7A1A87ED95053D4F00EA3579",
+  "verdict": "pass"
+}

@@ -1,0 +1,6072 @@
+[
+  {
+    "variant_id": "STRIKE_IRONCLAD",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-strike_ironclad-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BASH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BASH:006:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-bash-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEFEND_IRONCLAD",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEFEND_IRONCLAD:009:none",
+    "report": "p1-csharp-card-direct-defend_ironclad-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ANGER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ANGER:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-anger-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SWORD_BOOMERANG",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SWORD_BOOMERANG:005:none",
+    "report": "p1-csharp-card-direct-sword_boomerang-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "POMMEL_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:POMMEL_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-pommel_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BODY_SLAM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BODY_SLAM:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-body_slam-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MOLTEN_FIST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MOLTEN_FIST:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-molten_fist-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "THUNDERCLAP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:THUNDERCLAP:005:none",
+    "report": "p1-csharp-card-direct-thunderclap-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TWIN_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:TWIN_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-twin_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "IRON_WAVE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:IRON_WAVE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-iron_wave-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HEADBUTT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:HEADBUTT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-headbutt-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BREAKTHROUGH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BREAKTHROUGH:005:none",
+    "report": "p1-csharp-card-direct-breakthrough-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SETUP_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SETUP_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-setup_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PERFECTED_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PERFECTED_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-perfected_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CINDER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CINDER:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-cinder-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BLOODLETTING",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BLOODLETTING:005:none",
+    "report": "p1-csharp-card-direct-bloodletting-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TRUE_GRIT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:TRUE_GRIT:005:none",
+    "report": "p1-csharp-card-direct-true_grit-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HAVOC",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:HAVOC:005:none",
+    "report": "p1-csharp-card-direct-havoc-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SHRUG_IT_OFF",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SHRUG_IT_OFF:005:none",
+    "report": "p1-csharp-card-direct-shrug_it_off-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ARMAMENTS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ARMAMENTS:005:none",
+    "report": "p1-csharp-card-direct-armaments-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TREMBLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:TREMBLE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-tremble-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BLOOD_WALL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BLOOD_WALL:005:none",
+    "report": "p1-csharp-card-direct-blood_wall-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BULLY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BULLY:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-bully-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "WHIRLWIND",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:WHIRLWIND:005:none",
+    "report": "p1-csharp-card-direct-whirlwind-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SPITE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SPITE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-spite-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "RAMPAGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:RAMPAGE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-rampage-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DISMANTLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DISMANTLE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-dismantle-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ASHEN_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ASHEN_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-ashen_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PILLAGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PILLAGE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-pillage-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HEMOKINESIS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:HEMOKINESIS:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-hemokinesis-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "UPPERCUT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:UPPERCUT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-uppercut-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "UNRELENTING",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:UNRELENTING:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-unrelenting-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FIGHT_ME",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FIGHT_ME:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-fight_me-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HOWL_FROM_BEYOND",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:HOWL_FROM_BEYOND:005:none",
+    "report": "p1-csharp-card-direct-howl_from_beyond-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STOMP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:STOMP:005:none",
+    "report": "p1-csharp-card-direct-stomp-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BLUDGEON",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BLUDGEON:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-bludgeon-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEMONIC_SHIELD",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:DEMONIC_SHIELD:005:none",
+    "report": "p1-csharp-card-direct-demonic_shield-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "RAGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:RAGE:005:none",
+    "report": "p1-csharp-card-direct-rage-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BATTLE_TRANCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BATTLE_TRANCE:005:none",
+    "report": "p1-csharp-card-direct-battle_trance-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FORGOTTEN_RITUAL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FORGOTTEN_RITUAL:005:none",
+    "report": "p1-csharp-card-direct-forgotten_ritual-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "INFERNAL_BLADE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:INFERNAL_BLADE:005:none",
+    "report": "p1-csharp-card-direct-infernal_blade-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "COLOSSUS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:COLOSSUS:005:none",
+    "report": "p1-csharp-card-direct-colossus-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BURNING_PACT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:BURNING_PACT:005:none",
+    "report": "p1-csharp-card-direct-burning_pact-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TAUNT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:TAUNT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-taunt-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "EVIL_EYE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:EVIL_EYE:005:none",
+    "report": "p1-csharp-card-direct-evil_eye-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DRUM_OF_BATTLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DRUM_OF_BATTLE:005:none",
+    "report": "p1-csharp-card-direct-drum_of_battle-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SECOND_WIND",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SECOND_WIND:005:none",
+    "report": "p1-csharp-card-direct-second_wind-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DOMINATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DOMINATE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-dominate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FLAME_BARRIER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FLAME_BARRIER:005:none",
+    "report": "p1-csharp-card-direct-flame_barrier-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "EXPECT_A_FIGHT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:EXPECT_A_FIGHT:005:none",
+    "report": "p1-csharp-card-direct-expect_a_fight-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "INFLAME",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:INFLAME:005:none",
+    "report": "p1-csharp-card-direct-inflame-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "RUPTURE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:RUPTURE:005:none",
+    "report": "p1-csharp-card-direct-rupture-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FEEL_NO_PAIN",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FEEL_NO_PAIN:005:none",
+    "report": "p1-csharp-card-direct-feel_no_pain-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "VICIOUS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:VICIOUS:005:none",
+    "report": "p1-csharp-card-direct-vicious-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STONE_ARMOR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:STONE_ARMOR:005:none",
+    "report": "p1-csharp-card-direct-stone_armor-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "INFERNO",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:INFERNO:005:none",
+    "report": "p1-csharp-card-direct-inferno-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "JUGGLING",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:JUGGLING:005:none",
+    "report": "p1-csharp-card-direct-juggling-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STAMPEDE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:STAMPEDE:005:none",
+    "report": "p1-csharp-card-direct-stampede-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PACTS_END",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PACTS_END:005:none",
+    "report": "p1-csharp-card-direct-pacts_end-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CONFLAGRATION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CONFLAGRATION:005:none",
+    "report": "p1-csharp-card-direct-conflagration-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FEED",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FEED:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-feed-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "THRASH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:THRASH:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-thrash-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TEAR_ASUNDER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:TEAR_ASUNDER:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-tear_asunder-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FIEND_FIRE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FIEND_FIRE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-fiend_fire-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MANGLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MANGLE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-mangle-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "OFFERING",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:OFFERING:005:none",
+    "report": "p1-csharp-card-direct-offering-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BRAND",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:BRAND:005:none",
+    "report": "p1-csharp-card-direct-brand-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CASCADE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CASCADE:005:none",
+    "report": "p1-csharp-card-direct-cascade-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PRIMAL_FORCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PRIMAL_FORCE:005:none",
+    "report": "p1-csharp-card-direct-primal_force-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ONE_TWO_PUNCH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ONE_TWO_PUNCH:005:none",
+    "report": "p1-csharp-card-direct-one_two_punch-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STOKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:STOKE:005:none",
+    "report": "p1-csharp-card-direct-stoke-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "IMPERVIOUS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:IMPERVIOUS:005:none",
+    "report": "p1-csharp-card-direct-impervious-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "NOT_YET",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:NOT_YET:005:none",
+    "report": "p1-csharp-card-direct-not_yet-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CRUELTY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CRUELTY:005:none",
+    "report": "p1-csharp-card-direct-cruelty-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CRIMSON_MANTLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CRIMSON_MANTLE:005:none",
+    "report": "p1-csharp-card-direct-crimson_mantle-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "AGGRESSION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:AGGRESSION:005:none",
+    "report": "p1-csharp-card-direct-aggression-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TANK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:TANK:005:none",
+    "report": "p1-csharp-card-direct-tank-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HELLRAISER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HELLRAISER:005:none",
+    "report": "p1-csharp-card-direct-hellraiser-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DARK_EMBRACE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DARK_EMBRACE:005:none",
+    "report": "p1-csharp-card-direct-dark_embrace-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "UNMOVABLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:UNMOVABLE:005:none",
+    "report": "p1-csharp-card-direct-unmovable-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "JUGGERNAUT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:JUGGERNAUT:005:none",
+    "report": "p1-csharp-card-direct-juggernaut-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PYRE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PYRE:005:none",
+    "report": "p1-csharp-card-direct-pyre-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BARRICADE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BARRICADE:005:none",
+    "report": "p1-csharp-card-direct-barricade-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEMON_FORM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEMON_FORM:005:none",
+    "report": "p1-csharp-card-direct-demon_form-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CLASH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CLASH:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-clash-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DUAL_WIELD",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DUAL_WIELD:005:none",
+    "report": "p1-csharp-card-direct-dual_wield-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ENTRENCH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ENTRENCH:005:none",
+    "report": "p1-csharp-card-direct-entrench-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BREAK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BREAK:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-break-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CORRUPTION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CORRUPTION:005:none",
+    "report": "p1-csharp-card-direct-corruption-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "NEUTRALIZE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:NEUTRALIZE:006:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-neutralize-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STRIKE_SILENT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:STRIKE_SILENT:010:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-strike_silent-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEFEND_SILENT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEFEND_SILENT:010:none",
+    "report": "p1-csharp-card-direct-defend_silent-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SURVIVOR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:SURVIVOR:006:none",
+    "report": "p1-csharp-card-direct-survivor-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SLICE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SLICE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-slice-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DAGGER_SPRAY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DAGGER_SPRAY:005:none",
+    "report": "p1-csharp-card-direct-dagger_spray-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "POISONED_STAB",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:POISONED_STAB:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-poisoned_stab-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FLICK_FLACK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FLICK_FLACK:005:none",
+    "report": "p1-csharp-card-direct-flick_flack-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DAGGER_THROW",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:DAGGER_THROW:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-dagger_throw-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SUCKER_PUNCH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SUCKER_PUNCH:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-sucker_punch-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "LEADING_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:LEADING_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-leading_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "RICOCHET",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:RICOCHET:005:none",
+    "report": "p1-csharp-card-direct-ricochet-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PREDATOR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PREDATOR:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-predator-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEFLECT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEFLECT:005:none",
+    "report": "p1-csharp-card-direct-deflect-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ANTICIPATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ANTICIPATE:005:none",
+    "report": "p1-csharp-card-direct-anticipate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PREPARED",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PREPARED:005:none",
+    "report": "p1-csharp-card-direct-prepared-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BLADE_DANCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BLADE_DANCE:005:none",
+    "report": "p1-csharp-card-direct-blade_dance-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CLOAK_AND_DAGGER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CLOAK_AND_DAGGER:005:none",
+    "report": "p1-csharp-card-direct-cloak_and_dagger-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BACKFLIP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BACKFLIP:005:none",
+    "report": "p1-csharp-card-direct-backflip-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PIERCING_WAIL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PIERCING_WAIL:005:none",
+    "report": "p1-csharp-card-direct-piercing_wail-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DODGE_AND_ROLL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DODGE_AND_ROLL:005:none",
+    "report": "p1-csharp-card-direct-dodge_and_roll-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEADLY_POISON",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEADLY_POISON:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-deadly_poison-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "UNTOUCHABLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:UNTOUCHABLE:005:none",
+    "report": "p1-csharp-card-direct-untouchable-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SNAKEBITE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SNAKEBITE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-snakebite-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BACKSTAB",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BACKSTAB:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-backstab-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SKEWER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SKEWER:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-skewer-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PRECISE_CUT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PRECISE_CUT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-precise_cut-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FLECHETTES",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FLECHETTES:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-flechettes-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STRANGLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:STRANGLE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-strangle-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MEMENTO_MORI",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MEMENTO_MORI:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-memento_mori-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FINISHER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FINISHER:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-finisher-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DASH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DASH:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-dash-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "POUNCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:POUNCE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-pounce-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PINPOINT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PINPOINT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-pinpoint-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "EXPOSE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:EXPOSE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-expose-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SCARE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-scare-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "CALCULATED_GAMBLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:CALCULATED_GAMBLE:005:none",
+    "report": "p1-csharp-card-direct-calculated_gamble-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ESCAPE_PLAN",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ESCAPE_PLAN:005:none",
+    "report": "p1-csharp-card-direct-escape_plan-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HIDDEN_DAGGERS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:HIDDEN_DAGGERS:005:none",
+    "report": "p1-csharp-card-direct-hidden_daggers-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BLUR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BLUR:005:none",
+    "report": "p1-csharp-card-direct-blur-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "EXPERTISE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:EXPERTISE:005:none",
+    "report": "p1-csharp-card-direct-expertise-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BUBBLE_BUBBLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BUBBLE_BUBBLE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-bubble_bubble-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MIRAGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MIRAGE:005:none",
+    "report": "p1-csharp-card-direct-mirage-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HAND_TRICK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:HAND_TRICK:005:none",
+    "report": "p1-csharp-card-direct-hand_trick-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ACROBATICS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:ACROBATICS:005:none",
+    "report": "p1-csharp-card-direct-acrobatics-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BOUNCING_FLASK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BOUNCING_FLASK:005:none",
+    "report": "p1-csharp-card-direct-bouncing_flask-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FLANKING",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FLANKING:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-flanking-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "LEG_SWEEP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:LEG_SWEEP:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-leg_sweep-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "UP_MY_SLEEVE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:UP_MY_SLEEVE:005:none",
+    "report": "p1-csharp-card-direct-up_my_sleeve-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "REFLEX",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:REFLEX:005:none",
+    "report": "p1-csharp-card-direct-reflex-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HAZE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:HAZE:005:none",
+    "report": "p1-csharp-card-direct-haze-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TACTICIAN",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:TACTICIAN:005:none",
+    "report": "p1-csharp-card-direct-tactician-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "NOXIOUS_FUMES",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:NOXIOUS_FUMES:005:none",
+    "report": "p1-csharp-card-direct-noxious_fumes-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "OUTBREAK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:OUTBREAK:005:none",
+    "report": "p1-csharp-card-direct-outbreak-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PHANTOM_BLADES",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PHANTOM_BLADES:005:none",
+    "report": "p1-csharp-card-direct-phantom_blades-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "WELL_LAID_PLANS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:WELL_LAID_PLANS:005:none",
+    "report": "p1-csharp-card-direct-well_laid_plans-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ACCURACY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ACCURACY:005:none",
+    "report": "p1-csharp-card-direct-accuracy-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FOOTWORK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FOOTWORK:005:none",
+    "report": "p1-csharp-card-direct-footwork-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "INFINITE_BLADES",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:INFINITE_BLADES:005:none",
+    "report": "p1-csharp-card-direct-infinite_blades-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SPEEDSTER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SPEEDSTER:005:none",
+    "report": "p1-csharp-card-direct-speedster-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ASSASSINATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ASSASSINATE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-assassinate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GRAND_FINALE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:GRAND_FINALE:005:none",
+    "report": "p1-csharp-card-direct-grand_finale-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ECHOING_SLASH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ECHOING_SLASH:005:none",
+    "report": "p1-csharp-card-direct-echoing_slash-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "THE_HUNT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:THE_HUNT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-the_hunt-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MURDER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MURDER:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-murder-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ADRENALINE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ADRENALINE:005:none",
+    "report": "p1-csharp-card-direct-adrenaline-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MALAISE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MALAISE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-malaise-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SHADOW_STEP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SHADOW_STEP:005:none",
+    "report": "p1-csharp-card-direct-shadow_step-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BURST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BURST:005:none",
+    "report": "p1-csharp-card-direct-burst-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CORROSIVE_WAVE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CORROSIVE_WAVE:005:none",
+    "report": "p1-csharp-card-direct-corrosive_wave-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STORM_OF_STEEL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:STORM_OF_STEEL:005:none",
+    "report": "p1-csharp-card-direct-storm_of_steel-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BLADE_OF_INK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BLADE_OF_INK:005:none",
+    "report": "p1-csharp-card-direct-blade_of_ink-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SHADOWMELD",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SHADOWMELD:005:none",
+    "report": "p1-csharp-card-direct-shadowmeld-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "KNIFE_TRAP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:KNIFE_TRAP:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-knife_trap-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "NIGHTMARE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:NIGHTMARE:005:none",
+    "report": "p1-csharp-card-direct-nightmare-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BULLET_TIME",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BULLET_TIME:005:none",
+    "report": "p1-csharp-card-direct-bullet_time-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TOOLS_OF_THE_TRADE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:TOOLS_OF_THE_TRADE:005:none",
+    "report": "p1-csharp-card-direct-tools_of_the_trade-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ACCELERANT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ACCELERANT:005:none",
+    "report": "p1-csharp-card-direct-accelerant-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "AFTERIMAGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:AFTERIMAGE:005:none",
+    "report": "p1-csharp-card-direct-afterimage-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FAN_OF_KNIVES",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FAN_OF_KNIVES:005:none",
+    "report": "p1-csharp-card-direct-fan_of_knives-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TRACKING",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:TRACKING:005:none",
+    "report": "p1-csharp-card-direct-tracking-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SNEAKY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SNEAKY:005:none",
+    "report": "p1-csharp-card-direct-sneaky-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MASTER_PLANNER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MASTER_PLANNER:005:none",
+    "report": "p1-csharp-card-direct-master_planner-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ENVENOM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ENVENOM:005:none",
+    "report": "p1-csharp-card-direct-envenom-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ABRASIVE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ABRASIVE:005:none",
+    "report": "p1-csharp-card-direct-abrasive-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SERPENT_FORM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SERPENT_FORM:005:none",
+    "report": "p1-csharp-card-direct-serpent_form-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "OUTMANEUVER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:OUTMANEUVER:005:none",
+    "report": "p1-csharp-card-direct-outmaneuver-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DISTRACTION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DISTRACTION:005:none",
+    "report": "p1-csharp-card-direct-distraction-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CALTROPS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CALTROPS:005:none",
+    "report": "p1-csharp-card-direct-caltrops-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SUPPRESS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SUPPRESS:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-suppress-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "WRAITH_FORM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:WRAITH_FORM:005:none",
+    "report": "p1-csharp-card-direct-wraith_form-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FALLING_STAR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FALLING_STAR:006:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-falling_star-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STRIKE_REGENT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:STRIKE_REGENT:009:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-strike_regent-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "VENERATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:VENERATE:006:none",
+    "report": "p1-csharp-card-direct-venerate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEFEND_REGENT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEFEND_REGENT:009:none",
+    "report": "p1-csharp-card-direct-defend_regent-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "COLLISION_COURSE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:COLLISION_COURSE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-collision_course-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ASTRAL_PULSE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ASTRAL_PULSE:005:none",
+    "report": "p1-csharp-card-direct-astral_pulse-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PHOTON_CUT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PHOTON_CUT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-photon_cut-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SOLAR_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SOLAR_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-solar_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CRUSH_UNDER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CRUSH_UNDER:005:none",
+    "report": "p1-csharp-card-direct-crush_under-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CRESCENT_SPEAR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CRESCENT_SPEAR:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-crescent_spear-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GUIDING_STAR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GUIDING_STAR:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-guiding_star-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "WROUGHT_IN_WAR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:WROUGHT_IN_WAR:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-wrought_in_war-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CELESTIAL_MIGHT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CELESTIAL_MIGHT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-celestial_might-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "KNOW_THY_PLACE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:KNOW_THY_PLACE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-know_thy_place-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CLOAK_OF_STARS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CLOAK_OF_STARS:005:none",
+    "report": "p1-csharp-card-direct-cloak_of_stars-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "REFINE_BLADE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:REFINE_BLADE:005:none",
+    "report": "p1-csharp-card-direct-refine_blade-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GLOW",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:GLOW:005:none",
+    "report": "p1-csharp-card-direct-glow-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GATHER_LIGHT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GATHER_LIGHT:005:none",
+    "report": "p1-csharp-card-direct-gather_light-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BEGONE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BEGONE:005:none",
+    "report": "p1-csharp-card-direct-begone-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PATTER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PATTER:005:none",
+    "report": "p1-csharp-card-direct-patter-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HIDDEN_CACHE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HIDDEN_CACHE:005:none",
+    "report": "p1-csharp-card-direct-hidden_cache-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "COSMIC_INDIFFERENCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:COSMIC_INDIFFERENCE:005:none",
+    "report": "p1-csharp-card-direct-cosmic_indifference-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SPOILS_OF_BATTLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SPOILS_OF_BATTLE:005:none",
+    "report": "p1-csharp-card-direct-spoils_of_battle-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GLITTERSTREAM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:GLITTERSTREAM:005:none",
+    "report": "p1-csharp-card-direct-glitterstream-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "RADIATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:RADIATE:005:none",
+    "report": "p1-csharp-card-direct-radiate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GAMMA_BLAST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GAMMA_BLAST:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-gamma_blast-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STARDUST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:STARDUST:005:none",
+    "report": "p1-csharp-card-direct-stardust-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "LUNAR_BLAST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:LUNAR_BLAST:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-lunar_blast-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SUPERMASSIVE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SUPERMASSIVE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-supermassive-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SHINING_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:SHINING_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-shining_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "KINGLY_PUNCH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:KINGLY_PUNCH:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-kingly_punch-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEVASTATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEVASTATE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-devastate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HEGEMONY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HEGEMONY:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-hegemony-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "KNOCKOUT_BLOW",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:KNOCKOUT_BLOW:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-knockout_blow-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "KINGLY_KICK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:KINGLY_KICK:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-kingly_kick-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MONOLOGUE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MONOLOGUE:005:none",
+    "report": "p1-csharp-card-direct-monologue-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "LARGESSE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:LARGESSE:005:none",
+    "report": "p1-csharp-card-direct-largesse-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "QUASAR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:QUASAR:005:none",
+    "report": "p1-csharp-card-direct-quasar-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PARTICLE_WALL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PARTICLE_WALL:005:none",
+    "report": "p1-csharp-card-direct-particle_wall-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ROYAL_GAMBLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ROYAL_GAMBLE:005:none",
+    "report": "p1-csharp-card-direct-royal_gamble-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ALIGNMENT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ALIGNMENT:005:none",
+    "report": "p1-csharp-card-direct-alignment-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CHARGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CHARGE:005:none",
+    "report": "p1-csharp-card-direct-charge-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "REFLECT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:REFLECT:005:none",
+    "report": "p1-csharp-card-direct-reflect-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TERRAFORMING",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:TERRAFORMING:005:none",
+    "report": "p1-csharp-card-direct-terraforming-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "RESONANCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:RESONANCE:005:none",
+    "report": "p1-csharp-card-direct-resonance-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CONVERGENCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CONVERGENCE:005:none",
+    "report": "p1-csharp-card-direct-convergence-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MANIFEST_AUTHORITY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MANIFEST_AUTHORITY:005:none",
+    "report": "p1-csharp-card-direct-manifest_authority-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GLIMMER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GLIMMER:005:none",
+    "report": "p1-csharp-card-direct-glimmer-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CONQUEROR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CONQUEROR:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-conqueror-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SUMMON_FORTH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SUMMON_FORTH:005:none",
+    "report": "p1-csharp-card-direct-summon_forth-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PROPHESIZE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PROPHESIZE:005:none",
+    "report": "p1-csharp-card-direct-prophesize-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BULWARK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BULWARK:005:none",
+    "report": "p1-csharp-card-direct-bulwark-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PALE_BLUE_DOT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PALE_BLUE_DOT:005:none",
+    "report": "p1-csharp-card-direct-pale_blue_dot-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PILLAR_OF_CREATION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PILLAR_OF_CREATION:005:none",
+    "report": "p1-csharp-card-direct-pillar_of_creation-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BLACK_HOLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BLACK_HOLE:005:none",
+    "report": "p1-csharp-card-direct-black_hole-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CHILD_OF_THE_STARS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CHILD_OF_THE_STARS:005:none",
+    "report": "p1-csharp-card-direct-child_of_the_stars-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FURNACE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FURNACE:005:none",
+    "report": "p1-csharp-card-direct-furnace-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PARRY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PARRY:005:none",
+    "report": "p1-csharp-card-direct-parry-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SPECTRUM_SHIFT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SPECTRUM_SHIFT:005:none",
+    "report": "p1-csharp-card-direct-spectrum_shift-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ORBIT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ORBIT:005:none",
+    "report": "p1-csharp-card-direct-orbit-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "COMET",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:COMET:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-comet-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MAKE_IT_SO",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MAKE_IT_SO:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-make_it_so-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HEAVENLY_DRILL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:HEAVENLY_DRILL:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-heavenly_drill-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BEAT_INTO_SHAPE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BEAT_INTO_SHAPE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-beat_into_shape-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CRASH_LANDING",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CRASH_LANDING:005:none",
+    "report": "p1-csharp-card-direct-crash_landing-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DYING_STAR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DYING_STAR:005:none",
+    "report": "p1-csharp-card-direct-dying_star-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HEIRLOOM_HAMMER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:HEIRLOOM_HAMMER:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-heirloom_hammer-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SEVEN_STARS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SEVEN_STARS:005:none",
+    "report": "p1-csharp-card-direct-seven_stars-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BOMBARDMENT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BOMBARDMENT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-bombardment-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BIG_BANG",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BIG_BANG:005:none",
+    "report": "p1-csharp-card-direct-big_bang-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DECISIONS_DECISIONS",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:DECISIONS_DECISIONS:005:none",
+    "report": "p1-csharp-card-direct-decisions_decisions-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "FOREGONE_CONCLUSION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FOREGONE_CONCLUSION:005:none",
+    "report": "p1-csharp-card-direct-foregone_conclusion-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "I_AM_INVINCIBLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:I_AM_INVINCIBLE:005:none",
+    "report": "p1-csharp-card-direct-i_am_invincible-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BUNDLE_OF_JOY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BUNDLE_OF_JOY:005:none",
+    "report": "p1-csharp-card-direct-bundle_of_joy-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "THE_SMITH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:THE_SMITH:005:none",
+    "report": "p1-csharp-card-direct-the_smith-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GUARDS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GUARDS:005:none",
+    "report": "p1-csharp-card-direct-guards-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TYRANNY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:TYRANNY:005:none",
+    "report": "p1-csharp-card-direct-tyranny-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ROYALTIES",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ROYALTIES:005:none",
+    "report": "p1-csharp-card-direct-royalties-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ARSENAL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ARSENAL:005:none",
+    "report": "p1-csharp-card-direct-arsenal-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "NEUTRON_AEGIS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:NEUTRON_AEGIS:005:none",
+    "report": "p1-csharp-card-direct-neutron_aegis-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SEEKING_EDGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SEEKING_EDGE:005:none",
+    "report": "p1-csharp-card-direct-seeking_edge-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GENESIS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:GENESIS:005:none",
+    "report": "p1-csharp-card-direct-genesis-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HAMMER_TIME",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HAMMER_TIME:005:none",
+    "report": "p1-csharp-card-direct-hammer_time-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SWORD_SAGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SWORD_SAGE:005:none",
+    "report": "p1-csharp-card-direct-sword_sage-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MONARCHS_GAZE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MONARCHS_GAZE:005:none",
+    "report": "p1-csharp-card-direct-monarchs_gaze-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "VOID_FORM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:VOID_FORM:005:none",
+    "report": "p1-csharp-card-direct-void_form-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "METEOR_SHOWER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:METEOR_SHOWER:005:none",
+    "report": "p1-csharp-card-direct-meteor_shower-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "THE_SEALED_THRONE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:THE_SEALED_THRONE:005:none",
+    "report": "p1-csharp-card-direct-the_sealed_throne-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "UNLEASH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:UNLEASH:006:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-unleash-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STRIKE_NECROBINDER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:STRIKE_NECROBINDER:009:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-strike_necrobinder-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEFEND_NECROBINDER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEFEND_NECROBINDER:009:none",
+    "report": "p1-csharp-card-direct-defend_necrobinder-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BODYGUARD",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BODYGUARD:006:none",
+    "report": "p1-csharp-card-direct-bodyguard-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "POKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:POKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-poke-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "REAVE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:REAVE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-reave-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SOW",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SOW:005:none",
+    "report": "p1-csharp-card-direct-sow-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEFILE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEFILE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-defile-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SCULPTING_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SCULPTING_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-sculpting_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GRAVEBLAST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GRAVEBLAST:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-graveblast-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BLIGHT_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BLIGHT_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-blight_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FEAR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FEAR:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-fear-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DRAIN_POWER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DRAIN_POWER:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-drain_power-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SNAP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SNAP:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-snap-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FLATTEN",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FLATTEN:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-flatten-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "REAP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:REAP:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-reap-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "WISP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:WISP:005:none",
+    "report": "p1-csharp-card-direct-wisp-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SCOURGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SCOURGE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-scourge-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "NEGATIVE_PULSE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:NEGATIVE_PULSE:005:none",
+    "report": "p1-csharp-card-direct-negative_pulse-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "INVOKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:INVOKE:005:none",
+    "report": "p1-csharp-card-direct-invoke-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "AFTERLIFE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:AFTERLIFE:005:none",
+    "report": "p1-csharp-card-direct-afterlife-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GRAVE_WARDEN",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:GRAVE_WARDEN:005:none",
+    "report": "p1-csharp-card-direct-grave_warden-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEFY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEFY:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-defy-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PULL_AGGRO",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PULL_AGGRO:005:none",
+    "report": "p1-csharp-card-direct-pull_aggro-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "RIGHT_HAND_HAND",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:RIGHT_HAND_HAND:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-right_hand_hand-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FETCH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FETCH:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-fetch-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "VEILPIERCER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:VEILPIERCER:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-veilpiercer-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEBILITATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DEBILITATE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-debilitate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SIC_EM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SIC_EM:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-sic_em-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "RATTLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:RATTLE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-rattle-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEATH_MARCH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEATH_MARCH:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-death_march-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BONE_SHARDS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BONE_SHARDS:005:none",
+    "report": "p1-csharp-card-direct-bone_shards-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PULL_FROM_BELOW",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PULL_FROM_BELOW:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-pull_from_below-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HIGH_FIVE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:HIGH_FIVE:005:none",
+    "report": "p1-csharp-card-direct-high_five-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "SEVERANCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SEVERANCE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-severance-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BURY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BURY:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-bury-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DIRGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DIRGE:005:none",
+    "report": "p1-csharp-card-direct-dirge-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CAPTURE_SPIRIT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CAPTURE_SPIRIT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-capture_spirit-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PUTREFY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PUTREFY:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-putrefy-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CLEANSE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:CLEANSE:005:none",
+    "report": "p1-csharp-card-direct-cleanse-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PARSE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PARSE:005:none",
+    "report": "p1-csharp-card-direct-parse-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DREDGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DREDGE:005:none",
+    "report": "p1-csharp-card-direct-dredge-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ENFEEBLING_TOUCH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ENFEEBLING_TOUCH:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-enfeebling_touch-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEATHS_DOOR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEATHS_DOOR:005:none",
+    "report": "p1-csharp-card-direct-deaths_door-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "NO_ESCAPE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:NO_ESCAPE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-no_escape-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BORROWED_TIME",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BORROWED_TIME:005:none",
+    "report": "p1-csharp-card-direct-borrowed_time-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SPUR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SPUR:005:none",
+    "report": "p1-csharp-card-direct-spur-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "LEGION_OF_BONE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:LEGION_OF_BONE:005:none",
+    "report": "p1-csharp-card-direct-legion_of_bone-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEATHBRINGER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DEATHBRINGER:005:none",
+    "report": "p1-csharp-card-direct-deathbringer-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DELAY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DELAY:005:none",
+    "report": "p1-csharp-card-direct-delay-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MELANCHOLY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MELANCHOLY:005:none",
+    "report": "p1-csharp-card-direct-melancholy-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "COUNTDOWN",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:COUNTDOWN:005:none",
+    "report": "p1-csharp-card-direct-countdown-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SHROUD",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SHROUD:005:none",
+    "report": "p1-csharp-card-direct-shroud-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CALCIFY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CALCIFY:005:none",
+    "report": "p1-csharp-card-direct-calcify-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HAUNT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HAUNT:005:none",
+    "report": "p1-csharp-card-direct-haunt-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PAGESTORM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PAGESTORM:005:none",
+    "report": "p1-csharp-card-direct-pagestorm-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DANSE_MACABRE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DANSE_MACABRE:005:none",
+    "report": "p1-csharp-card-direct-danse_macabre-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FRIENDSHIP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FRIENDSHIP:005:none",
+    "report": "p1-csharp-card-direct-friendship-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "LETHALITY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:LETHALITY:005:none",
+    "report": "p1-csharp-card-direct-lethality-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SLEIGHT_OF_FLESH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SLEIGHT_OF_FLESH:005:none",
+    "report": "p1-csharp-card-direct-sleight_of_flesh-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ERADICATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ERADICATE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-eradicate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MISERY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MISERY:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-misery-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HANG",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HANG:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-hang-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SOUL_STORM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SOUL_STORM:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-soul_storm-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TIMES_UP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:TIMES_UP:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-times_up-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "THE_SCYTHE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:THE_SCYTHE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-the_scythe-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SQUEEZE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SQUEEZE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-squeeze-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BANSHEES_CRY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BANSHEES_CRY:005:none",
+    "report": "p1-csharp-card-direct-banshees_cry-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "UNDEATH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:UNDEATH:005:none",
+    "report": "p1-csharp-card-direct-undeath-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SHARED_FATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SHARED_FATE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-shared_fate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "OBLIVION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:OBLIVION:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-oblivion-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GLIMPSE_BEYOND",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:GLIMPSE_BEYOND:005:none",
+    "report": "p1-csharp-card-direct-glimpse_beyond-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SEANCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SEANCE:005:none",
+    "report": "p1-csharp-card-direct-seance-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SACRIFICE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SACRIFICE:005:none",
+    "report": "p1-csharp-card-direct-sacrifice-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TRANSFIGURE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:TRANSFIGURE:005:none",
+    "report": "p1-csharp-card-direct-transfigure-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "EIDOLON",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:EIDOLON:005:none",
+    "report": "p1-csharp-card-direct-eidolon-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "END_OF_DAYS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:END_OF_DAYS:005:none",
+    "report": "p1-csharp-card-direct-end_of_days-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "REANIMATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:REANIMATE:005:none",
+    "report": "p1-csharp-card-direct-reanimate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "NEUROSURGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:NEUROSURGE:005:none",
+    "report": "p1-csharp-card-direct-neurosurge-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SPIRIT_OF_ASH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SPIRIT_OF_ASH:005:none",
+    "report": "p1-csharp-card-direct-spirit_of_ash-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEVOUR_LIFE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DEVOUR_LIFE:005:none",
+    "report": "p1-csharp-card-direct-devour_life-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CALL_OF_THE_VOID",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CALL_OF_THE_VOID:005:none",
+    "report": "p1-csharp-card-direct-call_of_the_void-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SENTRY_MODE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SENTRY_MODE:005:none",
+    "report": "p1-csharp-card-direct-sentry_mode-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "NECRO_MASTERY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:NECRO_MASTERY:005:none",
+    "report": "p1-csharp-card-direct-necro_mastery-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEMESNE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DEMESNE:005:none",
+    "report": "p1-csharp-card-direct-demesne-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "REAPER_FORM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:REAPER_FORM:005:none",
+    "report": "p1-csharp-card-direct-reaper_form-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PROTECTOR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PROTECTOR:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-protector-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FORBIDDEN_GRIMOIRE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FORBIDDEN_GRIMOIRE:005:none",
+    "report": "p1-csharp-card-direct-forbidden_grimoire-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STRIKE_DEFECT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:STRIKE_DEFECT:009:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-strike_defect-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ZAP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ZAP:006:none",
+    "report": "p1-csharp-card-direct-zap-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEFEND_DEFECT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DEFEND_DEFECT:009:none",
+    "report": "p1-csharp-card-direct-defend_defect-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DUALCAST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DUALCAST:006:none",
+    "report": "p1-csharp-card-direct-dualcast-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BEAM_CELL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BEAM_CELL:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-beam_cell-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GO_FOR_THE_EYES",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GO_FOR_THE_EYES:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-go_for_the_eyes-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CLAW",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:CLAW:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-claw-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "COMPILE_DRIVER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:COMPILE_DRIVER:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-compile_driver-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MOMENTUM_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MOMENTUM_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-momentum_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BARRAGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BARRAGE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-barrage-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "COLD_SNAP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:COLD_SNAP:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-cold_snap-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FOCUSED_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FOCUSED_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-focused_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BALL_LIGHTNING",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BALL_LIGHTNING:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-ball_lightning-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SWEEPING_BEAM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SWEEPING_BEAM:005:none",
+    "report": "p1-csharp-card-direct-sweeping_beam-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GUNK_UP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GUNK_UP:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-gunk_up-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "UPROAR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:UPROAR:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-uproar-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BOOST_AWAY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BOOST_AWAY:005:none",
+    "report": "p1-csharp-card-direct-boost_away-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TURBO",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:TURBO:005:none",
+    "report": "p1-csharp-card-direct-turbo-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HOTFIX",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HOTFIX:005:none",
+    "report": "p1-csharp-card-direct-hotfix-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CHARGE_BATTERY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CHARGE_BATTERY:005:none",
+    "report": "p1-csharp-card-direct-charge_battery-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "LEAP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:LEAP:005:none",
+    "report": "p1-csharp-card-direct-leap-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "COOLHEADED",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:COOLHEADED:005:none",
+    "report": "p1-csharp-card-direct-coolheaded-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HOLOGRAM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:HOLOGRAM:005:none",
+    "report": "p1-csharp-card-direct-hologram-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "LIGHTNING_ROD",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:LIGHTNING_ROD:005:none",
+    "report": "p1-csharp-card-direct-lightning_rod-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FTL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FTL:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-ftl-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TESLA_COIL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:TESLA_COIL:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-tesla_coil-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SCRAPE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SCRAPE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-scrape-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ROCKET_PUNCH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ROCKET_PUNCH:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-rocket_punch-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "NULL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:NULL:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-null-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SYNTHESIS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SYNTHESIS:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-synthesis-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SUNDER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SUNDER:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-sunder-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "REFRACT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:REFRACT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-refract-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TEMPEST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:TEMPEST:005:none",
+    "report": "p1-csharp-card-direct-tempest-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CHILL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CHILL:005:none",
+    "report": "p1-csharp-card-direct-chill-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "OVERCLOCK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:OVERCLOCK:005:none",
+    "report": "p1-csharp-card-direct-overclock-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BOOT_SEQUENCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BOOT_SEQUENCE:005:none",
+    "report": "p1-csharp-card-direct-boot_sequence-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "WHITE_NOISE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:WHITE_NOISE:005:none",
+    "report": "p1-csharp-card-direct-white_noise-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GLASSWORK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GLASSWORK:005:none",
+    "report": "p1-csharp-card-direct-glasswork-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CHAOS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CHAOS:005:none",
+    "report": "p1-csharp-card-direct-chaos-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FUSION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FUSION:005:none",
+    "report": "p1-csharp-card-direct-fusion-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SKIM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SKIM:005:none",
+    "report": "p1-csharp-card-direct-skim-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SCAVENGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SCAVENGE:005:none",
+    "report": "p1-csharp-card-direct-scavenge-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ENERGY_SURGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ENERGY_SURGE:005:none",
+    "report": "p1-csharp-card-direct-energy_surge-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DARKNESS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DARKNESS:005:none",
+    "report": "p1-csharp-card-direct-darkness-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FIGHT_THROUGH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FIGHT_THROUGH:005:none",
+    "report": "p1-csharp-card-direct-fight_through-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DOUBLE_ENERGY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DOUBLE_ENERGY:005:none",
+    "report": "p1-csharp-card-direct-double_energy-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SYNCHRONIZE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SYNCHRONIZE:005:none",
+    "report": "p1-csharp-card-direct-synchronize-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "COMPACT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:COMPACT:005:none",
+    "report": "p1-csharp-card-direct-compact-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SHADOW_SHIELD",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SHADOW_SHIELD:005:none",
+    "report": "p1-csharp-card-direct-shadow_shield-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GLACIER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GLACIER:005:none",
+    "report": "p1-csharp-card-direct-glacier-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HAILSTORM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HAILSTORM:005:none",
+    "report": "p1-csharp-card-direct-hailstorm-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ITERATION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ITERATION:005:none",
+    "report": "p1-csharp-card-direct-iteration-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CAPACITOR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CAPACITOR:005:none",
+    "report": "p1-csharp-card-direct-capacitor-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STORM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:STORM:005:none",
+    "report": "p1-csharp-card-direct-storm-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "THUNDER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:THUNDER:005:none",
+    "report": "p1-csharp-card-direct-thunder-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "LOOP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:LOOP:005:none",
+    "report": "p1-csharp-card-direct-loop-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SMOKESTACK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SMOKESTACK:005:none",
+    "report": "p1-csharp-card-direct-smokestack-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SUBROUTINE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SUBROUTINE:005:none",
+    "report": "p1-csharp-card-direct-subroutine-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BULK_UP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BULK_UP:005:none",
+    "report": "p1-csharp-card-direct-bulk_up-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FERAL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FERAL:005:none",
+    "report": "p1-csharp-card-direct-feral-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HELIX_DRILL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HELIX_DRILL:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-helix_drill-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SHATTER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SHATTER:005:none",
+    "report": "p1-csharp-card-direct-shatter-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HYPERBEAM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HYPERBEAM:005:none",
+    "report": "p1-csharp-card-direct-hyperbeam-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FLAK_CANNON",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FLAK_CANNON:005:none",
+    "report": "p1-csharp-card-direct-flak_cannon-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ADAPTIVE_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ADAPTIVE_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-adaptive_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ALL_FOR_ONE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ALL_FOR_ONE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-all_for_one-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ICE_LANCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ICE_LANCE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-ice_lance-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "METEOR_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:METEOR_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-meteor_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SUPERCRITICAL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SUPERCRITICAL:005:none",
+    "report": "p1-csharp-card-direct-supercritical-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MULTI_CAST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MULTI_CAST:005:none",
+    "report": "p1-csharp-card-direct-multi_cast-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MODDED",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MODDED:005:none",
+    "report": "p1-csharp-card-direct-modded-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "REBOOT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:REBOOT:005:none",
+    "report": "p1-csharp-card-direct-reboot-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SIGNAL_BOOST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SIGNAL_BOOST:005:none",
+    "report": "p1-csharp-card-direct-signal_boost-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GENETIC_ALGORITHM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GENETIC_ALGORITHM:005:none",
+    "report": "p1-csharp-card-direct-genetic_algorithm-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "IGNITION",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:IGNITION:005:none",
+    "report": "p1-csharp-card-direct-ignition-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "RAINBOW",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:RAINBOW:005:none",
+    "report": "p1-csharp-card-direct-rainbow-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "VOLTAIC",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:VOLTAIC:005:none",
+    "report": "p1-csharp-card-direct-voltaic-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TRASH_TO_TREASURE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:TRASH_TO_TREASURE:005:none",
+    "report": "p1-csharp-card-direct-trash_to_treasure-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MACHINE_LEARNING",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MACHINE_LEARNING:005:none",
+    "report": "p1-csharp-card-direct-machine_learning-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "COOLANT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:COOLANT:005:none",
+    "report": "p1-csharp-card-direct-coolant-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEFRAGMENT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DEFRAGMENT:005:none",
+    "report": "p1-csharp-card-direct-defragment-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SPINNER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SPINNER:005:none",
+    "report": "p1-csharp-card-direct-spinner-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BUFFER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BUFFER:005:none",
+    "report": "p1-csharp-card-direct-buffer-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CONSUMING_SHADOW",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CONSUMING_SHADOW:005:none",
+    "report": "p1-csharp-card-direct-consuming_shadow-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CREATIVE_AI",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CREATIVE_AI:005:none",
+    "report": "p1-csharp-card-direct-creative_ai-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ECHO_FORM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ECHO_FORM:005:none",
+    "report": "p1-csharp-card-direct-echo_form-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "REBOUND",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:REBOUND:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-rebound-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "RIP_AND_TEAR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:RIP_AND_TEAR:005:none",
+    "report": "p1-csharp-card-direct-rip_and_tear-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STACK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:STACK:005:none",
+    "report": "p1-csharp-card-direct-stack-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HELLO_WORLD",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HELLO_WORLD:005:none",
+    "report": "p1-csharp-card-direct-hello_world-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "QUADCAST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:QUADCAST:005:none",
+    "report": "p1-csharp-card-direct-quadcast-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BIASED_COGNITION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BIASED_COGNITION:005:none",
+    "report": "p1-csharp-card-direct-biased_cognition-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "VOLLEY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:VOLLEY:005:none",
+    "report": "p1-csharp-card-direct-volley-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FLASH_OF_STEEL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FLASH_OF_STEEL:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-flash_of_steel-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DRAMATIC_ENTRANCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:DRAMATIC_ENTRANCE:005:none",
+    "report": "p1-csharp-card-direct-dramatic_entrance-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "OMNISLICE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:OMNISLICE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-omnislice-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ULTIMATE_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ULTIMATE_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-ultimate_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FISTICUFFS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FISTICUFFS:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-fisticuffs-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GANG_UP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GANG_UP:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-gang_up-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SEEKER_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SEEKER_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-seeker_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "THRUMMING_HATCHET",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:THRUMMING_HATCHET:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-thrumming_hatchet-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MIND_BLAST",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MIND_BLAST:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-mind_blast-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TAG_TEAM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:TAG_TEAM:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-tag_team-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DARK_SHACKLES",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DARK_SHACKLES:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-dark_shackles-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "JACK_OF_ALL_TRADES",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:JACK_OF_ALL_TRADES:005:none",
+    "report": "p1-csharp-card-direct-jack_of_all_trades-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "IMPATIENCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:IMPATIENCE:005:none",
+    "report": "p1-csharp-card-direct-impatience-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PURITY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PURITY:005:none",
+    "report": "p1-csharp-card-direct-purity-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FINESSE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FINESSE:005:none",
+    "report": "p1-csharp-card-direct-finesse-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "THINKING_AHEAD",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:THINKING_AHEAD:005:none",
+    "report": "p1-csharp-card-direct-thinking_ahead-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PRODUCTION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PRODUCTION:005:none",
+    "report": "p1-csharp-card-direct-production-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BELIEVE_IN_YOU",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:BELIEVE_IN_YOU:005:none",
+    "report": "p1-csharp-card-direct-believe_in_you-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "RESTLESSNESS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:RESTLESSNESS:005:none",
+    "report": "p1-csharp-card-direct-restlessness-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PROLONG",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PROLONG:005:none",
+    "report": "p1-csharp-card-direct-prolong-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PANIC_BUTTON",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PANIC_BUTTON:005:none",
+    "report": "p1-csharp-card-direct-panic_button-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HUDDLE_UP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HUDDLE_UP:005:none",
+    "report": "p1-csharp-card-direct-huddle_up-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DISCOVERY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DISCOVERY:005:none",
+    "report": "p1-csharp-card-direct-discovery-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SPLASH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SPLASH:005:none",
+    "report": "p1-csharp-card-direct-splash-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ULTIMATE_DEFEND",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ULTIMATE_DEFEND:005:none",
+    "report": "p1-csharp-card-direct-ultimate_defend-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "INTERCEPT",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:INTERCEPT:005:none",
+    "report": "p1-csharp-card-direct-intercept-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "LIFT",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:LIFT:005:none",
+    "report": "p1-csharp-card-direct-lift-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "COORDINATE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:COORDINATE:005:none",
+    "report": "p1-csharp-card-direct-coordinate-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "CATASTROPHE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CATASTROPHE:005:none",
+    "report": "p1-csharp-card-direct-catastrophe-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "EQUILIBRIUM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:EQUILIBRIUM:005:none",
+    "report": "p1-csharp-card-direct-equilibrium-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "THE_BOMB",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:THE_BOMB:005:none",
+    "report": "p1-csharp-card-direct-the_bomb-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SHOCKWAVE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SHOCKWAVE:005:none",
+    "report": "p1-csharp-card-direct-shockwave-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PANACHE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PANACHE:005:none",
+    "report": "p1-csharp-card-direct-panache-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PROWESS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PROWESS:005:none",
+    "report": "p1-csharp-card-direct-prowess-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "STRATAGEM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:STRATAGEM:005:none",
+    "report": "p1-csharp-card-direct-stratagem-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FASTEN",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FASTEN:005:none",
+    "report": "p1-csharp-card-direct-fasten-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PREP_TIME",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PREP_TIME:005:none",
+    "report": "p1-csharp-card-direct-prep_time-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "AUTOMATION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:AUTOMATION:005:none",
+    "report": "p1-csharp-card-direct-automation-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BOLAS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BOLAS:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-bolas-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SALVO",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SALVO:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-salvo-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GOLD_AXE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:GOLD_AXE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-gold_axe-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "REND",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:REND:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-rend-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HAND_OF_GREED",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:HAND_OF_GREED:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-hand_of_greed-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "JACKPOT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:JACKPOT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-jackpot-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "KNOCKDOWN",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:KNOCKDOWN:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-knockdown-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "THE_GAMBIT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:THE_GAMBIT:005:none",
+    "report": "p1-csharp-card-direct-the_gambit-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SECRET_TECHNIQUE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SECRET_TECHNIQUE:005:none",
+    "report": "p1-csharp-card-direct-secret_technique-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SECRET_WEAPON",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SECRET_WEAPON:005:none",
+    "report": "p1-csharp-card-direct-secret_weapon-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MASTER_OF_STRATEGY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MASTER_OF_STRATEGY:005:none",
+    "report": "p1-csharp-card-direct-master_of_strategy-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ALCHEMIZE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ALCHEMIZE:005:none",
+    "report": "p1-csharp-card-direct-alchemize-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SCRAWL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SCRAWL:005:none",
+    "report": "p1-csharp-card-direct-scrawl-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MIMIC",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:MIMIC:005:none",
+    "report": "p1-csharp-card-direct-mimic-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "ANOINTED",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ANOINTED:005:none",
+    "report": "p1-csharp-card-direct-anointed-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HIDDEN_GEM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HIDDEN_GEM:005:none",
+    "report": "p1-csharp-card-direct-hidden_gem-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "RALLY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:RALLY:005:none",
+    "report": "p1-csharp-card-direct-rally-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BEAT_DOWN",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BEAT_DOWN:005:none",
+    "report": "p1-csharp-card-direct-beat_down-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "NOSTALGIA",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:NOSTALGIA:005:none",
+    "report": "p1-csharp-card-direct-nostalgia-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ENTROPY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ENTROPY:005:none",
+    "report": "p1-csharp-card-direct-entropy-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BEACON_OF_HOPE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BEACON_OF_HOPE:005:none",
+    "report": "p1-csharp-card-direct-beacon_of_hope-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MAYHEM",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MAYHEM:005:none",
+    "report": "p1-csharp-card-direct-mayhem-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ROLLING_BOULDER",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ROLLING_BOULDER:005:none",
+    "report": "p1-csharp-card-direct-rolling_boulder-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CALAMITY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CALAMITY:005:none",
+    "report": "p1-csharp-card-direct-calamity-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ETERNAL_ARMOR",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:ETERNAL_ARMOR:005:none",
+    "report": "p1-csharp-card-direct-eternal_armor-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BYRD_SWOOP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BYRD_SWOOP:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-byrd_swoop-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MAD_SCIENCE-SAPPING",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-mad_science-sapping-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "MAD_SCIENCE-VIOLENCE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-mad_science-violence-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "MAD_SCIENCE-CHOKING",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-mad_science-choking-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "EXTERMINATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:EXTERMINATE:005:none",
+    "report": "p1-csharp-card-direct-exterminate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SQUASH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SQUASH:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-squash-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "PECK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:PECK:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-peck-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FEEDING_FRENZY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FEEDING_FRENZY:005:none",
+    "report": "p1-csharp-card-direct-feeding_frenzy-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ENLIGHTENMENT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ENLIGHTENMENT:005:none",
+    "report": "p1-csharp-card-direct-enlightenment-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MAD_SCIENCE-ENERGIZED",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-mad_science-energized-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "MAD_SCIENCE-WISDOM",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-mad_science-wisdom-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "MAD_SCIENCE-CHAOS",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-mad_science-chaos-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "TORIC_TOUGHNESS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:TORIC_TOUGHNESS:005:none",
+    "report": "p1-csharp-card-direct-toric_toughness-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "METAMORPHOSIS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:METAMORPHOSIS:005:none",
+    "report": "p1-csharp-card-direct-metamorphosis-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MAD_SCIENCE-EXPERTISE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-mad_science-expertise-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "MAD_SCIENCE-CURIOUS",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-mad_science-curious-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "MAD_SCIENCE-IMPROVEMENT",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-mad_science-improvement-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "NEOWS_FURY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:NEOWS_FURY:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-neows_fury-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MAUL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MAUL:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-maul-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "WHISTLE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:WHISTLE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-whistle-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "WISH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:WISH:005:none",
+    "report": "p1-csharp-card-direct-wish-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BRIGHTEST_FLAME",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BRIGHTEST_FLAME:005:none",
+    "report": "p1-csharp-card-direct-brightest_flame-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "APPARITION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:APPARITION:005:none",
+    "report": "p1-csharp-card-direct-apparition-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "APOTHEOSIS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:APOTHEOSIS:005:none",
+    "report": "p1-csharp-card-direct-apotheosis-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "RELAX",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:RELAX:005:none",
+    "report": "p1-csharp-card-direct-relax-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "TOXIC",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:TOXIC:005:none",
+    "report": "p1-csharp-card-direct-toxic-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BECKON",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:BECKON:005:none",
+    "report": "p1-csharp-card-direct-beckon-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FRANTIC_ESCAPE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:FRANTIC_ESCAPE:005:none",
+    "report": "p1-csharp-card-direct-frantic_escape-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SLIMED",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SLIMED:005:none",
+    "report": "p1-csharp-card-direct-slimed-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DEBRIS",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DEBRIS:005:none",
+    "report": "p1-csharp-card-direct-debris-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "WITHER",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:WITHER:005:none",
+    "report": "p1-csharp-card-direct-wither-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "INFECTION",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:INFECTION:005:none",
+    "report": "p1-csharp-card-direct-infection-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "SOOT",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:SOOT:005:none",
+    "report": "p1-csharp-card-direct-soot-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "WOUND",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:WOUND:005:none",
+    "report": "p1-csharp-card-direct-wound-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "VOID",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:VOID:005:none",
+    "report": "p1-csharp-card-direct-void-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "DAZED",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:DAZED:005:none",
+    "report": "p1-csharp-card-direct-dazed-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "BURN",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:BURN:005:none",
+    "report": "p1-csharp-card-direct-burn-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "SPORE_MIND",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SPORE_MIND:005:none",
+    "report": "p1-csharp-card-direct-spore_mind-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ENTHRALLED",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ENTHRALLED:005:none",
+    "report": "p1-csharp-card-direct-enthralled-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CLUMSY",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:CLUMSY:005:none",
+    "report": "p1-csharp-card-direct-clumsy-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "NORMALITY",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:NORMALITY:005:none",
+    "report": "p1-csharp-card-direct-normality-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "DECAY",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:DECAY:005:none",
+    "report": "p1-csharp-card-direct-decay-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "REGRET",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:REGRET:005:none",
+    "report": "p1-csharp-card-direct-regret-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "ASCENDERS_BANE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:ASCENDERS_BANE:005:none",
+    "report": "p1-csharp-card-direct-ascenders_bane-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "WRITHE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:WRITHE:005:none",
+    "report": "p1-csharp-card-direct-writhe-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "GUILTY",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:GUILTY:005:none",
+    "report": "p1-csharp-card-direct-guilty-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "CURSE_OF_THE_BELL",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:CURSE_OF_THE_BELL:005:none",
+    "report": "p1-csharp-card-direct-curse_of_the_bell-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "BAD_LUCK",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:BAD_LUCK:005:none",
+    "report": "p1-csharp-card-direct-bad_luck-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "INJURY",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:INJURY:005:none",
+    "report": "p1-csharp-card-direct-injury-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "POOR_SLEEP",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:POOR_SLEEP:005:none",
+    "report": "p1-csharp-card-direct-poor_sleep-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "GREED",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:GREED:005:none",
+    "report": "p1-csharp-card-direct-greed-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "SHAME",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:SHAME:005:none",
+    "report": "p1-csharp-card-direct-shame-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "DOUBT",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:DOUBT:005:none",
+    "report": "p1-csharp-card-direct-doubt-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "FOLLY",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:FOLLY:005:none",
+    "report": "p1-csharp-card-direct-folly-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "DEBT",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:DEBT:005:none",
+    "report": "p1-csharp-card-direct-debt-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "SPOILS_MAP",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:SPOILS_MAP:005:none",
+    "report": "p1-csharp-card-direct-spoils_map-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "LANTERN_KEY",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:LANTERN_KEY:005:none",
+    "report": "p1-csharp-card-direct-lantern_key-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "BYRDONIS_EGG",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:BYRDONIS_EGG:005:none",
+    "report": "p1-csharp-card-direct-byrdonis_egg-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "SLOTH",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SLOTH:005:none",
+    "report": "p1-csharp-card-direct-sloth-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "WASTE_AWAY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:WASTE_AWAY:005:none",
+    "report": "p1-csharp-card-direct-waste_away-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "DISINTEGRATION",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:DISINTEGRATION:005:none",
+    "report": "p1-csharp-card-direct-disintegration-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MIND_ROT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:MIND_ROT:005:none",
+    "report": "p1-csharp-card-direct-mind_rot-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MINION_STRIKE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MINION_STRIKE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-minion_strike-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MINION_DIVE_BOMB",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MINION_DIVE_BOMB:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-minion_dive_bomb-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SWEEPING_GAZE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SWEEPING_GAZE:005:none",
+    "report": "p1-csharp-card-direct-sweeping_gaze-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SHIV",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SHIV:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-shiv-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "GIANT_ROCK",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:GIANT_ROCK:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-giant_rock-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SOVEREIGN_BLADE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:SOVEREIGN_BLADE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-sovereign_blade-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "LUMINESCE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:LUMINESCE:005:none",
+    "report": "p1-csharp-card-direct-luminesce-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SOUL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SOUL:005:none",
+    "report": "p1-csharp-card-direct-soul-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "MINION_SACRIFICE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:MINION_SACRIFICE:005:none",
+    "report": "p1-csharp-card-direct-minion_sacrifice-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FUEL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:FUEL:005:none",
+    "report": "p1-csharp-card-direct-fuel-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FOLLOW_THROUGH",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-follow_through-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "MIDNIGHT",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:MIDNIGHT:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-midnight-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "BLAZE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:BLAZE:005:none",
+    "report": "p1-csharp-card-direct-blaze-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "OUTRAGE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:OUTRAGE:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-outrage-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "BLADE_SYMPHONY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:BLADE_SYMPHONY:005:none",
+    "report": "p1-csharp-card-direct-blade_symphony-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CONCOCT",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:CONCOCT:005:none",
+    "report": "p1-csharp-card-direct-concoct-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "PLOT",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:PLOT:005:none",
+    "report": "p1-csharp-card-direct-plot-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "CONSTELLATION",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:CONSTELLATION:005:none",
+    "report": "p1-csharp-card-direct-constellation-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "UNDERWORLD",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:UNDERWORLD:005:none",
+    "report": "p1-csharp-card-direct-underworld-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "SOULBOUND",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:SOULBOUND:005:none",
+    "report": "p1-csharp-card-direct-soulbound-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "CACOPHONY",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:CACOPHONY:005:none",
+    "report": "p1-csharp-card-direct-cacophony-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "HIBERNATE",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:HIBERNATE:005:none",
+    "report": "p1-csharp-card-direct-hibernate-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "ONE_FOR_ALL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:ONE_FOR_ALL:005:none",
+    "report": "p1-csharp-card-direct-one_for_all-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "IMITATION_LEARNING",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:IMITATION_LEARNING:005:none",
+    "report": "p1-csharp-card-direct-imitation_learning-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "THE_BALL",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Reliable",
+    "normalized_action_id": "play_card:card:THE_BALL:005:enemy:SEAPUNK:1",
+    "report": "p1-csharp-card-direct-the_ball-diff-report.json",
+    "error": null
+  },
+  {
+    "variant_id": "FADE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:FADE:005:none",
+    "report": "p1-csharp-card-direct-fade-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "DOWSING",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:DOWSING:005:none",
+    "report": "p1-csharp-card-direct-dowsing-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "ABUNDANCE",
+    "decision": "card_select",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:ABUNDANCE:005:none",
+    "report": "p1-csharp-card-direct-abundance-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "TUTOR",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card:TUTOR:005:none",
+    "report": "p1-csharp-card-direct-tutor-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "GRAPPLE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-grapple-diff-report.json",
+    "error": "race does not contain a play_card, use_potion or end_turn row with a public post-state.\n   at Program.<Main>$(String[] args) in D:\\STS2BestChoice\\STS2SuperModel\\training\\ShadowDiff\\Program.cs:line 38\n"
+  },
+  {
+    "variant_id": "PREPARE",
+    "decision": "error",
+    "match": false,
+    "mismatch_count": null,
+    "confidence": "Uncalculable",
+    "normalized_action_id": "play_card:card_index=0,target_index=0",
+    "report": "p1-csharp-card-direct-prepare-diff-report.json",
+    "error": "shadowdiff_timeout"
+  },
+  {
+    "variant_id": "SIDESTEP",
+    "decision": "combat_play",
+    "match": true,
+    "mismatch_count": 0,
+    "confidence": "Estimated",
+    "normalized_action_id": "play_card:card:SIDESTEP:005:none",
+    "report": "p1-csharp-card-direct-sidestep-diff-report.json",
+    "error": null
+  }
+]

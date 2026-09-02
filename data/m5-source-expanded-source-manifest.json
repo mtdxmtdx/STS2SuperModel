@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "dataset_id": "m5-source-expanded",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "inputs": [
+    {
+      "path": "m5-source-pilot-all28.jsonl",
+      "sha256": "E0DFA0D08A05BBCF876538AB46E9214173596EE99C51BFA6F201904211D3B31F"
+    },
+    {
+      "path": "m5-direct-matrix-training.jsonl",
+      "sha256": "A04419F39529D3158F5BB8D01053627B85D500500644B165014E3317C46DA105"
+    }
+  ],
+  "output": {
+    "path": "m5-source-expanded.jsonl",
+    "sha256": "477974B495A947B131D4D69C8B46DC1C1758EB822872D8CD878BC6A71B4F398C",
+    "rows": 416,
+    "episodes": 180,
+    "actions": 2331,
+    "deduplicated_from_rows": 710,
+    "duplicates_removed": 294
+  },
+  "label_output": "m5-source-expanded-labeled.jsonl",
+  "label_sha256": "FAE8CE42D9FF72467FD6EB538BE5B85382BBE41AB10005A3461D24FE880ABFE1",
+  "teacher_mode": "NOSL_BOUNDED_FIXED_NODE_BUDGET",
+  "maximum_expanded_nodes": 10000
+}

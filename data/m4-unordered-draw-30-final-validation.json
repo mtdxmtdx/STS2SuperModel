@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "validation_status": "passed",
+  "total_files_checked": 1,
+  "total_rows_checked": 30,
+  "row_counts": {
+    "trace_rows": 0,
+    "training_rows": 30,
+    "episodes": 5,
+    "states_unique": 24,
+    "actions_total": 210
+  },
+  "label_stats": {
+    "reliable": 0,
+    "estimated": 20,
+    "low_confidence": 0,
+    "uncalculable": 10,
+    "unknown": 0,
+    "empty_teacher_best_actions": 10,
+    "empty_teacher_categories": {
+      "uncalculable_teacher_unavailable": 10
+    }
+  },
+  "stable_id_missing": 0,
+  "public_leakage_count": 0,
+  "duplicate_states": {
+    "warning_count": 6,
+    "error_count": 0,
+    "entries": [
+      {
+        "state_hash_public": "2FBD39B087025BDE3D04497070BC741BD12117B7B9CEB8191F1EC68D5BE77BC5",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 7
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 13
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "3E3BCDCC8627E48EAA45F302DEE2962D8A11263ECD559DD648FF9D9314C36B33",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 8
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 14
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "4F0AC3407543F3CA81E5835FFC32DC9A91176D242DF2DB2B86C0AC9F140C78F2",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 9
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 15
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "D68732D1DF5BE10C6E4576B925E813DA5671CF914DD108FF44CB2A3EF94F1A7E",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 10
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 16
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "F5544C86C5B8869937020250B19E4C1A4F873072B266670140E78F53D672D382",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 11
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 17
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      },
+      {
+        "state_hash_public": "FF892BC2A186F6154758C855ECD3D5F211B6D73691CA0D8421E87EF753218A89",
+        "occurrences": [
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 12
+          },
+          {
+            "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+            "line": 18
+          }
+        ],
+        "classification": "warning_identical_duplicate",
+        "severity": "warning"
+      }
+    ],
+    "classification_legend": {
+      "warning_identical_duplicate": "same hash + same combo + same labels: redundant, merge recommended",
+      "error_conflicting_labels": "same hash + same combo but differing labels/confidence: dataset corruption"
+    }
+  },
+  "malformed_lines": [],
+  "warning_count": 6,
+  "warnings": [
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+      "line_no": 13,
+      "path": "state_hash_public",
+      "message": "(line 13) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl:7; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+      "line_no": 14,
+      "path": "state_hash_public",
+      "message": "(line 14) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl:8; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+      "line_no": 15,
+      "path": "state_hash_public",
+      "message": "(line 15) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl:9; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+      "line_no": 16,
+      "path": "state_hash_public",
+      "message": "(line 16) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl:10; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+      "line_no": 17,
+      "path": "state_hash_public",
+      "message": "(line 17) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl:11; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    },
+    {
+      "file": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl",
+      "line_no": 18,
+      "path": "state_hash_public",
+      "message": "(line 18) Identical public_state_hash x action combination repeated from D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl:12; redundant rows should be merged",
+      "error_type": "duplicate_state_combo",
+      "severity": "warning"
+    }
+  ],
+  "error_count": 0,
+  "errors": [],
+  "checked_files": [
+    "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-unordered-draw-30-final.jsonl"
+  ]
+}

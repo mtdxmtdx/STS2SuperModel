@@ -1,0 +1,92 @@
+[
+  {
+    "public_state_hash": "1EE71D647212542BC253452079EEA3B32C9C579E3D4F642C7D23B93B6F94BB2D",
+    "teacher_state_hashes": [
+      "bbe0f30edc009b77be0c03d5"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "3964F3E5A362CD603826E19DB0A8E822030282F6000BE782EF84890DE3759BB2",
+    "teacher_state_hashes": [
+      "9bc97abd84d8b990f08a0d4b"
+    ],
+    "action_value_mean": {
+      "play:card:AFTERIMAGE:011:none": -18.75
+    },
+    "action_value_variance": {
+      "play:card:AFTERIMAGE:011:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:AFTERIMAGE:011:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "560AE8C43F024A9FD326A2D1CD005E42953CD2CC9E1DBFE658496284EBCA717C",
+    "teacher_state_hashes": [
+      "6899de4acb5b8ef3f8517705"
+    ],
+    "action_value_mean": {
+      "play:card:AFTERIMAGE:012:none": -28.75,
+      "play:card:AFTERIMAGE:013:none": -28.75,
+      "play:card:AFTERIMAGE:014:none": -28.75,
+      "play:card:AFTERIMAGE:015:none": -28.75,
+      "play:card:AFTERIMAGE:016:none": -28.75
+    },
+    "action_value_variance": {
+      "play:card:AFTERIMAGE:012:none": 0.0,
+      "play:card:AFTERIMAGE:013:none": 0.0,
+      "play:card:AFTERIMAGE:014:none": 0.0,
+      "play:card:AFTERIMAGE:015:none": 0.0,
+      "play:card:AFTERIMAGE:016:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:AFTERIMAGE:012:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "8C401385BBD0B3A18BBA368F6F11CB2B59717F10211A44B19EDE4C82DA6A71DF",
+    "teacher_state_hashes": [
+      "9bc97abd84d8b990f08a0d4b"
+    ],
+    "action_value_mean": {
+      "play:card:AFTERIMAGE:011:none": -18.75
+    },
+    "action_value_variance": {
+      "play:card:AFTERIMAGE:011:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:AFTERIMAGE:011:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "9C569717C81C7BAF4CF155A852372A4660CF9EEB326965418E0976AA47447C59",
+    "teacher_state_hashes": [
+      "6899de4acb5b8ef3f8517705"
+    ],
+    "action_value_mean": {
+      "play:card:AFTERIMAGE:012:none": -28.75,
+      "play:card:AFTERIMAGE:013:none": -28.75,
+      "play:card:AFTERIMAGE:014:none": -28.75,
+      "play:card:AFTERIMAGE:015:none": -28.75,
+      "play:card:AFTERIMAGE:016:none": -28.75
+    },
+    "action_value_variance": {
+      "play:card:AFTERIMAGE:012:none": 0.0,
+      "play:card:AFTERIMAGE:013:none": 0.0,
+      "play:card:AFTERIMAGE:014:none": 0.0,
+      "play:card:AFTERIMAGE:015:none": 0.0,
+      "play:card:AFTERIMAGE:016:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:AFTERIMAGE:012:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  }
+]

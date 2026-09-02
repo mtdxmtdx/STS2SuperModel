@@ -1,0 +1,36 @@
+{
+  "schema_version": 50,
+  "dataset": "card-direct-matrix-results.json",
+  "witness_manifest": "card-direct-witness-manifest.json",
+  "matrix_rows": 607,
+  "executed_rows": 474,
+  "matched_rows": 474,
+  "mismatch_rows": 0,
+  "direct_reliable_rows": 223,
+  "repeat_verified_direct_reliable_rows": 223,
+  "matched_estimated_rows": 235,
+  "matched_uncalculable_rows": 15,
+  "fixture_not_entered_combat_rows": 39,
+  "choice_fixture_required_rows": 14,
+  "runtime_unavailable_rows": 81,
+  "runtime_error_rows": 0,
+  "true_timeout_rows": 0,
+  "closeout_progress": {
+    "v45": 182,
+    "v46": 79,
+    "v47": 64,
+    "v48": 48,
+    "v49": 0,
+    "choice_zero_diff_rows": 9,
+    "special_context_zero_diff_rows": 3,
+    "reliable_repeat_rows": 223
+  },
+  "repeat_verification": {
+    "path": "m3e-card-direct-reliable-repeat-v49.json",
+    "report_count": 223,
+    "different_count": 0,
+    "verdict": "pass"
+  },
+  "verdict": "partial",
+  "reason": "All 474 executed card witnesses are zero-diff and all 223 direct-Reliable reports are byte-identical across two runs. M3e remains partial because 39 fixtures need valid combat contexts, 14 need Choice fixtures and 81 are runtime-unavailable."
+}

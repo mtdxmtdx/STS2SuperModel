@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "EXPOSE",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "sha256": "AA785BB1D857EB97F5DECC297C82ED1A90CDF9032D1F1A1C9268BF959FD7949B",
+  "verdict": "pass"
+}

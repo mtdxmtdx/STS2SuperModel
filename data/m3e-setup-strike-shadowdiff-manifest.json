@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "SETUP_STRIKE",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "sha256": "3F23BF8F634BEBEA7F6D2F3001BEBED70F0AA3E0BB4C012C433075E8F61F4107",
+  "verdict": "pass"
+}

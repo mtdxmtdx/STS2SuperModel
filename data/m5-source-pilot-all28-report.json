@@ -1,0 +1,99 @@
+{
+  "action_count": 672,
+  "action_kind_counts": {
+    "EndTurn": 114,
+    "PlayCard": 556,
+    "UsePotion": 2
+  },
+  "ascension_counts": {
+    "0": 114
+  },
+  "character_counts": {
+    "The Ironclad": 99,
+    "The Silent": 15
+  },
+  "combat_count": 28,
+  "confidence_counts": {
+    "Estimated": 66,
+    "Reliable": 44,
+    "Uncalculable": 4
+  },
+  "coverage": {
+    "card_ids": {
+      "CARD.AFTERIMAGE": 36,
+      "CARD.BARRICADE": 16,
+      "CARD.BASH": 31,
+      "CARD.BLOODLETTING": 16,
+      "CARD.DEFEND_IRONCLAD": 119,
+      "CARD.DEFEND_SILENT": 14,
+      "CARD.DEMON_FORM": 28,
+      "CARD.INFLAME": 20,
+      "CARD.NEUTRALIZE": 39,
+      "CARD.RUPTURE": 8,
+      "CARD.STRIKE_IRONCLAD": 204,
+      "CARD.STRIKE_SILENT": 3
+    },
+    "enemy_ids": {
+      "Leaf Slime (M)": 5,
+      "Leaf Slime (S)": 5,
+      "Seapunk": 76,
+      "Shrinker Beetle": 17,
+      "Terror Eel": 15,
+      "Twig Slime (S)": 5
+    },
+    "potion_ids": {
+      "BLOCK_POTION": 2
+    },
+    "power_ids": {
+      "SHRIEK_POWER": 15,
+      "STRENGTH_POWER": 1,
+      "VIGOR_POWER": 4,
+      "VULNERABLE_POWER": 4,
+      "WEAK_POWER": 2
+    },
+    "relic_ids": {
+      "AKABEKO": 3,
+      "ANCHOR": 3,
+      "ART_OF_WAR": 4,
+      "BAG_OF_MARBLES": 3,
+      "BAG_OF_PREPARATION": 3,
+      "BURNING_BLOOD": 38,
+      "CENTENNIAL_PUZZLE": 2,
+      "HAPPY_FLOWER": 4,
+      "LANTERN": 11,
+      "ODDLY_SMOOTH_STONE": 3,
+      "ORICHALCUM": 2,
+      "PEN_NIB": 18,
+      "RING_OF_THE_SNAKE": 15,
+      "VAJRA": 5
+    }
+  },
+  "episode_count": 28,
+  "metadata": {
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "feature_schema_version": "1",
+    "game_commit": "41cef1ea",
+    "game_version": "v0.111.0",
+    "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383",
+    "model_version": "none",
+    "scorer_version": "not-applicable",
+    "semantic_database_version": "game-runtime-v0111",
+    "simulator_version": "cli-v0111-headless"
+  },
+  "missing_metadata": {},
+  "report_kind": "p0_tooling_smoke",
+  "restriction_counts": {},
+  "risk_event_counts": {
+    "budget_bound": 2,
+    "card_effects_missing:CARD.BLOODLETTING": 6,
+    "enemy_state_missing": 1,
+    "teacher_label_missing": 4
+  },
+  "row_count": 114,
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m5-source-pilot-all28-labeled.jsonl",
+  "source_sha256": "82775E334B49788E7AE8F32AD7C155466CF1348802C5BFC901035CD37FE06328",
+  "teacher_pair_count": 114,
+  "teacher_pair_rate": 1.0
+}

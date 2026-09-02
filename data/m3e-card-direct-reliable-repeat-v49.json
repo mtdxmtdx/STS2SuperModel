@@ -1,0 +1,2132 @@
+{
+  "schema_version": 1,
+  "scope": "current_direct_reliable",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "report_count": 235,
+  "different_count": 0,
+  "different_variants": [],
+  "verdict": "pass",
+  "reports": [
+    {
+      "variant_id": "ABRASIVE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ABRASIVE.jsonl",
+      "report": "p1-csharp-card-direct-abrasive-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "6ca6a290297eb7b986c2a15e9b84ea7d5f9b633099116601e4c60e9a2b2d530e",
+      "identical": true
+    },
+    {
+      "variant_id": "ACCURACY",
+      "trace": "STS2SuperModel/data/card-direct-traces3/ACCURACY.jsonl",
+      "report": "p1-csharp-card-direct-accuracy-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "fbcba4d5a4e82af774f76c21615a6e7eb35d25edb722e399daf2fdf29af0a507",
+      "identical": true
+    },
+    {
+      "variant_id": "ADAPTIVE_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ADAPTIVE_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-adaptive_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "58ee280b4896aa15df3646dad50608b322229fc94f67cb1cd2c45a783b3a58d8",
+      "identical": true
+    },
+    {
+      "variant_id": "ADRENALINE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ADRENALINE.jsonl",
+      "report": "p1-csharp-card-direct-adrenaline-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "f925f81b99f9c548ac93532103adb40e5da1e727753ffedf32bf153dceedfb67",
+      "identical": true
+    },
+    {
+      "variant_id": "AFTERIMAGE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/AFTERIMAGE.jsonl",
+      "report": "p1-csharp-card-direct-afterimage-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "88f829f011e9b9afa015076a1a69073190d16ffbb91863729359d459af211fa1",
+      "identical": true
+    },
+    {
+      "variant_id": "AGGRESSION",
+      "trace": "STS2SuperModel/data/card-direct-traces3/AGGRESSION.jsonl",
+      "report": "p1-csharp-card-direct-aggression-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "5ef7853a38adddc5f15f18b0a6bddb71bf13fd806f2d2dc6db4c2f26bcb7446f",
+      "identical": true
+    },
+    {
+      "variant_id": "ALIGNMENT",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ALIGNMENT.jsonl",
+      "report": "p1-csharp-card-direct-alignment-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7608af49b76d8db8f4b2ac051b71633a685335a46a4b07314b0d23f1b021a74e",
+      "identical": true
+    },
+    {
+      "variant_id": "ALL_FOR_ONE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ALL_FOR_ONE.jsonl",
+      "report": "p1-csharp-card-direct-all_for_one-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "93c9fbade08dd8a750b5416a21bcf7334c2e22f81cd4e30a3ee78dff4fa57d3c",
+      "identical": true
+    },
+    {
+      "variant_id": "ANGER",
+      "trace": "STS2SuperModel/data/card-direct-traces3/ANGER.jsonl",
+      "report": "p1-csharp-card-direct-anger-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "c521c451cbbe4b606a259ce2d2f35969d346cb10ed6593d73bafa9965330035c",
+      "identical": true
+    },
+    {
+      "variant_id": "ANTICIPATE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/ANTICIPATE.jsonl",
+      "report": "p1-csharp-card-direct-anticipate-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "8573d0bdf110fe2678e5a734e5144c71302726f1564d5abd76ee00f2efc48f25",
+      "identical": true
+    },
+    {
+      "variant_id": "ARMAMENTS",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ARMAMENTS.jsonl",
+      "report": "p1-csharp-card-direct-armaments-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "e166d3bd95ecc715315bc247b3b6bc589e36eee93f1309d2d2e9499997d53da8",
+      "identical": true
+    },
+    {
+      "variant_id": "ASHEN_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/ASHEN_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-ashen_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "ff868ecf757b2cd9868f8d7fcb93fc91ad8bb79ff20e75a0e2cf8332638b3340",
+      "identical": true
+    },
+    {
+      "variant_id": "ASSASSINATE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/ASSASSINATE.jsonl",
+      "report": "p1-csharp-card-direct-assassinate-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "9ee4e8a81a2afc9d93b1684aba0feb866b68c93cfa385146ddd6819c0564cc58",
+      "identical": true
+    },
+    {
+      "variant_id": "ASTRAL_PULSE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ASTRAL_PULSE.jsonl",
+      "report": "p1-csharp-card-direct-astral_pulse-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "ed0d16cc604973915456184cd132c22c8edfed2fef07b16d9e7927a206c7afd3",
+      "identical": true
+    },
+    {
+      "variant_id": "BACKFLIP",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BACKFLIP.jsonl",
+      "report": "p1-csharp-card-direct-backflip-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1dba7e59c47620becaea03162e2f8dd313ee102cbd749c9d3a46743b626c3557",
+      "identical": true
+    },
+    {
+      "variant_id": "BACKSTAB",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BACKSTAB.jsonl",
+      "report": "p1-csharp-card-direct-backstab-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "b971a10eb3edb736a253953c4c67ebb7becf52da4ca6258ad5bff2cdb7c5d080",
+      "identical": true
+    },
+    {
+      "variant_id": "BALL_LIGHTNING",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BALL_LIGHTNING.jsonl",
+      "report": "p1-csharp-card-direct-ball_lightning-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "77dc951556ea49e04e5399a1166580986670df95c3bab987fe78d2fd8160180f",
+      "identical": true
+    },
+    {
+      "variant_id": "BARRICADE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BARRICADE.jsonl",
+      "report": "p1-csharp-card-direct-barricade-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3bab0f509548c3bfdf3b8f447a5d641adb3280dd28fbcc3bbf7f8d46cb0d90a6",
+      "identical": true
+    },
+    {
+      "variant_id": "BASH",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BASH.jsonl",
+      "report": "p1-csharp-card-direct-bash-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7c91353469d0a55f6f1541a046a921053045f5eb461bae06e2e8641fda598fda",
+      "identical": true
+    },
+    {
+      "variant_id": "BATTLE_TRANCE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BATTLE_TRANCE.jsonl",
+      "report": "p1-csharp-card-direct-battle_trance-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1a96a4a4c38dabe2a32fe59faf80e6fef61997c434b4a571ff0409dea23dc902",
+      "identical": true
+    },
+    {
+      "variant_id": "BEAM_CELL",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BEAM_CELL.jsonl",
+      "report": "p1-csharp-card-direct-beam_cell-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "e97631e4f8987ea62d90f94dfccf00b3f484f92e8ef6d25ea933a3ec8a15ac69",
+      "identical": true
+    },
+    {
+      "variant_id": "BEAT_INTO_SHAPE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BEAT_INTO_SHAPE.jsonl",
+      "report": "p1-csharp-card-direct-beat_into_shape-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "232dcdbd7d046410e17ba234dd620496582941005b250e03559d131fb2267297",
+      "identical": true
+    },
+    {
+      "variant_id": "BIG_BANG",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BIG_BANG.jsonl",
+      "report": "p1-csharp-card-direct-big_bang-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "a3a7c0a73644eed640a2933769c811159db04326fb2a2064450b235ec04a1a56",
+      "identical": true
+    },
+    {
+      "variant_id": "BLADE_DANCE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BLADE_DANCE.jsonl",
+      "report": "p1-csharp-card-direct-blade_dance-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "acb2c001a7d9db429222475daf44c92c3ca5a489be1d2376ca2468d5b635aa56",
+      "identical": true
+    },
+    {
+      "variant_id": "BLADE_OF_INK",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BLADE_OF_INK.jsonl",
+      "report": "p1-csharp-card-direct-blade_of_ink-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "c46923c7c5f631042a1bb9b9e66605ddb4671abe3afd796e10fd2c851aecab86",
+      "identical": true
+    },
+    {
+      "variant_id": "BLADE_SYMPHONY",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BLADE_SYMPHONY.jsonl",
+      "report": "p1-csharp-card-direct-blade_symphony-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7a3330b7ad083d24199e89767ebfddfecfe1c493fa98f582b79f64db9e4964b0",
+      "identical": true
+    },
+    {
+      "variant_id": "BLOODLETTING",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BLOODLETTING.jsonl",
+      "report": "p1-csharp-card-direct-bloodletting-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7166d62d2d2ea2371da78f41095c18687bb3efab966f67544cec2a3d56c04487",
+      "identical": true
+    },
+    {
+      "variant_id": "BLOOD_WALL",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BLOOD_WALL.jsonl",
+      "report": "p1-csharp-card-direct-blood_wall-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "ec8169001f4cebb98e5a8b07bab5c9d574df34f3f18c41cb5caf67c51523a481",
+      "identical": true
+    },
+    {
+      "variant_id": "BLUDGEON",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BLUDGEON.jsonl",
+      "report": "p1-csharp-card-direct-bludgeon-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "f8736d5dc09b4f50915157423dbc2b18326c52e9adc4109c6be53e3e4a977d51",
+      "identical": true
+    },
+    {
+      "variant_id": "BLUR",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BLUR.jsonl",
+      "report": "p1-csharp-card-direct-blur-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "b51bc9962ecbc7c9791d5e897225082b4bc292240632991c79f6de15db28b235",
+      "identical": true
+    },
+    {
+      "variant_id": "BOLAS",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BOLAS.jsonl",
+      "report": "p1-csharp-card-direct-bolas-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3317f8c6b13693b72351c67ee40ecaafa881c682aee7dbf88167dc1538a29de8",
+      "identical": true
+    },
+    {
+      "variant_id": "BOMBARDMENT",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BOMBARDMENT.jsonl",
+      "report": "p1-csharp-card-direct-bombardment-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "a7d32d9c5409a7014956971dfb5053ff8c4e1b5e5250fd824b8fe99e06a57793",
+      "identical": true
+    },
+    {
+      "variant_id": "BOOST_AWAY",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BOOST_AWAY.jsonl",
+      "report": "p1-csharp-card-direct-boost_away-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "9afee7d200db4f29407533d48c898147f38909411adac0ec1e8eff0fea10fa38",
+      "identical": true
+    },
+    {
+      "variant_id": "BOOT_SEQUENCE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BOOT_SEQUENCE.jsonl",
+      "report": "p1-csharp-card-direct-boot_sequence-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "6eccf05c69398428971a24058ccd386bf6d0a02c0bb49e9fa410f39b3b4dcea5",
+      "identical": true
+    },
+    {
+      "variant_id": "BREAK",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BREAK.jsonl",
+      "report": "p1-csharp-card-direct-break-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "d77f357c2e7deef6d838b530dceee2776364488d097d1b58bab46dbf8254408e",
+      "identical": true
+    },
+    {
+      "variant_id": "BREAKTHROUGH",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BREAKTHROUGH.jsonl",
+      "report": "p1-csharp-card-direct-breakthrough-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "5f574491930dd044c5fcff36c891e565d00954d9bdadba6a84dbd1b6c20bb92d",
+      "identical": true
+    },
+    {
+      "variant_id": "BUFFER",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BUFFER.jsonl",
+      "report": "p1-csharp-card-direct-buffer-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "0bdbfd47a4b4834345b2d4960dfa4147182c13b74ecaa13fadb12afb2be5d7bc",
+      "identical": true
+    },
+    {
+      "variant_id": "BULK_UP",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BULK_UP.jsonl",
+      "report": "p1-csharp-card-direct-bulk_up-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "f5419ba8cb036640a6521fe17809f7ea742b53289af5f44dc08fa3c9f3de33ab",
+      "identical": true
+    },
+    {
+      "variant_id": "BULLY",
+      "trace": "STS2SuperModel/data/card-direct-traces3/BULLY.jsonl",
+      "report": "p1-csharp-card-direct-bully-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "9d1902c01a8dc6b833767a90ad603c6ecdbf0172f30911c66c70bce5f2c0b21e",
+      "identical": true
+    },
+    {
+      "variant_id": "BULWARK",
+      "trace": "STS2SuperModel/data/card-direct-traces4/BULWARK.jsonl",
+      "report": "p1-csharp-card-direct-bulwark-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "20cc31dfda82a1279f63cabfbedb35ea6f2b52db696bef972f8b26e07e957f4c",
+      "identical": true
+    },
+    {
+      "variant_id": "CALTROPS",
+      "trace": "STS2SuperModel/data/card-direct-traces4/CALTROPS.jsonl",
+      "report": "p1-csharp-card-direct-caltrops-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "11a5e2d0d01c9817a5130f09bfe3d94f20719ecaa0e0385078f6e155030bebdc",
+      "identical": true
+    },
+    {
+      "variant_id": "CELESTIAL_MIGHT",
+      "trace": "STS2SuperModel/data/card-direct-traces4/CELESTIAL_MIGHT.jsonl",
+      "report": "p1-csharp-card-direct-celestial_might-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "50710504b781784a285d32733277b105aecf009406ec28f9fcb8b441864c0e52",
+      "identical": true
+    },
+    {
+      "variant_id": "CLASH",
+      "trace": "STS2SuperModel/data/card-direct-traces3/CLASH.jsonl",
+      "report": "p1-csharp-card-direct-clash-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "bd765513dd1d3f1d9a45232aa2fc4e5d2629ccc1ee940fd7a8b617c158c254a6",
+      "identical": true
+    },
+    {
+      "variant_id": "CLAW",
+      "trace": "STS2SuperModel/data/card-direct-traces4/CLAW.jsonl",
+      "report": "p1-csharp-card-direct-claw-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "788ef5e1d3643bf98fbf342541912c21406b90c6654004d9c5a2319a83cf7dd7",
+      "identical": true
+    },
+    {
+      "variant_id": "CLOAK_AND_DAGGER",
+      "trace": "STS2SuperModel/data/card-direct-traces3/CLOAK_AND_DAGGER.jsonl",
+      "report": "p1-csharp-card-direct-cloak_and_dagger-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "5e0f89aa472f4e2a72a53a9b7dadaae1fb86f7f55bc5eb6d7126af31918db43c",
+      "identical": true
+    },
+    {
+      "variant_id": "CLOAK_OF_STARS",
+      "trace": "STS2SuperModel/data/card-direct-traces4/CLOAK_OF_STARS.jsonl",
+      "report": "p1-csharp-card-direct-cloak_of_stars-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "5a74224fc6ef7a653a6819c3145c61bb042704797acd31087dab755cc1e8cba2",
+      "identical": true
+    },
+    {
+      "variant_id": "COLD_SNAP",
+      "trace": "STS2SuperModel/data/card-direct-traces4/COLD_SNAP.jsonl",
+      "report": "p1-csharp-card-direct-cold_snap-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1330c8db076cba7d2e5be4f5bfb4b2634783ecdf98dc942c79f6af4d54858e40",
+      "identical": true
+    },
+    {
+      "variant_id": "COLLISION_COURSE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/COLLISION_COURSE.jsonl",
+      "report": "p1-csharp-card-direct-collision_course-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "6f9980b74b355aa06b2a752d3a59c750081dace54cd6d59e0bb228e8dc0e8c99",
+      "identical": true
+    },
+    {
+      "variant_id": "COLOSSUS",
+      "trace": "STS2SuperModel/data/card-direct-traces3/COLOSSUS.jsonl",
+      "report": "p1-csharp-card-direct-colossus-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "11bdb211b6eba6edb350f377c247e85a6e77bdbac6db3dcf9de8ae188a4cfbab",
+      "identical": true
+    },
+    {
+      "variant_id": "COMET",
+      "trace": "STS2SuperModel/data/card-direct-traces4/COMET.jsonl",
+      "report": "p1-csharp-card-direct-comet-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1bff0f3732e759d0f6d8efe8459afae93b40782ca20543288879123a50fef879",
+      "identical": true
+    },
+    {
+      "variant_id": "COMPACT",
+      "trace": "STS2SuperModel/data/card-direct-traces4/COMPACT.jsonl",
+      "report": "p1-csharp-card-direct-compact-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "dfd087cb617913412f3688155bfc000456169a99e3b6cf712b1371933bcef9ba",
+      "identical": true
+    },
+    {
+      "variant_id": "COMPILE_DRIVER",
+      "trace": "STS2SuperModel/data/card-direct-traces4/COMPILE_DRIVER.jsonl",
+      "report": "p1-csharp-card-direct-compile_driver-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "ccab6fdd8469d6ed523bc46910203e5867e7a7612e45e8d7962a964120278172",
+      "identical": true
+    },
+    {
+      "variant_id": "CONFLAGRATION",
+      "trace": "STS2SuperModel/data/card-direct-traces3/CONFLAGRATION.jsonl",
+      "report": "p1-csharp-card-direct-conflagration-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "c082d410ed4afcaa402dd6be25939034fd3baac2c0b1fd4fd77137d14d964439",
+      "identical": true
+    },
+    {
+      "variant_id": "CORRUPTION",
+      "trace": "STS2SuperModel/data/card-direct-traces3/CORRUPTION.jsonl",
+      "report": "p1-csharp-card-direct-corruption-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "2b830e61d8906d3ea889f481fb606bac673952a74b408300149b8b8d77a5268e",
+      "identical": true
+    },
+    {
+      "variant_id": "CRASH_LANDING",
+      "trace": "STS2SuperModel/data/card-direct-traces4/CRASH_LANDING.jsonl",
+      "report": "p1-csharp-card-direct-crash_landing-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1542a7a7f4211aca76a8d18fa6d4e366b9bbea83e333af4e5c10c0f3b24e3f4a",
+      "identical": true
+    },
+    {
+      "variant_id": "CRESCENT_SPEAR",
+      "trace": "STS2SuperModel/data/card-direct-traces4/CRESCENT_SPEAR.jsonl",
+      "report": "p1-csharp-card-direct-crescent_spear-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7623c590abb29bea8a476a76154db5a1a59b993258a160149392e16505a370f2",
+      "identical": true
+    },
+    {
+      "variant_id": "CRIMSON_MANTLE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/CRIMSON_MANTLE.jsonl",
+      "report": "p1-csharp-card-direct-crimson_mantle-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "dc7cc8b68f90f32e9fce8c60d554dbc3e9a732c480e43074d9c4ef1474f5ee30",
+      "identical": true
+    },
+    {
+      "variant_id": "CRUELTY",
+      "trace": "STS2SuperModel/data/card-direct-traces3/CRUELTY.jsonl",
+      "report": "p1-csharp-card-direct-cruelty-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "f9fc04ccef3faf697e14564232b613a71f614dd5b7879757f5f51b2463a6ed5d",
+      "identical": true
+    },
+    {
+      "variant_id": "DAGGER_SPRAY",
+      "trace": "STS2SuperModel/data/card-direct-traces3/DAGGER_SPRAY.jsonl",
+      "report": "p1-csharp-card-direct-dagger_spray-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "ca2747115a5f79edbe591ddab3db78f40c165538eed297d0fc1420fd3787d231",
+      "identical": true
+    },
+    {
+      "variant_id": "DARK_EMBRACE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/DARK_EMBRACE.jsonl",
+      "report": "p1-csharp-card-direct-dark_embrace-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "fc64212fdbe7738d3317f9d9a8afffe00cc8e32e088a57e7eadaf8363b4d1f9d",
+      "identical": true
+    },
+    {
+      "variant_id": "DASH",
+      "trace": "STS2SuperModel/data/card-direct-traces3/DASH.jsonl",
+      "report": "p1-csharp-card-direct-dash-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "32bf6a4c8bf4f301f256e41efa9b3cdf0b4299997472f4a363935a375cd84b38",
+      "identical": true
+    },
+    {
+      "variant_id": "DEADLY_POISON",
+      "trace": "STS2SuperModel/data/card-direct-traces3/DEADLY_POISON.jsonl",
+      "report": "p1-csharp-card-direct-deadly_poison-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "10102eef01ec1545f552ba92f479077692f7b9e227eeffb59609b2cae1499408",
+      "identical": true
+    },
+    {
+      "variant_id": "DEATHS_DOOR",
+      "trace": "STS2SuperModel/data/card-direct-traces4/DEATHS_DOOR.jsonl",
+      "report": "p1-csharp-card-direct-deaths_door-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "541f67ad666ffaff515f67c93d1d60779ffb7c8c739439e5de70ab8a4a76b540",
+      "identical": true
+    },
+    {
+      "variant_id": "DEATH_MARCH",
+      "trace": "STS2SuperModel/data/card-direct-traces4/DEATH_MARCH.jsonl",
+      "report": "p1-csharp-card-direct-death_march-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "33116f948ffdc5bcda1c72ef372e03375dc0480012f724a3c716f37b08b1748b",
+      "identical": true
+    },
+    {
+      "variant_id": "DEFEND_DEFECT",
+      "trace": "STS2SuperModel/data/card-direct-traces4/DEFEND_DEFECT.jsonl",
+      "report": "p1-csharp-card-direct-defend_defect-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "6815a2f650e70015078b838a454cba4ffa6ddec6e5063afa2cb6c425fd7b5756",
+      "identical": true
+    },
+    {
+      "variant_id": "DEFEND_IRONCLAD",
+      "trace": "STS2SuperModel/data/card-direct-traces3/DEFEND_IRONCLAD.jsonl",
+      "report": "p1-csharp-card-direct-defend_ironclad-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "4475951d8e77cc107090b05d34d1f1d8f6fee288c128545202851d8503c21f50",
+      "identical": true
+    },
+    {
+      "variant_id": "DEFEND_NECROBINDER",
+      "trace": "STS2SuperModel/data/card-direct-traces4/DEFEND_NECROBINDER.jsonl",
+      "report": "p1-csharp-card-direct-defend_necrobinder-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "6832cbfd00699c420e519254a0163cb746f9e6b1382a03a40acc142711426ac9",
+      "identical": true
+    },
+    {
+      "variant_id": "DEFEND_REGENT",
+      "trace": "STS2SuperModel/data/card-direct-traces4/DEFEND_REGENT.jsonl",
+      "report": "p1-csharp-card-direct-defend_regent-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "82736c5a8d15090a95d8064c249cee7e4425aad0ba5eb6eef151ca1e5735ab5f",
+      "identical": true
+    },
+    {
+      "variant_id": "DEFEND_SILENT",
+      "trace": "STS2SuperModel/data/card-direct-traces3/DEFEND_SILENT.jsonl",
+      "report": "p1-csharp-card-direct-defend_silent-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "acee0d5284525172c89ab3f5f15ba32fa439bd98b5f3ea4cf9e44b1c8d357cb4",
+      "identical": true
+    },
+    {
+      "variant_id": "DEFILE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/DEFILE.jsonl",
+      "report": "p1-csharp-card-direct-defile-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "eae621e15a6edb54974270c0d05f87df410391e31861fb091b119cb724af9e1a",
+      "identical": true
+    },
+    {
+      "variant_id": "DEFLECT",
+      "trace": "STS2SuperModel/data/card-direct-traces3/DEFLECT.jsonl",
+      "report": "p1-csharp-card-direct-deflect-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "912eeae51c61a9f4fc2f02b7cd3ebe7d03ce01814e2b37f3022969cd9d7654a2",
+      "identical": true
+    },
+    {
+      "variant_id": "DEFY",
+      "trace": "STS2SuperModel/data/card-direct-traces4/DEFY.jsonl",
+      "report": "p1-csharp-card-direct-defy-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7ace85bcffc0244dcf97436f7a91a44faf3b7102d5cb9c045e9812aa47d1e243",
+      "identical": true
+    },
+    {
+      "variant_id": "DEMON_FORM",
+      "trace": "STS2SuperModel/data/card-direct-traces3/DEMON_FORM.jsonl",
+      "report": "p1-csharp-card-direct-demon_form-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "512345960da5310b5ce1a24b1d28e4686ad8a88bdf1095814185e071134dac03",
+      "identical": true
+    },
+    {
+      "variant_id": "DEVASTATE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/DEVASTATE.jsonl",
+      "report": "p1-csharp-card-direct-devastate-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3a98d44f3329428f5a065192302ab1fb140fdc6200ffdc906dec26b5dbffac82",
+      "identical": true
+    },
+    {
+      "variant_id": "DODGE_AND_ROLL",
+      "trace": "STS2SuperModel/data/card-direct-traces3/DODGE_AND_ROLL.jsonl",
+      "report": "p1-csharp-card-direct-dodge_and_roll-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1990bac02ce3105708ac9247f7d02e7359bbe5feaa3d99b34f256dc5e4390b29",
+      "identical": true
+    },
+    {
+      "variant_id": "DOMINATE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/DOMINATE.jsonl",
+      "report": "p1-csharp-card-direct-dominate-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "cc03b5664090a249c77fb4fa2ad838f8aa4bfe05060c39fd18625dc1e8723dc3",
+      "identical": true
+    },
+    {
+      "variant_id": "DOUBLE_ENERGY",
+      "trace": "STS2SuperModel/data/card-direct-traces4/DOUBLE_ENERGY.jsonl",
+      "report": "p1-csharp-card-direct-double_energy-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "513e10ff5584d52f293417728c9cc7b0d506a0f2993582998d6dfb5893a3ee1e",
+      "identical": true
+    },
+    {
+      "variant_id": "DRAIN_POWER",
+      "trace": "STS2SuperModel/data/card-direct-traces4/DRAIN_POWER.jsonl",
+      "report": "p1-csharp-card-direct-drain_power-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "0edcb11ff12a90dc9bdc8f65837027683e2786737ef5b17510f7cacb6725d5de",
+      "identical": true
+    },
+    {
+      "variant_id": "DRAMATIC_ENTRANCE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/DRAMATIC_ENTRANCE.jsonl",
+      "report": "p1-csharp-card-direct-dramatic_entrance-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3500fdbdd5aa043d3b3f4308f17d0ae7c34e847f04b47e1d74a5eacd9ff12b9f",
+      "identical": true
+    },
+    {
+      "variant_id": "ECHOING_SLASH",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ECHOING_SLASH.jsonl",
+      "report": "p1-csharp-card-direct-echoing_slash-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "62087b0d695676ce4f5448bbb770e178e5ae6369b264e0f1a02fa607633cee31",
+      "identical": true
+    },
+    {
+      "variant_id": "ENERGY_SURGE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ENERGY_SURGE.jsonl",
+      "report": "p1-csharp-card-direct-energy_surge-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "e892122122d2e21c66a54defc20d078bb4136a585f127f115e984dd999c55967",
+      "identical": true
+    },
+    {
+      "variant_id": "ENVENOM",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ENVENOM.jsonl",
+      "report": "p1-csharp-card-direct-envenom-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "0713f1aa5d1150e79ee79463bbeff25cba7e04407410023d6f653d7e809da019",
+      "identical": true
+    },
+    {
+      "variant_id": "ERADICATE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ERADICATE.jsonl",
+      "report": "p1-csharp-card-direct-eradicate-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "83a4bd41cb9f6940cb6a004c3c81137652762cc1ee651372d1d49de75c00dfed",
+      "identical": true
+    },
+    {
+      "variant_id": "ETERNAL_ARMOR",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ETERNAL_ARMOR.jsonl",
+      "report": "p1-csharp-card-direct-eternal_armor-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "aea891bcb07e3a8241e0a5531050bc046eaf1df6f82098a1c5e06c4437a0142f",
+      "identical": true
+    },
+    {
+      "variant_id": "EVIL_EYE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/EVIL_EYE.jsonl",
+      "report": "p1-csharp-card-direct-evil_eye-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "5a7a0a8d949ae10eb0b40dc5390ab92abf934b897e6532fb33b5d367787497d9",
+      "identical": true
+    },
+    {
+      "variant_id": "EXPECT_A_FIGHT",
+      "trace": "STS2SuperModel/data/card-direct-traces3/EXPECT_A_FIGHT.jsonl",
+      "report": "p1-csharp-card-direct-expect_a_fight-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "f63b279aac30047a62cc7e5d7d6938817be64f0f9f595a11303b19335b7814e7",
+      "identical": true
+    },
+    {
+      "variant_id": "EXPOSE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/EXPOSE.jsonl",
+      "report": "p1-csharp-card-direct-expose-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "673a09e730236e682ae8204e0a3485d8cfbfa68b96714ad0a8229fa3a6965f27",
+      "identical": true
+    },
+    {
+      "variant_id": "FALLING_STAR",
+      "trace": "STS2SuperModel/data/card-direct-traces4/FALLING_STAR.jsonl",
+      "report": "p1-csharp-card-direct-falling_star-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "bc4be5f6a6bec730a9ff44f41f78f5a15032bf2be8bcf704a9d41153cb4525e8",
+      "identical": true
+    },
+    {
+      "variant_id": "FEAR",
+      "trace": "STS2SuperModel/data/card-direct-traces4/FEAR.jsonl",
+      "report": "p1-csharp-card-direct-fear-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "27d01d608636ee2c999dc050cc9f48e76b9c229fcf70da72ff9451f61c2d00fc",
+      "identical": true
+    },
+    {
+      "variant_id": "FEED",
+      "trace": "STS2SuperModel/data/card-direct-traces3/FEED.jsonl",
+      "report": "p1-csharp-card-direct-feed-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "a977d3f9310abdc719817ce89360e7628782f76dd628c23084a0adb5c6d23b36",
+      "identical": true
+    },
+    {
+      "variant_id": "FEEL_NO_PAIN",
+      "trace": "STS2SuperModel/data/card-direct-traces3/FEEL_NO_PAIN.jsonl",
+      "report": "p1-csharp-card-direct-feel_no_pain-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "fc0b868f566b8469b631bf21f1a1606f147ecc348ee8f680475c133ca4414a8e",
+      "identical": true
+    },
+    {
+      "variant_id": "FIEND_FIRE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/FIEND_FIRE.jsonl",
+      "report": "p1-csharp-card-direct-fiend_fire-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "698bc3da352b003dbd1ee16cc6560d17f6160d5baf9919a7714e5710ed97583d",
+      "identical": true
+    },
+    {
+      "variant_id": "FIGHT_ME",
+      "trace": "STS2SuperModel/data/card-direct-traces3/FIGHT_ME.jsonl",
+      "report": "p1-csharp-card-direct-fight_me-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3e474afcffc7224c257b9c350fe78f3c56bc7b3410eea8872340681aa0a9a071",
+      "identical": true
+    },
+    {
+      "variant_id": "FIGHT_THROUGH",
+      "trace": "STS2SuperModel/data/card-direct-traces4/FIGHT_THROUGH.jsonl",
+      "report": "p1-csharp-card-direct-fight_through-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "bd0d3d470a6b293a7a536f74ecaa368d5d9ca6bb4de841268aacf2377e369f41",
+      "identical": true
+    },
+    {
+      "variant_id": "FINESSE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/FINESSE.jsonl",
+      "report": "p1-csharp-card-direct-finesse-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3b6254c36493383ad3d894340c4a134e9ad6ec965bf00263af304a37e05d4e0e",
+      "identical": true
+    },
+    {
+      "variant_id": "FISTICUFFS",
+      "trace": "STS2SuperModel/data/card-direct-traces4/FISTICUFFS.jsonl",
+      "report": "p1-csharp-card-direct-fisticuffs-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "35ac7085ec9980c4b615de7bafe69dabb1f9d3673dfbaed12b2f772d786f40f4",
+      "identical": true
+    },
+    {
+      "variant_id": "FLAME_BARRIER",
+      "trace": "STS2SuperModel/data/card-direct-traces3/FLAME_BARRIER.jsonl",
+      "report": "p1-csharp-card-direct-flame_barrier-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "9997f15f49d2db11bae816c667131ecdac325384db23b188cd342f87ff1bc18b",
+      "identical": true
+    },
+    {
+      "variant_id": "FLASH_OF_STEEL",
+      "trace": "STS2SuperModel/data/card-direct-traces4/FLASH_OF_STEEL.jsonl",
+      "report": "p1-csharp-card-direct-flash_of_steel-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "ab9b5a084512400b604c59a85e60ab3ff946892c4828fc846e4f431a2d495a68",
+      "identical": true
+    },
+    {
+      "variant_id": "FLICK_FLACK",
+      "trace": "STS2SuperModel/data/card-direct-traces3/FLICK_FLACK.jsonl",
+      "report": "p1-csharp-card-direct-flick_flack-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "97d5c47d8f83a07ddf3ca6f6d9a998f863950951fe2bb364e06bc8f7a8666509",
+      "identical": true
+    },
+    {
+      "variant_id": "FOOTWORK",
+      "trace": "STS2SuperModel/data/card-direct-traces3/FOOTWORK.jsonl",
+      "report": "p1-csharp-card-direct-footwork-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "75f1159df37b8a509eb207c2af648d3d5a4c7f082b53048fd8e155068b409ecc",
+      "identical": true
+    },
+    {
+      "variant_id": "FORGOTTEN_RITUAL",
+      "trace": "STS2SuperModel/data/card-direct-traces3/FORGOTTEN_RITUAL.jsonl",
+      "report": "p1-csharp-card-direct-forgotten_ritual-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "19c7fb52dae5c8a863d09507f1256ba57a20f5fd6ff43795c65ab1e36526b1a1",
+      "identical": true
+    },
+    {
+      "variant_id": "FTL",
+      "trace": "STS2SuperModel/data/card-direct-traces4/FTL.jsonl",
+      "report": "p1-csharp-card-direct-ftl-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "29ffc4021ab27b5412b198a326f6474dafc32bd00635a77e59d33cb5db592930",
+      "identical": true
+    },
+    {
+      "variant_id": "GAMMA_BLAST",
+      "trace": "STS2SuperModel/data/card-direct-traces4/GAMMA_BLAST.jsonl",
+      "report": "p1-csharp-card-direct-gamma_blast-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "c4d45e75c86f06da664f5f2ce708f59ad63f5055a321092e5c0cec2e4355f107",
+      "identical": true
+    },
+    {
+      "variant_id": "GANG_UP",
+      "trace": "STS2SuperModel/data/card-direct-traces4/GANG_UP.jsonl",
+      "report": "p1-csharp-card-direct-gang_up-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "efa9ee891cc6f4b1ba600b0176b6e734eb6f9de5d37ac080a4673c7b2a0f4e2a",
+      "identical": true
+    },
+    {
+      "variant_id": "GATHER_LIGHT",
+      "trace": "STS2SuperModel/data/card-direct-traces4/GATHER_LIGHT.jsonl",
+      "report": "p1-csharp-card-direct-gather_light-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "10a33de7a9ab2ac1c0d83477e0762d86f82bf82e3e426e4016e4833ebbe665fa",
+      "identical": true
+    },
+    {
+      "variant_id": "GENETIC_ALGORITHM",
+      "trace": "STS2SuperModel/data/card-direct-traces4/GENETIC_ALGORITHM.jsonl",
+      "report": "p1-csharp-card-direct-genetic_algorithm-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "6facc555199ef2f7b0c8b5a39250c6f7f59316b39a95518dda6017bdb15e2f52",
+      "identical": true
+    },
+    {
+      "variant_id": "GLACIER",
+      "trace": "STS2SuperModel/data/card-direct-traces4/GLACIER.jsonl",
+      "report": "p1-csharp-card-direct-glacier-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "07cf8462547b635b3aa6b5dc07744cdb0a886d88ce1d4aba5295d43cd3125b41",
+      "identical": true
+    },
+    {
+      "variant_id": "GLASSWORK",
+      "trace": "STS2SuperModel/data/card-direct-traces4/GLASSWORK.jsonl",
+      "report": "p1-csharp-card-direct-glasswork-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "73bd02b9d5f7fd19d16327a1916035d2766e19c1be61cda7ddd010b998e953d9",
+      "identical": true
+    },
+    {
+      "variant_id": "GO_FOR_THE_EYES",
+      "trace": "STS2SuperModel/data/card-direct-traces4/GO_FOR_THE_EYES.jsonl",
+      "report": "p1-csharp-card-direct-go_for_the_eyes-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "0026b8b128d0adb8a17a4d5ce3f389b8e4a524873b96e923a2422c9579bfa3ff",
+      "identical": true
+    },
+    {
+      "variant_id": "GRAVEBLAST",
+      "trace": "STS2SuperModel/data/card-direct-traces4/GRAVEBLAST.jsonl",
+      "report": "p1-csharp-card-direct-graveblast-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "911c072cfd098641adb0461435d569738e0dc93e3eac84e76ad6b8de0658ef00",
+      "identical": true
+    },
+    {
+      "variant_id": "GUNK_UP",
+      "trace": "STS2SuperModel/data/card-direct-traces4/GUNK_UP.jsonl",
+      "report": "p1-csharp-card-direct-gunk_up-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "8a781669605b64136c63aa91a61b886baaa3759271682d2e242b23c0b0d7bdb7",
+      "identical": true
+    },
+    {
+      "variant_id": "HAND_OF_GREED",
+      "trace": "STS2SuperModel/data/card-direct-traces4/HAND_OF_GREED.jsonl",
+      "report": "p1-csharp-card-direct-hand_of_greed-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "2648039cfed502c8637a96b2fa86c64c87a6a0bfa0f0fbe8655f19a063f35ba0",
+      "identical": true
+    },
+    {
+      "variant_id": "HAND_TRICK",
+      "trace": "STS2SuperModel/data/card-direct-traces4/HAND_TRICK.jsonl",
+      "report": "p1-csharp-card-direct-hand_trick-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "b268ab37f270f0ffe9b1749a23a65e5107b5dadf249b5d5c1178420547d90b11",
+      "identical": true
+    },
+    {
+      "variant_id": "HAVOC",
+      "trace": "STS2SuperModel/data/card-direct-traces3/HAVOC.jsonl",
+      "report": "p1-csharp-card-direct-havoc-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "66b601f27a659baf9e1295e43fed2c495400770c73597cd7ec0a6fb80fa5454b",
+      "identical": true
+    },
+    {
+      "variant_id": "HAZE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/HAZE.jsonl",
+      "report": "p1-csharp-card-direct-haze-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "97825dd1dbb30165a7499dde08a1cf6b05fe83309b1128ec87f8b0b7ce09cd51",
+      "identical": true
+    },
+    {
+      "variant_id": "HEAVENLY_DRILL",
+      "trace": "STS2SuperModel/data/card-direct-traces4/HEAVENLY_DRILL.jsonl",
+      "report": "p1-csharp-card-direct-heavenly_drill-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3dd7c9edcad085c020bb49a63fc25ca87a31f6f741dc90da6514b7e807cffe80",
+      "identical": true
+    },
+    {
+      "variant_id": "HEIRLOOM_HAMMER",
+      "trace": "STS2SuperModel/data/card-direct-traces4/HEIRLOOM_HAMMER.jsonl",
+      "report": "p1-csharp-card-direct-heirloom_hammer-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "df5ca5459a75ded0b7d50d047c1f2355c5f7c130f77e746557cb04b1429329ab",
+      "identical": true
+    },
+    {
+      "variant_id": "HEMOKINESIS",
+      "trace": "STS2SuperModel/data/card-direct-traces3/HEMOKINESIS.jsonl",
+      "report": "p1-csharp-card-direct-hemokinesis-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "39fcd67675b43f3c6cb385cc52356183be4d82d328d2e4b0e9c825db310ca84b",
+      "identical": true
+    },
+    {
+      "variant_id": "HOLOGRAM",
+      "trace": "STS2SuperModel/data/card-direct-traces4/HOLOGRAM.jsonl",
+      "report": "p1-csharp-card-direct-hologram-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "a600138a90897fa91555e6a3123a97794ddeb62c552866dbfe249a174033d575",
+      "identical": true
+    },
+    {
+      "variant_id": "HOWL_FROM_BEYOND",
+      "trace": "STS2SuperModel/data/card-direct-traces3/HOWL_FROM_BEYOND.jsonl",
+      "report": "p1-csharp-card-direct-howl_from_beyond-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "a6fc0bc8b53787f3e08a96699bd8a65da48b9dcd0cf4bbac74ccb6334597af2c",
+      "identical": true
+    },
+    {
+      "variant_id": "ICE_LANCE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ICE_LANCE.jsonl",
+      "report": "p1-csharp-card-direct-ice_lance-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "63f1a149f7abe8a693d4bcdc63807645dc6e993593f478e870321b9d645b291a",
+      "identical": true
+    },
+    {
+      "variant_id": "IMPERVIOUS",
+      "trace": "STS2SuperModel/data/card-direct-traces3/IMPERVIOUS.jsonl",
+      "report": "p1-csharp-card-direct-impervious-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "d8939b7cc2ce79fdcf92da6cd8b0ec5dfe7701f65ed295b489f03bebae968b5d",
+      "identical": true
+    },
+    {
+      "variant_id": "INFERNO",
+      "trace": "STS2SuperModel/data/card-direct-traces3/INFERNO.jsonl",
+      "report": "p1-csharp-card-direct-inferno-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "e05afd716ad5d54ec2531e5f84cc8dcf37da834e1469864fadea4bcb5d7311bb",
+      "identical": true
+    },
+    {
+      "variant_id": "INFINITE_BLADES",
+      "trace": "STS2SuperModel/data/card-direct-traces3/INFINITE_BLADES.jsonl",
+      "report": "p1-csharp-card-direct-infinite_blades-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "c307391f5f13f594d83f0ce2648ac8ce742d9f810f8a01935dffb57edfa3706a",
+      "identical": true
+    },
+    {
+      "variant_id": "INFLAME",
+      "trace": "STS2SuperModel/data/card-direct-traces3/INFLAME.jsonl",
+      "report": "p1-csharp-card-direct-inflame-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7792f99e1f7c50f1068d6216aa25354dea2e98004d3a6e6d703d66454276b2eb",
+      "identical": true
+    },
+    {
+      "variant_id": "IRON_WAVE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/IRON_WAVE.jsonl",
+      "report": "p1-csharp-card-direct-iron_wave-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "90cec4f5c16351c39174fb6c62ba71da58390cc3dcb66243733865ab81bf5b5b",
+      "identical": true
+    },
+    {
+      "variant_id": "JUGGERNAUT",
+      "trace": "STS2SuperModel/data/card-direct-traces3/JUGGERNAUT.jsonl",
+      "report": "p1-csharp-card-direct-juggernaut-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "dd9ec1f14cf63b5a1f4f4014b4fd46f70c7aa4162c626ac7cf1e37deafb0f5d9",
+      "identical": true
+    },
+    {
+      "variant_id": "JUGGLING",
+      "trace": "STS2SuperModel/data/card-direct-traces3/JUGGLING.jsonl",
+      "report": "p1-csharp-card-direct-juggling-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "f46e464aa4bb064a8b3d7ae047b1c989564e65fd8b11b56091b201fc7fbb23e7",
+      "identical": true
+    },
+    {
+      "variant_id": "KINGLY_KICK",
+      "trace": "STS2SuperModel/data/card-direct-traces4/KINGLY_KICK.jsonl",
+      "report": "p1-csharp-card-direct-kingly_kick-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "c1aceb2c6e1d9b4fe86c89368fad05b3332880d31e244e0356a3ab916b42b2d9",
+      "identical": true
+    },
+    {
+      "variant_id": "KINGLY_PUNCH",
+      "trace": "STS2SuperModel/data/card-direct-traces4/KINGLY_PUNCH.jsonl",
+      "report": "p1-csharp-card-direct-kingly_punch-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "f9d0202fa1f900d54a1b70807ca33f84e3d9581d20d95d08fbdeae2cbf51adf8",
+      "identical": true
+    },
+    {
+      "variant_id": "KNOCKOUT_BLOW",
+      "trace": "STS2SuperModel/data/card-direct-traces4/KNOCKOUT_BLOW.jsonl",
+      "report": "p1-csharp-card-direct-knockout_blow-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "e787ce245c8c1e515c555318c5affc1752fea11ccfab33c86f913579c2b7fbcb",
+      "identical": true
+    },
+    {
+      "variant_id": "KNOW_THY_PLACE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/KNOW_THY_PLACE.jsonl",
+      "report": "p1-csharp-card-direct-know_thy_place-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "e0e9ecdcc361c1945b1cfcdd7d316fb11d12b61f209d1e9c1277cddb2ea6b436",
+      "identical": true
+    },
+    {
+      "variant_id": "LEADING_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/LEADING_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-leading_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1d91c2026a4bb013c3b1557b1670daa39e099f3fe1d15167477559494db78fcb",
+      "identical": true
+    },
+    {
+      "variant_id": "LEAP",
+      "trace": "STS2SuperModel/data/card-direct-traces4/LEAP.jsonl",
+      "report": "p1-csharp-card-direct-leap-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "ad747e25a49faeac9532b657543a64bda20d7f0c266ff96b06242378133ebc5f",
+      "identical": true
+    },
+    {
+      "variant_id": "LEG_SWEEP",
+      "trace": "STS2SuperModel/data/card-direct-traces3/LEG_SWEEP.jsonl",
+      "report": "p1-csharp-card-direct-leg_sweep-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7560c51e694c37c888a493e400e9ea6e20fb2fbe62f5b9998953e18e18b229e8",
+      "identical": true
+    },
+    {
+      "variant_id": "MAKE_IT_SO",
+      "trace": "STS2SuperModel/data/card-direct-traces4/MAKE_IT_SO.jsonl",
+      "report": "p1-csharp-card-direct-make_it_so-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "dad768719ffa39dc0252496d80d1de063d6721ccfa934a8656de11f7c711f04e",
+      "identical": true
+    },
+    {
+      "variant_id": "MANGLE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/MANGLE.jsonl",
+      "report": "p1-csharp-card-direct-mangle-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "b0efb25aeb6a24981e5cebd9437e822473d6f37df5985bcfc89f1393ea08cb49",
+      "identical": true
+    },
+    {
+      "variant_id": "MELANCHOLY",
+      "trace": "STS2SuperModel/data/card-direct-traces4/MELANCHOLY.jsonl",
+      "report": "p1-csharp-card-direct-melancholy-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7ec57563a89b2c6b3e5ff6e32a4bc6e78674fa3624427340b12818f6e4970bb1",
+      "identical": true
+    },
+    {
+      "variant_id": "MEMENTO_MORI",
+      "trace": "STS2SuperModel/data/card-direct-traces3/MEMENTO_MORI.jsonl",
+      "report": "p1-csharp-card-direct-memento_mori-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "82733a4fe6c0b8ff9c24b0e38da3b205552477d80773a4286300d17441ec32ea",
+      "identical": true
+    },
+    {
+      "variant_id": "METEOR_SHOWER",
+      "trace": "STS2SuperModel/data/card-direct-traces4/METEOR_SHOWER.jsonl",
+      "report": "p1-csharp-card-direct-meteor_shower-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "6176edea7ac9e241458267e66ed312ec9faeb56b1cf958886c06b4fa4b7d57e0",
+      "identical": true
+    },
+    {
+      "variant_id": "METEOR_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/METEOR_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-meteor_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "eb687be01b0d2a5a75ef4bfec24de1d533661e7751f2391c16b9cab54ca56a2a",
+      "identical": true
+    },
+    {
+      "variant_id": "MISERY",
+      "trace": "STS2SuperModel/data/card-direct-traces4/MISERY.jsonl",
+      "report": "p1-csharp-card-direct-misery-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "241c7f9eebd01d783d8ac4938dace2d94b1309fc031780efdb38936ec50601b6",
+      "identical": true
+    },
+    {
+      "variant_id": "MOLTEN_FIST",
+      "trace": "STS2SuperModel/data/card-direct-traces3/MOLTEN_FIST.jsonl",
+      "report": "p1-csharp-card-direct-molten_fist-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "bc3c6465687529a3ac268ba4e32630591bba4a420a630ee4a6f00e3862452723",
+      "identical": true
+    },
+    {
+      "variant_id": "MOMENTUM_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/MOMENTUM_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-momentum_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "021a92be1b266f447b358d6ff52cfc51c272e613dc6c30e13b6578a5994012fa",
+      "identical": true
+    },
+    {
+      "variant_id": "MURDER",
+      "trace": "STS2SuperModel/data/card-direct-traces4/MURDER.jsonl",
+      "report": "p1-csharp-card-direct-murder-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "85e91bd0301cfbb41f1d73c180970e11cd6eb483c25a9751217b480b0eb7cb87",
+      "identical": true
+    },
+    {
+      "variant_id": "NEUTRALIZE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/NEUTRALIZE.jsonl",
+      "report": "p1-csharp-card-direct-neutralize-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "393ef545a9b2b5816c5a7eb035b92f117862696e2ce612cac07aaae4d23e8b3f",
+      "identical": true
+    },
+    {
+      "variant_id": "NEUTRON_AEGIS",
+      "trace": "STS2SuperModel/data/card-direct-traces4/NEUTRON_AEGIS.jsonl",
+      "report": "p1-csharp-card-direct-neutron_aegis-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "cf5319b567fc33a39e22961147bbdc04e50ab58b00f94eb6faa37c0e453a6ac7",
+      "identical": true
+    },
+    {
+      "variant_id": "NOXIOUS_FUMES",
+      "trace": "STS2SuperModel/data/card-direct-traces3/NOXIOUS_FUMES.jsonl",
+      "report": "p1-csharp-card-direct-noxious_fumes-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3a39cb5641b66c6fd081ac377da92c9678e0c987e94cfc83aff2314a1fac9a67",
+      "identical": true
+    },
+    {
+      "variant_id": "NULL",
+      "trace": "STS2SuperModel/data/card-direct-traces4/NULL.jsonl",
+      "report": "p1-csharp-card-direct-null-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3ccd4207f30cf66b9261c0cdcfc161b2b0e9b23f1ba7f4b49c40da3cef4ed173",
+      "identical": true
+    },
+    {
+      "variant_id": "OFFERING",
+      "trace": "STS2SuperModel/data/card-direct-traces3/OFFERING.jsonl",
+      "report": "p1-csharp-card-direct-offering-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "57f984b40fd378e0fb68d06ad6efc3f80e55cc11ec7c841dd5f936cb126251d8",
+      "identical": true
+    },
+    {
+      "variant_id": "OMNISLICE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/OMNISLICE.jsonl",
+      "report": "p1-csharp-card-direct-omnislice-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "ef32b956ca774ae03de9f1c700bcb3cc27dca3c8254712f90016763d22ef5f18",
+      "identical": true
+    },
+    {
+      "variant_id": "OUTBREAK",
+      "trace": "STS2SuperModel/data/card-direct-traces3/OUTBREAK.jsonl",
+      "report": "p1-csharp-card-direct-outbreak-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "faa72ed75bf8704e66e612635ec22782fbecad3783a640f8cde3d7a89b996ae4",
+      "identical": true
+    },
+    {
+      "variant_id": "OVERCLOCK",
+      "trace": "STS2SuperModel/data/card-direct-traces4/OVERCLOCK.jsonl",
+      "report": "p1-csharp-card-direct-overclock-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "d27ab0d8da3e656721a0b66f4453970b42c6da183d32b2911b7b1fb627e2b4d3",
+      "identical": true
+    },
+    {
+      "variant_id": "PANACHE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/PANACHE.jsonl",
+      "report": "p1-csharp-card-direct-panache-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "80a149c186e93d146d2e9858ad15dbe5c1068ec5be92e237073172e3da822b02",
+      "identical": true
+    },
+    {
+      "variant_id": "PERFECTED_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/PERFECTED_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-perfected_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "4fc1d143c064688188d9ac7da55f0ec8eec3c1c5ccb84fb86190d636b44e23b1",
+      "identical": true
+    },
+    {
+      "variant_id": "PIERCING_WAIL",
+      "trace": "STS2SuperModel/data/card-direct-traces3/PIERCING_WAIL.jsonl",
+      "report": "p1-csharp-card-direct-piercing_wail-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "58a64f9d6559d7185d57043189e7d28041aa696c3ef8104039710b7833a959f5",
+      "identical": true
+    },
+    {
+      "variant_id": "PILLAGE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/PILLAGE.jsonl",
+      "report": "p1-csharp-card-direct-pillage-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7e994d50b3d2c0c9b6e0b583e5e4a5e9a582b8c13923d7aa7cea6fa1c0e1c420",
+      "identical": true
+    },
+    {
+      "variant_id": "PINPOINT",
+      "trace": "STS2SuperModel/data/card-direct-traces3/PINPOINT.jsonl",
+      "report": "p1-csharp-card-direct-pinpoint-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "2ed0abfd1c0c55f566177596e2e50eda32d5e1257ad27fb3ea24fc073f508c2d",
+      "identical": true
+    },
+    {
+      "variant_id": "POISONED_STAB",
+      "trace": "STS2SuperModel/data/card-direct-traces3/POISONED_STAB.jsonl",
+      "report": "p1-csharp-card-direct-poisoned_stab-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1e5ddc59f36265b7fb9e87380689bcdcc1e74f767973f046315c90f77ef24f8f",
+      "identical": true
+    },
+    {
+      "variant_id": "POMMEL_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/POMMEL_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-pommel_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7c85b7fb17ac0564d884a9a660b8239dfdc59b047590bfc781b6480a52bf12b4",
+      "identical": true
+    },
+    {
+      "variant_id": "POUNCE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/POUNCE.jsonl",
+      "report": "p1-csharp-card-direct-pounce-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3cc18b6ddcb776e7dd419dc8db04bce0a4432417a90d1a8d8163cc736100d503",
+      "identical": true
+    },
+    {
+      "variant_id": "PRECISE_CUT",
+      "trace": "STS2SuperModel/data/card-direct-traces3/PRECISE_CUT.jsonl",
+      "report": "p1-csharp-card-direct-precise_cut-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "a76b3e89ed464e2433fc1fc589ccfc31807f79732a7cfb6434a34f57b5b4ccdb",
+      "identical": true
+    },
+    {
+      "variant_id": "PREDATOR",
+      "trace": "STS2SuperModel/data/card-direct-traces3/PREDATOR.jsonl",
+      "report": "p1-csharp-card-direct-predator-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "113ee23a4e5a03f3ab49f0da4600b8c383ab1059bded3adec5b82c700ae5557d",
+      "identical": true
+    },
+    {
+      "variant_id": "PRODUCTION",
+      "trace": "STS2SuperModel/data/card-direct-traces4/PRODUCTION.jsonl",
+      "report": "p1-csharp-card-direct-production-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "c78c12c6946b8c3cae4fd44267a4620d36ea000f11c4e9d5b3f3d039f66d464b",
+      "identical": true
+    },
+    {
+      "variant_id": "PROWESS",
+      "trace": "STS2SuperModel/data/card-direct-traces4/PROWESS.jsonl",
+      "report": "p1-csharp-card-direct-prowess-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "a43fa5e0eeafd0a11d460b1bcc04a96e9f0c6e6fd1f8254b622e86d865143ad6",
+      "identical": true
+    },
+    {
+      "variant_id": "PULL_AGGRO",
+      "trace": "STS2SuperModel/data/card-direct-traces4/PULL_AGGRO.jsonl",
+      "report": "p1-csharp-card-direct-pull_aggro-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "cb04bf106296557a23869550a48b8741c4c315512cb4eb5effd669e2372ca905",
+      "identical": true
+    },
+    {
+      "variant_id": "PYRE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/PYRE.jsonl",
+      "report": "p1-csharp-card-direct-pyre-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7143748aae05db6beb914773ee377b455983d2372b3240959c02ab567da775aa",
+      "identical": true
+    },
+    {
+      "variant_id": "RAGE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/RAGE.jsonl",
+      "report": "p1-csharp-card-direct-rage-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "5f3044230cee2d405aa96df4e29962cd969ffffca9cc4d4dc03834ea0a8ea4e5",
+      "identical": true
+    },
+    {
+      "variant_id": "RALLY",
+      "trace": "STS2SuperModel/data/card-direct-traces4/RALLY.jsonl",
+      "report": "p1-csharp-card-direct-rally-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "aabf19ed513b0c748b0044869ae6f8a9ecea1e042506245ec97002a9d6d12ec1",
+      "identical": true
+    },
+    {
+      "variant_id": "RAMPAGE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/RAMPAGE.jsonl",
+      "report": "p1-csharp-card-direct-rampage-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "0f6da0ff6d1f200fb052f9cc8404f50535b0c9d4435cf771b03f33c71b111a16",
+      "identical": true
+    },
+    {
+      "variant_id": "REAP",
+      "trace": "STS2SuperModel/data/card-direct-traces4/REAP.jsonl",
+      "report": "p1-csharp-card-direct-reap-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7cf945fc5c09f2adba88a2012004ee7e8f3efb4a244ecc87fde23e75b0ef8942",
+      "identical": true
+    },
+    {
+      "variant_id": "REFRACT",
+      "trace": "STS2SuperModel/data/card-direct-traces4/REFRACT.jsonl",
+      "report": "p1-csharp-card-direct-refract-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "70b8aaf746cfe0c1cb51a2aa64450a50c46cb8176f094dd82d6971f61c5b274a",
+      "identical": true
+    },
+    {
+      "variant_id": "REND",
+      "trace": "STS2SuperModel/data/card-direct-traces4/REND.jsonl",
+      "report": "p1-csharp-card-direct-rend-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "29a5a6003c3120a171139602368ee73a34eca9c3548370dbce079924e2032c79",
+      "identical": true
+    },
+    {
+      "variant_id": "ROCKET_PUNCH",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ROCKET_PUNCH.jsonl",
+      "report": "p1-csharp-card-direct-rocket_punch-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7a984c2796328176672081570ba6a8782fbc321db57c3eca337dec2af38d043a",
+      "identical": true
+    },
+    {
+      "variant_id": "RUPTURE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/RUPTURE.jsonl",
+      "report": "p1-csharp-card-direct-rupture-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "d06cc7f5ab9124196dabb24a3b8daf582ad5099e6fa70384cb813167389da1e4",
+      "identical": true
+    },
+    {
+      "variant_id": "SCRAPE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SCRAPE.jsonl",
+      "report": "p1-csharp-card-direct-scrape-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "4ecf8365f36f83d2b8c2e9498ead6525a9b7277c4ab1d609bb18e836f102c242",
+      "identical": true
+    },
+    {
+      "variant_id": "SCULPTING_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SCULPTING_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-sculpting_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "28d82c13e21188be2b589372c546179a96ee54c6b19ae031708fd50c52f1a2bb",
+      "identical": true
+    },
+    {
+      "variant_id": "SECOND_WIND",
+      "trace": "STS2SuperModel/data/card-direct-traces3/SECOND_WIND.jsonl",
+      "report": "p1-csharp-card-direct-second_wind-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3b4f9503aabd0d94835cfec333b751b24cbcd9673d73c907f5a0f8ed3f868873",
+      "identical": true
+    },
+    {
+      "variant_id": "SEEKER_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SEEKER_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-seeker_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "2b4ae7bda96410c6bff7a21dc1dc37a0350e140c4fa49873fe1a78cc93a41197",
+      "identical": true
+    },
+    {
+      "variant_id": "SETUP_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/SETUP_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-setup_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "da9a087d0a0ff46a4823541e87e1ee8e47c60ff284ed9a30ef53872f801299a7",
+      "identical": true
+    },
+    {
+      "variant_id": "SHADOW_SHIELD",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SHADOW_SHIELD.jsonl",
+      "report": "p1-csharp-card-direct-shadow_shield-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1c2770faa8c67c56dc5165bf888cbe35471c39f7109044ff09b906fd2eae33f1",
+      "identical": true
+    },
+    {
+      "variant_id": "SHATTER",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SHATTER.jsonl",
+      "report": "p1-csharp-card-direct-shatter-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "afbd7186b75576d437d38502bdd5b10c1860f760b4008c473b7359c9c12a1c58",
+      "identical": true
+    },
+    {
+      "variant_id": "SHRUG_IT_OFF",
+      "trace": "STS2SuperModel/data/card-direct-traces3/SHRUG_IT_OFF.jsonl",
+      "report": "p1-csharp-card-direct-shrug_it_off-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "fc265a5db89f2f33a55e9b992dd5ec4619822b1980d1b142329d96e6f5bb9361",
+      "identical": true
+    },
+    {
+      "variant_id": "SKEWER",
+      "trace": "STS2SuperModel/data/card-direct-traces3/SKEWER.jsonl",
+      "report": "p1-csharp-card-direct-skewer-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "bb628cd19f9855346740f8e05b3a04a99b2b3ac74e1b96a611184c8cdc522200",
+      "identical": true
+    },
+    {
+      "variant_id": "SLICE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/SLICE.jsonl",
+      "report": "p1-csharp-card-direct-slice-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "b7bd0f6f88b7135db0268efbfdca466bf57c511299075a16efb58c02e2266576",
+      "identical": true
+    },
+    {
+      "variant_id": "SNAKEBITE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/SNAKEBITE.jsonl",
+      "report": "p1-csharp-card-direct-snakebite-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3150da82ebf9ef1e93de5e98fc7cfbde93b6bf30708043e5838daba609babf5a",
+      "identical": true
+    },
+    {
+      "variant_id": "SOLAR_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SOLAR_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-solar_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "12ca34e239b5acb531bea41953bc9f0bc21e23c946449355934951913aead87f",
+      "identical": true
+    },
+    {
+      "variant_id": "SOUL_STORM",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SOUL_STORM.jsonl",
+      "report": "p1-csharp-card-direct-soul_storm-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "33a90950ddca9f2796ca9bccad1c138010089982ef0d7c9198b9120222786145",
+      "identical": true
+    },
+    {
+      "variant_id": "SOW",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SOW.jsonl",
+      "report": "p1-csharp-card-direct-sow-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "dc0207fbc8523bd15bc9269722b3464c94722672669578e1bee005a1a9bf10f9",
+      "identical": true
+    },
+    {
+      "variant_id": "SPEEDSTER",
+      "trace": "STS2SuperModel/data/card-direct-traces3/SPEEDSTER.jsonl",
+      "report": "p1-csharp-card-direct-speedster-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "dd2e43af90e43054b7ee1b743d2675553f5419108f827f77b2c0659c9c9ae03f",
+      "identical": true
+    },
+    {
+      "variant_id": "SPOILS_OF_BATTLE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SPOILS_OF_BATTLE.jsonl",
+      "report": "p1-csharp-card-direct-spoils_of_battle-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "28fc1f049aca3a2f7795bebb650cc9f1a73009c7d93f3688f47f56db7275634c",
+      "identical": true
+    },
+    {
+      "variant_id": "STAMPEDE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/STAMPEDE.jsonl",
+      "report": "p1-csharp-card-direct-stampede-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "d9aa40d539dd844b25489da21aa5733508b50ad5de3f2e55bf95d6456d7d8828",
+      "identical": true
+    },
+    {
+      "variant_id": "STOMP",
+      "trace": "STS2SuperModel/data/card-direct-traces3/STOMP.jsonl",
+      "report": "p1-csharp-card-direct-stomp-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "797082d3e5fc2b1cb1dae48900ef3a879bf5c6d96e2aeb6aa4dac4b08c82a7b8",
+      "identical": true
+    },
+    {
+      "variant_id": "STONE_ARMOR",
+      "trace": "STS2SuperModel/data/card-direct-traces3/STONE_ARMOR.jsonl",
+      "report": "p1-csharp-card-direct-stone_armor-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "94490897a73cd9f45c4ab4110cb976f81e06c062976e8de8ff068516dd09a867",
+      "identical": true
+    },
+    {
+      "variant_id": "STORM_OF_STEEL",
+      "trace": "STS2SuperModel/data/card-direct-traces4/STORM_OF_STEEL.jsonl",
+      "report": "p1-csharp-card-direct-storm_of_steel-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "a573a7b599a1ba4aa6296250c28c8037a7446cc5a6e35047bf34c7432dac67db",
+      "identical": true
+    },
+    {
+      "variant_id": "STRANGLE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/STRANGLE.jsonl",
+      "report": "p1-csharp-card-direct-strangle-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "9be3b43db2adedde222da68b4fcf07f45da94d4ef8be9032f620d3b06dc938fe",
+      "identical": true
+    },
+    {
+      "variant_id": "STRIKE_DEFECT",
+      "trace": "STS2SuperModel/data/card-direct-traces4/STRIKE_DEFECT.jsonl",
+      "report": "p1-csharp-card-direct-strike_defect-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "a4a03285a6d32b78c0a6bfbfdccde0e57363df6f03101a792d5b6e20d0e97763",
+      "identical": true
+    },
+    {
+      "variant_id": "STRIKE_IRONCLAD",
+      "trace": "STS2SuperModel/data/card-direct-traces3/STRIKE_IRONCLAD.jsonl",
+      "report": "p1-csharp-card-direct-strike_ironclad-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "b8bc740ca472b72bbc6141b407260f8b20699f673f0e7a318e96cacf0db7cf38",
+      "identical": true
+    },
+    {
+      "variant_id": "STRIKE_NECROBINDER",
+      "trace": "STS2SuperModel/data/card-direct-traces4/STRIKE_NECROBINDER.jsonl",
+      "report": "p1-csharp-card-direct-strike_necrobinder-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "48a3c9916f5cc0fc1b2e8ca2173269709602bfdd245e7b684eba2fdf141b7e86",
+      "identical": true
+    },
+    {
+      "variant_id": "STRIKE_REGENT",
+      "trace": "STS2SuperModel/data/card-direct-traces4/STRIKE_REGENT.jsonl",
+      "report": "p1-csharp-card-direct-strike_regent-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "a401ddbdabd38413a2c5a1953b401a5b14f01390b1f4ef9fee00cf1b110cf64d",
+      "identical": true
+    },
+    {
+      "variant_id": "STRIKE_SILENT",
+      "trace": "STS2SuperModel/data/card-direct-traces3/STRIKE_SILENT.jsonl",
+      "report": "p1-csharp-card-direct-strike_silent-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1070c7b86a114a382dcdd3d0bea99eb4b216224da133a76fa705f5447a260560",
+      "identical": true
+    },
+    {
+      "variant_id": "SUCKER_PUNCH",
+      "trace": "STS2SuperModel/data/card-direct-traces3/SUCKER_PUNCH.jsonl",
+      "report": "p1-csharp-card-direct-sucker_punch-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "c09de53bd3d42bb32269edc3c87110bd00d43524e4ba8fdf627698ec17c845b9",
+      "identical": true
+    },
+    {
+      "variant_id": "SUMMON_FORTH",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SUMMON_FORTH.jsonl",
+      "report": "p1-csharp-card-direct-summon_forth-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "f3d3f8d3abe8a0fc5aef7419b8492763f43c79e2910daaf9d92cdd0366140f15",
+      "identical": true
+    },
+    {
+      "variant_id": "SUNDER",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SUNDER.jsonl",
+      "report": "p1-csharp-card-direct-sunder-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "50cc1a30317d4804822c9e5a2f540bae8616b5f1ad9775721bb4a19ffdc5ff49",
+      "identical": true
+    },
+    {
+      "variant_id": "SUPERCRITICAL",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SUPERCRITICAL.jsonl",
+      "report": "p1-csharp-card-direct-supercritical-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "2c4402e3ccb8513cd41a95dffd5de6baaecf17b2984c4b586ba9991b32735a3e",
+      "identical": true
+    },
+    {
+      "variant_id": "SUPERMASSIVE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SUPERMASSIVE.jsonl",
+      "report": "p1-csharp-card-direct-supermassive-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "8fa695f0f41968cfe39400f378558dcf68a5b103f460db7e20766813cfce3e1b",
+      "identical": true
+    },
+    {
+      "variant_id": "SUPPRESS",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SUPPRESS.jsonl",
+      "report": "p1-csharp-card-direct-suppress-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "ca5cfc8a880b3398f680052498b64af8979e5d11eab42461438ce49566f47e48",
+      "identical": true
+    },
+    {
+      "variant_id": "SWEEPING_BEAM",
+      "trace": "STS2SuperModel/data/card-direct-traces4/SWEEPING_BEAM.jsonl",
+      "report": "p1-csharp-card-direct-sweeping_beam-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "b74ab7f072e377bd074d5aae4446811442881bbd39387235cfe79c5df1c0624d",
+      "identical": true
+    },
+    {
+      "variant_id": "TACTICIAN",
+      "trace": "STS2SuperModel/data/card-direct-traces3/TACTICIAN.jsonl",
+      "report": "p1-csharp-card-direct-tactician-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "8ed9f9fd27c0cf21b3b988e8190fefa82032286fa652da2669d401c89b07be10",
+      "identical": true
+    },
+    {
+      "variant_id": "TANK",
+      "trace": "STS2SuperModel/data/card-direct-traces3/TANK.jsonl",
+      "report": "p1-csharp-card-direct-tank-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "978e333d7cf4d22d95acd7aa63170b6be3525d88053aadba04dc03b5030bfe57",
+      "identical": true
+    },
+    {
+      "variant_id": "TAUNT",
+      "trace": "STS2SuperModel/data/card-direct-traces3/TAUNT.jsonl",
+      "report": "p1-csharp-card-direct-taunt-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1bb5668bdeb49adb2641bc1c8e9a8c69e7b81bb1d266b9babc65357ba4d123af",
+      "identical": true
+    },
+    {
+      "variant_id": "TEAR_ASUNDER",
+      "trace": "STS2SuperModel/data/card-direct-traces3/TEAR_ASUNDER.jsonl",
+      "report": "p1-csharp-card-direct-tear_asunder-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "9381485cdf4f49c5b1f7617b355518f6a869f4ac457a362d807a11f95e6ac548",
+      "identical": true
+    },
+    {
+      "variant_id": "TESLA_COIL",
+      "trace": "STS2SuperModel/data/card-direct-traces4/TESLA_COIL.jsonl",
+      "report": "p1-csharp-card-direct-tesla_coil-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "e992f44c1739df7134b6d62973f31b8b9c6ecf1f2c27db5e27ae3661dc45800e",
+      "identical": true
+    },
+    {
+      "variant_id": "THE_BALL",
+      "trace": "STS2SuperModel/data/card-direct-traces4/THE_BALL.jsonl",
+      "report": "p1-csharp-card-direct-the_ball-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1b2974529a54c874eae353e0a40f776e410ad3408421fbe00b0dd339bbee2f33",
+      "identical": true
+    },
+    {
+      "variant_id": "THE_HUNT",
+      "trace": "STS2SuperModel/data/card-direct-traces4/THE_HUNT.jsonl",
+      "report": "p1-csharp-card-direct-the_hunt-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "e20f1c6f24b4bfc43e677377248613084546ea289175880dc7282b853be467ad",
+      "identical": true
+    },
+    {
+      "variant_id": "THE_SCYTHE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/THE_SCYTHE.jsonl",
+      "report": "p1-csharp-card-direct-the_scythe-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "3a22e7c114e7c90f5598f2c8259c01b79e5401aefa268453d49465af5d909308",
+      "identical": true
+    },
+    {
+      "variant_id": "THE_SMITH",
+      "trace": "STS2SuperModel/data/card-direct-traces4/THE_SMITH.jsonl",
+      "report": "p1-csharp-card-direct-the_smith-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "7178ab094bec318f62773f3aeae521f1a025f669be683544916fc0b0751c5ff1",
+      "identical": true
+    },
+    {
+      "variant_id": "THRUMMING_HATCHET",
+      "trace": "STS2SuperModel/data/card-direct-traces4/THRUMMING_HATCHET.jsonl",
+      "report": "p1-csharp-card-direct-thrumming_hatchet-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "35977c6c166e1a9bfcb7be90508d82bb82c174b66f1eb07594dc092203283558",
+      "identical": true
+    },
+    {
+      "variant_id": "THUNDERCLAP",
+      "trace": "STS2SuperModel/data/card-direct-traces3/THUNDERCLAP.jsonl",
+      "report": "p1-csharp-card-direct-thunderclap-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "937b43d061575f5cf36b4a51db42355c000cd6c537f4006a85d2059bf10bd618",
+      "identical": true
+    },
+    {
+      "variant_id": "TREMBLE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/TREMBLE.jsonl",
+      "report": "p1-csharp-card-direct-tremble-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "6e4d765435264f727d1fefed27e2bf38fe441c81f58e04f0e57d9d4d9ea2a960",
+      "identical": true
+    },
+    {
+      "variant_id": "TURBO",
+      "trace": "STS2SuperModel/data/card-direct-traces4/TURBO.jsonl",
+      "report": "p1-csharp-card-direct-turbo-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "2f4bd2818f699359216d9681d76f319607856b4b625560653e3eb264525046fc",
+      "identical": true
+    },
+    {
+      "variant_id": "TWIN_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/TWIN_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-twin_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "c7f72569cf8954449df316c86c150b1ccff7941648c1db11a2a378bd9f27bf79",
+      "identical": true
+    },
+    {
+      "variant_id": "ULTIMATE_DEFEND",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ULTIMATE_DEFEND.jsonl",
+      "report": "p1-csharp-card-direct-ultimate_defend-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "dab9adab577f1fc5b33d092d1239377bc0cebfa10816f2aac10b28992500ba85",
+      "identical": true
+    },
+    {
+      "variant_id": "ULTIMATE_STRIKE",
+      "trace": "STS2SuperModel/data/card-direct-traces4/ULTIMATE_STRIKE.jsonl",
+      "report": "p1-csharp-card-direct-ultimate_strike-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "354b20656910e215533c277026b0a50cd27ce51e97c6d6c6a783462b8c949828",
+      "identical": true
+    },
+    {
+      "variant_id": "UNDEATH",
+      "trace": "STS2SuperModel/data/card-direct-traces4/UNDEATH.jsonl",
+      "report": "p1-csharp-card-direct-undeath-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "1920545505ad3bfcb6dd3f893ca38607e40a3107716edb04ff3aa577f34777bd",
+      "identical": true
+    },
+    {
+      "variant_id": "UNMOVABLE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/UNMOVABLE.jsonl",
+      "report": "p1-csharp-card-direct-unmovable-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "b71927b2ac3a5bc07e059847e9ccaebd6ee44fd5980aae6125dd3305977872d5",
+      "identical": true
+    },
+    {
+      "variant_id": "UNRELENTING",
+      "trace": "STS2SuperModel/data/card-direct-traces3/UNRELENTING.jsonl",
+      "report": "p1-csharp-card-direct-unrelenting-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "2b13cb437027a54e6b6cbcce668d9c623e1a1d4f80e153aff850a8c6bc10c772",
+      "identical": true
+    },
+    {
+      "variant_id": "UNTOUCHABLE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/UNTOUCHABLE.jsonl",
+      "report": "p1-csharp-card-direct-untouchable-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "fbb72526e5bd2fae8a3ea61ad36741c799693bc4d8291cf4bbf10998287a2b85",
+      "identical": true
+    },
+    {
+      "variant_id": "UPPERCUT",
+      "trace": "STS2SuperModel/data/card-direct-traces3/UPPERCUT.jsonl",
+      "report": "p1-csharp-card-direct-uppercut-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "8b144cb230aec7cb5e0080fb57a91dc9f6a40a1850cec04ccdd74dcefcce0a07",
+      "identical": true
+    },
+    {
+      "variant_id": "UPROAR",
+      "trace": "STS2SuperModel/data/card-direct-traces4/UPROAR.jsonl",
+      "report": "p1-csharp-card-direct-uproar-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "8cffc1411ac285ff158b5d224ecae93b805b6ee222b0c5460758cbce3f7a2fe2",
+      "identical": true
+    },
+    {
+      "variant_id": "UP_MY_SLEEVE",
+      "trace": "STS2SuperModel/data/card-direct-traces3/UP_MY_SLEEVE.jsonl",
+      "report": "p1-csharp-card-direct-up_my_sleeve-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "928c3e7dd3cfb1681b89b6443161b7331353407dba201eec1f7d0a08a166bba6",
+      "identical": true
+    },
+    {
+      "variant_id": "VICIOUS",
+      "trace": "STS2SuperModel/data/card-direct-traces3/VICIOUS.jsonl",
+      "report": "p1-csharp-card-direct-vicious-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "cd1ac74a963b1fbacc465d36f98e266b80892aee25fd734f6808ec655aeb5e91",
+      "identical": true
+    },
+    {
+      "variant_id": "WHIRLWIND",
+      "trace": "STS2SuperModel/data/card-direct-traces3/WHIRLWIND.jsonl",
+      "report": "p1-csharp-card-direct-whirlwind-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "dc360fb0b8e275e1f7486172d43426cd4b26a8ceb5347780614bf4f70805a337",
+      "identical": true
+    },
+    {
+      "variant_id": "WISP",
+      "trace": "STS2SuperModel/data/card-direct-traces4/WISP.jsonl",
+      "report": "p1-csharp-card-direct-wisp-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "b94bd2ab8c50ef6c35b77b8b13b60a3e7a1e01bd0ed02b16642baaeea60250ee",
+      "identical": true
+    },
+    {
+      "variant_id": "WROUGHT_IN_WAR",
+      "trace": "STS2SuperModel/data/card-direct-traces4/WROUGHT_IN_WAR.jsonl",
+      "report": "p1-csharp-card-direct-wrought_in_war-diff-report.json",
+      "exit_a": 0,
+      "exit_b": 0,
+      "sha256": "9eff7eb0e2bfa9014f89e9854175814c8875d4ad31771ba6f2649e9200830b75",
+      "identical": true
+    }
+  ]
+}

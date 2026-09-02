@@ -1,0 +1,80 @@
+{
+  "dataset_path": "data/m5-reliable-candidate.jsonl",
+  "dataset_kind": "teacher",
+  "generated_at": "2026-08-31T05:45:59Z",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol": "0.2.0",
+    "trace_schema": 1,
+    "training_schema": 1
+  },
+  "row_counts": {
+    "trace_rows": 0,
+    "training_rows": 408,
+    "episodes": 188,
+    "states_unique": 408,
+    "actions_total": 2635
+  },
+  "split_violations": [],
+  "public_leakage_count": 0,
+  "stable_id_missing": 0,
+  "label_stats": {
+    "reliable": 408,
+    "estimated": 0,
+    "low_confidence": 0,
+    "uncalculable": 0,
+    "unknown": 0,
+    "empty_teacher_best_actions": 0,
+    "empty_teacher_categories": {}
+  },
+  "duplicate_states": {
+    "warning_count": 0,
+    "error_count": 0,
+    "entries": [],
+    "classification_legend": {
+      "warning_identical_duplicate": "same hash + same combo + same labels: redundant, merge recommended",
+      "error_conflicting_labels": "same hash + same combo but differing labels/confidence: dataset corruption"
+    }
+  },
+  "malformed_lines": [],
+  "metadata_checks": {
+    "manifest_count_cross_check": "ok",
+    "sources": [
+      {
+        "file": "data/m5-reliable-candidate.jsonl",
+        "sha256": "37FD16C350B6C1DEBDFA1F636D2348BCDB359EB79CC95E75EBA23D62251E97CA",
+        "listed_in_manifest": true
+      }
+    ],
+    "splits": {
+      "dir": "data/m5-reliable-candidate-splits",
+      "stats": {
+        "train": {
+          "row_count": 200,
+          "episode_count": 93
+        },
+        "validation": {
+          "row_count": 81,
+          "episode_count": 36
+        },
+        "test": {
+          "row_count": 93,
+          "episode_count": 44
+        },
+        "challenge": {
+          "row_count": 34,
+          "episode_count": 15
+        }
+      }
+    }
+  },
+  "warnings": [],
+  "verdict": "pass",
+  "failures": [],
+  "checked_files": [
+    "data/m5-reliable-candidate-manifest.json",
+    "data/m5-reliable-candidate.jsonl"
+  ]
+}

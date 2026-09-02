@@ -1,0 +1,63 @@
+{
+  "action_count": 648,
+  "action_kind_counts": {
+    "EndTurn": 100,
+    "PlayCard": 548
+  },
+  "ascension_counts": {
+    "0": 100
+  },
+  "character_counts": {
+    "The Ironclad": 40,
+    "The Silent": 60
+  },
+  "combat_count": 23,
+  "confidence_counts": {
+    "Estimated": 54,
+    "Reliable": 26,
+    "Uncalculable": 20
+  },
+  "coverage": {
+    "card_ids": {
+      "CARD.AFTERIMAGE": 360,
+      "CARD.BASH": 15,
+      "CARD.DEFEND_IRONCLAD": 87,
+      "CARD.STRIKE_IRONCLAD": 86
+    },
+    "enemy_ids": {
+      "Seapunk": 100
+    },
+    "potion_ids": {},
+    "power_ids": {},
+    "relic_ids": {
+      "AKABEKO": 30,
+      "ART_OF_WAR": 10,
+      "RING_OF_THE_SNAKE": 60
+    }
+  },
+  "episode_count": 23,
+  "metadata": {
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "feature_schema_version": "1",
+    "game_commit": "41cef1ea",
+    "game_version": "v0.111.0",
+    "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383",
+    "model_version": "none",
+    "scorer_version": "not-applicable",
+    "semantic_database_version": "game-runtime-v0111",
+    "simulator_version": "cli-v0111-headless"
+  },
+  "missing_metadata": {},
+  "report_kind": "p0_tooling_smoke",
+  "restriction_counts": {},
+  "risk_event_counts": {
+    "teacher_label_missing": 20
+  },
+  "row_count": 100,
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-current-100.jsonl",
+  "source_sha256": "980A697017B24D73957DA0DF498A4361925DEF503A01A1F214DD9F5A54F3DCBD",
+  "teacher_pair_count": 100,
+  "teacher_pair_rate": 1.0
+}

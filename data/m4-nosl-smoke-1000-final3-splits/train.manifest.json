@@ -1,0 +1,21 @@
+{
+  "split": "train",
+  "row_count": 430,
+  "group_count": 117,
+  "groups_sha256": "3F01259FCAE229FC71F24D31960CD13A2645A27A8C9AA4157F7D3F65622F915D",
+  "source": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-final3-dedup.jsonl",
+  "source_sha256": "6ECCFD20073DD0A73713C2D84A06275203DAF0B350DADAE5F2E287A0CD05FB8F",
+  "output_sha256": "8D75D6E8963113C93482FD579777D9261E62EFA85F01B29A28AF9C00992F9CD9",
+  "byte_count": 10916368,
+  "storage_format": "jsonl",
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "simulator_version": "cli-v0111-headless",
+  "semantic_database_version": "game-runtime-v0111",
+  "scorer_version": "not-applicable",
+  "feature_schema_version": "1",
+  "model_version": "none",
+  "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383"
+}

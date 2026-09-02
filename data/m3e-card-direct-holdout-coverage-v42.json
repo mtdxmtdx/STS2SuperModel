@@ -1,0 +1,24 @@
+{
+  "schema_version": 42,
+  "dataset": "card-direct-matrix-results.json",
+  "witness_manifest": "card-direct-witness-manifest.json",
+  "matrix_rows": 607,
+  "matched_rows": 140,
+  "direct_reliable_rows": 110,
+  "matched_estimated_rows": 27,
+  "matched_uncalculable_rows": 2,
+  "mismatch_rows": 1,
+  "runtime_timeout_rows": 461,
+  "runtime_error_rows": 5,
+  "repeat_verified_direct_reliable_rows": 64,
+  "direct_execution_coverage_rate": 0.23228995057660626,
+  "remaining_mismatch_reports": [
+    "p1-csharp-card-direct-infernal_blade-diff-report.json"
+  ],
+  "remaining_mismatch_fields": [
+    "rng.CombatCardGeneration.counter"
+  ],
+  "batch_repeat_verification": "m3e-card-persistent-power-repeat-v42.json",
+  "verdict": "partial",
+  "reason": "Infernal Blade requires the exact v0.111 eligible Attack pool and TakeRandom shuffle consumption; 461 matrix rows remain timeout/non-combat witnesses."
+}

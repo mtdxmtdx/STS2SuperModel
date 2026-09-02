@@ -1,0 +1,28 @@
+{
+  "schema_version": 45,
+  "dataset": "card-direct-matrix-results.json",
+  "witness_manifest": "card-direct-witness-manifest.json",
+  "recapture_manifest": "card-direct-context-recapture-v1.json",
+  "fresh_trace_root": "card-direct-traces4",
+  "fresh_target_count": 321,
+  "fresh_counts": {
+    "match": 139,
+    "mismatch": 182
+  },
+  "matrix_rows": 607,
+  "matched_rows": 280,
+  "mismatch_rows": 182,
+  "direct_reliable_rows": 193,
+  "repeat_verified_direct_reliable_rows": 108,
+  "matched_estimated_rows": 81,
+  "matched_uncalculable_rows": 5,
+  "fixture_not_entered_combat_rows": 37,
+  "choice_fixture_required_rows": 23,
+  "runtime_unavailable_rows": 80,
+  "runtime_error_rows": 5,
+  "true_timeout_rows": 0,
+  "executed_direct_rows": 462,
+  "executed_direct_coverage_rate": 0.7611202635914333,
+  "verdict": "partial",
+  "reason": "Owner-correct isolated recapture converted 321 stale non-combat rows into 139 zero-difference and 182 real semantic mismatches. Those mismatches and the remaining Choice/unavailable/context rows must close before production M4/M5."
+}

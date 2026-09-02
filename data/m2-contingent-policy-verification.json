@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "fixture": "training/fixtures/m2-contingent-draw-commands.jsonl",
+  "trace": "data/m2-contingent-draw-trace.jsonl",
+  "labeled": "data/m2-contingent-draw-labeled.jsonl",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol": "0.2.0",
+    "trace_schema": 1
+  },
+  "root_action": "play:card:BATTLE_TRANCE:001:none",
+  "chance_nodes": 56,
+  "chance_probability_sum": 1.0,
+  "post_chance_max_nodes": 56,
+  "post_chance_max_nodes_with_actions": 56,
+  "post_chance_action_count_min": 4,
+  "post_chance_action_count_max": 4,
+  "confidence": "Reliable",
+  "label_quality": "ExactWithKnownChance",
+  "risk_events": [],
+  "trace_sha256": "E329907472561BDDE9825947A52A6CA6E61687B61DFB72653CC054F2D64C11B4",
+  "labeled_sha256": "D5793F0016077E8CCBE50384D0C1FBFAF6DB8093B07C3FD8DBAA53E2BD008103",
+  "structural_verdict": "pass",
+  "reliable_eligibility": "reliable_exact_known_chance",
+  "shadowdiff": {
+    "path": "m2-contingent-draw-shadowdiff-report.json",
+    "manifest": "m3e-contingent-shadowdiff-manifest.json",
+    "confidence": "Reliable",
+    "match": true,
+    "mismatch_count": 0,
+    "repeat_count": 2,
+    "byte_identical": true,
+    "action_ordinal": 0,
+    "report_sha256": "CBC48CFE667C19D73D621ACAC18C320718420CEFEEFD82AA513A1A1F0DCFD5FC"
+  }
+}

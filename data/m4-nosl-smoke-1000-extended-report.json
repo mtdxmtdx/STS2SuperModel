@@ -1,0 +1,96 @@
+{
+  "action_count": 6006,
+  "action_kind_counts": {
+    "EndTurn": 1000,
+    "PlayCard": 4986,
+    "UsePotion": 20
+  },
+  "ascension_counts": {
+    "0": 1000
+  },
+  "character_counts": {
+    "The Ironclad": 850,
+    "The Silent": 150
+  },
+  "combat_count": 241,
+  "confidence_counts": {
+    "Estimated": 1000
+  },
+  "coverage": {
+    "card_ids": {
+      "CARD.AFTERIMAGE": 360,
+      "CARD.BARRICADE": 171,
+      "CARD.BASH": 249,
+      "CARD.BLOODLETTING": 9,
+      "CARD.DEFEND_IRONCLAD": 1148,
+      "CARD.DEFEND_SILENT": 95,
+      "CARD.DEMON_FORM": 280,
+      "CARD.INFLAME": 148,
+      "CARD.NEUTRALIZE": 378,
+      "CARD.RUPTURE": 5,
+      "CARD.STRIKE_IRONCLAD": 1798,
+      "CARD.STRIKE_SILENT": 75,
+      "CARD.SURVIVOR": 12
+    },
+    "enemy_ids": {
+      "Leaf Slime (M)": 24,
+      "Leaf Slime (S)": 48,
+      "Seapunk": 622,
+      "Shrinker Beetle": 170,
+      "Terror Eel": 150,
+      "Twig Slime (M)": 24,
+      "Twig Slime (S)": 48
+    },
+    "potion_ids": {
+      "BLOCK_POTION": 20
+    },
+    "power_ids": {
+      "SHRIEK_POWER": 150,
+      "STRENGTH_POWER": 10,
+      "VIGOR_POWER": 40,
+      "VULNERABLE_POWER": 44,
+      "WEAK_POWER": 20
+    },
+    "relic_ids": {
+      "AKABEKO": 30,
+      "ANCHOR": 30,
+      "ART_OF_WAR": 40,
+      "BAG_OF_MARBLES": 30,
+      "BAG_OF_PREPARATION": 30,
+      "BURNING_BLOOD": 321,
+      "CENTENNIAL_PUZZLE": 20,
+      "HAPPY_FLOWER": 40,
+      "LANTERN": 109,
+      "ORICHALCUM": 20,
+      "PEN_NIB": 180,
+      "RING_OF_THE_SNAKE": 150
+    }
+  },
+  "episode_count": 241,
+  "metadata": {
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "feature_schema_version": "1",
+    "game_commit": "41cef1ea",
+    "game_version": "v0.111.0",
+    "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383",
+    "model_version": "none",
+    "scorer_version": "not-applicable",
+    "semantic_database_version": "game-runtime-v0111",
+    "simulator_version": "cli-v0111-headless"
+  },
+  "missing_metadata": {},
+  "report_kind": "p0_tooling_smoke",
+  "restriction_counts": {},
+  "risk_event_counts": {
+    "budget_bound": 40,
+    "card_effects_missing:CARD.BLOODLETTING": 3,
+    "enemy_state_missing": 10
+  },
+  "row_count": 1000,
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended.jsonl",
+  "source_sha256": "CBDD3E6FDD64DACBCC8A4A3EC569A80445C06EFE6290D0F70307BD3755E4CF65",
+  "teacher_pair_count": 1000,
+  "teacher_pair_rate": 1.0
+}

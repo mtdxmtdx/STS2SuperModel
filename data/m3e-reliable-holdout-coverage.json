@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "dataset": "m4-nosl-smoke-1000-final-dedup.jsonl",
+  "dataset_sha256": "0322AF7587D947A6C9187FF67D1F30BD1F0D92C0E18615F0B7595EBAB506F676",
+  "reports": [
+    {
+      "report": "m3e-live-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-trace.jsonl",
+      "confidence": "Reliable",
+      "outcome_quality": "Exact",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "play_card:card:DEFEND_IRONCLAD:004:none",
+      "sha256": "AC306533EEA326810B77469CFA9AD1654E2AA113161EF7225E467B7C97E3E07E",
+      "normalized_action_id": "play:card:DEFEND_IRONCLAD:004:none",
+      "dataset_action_present": true
+    },
+    {
+      "report": "m3e-live-strike-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-strike-trace.jsonl",
+      "confidence": "Reliable",
+      "outcome_quality": "Exact",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "play_card:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1",
+      "sha256": "8555B33A86FECB244BC12EAF69DEE452589AAC5B6EA6E119167A45757107276E",
+      "normalized_action_id": "play:card:STRIKE_IRONCLAD:005:enemy:SHRINKER_BEETLE:1",
+      "dataset_action_present": true
+    },
+    {
+      "report": "m3e-live-potion-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-potion-trace.jsonl",
+      "confidence": "Reliable",
+      "outcome_quality": "Exact",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "use_potion:potion:FIRE_POTION:000",
+      "sha256": "17233DA01B153028C2D26B60749110B324215E7F97979EA69BCE3A13436ECD5F",
+      "normalized_action_id": "potion:FIRE_POTION:000",
+      "dataset_action_present": false
+    },
+    {
+      "report": "m3e-live-endturn-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-endturn-trace.jsonl",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "end_turn",
+      "sha256": "8859FA498C8D97EEAF1C118AEE700F512DF56B6218A2F4EC7320DBBEEAB12D79",
+      "normalized_action_id": "end_turn",
+      "dataset_action_present": true
+    },
+    {
+      "report": "m3e-live-random-target-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-random-target-trace.jsonl",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "play_card:card:SWORD_BOOMERANG:010:none",
+      "sha256": "BAE5BD7E9C34972387EE16DCFACD94A1F6BA80325652D4EACBFB40ADB5BEAA16",
+      "normalized_action_id": "play:card:SWORD_BOOMERANG:010:none",
+      "dataset_action_present": false
+    },
+    {
+      "report": "m3e-live-multi-random-target-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-multi-random-target-trace.jsonl",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "play_card:card:SWORD_BOOMERANG:010:none",
+      "sha256": "123176C5BB8C3D60A246BCCB65E21DAB493957F65AD434639F064B53383E2333",
+      "normalized_action_id": "play:card:SWORD_BOOMERANG:010:none",
+      "dataset_action_present": false
+    },
+    {
+      "report": "m3e-live-random-orb-report.json",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m3e-live-random-orb-trace.jsonl",
+      "confidence": "Estimated",
+      "outcome_quality": "Unknown",
+      "match": true,
+      "mismatch_count": 0,
+      "action_id": "play_card:card:CHAOS:010:none",
+      "sha256": "2C5F1A773730595A6B685ED61482299A0E770D8DE86C4A6521072D69C02A0DE6",
+      "normalized_action_id": "play:card:CHAOS:010:none",
+      "dataset_action_present": false
+    }
+  ],
+  "report_count": 7,
+  "action_covered_count": 3,
+  "mismatch_count": 0,
+  "all_mismatch_zero": true,
+  "verdict": "partial"
+}

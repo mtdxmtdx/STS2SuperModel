@@ -3,38 +3,82 @@
   "game_version": "v0.111.0",
   "game_commit": "41cef1ea",
   "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p1-poison-b",
+  "fixture": "p1-power-poison",
+  "seed": "p1-poison-b",
   "simulator": "STS2BestChoice.Core.DeterministicSimulator",
   "action_ordinal": 1,
   "action_kind": "end_turn",
   "normalized_action_id": "end_turn",
   "draw_pile_source": "teacher_snapshot",
   "attacks_played_this_turn": 1,
-  "confidence": "Reliable",
+  "confidence": "Estimated",
+  "chance_present": true,
+  "random_operator": "None",
+  "probability_known": false,
+  "outcome_quality": "Unknown",
+  "probability_mass_covered": null,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {},
+  "branch_enumerated": false,
+  "comparison_scope": "observed_conditioned",
+  "identity_comparison": "observed",
+  "chance_quality": {
+    "chance_present": true,
+    "random_operator": "None",
+    "probability_known": false,
+    "outcome_quality": "Unknown",
+    "probability_mass_covered": null,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {},
+    "branch_enumerated": false,
+    "comparison_scope": "observed_conditioned",
+    "identity_comparison": "observed"
+  },
   "match": true,
   "mismatch_count": 0,
+  "mismatches": [],
+  "engine_pre_state_hash": "E82CF2FBFBE5274539ED3ED8F47A7673CEB9DCB9FF6F4121C92266C1BF9C09DE",
+  "engine_post_state_hash": "867091B3873238767BD16E0CAC889E8E1181A8EADE7E37CA4F4E7C2A6151B1BC",
+  "projected_comparison_hash": "EA3448CF4E3A38C3CD21F65733314FE1CC52811EEA7E1D29D49325694CF7C965",
+  "actual_comparison_hash": "EA3448CF4E3A38C3CD21F65733314FE1CC52811EEA7E1D29D49325694CF7C965",
+  "rng_before": {
+    "Shuffle": 12,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 12,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
   "fields": [
     {
-      "field": "round",
-      "projected": 2,
-      "actual": 2,
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
       "match": true
     },
     {
-      "field": "player.hp",
-      "projected": 59,
-      "actual": 59,
-      "match": true
-    },
-    {
-      "field": "player.block",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "player.energy",
-      "projected": 3,
-      "actual": 3,
+      "field": "discard_pile_count",
+      "projected": 7,
+      "actual": 7,
       "match": true
     },
     {
@@ -44,9 +88,21 @@
       "match": true
     },
     {
-      "field": "discard_pile_count",
-      "projected": 7,
-      "actual": 7,
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 36,
+      "actual": 36,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.status.POISON.amount",
+      "projected": 2,
+      "actual": 2,
       "match": true
     },
     {
@@ -74,73 +130,63 @@
       "match": true
     },
     {
-      "field": "enemy.enemy:SEAPUNK:1.hp",
-      "projected": 36,
-      "actual": 36,
-      "match": true
-    },
-    {
-      "field": "enemy.enemy:SEAPUNK:1.block",
+      "field": "player.block",
       "projected": 0,
       "actual": 0,
       "match": true
     },
     {
-      "field": "enemy.enemy:SEAPUNK:1.status.POISON.amount",
+      "field": "player.energy",
+      "projected": 3,
+      "actual": 3,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 59,
+      "actual": 59,
+      "match": true
+    },
+    {
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.enemy:SEAPUNK:1.POISON_POWER.amount",
       "projected": 2,
       "actual": 2,
       "match": true
     },
     {
-      "field": "rng.Shuffle.counter",
-      "projected": 12,
-      "actual": 12,
+      "field": "power.enemy:SEAPUNK:1.POISON_POWER.applier",
+      "projected": "player",
+      "actual": "player",
       "match": true
     },
     {
-      "field": "rng.CombatCardGeneration.counter",
-      "projected": 0,
-      "actual": 0,
+      "field": "power.enemy:SEAPUNK:1.POISON_POWER.counters",
+      "projected": [],
+      "actual": [],
       "match": true
     },
     {
-      "field": "rng.CombatPotionGeneration.counter",
-      "projected": 0,
-      "actual": 0,
+      "field": "power.enemy:SEAPUNK:1.POISON_POWER.dynamic_vars",
+      "projected": [],
+      "actual": [],
       "match": true
     },
     {
-      "field": "rng.CombatCardSelection.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "rng.CombatEnergyCosts.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "rng.CombatTargets.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "rng.CombatOrbGeneration.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "relic.ids",
-      "projected": [
-        "RING_OF_THE_SNAKE"
-      ],
-      "actual": [
-        "RING_OF_THE_SNAKE"
-      ],
+      "field": "power.enemy:SEAPUNK:1.POISON_POWER.present",
+      "projected": true,
+      "actual": true,
       "match": true
     },
     {
@@ -166,52 +212,63 @@
       "match": true
     },
     {
-      "field": "power.count",
-      "projected": 1,
-      "actual": 1,
+      "field": "relic.ids",
+      "projected": [
+        "RING_OF_THE_SNAKE"
+      ],
+      "actual": [
+        "RING_OF_THE_SNAKE"
+      ],
       "match": true
     },
     {
-      "field": "power.enemy:SEAPUNK:1.POISON_POWER.present",
-      "projected": true,
-      "actual": true,
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
-      "field": "power.enemy:SEAPUNK:1.POISON_POWER.amount",
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 12,
+      "actual": 12,
+      "match": true
+    },
+    {
+      "field": "round",
       "projected": 2,
       "actual": 2,
       "match": true
-    },
-    {
-      "field": "power.enemy:SEAPUNK:1.POISON_POWER.applier",
-      "projected": "player",
-      "actual": "player",
-      "match": true
-    },
-    {
-      "field": "power.enemy:SEAPUNK:1.POISON_POWER.dynamic_vars",
-      "projected": [],
-      "actual": [],
-      "match": true
-    },
-    {
-      "field": "power.enemy:SEAPUNK:1.POISON_POWER.counters",
-      "projected": [],
-      "actual": [],
-      "match": true
-    },
-    {
-      "field": "potion.ids",
-      "projected": [],
-      "actual": [],
-      "match": true
-    },
-    {
-      "field": "combat.is_terminal",
-      "projected": false,
-      "actual": false,
-      "match": true
     }
-  ]
+  ],
+  "repeat_sha256": "1ef90bade837b0030e6d7a6ec6955c20137c6eee6cbee0a53e2ec305645048dc"
 }

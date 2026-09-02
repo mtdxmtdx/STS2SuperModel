@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "dataset": "m5-reliable-holdout-backed-v7.jsonl",
+  "candidate_root_key": "teacher_state_reference + teacher_best_action",
+  "report_count": 376,
+  "candidate_root_action_pairs": 12,
+  "covered_candidate_root_action_pairs": 12,
+  "coverage_rate": 1.0,
+  "mismatch_count": 0,
+  "holdout_status": "complete",
+  "verdict": "pass",
+  "scope": "strict experiment candidate only"
+}

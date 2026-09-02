@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "OUTBREAK",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "sha256": "0EEF9DDAF1C7FBC3F2E427F927B54523BCA383E5E6831A08CD238B70DF9210D4",
+  "verdict": "pass"
+}

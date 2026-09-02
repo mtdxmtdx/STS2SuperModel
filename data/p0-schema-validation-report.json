@@ -7,7 +7,39 @@
   "validation_status": "passed",
   "total_files_checked": 3,
   "total_rows_checked": 9,
+  "row_counts": {
+    "trace_rows": 6,
+    "training_rows": 3,
+    "episodes": 1,
+    "states_unique": 3,
+    "actions_total": 17
+  },
+  "label_stats": {
+    "reliable": 0,
+    "estimated": 0,
+    "low_confidence": 1,
+    "uncalculable": 2,
+    "unknown": 0,
+    "empty_teacher_best_actions": 3,
+    "empty_teacher_categories": {
+      "low_confidence_label_missing": 1,
+      "uncalculable_teacher_unavailable": 2
+    }
+  },
+  "stable_id_missing": 0,
   "public_leakage_count": 0,
+  "duplicate_states": {
+    "warning_count": 0,
+    "error_count": 0,
+    "entries": [],
+    "classification_legend": {
+      "warning_identical_duplicate": "same hash + same combo + same labels: redundant, merge recommended",
+      "error_conflicting_labels": "same hash + same combo but differing labels/confidence: dataset corruption"
+    }
+  },
+  "malformed_lines": [],
+  "warning_count": 0,
+  "warnings": [],
   "error_count": 0,
   "errors": [],
   "checked_files": [

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "matrix_rows": 607,
+  "matched_rows": 539,
+  "mismatch_rows": 0,
+  "direct_reliable_rows": 268,
+  "repeat_verified_direct_reliable_rows": 268,
+  "matched_estimated_rows": 255,
+  "matched_uncalculable_rows": 15,
+  "fixture_not_entered_combat_rows": 1,
+  "choice_fixture_required_rows": 1,
+  "runtime_unavailable_rows": 67,
+  "runtime_error_rows": 0,
+  "true_timeout_rows": 0,
+  "degraded_rows": 0,
+  "special_context_batch": {
+    "evaluated": 39,
+    "zero_diff": 38,
+    "reliable": 22,
+    "estimated": 16,
+    "remaining": ["GRAND_FINALE"],
+    "remaining_reason": "card ends combat; current direct-card strict post-state runner excludes terminal card_reward rows, so it remains Uncalculable"
+  },
+  "verdict": "partial",
+  "repeat_verdict": "pass",
+  "repeat_path": "m3e-card-direct-reliable-repeat-v53.json",
+  "witness_path": "card-direct-witness-manifest.json",
+  "status": "all 539 admitted matched witnesses are zero-diff; all 268 direct Reliable reports are byte-identical; 69 explicit non-executed terminal classifications remain",
+  "scope": "card direct-matrix evidence only; full M3e semantic-stratum holdout remains partial"
+}

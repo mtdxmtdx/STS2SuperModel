@@ -1,0 +1,1204 @@
+{
+  "model_stage": "prototype",
+  "quality": "EstimatedByHeuristic",
+  "reliable": false,
+  "scenarios": {
+    "high_hp": {
+      "algorithm": "beam",
+      "beam_width": 4,
+      "candidates": [
+        {
+          "features": {
+            "campfire_count": 1,
+            "death_risk_proxy": 0.142933,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 1,
+            "expected_hp_loss_proxy": 12.4354,
+            "gold": 80,
+            "hp_ratio": 0.9866666666666667,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 1,
+              "combat": 0,
+              "elite": 1,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 2,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:0",
+            "map:1:2:0"
+          ],
+          "score": 0.947515,
+          "summaries": {
+            "map:1:1:0": {
+              "confidence": 0.25,
+              "death_probability": 0.142933,
+              "death_risk_proxy": 0.142933,
+              "expected_hp_loss": 12.4354,
+              "expected_hp_loss_proxy": 12.4354,
+              "expected_turns": 4.5,
+              "expected_win_probability": 0.857067,
+              "node_id": "map:1:1:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            },
+            "map:1:2:0": {
+              "confidence": 0.25,
+              "death_probability": 0.0,
+              "death_risk_proxy": 0.0,
+              "expected_hp_loss": 0.0,
+              "expected_hp_loss_proxy": 0.0,
+              "expected_turns": 0.0,
+              "expected_win_probability": 1.0,
+              "node_id": "map:1:2:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.142933,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 1,
+            "expected_hp_loss_proxy": 12.4354,
+            "gold": 80,
+            "hp_ratio": 0.9866666666666667,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 0,
+              "elite": 1,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 1,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:0"
+          ],
+          "score": 0.637515,
+          "summaries": {
+            "map:1:1:0": {
+              "confidence": 0.25,
+              "death_probability": 0.142933,
+              "death_risk_proxy": 0.142933,
+              "expected_hp_loss": 12.4354,
+              "expected_hp_loss_proxy": 12.4354,
+              "expected_turns": 4.5,
+              "expected_win_probability": 0.857067,
+              "node_id": "map:1:1:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.042933,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 0,
+            "expected_hp_loss_proxy": 6.632213,
+            "gold": 80,
+            "hp_ratio": 0.9866666666666667,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 1,
+              "elite": 0,
+              "event": 0,
+              "shop": 1,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 2,
+            "reachable_branch_count": 2,
+            "shop_count": 1,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:1",
+            "map:1:2:1"
+          ],
+          "score": 0.187928,
+          "summaries": {
+            "map:1:1:1": {
+              "confidence": 0.25,
+              "death_probability": 0.042933,
+              "death_risk_proxy": 0.042933,
+              "expected_hp_loss": 6.632213,
+              "expected_hp_loss_proxy": 6.632213,
+              "expected_turns": 3.0,
+              "expected_win_probability": 0.957067,
+              "node_id": "map:1:1:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            },
+            "map:1:2:1": {
+              "confidence": 0.25,
+              "death_probability": 0.0,
+              "death_risk_proxy": 0.0,
+              "expected_hp_loss": 0.0,
+              "expected_hp_loss_proxy": 0.0,
+              "expected_turns": 0.0,
+              "expected_win_probability": 1.0,
+              "node_id": "map:1:2:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.042933,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 0,
+            "expected_hp_loss_proxy": 6.632213,
+            "gold": 80,
+            "hp_ratio": 0.9866666666666667,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 1,
+              "elite": 0,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 1,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:1"
+          ],
+          "score": -0.058738,
+          "summaries": {
+            "map:1:1:1": {
+              "confidence": 0.25,
+              "death_probability": 0.042933,
+              "death_risk_proxy": 0.042933,
+              "expected_hp_loss": 6.632213,
+              "expected_hp_loss_proxy": 6.632213,
+              "expected_turns": 3.0,
+              "expected_win_probability": 0.957067,
+              "node_id": "map:1:1:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        }
+      ],
+      "horizon": 2,
+      "quality": "EstimatedByHeuristic",
+      "reliable": false,
+      "selected_path": [
+        "map:1:1:0",
+        "map:1:2:0"
+      ],
+      "source": "global-route-prototype",
+      "state_public_hash": "2cac02f6cee2f1e1bb49f06e70e43a68964019b3b75466cb080a75ed7a88d0a8"
+    },
+    "low_hp": {
+      "algorithm": "beam",
+      "beam_width": 4,
+      "candidates": [
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.2248,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 0,
+            "expected_hp_loss_proxy": 8.87744,
+            "gold": 80,
+            "hp_ratio": 0.16,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 1,
+              "elite": 0,
+              "event": 0,
+              "shop": 1,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 2,
+            "reachable_branch_count": 2,
+            "shop_count": 1,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:1",
+            "map:1:2:1"
+          ],
+          "score": -1.443886,
+          "summaries": {
+            "map:1:1:1": {
+              "confidence": 0.25,
+              "death_probability": 0.2248,
+              "death_risk_proxy": 0.2248,
+              "expected_hp_loss": 8.87744,
+              "expected_hp_loss_proxy": 8.87744,
+              "expected_turns": 3.0,
+              "expected_win_probability": 0.7752,
+              "node_id": "map:1:1:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            },
+            "map:1:2:1": {
+              "confidence": 0.25,
+              "death_probability": 0.0,
+              "death_risk_proxy": 0.0,
+              "expected_hp_loss": 0.0,
+              "expected_hp_loss_proxy": 0.0,
+              "expected_turns": 0.0,
+              "expected_win_probability": 1.0,
+              "node_id": "map:1:2:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 1,
+            "death_risk_proxy": 0.3248,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 1,
+            "expected_hp_loss_proxy": 16.6452,
+            "gold": 80,
+            "hp_ratio": 0.16,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 1,
+              "combat": 0,
+              "elite": 1,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 2,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:0",
+            "map:1:2:0"
+          ],
+          "score": -1.564632,
+          "summaries": {
+            "map:1:1:0": {
+              "confidence": 0.25,
+              "death_probability": 0.3248,
+              "death_risk_proxy": 0.3248,
+              "expected_hp_loss": 16.6452,
+              "expected_hp_loss_proxy": 16.6452,
+              "expected_turns": 4.5,
+              "expected_win_probability": 0.6752,
+              "node_id": "map:1:1:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            },
+            "map:1:2:0": {
+              "confidence": 0.25,
+              "death_probability": 0.0,
+              "death_risk_proxy": 0.0,
+              "expected_hp_loss": 0.0,
+              "expected_hp_loss_proxy": 0.0,
+              "expected_turns": 0.0,
+              "expected_win_probability": 1.0,
+              "node_id": "map:1:2:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.2248,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 0,
+            "expected_hp_loss_proxy": 8.87744,
+            "gold": 80,
+            "hp_ratio": 0.16,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 1,
+              "elite": 0,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 1,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:1"
+          ],
+          "score": -1.690552,
+          "summaries": {
+            "map:1:1:1": {
+              "confidence": 0.25,
+              "death_probability": 0.2248,
+              "death_risk_proxy": 0.2248,
+              "expected_hp_loss": 8.87744,
+              "expected_hp_loss_proxy": 8.87744,
+              "expected_turns": 3.0,
+              "expected_win_probability": 0.7752,
+              "node_id": "map:1:1:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.3248,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 1,
+            "expected_hp_loss_proxy": 16.6452,
+            "gold": 80,
+            "hp_ratio": 0.16,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 0,
+              "elite": 1,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 1,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:0"
+          ],
+          "score": -2.498632,
+          "summaries": {
+            "map:1:1:0": {
+              "confidence": 0.25,
+              "death_probability": 0.3248,
+              "death_risk_proxy": 0.3248,
+              "expected_hp_loss": 16.6452,
+              "expected_hp_loss_proxy": 16.6452,
+              "expected_turns": 4.5,
+              "expected_win_probability": 0.6752,
+              "node_id": "map:1:1:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        }
+      ],
+      "horizon": 2,
+      "quality": "EstimatedByHeuristic",
+      "reliable": false,
+      "selected_path": [
+        "map:1:1:1",
+        "map:1:2:1"
+      ],
+      "source": "global-route-prototype",
+      "state_public_hash": "a51f58b49ed95f33e409623304efc1eb4e7aedbfd16bf583a7537f4448a23d62"
+    },
+    "poor_gold": {
+      "algorithm": "beam",
+      "beam_width": 4,
+      "candidates": [
+        {
+          "features": {
+            "campfire_count": 1,
+            "death_risk_proxy": 0.154667,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 1,
+            "expected_hp_loss_proxy": 12.707,
+            "gold": 0,
+            "hp_ratio": 0.9333333333333333,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 1,
+              "combat": 0,
+              "elite": 1,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 2,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:0",
+            "map:1:2:0"
+          ],
+          "score": 0.894325,
+          "summaries": {
+            "map:1:1:0": {
+              "confidence": 0.25,
+              "death_probability": 0.154667,
+              "death_risk_proxy": 0.154667,
+              "expected_hp_loss": 12.707,
+              "expected_hp_loss_proxy": 12.707,
+              "expected_turns": 4.5,
+              "expected_win_probability": 0.845333,
+              "node_id": "map:1:1:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            },
+            "map:1:2:0": {
+              "confidence": 0.25,
+              "death_probability": 0.0,
+              "death_risk_proxy": 0.0,
+              "expected_hp_loss": 0.0,
+              "expected_hp_loss_proxy": 0.0,
+              "expected_turns": 0.0,
+              "expected_win_probability": 1.0,
+              "node_id": "map:1:2:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.154667,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 1,
+            "expected_hp_loss_proxy": 12.707,
+            "gold": 0,
+            "hp_ratio": 0.9333333333333333,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 0,
+              "elite": 1,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 1,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:0"
+          ],
+          "score": 0.584325,
+          "summaries": {
+            "map:1:1:0": {
+              "confidence": 0.25,
+              "death_probability": 0.154667,
+              "death_risk_proxy": 0.154667,
+              "expected_hp_loss": 12.707,
+              "expected_hp_loss_proxy": 12.707,
+              "expected_turns": 4.5,
+              "expected_win_probability": 0.845333,
+              "node_id": "map:1:1:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.054667,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 0,
+            "expected_hp_loss_proxy": 6.777067,
+            "gold": 0,
+            "hp_ratio": 0.9333333333333333,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 1,
+              "elite": 0,
+              "event": 0,
+              "shop": 1,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 2,
+            "reachable_branch_count": 2,
+            "shop_count": 1,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:1",
+            "map:1:2:1"
+          ],
+          "score": -0.014094,
+          "summaries": {
+            "map:1:1:1": {
+              "confidence": 0.25,
+              "death_probability": 0.054667,
+              "death_risk_proxy": 0.054667,
+              "expected_hp_loss": 6.777067,
+              "expected_hp_loss_proxy": 6.777067,
+              "expected_turns": 3.0,
+              "expected_win_probability": 0.945333,
+              "node_id": "map:1:1:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            },
+            "map:1:2:1": {
+              "confidence": 0.25,
+              "death_probability": 0.0,
+              "death_risk_proxy": 0.0,
+              "expected_hp_loss": 0.0,
+              "expected_hp_loss_proxy": 0.0,
+              "expected_turns": 0.0,
+              "expected_win_probability": 1.0,
+              "node_id": "map:1:2:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.054667,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 0,
+            "expected_hp_loss_proxy": 6.777067,
+            "gold": 0,
+            "hp_ratio": 0.9333333333333333,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 1,
+              "elite": 0,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 1,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:1"
+          ],
+          "score": -0.074094,
+          "summaries": {
+            "map:1:1:1": {
+              "confidence": 0.25,
+              "death_probability": 0.054667,
+              "death_risk_proxy": 0.054667,
+              "expected_hp_loss": 6.777067,
+              "expected_hp_loss_proxy": 6.777067,
+              "expected_turns": 3.0,
+              "expected_win_probability": 0.945333,
+              "node_id": "map:1:1:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        }
+      ],
+      "horizon": 2,
+      "quality": "EstimatedByHeuristic",
+      "reliable": false,
+      "selected_path": [
+        "map:1:1:0",
+        "map:1:2:0"
+      ],
+      "source": "global-route-prototype",
+      "state_public_hash": "ede31b90cff42fa9718f18a2dafdab5be3613ed988b96f446a03f47ce1836034"
+    },
+    "rich_gold": {
+      "algorithm": "beam",
+      "beam_width": 4,
+      "candidates": [
+        {
+          "features": {
+            "campfire_count": 1,
+            "death_risk_proxy": 0.154667,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 1,
+            "expected_hp_loss_proxy": 12.707,
+            "gold": 250,
+            "hp_ratio": 0.9333333333333333,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 1,
+              "combat": 0,
+              "elite": 1,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 2,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:0",
+            "map:1:2:0"
+          ],
+          "score": 0.894325,
+          "summaries": {
+            "map:1:1:0": {
+              "confidence": 0.25,
+              "death_probability": 0.154667,
+              "death_risk_proxy": 0.154667,
+              "expected_hp_loss": 12.707,
+              "expected_hp_loss_proxy": 12.707,
+              "expected_turns": 4.5,
+              "expected_win_probability": 0.845333,
+              "node_id": "map:1:1:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            },
+            "map:1:2:0": {
+              "confidence": 0.25,
+              "death_probability": 0.0,
+              "death_risk_proxy": 0.0,
+              "expected_hp_loss": 0.0,
+              "expected_hp_loss_proxy": 0.0,
+              "expected_turns": 0.0,
+              "expected_win_probability": 1.0,
+              "node_id": "map:1:2:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.154667,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 1,
+            "expected_hp_loss_proxy": 12.707,
+            "gold": 250,
+            "hp_ratio": 0.9333333333333333,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 0,
+              "elite": 1,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 1,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:0"
+          ],
+          "score": 0.584325,
+          "summaries": {
+            "map:1:1:0": {
+              "confidence": 0.25,
+              "death_probability": 0.154667,
+              "death_risk_proxy": 0.154667,
+              "expected_hp_loss": 12.707,
+              "expected_hp_loss_proxy": 12.707,
+              "expected_turns": 4.5,
+              "expected_win_probability": 0.845333,
+              "node_id": "map:1:1:0",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.054667,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 0,
+            "expected_hp_loss_proxy": 6.777067,
+            "gold": 250,
+            "hp_ratio": 0.9333333333333333,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 1,
+              "elite": 0,
+              "event": 0,
+              "shop": 1,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 2,
+            "reachable_branch_count": 2,
+            "shop_count": 1,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:1",
+            "map:1:2:1"
+          ],
+          "score": 0.335906,
+          "summaries": {
+            "map:1:1:1": {
+              "confidence": 0.25,
+              "death_probability": 0.054667,
+              "death_risk_proxy": 0.054667,
+              "expected_hp_loss": 6.777067,
+              "expected_hp_loss_proxy": 6.777067,
+              "expected_turns": 3.0,
+              "expected_win_probability": 0.945333,
+              "node_id": "map:1:1:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            },
+            "map:1:2:1": {
+              "confidence": 0.25,
+              "death_probability": 0.0,
+              "death_risk_proxy": 0.0,
+              "expected_hp_loss": 0.0,
+              "expected_hp_loss_proxy": 0.0,
+              "expected_turns": 0.0,
+              "expected_win_probability": 1.0,
+              "node_id": "map:1:2:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        },
+        {
+          "features": {
+            "campfire_count": 0,
+            "death_risk_proxy": 0.054667,
+            "deck_health": {
+              "aoe_score": 0.0,
+              "attack_ratio": 1.0,
+              "average_cost": 2.0,
+              "block_score": 0.0,
+              "dead_draw_rate": 0.0,
+              "deck_size": 1.0,
+              "discard_score": 0.0,
+              "draw_score": 0.0,
+              "energy_score": 0.0,
+              "exhaust_score": 0.0,
+              "first_cycle_time": 1.0,
+              "frontload_score": 1.0,
+              "generated_score": 0.0,
+              "later_cycle_time": 1.0,
+              "power_ratio": 0.0,
+              "scaling_score": 0.0,
+              "skill_ratio": 0.0,
+              "status_burden": 0.0,
+              "upgrade_density": 0.0
+            },
+            "elite_count": 0,
+            "expected_hp_loss_proxy": 6.777067,
+            "gold": 250,
+            "hp_ratio": 0.9333333333333333,
+            "node_type_counts": {
+              "boss": 0,
+              "campfire": 0,
+              "combat": 1,
+              "elite": 0,
+              "event": 0,
+              "shop": 0,
+              "treasure": 0,
+              "unknown": 0
+            },
+            "path_length": 1,
+            "reachable_branch_count": 2,
+            "shop_count": 0,
+            "visible_enemy_count": 1
+          },
+          "path": [
+            "map:1:1:1"
+          ],
+          "score": -0.074094,
+          "summaries": {
+            "map:1:1:1": {
+              "confidence": 0.25,
+              "death_probability": 0.054667,
+              "death_risk_proxy": 0.054667,
+              "expected_hp_loss": 6.777067,
+              "expected_hp_loss_proxy": 6.777067,
+              "expected_turns": 3.0,
+              "expected_win_probability": 0.945333,
+              "node_id": "map:1:1:1",
+              "quality": "EstimatedByHeuristic",
+              "reliable": false,
+              "source": "global-route-prototype"
+            }
+          }
+        }
+      ],
+      "horizon": 2,
+      "quality": "EstimatedByHeuristic",
+      "reliable": false,
+      "selected_path": [
+        "map:1:1:0",
+        "map:1:2:0"
+      ],
+      "source": "global-route-prototype",
+      "state_public_hash": "179994acb847329ed8bc5a6a35ae5e66e6b84b1be4c7b0da3dde35127e8f2f09"
+    }
+  },
+  "source": "global-route-prototype"
+}

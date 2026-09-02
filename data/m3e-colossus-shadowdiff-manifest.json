@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "cards": [
+    {
+      "card": "BATTLE_TRANCE",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\BATTLE_TRANCE.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "PIERCING_WAIL",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\PIERCING_WAIL.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "UPPERCUT",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\UPPERCUT.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "DARK_EMBRACE",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\DARK_EMBRACE.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "FEEL_NO_PAIN",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\FEEL_NO_PAIN.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "THRASH",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\THRASH.jsonl",
+      "confidence": "Estimated",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "FIGHT_ME",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\FIGHT_ME.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "SETUP_STRIKE",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\SETUP_STRIKE.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "EXPOSE",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\EXPOSE.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "OUTBREAK",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\OUTBREAK.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "DODGE_AND_ROLL",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\DODGE_AND_ROLL.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "BLUR",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\BLUR.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "AGGRESSION",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\AGGRESSION.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "COLOSSUS",
+      "trace": "D:\\STS2BestChoice\\STS2SuperModel\\data\\card-direct-traces3\\COLOSSUS.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    },
+    {
+      "card": "CLOAK_AND_DAGGER",
+      "trace": "data/card-direct-traces3/CLOAK_AND_DAGGER.jsonl",
+      "confidence": "Reliable",
+      "match": true,
+      "mismatch_count": 0
+    }
+  ],
+  "repeat": {
+    "runs": 1,
+    "all_match": true
+  }
+}

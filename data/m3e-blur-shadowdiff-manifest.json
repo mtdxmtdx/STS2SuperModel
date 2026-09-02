@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "BLUR",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Reliable",
+  "sha256": "52F2586131CAFE27748F6331ECF140C679D1029588F9F1C355CDEB9243C877CD",
+  "verdict": "pass"
+}

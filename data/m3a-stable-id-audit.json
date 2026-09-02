@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "dataset": "D:\\STS2BestChoice\\STS2SuperModel\\data\\m4-nosl-smoke-1000-extended-dedup.jsonl",
+  "dataset_sha256": "A6855FFD8A4E0875BC85C45FC67813AB4594A826DAFB18870DEB5ED6047ACE5D",
+  "rows": 874,
+  "hand_card_instances": 4142,
+  "potion_instances": 20,
+  "actions": 5294,
+  "unique_action_ids_across_rows": 130,
+  "stable_id_missing": 0,
+  "within_row_collisions": 0,
+  "verdict": "pass"
+}

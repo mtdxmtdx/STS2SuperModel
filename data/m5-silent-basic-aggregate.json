@@ -1,0 +1,722 @@
+[
+  {
+    "public_state_hash": "05FAECFEC67BDFCF5BC6996E6AE6B47BD820643FCC6F5D089BE6E654326E1B27",
+    "teacher_state_hashes": [
+      "4f58db19f2852fd2f392bc3c"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "0E1A60CEBAC438AE613E6523EBD39CE8A2DF2BF2F1769C7913C83E96E55CB4BC",
+    "teacher_state_hashes": [
+      "4f58db19f2852fd2f392bc3c"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "125E0988625967910A5D84C8ACE7929265DE8E4B3DED0C10A7D34C0282B42E9E",
+    "teacher_state_hashes": [
+      "97fb223e47cca090f4074410"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "19BD9D5942A225D9DD4FCB4763E328E098F81CF0E5A65084824372DEDFCB1E0E",
+    "teacher_state_hashes": [
+      "97fb223e47cca090f4074410"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "1CBA00001E86B2C8735FED57BBFD40416DFBCB94F780088DB5B60EAC7EF56F72",
+    "teacher_state_hashes": [
+      "bc8b1a3906b53c8296ccb169"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "1DB985AF39E1F81D2BFA6E8469D0CC5299042AA5768DACC350CDB915C28B22BD",
+    "teacher_state_hashes": [
+      "8789a63023f6adb3826e5719"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "23B6C9B949CEFC71223E2AEC5BBD7D164744F39C0E6B228A5A58C27F0803BEC1",
+    "teacher_state_hashes": [
+      "b1e1b710a598e6b4b4ccade5"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "2901EFD31358F53E1802475E670B174BAEF755C74BFC1E63D9D0CA69C7B381A9",
+    "teacher_state_hashes": [
+      "50550f4c6fc64246d9fdfc6a"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "2AD17E71FC269D87752223219849BB58442CDEB12EF39084C0493C009A5BB363",
+    "teacher_state_hashes": [
+      "34dad7bfa7f31eea669dfcba"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "317D549C49B1E4D449471E0A940E4BC2C06DEE34963BACEBA80132EB316768AA",
+    "teacher_state_hashes": [
+      "8117e421a7fef2eea74f78df"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "364C1563BC151C8100B4044B0B5026EDFD1FF3245BF8EC2DC82C150ECB6882D2",
+    "teacher_state_hashes": [
+      "0a5e795ee4b5049c2528e634"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "36F2B9B86B526C44356B4C9F1D1EEDF1B07BB3DBCF614DCDCF4B949C511334BA",
+    "teacher_state_hashes": [
+      "720a7f94d56313028f61aa01"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "3EB4F61234FD6BD9801C495DB6E1C0E1DE7579DAF7DD9F4AC90CD9983A1E7399",
+    "teacher_state_hashes": [
+      "b244735bf8aa2877c2d34305"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "56DF2C324F4EE03E3743260492FABA9EF87F03C37FFB857A7290A9F54E21B122",
+    "teacher_state_hashes": [
+      "3f7a8377791c7b7b12c4391e"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "5BD6420AD020F7541C502A1C56224791DED66D879E3FBFAFAC99331566C63983",
+    "teacher_state_hashes": [
+      "ac17f6f49ace6416f44ad092"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "5C175C2D1755F31EC612DB823F01C213F4F8D36783B9F7160CC672C5BE5DCB89",
+    "teacher_state_hashes": [
+      "0e20dc9e894e9eb719666cb2"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "5CD5F7915370A938151DA463577FF1BDCB0A22BF5B21BF1F54EF4754D337F943",
+    "teacher_state_hashes": [
+      "37d8e833af737ccb90639dbc"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "60DD94F05C1A32B81C69924C12E78D8C0421C1E3F5E7AFF6707F1650690E5C16",
+    "teacher_state_hashes": [
+      "d59ad23be7897735194439c0"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "6195827E76FE1D896AB75D79EC15BAE7C641FF15A5D7CD34A7E4B30E1E4D53D1",
+    "teacher_state_hashes": [
+      "475a3167d7756cc449bba07a"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "659E075F7309DDC3678E2E631AEFD26DBADF1CA3052595EE33AF56BACD3CD1AA",
+    "teacher_state_hashes": [
+      "dd2582009e351d8b4f2bb551"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "6993FE095BECC938E597470242BECC4ABF07A3A2C0E042289168DDF59F153ED8",
+    "teacher_state_hashes": [
+      "cffd0a30d63f0ece0ca2100b"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "6BBB9C245865DC149B49621695468FE49BB96DB90B7E3F2852807CF0A9346A89",
+    "teacher_state_hashes": [
+      "475a3167d7756cc449bba07a"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "709D7F281089705DDEBB6589B47E5E1021B20B09A701B706A9F3F3A130EA5267",
+    "teacher_state_hashes": [
+      "798507823175a6634b36a027"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "72FD0B1DC2421D3BEC8B6931200E3DBD3EE1FAFCD64804D0BDCF8B4AA3CA4CA4",
+    "teacher_state_hashes": [
+      "341ddce4e55b7829be6b7e4b"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "7313AF2B44446B12E5A8D0865480D1EBC7821B72C59BF4073021A239DAA6F36F",
+    "teacher_state_hashes": [
+      "30c06fdc661ce0a0bac67286"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "75CF8131E5E50C359999AE73B8399602FBA6A4BC8B396A9416732D16366DD09A",
+    "teacher_state_hashes": [
+      "d1d6cab15aceec3f435687d1"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "78CA96B14394214B3F5964C83C9E79591677AB31E7252605CCEFF55357FF5168",
+    "teacher_state_hashes": [
+      "c30e585d6461781cdb33fd9a"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "7B6EA9B098D6DFA734779CC68B73C16679AEB7AA50DFA713CC0219DE200CC4E2",
+    "teacher_state_hashes": [
+      "ba38eb3788ed26f608f657c9"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "7BB983388BA8421A7CCBF6BC858FF9BF1F7E0E61829C8AEA94554502334CF21C",
+    "teacher_state_hashes": [
+      "3f7a8377791c7b7b12c4391e"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "7F017BE138164BB565D4F464FCD179B19F28B25C206B6DD442385CFBCCB564E9",
+    "teacher_state_hashes": [
+      "cdef260dc528a5f0ee9ee439"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "835F0A1BF83F4E2974EEC2DCAC110087EA1E67BC8C075325C8D4F469E5DE776E",
+    "teacher_state_hashes": [
+      "b1e1b710a598e6b4b4ccade5"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "843C237DE97F61443D4A4A3C9D0EA7DA57C67C455D5F684FF7B8F73FABF40990",
+    "teacher_state_hashes": [
+      "6e7d89abb4fc3679f404819c"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "878EE80C8CADD9F733167C94757D713B1EE0F1385020E5E88F37810F326CB35B",
+    "teacher_state_hashes": [
+      "341ddce4e55b7829be6b7e4b"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "8832A0225988C2A9E4CBE4C4B7184B9703D016E4ECD5B8214D38C584AE270CB9",
+    "teacher_state_hashes": [
+      "797d2fa4b87b94640f7f5008"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "8A5103036AFCEB68D97DD7E5C815062C3FA23E9E5C8E6BA4762DCAF5D012947B",
+    "teacher_state_hashes": [
+      "9df71884eb0a3d13963150a4"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "8BA7B93C01EECC07432FA9A42AC947979AE4826B66E277559854EBDD635B6987",
+    "teacher_state_hashes": [
+      "0e20dc9e894e9eb719666cb2"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "8DFCDB77352E9A9876FBB5E87ED75B0F5ED6A17A11FC2BAEDD210D333794616F",
+    "teacher_state_hashes": [
+      "bc8b1a3906b53c8296ccb169"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "91D0EF465AABF8A0D761774BDD6417229DB7AB5D1761B44CC40FE21DAE1CAA77",
+    "teacher_state_hashes": [
+      "0a5e795ee4b5049c2528e634"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "961B04C579634DD62CC7E5DE35EB65D23D033E40FB33A28D573339EA97D53B16",
+    "teacher_state_hashes": [
+      "ac17f6f49ace6416f44ad092"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "96CAB8CED74742F943EE5A530D2CAC99425BB7DA69E4F5675C8BA85FBCE54CAB",
+    "teacher_state_hashes": [
+      "798507823175a6634b36a027"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "98810E13A171559BD26E5E8D15C46CFB33DF0FED1DD65F2809FED9621A44F194",
+    "teacher_state_hashes": [
+      "6e7d89abb4fc3679f404819c"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "AAB6C34BC94F419DF142ECE8847AC3509BE0F1F2A45DD3027572D8DE0FC2EFD4",
+    "teacher_state_hashes": [
+      "9df71884eb0a3d13963150a4"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "B66828EBD008A467DAE5890068A24C9910C23D2450F30871328DDC72B72679E6",
+    "teacher_state_hashes": [
+      "d59ad23be7897735194439c0"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "BAC2CD40B4C7EE290A47BECF3E1DF451FAF433D611C306D31AAB26AF34CCBCCD",
+    "teacher_state_hashes": [
+      "720a7f94d56313028f61aa01"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "BCE9A25F129D354399B63637907F9F2F7FB7AFE70B22C04F8218AC0993EB9895",
+    "teacher_state_hashes": [
+      "8789a63023f6adb3826e5719"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "CEAA71A1714DABBA11C392BCE72C171ABA4423A9D9B75F3EC602C2559C776B8E",
+    "teacher_state_hashes": [
+      "cdef260dc528a5f0ee9ee439"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "D598B40003856E9DB5A3B4255B02E7E80404132B0376F2BFA3BB3E3AFA6F6DD1",
+    "teacher_state_hashes": [
+      "cffd0a30d63f0ece0ca2100b"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "D6878C64CE1CE57CE8AA22826DDFC8BE68FDEDAF31338C831DBB0DF545F1CB40",
+    "teacher_state_hashes": [
+      "b244735bf8aa2877c2d34305"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "DAC9CFA0EE74B0FD9D416734AF8E70C8A40C3C0086D5ABD3F20256F991F57808",
+    "teacher_state_hashes": [
+      "65dc0cd4224a038ed3733608"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "DDF600CDE37720DF1B6688DACB5C3ED87BDCD3892210B65A3C38D17855AACAF9",
+    "teacher_state_hashes": [
+      "d1d6cab15aceec3f435687d1"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "DE5C8E0E126F8D7C62E22E24B4D79B6AD5073C7F78BFA1775BDEBF6F975BD141",
+    "teacher_state_hashes": [
+      "8117e421a7fef2eea74f78df"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "E124C2911A688819C1264C6E746BC9FFE48EF27031A9F054340C8109A9B9AEB2",
+    "teacher_state_hashes": [
+      "797d2fa4b87b94640f7f5008"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "E55D94B8A48B7D5D33845B84482D729F11E04AE231D7621140DB54ED2F921A21",
+    "teacher_state_hashes": [
+      "c30e585d6461781cdb33fd9a"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "E8B720C28BD9C10543775320BB6B64F7D3246E4AC0D4A287D94188125E533FCB",
+    "teacher_state_hashes": [
+      "ba38eb3788ed26f608f657c9"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "EB630E002C6C7F84D34D06C37A336CA24C47A7DE3F4A341418D299B9EB8BFE75",
+    "teacher_state_hashes": [
+      "50550f4c6fc64246d9fdfc6a"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "ED3309D77C6A40A06D02E12707D11412AFA53CBF209AC48EA5B60396246785BB",
+    "teacher_state_hashes": [
+      "34dad7bfa7f31eea669dfcba"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "F2444A45CB914DA8EFBC655CCD3EDA9237B1401410A4D679614A76B40D3E565D",
+    "teacher_state_hashes": [
+      "dd2582009e351d8b4f2bb551"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "F66355031409A3CBCA1AC859F597545ED6B255366ADD983B25A10B67C40F681E",
+    "teacher_state_hashes": [
+      "65dc0cd4224a038ed3733608"
+    ],
+    "action_value_mean": {},
+    "action_value_variance": {},
+    "optimal_action_frequency": {},
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "FAD5FF0FD6D672707C2C13EB0533022A8C0DA2835CF95E88672B8AF3E3DE2A46",
+    "teacher_state_hashes": [
+      "37d8e833af737ccb90639dbc"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "FD75300E18E874084614D78279A540875E4314F6BA0864F59B949CA97B0DF8EF",
+    "teacher_state_hashes": [
+      "30c06fdc661ce0a0bac67286"
+    ],
+    "action_value_mean": {
+      "end_turn": -42.75
+    },
+    "action_value_variance": {
+      "end_turn": 0.0
+    },
+    "optimal_action_frequency": {
+      "end_turn": 1.0
+    },
+    "hidden_state_sensitive": false
+  }
+]

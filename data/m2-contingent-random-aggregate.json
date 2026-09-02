@@ -1,0 +1,21 @@
+[
+  {
+    "public_state_hash": "C71AEA775E72D6C7F8153C3001EE8C87AE76540ACF63A0C458FB320AFDD9C8B0",
+    "teacher_state_hashes": [
+      "0204fdcc7a022c04cd298e5c"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:016:none": 10.25,
+      "play:card:SWORD_BOOMERANG:001:none": 10.25
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:016:none": 0.0,
+      "play:card:SWORD_BOOMERANG:001:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:016:none": 1.0,
+      "play:card:SWORD_BOOMERANG:001:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  }
+]

@@ -1,0 +1,278 @@
+[
+  {
+    "public_state_hash": "4594D20F351DFCA1360AF7727D320D6A1C051B2B1F189409CC0266178ADFD160",
+    "teacher_state_hashes": [
+      "e05e57faf1374ea789fb348f"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1": 12.25
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "4D85409B987E31723C1181ED11804B0AFED598FC1155050AD671ACB7DE301531",
+    "teacher_state_hashes": [
+      "abf12d6c622aa37eb311cad0"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:009:none": 1.25,
+      "play:card:DEFEND_IRONCLAD:010:none": 1.25,
+      "play:card:DEFEND_IRONCLAD:011:none": 1.25
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:009:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:010:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:011:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:009:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "5E7AA30B60BA76F592681A2787C6560AB01CE31A73EEE68CC5AEC95A7F4AADA0",
+    "teacher_state_hashes": [
+      "abf12d6c622aa37eb311cad0"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:009:none": 1.25,
+      "play:card:DEFEND_IRONCLAD:010:none": 1.25,
+      "play:card:DEFEND_IRONCLAD:011:none": 1.25
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:009:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:010:none": 0.0,
+      "play:card:DEFEND_IRONCLAD:011:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:009:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "7AB1BFA31C9A811BA64F413E388F280773AF9C54D861399D28E70187F200BCE0",
+    "teacher_state_hashes": [
+      "cb3201487e5f72a4d72bc338"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 16.25
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "8C23EA89EBCF7DE0C8BE5F047E4DB6C5CFC0B57259A34E3FDA34326FB1BF7177",
+    "teacher_state_hashes": [
+      "cfc059154537a73bb202043b"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 15.25,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_M:2": 15.25
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_M:2": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "977242CCF3D1078BF14133E5F5993EAF7C789F066EE913C504D742FB711DC583",
+    "teacher_state_hashes": [
+      "4ab7b039a2bd12124c1fa89c"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:017:enemy:TERROR_EEL:1": -44.75
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:017:enemy:TERROR_EEL:1": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:017:enemy:TERROR_EEL:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "A10F4D2EA23A544918DDECF4B50CB0D5EBD5F5997E4C36D06BBF1AD5D8053AA0",
+    "teacher_state_hashes": [
+      "432aa3b9ceabb6ec406b0d6e"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 3.25,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 3.25,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 3.25
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "A513A010EB1B678CCD1FA2C92CF47E4C04CFDCD36EF8F66660F527B150E3D467",
+    "teacher_state_hashes": [
+      "4ab7b039a2bd12124c1fa89c"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:017:enemy:TERROR_EEL:1": -44.75
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:017:enemy:TERROR_EEL:1": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:017:enemy:TERROR_EEL:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "AB53F9C635FADD9C0994A46B1BA6BD1486E8921DD81E3AC5FEC2862D0207DC6E",
+    "teacher_state_hashes": [
+      "a8a6535c78444b0bedf012f2"
+    ],
+    "action_value_mean": {
+      "play:card:DEMON_FORM:010:none": -20.25,
+      "play:card:DEMON_FORM:011:none": -20.25,
+      "play:card:DEMON_FORM:012:none": -20.25,
+      "play:card:DEMON_FORM:013:none": -20.25,
+      "play:card:DEMON_FORM:014:none": -20.25
+    },
+    "action_value_variance": {
+      "play:card:DEMON_FORM:010:none": 0.0,
+      "play:card:DEMON_FORM:011:none": 0.0,
+      "play:card:DEMON_FORM:012:none": 0.0,
+      "play:card:DEMON_FORM:013:none": 0.0,
+      "play:card:DEMON_FORM:014:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEMON_FORM:010:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "B973C0B727D7D2F21EA98BE2A468ECA412877A7A0E6296F259EEE7CF1FD23A64",
+    "teacher_state_hashes": [
+      "432aa3b9ceabb6ec406b0d6e"
+    ],
+    "action_value_mean": {
+      "play:card:DEFEND_IRONCLAD:004:none": 3.25,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 3.25,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 3.25
+    },
+    "action_value_variance": {
+      "play:card:DEFEND_IRONCLAD:004:none": 0.0,
+      "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEFEND_IRONCLAD:004:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "BC31EB147F0D43D657A3F89420C3068B46C93537BB4FB6244C4422246457790E",
+    "teacher_state_hashes": [
+      "cfc059154537a73bb202043b"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 15.25,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_M:2": 15.25
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 0.0,
+      "play:card:STRIKE_IRONCLAD:007:enemy:TWIG_SLIME_M:2": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "C397E7C8A041B53CAD9E166DA52F98C26E2BFB56F58EC002ED7F9D30DD0C3177",
+    "teacher_state_hashes": [
+      "a8a6535c78444b0bedf012f2"
+    ],
+    "action_value_mean": {
+      "play:card:DEMON_FORM:010:none": -20.25,
+      "play:card:DEMON_FORM:011:none": -20.25,
+      "play:card:DEMON_FORM:012:none": -20.25,
+      "play:card:DEMON_FORM:013:none": -20.25,
+      "play:card:DEMON_FORM:014:none": -20.25
+    },
+    "action_value_variance": {
+      "play:card:DEMON_FORM:010:none": 0.0,
+      "play:card:DEMON_FORM:011:none": 0.0,
+      "play:card:DEMON_FORM:012:none": 0.0,
+      "play:card:DEMON_FORM:013:none": 0.0,
+      "play:card:DEMON_FORM:014:none": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:DEMON_FORM:010:none": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "CAC80BEC6E86440BD10DFE3ECFE4D33AA0243FCF3687A733596EE9B331D3E87B",
+    "teacher_state_hashes": [
+      "cb3201487e5f72a4d72bc338"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 16.25
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "CF9680629D534A073667312D46513BBDB3B328C1650D873FBC42B104D6EB1989",
+    "teacher_state_hashes": [
+      "e05e57faf1374ea789fb348f"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1": 12.25
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  },
+  {
+    "public_state_hash": "D957506118919BD175D2E36E9E233B8E337618B7C51CB996EEDEB562C98EA6D0",
+    "teacher_state_hashes": [
+      "a791cb16c2f548a903749074"
+    ],
+    "action_value_mean": {
+      "play:card:STRIKE_IRONCLAD:027:enemy:TERROR_EEL:1": -68.75
+    },
+    "action_value_variance": {
+      "play:card:STRIKE_IRONCLAD:027:enemy:TERROR_EEL:1": 0.0
+    },
+    "optimal_action_frequency": {
+      "play:card:STRIKE_IRONCLAD:027:enemy:TERROR_EEL:1": 1.0
+    },
+    "hidden_state_sensitive": false
+  }
+]

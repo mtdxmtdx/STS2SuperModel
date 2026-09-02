@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture": "THRASH",
+  "reports": 2,
+  "mismatch_count": 0,
+  "match": true,
+  "byte_identical": true,
+  "confidence": "Estimated",
+  "sha256": "0D718595DADB78FCB8783BDBC3A9D954E588D379F701C38A805927D253E841B8",
+  "verdict": "pass"
+}
