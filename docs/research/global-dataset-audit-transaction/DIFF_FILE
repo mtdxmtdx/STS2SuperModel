@@ -1,0 +1,2 @@
+BASELINE -> MODIFIED
+Added read-only audit of JSONL parsing, split leakage, public forbidden fields, stable IDs, candidate coverage, quality/reliable flags, report hashes and model repeatability.

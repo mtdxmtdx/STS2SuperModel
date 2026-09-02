@@ -1,0 +1,9 @@
+Event/Ancient transaction verification
+CHANGED_BRANCH=training/global_decision event_policy.py + ancient_policy.py + tests + smoke files
+BASELINE: python -m pytest training/test_global_shop_policy.py training/test_global_campfire_policy.py -q
+BASELINE_OUTPUT=8 passed, 1 warning; exit 0
+MODIFIED: python -m pytest -q
+MODIFIED_OUTPUT=122 passed, 1 skipped, 1 warning; exit 0
+ROLLBACK: bash docs/research/global-event-ancient-prototype-transaction/ROLLBACK.sh <copy>
+ROLLBACK_RESULT=separate rollback-test copy restored byte-identically with PowerShell Copy-Item equivalent; exit 0
+RESTORED_STATUS=source event/ancient modules remain changed; rollback copy restored.

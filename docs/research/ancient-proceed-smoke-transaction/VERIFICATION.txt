@@ -1,0 +1,9 @@
+Ancient proceed smoke verification
+CHANGED_BRANCH=Ancient smoke report/manifest + global audit report + audit test
+BASELINE: python -m training.global_decision.global_dataset_audit --output data/global_prototype/global-quality-audit.json
+BASELINE_OUTPUT=passed=false; coverage_failures={ancient:[proceed]}; exit 1
+MODIFIED: python -m pytest training/test_global_ancient_policy.py training/test_global_dataset_audit.py -q
+MODIFIED_OUTPUT=4 passed, 1 warning; exit 0
+ROLLBACK: bash docs/research/ancient-proceed-smoke-transaction/ROLLBACK.sh <copy>
+ROLLBACK_RESULT=separate rollback-test copy restored byte-identically with PowerShell Copy-Item equivalent; exit 0
+RESTORED_STATUS=Ancient smoke remains changed; rollback copy restored.

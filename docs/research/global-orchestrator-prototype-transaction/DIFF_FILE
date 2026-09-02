@@ -1,0 +1,2 @@
+BASELINE -> MODIFIED
+Added offline public-state dispatcher for route/reward/shop/campfire/event/ancient prototypes with uniform outputs, legality masks, full candidate retention and deterministic smoke report.

@@ -1,0 +1,5 @@
+{
+  "transaction": "global-prototype",
+  "before": "global_decision package, global schemas, global prototype data and global tests were absent",
+  "files": []
+}

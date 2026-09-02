@@ -1,0 +1,2 @@
+BASELINE -> MODIFIED
+Ancient public smoke now includes normal/proceed/leave/cancel; audit expectations and generated reports now have coverage_failures={} and passed=true.

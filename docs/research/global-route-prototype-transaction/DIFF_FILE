@@ -1,0 +1,2 @@
+BASELINE -> MODIFIED
+Added public visible-map graph normalization, route features, heuristic CombatSummary proxy, deterministic Beam/DP planner, route tests and smoke manifest/report.

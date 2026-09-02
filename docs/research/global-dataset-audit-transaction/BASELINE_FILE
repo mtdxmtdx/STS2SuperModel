@@ -1,0 +1,3 @@
+BASELINE_FIXTURE=global_dataset_audit.py absent before transaction
+BASELINE_COMMAND=python -m pytest training/test_global_orchestrator.py -q
+BASELINE_RESULT=5 passed, 1 warning; exit 0

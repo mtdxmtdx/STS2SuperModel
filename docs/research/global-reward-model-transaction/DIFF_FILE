@@ -1,0 +1,4 @@
+BASELINE -> MODIFIED
+Added: encoder.py, candidate_scorer.py, dataset.py, train_prototype.py, evaluate_prototype.py, __init__.py
+Added: training/test_global_model.py
+Changed behavior: deterministic candidate-conditioned scoring, explicit legal mask, listwise+MSE heuristic training, CPU evaluation.

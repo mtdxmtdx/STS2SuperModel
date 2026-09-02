@@ -1,0 +1,53 @@
+# Global prototype transaction verification
+changed_branch=main
+changed_field=STS2SuperModel/training/global_decision + training/schemas/global + data/global_prototype
+MODIFIED_FILE=D:\STS2BestChoice\STS2SuperModel\docs\research\global-prototype-transaction\MODIFIED_FILE
+DIFF_FILE=D:\STS2BestChoice\STS2SuperModel\docs\research\global-prototype-transaction\DIFF_FILE
+VERIFICATION.txt=D:\STS2BestChoice\STS2SuperModel\docs\research\global-prototype-transaction\VERIFICATION.txt
+ROLLBACK.sh=D:\STS2BestChoice\STS2SuperModel\docs\research\global-prototype-transaction\ROLLBACK.sh
+
+## Hashes
+modified_file_sha256=AF9E9F84A02994755ACEEAC12C4FA3394BEE6746F528A2B3D75B015DA60AF01E
+diff_sha256=A1CF8B792DA9EFC893C3E6AD13B5F1CC898F96A2F2842F968BB76D475521D360
+
+## BASELINE command / input / literal output / exit
+command=PowerShell parse baseline artifact manifest and assert empty files
+input=D:\STS2BestChoice\STS2SuperModel\docs\research\global-prototype-transaction\BASELINE_FILE
+literal_output=BASELINE_ARTIFACT_TEST=PASS files=0
+exit_status=0
+
+## MODIFIED command / input / literal output / exit
+command=PowerShell parse modified artifact manifest and check all paths
+input=D:\STS2BestChoice\STS2SuperModel\docs\research\global-prototype-transaction\MODIFIED_FILE
+literal_output=MODIFIED_ARTIFACT_TEST=PASS entries=22 missing=0
+exit_status=0
+
+## CODE TESTS
+command=python -m pytest training/test_global_contracts.py training/test_global_features.py training/test_global_synthetic.py training/test_global_reward.py -q
+literal_output=8 passed, 1 warning in 6.60s
+exit_status=0
+command=python -m pytest training/test_nosl_expectimax.py training/test_teacher_worker.py training/test_shadow_diff_reports.py -q
+literal_output=26 passed, 1 warning in 2.21s
+exit_status=0
+command=python -m compileall -q training/global_decision
+literal_output=PY_COMPILE=PASS
+exit_status=0
+command=global schema and leakage audit over generated JSONL
+literal_output=GLOBAL_SCHEMA_AND_LEAKAGE=PASS rows=1000 actions=4000 forbidden_keys=0
+exit_status=0
+command=repeat generator with same internal seed
+literal_output=GENERATOR_1000=PASS rows=1000 actions=4000 repeat_data_equal=True repeat_manifest_equal=True
+exit_status=0
+
+## ROLLBACK command / input / literal output / exit
+command=Invoke-Expression of ROLLBACK.sh with -Target rollback-test (separate copy)
+input=D:\STS2BestChoice\STS2SuperModel\docs\research\global-prototype-transaction\rollback-test
+literal_output=ROLLBACK_TEST=PASS before=56D789AC9A7C1F21569FA25775039B57F36FE1290A41AE90EDBD608273EBFA65 after=B7D8DFF2741E624A0FF99718841B00B01D9E94192F1A436C0832751DF530B75D baseline=B7D8DFF2741E624A0FF99718841B00B01D9E94192F1A436C0832751DF530B75D original_modified=AF9E9F84A02994755ACEEAC12C4FA3394BEE6746F528A2B3D75B015DA60AF01E
+exit_status=0
+restored_behavior=rollback-test MODIFIED_FILE byte-identical to BASELINE_FILE; original modified copy remained changed
+
+## Final status
+prototype_status=complete
+labels=EstimatedByHeuristic only
+reliable_count=0
+run_video_auxiliary=deferred

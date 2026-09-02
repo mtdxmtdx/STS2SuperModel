@@ -1,0 +1,428 @@
+
+InputObject
+-----------                                                                                                             
+> 研究更新：2026-08-31；已纳入 STS1/STS2 卡组评估、条件化反事实价值、候选屏排序和模块化神经网络结论。                   
+### 1.1 研究结论转化为固定设计原则                                                                                      
+公开的 STS1/STS2 项目显示，卡组价值不是一张牌的永久 Tier，而是给定状态、候选集合和未来风险的**条件增量价值**。本计划固… 
+V_run(s | public_context)                                                                                               
+Q_global(s, a) = E_hidden[ V_run(T(s, a, hidden)) ]                                                                     
+ΔV(s, a) = Q_global(s, a) - V_run(s)                                                                                    
+其中 `hidden` 由符合当前公共观测的隐藏状态/概率分布构成；`run_seed` 只在离线重放、教师审计和切分中使用。线上策略不接收… 
+卡牌获取价值拆成四个可诊断目标，不合并成一个不可解释的分数：                                                            
+ΔV_next_fight   下一场战斗生存、预期 HP 损失和药水成本                                                                  
+ΔV_act          当前 Act 的即时伤害/防御/成长/敌群覆盖                                                                  
+ΔV_run          到 Boss/Heart 的通关概率和楼层生存                                                                      
+ΔRisk           死亡概率、低 HP 尾部、方差/CVaR 和资源断裂                                                              
+`Skip`、不购买、离开和不锻造都是显式候选。外部 Tier、Elo、pick rate、高手视频和 `.run` 选择只属于 `ExternalPrior` 或 `O…
+### 1.2 两脑分层与范围边界                                                                                              
+本计划保持两个相互调用但独立验收的模型：                                                                                
+CombatPolicy + DeterministicSimulator + Expectimax                                                                      
+        └── CombatSummary（战斗成本/风险）                                                                              
+GlobalPolicy（Route/Reward/Shop/Campfire/Event/Ancient）                                                                
+        └── 以 CombatSummary 为输入，不展开逐牌战斗动作                                                                 
+战斗逐步规划使用搜索，局外卡组/路线判断使用候选条件化网络。首版不把所有动作压进一个共享离散动作头；共享编码器只有在各模…
+        ├── RoutePlanner / RouteValueModel                                                                              
+        ├── RewardPolicy / CandidateValueModel                                                                          
+        现有 CombatPolicy + Expectimax                                                                                  
+### `DeckFeatureEncoder`（全局共享候选表示）                                                                            
+卡组使用集合、上下文和关系三路特征，不使用固定 STS1 one-hot 维度：                                                      
+Deck tokens:                                                                                                            
+  stable semantic_id / count / upgrade / enchantment / quest / temporary flags                                          
+Relic/Power/Potion tokens:                                                                                              
+  stable id / counters / owner / charges / active state                                                                 
+Context:                                                                                                                
+  character / act / floor / ascension / HP / maxHP / gold / route / public encounters                                   
+Derived deck health:                                                                                                    
+  frontload single/AoE / block-mitigation / scaling / draw-energy                                                       
+  first/subsequent cycle / cost curve / dead-draw/status burden                                                         
+  upgrade density / dilution / encounter coverage / synergy and anti-synergy graph                                      
+Candidate token:                                                                                                        
+  complete card/relic/option semantics + cost + legality + opportunity cost                                             
+`DeckFeatureEncoder` 先以 DeepSets/attention 或候选条件化 MLP 实现；候选评分函数接收同一公共状态下的整个 offer set，并… 
+### `DeckHealth` 可解释派生指标（仅 baseline/诊断）                                                                     
+以下指标用于冷启动、采样配额和误差分析，最终数值由 teacher 校准，不设为硬规则：                                         
+cycle_time_first       = expected cards needed for first engine cycle                                                   
+cycle_time_later       = expected cards needed after exhaust/Power effects                                              
+frontload_dmg / aoe    = first 1–2 turns, single/multi-target output                                                    
+block_density          = mitigation cards / playable cards                                                              
+upgrade_density        = upgraded instances / deck size                                                                 
+dead_draw_rate         = expected unplayable/status/curse draw share                                                    
+draw_energy_rate       = draw, filtering, energy/star generation per cycle                                              
+encounter_coverage     = weighted coverage of public next-fight profiles                                                
+synergy_graph          = enabler → payoff → finisher and anti-synergy edges                                             
+`floor/ceiling`、卡组大小、费用曲线和原型 commitment 仅作为软特征；同一卡牌在不同候选集合、敌群和 HP 状态下允许得到相反…
+source_provenance                                                                                                       
+hidden_state_policy                                                                                                     
+teacher_horizon                                                                                                         
+uncertainty_interval                                                                                                    
+feature_schema_version                                                                                                  
+game_branch                                                                                                             
+simulator_version                                                                                                       
+semantic_catalog_version                                                                                                
+scorer_version                                                                                                          
+model_version                                                                                                           
+manifest_hash                                                                                                           
+`deck_public`、`relic_public` 和 `potion_public` 必须保留可见的结构化状态，而不是只保存名称：                           
+deck_public.card_instances[]:                                                                                           
+  card_instance_id          # 稳定跨进程 ID                                                                             
+  semantic_id                                                                                                           
+  upgrade_level                                                                                                         
+  enchantment_ids[]                                                                                                     
+  temporary / generated / quest / exhaust_state                                                                         
+relic_public[]:                                                                                                         
+  relic_instance_id / semantic_id / counters / charges / active_state                                                   
+potion_public[]:                                                                                                        
+  potion_instance_id / semantic_id / charges / slot                                                                     
+牌堆中未公开的顺序、未来抽牌和隐藏计数器不进入 Public View；缺失字段必须写入 `field_completeness`，不能静默补默认值。   
+### 2.1 `GlobalRunStateTeacher`（仅标签与审计）                                                                         
+public_state_hash                                                                                                       
+hidden_state_id                                                                                                         
+hidden_state_distribution                                                                                               
+rng_snapshot / rng_counter                                                                                              
+ordered_pile (optional)                                                                                                 
+teacher_only_powers / relic_counters                                                                                    
+teacher_version                                                                                                         
+oracle_flag (NOSL=false; SEED_ORACLE=true)                                                                              
+该视图只由教师 worker 和审计 sidecar 使用，永不序列化到部署模型输入。若使用 seed 预知未来，只能生成 `SEED_ORACLE` 审计… 
+### 2.2 `GlobalOfferSnapshot`                                                                                           
+每个奖励、商店、事件、篝火和 Boss 选项都保存完整候选集合：                                                              
+decision_type                                                                                                           
+candidates[]                 # 包含 Skip/Leave/Don'tBuy 等动作                                                          
+candidate_order                                                                                                         
+visible_context_hash                                                                                                    
+legal_actions_complete                                                                                                  
+source (cli | run | manual | teacher)                                                                                   
+候选集合采用长表存储：一行对应一个候选动作，同时保留同屏其它候选，以支持 pairwise/list-wise 训练和候选屏级切分。        
+允许进入 Public View 的未来信息仅限当时游戏界面真实展示的 `visible_map_graph`、路线可达性和已公开选项；seed 生成的完整… 
+offer_snapshot_hash                                                                                                     
+candidate_role (offer | skip | leave | rest | smith | route | option)                                                   
+candidate_semantic_features_hash                                                                                        
+opportunity_cost                                                                                                        
+source_confidence                                                                                                       
+- `GlobalDeckEvaluationRecord`                                                                                          
+- `GlobalPriorRecord`                                                                                                   
+`GlobalDeckEvaluationRecord` 至少包含：                                                                                 
+decision_id / offer_snapshot_hash                                                                                       
+state_public_hash                                                                                                       
+candidate_action_id                                                                                                     
+delta_v_next_fight                                                                                                      
+delta_v_act                                                                                                             
+delta_v_run                                                                                                             
+delta_risk                                                                                                              
+expected_hp_loss_delta                                                                                                  
+teacher_mean / variance / ci95                                                                                          
+label_source                                                                                                            
+quality                                                                                                                 
+`GlobalPriorRecord` 保存外部统计或人工判断的来源 URL、抓取时间、查询参数、版本、样本量和偏差说明；它与 `GlobalTeacherRe…
+prior_fit_split                                                                                                         
+prior_fit_group (character / act / ascension / floor)                                                                   
+prior_shrinkage                                                                                                         
+prior_sample_count                                                                                                      
+验证、测试和 challenge split 不得反向更新 prior。                                                                       
+- 冻结 `DeckFeatureSchema`、候选屏长表和 `label_source` 枚举；                                                          
+- 固定 `game_branch/catalog/scorer/feature_schema` 的版本绑定；                                                         
+- `ExternalPrior`/`ObservedHuman` 与 teacher manifest 隔离；                                                            
+- unknown semantic ID 进入 OOV/Uncalculable，不静默映射；                                                               
+- 每个 screen 输出完整 legal set、`Skip/Leave/Proceed/Don'tBuy` 和未知候选；                                            
+- 若采用 top-K 屏筛选，只能作为推理加速，必须记录 `screen_version`、`omitted_ids` 并在执行前重新检查完整 legal set；    
+- 未知或未能计算的候选进入 safety set，不能因未入 top-K 而静默丢弃。                                                    
+- 候选集合顺序、遗漏项和重新校验结果可重建；                                                                            
+- 增加 teacher/provider 操作页；                                                                                        
+- seed 地图/未来内容预览仅放在 `privileged/audit` 视图，禁止写入 Public View；                                          
+- 对每个候选记录 `candidate_order`、Skip/Leave、人工备注和 `label_source`。                                             
+- 保留 raw `.run` 与 SHA-256；                                                                                          
+- 解析 `card_choices`、shop、event、ancient、campfire、route 的完整候选集合和 `was_picked`；                            
+- `.run` 行为只进入 `ObservedHuman`/辅助 manifest，不产生 `CounterfactualTeacher`。                                     
+- partial/SL 数据只进辅助集；                                                                                           
+- 每条行为记录都携带 `source_provenance`、`sl_status`、`legal_actions_complete` 和版本 hash。                           
+Route candidate 的可见特征至少包括：                                                                                    
+node_type_counts / elite_count / campfire_count / shop_count                                                            
+path_length / reachable_branch_count                                                                                    
+public_encounter_distribution                                                                                           
+expected_hp_cost / death_risk / recovery_opportunity                                                                    
+map_uncertainty_or_entropy                                                                                              
+`public_encounter_distribution` 和 `map_uncertainty_or_entropy` 只能由当前可见拓扑、历史先验和已公开遭遇估计；完整 seed…
+- `DeckSemanticCatalog`                                                                                                 
+- `ExternalPriorCatalog`（与真实语义和 teacher 分离）                                                                   
+本地化文字仅用于显示，不从描述文本推断数值效果。`DeckSemanticCatalog` 必须保留：                                        
+semantic_id / stable_id                                                                                                 
+game_branch / game_version / assembly_sha256                                                                            
+cost / type / target / base_vars / upgraded_vars                                                                        
+keywords: draw/discard/exhaust/ethereal/retain/void/generated/quest                                                     
+damage/block/power/status/resource effects                                                                              
+enchantment interactions / relic-power dependencies                                                                     
+evidence_level / source_url / source_sha256 / extracted_at                                                              
+卡牌、遗物、Power、Enchantment、Quest 的语义变更会递增 `semantic_catalog_version`，并触发受影响 teacher 标签重建。未知 …
+`ExternalPriorCatalog` 只收录 Tier、Elo/WAR、社区 pick rate、专家 reason tags 等统计/经验信息，必须带抓取时间、查询参数…
+数据来源优先级固定为：                                                                                                  
+真实 CLI pre/post diff + runtime probe                                                                                  
+    > 影子模拟器已验证语义                                                                                              
+    > 版本化游戏文件/反编译 catalog（交叉核验）                                                                         
+    > `.run` 已发生记录                                                                                                 
+    > 社区 Tier/Elo/WAR/专家文字                                                                                        
+低层来源可以补充覆盖，不能覆盖高层来源的冲突结论；每个冲突写入 provenance 和 unresolved queue。                         
+对每个全局候选执行同一公共 pre-state 的配对反事实：                                                                     
+for candidate in complete_legal_set (including Skip/Leave):                                                             
+    fork(public_state, hidden_state_sample)                                                                             
+    apply(candidate, opportunity_cost)                                                                                  
+    advance 3–5 global nodes and required CombatSummary calls                                                           
+    record ΔV_next_fight / ΔV_act / ΔV_run / ΔRisk                                                                      
+候选之间共享相同的 `state_public_hash`、版本、候选集合和隐藏状态抽样配置；不使用跨 run 的绝对胜率替代配对差值。教师同时…
+仅作为审计上界和 future-information leakage challenge，不进入 Public View、主训练集或线上推理。                         
+隐藏状态策略：                                                                                                          
+public observation                                                                                                      
+→ compatible hidden-state belief / stratified worlds                                                                    
+→ simulator + CombatSummary                                                                                             
+→ marginalized Q and uncertainty                                                                                        
+当观测不足以确定候选效果时，输出 `Uncalculable` 或带 CI 的 `SampledCI`，不强行生成确定性分数。候选屏 top-K 只可减少计算…
+```text                                                                                                                 
+candidate set / opportunity cost 一致                                                                                   
+teacher hidden-state policy 一致                                                                                        
+teacher CI 达到最低有效样本数                                                                                           
+```                                                                                                                     
+```text                                                                                                                 
+global_observed_human                                                                                                   
+global_external_prior                                                                                                   
+global_deck_evaluation                                                                                                  
+```                                                                                                                     
+```text                                                                                                                 
+game_branch / game_version / catalog_version                                                                            
+```                                                                                                                     
+不能用单独 `branch_id` 拆分，否则同一局的分支可能跨数据集。`run_seed` 用于分组和重放，不作为模型输入。                  
+每个候选屏都生成一组行，而不是只保留被选动作：                                                                          
+```text                                                                                                                 
+decision_id / offer_snapshot_hash                                                                                       
+candidate_action_id / candidate_order / is_skip                                                                         
+state_public_hash / public_features                                                                                     
+observed_action (optional)                                                                                              
+teacher_delta_v / teacher_risk / teacher_ci                                                                             
+prior_score / prior_source (optional)                                                                                   
+label_source / quality / sl_status                                                                                      
+```                                                                                                                     
+`global_observed_human`、`global_external_prior` 和 `global_teacher` 使用不同 manifest；辅助数据可用于 stop-gradient pr…
+                                                                                                                        
+```text                                                                                                                 
+ObservedHuman                                                                                                           
+ExternalPrior                                                                                                           
+```                                                                                                                     
+                                                                                                                        
+晋级规则：                                                                                                              
+                                                                                                                        
+```text                                                                                                                 
+ObservedHuman / ExternalPrior / EstimatedByHeuristic                                                                    
+    → 仅辅助集                                                                                                          
+CounterfactualTeacher + strict CLI↔shadow + repeated-run pass                                                           
+    → Reliable 主集                                                                                                     
+```                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+每一级通过门禁后再扩展。配额按 character、Act/floor、Ascension、单/多敌、HP 区间、资源、卡牌机制（消耗/虚无/指定弃牌/生…
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+各模块共享接口但默认不共享参数：                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+GlobalRunStatePublic                                                                                                    
+  → DeckFeatureEncoder (card/relic/power/potion set)                                                                    
+  → ContextEncoder (act/floor/HP/gold/map/visible encounters)                                                           
+  → CandidateEncoder (完整语义 + opportunity cost)                                                                      
+  → candidate-conditioned scorer                                                                                        
+  → module-specific heads                                                                                               
+```                                                                                                                     
+                                                                                                                        
+输出头固定为：                                                                                                          
+                                                                                                                        
+```text                                                                                                                 
+policy logits / legal mask (由引擎提供)                                                                                 
+V_next_fight / V_act / V_run                                                                                            
+expected_hp_loss / death_risk / low_hp_tail                                                                             
+uncertainty (variance / CI proxy)                                                                                       
+confidence / evidence_quality                                                                                           
+```                                                                                                                     
+                                                                                                                        
+卡牌奖励、商店、篝火和事件都使用同一公共状态下的候选相对评分；`Skip/Leave/Don'tBuy` 与普通候选相同。网络只负责排序和估… 
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+2. `ExternalPrior`/`ObservedHuman` 的 stop-gradient warm start；                                                        
+3. 候选屏 pairwise/list-wise ranking（保留 Skip 和完整 offer set）；                                                    
+4. `CounterfactualTeacher` 的多目标 value 蒸馏；                                                                        
+5. RouteValue 与 CombatSummary 联合校准；                                                                               
+6. death-risk、低 HP 尾部和 uncertainty calibration；                                                                   
+7. 数据量和跨模块门禁足够后再评估共享 encoder；                                                                         
+8. 最后才评估 IQL/AWR 或 self-play 微调。                                                                               
+                                                                                                                        
+先验权重使用温度/系数逐步退火，并监测 prior 与 teacher 的 KL/regret；先验造成系统性偏差时自动降权。先验不锁定 archetype…
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+每条路径的叶节点价值由以下分量组成：                                                                                    
+                                                                                                                        
+```text                                                                                                                 
+route_value = ΔV_run                                                                                                    
+           + expected_deck_job_coverage                                                                                 
+           - expected_hp_loss                                                                                           
+           - death_risk_penalty                                                                                         
+           - gold/rest opportunity cost                                                                                 
+```                                                                                                                     
+                                                                                                                        
+`deck_job` 使用软特征表示当前最紧急的前置伤害、AoE、格挡/减伤、成长、抽牌/能量、坏抽恢复和精英/Boss 覆盖；它只是候选排… 
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+当新状态使 `HP ratio`、金币、药水、卡组关键组件、遗物协同或下一战风险跨过阈值时，必须重新枚举完整路径候选，而不是沿用原…
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+离线 RL 数据策略：                                                                                                      
+                                                                                                                        
+```text                                                                                                                 
+Reliable CounterfactualTeacher   主 Q/V 约束                                                                            
+ObservedHuman / ExternalPrior    低权重行为先验                                                                         
+EstimatedByHeuristic              预训练和覆盖补齐                                                                      
+```                                                                                                                     
+                                                                                                                        
+采用 conservative policy constraint，禁止用 reward shaping 把“多拿牌、走更多精英或保留药水”等代理目标优化成最终目标。每…
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+每个导出模型都生成 `GlobalModelManifest`：                                                                              
+                                                                                                                        
+```text                                                                                                                 
+model_version / feature_schema_version                                                                                  
+game_branch / game_version / assembly_sha256                                                                            
+semantic_catalog_version / simulator_version / scorer_version                                                           
+training_manifest_hash / prior_fit_split                                                                                
+supported_characters / acts / ascensions                                                                                
+```                                                                                                                     
+                                                                                                                        
+加载时任何版本或 schema 不匹配都拒绝模型，OOV/未知语义触发低置信度回退。                                                
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+回退前固定执行：完整合法动作重新枚举、候选屏遗漏项复核、版本/hash 校验和 unknown-effect 检查。                          
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+- 启发式模型；                                                                                                          
+- `DeckFeatureEncoder` 和 `GlobalPriorRecord`（只做辅助 baseline）；                                                    
+- 候选屏 pairwise/list-wise 数据整理。                                                                                  
+                                                                                                                        
+                                                                                                                        
+- CLI↔shadow strict diff；                                                                                              
+- teacher candidate set 完整性和 `ΔV` 配对复现。                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+- 同 row 多候选标 ambiguous；                                                                                           
+- `GlobalRunStatePublic` 与 teacher/audit sidecar 字段边界递归扫描通过；                                                
+- 每个 offer snapshot 包含完整 legal set、Skip/Leave/Proceed 和遗漏项复核；                                             
+- card instance 的 stable ID、upgrade/enchantment/quest 状态可重建；                                                    
+- `ExternalPrior` 的 `prior_fit_split` 不读取 validation/test/challenge。                                               
+                                                                                                                        
+                                                                                                                        
+- 未知概率不生成伪 Reliable；                                                                                           
+- 同一 pre-state、候选集合和机会成本的 counterfactual `ΔV` 可配对重放；                                                 
+- `SEED_ORACLE` 与 `NOSL_MARGINALIZED` 结果分离，seed 不进入 public features。                                          
+                                                                                                                        
+                                                                                                                        
+- pairwise/list-wise candidate accuracy；                                                                               
+- value/risk calibration（Brier/ECE/低 HP 尾部）；                                                                      
+- `ΔV_next_fight/act/run/risk` 四头均有分层报告；                                                                       
+- 按 character/act/floor/ascension/decision_type/patch 分层；                                                           
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+说明：模拟器/CLI 并行和 JSONL→Parquet 主要受 CPU、进程数、磁盘和 RAM 限制；GPU 主要用于 PyTorch 训练。当前 32GB RAM 可… 
+                                                                                                                        
+---                                                                                                                     
+                                                                                                                        
+## 八、研究依据与外部参考                                                                                               
+                                                                                                                        
+详细调研记录：                                                                                                          
+                                                                                                                        
+```text                                                                                                                 
+D:\STS2BestChoice\STS2SuperModel\docs\research\STS1_STS2_DECK_EVALUATION_RESEARCH_REPORT.md                             
+```                                                                                                                     
+                                                                                                                        
+本计划采用的关键外部结论：                                                                                              
+                                                                                                                        
+- [Slay-I](https://github.com/alexdriedger/SlayTheSpireFightPredictor)：用战斗结果模型比较加牌/升级/移除前后的条件差值；
+- [LearnTheSpire](https://github.com/kaijchang/LearnTheSpire)：卡牌选择模仿网络的最小 baseline，以及同集评估过拟合教训；
+- [Jialeiv/sts-rl-agent](https://github.com/Jialeiv/sts-rl-agent)：局外小网络与战斗搜索分层；                           
+- [Spire Pilot](https://www.spirepilot.com/)：Combat/OOC 两脑、风险多头和教师蒸馏/死亡案例门禁（项目自述）；            
+- [Liam-Loebl/sts2-stats](https://github.com/Liam-Loebl/sts2-stats)：`.run` 候选长表、floor-conditioned WAR、候选屏 Elo…
+- [Spire Codex scoring](https://spire-codex.com/leaderboards/scoring)：Bayesian shrinkage 与 Bradley–Terry/Elo 只作为外…
+- [Zamiell STS2 emulator](https://github.com/Zamiell/slay-the-spire-2-emulator)：C# 确定性模拟器与 Python Gym 分层接口… 
+- [Mega Crit Early Access](https://www.megacrit.com/news/2026-03-05-early-access-launch/)：STS2 内容和平衡持续变化，版… 
+                                                                                                                        
+外部项目的卡牌数值、胜率、Tier、权重和实现代码均不直接写入本项目的 Reliable 语义或教师标签；接入前必须完成版本、许可证… 
+        ├── RoutePlanner                                                                                                
+        ├── RewardPolicy                                                                                                
+现有 CombatPolicy                                                                                                       
+- 增加 teacher/provider 操作页。                                                                                        
+- 保留 raw `.run` 与 SHA-256。                                                                                          
+- partial/SL 数据只进辅助集。                                                                                           
+本地化文字仅用于显示，不从描述文本推断数值效果。                                                                        
+仅作为审计上界。                                                                                                        
+不能用单独 `branch_id` 拆分，否则同一局的分支可能跨数据集。                                                             
+每一级通过门禁后再扩展。                                                                                                
+2. 人工行为克隆；                                                                                                       
+3. pairwise ranking；                                                                                                   
+4. teacher value 蒸馏；                                                                                                 
+5. RouteValue；                                                                                                         
+6. risk/calibration；                                                                                                   
+7. 数据足够后再评估共享 encoder。                                                                                       
+- 启发式模型。                                                                                                          
+- CLI↔shadow strict diff。                                                                                              
+- 同 row 多候选标 ambiguous。                                                                                           
+- 未知概率不生成伪 Reliable。                                                                                           
+- value/risk calibration；                                                                                              
+模块化模型继续使用 12GB GPU；共享 Transformer 再租 24GB+ GPU。大规模并行前优先升级或租用更大 RAM。                      
+
+

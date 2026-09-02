@@ -1,0 +1,3 @@
+BASELINE_FIXTURE=Ancient smoke lacks proceed; quality audit coverage_failures={ancient:[proceed]}
+BASELINE_COMMAND=python -m training.global_decision.global_dataset_audit --output data/global_prototype/global-quality-audit.json
+BASELINE_RESULT=passed=false; coverage_failures={ancient:[proceed]}; exit 1

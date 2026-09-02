@@ -1,0 +1,9 @@
+Global dataset audit transaction verification
+CHANGED_BRANCH=training/global_decision/global_dataset_audit.py + audit test + global-quality-audit.json
+BASELINE: python -m pytest training/test_global_orchestrator.py -q
+BASELINE_OUTPUT=5 passed, 1 warning; exit 0
+MODIFIED: python -m pytest -q
+MODIFIED_OUTPUT=132 passed, 1 skipped, 1 warning; exit 0
+ROLLBACK: bash docs/research/global-dataset-audit-transaction/ROLLBACK.sh <copy>
+ROLLBACK_RESULT=separate rollback-test copy restored byte-identically with PowerShell Copy-Item equivalent; exit 0
+RESTORED_STATUS=source audit code/report remain changed; rollback copy restored.

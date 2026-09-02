@@ -1,0 +1,51 @@
+
+InputObject
+-----------                                                                                                             
+> 研究更新：2026-08-31；已纳入 STS1/STS2 卡组评估、条件化反事实价值、候选屏排序和模块化神经网络结论。当前 `.run`/高手视…
+- `.run` 与高手视频辅助：**暂缓采集、解析、人工标注和训练接入**；已有文件只保留原始归档，不进入当前 active dataset；    
+### 1.3 当前数据源决策（2026-08-31）                                                                                    
+当前全局模型先走**合成状态 + 反事实教师**路线。`.run` 解析扩展和高手视频人工标注保留接口与目录约定，但状态标记为 `DEFER…
+active:                                                                                                                 
+  CLI / deterministic shadow / Expectimax / synthetic scenario generator                                                
+deferred:                                                                                                               
+  .run observed behavior                                                                                                
+  expert-video manual labels                                                                                            
+在 `global_teacher` 达到首个可用基线、版本门禁稳定且需要行为校准之前，不启动这两类辅助数据的采集和训练。恢复时仍使用独… 
+恢复条件：`global_teacher` 至少完成一个通过 strict diff 的 pilot、`GlobalModelManifest` 可重建、公共状态分布和主要决策… 
+CLI / synthetic states / teacher worker                                                                                 
+### G2：GUI、`.run` 和人工行为数据（暂缓辅助接入）                                                                      
+当前状态：`DEFERRED`。GUI/解析器可以保留接口和未来回归样例，但本阶段不启动 `.run` 行为导入、高手视频人工标注或相应训练… 
+GUI（保留接口，不启动辅助采集）：                                                                                       
+`.run`（恢复辅助数据阶段后）：                                                                                          
+global_observed_human       # DEFERRED until auxiliary-data phase                                                       
+global_external_prior       # DEFERRED until auxiliary-data phase                                                       
+1. 规则/启发式 baseline + 合成状态覆盖；                                                                                
+2. 直接使用 `CounterfactualTeacher` 做候选 ranking/value warm start；                                                   
+`ExternalPrior`/`ObservedHuman` 的 stop-gradient warm start 作为后续可选步骤，待辅助数据阶段恢复后再加入，不阻塞当前训… 
+ObservedHuman / ExternalPrior    DEFERRED（恢复后低权重先验）                                                           
+- `.run` 导入（DEFERRED，仅保留接口）；                                                                                 
+- human behavior/video 标注（DEFERRED）；                                                                               
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+```text                                                                                                                 
+```                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+> 研究更新：2026-08-31；已纳入 STS1/STS2 卡组评估、条件化反事实价值、候选屏排序和模块化神经网络结论。                   
+- `.run`/SL 未知数据只进辅助集；                                                                                        
+CLI / .run / 人工视频标注                                                                                               
+### G2：GUI、`.run` 和人工行为数据                                                                                      
+GUI：                                                                                                                   
+`.run`：                                                                                                                
+global_observed_human                                                                                                   
+global_external_prior                                                                                                   
+1. 规则/启发式 baseline；                                                                                               
+2. `ExternalPrior`/`ObservedHuman` 的 stop-gradient warm start；                                                        
+ObservedHuman / ExternalPrior    低权重行为先验                                                                         
+- `.run` 导入；                                                                                                         
+- human behavior；                                                                                                      
+
+

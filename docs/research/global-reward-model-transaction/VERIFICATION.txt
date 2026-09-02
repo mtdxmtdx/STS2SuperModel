@@ -1,0 +1,9 @@
+GlobalRewardPolicyPrototype transaction verification
+CHANGED_BRANCH=training/global_decision/model + training/test_global_model.py + data/global_prototype/model_smoke
+BASELINE: python -m pytest training/test_global_contracts.py training/test_global_features.py training/test_global_synthetic.py training/test_global_reward.py -q
+BASELINE_OUTPUT: 8 passed, 1 warning; exit 0
+MODIFIED: python -m pytest -q
+MODIFIED_OUTPUT: 95 passed, 1 skipped, 1 warning; exit 0
+ROLLBACK: bash docs/research/global-reward-model-transaction/ROLLBACK.sh <copy>
+ROLLBACK_RESULT: rollback-test copy restored byte-identically (PowerShell Copy-Item equivalent; bash invocation unavailable in this Windows session); exit 0
+RESTORED_STATUS: model source remains changed; transaction copy restored.

@@ -1,0 +1,342 @@
+# STS1 / STS2 卡组评估与神经网络模型研究报告
+
+**研究日期：** 2026-08-31  
+**研究范围：** 杀戮尖塔 1（STS1）的公开神经网络/机器学习项目、STS2 的卡组评估实践，以及对 `STS2BestChoice` 当前战斗模型和未来全局模型的可迁移结论。  
+**版本声明：** STS2 仍处于 Early Access，外部项目使用的版本并不一致；本项目当前锁定 v0.111 单人标准模式。外部数字、卡牌文本和评级只作为研究证据或先验，不能直接混入 Reliable 标签。
+
+## 1. 结论先行
+
+1. **STS1 确实有神经网络模型，但没有一个公认的“单卡万能评分器”。** 公开项目大致分为：卡牌选择模仿、战斗结果预测、整局/楼层胜率预测、以及“搜索器 + 小网络”的混合架构。
+2. **最值得迁移的是条件化反事实评估，而不是静态 Tier。** 同一张牌的价值取决于角色、当前楼层/幕、已有卡组、遗物、药水、敌人分布、路线和生命风险。Slay-I 的核心做法是比较“原卡组”和“加入/升级/移除候选牌后的卡组”在同一批战斗中的预测差值，而不是给卡牌一个永久分数。
+3. **战斗规划型决策与局外判断型决策应分模块。** `Jialeiv/sts-rl-agent` 的公开实验明确报告：小网络可以学地图、商店、奖励、篝火和事件；把 MCTS 战斗序列压成单帧网络则失败。这个结果与本项目“CombatPolicy + Expectimax”以及未来 `GlobalDecisionOrchestrator` 的分层方向一致。
+4. **本项目不应复制 STS1 的卡名、数值或 one-hot 维度。** 应复用方法：版本化语义目录、集合/序列编码、候选集合排序、skip 作为合法动作、反事实教师标签、按 run/seed 分组切分、风险和校准评估。
+5. **当前最合理的目标不是“预测高手会选哪张牌”，而是学习一个受约束的 `V_run` / `ΔV` 近似器：**
+   \[
+   \Delta V(c)=V_{run}(s\oplus c)-V_{run}(s),
+   \]
+   其中 `s` 是当时可见的全局状态，`c` 是候选加入、升级、移除或跳过动作；主标签来自真实 CLI 与确定性影子模拟器/Expectimax，社区统计和人工视频只作为辅助先验。
+
+## 2. 先区分四种“卡牌价值”
+
+很多公开讨论把下列问题混在一起，训练时必须拆开：
+
+| 层级 | 问题 | 适合的目标 |
+|---|---|---|
+| 语义层 | 这张牌的真实效果、费用、升级、触发条件是什么？ | 结构化 catalog；版本/证据门禁 |
+| 战斗层 | 在当前手牌、敌人意图和 RNG 下，怎么出牌？ | 当前 `CombatPolicy + DeterministicSimulator + Expectimax` |
+| 奖励层 | 当前三张候选牌中拿哪张或跳过？ | 候选集合排序、`ΔV_next_fight`、`ΔV_run` |
+| 全局层 | 选路、商店、篝火、事件和卡组长期如何影响通关率？ | 风险约束 semi-MDP/POMDP 的 `GlobalPolicy` |
+
+STS1 的早期项目通常只覆盖其中一层。不能因为一个模型能预测战斗伤害，就认为它已经能做路线或事件决策。
+
+## 3. STS1 公开神经网络/机器学习先例
+
+### 3.1 LearnTheSpire：最小的卡牌选择模仿网络
+
+仓库 [kaijchang/LearnTheSpire](https://github.com/kaijchang/LearnTheSpire) 的 README 说明：它从本地 run history 抽取卡牌奖励，把卡牌编码成 `1×234` 向量，使用 TensorFlow 训练前馈网络来模仿玩家在候选牌中的选择。示例数据只有 37 个 Ironclad、1 个 Defect、4 个 Silent run；100 个 epoch 的同集/小测试约 80% 复现人类选择，500 个 epoch 在同一数据集上接近 100%，作者明确提醒这是过拟合风险，并把“加入已有卡组、事件和路线”列为后续工作。
+
+**可迁移的部分**
+
+- 证明最小网络可以作为数据管道和推理接口的 smoke baseline。
+- 从 run history 重建“候选屏 → 选中项”的监督样本很简单。
+
+**不可直接采用的部分**
+
+- 只看候选牌、没有完整 deck/relic/HP/Act/敌人上下文。
+- 同一 run 混入训练和测试会造成泄漏。
+- “模仿率”不是实际胜率、风险或反事实 regret。
+- 固定 234 维和 STS1 卡集合无法用于 STS2。
+
+### 3.2 Slay-I：用战斗结果预测反事实卡牌价值
+
+[Slay-I 的 GitHub 项目](https://github.com/alexdriedger/SlayTheSpireFightPredictor) 和作者的[方法文章](https://medium.com/data-science/bringing-deep-neural-networks-to-slay-the-spire-a2971d5a5115) 是最接近“卡组评估”的 STS1 先例。
+
+- 训练样本来自 Spire Logs 和 Jorbs 的 run history；GitHub README 报告超过 **325,000 场战斗**。
+- 输入包含卡组计数、遗物、角色、Ascension、敌人类型、进入战斗 HP/max HP、是否使用药水等；升级卡作为独立特征。
+- Keras/TensorFlow 网络预测一场战斗的伤害；大数据测试的平均误差约为 **±7 HP**（作者自报）。
+- 卡牌价值通过反事实比较得到：对同一批战斗分别评估 `deck` 与 `deck + card`，并对精英/Boss 加权；升级和移除同理。
+
+这给本项目一个直接公式：
+
+```text
+delta_next_fight(card) =
+    E[damage(deck) - damage(deck + card) | context]
+```
+
+STS2 中应把 `damage` 替换为更完整的目标向量，例如 `win_probability`、`death_probability`、`expected_hp_loss`、药水消耗和未来节点价值，并由已通过 CLI↔影子差分的语义执行器产生标签。STS1 的 ±7 HP、卡名和权重都不能照搬。
+
+### 3.3 Floor-Level Win Prediction：从卡组状态预测整局强度
+
+[JoeyRussoniello/sts-win-prediction](https://github.com/JoeyRussoniello/sts-win-prediction) 重建约 **126,000 个 run、约 300 万 floor** 的逐层状态，并比较 LogReg、MLP 和 LSTM：
+
+- 逐层记录 deck/relic 状态，而不是只看最终卡组。
+- 用高维卡组向量的 SVD embedding 表示 archetype 结构。
+- LSTM 等顺序模型用于平滑地预测随楼层变化的 win probability 和 choke point。
+- README 明确提示大型数据处理可能需要约 **50 GB CPU RAM**，数据不直接放在 GitHub，建议用 Colab。
+
+**对本项目的启示：** 全局模型必须看“决策时状态”和状态序列，而不是只用最终 deck；`deck + relics` 明显比单独 deck 有信息，但 HP、楼层、路线和版本同样重要。硬件瓶颈主要在数据生成/预处理，模型本身不一定需要大 GPU。
+
+### 3.4 StrategyAI：按幕路由的树模型和严格切分
+
+[VBot2410/SlayTheSpire-StrategyAI](https://github.com/VBot2410/SlayTheSpire-StrategyAI) 使用 A10+ run 的 act-specialized LightGBM ensemble：Act 1 偏即时伤害，Act 2 偏防御/AoE，Act 3 偏协同实现。它还展示了三个工程上很有价值的门禁：
+
+- 按时间顺序的 run signature 分组，避免同一局跨 train/validation 泄漏；
+- 按真实四槽候选屏计算 list-wise Top-1，而不是普通分类 accuracy；
+- 用 `unknowncard`/`unknownrelic` token 应对补丁造成的 schema drift。
+
+该仓库是 **GPL-3.0**，只能借鉴方法，不能未经许可证审查复制代码到本项目。
+
+### 3.5 Jialeiv/sts-rl-agent：最直接的“搜索 + 网络”证据
+
+[Jialeiv/sts-rl-agent](https://github.com/Jialeiv/sts-rl-agent) 在 STS1 的 `sts_lightspeed` 模拟器上使用约 100k 参数 MLP 学习所有局外动作（地图、奖励、商店、篝火、事件），而战斗继续由 MCTS 处理。README 在固定 50 个 seed 的 A0 Ironclad 实验中报告，学习到的局外策略比随机地图启发式多约 11 个 floor；同时公开了六种战斗蒸馏失败实验。作者的解释是：MCTS 使用真实未来抽牌顺序，单帧策略无法表达这种规划信息。
+
+这与我们当前路线高度吻合：
+
+```text
+CombatPolicy / Expectimax  ->  可靠的 CombatSummary
+GlobalPolicy               ->  路线、奖励、商店、篝火、事件
+```
+
+### 3.6 Spire Pilot：两脑、多头风险和教师蒸馏（项目自述）
+
+[Spire Pilot](https://www.spirepilot.com/) 是一个正在训练中的 A20 Ironclad 项目，网页属于项目方自述，数字不等同于独立基准。其架构值得参考：战斗脑用 token 化状态、Transformer 和 MCTS；局外脑用 deck/relic/run context 预测整局 win probability，再把战斗的预期 HP 损失和死亡风险反馈给路线规划。战斗网络还分出 end-HP distribution、near-term death、incoming damage、clutter 等辅助 head；训练流程是更强搜索教师 → distillation → 死亡案例测试集 → 只有不回归才发布。
+
+可迁移的是接口和验证思想，不是其未公开的权重或结果。
+
+### 3.7 候选屏因果/偏好数据：比“单卡胜率”更接近真实问题
+
+[Brent Smith 的 `sts-card-choice-analysis`](https://github.com/brent-smith-4/sts-card-choice-analysis) 把每个奖励屏保存为一个 choice event，同时保留 picked 和全部 passed alternatives，再把 HP、遗物、楼层等混杂因素加入 silver/gold 层。它的研究问题是“在给定候选屏和状态时，哪个选择与更好的后续结果相关”，而不是“这张卡在所有场景的胜率是多少”。该仓库仍在进行中，且没有可直接复用的明确许可证声明，因此只借鉴表结构。
+
+这类数据适合训练 `P(a | s, offer)` 或 pairwise preference 辅助头；真正的 `Q(s,a)` 仍需要我们的反事实 teacher。对 STS2 来说，`.run` 的 `card_choices`、`event_choices`、`campfire_choices` 和房间结果可以生成同样的长表，但必须保留版本、候选集合、选择时公开状态和 `sl_possible` 标记。
+
+STS1 的路径预测研究也提供了一个重要的 NOSL 对照：[Predicting a successful run in Slay the Spire（Tilburg thesis）](https://arno.uvt.nl/show.cgi?fid=169629) 使用 deck、relic、HP、gold、path 和楼层等字段预测整局结果，并指出只用最终 deck 的模型不能解释决策时因果价值。该结论支持把“最终胜负预测”和“当前奖励决策”作为两个不同任务。
+
+## 4. STS2 现有公开证据与局限
+
+### 4.1 Early Access 和版本漂移
+
+[Mega Crit 的 Early Access 说明](https://www.megacrit.com/news/2026-03-05-early-access-launch/) 明确表示卡牌、遗物、事件和敌人会继续增加和平衡；官方资料还介绍了 Enchantment、Quest、Sly 等会改变卡牌价值的机制（[Enchantments](https://www.megacrit.com/news/2025-2-12-neowsletter-issue-7/)、[Quest cards](https://www.megacrit.com/news/2025-3-12-neowsletter-issue-8/)、[Silent Sly](https://www.megacrit.com/news/2025-5-15-neowsletter-issue-10/)）。因此必须把以下字段绑定到每条样本：
+
+```text
+game_branch, game_version, game_commit, sts2.dll_sha256,
+semantic_catalog_version, simulator_version, scorer_version,
+feature_schema_version, model_version
+```
+
+同名卡在不同补丁中可能有不同费用、变量或描述；任何语义 diff 都应触发特征和教师标签重建。
+
+### 4.2 Tier list 和专家指南只能是软先验
+
+[SpireForge advanced guide](https://www.spireforge.app/guides/advanced) 和 [Mobalytics 卡牌榜](https://mobalytics.gg/slay-the-spire-2/tier-lists/cards) 都强调上下文、灵活性、基础版/升级版、当前卡组缺口和跳过选项；SpireForge 还明确其评级是编辑意见而非实测胜率，且跟随 Early Access 补丁更新。它们适合生成可解释特征或冷启动 prior，不适合充当 Reliable teacher。
+
+建议把先验保存为：
+
+```text
+source = external_prior
+confidence = low_or_medium
+not_teacher = true
+```
+
+模型可以推翻先验；不能用先验硬锁定某个 archetype。
+
+### 4.3 统计站点的正确用法：候选集合偏好，不是因果最优
+
+[Spire Codex scoring](https://spire-codex.com/leaderboards/scoring) 将卡牌分数做 Bayesian shrinkage，并用 Bradley–Terry/Elo 表示奖励屏中的“选中牌胜过其他候选/Skip”的 revealed preference；页面同时说明暴露量、幸存者偏差、提交者水平和未按角色/Ascension 归一化等限制。
+
+这类数据可用于两个辅助任务：
+
+1. 候选集合的 pairwise/list-wise 预训练；
+2. 检查我们的采样分布是否严重偏斜。
+
+它不能替代 `V(s⊕action) - V(s)`，也不能把“被高手选过”解释成无条件强牌。
+
+### 4.4 结构化卡牌数据和模拟器项目
+
+- [spire-archive](https://github.com/nkhoit/spire-archive) 和 [Spire Codex](https://github.com/ptrlrd/spire-codex) 提供从游戏文件/反编译代码整理的卡牌、遗物、Power 和事件元数据，可用于 catalog 交叉核验。
+- [Zamiell/slay-the-spire-2-emulator](https://github.com/Zamiell/slay-the-spire-2-emulator) 展示了 C# NativeAOT 模拟器 + Python Gymnasium 的分层方式，包含 action mask、seeded RNG、战斗和部分全局状态；它是外部参考，不能替代本项目的真实 CLI↔影子差分。
+- [vvsuby/sts2-rl-agent](https://github.com/vvsuby/sts2-rl-agent) 展示了 `Embedding(card_id)`、语义特征、MultiInputPolicy、action mask、BC→PPO 的实现路线；其 README 自报 BC 纯模仿虽有 98% imitation accuracy，但 BC-only 的 Act 1 胜率低于启发式，BC+PPO 才恢复并超过启发式。这再次说明准确模仿不等于高质量策略。
+
+### 4.5 STS2 统计基线的可复用形式
+
+[Liam-Loebl/sts2-stats](https://github.com/Liam-Loebl/sts2-stats) 是一个很实用的数据工程参照：它把每个 `.run` 解析成 `runs`、`card_events`（奖励屏每个候选一行）和 `room_events`，支持幂等导入、schema 版本过滤和按补丁筛选；其 WAR 用“到达同一角色/楼层的基线”修正晚期幸存者偏差，Elo 则把 picked 与所有 alternatives/Skip 成对比较。这个设计可以直接转化为我们的 `ObservedHuman`/`ExternalPrior` 辅助表，但不能越过 CLI↔影子验证成为 teacher。
+
+建议同时保存三种统计量，避免一个分数承载不同含义：
+
+```text
+floor_conditioned_war       # 结果相关性，已做楼层基线修正
+candidate_set_elo            # 同屏选择偏好
+counterfactual_teacher_delta # 影子/Expectimax 的条件增量价值
+```
+
+前两者只用于预训练、采样和诊断；第三者才用于 Reliable Policy/Value 主标签。
+
+## 5. 对 `STS2BestChoice` 的具体设计结论
+
+### 5.1 目标函数：从“卡牌评分”升级为多头状态价值
+
+为每个局外候选动作 `a`（拿牌、跳过、移除、升级、购买、休息、锻造、事件选项、路线节点）生成：
+
+```text
+V_next_fight(a)     下一场战斗生存/伤害价值
+V_act(a)            当前 Act 覆盖与资源价值
+V_run(a)            直到 Boss/Heart 的通关概率
+Risk(a)             死亡概率、低 HP 尾部、药水耗尽风险
+Cost(a)             金币、篝火、路线机会成本
+Confidence(a)       语义和教师证据等级
+```
+
+一个初始的风险约束排序可以写成：
+
+```text
+hard legality mask
+→ unknown/low-confidence gate
+→ reject actions with death risk above threshold
+→ teacher ΔV_run / ΔV_act
+→ model estimate + external prior (soft only)
+```
+
+`CombatSummary` 由当前战斗模型提供 `expected_win_probability`、`expected_hp_loss`、`death_probability`、`expected_turns`、药水消耗和置信度；全局模型消费摘要，不把全局动作塞进 `CombatSnapshot`。
+
+### 5.2 卡组表示：集合 + 时序 + 关系图
+
+不要把 deck 压成单一稀疏 one-hot。建议三路编码：
+
+1. **卡牌集合编码**：`card_id` embedding + count + upgrade/enchantment/quest 状态；
+2. **状态标量**：character、Act/floor、Ascension、HP/maxHP、gold、energy/star、potion、路线距离；
+3. **关系/时序特征**：draw/cycle、费用曲线、攻击/技能/Power 比例、frontload/AOE/block/scaling、exhaust/ethereal/void、enabler→payoff→finisher 图、正/负协同和未来 encounter coverage。
+
+候选牌使用独立的 `OfferCard` token，与当前 deck 通过 cross-attention 或候选条件化 MLP 比较。`Skip` 必须是显式候选，不能用“所有牌都不合适”隐式表示。
+
+### 5.3 训练标签分层
+
+| 标签 | 来源 | 用途 | 能否进入 Reliable |
+|---|---|---|---|
+| `ObservedHuman` | `.run`、高手视频人工标注 | 行为先验/辅助 BC | 否 |
+| `ExternalPrior` | Tier、Elo、社区统计 | 冷启动、采样和解释 | 否 |
+| `HeuristicEstimated` | 规则评分或低预算搜索 | 预训练/回归测试 | 否 |
+| `CounterfactualTeacher` | 真实 CLI + 影子模拟器 + Expectimax/全局搜索 | 主监督标签 | 只有通过差分和重复性门禁后 |
+| `Reliable` | 版本锁定、mismatch=0、双跑一致、质量门禁通过 | Policy/Value/Risk 主训练集 | 是 |
+
+`.run` 和高手视频不要被解释成“最优动作”；它们只记录在当时信息下的选择，且应标记 `sl_possible`/未来信息未知状态。研究模式可以用 seed 生成未来来构造教师，但公开观测策略训练和评测必须屏蔽未发生信息，避免学会 save-and-load。
+
+### 5.4 数据切分和防泄漏
+
+- 按 `run_id`、`seed`、`episode` 分组切分，不能随机打散单条 decision；
+- 按 `game_branch/game_version/catalog_hash` 分层，禁止 v0.110/v0.111 或 main/beta 混合；
+- 同一 seed 的不同隐藏分支必须放在同一 split；
+- 保留候选屏的完整集合、顺序、Skip 和合法性原因；
+- 公共 observation 不得包含未来 RNG、未来地图节点效果或 teacher-only 字段；
+- 训练/验证报告同时给 Top-1、Top-k、teacher regret、win/death、HP、校准（Brier/ECE）和未知效果覆盖率。
+
+## 6. 推荐的实施顺序
+
+### 阶段 A：先完成当前战斗基础（不改变现有范围）
+
+1. 完成 P1 Power、战斗遗物、卡牌语义和 CLI↔影子差分；
+2. 让每个 `CombatSummary` 携带版本、scenario hash、质量和置信度；
+3. 继续把当前回合的 Expectimax teacher 与 Reliable 门禁保持独立。
+
+### 阶段 B：建立局外卡组评估的最小可用基线
+
+1. 从 `.run`/GUI 生成候选屏集合样本（包括 Skip）；
+2. 计算 `deck_health` 启发式特征和 Spire Codex/社区 pairwise prior；
+3. 训练一个小型 set-encoder + candidate scorer，只做 Act 1 单人 v0.111；
+4. 用 run-level split 和固定 challenge set 评估，而不是看训练集 accuracy。
+
+### 阶段 C：反事实教师和全局模型
+
+1. 对每个候选动作 fork 全局状态，调用 `CombatSummary` 估计下一战和短 horizon（3–5 个局外节点）；
+2. 记录 `teacher_value_mean/variance/CI`、随机分支数、失败/恢复信息；
+3. 训练多头 `Policy + Value + Risk + Confidence`，先监督/蒸馏，再考虑 IQL/AWR；
+4. 路线、奖励、商店、篝火、事件保持独立头，由 `GlobalDecisionOrchestrator` 统一候选排序。
+
+### 阶段 D：部署和回归
+
+1. PyTorch → ONNX → C# 推理一致性；
+2. 模型只负责排序和估值，真实合法动作枚举、未知效果回退和最终 Expectimax 验证仍在 C#；
+3. 每次补丁或语义变更重建受影响数据，旧模型按版本保留，不覆盖旧 manifest；
+4. 死亡案例、低 HP、随机目标、消耗/虚无、指定弃牌、生成牌和复杂事件进入固定 challenge set。
+
+## 7. 建议的最小实验矩阵
+
+| 实验 | 输入 | 标签 | 目的 |
+|---|---|---|---|
+| E0 | 候选卡文本/语义 | ExternalPrior | 验证管道和解释 |
+| E1 | deck + relic + HP + Act + offer | ObservedHuman | 测行为可预测性 |
+| E2 | 同上 + CombatSummary | CounterfactualTeacher | 测下一战/生存价值 |
+| E3 | E2 + 路线/商店/未来可见公开信息 | Global teacher | 测全局 `ΔV_run` |
+| E4 | E3 的 set/attention encoder | 同 E3 | 对比 one-hot、MLP、Transformer |
+| E5 | E4 + 风险约束和 unknown gate | 同 E3 | 测低 HP、未知语义和版本漂移 |
+
+核心指标：
+
+```text
+legal_action_rate
+teacher_top1 / top3
+mean_teacher_regret
+win_rate / act_clear_rate
+death_rate / low_hp_tail
+expected_hp_loss
+Brier / ECE calibration
+version-mismatch rejection rate
+```
+
+## 8. 明确不采用的做法
+
+1. 不把 STS1 的固定卡牌分数、one-hot 维度或战斗伤害直接迁移到 STS2。
+2. 不把社区 Tier、pick rate 或简单 win rate 当作因果最优标签。
+3. 不把高手视频/`.run` 行为当作无条件专家策略；先标记来源和可能的 SL/信息缺失。
+4. 不把未来 seed、未来抽牌或未发生 RNG 放入公开策略输入。
+5. 不在 P1 语义和 CLI↔影子 mismatch 清零前生成 Reliable 全局教师数据。
+6. 不把战斗逐牌规划和全局路线决策强行合并成一个首版网络；先采用模块化接口，之后再用共享表示或蒸馏减少重复计算。
+7. 复制外部代码前先核对许可证；例如 StrategyAI 为 GPL-3，部分上游 STS2 项目没有明确许可证。
+
+## 9. 最终判断
+
+STS1 的公开经验支持“神经网络有用”，但更强的结论是：**网络应学习搜索器难以实时运行的价值近似和局外判断，搜索器继续处理需要逐步展开隐藏随机性的战斗规划。**
+
+因此本项目的定位应保持为：
+
+```text
+版本化真实状态采集
+→ 确定性影子模拟器
+→ Expectimax / 反事实教师
+→ PyTorch 多头 Policy/Value/Risk 模型
+→ 合法动作掩码 + 最终搜索验证 + 低置信度回退
+```
+
+STS1 项目提供的是架构和实验方法的先例，不是 STS2 的答案。真正可用的 STS2 卡组评估器必须由当前版本的结构化语义、真实 CLI 差分和不泄漏未来信息的教师数据共同定义。
+
+## 10. 参考来源（按用途）
+
+### STS1 神经网络与预测
+
+- [LearnTheSpire — TensorFlow 卡牌选择网络](https://github.com/kaijchang/LearnTheSpire)
+- [Slay-I GitHub — 325k 战斗、卡牌反事实评估](https://github.com/alexdriedger/SlayTheSpireFightPredictor)
+- [Bringing Deep Neural Networks to Slay the Spire — Slay-I 方法文章](https://medium.com/data-science/bringing-deep-neural-networks-to-slay-the-spire-a2971d5a5115)
+- [Slay the Spire Floor-Level Win Prediction](https://github.com/JoeyRussoniello/sts-win-prediction)
+- [SlayTheSpire-StrategyAI — Act 专用 LightGBM 与候选屏门禁](https://github.com/VBot2410/SlayTheSpire-StrategyAI)
+- [Jialeiv/sts-rl-agent — 局外网络 + MCTS 战斗](https://github.com/Jialeiv/sts-rl-agent)
+- [Spire Pilot — 两脑、风险多头和蒸馏流程（项目自述）](https://www.spirepilot.com/)
+
+### STS2 语义、统计与模拟器
+
+- [Mega Crit Early Access launch](https://www.megacrit.com/news/2026-03-05-early-access-launch/)
+- [Mega Crit: Enchantments](https://www.megacrit.com/news/2025-2-12-neowsletter-issue-7/)
+- [Mega Crit: Quest cards](https://www.megacrit.com/news/2025-3-12-neowsletter-issue-8/)
+- [Mega Crit: Silent Sly cards](https://www.megacrit.com/news/2025-5-15-neowsletter-issue-10/)
+- [SpireForge advanced guide](https://www.spireforge.app/guides/advanced)
+- [Mobalytics STS2 card tier list](https://mobalytics.gg/slay-the-spire-2/tier-lists/cards)
+- [Spire Codex scoring methodology](https://spire-codex.com/leaderboards/scoring)
+- [Spire Codex developer/API documentation](https://spire-codex.com/developers)
+- [Spire archive structured data](https://github.com/nkhoit/spire-archive)
+- [Spire Codex source/data pipeline](https://github.com/ptrlrd/spire-codex)
+- [Zamiell STS2 emulator](https://github.com/Zamiell/slay-the-spire-2-emulator)
+- [vvsuby STS2 RL agent (BC + PPO)](https://github.com/vvsuby/sts2-rl-agent)
+- [Liam-Loebl STS2 stats (WAR/Elo, patch-aware `.run` ingest)](https://github.com/Liam-Loebl/sts2-stats)
+
+---
+
+**与本项目文档的关系：** 本报告是研究输入，不修改 `PLAN.md` 的“当前只做单回合战斗”范围；局外卡组评估应按 `PLAN_GLOBAL_DECISION.md` 作为后续独立模块推进。
+
+<!-- transaction: modified copy; source report remains the deliverable -->

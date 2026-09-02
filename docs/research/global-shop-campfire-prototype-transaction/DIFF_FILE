@@ -1,0 +1,2 @@
+BASELINE -> MODIFIED
+Added deterministic public-state ShopPolicy and CampfirePolicy with stable candidate IDs, legal masks, score/rank/confidence metadata, unknown semantic handling, and smoke fixtures.

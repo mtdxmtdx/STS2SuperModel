@@ -1,0 +1,2 @@
+BASELINE -> MODIFIED
+Added deterministic read-only public feature/version manifest, exact version/hash compatibility validation, forbidden feature list and mismatch tests.

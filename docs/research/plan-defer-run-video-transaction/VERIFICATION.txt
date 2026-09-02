@@ -1,0 +1,38 @@
+# PLAN_GLOBAL_DECISION deferred auxiliary-data update verification
+changed_branch=main
+changed_field=STS2SuperModel/PLAN_GLOBAL_DECISION.md
+plan_path=D:\STS2BestChoice\STS2SuperModel\PLAN_GLOBAL_DECISION.md
+MODIFIED_FILE=D:\STS2BestChoice\STS2SuperModel\docs\research\plan-defer-run-video-transaction\MODIFIED_FILE
+DIFF_FILE=D:\STS2BestChoice\STS2SuperModel\docs\research\plan-defer-run-video-transaction\DIFF_FILE
+VERIFICATION.txt=D:\STS2BestChoice\STS2SuperModel\docs\research\plan-defer-run-video-transaction\VERIFICATION.txt
+ROLLBACK.sh=D:\STS2BestChoice\STS2SuperModel\docs\research\plan-defer-run-video-transaction\ROLLBACK.sh
+
+## Hashes
+baseline_sha256=079DD1121FB7F22F62E61D1B846518C9CABC34774D929B36A869F281F1FBD805
+modified_copy_sha256=E65AE73530D8C5BBAB93F031C3F55010AB109438B00F4342727A96B6CB7096E7
+plan_sha256=E65AE73530D8C5BBAB93F031C3F55010AB109438B00F4342727A96B6CB7096E7
+diff_sha256=535848E293A31EB1D65ABCC43D707F78858CAA79BB34358883D138AFC11A8140
+
+## BASELINE command / input / literal output / exit
+command=PowerShell baseline fence and absence-of-deferral validator
+input=D:\STS2BestChoice\STS2SuperModel\docs\research\plan-defer-run-video-transaction\BASELINE_FILE
+literal_output=BASELINE_PLAN_TEST=PASS fences=100 deferral_update=absent
+exit_status=0
+
+## MODIFIED command / input / literal output / exit
+command=PowerShell deferral marker, section and fence validator
+input=D:\STS2BestChoice\STS2SuperModel\docs\research\plan-defer-run-video-transaction\MODIFIED_FILE
+literal_output=MODIFIED_PLAN_TEST=PASS fences=102 deferred_markers=8
+exit_status=0
+
+## ROLLBACK command / input / literal output / exit
+command=Invoke-Expression of ROLLBACK.sh with -Target rollback-test (separate copy)
+input=D:\STS2BestChoice\STS2SuperModel\docs\research\plan-defer-run-video-transaction\rollback-test
+literal_output=ROLLBACK_TEST=PASS before=013AADBB872522CD31630B00DFD7630ED1F7D4682CECCB87F8E23E83B54D6644 after=079DD1121FB7F22F62E61D1B846518C9CABC34774D929B36A869F281F1FBD805 baseline=079DD1121FB7F22F62E61D1B846518C9CABC34774D929B36A869F281F1FBD805 original_modified=E65AE73530D8C5BBAB93F031C3F55010AB109438B00F4342727A96B6CB7096E7
+exit_status=0
+restored_behavior=rollback-test MODIFIED_FILE byte-identical to BASELINE_FILE; original modified copy remained changed
+
+## Final status
+plan_status=modified and retained
+auxiliary_run_video_status=deferred
+public_behavior=global plan documentation only; combat code unchanged
