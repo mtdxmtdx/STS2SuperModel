@@ -1,0 +1,14 @@
+{
+  "verdict": "pass",
+  "different_tensors": [],
+  "tensor_count": 23,
+  "metrics_equal": true,
+  "metrics": {
+    "best_epoch": 14,
+    "validation_top1": 0.8805412972468503,
+    "validation_regret_fixed": 0.17452169855342978,
+    "test_top1": 0.8698559670781894,
+    "test_regret_fixed": 0.07561728395061729,
+    "challenge_top1": 0.8632309217046581
+  }
+}

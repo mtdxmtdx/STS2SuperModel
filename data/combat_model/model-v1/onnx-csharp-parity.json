@@ -1,0 +1,1 @@
+{"verdict":"pass","runtime":"Microsoft.ML.OnnxRuntime","maximum_absolute_error":3.814697265625E-06,"tolerance":1E-05,"model_sha256":"ECD9D4153B271949A7C94FCC33F0AD96FDDF1DE6D944BBBBE94BE2A9B6B08B54","feature_parity":{"verdict":"pass","encoder":"csharp-independent","maximum_absolute_error":0,"tolerance":1E-09}}

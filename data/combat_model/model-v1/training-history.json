@@ -1,0 +1,79 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 3.2923726144147594,
+    "learning_rate": 0.001,
+    "validation_loss": 2.970546798398992,
+    "validation_top1": 0.6878208119458703,
+    "validation_ndcg_at_3": 0.7245601988393714,
+    "validation_regret": 0.23576691225720026,
+    "validation_regret_coverage": 0.6966868875408306,
+    "validation_rows": 2143.0
+  },
+  {
+    "epoch": 2,
+    "train_loss": 2.687800265432042,
+    "learning_rate": 0.001,
+    "validation_loss": 2.4676835782829425,
+    "validation_top1": 0.7363509099393374,
+    "validation_ndcg_at_3": 0.7692481629145811,
+    "validation_regret": 0.08238993710691823,
+    "validation_regret_coverage": 0.7419505366308913,
+    "validation_rows": 2143.0
+  },
+  {
+    "epoch": 3,
+    "train_loss": 2.1705483940171675,
+    "learning_rate": 0.001,
+    "validation_loss": 2.0673381452297863,
+    "validation_top1": 0.8114792347176855,
+    "validation_ndcg_at_3": 0.828776911544991,
+    "validation_regret": 0.05320366132723112,
+    "validation_regret_coverage": 0.8156789547363509,
+    "validation_rows": 2143.0
+  },
+  {
+    "epoch": 4,
+    "train_loss": 1.8612674506613855,
+    "learning_rate": 0.001,
+    "validation_loss": 1.7711438533028208,
+    "validation_top1": 0.8012132524498367,
+    "validation_ndcg_at_3": 0.8309149534526021,
+    "validation_regret": 0.09768786127167631,
+    "validation_regret_coverage": 0.80727951469902,
+    "validation_rows": 2143.0
+  },
+  {
+    "epoch": 5,
+    "train_loss": 1.5810155238936277,
+    "learning_rate": 0.0005,
+    "validation_loss": 1.4986035757625542,
+    "validation_top1": 0.8553429771348576,
+    "validation_ndcg_at_3": 0.8483149304223394,
+    "validation_regret": 0.17261904761904762,
+    "validation_regret_coverage": 0.8623425104993,
+    "validation_rows": 2143.0
+  },
+  {
+    "epoch": 6,
+    "train_loss": 1.4045543642936322,
+    "learning_rate": 0.0005,
+    "validation_loss": 1.3912655790999178,
+    "validation_top1": 0.8660755949603359,
+    "validation_ndcg_at_3": 0.8654046768435335,
+    "validation_regret": 0.18676627534685167,
+    "validation_regret_coverage": 0.8744750349976668,
+    "validation_rows": 2143.0
+  },
+  {
+    "epoch": 7,
+    "train_loss": 1.344181262582271,
+    "learning_rate": 0.00025,
+    "validation_loss": 1.3568538133084524,
+    "validation_top1": 0.8464769015398973,
+    "validation_ndcg_at_3": 0.8577042028231842,
+    "validation_regret": 0.1273224043715847,
+    "validation_regret_coverage": 0.8539430704619692,
+    "validation_rows": 2143.0
+  }
+]

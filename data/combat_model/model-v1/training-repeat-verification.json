@@ -1,0 +1,6 @@
+{
+  "verdict": "pass",
+  "different_tensors": [],
+  "tensor_count": 23,
+  "metrics_equal": true
+}

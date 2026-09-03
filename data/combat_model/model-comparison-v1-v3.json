@@ -1,0 +1,60 @@
+{
+  "comparison_policy": "metrics are run-local; challenge values are not cross-comparable when split sources differ",
+  "runs": [
+    {
+      "best_epoch": null,
+      "challenge_rows": 1009,
+      "challenge_top1": 0.8027750247770069,
+      "epochs_completed": 7,
+      "model_id": "combat-nosl-policy-value-v1",
+      "model_stage": "pilot",
+      "onnx_parity_status": "pass",
+      "promotion_status": "candidate_or_baseline",
+      "source_manifest": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\model-v1\\combat-nosl-model-manifest.json",
+      "test_ndcg_at_3": 0.8277263283143969,
+      "test_regret_fixed": null,
+      "test_rows": 1944,
+      "test_top1": 0.808641975308642,
+      "training_rows": 5419,
+      "validation_rows": 2143,
+      "validation_top1": 0.8114792347176855
+    },
+    {
+      "best_epoch": 14,
+      "challenge_rows": 1009,
+      "challenge_top1": 0.8632309217046581,
+      "epochs_completed": 26,
+      "model_id": "combat-nosl-policy-value-v2",
+      "model_stage": "rerun",
+      "onnx_parity_status": "pass",
+      "promotion_status": "authoritative",
+      "source_manifest": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\model-v2\\combat-nosl-model-manifest.json",
+      "test_ndcg_at_3": 0.8675708640570584,
+      "test_regret_fixed": 0.07561728395061729,
+      "test_rows": 1944,
+      "test_top1": 0.8698559670781894,
+      "training_rows": 5419,
+      "validation_rows": 2143,
+      "validation_top1": 0.8805412972468503
+    },
+    {
+      "best_epoch": 18,
+      "challenge_rows": 1178,
+      "challenge_top1": 0.8573853989813243,
+      "epochs_completed": 30,
+      "model_id": "combat-nosl-policy-value-v3-candidate",
+      "model_stage": "candidate_not_promoted",
+      "onnx_parity_status": "not_exported",
+      "promotion_status": "candidate_or_baseline",
+      "source_manifest": "D:\\STS2BestChoice\\work\\nosl-teacher-fix-stage-a\\combat-model-v3\\combat-nosl-model-manifest.json",
+      "test_ndcg_at_3": 0.8723596354095087,
+      "test_regret_fixed": 0.06934812760055478,
+      "test_rows": 2163,
+      "test_top1": 0.8737864077669902,
+      "training_rows": 6074,
+      "validation_rows": 2452,
+      "validation_top1": 0.882952691680261
+    }
+  ],
+  "schema_version": 1
+}

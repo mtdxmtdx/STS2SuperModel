@@ -1,0 +1,4510 @@
+{
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\work\\nosl-teacher-fix-stage-a\\c5-pilot-all-dedup.jsonl",
+  "rows_scored": 10515,
+  "disagreement_count": 3455,
+  "nonzero_regret_count": 56,
+  "selection_policy": "descending (2 * top1_disagreement + known_balanced_regret), state_hash_public tie-break",
+  "candidates": [
+    {
+      "state_hash_public": "16a82bf8392448b95eea93805a682545e148a0e051cd154f2faf05ec8b102b50",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01294",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 29.0,
+      "priority": 31.0
+    },
+    {
+      "state_hash_public": "69cb363371b983cb6da149e32d0c74772753e2617dbffb0709c973cbbd1d77d0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00934",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 29.0,
+      "priority": 31.0
+    },
+    {
+      "state_hash_public": "02e432eda7168d9f30850e70a6f44b12c7b10e3ea88ab5abab5d3cefccd54f48",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02350",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 21.0,
+      "priority": 23.0
+    },
+    {
+      "state_hash_public": "0a890efc95d570f1cad1de9611b5b2745850893f9afa103339440676f448535b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00766",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 15.0,
+      "priority": 17.0
+    },
+    {
+      "state_hash_public": "7322e288fd9a23250af202f9e0328cbe5c172b34ba69324a0754f1a79436c5b5",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02170",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 15.0,
+      "priority": 17.0
+    },
+    {
+      "state_hash_public": "7c94a9caf575c44bf9a22039d7f370cb156083e863eebfad4fe5b52b4e968c1f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01006",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 15.0,
+      "priority": 17.0
+    },
+    {
+      "state_hash_public": "c398a6e7bfc1f0f1e21fb43bba7527f1e81c40f2172c86bd8792bfc5aff51f77",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01486",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 15.0,
+      "priority": 17.0
+    },
+    {
+      "state_hash_public": "a60bc79a11e1e62d0571600b028888be4ad2c19919d25d1be5cb4c6f102901e9",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01768",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 13.0,
+      "priority": 15.0
+    },
+    {
+      "state_hash_public": "b8b448fd3efde81e88010d04a98b49d5a3e64569ee6024dd26f96f91dfc87fe7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00106",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 13.0,
+      "priority": 15.0
+    },
+    {
+      "state_hash_public": "20779f09efcf8569c2962e62df19a5278869205807223ab10ebed8d93ca863fa",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00298",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 11.0,
+      "priority": 13.0
+    },
+    {
+      "state_hash_public": "e1777ea257028b4e4228d310b676f3531a7ec962b63d55ed6c57b7dc267aa1f5",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01444",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 11.0,
+      "priority": 13.0
+    },
+    {
+      "state_hash_public": "4a4ada6fafa794e066764e429d894fd2e2ba952ad4e45ed3c40639e24775a35c",
+      "episode_id": "trace-v0111-p0-akabeko-fixed-r8",
+      "predicted_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 10.0,
+      "priority": 12.0
+    },
+    {
+      "state_hash_public": "158adf54567d074b30721fd6a0000ad6507d526a7637c9318cc7bded9231c116",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01330",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 9.0,
+      "priority": 11.0
+    },
+    {
+      "state_hash_public": "3d64e85d7953494d5dd2f1d9c6c939e881abc4c62581ef614bc907c908c71f4b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01558",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 9.0,
+      "priority": 11.0
+    },
+    {
+      "state_hash_public": "9fb79ff1f11fadd91ffd8820a33d914b028dabe09717087ec7be79840c43f132",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00646",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 9.0,
+      "priority": 11.0
+    },
+    {
+      "state_hash_public": "1ed116a19cf47657b7d237b7b151ee4dbec700e5f1f3ed11504ed05be4fb9829",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01498",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 7.0,
+      "priority": 9.0
+    },
+    {
+      "state_hash_public": "61526949115bd0923c409a05fb4bab2a1baf4286a548dd3b670e87da58f05d57",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01996",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 7.0,
+      "priority": 9.0
+    },
+    {
+      "state_hash_public": "6c0d714e46edd61d446aa162dbc622bbe171f54233a36207ba223b5e1e622891",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00112",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 7.0,
+      "priority": 9.0
+    },
+    {
+      "state_hash_public": "799f526fb98822e2abb23329c8de36424d99cd1ceddf839d3703826c7a80a44f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01264",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 7.0,
+      "priority": 9.0
+    },
+    {
+      "state_hash_public": "b742099948697702c7e2f1b557a73935fb9300fd5d80add6e119f6e930a87170",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01534",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 7.0,
+      "priority": 9.0
+    },
+    {
+      "state_hash_public": "05c76e90028e7ad62ff7b34b09dd447e6a5986e66a789079053086bf74f99fa1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01862",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 6.0,
+      "priority": 8.0
+    },
+    {
+      "state_hash_public": "4c18e6d01d9db258a3035ba1bea818da02f75ac0557c7fd7981895b669a8d828",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00086",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 6.0,
+      "priority": 8.0
+    },
+    {
+      "state_hash_public": "95ea5f4703b10f0692865df8f4be11bb0fce7f4e3ffddd5ea56e6d0d340d0467",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01964",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:BASH:002:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 6.0,
+      "priority": 8.0
+    },
+    {
+      "state_hash_public": "d8c8b55d0f6591c6dade33a101134220496050da664a6ad74fafe7c149e0fad3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01616",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:BASH:002:enemy:LEAF_SLIME_S:3",
+      "disagreement": true,
+      "regret": 6.0,
+      "priority": 8.0
+    },
+    {
+      "state_hash_public": "ec1c095d9e1a69c6624e89a4e768d259eb80a6dde2e7bc686ba861fb47377d10",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02444",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:BASH:002:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 6.0,
+      "priority": 8.0
+    },
+    {
+      "state_hash_public": "3d5496113b30a1b50c06ebf2ee9904356bd4d60e9374621cab766ab8ba4263bd",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00412",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 5.0,
+      "priority": 7.0
+    },
+    {
+      "state_hash_public": "4694a7f06be149d9a08a7f537f16fe409395b9686c14ead10dc239ba70ee1487",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01828",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 5.0,
+      "priority": 7.0
+    },
+    {
+      "state_hash_public": "7a592b123b11d7322de84f88cfbbbaff0f5e8d66816cfc3001a415da98506e56",
+      "episode_id": "trace-v0111-p0-multi-target-fixed",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:005:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:006:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 5.0,
+      "priority": 7.0
+    },
+    {
+      "state_hash_public": "20127473ae8d6dc3d95b0857823df5c68401de288f9af2c3e2c43d333baa2e77",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02366",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:BASH:002:enemy:TWIG_SLIME_M:2",
+      "disagreement": true,
+      "regret": 3.0,
+      "priority": 5.0
+    },
+    {
+      "state_hash_public": "33f4d2aafbc05e63cf4021a6e8ba44cdd32dc5ee803f85b3f8363d2ff49ed67f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01226",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:BASH:002:enemy:LEAF_SLIME_S:3",
+      "disagreement": true,
+      "regret": 3.0,
+      "priority": 5.0
+    },
+    {
+      "state_hash_public": "4B1910E5F317BE55A8C931537925A203BD26BFCD37763580CAA1F88036AAE84F",
+      "episode_id": "trace-v0111-p0-orichalcum-fixed-r5",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 3.0,
+      "priority": 5.0
+    },
+    {
+      "state_hash_public": "59a51e119bbd4c26eac129a4f5d71cae05186800d9a0a7bbec8766511c3a89ff",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01034",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 3.0,
+      "priority": 5.0
+    },
+    {
+      "state_hash_public": "67e36b9a8300431f35f1bc9972eef2f31abf031e06a0162c6f6e23d9c6ab06e7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01058",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 3.0,
+      "priority": 5.0
+    },
+    {
+      "state_hash_public": "6ddf60eefe1d99dc47b3abd3b0a6ae01896dd3d3ecdb3982d57496fb243d5d2e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01484",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:BASH:002:enemy:LEAF_SLIME_S:3",
+      "disagreement": true,
+      "regret": 3.0,
+      "priority": 5.0
+    },
+    {
+      "state_hash_public": "6e42c55fd581d83cd8db1f5b1b530b808baedb0d64fb279dc84de287020f553c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01940",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 3.0,
+      "priority": 5.0
+    },
+    {
+      "state_hash_public": "AA8C8F05526A6794606236398DA4DB42EC08F6D629A469742C89FAAC8FF97C0D",
+      "episode_id": "trace-v0111-p0-orichalcum-fixed-r1",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 3.0,
+      "priority": 5.0
+    },
+    {
+      "state_hash_public": "ebe770d7eaeb72e5ef8c7a8e5c892ece345ce22781e7199bb044515ca831092e",
+      "episode_id": "trace-v0111-p0-multi-target-fixed-r1",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:005:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:006:enemy:TWIG_SLIME_S:1",
+      "disagreement": true,
+      "regret": 3.0,
+      "priority": 5.0
+    },
+    {
+      "state_hash_public": "f897afaac31875c5c10543afecdca2321763af1283e5ec438ad78caf23751cca",
+      "episode_id": "trace-v0111-p0-orichalcum-fixed-r9",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:009:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 3.0,
+      "priority": 5.0
+    },
+    {
+      "state_hash_public": "0d3c666838920c9c3e192b18372d28b6594da6191a1a376c9cc62273b2b32261",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01502",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:BASH:002:enemy:TWIG_SLIME_M:2",
+      "disagreement": true,
+      "regret": 2.0,
+      "priority": 4.0
+    },
+    {
+      "state_hash_public": "3b009f6f4e7708f52541b7c3b8f079084c3db7e8e7414b60d57db2c829c25988",
+      "episode_id": "trace-v0111-p0-multi-target-fixed-r6",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:BASH:001:enemy:TWIG_SLIME_S:1",
+      "disagreement": true,
+      "regret": 2.0,
+      "priority": 4.0
+    },
+    {
+      "state_hash_public": "6637bc1503f838d972f94028fceb1624dd8f81ca9722c176de5930d047c73322",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00452",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:BASH:002:enemy:TWIG_SLIME_M:2",
+      "disagreement": true,
+      "regret": 2.0,
+      "priority": 4.0
+    },
+    {
+      "state_hash_public": "8aba353308531c5f4adda17e5a6395f1051f613f867ee4df82f62fa0bcbe4842",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00782",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:BASH:002:enemy:TWIG_SLIME_M:2",
+      "disagreement": true,
+      "regret": 2.0,
+      "priority": 4.0
+    },
+    {
+      "state_hash_public": "b26a50627a043484d11179a270946e87977125ea808d9224b982631c4014f904",
+      "episode_id": "trace-v0111-p0-multi-target-fixed-r6",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1",
+      "disagreement": true,
+      "regret": 2.0,
+      "priority": 4.0
+    },
+    {
+      "state_hash_public": "c73f57aba4f469b5e8f6c2195511d5c614e9f9ece1f186d8e0d6f546b0dcb9a7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02042",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:BASH:002:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 2.0,
+      "priority": 4.0
+    },
+    {
+      "state_hash_public": "115bd3e9e9e4f18ba0e9f6738787cb32fe614133e881c70ea26a0f0e974555dd",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02446",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "3c993b1c318de044718db321ff88258b167e3070c2528bccb41603b470b8c22f",
+      "episode_id": "trace-v0111-p0-inflame-strength-fixed-r3",
+      "predicted_action": "play:card:INFLAME:006:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "43661b7869326cace04b0747760d4abceaa3373a598b4b9d922a0c0667fc48f6",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00886",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "4f70f5e4b12ede442911498a049358d827f6e17d5aeb6adc94a6a8d40afe4c8d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01414",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "609285b4768fcf0d0c7728f94e1009785423a3b63708f46c1ceba7805353432e",
+      "episode_id": "trace-v0111-p0-inflame-strength-fixed-r7",
+      "predicted_action": "play:card:INFLAME:007:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "69b553a8c3d9850486444f691323f70111dd689bbefea0d07d22d57d5106d84b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01126",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "77d7d3108ece234a0f40b39cdd36df6488de39f97023755388f6bca8aa73d528",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00434",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:BASH:002:enemy:LEAF_SLIME_S:3",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "868743835055b16a780607a916178cf55e78db18a927c3ae6309a27c15b6c4a0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02224",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "873fd709f7c8258c9f36fec7935fa90644bd71297b77a6ee73a0c243a02940d0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01432",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "c53ba1d13b688e100e329b21d5871ab3a4fbedeb0b6e53ad4d729dd2723f95c5",
+      "episode_id": "trace-v0111-p0-inflame-strength-fixed-r8",
+      "predicted_action": "play:card:INFLAME:006:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "c74a7014376f4da9937263588cf2a414de7e08933a9817037ef3c8fa54ffe35d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01558",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "d48832e3a08bb84a56273ef30af9b3c266ac158031263788b44ec5390f5174e7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02194",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 1.0,
+      "priority": 3.0
+    },
+    {
+      "state_hash_public": "0002a2799c72373b152cf7836b06cbd9ad20651a8c26786c117d0497f17a3940",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01510",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "00064470dd7991782c2c81043d2c47d0de5e9f3108a5411dc8d78a7c2fc69a29",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02088",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "000eb481a9917286038a6c366c38c2e65f6c9e36f4a12c8a7af9ad82ca841429",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02184",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "00300734af1de966b9c809af07640bc6a54047cb1aed0ef22a2c4ffcd3881e05",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00447",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "00547627ed6d0adcd70df07cad5162fb300c9b5848a70853d028c7dc179d3851",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00982",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0075128ef1939653b0398869b1face3ec64242dd609a09315fd10b313eb96eb6",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01925",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0080b5cecf4d2c725d3fd5b38d18c3633bc55db8326b32c49899584d6d815f65",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00010",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "008702ba93dbb4166cc99054c8478f71966ad868225735914a53e72af6191c9f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01002",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "008984c4daa9e1a2b0091fb6e74b0bacb45f1b94783f925730dd2855dc24a74c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00476",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "00cbdbd17fde5f49cc65a59c39ee76fd6450c7fb5baecf92552dd82382b1bb5d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00820",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "00ffc0ca8762c987513b7230b53e96c66ddb1dbe25628fcbf00a29bcc6b159dc",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02459",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "012552d6503602e8bd9c1be7373dce33db38044ae645526dd3e16041b69c250c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00396",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "015681ea21fbe305b58369e5d912ce60a388ebbc07e1d881c5645f23b148f7f6",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00150",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "01672878eb2f30960055d0cb1adf7d2e45a50bd5322e6c0efc1222849b8ac98c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch-00032",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "01682dd0af038400040016c67660b88dc89608192de91a9391a1dc0e8832f7fb",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01686",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0174b7e8884ca6fa6e600b4ed7f26299e44df562b8b558a413eb73034905437a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00864",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "017e02cd4bcb80d8479203ddab1660351cb4abee721d385066d92c8d34aead56",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00731",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0190150e01e2de7ce9bee01711166d956f07e9c3fbe559593c5f4c0af2512fb0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00132",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "01983174ffdc5df65a9e61bab2702624985bc7ddf77afa92d87897f702b7a45d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00847",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "019fa2bd1f9fbe967cd66582e920a55ad9772ab90a555f1ccac2eb998d32794b",
+      "episode_id": "trace-v0111-p0-lantern-fixed-r7",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "01a564bc079cfbe783d5aefdd47e51a54881e69b5d2a7a217df3672ee52d6e21",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00474",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "01ab6e0e660001a3459be1bd64fe7f55bac596bc60f2407b374edb83ea178470",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02265",
+      "predicted_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "01ed6ee00c43bebbd36011e86dbc7f01441ea8cc7c07cac8e05ceff69862f4da",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00658",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "01f77d5637e63273943e5c4b796ee478a607957516da98e7ebca8864547524c9",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01652",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "020a6627d60d0b1080db8d2084ece63f1708fe424be56bc0e8120eed7df1ea8d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00605",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "020b8b520420963d621377a3334e64fc1dd38756a0fe214e93b2e4eb705545ad",
+      "episode_id": "trace-v0111-p0-pen-nib-double-fixed-r1",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:020:enemy:TERROR_EEL:1",
+      "teacher_action": "end_turn",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0226a81b43b34ae8a572cda7940e2f807f60d08c5b89b79407d5548524bb5a37",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01222",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "022ed8f0a5cd0bf088e29a844e90971bbde72160af46d9a70c11e99d4c452b7f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00407",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "02391434b20eb351f58feac82893c6529e82896a45bf68ea2e03ac5ade13bd1e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01816",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "023b4e8d18e028c0fb53a3efd02c78b69d34c639483363f97a0d3057d2febd60",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00536",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "02432e8cfb7cabbc28954544f4ebc9f5ca855e07153168e83db78017ddeb4785",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00127",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "024d2d86c07e67a6a1457858469e857b33218f90749391ec7000b27105e1f28e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01317",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "025b7479c17f843279c59575e10900ffaffab557bf22794480277fb6caee2921",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02186",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0261C572392AA30C4E4B668AA60B3AD931D73F5E31450C72762F6C94AC749008",
+      "episode_id": "trace-v0111-p0-art-of-war-fixed-r2",
+      "predicted_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "02692f77e34cf90b6b1319f08d9308cc1585b81321667b76586f0db032e7c214",
+      "episode_id": "trace-v0111-p0-demon-form-fixed-r4",
+      "predicted_action": "play:card:DEMON_FORM:011:none",
+      "teacher_action": "end_turn",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "026f347bd30465d0b8236f988453654b0e1545aed88bff811169a214a284d2de",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02361",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "028cfb1b2ce43dceb7beffa0bb681f39bb121ba457208938d42697297ca15ded",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00662",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0294fa8b9f196437e1411d73b2d935a0ebf54a135b06c9d1b3f2a0ebf23d46b5",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00372",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "02b17d17c171f2fb983887c386abd29d7ea20624106dcfb6b281f9e85d19798b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00183",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "02d4ac4ffb51d19751b46325e6b80745004adf0b9db58be3f1a20e00d3f51731",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00489",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "02df0e632fa1bff0e52b447a03815879454e3d56b6c6d06b42017f463146bb70",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01836",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "02eb6f1da93bd37e39a15544be02580810af7486dadec6550fffdadfde83efd2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00864",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "02fc4fcb2d902977a0db7223d7be73b2235eb8064ef75aa53327ac9bfb8a520f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00574",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "030d3cc8b328776cfea969eaf989e870d3d672d032dee6db6f3dafc46a51c239",
+      "episode_id": "trace-v0111-p0-multi-target-fixed-r5",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:005:none",
+      "teacher_action": "play:card:BASH:001:enemy:LEAF_SLIME_M:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "033489cbfa1a73e7c6f8c6fbab0ad2f4037a8e0134258756aa9694b5896183ba",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00598",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "033d460cc7c66b767278ff2440c030f4585c9d2b89316cf3c90a55c050ddea98",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01761",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0360a881b04d032ec97d9592eb12b6484a0eb8a8bc976d36b16334db089bc22e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01801",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "03755c89fe369f4f894cb4aa894295701b022e61c767976a2d5b4534968bdfcb",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00907",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:013:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "038486b4cb309387f31d4c3ca24052d03ea1da41d76cf94cfd5da272133397fe",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02067",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0385bd7adfb7ba652261e69753434d11ace2f901aae2e882879bc395b1cca0da",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01714",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "038c53097066141cb595aec7341d535c2a465802d66dc4523676cb4ed5703615",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02445",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "03a04654720f51bb46abb5f0e612faf020ca1d73bbc6845b8dbc5419d252f6db",
+      "episode_id": "trace-v0111-root-nosl-c5-batch-00068",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "03a789f1af11363373dccafbab77d0b2c4c12b2fa45f678eee5b9ddeb3d70e1f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00022",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:TWO_TAILED_RAT:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "03a7f1d39b0cc70f83ead601fcba2d9b7461069eca2851065f12439050ee0052",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00807",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "03b2a103164feb40568b2a672eb27bfcb02c2d7ac8559ace52bc1f6080d9d474",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00334",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "03c14ae4edba343a1e729da42733d130ebf27af63ab116b5f10f653ef60c1970",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01902",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "03c15edceb74b2dee3bb984f5442b32070fd40462a813bbb276679453f016399",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02362",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "03de5a973019c872f3231be5487ed4fbe1eed2ef040d903311a773607e601f10",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01888",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "03e1948578ca9a4d0e9c50c0cf8138d190431eea20f3e1fb2273d8ffe4d45600",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00521",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "03f91308b612c6268c5937e093aa2eb857c2e91dbe43dd234e35db954b403d65",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00703",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "043446c1a4eb293c4c66f05f30e8e84c704499fbc89e84c985ebd9ef771366a0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02244",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "043a365fc317857b8acc92e5ee16e7b4f924860174ccf65e5bb9ddd68c41cc56",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02146",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "045f2d21c506437c99724e17effa9efe3637d54cc6429a1bf671579bcc930a45",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02125",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "046dcdd654dcbcf0300921917c060ebec03bcce28aa2fa24d47cdebe78f093d0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00625",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "049c791e9207f584f75072222752054fab40dbbdfeb259d275d177c2788655eb",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01450",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "04a65b282f54d93bdeea1b902f92872aa815d6219f549cdb7b9f399f7bdd964a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01312",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "04c19ba3027e1d7570de2e1698b449bd2d951a3583a50ac9bc37a6114a9caaf7",
+      "episode_id": "trace-v0111-p0-bag-of-marbles-fixed-r1",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:005:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "04cbf29927f367995106627e7549cf4483e2bd767f5c312c318aefea1fa2cc66",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00127",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "04e730d92df77ca561f6ec41fd5a31f89ff7a92f6f05b6d2f98c079777b5c32c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00325",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "052018191a5fb51c00e148e621088b9a64dd4f6ee238de81ec005c4f1413bbab",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02038",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0533c389730288845e6d938ff834d06578b8376f08a876960eb53bc45f8553c0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00570",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "053970b5e641a99f0e1a32c87cdbf4f2dfff222c34b20a73940cd47bff072d66",
+      "episode_id": "trace-v0111-p0-multi-target-fixed-r8",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0565ee2f3c791d5628aa04dfd1ba64b0f81be7e9e49dd05bae4717911ead22dc",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01237",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0599a55199cdf1d17e3e6bbbafdb8bf35f80eb0179eb0e67129f33a2d14be8bc",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00335",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "05a715071a65081517a94cb8f7f92c7cb4e58cdf0ee268648962b32cf74fe4b8",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00097",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "05b1af9459c2bf98e7aa237449eb1e42ef947d1cc896ab0828c9e446c5ed33aa",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00205",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "05cd60b300d46fd17e5f0c1eb5c36acfb7a67e51a4a6625ad56dc0b364a3d5dd",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00031",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "06066d1ed5906000e0d28fcbac9000e7df8add20692412fd86d041f3e6be9da8",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00603",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "061ebde4b03fe2f1be7553877b962e8bfa74f403369bbfea7d074b578b8cf0d6",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02004",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "06298dfd6a340014ee3789cb6967b098e2d063ccc032d7bf8e380ba7e0dd8171",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01266",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "06364142af242d381527ff36d4fee6a4db112090160ba8f4752f8d22d3ae57ac",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01494",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "063fb9710615ea3567b1b1a9f913bfe69de819fe26f581cb06bd02b257077229",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00843",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0646198ad2e508a952947dd29ad83c0857e17e6626d81986956ea3d9361a8705",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02016",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0654f5ad52b17df7183e982e40e49225d4e1ff739cfec46a59d3b3cf1eeaca36",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01642",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "06573193b5cac7e0afeb458dff827f25fefae5b3cd62cb70b974ee5ebab7fdd3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01835",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "065ef20cdde5e305f1eb064642d281273e2f6f62d4e31e5633dd7babd42af0a0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01366",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "071251c8f83c1bb5c390eab3d665b183fc588e723d956bf60aeab5dddebc5294",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01869",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "07133722c8685445d03e9e2a1913b7343fe2d2b6cd820cf83e991c0e462b051e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01494",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0728ce4984731eb61418a1b5ea501c5578ddc9df3c3b07b5e7fc1c909929bdb7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01114",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0733F8F6BC0DF46B25F0F4421532026C975097E9DB0FE71F850BEF65A8B7B700",
+      "episode_id": "trace-v0111-p0-akabeko-fixed-r5",
+      "predicted_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "073d2e7b68c6cf077053fbeb7544c94ad955c8c10e48dbfd0b5688118a575f63",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00604",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "07405f75391c61a2c7c401a1788c43668f43365891426bd271665d08a3259728",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00806",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "07457192bcfd01876575921d9d501872bd508a8fc85e40f63b6d7aab0fa8d65b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00076",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0758e747a913b78b4de8c119db796911109eade7ba49e627ae7d33b9a8760c62",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01560",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "076a86d4e18d35da76decc8f877a2513225b2d2b8a60796e908bc09370eec53f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00391",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "077bf748675118bd14837d4c701f1a9592403367e95c782ec41b78f527272a9a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01132",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "078df36e26e13394fb93ecbd2d3fa8c5868d78205b4a08d61ef067bb3ba725c7",
+      "episode_id": "trace-v0111-p0-lantern-fixed-r5",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "079406042efe98a44285ed2b1dab4230c27dd05aa9dd6b890665d3b9c8e8c6bd",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00727",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "07b8956d42c86eb536981ede809a1001bf9f37891832d2c97793a4899b6e3339",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01381",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "07b8f57f77d573a74f687168583dfa4cc10dca54665495f7dda6feaa1b46a6c1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00766",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "07bd2d3976dacb9b4582b0f57ba6a8b7c1a3037d07d642301e9f8635a58ad5ae",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02306",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "07c7bc6dcdcad78d86d06dc0b9aa54cb7daaf2077071b00ed8ca5c788ce16a1e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00873",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "07d938c9e39538beac9fa0f68b8b3c5d1038cbaab958f176bae6053ea34bcad0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02382",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "07dc849b4ec7d049afe0292810ad8a1903bdab16c3e4c89cee423d9138e0871c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00019",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "07e78bd31ba4b2a97c85aa2110e5a629e745fe8e8de62080758da425eadb6319",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00023",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "07f405db01bda7d0db69ecd6618c61422632cf45d362b904b1ab8fe93569ed7e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01515",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0813d7f4610663a88894857ee746ebdc872e4ca54729c3a978aea38cebefc6a7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01735",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:013:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "082061bc74b29112edc501bc1e792d200279fd0f76a64ef13d33fe0e9791e86e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00439",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0834f3c5e5ea26a07cc78d20b4e868ae11e917021285044963ea0058a05734b2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00091",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0842c95f53ed52ec3396158e98c94d676d324407bfb131e9afcea3c67e4d6a45",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01150",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "086e79091f9e1add3ca30e51193ed25fdaf20969225ff0752f667bae57d2e31f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00785",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "08C02C66A24EB80535D41D2CCC8323A0925D2E30D260DEAF843251100EDF8FD5",
+      "episode_id": "trace-v0111-p0-lantern-fixed-r5",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "08D03732DE5E642651A70A65F42E861457615FDF2FCCB475B26D4DE7746C9BD5",
+      "episode_id": "trace-v0111-p0-ring-of-the-snake-fixed-r3",
+      "predicted_action": "play:card:SURVIVOR:001:none",
+      "teacher_action": "play:card:STRIKE_SILENT:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "08ee0419a155184efec86fc3d618f83469886cb8481f68f1a205e5521d9cc5b3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01804",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "08f076cee32f253b6555713e58270c607ad4139d8b665ab478e693cba307d4aa",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00491",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "08f6d72054bcde07674aeb21721a3c501ebc9c8819e6014ab0748d95496c04c0",
+      "episode_id": "trace-v0111-p0-multi-target-fixed-r3",
+      "predicted_action": "play:card:BASH:001:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:TWIG_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "090bfffcda8e6e35bd519ac1b7c75c95e48a45189c9de942d6a2a917e321df9a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00691",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "091248be6c0ea3f8fda7db853885d86487ba4f91dbd67ed03f0a67bad92410ec",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02359",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SHRINKER_BEETLE:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0948f0f95c9bbb01cbcd3712f8b6416e3176e4b50353a41549d25613c04a1512",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00344",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "096245df18fe4fc41c507b89a32f26f6195dbb0120234c120aacc412bb77c092",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00375",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0966cf1c32da65cd223bdf0743a60f958dd8514fc4e078ba0d84101163b54e3a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02056",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "09744ee716077690b99fe74682ca2235f1fa6bbc75c01bd30d48ebb656fc50e1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01200",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0977295ffa11647bc4acc22ffb4d2c0f0df5923ce4353ae5bc5d6262b29a58a1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00988",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "09b837c43f3d093aa2676cce9d4c61d5e007b135c4782952f3c227f3431c5bea",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00489",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "09bf349677e602888091dd5a570f5306827f34137abac373ee45dc985a504ccf",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01935",
+      "predicted_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "09c787cbf0155c669bd18e23df74a71d1ce164e1ce93c69500102495d7652878",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01029",
+      "predicted_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "09ca33991fd9eaeafa0cb1d6afdd76124204c6468cfc8d36ac47c4c8765a711c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00802",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "09d6c7c960cad96244a29dd4bf1f317056ceb640d79c4d13cbf8cd4988bc3c70",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02338",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "09d84cc113aed617e8ee4f42e7ffd73f780cf302436c5635b3079edf1bb5515c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01597",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "09d95848de6439ac02adea5a9fc132501bbeb47e3561ae49e1c9af54bd6bf835",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00624",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "09e11b75311adc7ad0171a8025d6abc54facafcbd7b5ce293d118ac7b8f67884",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00676",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "09f7f66ef53dc417ed74acad64639a2c1412a6c9efb655e48b0f83a26a85b2ec",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01969",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0A50F50677160544145C75556DCEB420BB9FDEB893AC03E261B79E0DB7FB52DE",
+      "episode_id": "trace-v0111-p0-inflame-strength-fixed-r5",
+      "predicted_action": "play:card:INFLAME:005:none",
+      "teacher_action": "play:card:INFLAME:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0B99B9D88EC8E9160B0D8D1D0273EFDAD60CA3C0988CFAAE21B1AC7C2F9A650B",
+      "episode_id": "trace-v0111-p0-smooth-stone-fixed",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0a227d0bfeebf0a189f4efb6f30a9353e44188fc08b94c65cf777761d037a57b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00062",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0a4175c5938e4dcd7a3d52bb3cd5f822ebb216b3b96bd35c3bdbe69fe8fc581a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch-00086",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0a4293c4730d5aeb2fcc3b73859d8913340d6d8c7e182eb3d16ec05d06d66e85",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02325",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0a458d9cade00f1e6b47ebe9efdd228021d0fd6df8897d4c7523db94c94d11e7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00741",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0a4d2325dd273492c573cef5f1947a1b9dfd7054a16baa038824c2a2482cd67b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00476",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0a6037754c4d6b4aaccfcdb2526600bc2ae5a8f91b65ab7f32cd818eef77c3e6",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00865",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0a6bd201eec68603c85c3bebb1302aadf33855f3e09cba16515b37c4b4283fb3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00010",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0a746a412a029e5157e0d61229b28e8be37f292c6ae3f791846487e8acc6d345",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00524",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0a8a08162872643896bef5cd2687e18c56999b0216f2c51c935cdb06de00dcd2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00056",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0a90f4ccb1505f2ff92c76eced75ca32c62457c7d69f7c59a92b860709888482",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00555",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0a9bf834b214a15d6ee9477d12b2f1755776b61489cf0441d062bb31e4755c0e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00667",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0ac92df953010dd5037046f4f25ddda9628042b60a02282295b330066a855f00",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01498",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0aeda86824647ec0e17713a56cf1ee8984c9b62a27bd34e88dd33837aab960e2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00793",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SHRINKER_BEETLE:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0af81dbcaa5451fa80485485063ba46528b6590a22e1f40f55e38db8486d3ef9",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01618",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0afe3c8577e737fcf5f288336762157b50030df7d202dee73632d62ca0ad6348",
+      "episode_id": "trace-v0111-root-nosl-c5-batch-00039",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0b324c21004396ccb8794d49a3ddfe89b71893b5babdb05fb3410f5cfc8aacfc",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01144",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0b3c71177561df6976483f71f995a11f4f1ee5d247e5b238e79ac29668b24f62",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00244",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0b3fef8ded14418af64c420d37057351cf0ff424576e9bc3dfb986aa8646aa2b",
+      "episode_id": "trace-v0111-p0-pen-nib-double-fixed-r2",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:018:enemy:TERROR_EEL:1",
+      "teacher_action": "end_turn",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0b8230d727b750d2369605099e0f75d9c5029082368bf9baf29a600bdbdaeb83",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01873",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0bbfa8e23c816dce9fed252a73c755adcfbeddc63e28b66be2b0fbb23ace30ac",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00280",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0bcd33464636858d5f9a201a40b78ec4171cb6c06c1addcfce0b4c45fb63ab75",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01916",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWIG_SLIME_S:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0c035658d1cf01d6aa66c734bb12d137ff07c3f2a34399506222140be4bbb5c5",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01447",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0c399ea3cbeae8d44aaa99a885ab654d4589d684fc5a0d0c4a1f353730376708",
+      "episode_id": "trace-v0111-root-nosl-c5-batch-00098",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0c3c4178cf0ebb3617f8ccea70e8118675b6bed71ef92b2ddc0893a666c777e2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00605",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0c41958e96cf6c6530c1ac719c4b3d18ccfa13e7649f219281e96b510e1f7d67",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01810",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0c5a03dee7080cf86d4c451f7a506246f9dbb30d215c8e17b0595c48e146e623",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00387",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0c5e1c55b1e1ecdcd47019adb73e37f6880daddb3bcaa7e52e6e2e597dfb0858",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00354",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0c7d4e5ad50dc3bfd9e1bbf11a539c506a8eee707da06788a67f42c12d10c057",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00784",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0c830662a95eb08896e65b4988af421e508a0dcc2438b8956b942adc0a076ea6",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00941",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0c8e55c4d560d76ba4f15549b9360626a52a7fc8081600b535025db953f5af2a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02202",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0c946d197460d8fdea13d24d6697621b6b48f876d201e2f0ce6e48c2b84c2361",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01929",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0ca33aaf6bdd82b6923010a971f59e1d80dd8b7fc9c8aab11b64483fb7507740",
+      "episode_id": "trace-v0111-p0-multi-target-fixed-r5",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:005:none",
+      "teacher_action": "end_turn",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0cb2a707d4f6713fc2b362d158ffc7b12915e1bbe3a6dc278ce71a3e316289f2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch-00012",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0cc61bd5d61d6306dc675300a17df6c7835c03089a7e211acf4aef546c18ef4b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00334",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0cc9e7e9885b19a2f810add7e0b610b5e0fe4df98f1ae9d6a7e012adc524c4c3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00230",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:BASH:002:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0cd968f029570650fe8f3a903964a5142ebb655020fcd190be8b1fec767e4242",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02473",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0ce3d1ade6868de059accb58d123c6ceeb60a30569100cdf60d216ca3d961abb",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02125",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d082eb6b8c88355e796785cc8feaaf2de1f7221a35e815ce49db8c638289b05",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00589",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d0b38427a4c25489fca2eae968d411445a9994e58b70ca0858bd24f120792b7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00964",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d0b38f3b5630c5870f2e917f9e672815ad45a5d8ec6fba07130ce9339f50e42",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00495",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d1bd3ddc0f41bc86770f85914c5b0ebcef03af2478e9f1f3bb74628b49ba474",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00765",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d23a27af475a0423bd75ea23880032e2db711ecb522cc79fe0a6e56049d94fa",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00195",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d2af87f2d6d40cffd1f4c623c0f7d0070085e31bb62bdde61d0066029d195f1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00590",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d30e1a7f6cb5874a2c325a002ec9628fe156ababf19f62a121af7a6d0985a5f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch-00034",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d39cd858706f3c0d596217647abcc9eed2c1ee91f77ebd55751168a920a8f1d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00253",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d5102276e2e2a09d685fa551ee085ed37bbd43246d66acb9a7da84a45622d6b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00616",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d53e6e1c3728f369d27e7983685c57d3efbe75b177bf44037192ba5c1d0e994",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00808",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d6cedfa57f604e647607f79b3dd10a4ab4df1b9ac5432581147ff4b16b25dfa",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00238",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d71d0526134290c1434ae72ac6d5b4b177610e7120fd541b09261647dc12b29",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00778",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0d9b4baf8b3956e92d1521a5cbe05d3d9576c7dd7249b22ebf315a550d327f3c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00703",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0da1d3f3fef676b3c5f316d0a5bb30e83e476baf2c92d90cb790497c657c3173",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00780",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0dae29efa8ffba3726b27ffac1dfd2f3ccc739c77efde43b3e101c2aad0a4a4b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02063",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0db0ce9e77b0528fd721d2505492abee615388e852e1211e0b7b6f6fcbc6f54d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00261",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0dc3f2a33a8d4016955474235d6946724c03c8a713bfde91b9444fdf52238ef8",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01343",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0dc6c4f374de49f443bc3957c369ae43445fdd1b5d7f6e88a918b1b8a09b63f4",
+      "episode_id": "trace-v0111-p0-pen-nib-double-fixed-r5",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:020:enemy:TERROR_EEL:1",
+      "teacher_action": "end_turn",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0dd88274fbcc68d83366585753285ff102ddccd9a17a52d098ba695edad644fe",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00139",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0df859ca980e144e7fa637efe782e147dbfdf2ce5c979dd651b8359dba85d3e7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01648",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0dfa7b7f868e5324bfa688151f49515e35dcf52891aa3a24432b2d5fca0541db",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01389",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0e06f96b744f67949c5ab362b7a33edb5fe98a872d4e88e4c8d33d5963896404",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00209",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0e2390bcf31a9aea6aebd6de89c5100167bbd2876e8b0325e13575b3c8e46e4d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00486",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0e28b48c2bd753790aca775535239b3e447c3f9887f8155674f47862b09bfdae",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01344",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0e3b13d85afc4b049535a086d8fce0c738c6f3b8e05d39eb710c65bfd946e2f8",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01972",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0e649ef18b3e14bb5c7fa2098f67056a822a1fb8fbc7ebaab74dec87b4593d84",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00284",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0e79c82ed434028e5827a0234b14f3d55bda73fb4d2217874d63b92a64ad8f7c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00454",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0e8f43cf7247072c58d0636ef2705c07c6785254bf18d58838495dee10090549",
+      "episode_id": "trace-v0111-p0-orichalcum-fixed-r5",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0e9533ae8fcbdc0d1049fa7f3aeea044f85fcd96a26afbc6e8d6c6cdd9dd6ee9",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00102",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0e96c68e2154fc987aa1491d44c27f701d13f09594890be0a188833bf29720fb",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00643",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SHRINKER_BEETLE:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0e9b57694c43ef8a8109a557f1a48ff024d41513651d6273f405e74c29240891",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01981",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0ea668b33899528755b98d46d8983b5eaa94f2244b83dd5f34881f04757081ff",
+      "episode_id": "trace-v0111-p0-multi-target-fixed-r5",
+      "predicted_action": "play:card:BASH:001:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:BASH:001:enemy:LEAF_SLIME_M:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0eb28e5bde283dff861cdaf8cbb51550497d5c77ab2fd83d3226395edee1127d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01036",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0ec81de310fed814fba16c1100874dacaff3bfe72c7ed4ae4555110b47728065",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00106",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0ec91edc8ccbae5bcf659d5509511f93c9f241fdd1d8417cfb7faff840c0ae83",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00327",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0ed3dbad63790991247cf444790647cce47d409e1d1c28f72202d4306d461281",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01205",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0ed62b88216df60d82d7c9b623d0e5f5d846ab35d2a32e3a4624b0db5b452350",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00990",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0f2f11e8f656effb87ea062db52baf4435aa2432721d017f5c312ec52a32c47c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00381",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0f8b9495dcce6b429df987b9d02809bf6ff785ba3f3fb44b93f9c610fe2371b3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00167",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0fae3127a23fe86c96381a4dbcbc5847cf741e5d8e564cb33c645e045b5f36da",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02449",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0fb552addcf167892cfa4e33ce31240ad926b59096ae3a168296cf06d4a77dc1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01659",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0fb5b66773d5186f854d95c4b0e541f3b8119937c9ed7a71629292dde9e7caeb",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01456",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0fb8e557ca8f0d561f82354d44efba6292b72724166bd9ef108f5bd34697b46e",
+      "episode_id": "trace-v0111-p0-happy-flower-fixed-r2",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:006:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0fc870f10c5a6d40e50a9b50503316ca45e6189a85c7c1ef3ed99e2e407ada3f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01853",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0fcd00339e58cb005ab02907458f14bedfdb9fe5a2c1b889a646fba258bdecfb",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00527",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0fdcf09c5796bfb8de334e444698b39befc24d5ae75f4098b49e026dbb580b02",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01678",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0ff73a864af33197b4fdf16cea39096be6d9b8a26cbba9a2a4a273e45649c3ff",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01863",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "0ff866fb0bba272f1a982dfbc75145f1fed1db75c572dfcca8c1bfab9a7203bf",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00346",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "10244F57105AB52E0C77DCCEDA3966B98C36CABD6D3BF8A4AAFF72263A17D0B6",
+      "episode_id": "trace-v0111-p0-inflame-strength-fixed",
+      "predicted_action": "play:card:INFLAME:005:none",
+      "teacher_action": "play:card:INFLAME:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "103f66e150b5a1884f3ba4165ae10ad7e14124c0e85012102e1ef29c325cca3b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00634",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "103fd9446b8d47dade233772e011ff5da9c141a8fb96adee6362971e34bfb717",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00505",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "10469201261faeae025f874fa4d0ffcf6eac835f325222fc34c28fdd6d951101",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01645",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "104d3ad1518e912a8a213d7b2aff23da50b2580f201be60e74a233ff97064dea",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01348",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1075cff9421546c3fc14e49ecf2ea6244de9adb424365aa55c5988bcbafa39d0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01288",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "109382511c0a7af2342ce5cf2e8894415aad081bd8b72ac3d2270c06f2be7ec2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00867",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "10d8942da6345f9b7ec073271983c747385d9fc5a88c392b0ad5a2344ab2feae",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01229",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "112170fc816ad64c1ce80a5396440761489fe2e11c7fcbb8d0150158077d8646",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00316",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "113148b5c374cad92a3e9da1cc6b82cca4cd9d5d0e6966ab6df9c774de7f524f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00942",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "113ae3c254052e73a4a2301f0e9bc93e81ca3a4661c018da788b730b9fb1b229",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00595",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "113aea0223ae5d4dcd13e501dd64d3bb35fc04f19640015db1d30baa9a97d6c5",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00196",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "113cc34a9b4e98ab40595bfb71fe061d5bfb987a08d6e13d4c74375991339565",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00601",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1151750cec76680c7800406c429ad529b9a1f043b11542ba8ee85947a4367b46",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00945",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "117042d9950cd1003b0649e268c4c3235a5d1b12f5c6c484c2a161a09db5c520",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00030",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "11739ef7b81dc8d576f7d8f31a31a74668974425bd1c7c2f6cc8895ff62f7163",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00521",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1175c472f354c4c5066b1214f6a8430c78ffef609c273e696303baa086c47885",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01858",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "11904052a7801478a145d1cda67817ff9a1c11813351c5c11d379ddce7310d29",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00087",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "11fe4ade3553ee34072ec7c21516b4fbb885f717ae901ec6a95605a9e3208f49",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01828",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1206da1cc1f33f6d4ef9a0901bf4703da6260126ddedfffd597b6f06ad308064",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02287",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "123957448b743be85adabd7996394a8c7fadf52129900cea56f1dba1c0265fc9",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01644",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "123e6ade0a9117dc8de2b028361dfe39aba9e3e5c025de5089390157af03940a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02174",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "12652eb64398d8f91ca6210060aab6c929ee7fe3fc83d71c52dba48294681835",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02066",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1298a07406e597b16cbbbb8679cf092d0ef06e1b046aa5492d5ba82de21cc97d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02098",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "12b834727fce8d8cb4719786c2d8444fb452107e1b17bd71fb5c6a2d1ed85bc2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00493",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SHRINKER_BEETLE:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1326d912cacb6486bfdfd84a739ab686caf10ab4a72c6f6950f0dc633a426d1d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00709",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13330f2b915d499ab21d935f50918dc165481449698d05da804094503ff0d173",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00290",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "133577d31a4ef1cb0cfb6618cebfa79a3173f3546eb145b589a1ed2f0ef574ed",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00891",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "133b49c8f3087ae5eaf297b88ba81aa0accb080e64e61e7718dffb26fd4876ea",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01676",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:BASH:002:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1350940907f30181b0224f9ac38f8b3f847c2052c42c6fb368d165ea81e7c75a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01153",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1358423763aab7e909170c821fbc487a97583eb470804097ee007f68ee77750f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00225",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13637558e6b85392d8fd9b0ac708967c4fd17f086a78e5c51ce1ef12d04bf2ed",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01905",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "136b34b96be7ac77ebd471750c3ce2e9146b7a240814d268fd093ff54f4bba67",
+      "episode_id": "trace-v0111-p0-ring-of-the-snake-fixed-r3",
+      "predicted_action": "play:card:SURVIVOR:001:none",
+      "teacher_action": "play:card:STRIKE_SILENT:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1377098c3b4e28a2bd7449819b333394dcfaa9a2296f57b40278a7771de54273",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01128",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "138c90f4b8a40e2d1cef77f79fb21331120246bef0db15742c605cba929749ef",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01140",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13a3109efcce9f735b1f3ebae29d9c578221fcbf97b52b39ec97e9246c6af272",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01886",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13a40d6f1efdf7909e32b004cba371a9a42320c510d89823831adc0f2ca4767d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02317",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13a90134f098173f9505f3021d1775a8e8b3c91a857945b6935c77bbc5f9547a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00508",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13b48dc0ed6f067a671580e4283dbadf87a1f4058f89b4edba1bb56c903cbf6d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00628",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13bff17e3047e4f047660f9fd7bd810a2d7d0dee5ce2a1f54fcd68eab3604373",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00337",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13c0dec1637e5b748147cda2bc78582edc9e8662e7e51408b9346bac1e233854",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01462",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13d8b2076b16dafe1e99fdf1ad18c08ce00063411243c173d9078b34b9671f66",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01938",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13ddbee3fc045343eba3754a31d122c5998a1a4cb01e180499ea679603353075",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01954",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13deab6988ecb8ac0d9b966512fd0fdba23744a66cc92e629754ed3c00973cbd",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00007",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "13fea862be66c48ca8ba44f47a81bd420c533dac72fb64b75cfe572376b69133",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02215",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "14346c8147ec167f86aea291279d3b2f5f324389247a12cbe614ca3327c85f07",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00897",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "144822c8020fb145e781df8c272c4f15d859c4a2518f12c885c43bc32960cf5f",
+      "episode_id": "trace-v0111-p0-lantern-fixed-r7",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1452e233c790a392ab4aed9bdd9544485ce2b52d941802c5b5d6ce16d5a9afb3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00025",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "145c3c5640e7e2d670ebed7606761518a985ebbfe485176d583e2d9bc3ef68de",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02002",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1460b818d653eca329e33892774533801e0a31b78ab3ee48b611ec90ed51b4f3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00571",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1474c758b142698436f25fdd92ee422f8ceeb4c55d190f27ffff5f3d0e212d5c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00439",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "14766395efc5f066ee06f9bcc88cc35dafa7e553e6f6c036257250c190a51528",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00770",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "147b77a74f3dff2bd5f1aae15a226b953492e81ae6641aa1ce7172b92489e774",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02053",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "14a1aa62669b09c621c88ce306d209e10b58e987d721107093f52ba78dd78cd7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00723",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "14af127a031773b8475228be0f22bc4309035b7e381c99bce402e44d4db6ff80",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00985",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "14b1040aee5f6b7e1860668d7e1f94560a97dbe8fbdc28b14ed14a0cfce2440b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch-00057",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "14b4094f3f2f861d3636ac1378cab2de518d984b2c0408e5725a2310c1a66854",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01708",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "14d4c010c3cf409a663b8877210e99f37e28065a422056624f68174ec1063f87",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02235",
+      "predicted_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "14e34174d808cc7b99fbbf5cdae99681c7fdee3175c8dc9c0aa102bc22ad620c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02159",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "14e9ea87366206830afe71e172dcb76296a0fe5bc3b1323229ca9a4f26b00c3c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00626",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1507b779568a443a11b59e336f8e0cca8fd67e8354007d56f1c2f9ab5b5b3587",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02158",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "153d008f54d9485396a51233b29af451827a0c1eec2e63d564035c3d3bf5f486",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01947",
+      "predicted_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "154a32b34d64fbffbb663186d166cf5fe5c8c6005ede042be26a12e68461f9f0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02440",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "155ba8b9b115f07f0639c27f9b62857be83d85ec684f418e7cd78df7503d2d8f",
+      "episode_id": "trace-v0111-p0-lantern-fixed-r4",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:006:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1576757189f790120c02b97c7981596e88472ceaba908d21efbc543395619365",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02015",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "15bfa6bec02f2c7d0359cbebefce3355a8fcb7199552b7ef8a5e0fe36c5632c2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00172",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "15cd61fcdd9678df59a09203819762b0258ad5744ed68bbcc9e41603a894b9b3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02404",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "15dd37e821b3fa2ae677311992661fd79c91b5ea27bf6cad6d4917d50bea5179",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00931",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "16135b5f3ee6dbc1488a3dac3f430380158fa550bed26e779af55aaf8166d376",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00289",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "161411faf740d7c6a13caa371eebad6cbe4a01411278d61b8f9e1a0ae63e216e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00595",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1635f2d0d1bdeddd0b083a1261ab3b3e58f10bb78882fd006210cde7684fd2eb",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00708",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "164009cb60a4b7e10f26c449cb05ccc36496e7da942971a2a4faf3e0a776ddab",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02020",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "164e32f698cce9cffe4a442e70f5116b032b164e14593d3364240776578965cd",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00535",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1666b16b3a9cdffdc12ecb649ad4254fc9a701cfb533fff5dc04611d5583254f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00198",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "168f09034720fe042c2f418c4b5a99edbcf02a12f44d45c6395730aaf46b83d0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00542",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "16b654c81d4f827811d42f9c8652397e64f0e6385a0f98997f44aec1d1c8e1f5",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00653",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "16e9b5c700ff4bd89ee6ef6f71e4b811af267a27eaa8e09d62292c77520eae56",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02337",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "17116FCC78E1F87DADC53603AB94DAF54D890A48C953CFCE53FAF3304C5A4CB8",
+      "episode_id": "trace-v0111-p0-lantern-fixed-r8",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1743dd455a5340f188cba84a29dd7b4b2cb0b2c760563cc13a9844fc833f88fc",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01924",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:TWO_TAILED_RAT:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1749009c925a0e9332d8edc9c984cd88baafbbb1f2dac7f3c1f4cd50c5fb58e6",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02469",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "174fde2aec1bb77b9f93a88dc725e26d5b01a656bd0b79ac971dc1689d0031c4",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00646",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1750123421538fa8c95f80e7c9d52b763284b2e7b2e6ee83436f34b01d9e5e75",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00961",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1756ecea3ffa7183b5180ae59aa3e0bdff81f45989f6e4613b5866a989c3a6f3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01647",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "175fb5e284f6b8951d16f617c0b47cc75f7f9df01aba6aee4bc0941c8ae1f670",
+      "episode_id": "trace-v0111-p0-pen-nib-double-fixed",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:025:enemy:TERROR_EEL:1",
+      "teacher_action": "end_turn",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1762ff1cdfd9088415689d2568a53045236cbc8f5e58e1d50f26fb421c3d16f0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02043",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "177c19f8edc3095033802cce6bfc6db6eb55882501523b210c98fc83f668d13b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01918",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "177da44ab5d1dc5fdf02807fc9c5eae75b074dfe403a9002369ab7793527d056",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00848",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:BASH:002:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1785d4d91b6d429eef666a8c165e5c50746095e7c5e2418c91b46d84ea0f59a2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch-00037",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "17abca6ae28555dc195ed46c7e34a32750bb42fbecde491b4d90e1a119ed9f52",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00889",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "17e18955486ba255f387e3ed6ee79b675058e427d09b8acef4ace0025b7b32b3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01063",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "17f5093f64db618da4b6ded1750a2c5d183ffd0fd4a387b2171ec5680aa9a233",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01478",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "17f7af743d069d23995cefc266d0d131ca7ee45a56cfd0e1f95b9afc77015ff1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00046",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1801da160fea89cf38a399bf211bbee3e34231f610056ec2b7e86f31bdc1a237",
+      "episode_id": "trace-v0111-p0-art-of-war-fixed-r2",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:007:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:007:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1821830ff25616d31c9cb4bcdf076a85368db93044b3ce4bc37dd3ff6847e268",
+      "episode_id": "trace-v0111-p0-multi-target-fixed",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1823b905ae52235fa4ea916def7f77526a5085c796f5043388d4ff16f6e6056e",
+      "episode_id": "trace-v0111-p0-lantern-fixed-r6",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "18476af51f72b0dfbdf4db8e45e8241948a8a752f3c0bf28edcef97b7570c9a1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00889",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "186683fbdffbc1ce17e82a2e81f1a9b2a16333359bd61e4b0755684bb30577f4",
+      "episode_id": "trace-v0111-p0-art-of-war-fixed-r5",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "187425f3a8facabf0ba47abab354a4070ba7a695abb58baf37877ce9e3d490bc",
+      "episode_id": "trace-v0111-p0-bag-of-marbles-fixed-r7",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "189CF07BE3EE2BF3D19E69B13033152E6310FABAEE990E0D82A2DFD9B8A0145D",
+      "episode_id": "trace-v0111-p0-inflame-strength-fixed",
+      "predicted_action": "play:card:INFLAME:005:none",
+      "teacher_action": "play:card:INFLAME:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "18a4e8851a6e78b52541809189fe4fa9e97db8ae86074f49328f131af800df25",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01071",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "18dda3bac8f89f25da68296dbc74d178af47e4349a7cf27d068f72dbd1799922",
+      "episode_id": "trace-v0111-p0-lantern-fixed-r2",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "18ea555fd4208d965dcea2f21c029da0e4492ff1658d67b6bda7cce2129f5ec1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01119",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "19020112f4e94970596e885b08305379351db2af527bacd0a3b309f79e1405c6",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01379",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:VANTOM:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "195b6173e9e383e9f4772865657ccf5af3c43a4d0ac1d091b1c77af8b958050b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01992",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "198fe5cf801ceb96ca04094b2a38f5ab813129422e45cf840cb3094d43f88657",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00861",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "199abad4a92839bd268e4d0055b52b7bd535d914a867d15f622a67d90f529cc3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01971",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "199d368f97027968345891a122e3f2418d80cf29a3a52e70283ba1bb1f147c65",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01453",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "19a12dc3facdccfd438f6b037aaae8c621b808c031a3ddb295b8e59bce49eb3f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00448",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "19c9dc320e799317ef2625ce6afc8f34e0e4cd275d12facb792b21d2b2e96dac",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00131",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:VANTOM:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "19d02dc16b7a61b3e4259526c7b3a683122477d51d0ed205bfd62506c4297eb0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00487",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "19eba8635712b80086f720294ca6775252d03d112321de79113b2f00ad62a4c9",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00223",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "19efcfe9b73216102658f91e88fabae85d5eef656f8f4b86cc9718841ffb8fdc",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02036",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:BASH:002:enemy:TWIG_SLIME_M:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "19ffa894474ae4de77793022d7c89024301417155c42e7f843abad4ff9c66d9d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00214",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1E49DA966997A79A43B872C7F4EFEB46E59D336CADB43FE67EF6BFA1ACA0E3F9",
+      "episode_id": "trace-v0111-p0-bag-of-marbles-fixed-r7",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1a1cc5f3c4d3caea834d992c3da8b1431e3f8158cba9ee72346a2d211fc5ddff",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01648",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1a2b10575385097d81d85b73dd379eef68fdd9d99c970780ee846b8e547420d0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02146",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1a352f952bdc0c7d08fc3ca51a50f1ad3b4b631a1de1be4aac5f91fa3d3512f1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00046",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1a3ae85f566207ad771dc8e7bfaf232acd2c337790e83b5d979a965b71f6d241",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00327",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1a3f3f041a57f144121503dacb1083312b1f7fc9d052ef369568e18032b896e5",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01461",
+      "predicted_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1a8e20fb109f92dac0ac9528dff02c89939ee926aa617f7eb0d879a4ad0d469a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch-00008",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1a960f4d84f68654c4a732b15719ccf2dab951a64c08f1b715e89628905b22db",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02131",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1abfcd995dbadd9e62d6924a2f92cbae503112272a6cf7fca1426b747225cd23",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02136",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1ac0c980fc2fa6770d04684971dc2479496cae71b2ceda02c863706b30a30980",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01839",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1ac19101beb7c5ed22a7c5b642cb016b7fb9c7ec3f48546b719129f577fd2aee",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00437",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1ac6761129ae6cae4caf28af741266d28caa937f45fadd93df8bd113df0021fa",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00870",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1ad17497215488cd3dff0eaba57ac4d4bb9bfc72f7fd5d5d575692d2faccbc06",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01523",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1ad1da7722aa4ac6a2f8ee34a4228075cbd710efdfa92496be7eed1af0b8d342",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00061",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1ad22053eb51c8602ac453fb94d574ccd635e3e9d6f5f52295b861c971ce0804",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01671",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1aee9eb3fc14c3fdb80a3ac83322bae2890dfae3c465e5f0b9362c2e2f213f1e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01711",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1af2c79ec0838453aaf46965dada02b1e0480515ae0394977ba30cb716ef534f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01625",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1af7935a6a5dd4b71cb035c5405735b8dc8f24b302734f86b867e2f217d3dd4d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01048",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1b2765cb8341971cb12baf5806cea82dd1af66311f5611b6085e5b6252dd52ad",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02047",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1b3c3bda6215f274952acac6c13cba9721cd1e66e2c959add63d4b84efb0e413",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01319",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1b5cb6d84d01f0758436563928fdc5ee673970bda812d08edecc9c90d2c2ab1d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02270",
+      "predicted_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:BASH:002:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1b5ea930a6d4b23f5fc57288e1b88e02eebe3fd5179375a80e6f56fdbc6e788c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01115",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1b62d9e81aa7cb250c54d61a003ad70713f1db07d637aaebea277086a8e712da",
+      "episode_id": "trace-v0111-p0-pen-nib-double-fixed-r7",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:021:enemy:TERROR_EEL:1",
+      "teacher_action": "end_turn",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1b9ec2bc0586e777cfe76cbb286e4882ede473b16d1c04dc55432eaec96168a0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02046",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1ba43d24d88e15b3ee5c1f3cdfe674bd8933eded6f34376140e0ec9830d9c11b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01180",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1bac555063640af5e787e4dae9783deb77621d43dfd824110241f3ee37d10b68",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00306",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1be3ef82882297676091353f7372972bacd2066569e0f635c01d9660a0b7c0b2",
+      "episode_id": "trace-v0111-p0-art-of-war-fixed-r4",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1beef3581fdb972a4d9a5335d8ca4a0ca2252481f358ba64f8a74c8cd96f5526",
+      "episode_id": "trace-v0111-p0-lantern-fixed-r8",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:BASH:001:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1bf943a9f919e2f330a5f8b4824758dc7ebb413465d97833f89297afbe17b0d6",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00518",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1bfb33f454fb271acb49fa10aa99ef7721adc9abca1623b0f5861e9f832a0298",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01522",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1c0b42c1bb46428a86caeeaa5cedc2b80036941eb72837479162536d7442b0d9",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02099",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:VANTOM:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1c0f78e4a27ea6d5c61acc55fe469a6a2dbea596b92e45f78ce2c0ffe8c8169b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02130",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1c24409d76fcffbb79fc691839a12450ccf70e555b360b2a16a669fae7b89cfc",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01144",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1c58fba9c35b90b15966e32654e0452c714c199a4e2e27b760da6f275fb84316",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00961",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1c68642a3f87ebab6f09092bae8f2d279dd09c36232450959e5c1e67ace14b25",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00639",
+      "predicted_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1c7953ccb15bd4caa10736b4fef0c9cbc6f03fadbfbdaae2ccabf7f93176b675",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00440",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1c81ef95513262e0ccf8ded1d13b75724fda2d161f0dedd9cc3a9e55904072d8",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02335",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1c8312e85bbaec66b943d3e42907535870bf9fd87fc21dac53dbdd33a031ab90",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00379",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1c838329627041e4cfb5978b04fd14aafd4827228b0d26223e9c984246b84842",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00085",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1c93c9cf55c561de1244073def2e87c3fd5a4b10471d9996e186151c2d53c9d0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01852",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1c969e343baae18face787fcc1630a2fd0fc3e8d4a38a711bffc2525d61886f9",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00736",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1ce4e011cda94b7f2d01c58a7806fbc7424d2f1f4dc1beabf14fd712e850fb5f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02284",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1d1e67c9222b4076ef3a16ff77217108760fd2ed5096430f9c19fd84fb3274c9",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00356",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1d3a1b25946b8b397f2ad880028b9635b10cc5245862c34cdc207551fbc6173c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00384",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1d726d13ee600b4ebe1ab3a5e8882e32d1f6a20228f1daf3c4a1f24d4be1f217",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00814",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:4",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1d76a613031099a8b80573b7c2c82df3753cfd41d3a2f85381f4adc412308b34",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00234",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1d8924dde5bcd2fc699429a070bce9e00f28bf05d36fc7da3b59d1059f079694",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02410",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1d97b73cc7fe85e9168efd850c33d4d16c9a410dfa7becc41d2f55b24f27a170",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00786",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1da43de49f9897a77e4b51318549c4278d6e8040d8a86c46b35de3fd89f07ffd",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02153",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1da4ada37ecdcc19e7599fb12b99f1308d50d2ee1c4a280a69398c876ec56f60",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02211",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1db678e8679d98f919da42c5ea7a442d80007e17fafc9e36c7da160152b74a9d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01248",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1db6b03fad419983f21d95290ed750c3cdf700213f157db738b924c0979d1c88",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00438",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1dbe5cbca78d6a867c960d78fb4711c3364e7900f79a03ce9d89cdd72d804981",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00489",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1dc2b0bda62a89d07f93e6a689b689010c90e1d8ea30f239e5b432534fd02049",
+      "episode_id": "trace-v0111-p0-lantern-fixed-r4",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1e0a4387fd819722a1f56bc0cbc3d778b6e0473bf43b1edd0c58527be3e27156",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02380",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1e0c32e2ce8ffff406982d1aed30d45db364ecf30ca04c578613221235250f50",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02314",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1e23cf71ca91072fe3a2c6b7cd308596ae35f3148573cd87d1d22e85352005c9",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00545",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1e51abb6580e7ff5f649069ab5d8e6959bad8107c2498f41e96a166cbee4929e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00226",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1e52052438e837ae27dc63ac570265efa9c018ef6dc0ee7dd8701c65fe028bb6",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01603",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:011:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1e5648da8373a8a6a4fbf35a3a612a5f37e080a29da64dcf26b67dba2cdd2204",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00096",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1e6af6151362ef7a310208f6152876bd925db223eb37b979bce3c99adb3d6616",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01802",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1e6e7a3791c7da74963f18c6a198d1972c4f1ad3a3244f39e8a19f6646f6acb2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01668",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1e7135bea58fff8c4abd1c8f7c4571740e5d36671a6c7c49f56f4722fe813906",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00177",
+      "predicted_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1e8f6e5cb2ca1c3a2f81c0188add670e4becdb8e60c0358cb12ce4bb227ab6b2",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00580",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1ef240fdbf8d6fd4edf9561f9211fb0db587866a567a90fca9b9f4786557c6fd",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02242",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1f149e87bcc57ee17da5167591af5fde84edb0ec926ae2924ffa7255c5da24c3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00847",
+      "predicted_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1f1655137e0bb87a7f0943637b4890040923187ceab9c38a1eca99c05d4e02b7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00772",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1f38d7b7f9ce939c0b35f0d949feb98208d25a3bd3179bd97e04eb4f5706e54d",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02131",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SHRINKER_BEETLE:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1f58a649753c0be87d02dec57d47485a956687732a61012180cfa7f8091cf67a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00312",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1f5a66e8babf34a932da610cb10e854b3f2ce72939e17369d30b1e69f99b57b1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00379",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1f75661ca25f8b579b8a8568a3a7796029880771f0d504c7822f7c2043f72ab0",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01116",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1f79739dd658be8ceac57e4a643b72e256d6a58a1a25f5027a7da5737850dae7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02154",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1f8b0fc816ecdf50f1ce9273480cd95196676b6faa0b5b7ee4065821c3871b61",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01803",
+      "predicted_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1fb63006176d3ed5b0dfc31d5529b79e8e812ed1f3e8d8723fc5654181256c8e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01564",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1fb6933104bd68937106813ee5cd0a7b19fed28e31ca921750a9fabd7e33c46a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02081",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1fdf44a131ffd1c8537aa301b0740d7bdd929cef6eb11a9d71caf6671b19fdcf",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00068",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1fe8eed4bf78297490b50165d06ea58f8e756de5a38f348e3604d369fbb757db",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00399",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "1feb0f90c2633a8b2d74ba9835664308bb6a5ce0374cee9c7a04105197c8869a",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00659",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "201783d90f74a8f45b2b946b2320cb511998f979cd49b03c8ea3e728f96c32ae",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01606",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "203226b574c0e4022ddecf9d04c2624f03a3905a8cb3be9de1628bce24cf6476",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00076",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "203b288402b5b27ab94bc75293c4d6928084bc4bf9166a377dc4042178200ce1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00964",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:TWO_TAILED_RAT:1",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:TWO_TAILED_RAT:2",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "204a80d0dcac7129a8d69f96cce844de5b3e7e1273f0f7f7a32f4d8a5289c310",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01092",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "2065e8fa92ec6117ba05dcfcf7201126f2238e2da0249e558ffd8e1384f72c0c",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00235",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SHRINKER_BEETLE:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "206c8008a6ba4728ea6483b91fa662fc83a9592cb38cdc6e1eea277c68d3ef83",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00975",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:013:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "20A994F80228436131D808D00CD6E95B0109BA16800F24229AB93BEB92E1A33C",
+      "episode_id": "trace-v0111-p0-inflame-strength-fixed-r6",
+      "predicted_action": "play:card:INFLAME:005:none",
+      "teacher_action": "play:card:INFLAME:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "20F874415E4726CDCD159313DEBF0CF908B7951AF4D206A6A9AC913266B5BF8E",
+      "episode_id": "trace-v0111-p0-smooth-stone-fixed",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:004:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:005:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "20dcf2dc126dc802c97e208f87b43fea4cdd040bd66b0d0a7571f6d9c907b120",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00211",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SHRINKER_BEETLE:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "20ddb0f5645c2e28482a2dd5fc928e5d705e027fed40e066a04fc839840cb2a5",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01601",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "20f3c59a742c8fab5eaac3aa3ccaa2120d4c7510e3a0613756e8582dd406d9bf",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00003",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "20f661ec7db8e0b5eba8ef823d4ae72573506a736f96053bf103a229111da712",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00262",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "20faff08a59a12e0bec4d1e546e7375a5dd626268903077476b159ca972c8ba1",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00534",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "20fdba5e348c5c35e552561740ceed5dfe929219e3d5b493bcf229da1c3d8fd8",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00603",
+      "predicted_action": "play:card:BASH:002:enemy:TERROR_EEL:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "211158dd95a09cd0f7f28c14533e3fea66cf426478665d00a2e401a23a698963",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00041",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "212213130be746be2c640e1632ed30a52d29609d8bb90075e4d52b36fe00b64f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00676",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "21436dff496c3ef66aeafd7b33e4f68737ac59be8ff176a3142ac899e18ac490",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02282",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:LEAF_SLIME_S:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "214eb0ee81bf1362024fbd55aa6f328d57ad10285b87927df198d59b3f172686",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00215",
+      "predicted_action": "play:card:BASH:002:enemy:VANTOM:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "2172bf3ada75981c9689da0fec48f771709ffe3830ddd8eb7391ffaafbc73bda",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00907",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "2199b08e9b25f2c6f1f930755ac8c31e597821fe09c10ffbf3b9eb29ae8e7107",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01678",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "21a03a25c6eea90d7f539edc749d1d03b71bfdd6fbed9439464b6f65b2e9f000",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00550",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWO_TAILED_RAT:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "21a165e216a87e80024e1d458a1e60dd36d7ba3cf719009a1f0e04bd13f865f5",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-02234",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:TWIG_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "21a27b771931f0ddf8f4aadffc5174a6c1fd1bb0ab4dc765fa66fe78bb3e58e6",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00325",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "21a9d64b46b6be5871c532729ecfda56496c0b386dc250dfeabad6f01a27d88b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-00644",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:010:enemy:TWIG_SLIME_S:3",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:LEAF_SLIME_S:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "21abec0eb6fbfa46242de3549861a6988b8a4e23147a301eff1dab9d19cd74c7",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01795",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:011:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SHRINKER_BEETLE:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "21ad339a636604ba8ee863851f095574e281685a566def5c8a02f0fa2a70439e",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00726",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "21eebec9cd50712a577cdf20b6bb6d2f231ed98d358a55f2b2d729b15657f554",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00254",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:014:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "21f21ec03adad2e5208c0287a122eac1395f8aa2ce03f962795648cea46b2769",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00535",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:BASH:002:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "2208fc5f71ddf49d817327296580ef89a18be8ea9ffe26fc800c5735ac945ee8",
+      "episode_id": "trace-v0111-p0-multi-target-fixed-r1",
+      "predicted_action": "play:card:BASH:001:enemy:TWIG_SLIME_S:1",
+      "teacher_action": "end_turn",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "220f2916d2cf953f96ecefa6ed4d46cc0063e385f77ee03ebad3ecf1ed29e58b",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00118",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:010:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "2212e5165dd81f9d750e9a71198eab0d175240bdfcd1a5507970a1b8b11831b3",
+      "episode_id": "trace-v0111-root-nosl-c5-batch3-01372",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:009:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:TWO_TAILED_RAT:3",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "22366a11ea774afbffc682370a1f9935e8159724e9ce8490aa822b416c061435",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00717",
+      "predicted_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "teacher_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "2241cecdd38c140aea88c022a79ed00b8c63ea960c269a0c2cfb13dc28f815cc",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00805",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:010:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:012:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    },
+    {
+      "state_hash_public": "2252f900be58936bef5bab093dce70e533e89612e6b5660f574ab68addf9f23f",
+      "episode_id": "trace-v0111-root-nosl-c5-batch2-00719",
+      "predicted_action": "play:card:DEFEND_IRONCLAD:008:none",
+      "teacher_action": "play:card:STRIKE_IRONCLAD:011:enemy:SEAPUNK:1",
+      "disagreement": true,
+      "regret": 0.0,
+      "priority": 2.0
+    }
+  ]
+}

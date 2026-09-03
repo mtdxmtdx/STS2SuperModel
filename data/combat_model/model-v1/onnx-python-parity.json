@@ -1,0 +1,17 @@
+{
+  "dynamic_axes": [
+    "batch",
+    "state_tokens",
+    "enemies",
+    "actions"
+  ],
+  "maximum_absolute_error": 8.58306884765625e-06,
+  "onnx_path": "D:\\STS2BestChoice\\work\\nosl-teacher-fix-stage-a\\combat-model-v1\\combat-nosl-v1.onnx",
+  "onnx_sha256": "ECD9D4153B271949A7C94FCC33F0AD96FDDF1DE6D944BBBBE94BE2A9B6B08B54",
+  "opset": 18,
+  "python_runtime": "onnxruntime",
+  "python_runtime_version": "1.27.0",
+  "samples": 16,
+  "tolerance": 1e-05,
+  "verdict": "pass"
+}
