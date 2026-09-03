@@ -61,7 +61,10 @@ def run_shadow_diff(trace_name: str, ordinal: int = 0) -> dict:
             check=False,
             timeout=120,
         )
-        if completed.returncode != 0:
+        # ShadowDiff uses exit 1 for a valid differential mismatch. Tests that
+        # expect a green report still assert report["match"] below; negative
+        # gate tests must be able to inspect the emitted mismatch payload.
+        if completed.returncode not in (0, 1):
             raise AssertionError(
                 f"ShadowDiff failed ({completed.returncode}): {completed.stderr[-1000:]}"
             )
@@ -169,7 +172,7 @@ class ShadowDiffReportTests(unittest.TestCase):
     def test_unknown_random_exhaust_is_not_reliable(self):
         report = run_shadow_diff("p1-card-random-exhaust-trace.jsonl")
         self.assertTrue(report["match"])
-        self.assertEqual(report["confidence"], "Estimated")
+        self.assertEqual(report["confidence"], "Uncalculable")
         self.assertEqual(report["random_operator"], "CombatCardSelection")
         self.assertFalse(report["probability_known"])
         self.assertEqual(report["outcome_quality"], "Unknown")
@@ -231,6 +234,24 @@ class ShadowDiffReportTests(unittest.TestCase):
         self.assertEqual(report["probability_mass_covered"], 1)
         self.assertEqual(report["comparison_scope"], "strict_public_state")
         self.assertEqual(report["identity_comparison"], "compared")
+
+    def test_enemy_ids_detect_real_summon_missing_from_shadow(self):
+        report = run_shadow_diff("m3c-enemy-ids-summon-trace.jsonl", ordinal=2)
+        fields = {item["field"]: item for item in report["fields"]}
+        self.assertFalse(report["match"])
+        self.assertIn("enemy.ids", fields)
+        self.assertFalse(fields["enemy.ids"]["match"])
+        self.assertEqual(len(fields["enemy.ids"]["projected"]), 3)
+        self.assertEqual(len(fields["enemy.ids"]["actual"]), 4)
+        self.assertIn("enemy:TWO_TAILED_RAT:4", fields["enemy.ids"]["actual"])
+
+    def test_enemy_ids_detect_projected_extra_enemy(self):
+        report = run_shadow_diff("m3c-enemy-ids-extra-shadow-trace.jsonl", ordinal=0)
+        fields = {item["field"]: item for item in report["fields"]}
+        self.assertFalse(report["match"])
+        self.assertFalse(fields["enemy.ids"]["match"])
+        self.assertIn("enemy:SYNTHETIC_EXTRA:999", fields["enemy.ids"]["projected"])
+        self.assertNotIn("enemy:SYNTHETIC_EXTRA:999", fields["enemy.ids"]["actual"])
 
     def test_chance_quality_mirror_is_complete_and_consistent(self):
         report = run_shadow_diff("p1-card-random-target-trace.jsonl")

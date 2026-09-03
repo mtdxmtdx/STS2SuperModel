@@ -18,7 +18,13 @@ def record():
             "hand": [
                 {"instance_id": "c1", "id": "CARD.STRIKE", "stats": {"damage": 6}},
                 {"instance_id": "c2", "id": "CARD.DEFEND", "stats": {"block": 5}},
-            ]
+            ],
+            "draw_pile_count": 0,
+            "discard_pile_count": 0,
+            "player": {"deck": [
+                {"instance_id": "d1", "id": "CARD.STRIKE", "stats": {"damage": 6}},
+                {"instance_id": "d2", "id": "CARD.DEFEND", "stats": {"block": 5}},
+            ]},
         },
         "legal_actions": [
             {"kind": "PlayCard", "action_id": "play:c1", "source_instance_id": "c1", "source_model_id": "CARD.STRIKE", "effective_energy_cost": 1, "legal": True},
@@ -122,6 +128,8 @@ def test_nosl_belief_ignores_hidden_rng_and_draw_order():
     public = {
         "round": 1,
         "hand": [{"instance_id": "h1", "id": "CARD.STRIKE", "stats": {"damage": 6}}],
+        "draw_pile_count": 2,
+        "discard_pile_count": 0,
         "player": {"deck": [
             {"instance_id": "d1", "id": "CARD.STRIKE"},
             {"instance_id": "d2", "id": "CARD.DEFEND"},
@@ -137,14 +145,36 @@ def test_nosl_belief_ignores_hidden_rng_and_draw_order():
     second = build_nosl_belief_state(altered)
     assert first.belief_signature == second.belief_signature
     assert first.remaining_card_multiset == (("DEFEND", 2),)
-    snapshot, _ = rebuild_nosl_combat_snapshot(public)
-    assert snapshot["draw_pile"] == []
-    assert [card["model_id"] for card in snapshot["discard_pile"]] == ["DEFEND", "DEFEND"]
-    assert all(card["instance_id"].startswith("belief:draw:") for card in snapshot["discard_pile"])
+    snapshot, warnings = rebuild_nosl_combat_snapshot(public)
+    assert [card["model_id"] for card in snapshot["draw_pile"]] == ["DEFEND", "DEFEND"]
+    assert snapshot["discard_pile"] == []
+    assert all(card["instance_id"].startswith("belief:draw:") for card in snapshot["draw_pile"])
+    assert snapshot["global_restrictions"] == ["nosl_unordered_draw_pool"]
+    assert not any(warning.startswith("uncalculable_") for warning in warnings)
     assert snapshot["rng_streams"] is None
     changed_public = copy.deepcopy(public)
     changed_public["player"]["hp"] = 1
     assert build_nosl_belief_state(changed_public).belief_signature != first.belief_signature
+
+
+def test_nosl_snapshot_rejects_legacy_unknown_draw_discard_partition():
+    source = record()
+    source["public_state"].update({"draw_pile_count": 1, "discard_pile_count": 1})
+    source["public_state"]["player"] = {"deck": [
+        {"instance_id": "d1", "id": "CARD.STRIKE", "stats": {"damage": 6}},
+        {"instance_id": "d2", "id": "CARD.DEFEND", "stats": {"block": 5}},
+        {"instance_id": "d3", "id": "CARD.BASH", "stats": {"damage": 8}},
+        {"instance_id": "d4", "id": "CARD.DEFEND", "stats": {"block": 5}},
+    ]}
+
+    output = TeacherWorker(evaluator=lambda _: {
+        "teacher_best_actions": ["play:c1"], "confidence": "Reliable",
+        "label_quality": "ExactComplete", "search_complete": True, "risk_events": [],
+    }).process(source)
+
+    assert output["confidence"] == "Uncalculable"
+    assert output["label_quality"] == "Uncalculable"
+    assert "uncalculable_pile_partition_missing" in output["risk_events"]
 
 
 def test_teacher_evaluator_receives_nosl_input_not_raw_teacher_snapshot():
@@ -190,6 +220,24 @@ def test_nosl_exact_request_uses_large_chance_branch_cap():
     TeacherWorker(evaluator=evaluator, nosl_exact=True).process(source)
     assert seen["search"]["offline_exact"] is True
     assert seen["search"]["maximum_chance_branches"] == 100_000_000
+
+
+def test_node_budget_only_is_independent_of_exact_chance_mode():
+    source = record()
+    seen = {}
+
+    def evaluator(request):
+        seen.update(request)
+        return {
+            "teacher_best_actions": ["play:c1"], "teacher_top_k": [],
+            "action_values": {"play:c1": 1}, "objectives": {},
+            "confidence": "Reliable", "search_complete": True, "risk_events": [],
+        }
+
+    TeacherWorker(evaluator=evaluator, node_budget_only=True).process(source)
+    assert seen["search"]["node_budget_only"] is True
+    assert seen["search"]["offline_exact"] is False
+    assert seen["search"]["maximum_chance_branches"] == 32
 
 
 def test_nosl_belief_state_matches_frozen_schema():

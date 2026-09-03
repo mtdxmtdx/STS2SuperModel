@@ -11,6 +11,7 @@ heuristic fallback emits *Estimated* labels and never claims Reliable.
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 import math
@@ -147,7 +148,7 @@ class TeacherWorker:
                  top_k: int = 5, allow_heuristic_fallback: bool = False,
                  budget_ms: int = 500, maximum_expanded_nodes: int = 2_000_000,
                  nosl_exact: bool = False, maximum_chance_branches: int = 32,
-                 chance_sample_count: int = 32) -> None:
+                 chance_sample_count: int = 32, node_budget_only: bool = False) -> None:
         self.evaluator = evaluator
         self.top_k = max(1, top_k)
         self.allow_heuristic_fallback = allow_heuristic_fallback
@@ -156,6 +157,7 @@ class TeacherWorker:
         self.nosl_exact = nosl_exact
         self.maximum_chance_branches = max(1, maximum_chance_branches)
         self.chance_sample_count = max(1, chance_sample_count)
+        self.node_budget_only = node_budget_only
 
     def _request(self, record: dict[str, Any]) -> dict[str, Any]:
         actions = legal_actions(record)
@@ -177,7 +179,8 @@ class TeacherWorker:
                         "maximum_expanded_nodes": self.maximum_expanded_nodes,
                         "maximum_chance_branches": 100_000_000 if self.nosl_exact else self.maximum_chance_branches,
                         "chance_sample_count": self.chance_sample_count,
-                        "offline_exact": self.nosl_exact},
+                        "offline_exact": self.nosl_exact,
+                        "node_budget_only": self.node_budget_only},
             "version": LOCK,
         }
         if self.evaluator is not None:
@@ -216,6 +219,11 @@ class TeacherWorker:
         reconstruction_warnings = output.get("reconstruction_warnings") or []
         if reconstruction_warnings:
             output["risk_events"] = sorted(set(output["risk_events"]) | set(reconstruction_warnings))
+        if any(str(warning).startswith("uncalculable_") for warning in reconstruction_warnings):
+            output["confidence"] = "Uncalculable"
+            output["label_quality"] = "Uncalculable"
+            output["teacher_best_actions"] = []
+            output["teacher_top_k"] = []
         if output.get("confidence") == "Reliable" and output.get("risk_events"):
             output["confidence"] = "Estimated"
         if output.get("confidence") == "Estimated" and output.get("label_quality") in ("ExactComplete", "ExactWithKnownChance"):
@@ -293,14 +301,24 @@ def main() -> int:
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument("--budget-ms", type=int, default=500)
     parser.add_argument("--maximum-expanded-nodes", type=int, default=2_000_000)
+    parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument("--node-budget-only", action="store_true",
+                        help="Disable per-state wall-clock cutoff; stop by node/frontier limits")
     parser.add_argument("--allow-heuristic-fallback", action="store_true")
     parser.add_argument("--nosl-exact", action="store_true")
     args = parser.parse_args()
     evaluator = _command_evaluator(args.evaluator) if args.evaluator else None
     worker = TeacherWorker(evaluator, args.top_k, args.allow_heuristic_fallback,
-                           args.budget_ms, args.maximum_expanded_nodes, args.nosl_exact)
+                           args.budget_ms, args.maximum_expanded_nodes, args.nosl_exact,
+                           node_budget_only=args.node_budget_only)
     records = [json.loads(line) for line in args.input.read_text(encoding="utf-8").splitlines() if line.strip()]
-    labelled = [worker.process(record) for record in records]
+    if args.workers <= 0:
+        raise SystemExit("--workers must be positive")
+    if args.workers == 1:
+        labelled = [worker.process(record) for record in records]
+    else:
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            labelled = list(pool.map(worker.process, records))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text("\n".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) for row in labelled) + "\n", encoding="utf-8")
     if args.aggregate_output:

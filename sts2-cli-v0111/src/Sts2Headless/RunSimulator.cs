@@ -2967,12 +2967,19 @@ public class RunSimulator
             ["action_candidates"] = BuildActionCandidates(hand, enemies, player),
             ["draw_pile_count"] = pcs?.DrawPile?.Cards?.Count ?? 0,
             ["discard_pile_count"] = pcs?.DiscardPile?.Cards?.Count ?? 0,
+            // Pile contents are public through the in-game pile viewers. Export
+            // them in canonical order so NOSL consumers receive identities but
+            // never the hidden future draw order.
+            ["draw_pile"] = CanonicalPublicPile(pcs?.DrawPile?.Cards),
+            ["discard_pile"] = CanonicalPublicPile(pcs?.DiscardPile?.Cards),
             // v0.111 resolves the played card's own exhaust (and end-of-turn
             // Ethereal exhausts) asynchronously, so the exhaust pile grows
             // between transitions without a card effect naming it. Export the
             // count so the shadow can rebuild a truthful pre-action baseline
             // (trace extension, plan batch C1).
             ["exhaust_pile_count"] = pcs?.ExhaustPile?.Cards?.Count ?? 0,
+            ["exhaust_pile"] = CanonicalPublicPile(pcs?.ExhaustPile?.Cards),
+            ["pile_observation_order"] = "canonical_unordered",
         };
 
         // Character-specific mechanics
@@ -3023,6 +3030,38 @@ public class RunSimulator
         }
 
         return result;
+    }
+
+    private List<Dictionary<string, object?>> CanonicalPublicPile(IEnumerable<CardModel>? cards)
+    {
+        if (cards is null) return [];
+        return cards
+            .Select(card =>
+            {
+                var stats = new Dictionary<string, object?>();
+                try
+                {
+                    foreach (var dynamicVar in card.DynamicVars.Values)
+                        stats[dynamicVar.Name.ToLowerInvariant()] = (int)dynamicVar.PreviewValue;
+                }
+                catch
+                {
+                }
+                return new Dictionary<string, object?>
+                {
+                    ["instance_id"] = StableCardId(card),
+                    ["id"] = card.Id.ToString(),
+                    ["name"] = _loc.Card(card.Id.Entry),
+                    ["cost"] = card.EnergyCost?.GetResolved() ?? 0,
+                    ["type"] = card.Type.ToString(),
+                    ["upgraded"] = card.IsUpgraded,
+                    ["stats"] = stats.Count > 0 ? stats : null,
+                };
+            })
+            .OrderBy(static card => card["id"]?.ToString(), StringComparer.Ordinal)
+            .ThenBy(static card => card["upgraded"] is true ? 1 : 0)
+            .ThenBy(static card => card["instance_id"]?.ToString(), StringComparer.Ordinal)
+            .ToList();
     }
 
     private Dictionary<string, object?> DetectPostCombatState(Player player, CombatRoom combatRoom)

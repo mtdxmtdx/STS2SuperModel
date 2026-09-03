@@ -43,7 +43,8 @@ while ((input = Console.ReadLine()) is not null)
             throw new InvalidDataException("NOSL evaluator rejects raw RNG state");
         if (snapshot.RngStreams is not null || snapshot.RngAvailability != RngAvailability.MaskedUnknown)
             throw new InvalidDataException("NOSL evaluation requires MaskedUnknown RNG availability and no raw RNG state");
-        if (!snapshot.DrawPile.IsDefaultOrEmpty)
+        if (!snapshot.DrawPile.IsDefaultOrEmpty &&
+            !snapshot.GlobalRestrictions.Contains("nosl_unordered_draw_pool", StringComparer.Ordinal))
             throw new InvalidDataException("NOSL evaluator rejects ordered future draw pile");
         var searchElement = root.TryGetProperty("search", out var search) ? search : default;
         var offlineExact = root.TryGetProperty("teacher_mode", out var mode)
@@ -52,6 +53,9 @@ while ((input = Console.ReadLine()) is not null)
             || searchElement.ValueKind == JsonValueKind.Object
             && searchElement.TryGetProperty("offline_exact", out var exactFlag)
             && exactFlag.ValueKind == JsonValueKind.True;
+        var nodeBudgetOnly = searchElement.ValueKind == JsonValueKind.Object
+            && searchElement.TryGetProperty("node_budget_only", out var nodeBudgetFlag)
+            && nodeBudgetFlag.ValueKind == JsonValueKind.True;
         var topK = ReadInt(searchElement, "top_k", 5, 1, 100);
         var budgetMs = offlineExact
             ? 86_400_000
@@ -65,7 +69,7 @@ while ((input = Console.ReadLine()) is not null)
             new NoslExpectimaxOptions(
                 TopK: topK,
                 MaximumExpandedNodes: maxNodes,
-                OfflineBudget: offlineExact ? null : TimeSpan.FromMilliseconds(budgetMs),
+                OfflineBudget: offlineExact || nodeBudgetOnly ? null : TimeSpan.FromMilliseconds(budgetMs),
                 MaximumChanceBranches: maxChanceBranches,
                 ChanceSampleCount: chanceSampleCount,
                 MaximumStateBytes: maxStateBytes));
@@ -122,6 +126,7 @@ while ((input = Console.ReadLine()) is not null)
             ["death_probability"] = balanced.DeathProbability,
             ["search_budget_ms"] = budgetMs,
             ["expanded_nodes"] = result.Progress.ExpandedNodes,
+            ["search_metrics"] = result.Progress.Metrics,
             ["chance_branch"] = new Dictionary<string, object?>
             {
                 ["produced"] = stochastic,
@@ -148,6 +153,7 @@ while ((input = Console.ReadLine()) is not null)
             ["death_probability"] = 1m,
             ["search_budget_ms"] = 0,
             ["expanded_nodes"] = 0,
+            ["search_metrics"] = SearchMetrics.Empty,
             ["chance_branch"] = new Dictionary<string, object?> { ["produced"] = false, ["kind"] = "none" },
             ["confidence"] = PredictionConfidence.Uncalculable.ToString(),
             ["label_quality"] = "Uncalculable",

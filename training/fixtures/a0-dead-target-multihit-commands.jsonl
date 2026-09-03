@@ -1,0 +1,11 @@
+{"cmd":"start_run","character":"Ironclad","seed":"a0-target-dead","ascension":0}
+{"cmd":"set_player","hp":80,"max_hp":80,"deck":["STRIKE_IRONCLAD","TWIN_STRIKE","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD"]}
+{"cmd":"enter_room","type":"combat","encounter":"SLIMES_WEAK"}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"action","action":"play_card","args":{"card_index":4,"target_index":2}}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":2}}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"quit"}

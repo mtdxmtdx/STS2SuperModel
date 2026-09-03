@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import json
 import sys
 from pathlib import Path
@@ -55,6 +56,9 @@ def main() -> int:
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument("--budget-ms", type=int, default=500)
     parser.add_argument("--maximum-expanded-nodes", type=int, default=2_000_000)
+    parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument("--node-budget-only", action="store_true",
+                        help="Disable per-state wall-clock cutoff; stop by node/frontier limits")
     parser.add_argument("--allow-heuristic-fallback", action="store_true")
     parser.add_argument("--nosl-exact", action="store_true",
                         help="Use the offline NOSL exhaustive evaluator mode")
@@ -76,8 +80,15 @@ def main() -> int:
                            allow_heuristic_fallback=args.allow_heuristic_fallback,
                            budget_ms=args.budget_ms,
                            maximum_expanded_nodes=args.maximum_expanded_nodes,
-                           nosl_exact=args.nosl_exact)
-    labelled = [worker.process(row) for row in records]
+                           nosl_exact=args.nosl_exact,
+                           node_budget_only=args.node_budget_only)
+    if args.workers <= 0:
+        raise SystemExit("--workers must be positive")
+    if args.workers == 1:
+        labelled = [worker.process(row) for row in records]
+    else:
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            labelled = list(pool.map(worker.process, records))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text("\n".join(json.dumps(row, ensure_ascii=False, separators=(",", ":"))
                                       for row in labelled) + "\n", encoding="utf-8")

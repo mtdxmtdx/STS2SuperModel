@@ -27,7 +27,26 @@ _NOSL_FORBIDDEN_KEYS = {
     "state_hash_teacher",
     "rng_counter",
 }
-_NOSL_ORDERLESS_CONTAINERS = {"deck", "draw_pile", "discard_pile", "exhaust_pile"}
+_NOSL_ORDERLESS_CONTAINERS = {
+    "deck", "draw_pile", "discard_pile", "exhaust_pile",
+    "draw_pile_multiset", "discard_pile_multiset", "exhaust_pile_multiset",
+}
+
+
+def _pile_multiset(public: dict[str, Any], zone: str) -> Counter[tuple[str, bool]] | None:
+    values = public.get(f"{zone}_multiset")
+    if not isinstance(values, list):
+        return None
+    result: Counter[tuple[str, bool]] = Counter()
+    for value in values:
+        if not isinstance(value, dict):
+            return None
+        model_id = str(value.get("model_id", "")).removeprefix("CARD.")
+        count = value.get("count")
+        if not model_id or not isinstance(count, int) or isinstance(count, bool) or count < 0:
+            return None
+        result[(model_id, bool(value.get("upgraded", False)))] += count
+    return result
 
 
 def _public_signature_payload(value: Any, key: str | None = None) -> Any:
@@ -38,10 +57,6 @@ def _public_signature_payload(value: Any, key: str | None = None) -> Any:
         result = {}
         for child_key in sorted(value):
             if child_key.lower() in _NOSL_FORBIDDEN_KEYS:
-                continue
-            if child_key.lower() in _NOSL_ORDERLESS_CONTAINERS:
-                # Deck/pile contents are represented by the multiset below;
-                # retaining their order would turn hidden order into leakage.
                 continue
             child = _public_signature_payload(value[child_key], child_key)
             if child is not None:
@@ -189,11 +204,18 @@ class NoslBeliefState:
                 raw_powers.extend(enemy.get("powers") or [])
         visible_powers = tuple(dict(item) for item in raw_powers if isinstance(item, dict))
         hand_counts = Counter(_model_id(card) for card in hand)
-        remaining = {
-            model_id: count - hand_counts.get(model_id, 0)
-            for model_id, count in deck_counts.items()
-            if count - hand_counts.get(model_id, 0) > 0
-        }
+        draw_multiset = _pile_multiset(public, "draw_pile")
+        discard_multiset = _pile_multiset(public, "discard_pile")
+        if draw_multiset is not None and discard_multiset is not None:
+            remaining = Counter()
+            for (model_id, _), count in (draw_multiset + discard_multiset).items():
+                remaining[model_id] += count
+        else:
+            remaining = {
+                model_id: count - hand_counts.get(model_id, 0)
+                for model_id, count in deck_counts.items()
+                if count - hand_counts.get(model_id, 0) > 0
+            }
         known_deck = tuple(sorted(deck_counts.items()))
         remaining_multiset = tuple(sorted(remaining.items()))
         history = public.get("history_counters") or public.get("history") or {}
@@ -339,13 +361,85 @@ def rebuild_nosl_combat_snapshot(public: dict[str, Any]) -> tuple[dict[str, Any]
 
     public_draw_count = public.get("draw_pile_count")
     public_discard_count = public.get("discard_pile_count")
-    unordered_draw_pool = (
-        isinstance(public_draw_count, int)
-        and isinstance(public_discard_count, int)
-        and public_discard_count == 0
-        and public_draw_count == len(unknown_pool)
-        and len(unknown_pool) > 0
-    )
+    draw_count = public_draw_count if isinstance(public_draw_count, int) else None
+    discard_count = public_discard_count if isinstance(public_discard_count, int) else None
+    draw_transport: list[dict[str, Any]] = []
+    public_discard: list[dict[str, Any]] = []
+    public_exhaust: list[dict[str, Any]] = []
+    unordered_draw_pool = False
+    explicit_draw = public.get("draw_pile")
+    explicit_discard = public.get("discard_pile")
+    explicit_exhaust = public.get("exhaust_pile")
+    draw_multiset = _pile_multiset(public, "draw_pile")
+    discard_multiset = _pile_multiset(public, "discard_pile")
+    exhaust_multiset = _pile_multiset(public, "exhaust_pile")
+
+    def expand_multiset(values: Counter[tuple[str, bool]], zone: str) -> list[dict[str, Any]]:
+        expanded: list[dict[str, Any]] = []
+        templates = {
+            (_model_id(card), bool(card.get("upgraded", False))): card
+            for card in player.get("deck", []) or []
+            if isinstance(card, dict)
+        }
+        for (model_id, upgraded), count in sorted(values.items()):
+            for ordinal in range(count):
+                source = dict(templates.get((model_id, upgraded), {
+                    "id": model_id, "upgraded": upgraded,
+                }))
+                source["instance_id"] = f"belief:{zone}:{model_id}:{int(upgraded)}:{ordinal:03d}"
+                card, card_warnings = _card(source)
+                expanded.append(card)
+                warnings.extend(card_warnings)
+        return expanded
+
+    if draw_multiset is not None and discard_multiset is not None and exhaust_multiset is not None:
+        draw_transport = expand_multiset(draw_multiset, "draw")
+        public_discard = expand_multiset(discard_multiset, "discard")
+        public_exhaust = expand_multiset(exhaust_multiset, "exhaust")
+        if draw_count is not None and draw_count != len(draw_transport):
+            warnings.append("uncalculable_draw_pile_count_mismatch")
+        if discard_count is not None and discard_count != len(public_discard):
+            warnings.append("uncalculable_discard_pile_count_mismatch")
+        exhaust_count = public.get("exhaust_pile_count")
+        if isinstance(exhaust_count, int) and exhaust_count != len(public_exhaust):
+            warnings.append("uncalculable_exhaust_pile_count_mismatch")
+        unordered_draw_pool = len(draw_transport) > 0
+    elif isinstance(explicit_draw, list) and isinstance(explicit_discard, list) and isinstance(explicit_exhaust, list):
+        for value in sorted((item for item in explicit_draw if isinstance(item, dict)),
+                            key=lambda card: (_model_id(card), str(card.get("instance_id", "")))):
+            card, card_warnings = _card(value)
+            draw_transport.append(card)
+            warnings.extend(card_warnings)
+        for value in sorted((item for item in explicit_discard if isinstance(item, dict)),
+                            key=lambda card: (_model_id(card), str(card.get("instance_id", "")))):
+            card, card_warnings = _card(value)
+            public_discard.append(card)
+            warnings.extend(card_warnings)
+        for value in sorted((item for item in explicit_exhaust if isinstance(item, dict)),
+                            key=lambda card: (_model_id(card), str(card.get("instance_id", "")))):
+            card, card_warnings = _card(value)
+            public_exhaust.append(card)
+            warnings.extend(card_warnings)
+        if draw_count is not None and draw_count != len(draw_transport):
+            warnings.append("uncalculable_draw_pile_count_mismatch")
+        if discard_count is not None and discard_count != len(public_discard):
+            warnings.append("uncalculable_discard_pile_count_mismatch")
+        unordered_draw_pool = len(draw_transport) > 0
+    elif draw_count is None or discard_count is None:
+        warnings.append("uncalculable_pile_counts_missing")
+    elif draw_count + discard_count != len(unknown_pool):
+        # Master-deck minus hand can still contain played Powers, exhausted
+        # cards, or removed cards. Inventing a draw/discard assignment would
+        # create illegal actions, so legacy rows without zone identities are
+        # explicitly rejected for Reliable labels.
+        warnings.append("uncalculable_pile_partition_missing")
+    elif discard_count == 0:
+        draw_transport = unknown_pool
+        unordered_draw_pool = len(draw_transport) > 0
+    elif draw_count == 0:
+        public_discard = unknown_pool
+    else:
+        warnings.append("uncalculable_pile_partition_missing")
     snapshot = {
         "fingerprint": public.get("state_hash_public", public.get("fingerprint", "nosl-belief")),
         "belief_signature": belief.belief_signature,
@@ -357,9 +451,11 @@ def rebuild_nosl_combat_snapshot(public: dict[str, Any]) -> tuple[dict[str, Any]
         },
         "enemies": enemies,
         "hand": hand_cards,
-        "draw_pile": [],
-        "discard_pile": unknown_pool,
-        "exhaust_pile": [],
+        # The marker tells MutableCombatState that this canonical array is an
+        # unordered transport, not a future-order observation.
+        "draw_pile": draw_transport,
+        "discard_pile": public_discard,
+        "exhaust_pile": public_exhaust,
         "potions": player.get("potions") or [],
         "rng_state": 0,
         "rng_streams": None,
