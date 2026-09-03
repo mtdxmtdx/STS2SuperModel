@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "cli_protocol_version": "0.2.0",
+  "trace_schema": 1,
+  "trace_id": "trace-v0111-p1-parrying-multi",
+  "fixture": "trace",
+  "seed": "p1-parrying-multi",
+  "simulator": "STS2BestChoice.Core.DeterministicSimulator",
+  "action_ordinal": 2,
+  "action_kind": "end_turn",
+  "normalized_action_id": "end_turn:",
+  "draw_pile_source": "placeholder_count_only",
+  "attacks_played_this_turn": 0,
+  "confidence": "Uncalculable",
+  "chance_present": true,
+  "random_operator": "Shuffle",
+  "probability_known": false,
+  "outcome_quality": "Unknown",
+  "probability_mass_covered": null,
+  "effective_sample_size": null,
+  "confidence_interval_low": null,
+  "confidence_interval_high": null,
+  "branch_probability": null,
+  "rng_consumption_vector": {
+    "Shuffle": 4
+  },
+  "branch_enumerated": false,
+  "comparison_scope": "aggregate_count_only",
+  "identity_comparison": "omitted",
+  "chance_quality": {
+    "chance_present": true,
+    "random_operator": "Shuffle",
+    "probability_known": false,
+    "outcome_quality": "Unknown",
+    "probability_mass_covered": null,
+    "effective_sample_size": null,
+    "confidence_interval_low": null,
+    "confidence_interval_high": null,
+    "branch_probability": null,
+    "rng_consumption_vector": {
+      "Shuffle": 4
+    },
+    "branch_enumerated": false,
+    "comparison_scope": "aggregate_count_only",
+    "identity_comparison": "omitted"
+  },
+  "match": false,
+  "mismatch_count": 1,
+  "mismatches": [
+    {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:TWO_TAILED_RAT:1",
+        "enemy:TWO_TAILED_RAT:2",
+        "enemy:TWO_TAILED_RAT:3"
+      ],
+      "actual": [
+        "enemy:TWO_TAILED_RAT:1",
+        "enemy:TWO_TAILED_RAT:2",
+        "enemy:TWO_TAILED_RAT:3",
+        "enemy:TWO_TAILED_RAT:4"
+      ],
+      "match": false
+    }
+  ],
+  "engine_pre_state_hash": "418C98CD4ACA12367D506811BEF1602BC4FA08CA9CC0F05A575AF7246E5D9B11",
+  "engine_post_state_hash": "C0DD71DA402A795F4C78175EABC6AD490FA71CCE6BBAB02CCDC0C5BA2BE7DBD7",
+  "projected_comparison_hash": "AFBE9A0E66805327EF985F49A12AF8C6A7EA85E2515464188932063C52ED2C2F",
+  "actual_comparison_hash": "B343C1FEE04C3B569B92DCAA561488507F8BC05FF8E8F1548957D29F009FF7CD",
+  "rng_before": {
+    "Shuffle": 13,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "rng_after": {
+    "Shuffle": 17,
+    "CombatCardGeneration": 0,
+    "CombatPotionGeneration": 0,
+    "CombatCardSelection": 0,
+    "CombatEnergyCosts": 0,
+    "CombatTargets": 0,
+    "CombatOrbGeneration": 0
+  },
+  "fields": [
+    {
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "draw_pile_count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWO_TAILED_RAT:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWO_TAILED_RAT:2.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWO_TAILED_RAT:3.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:TWO_TAILED_RAT:1",
+        "enemy:TWO_TAILED_RAT:2",
+        "enemy:TWO_TAILED_RAT:3"
+      ],
+      "actual": [
+        "enemy:TWO_TAILED_RAT:1",
+        "enemy:TWO_TAILED_RAT:2",
+        "enemy:TWO_TAILED_RAT:3",
+        "enemy:TWO_TAILED_RAT:4"
+      ],
+      "match": false
+    },
+    {
+      "field": "enemy_damage_total",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "exhaust_pile_count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "hand_count",
+      "projected": 5,
+      "actual": 5,
+      "match": true
+    },
+    {
+      "field": "player.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "player.energy",
+      "projected": 3,
+      "actual": 3,
+      "match": true
+    },
+    {
+      "field": "player.hp",
+      "projected": 965,
+      "actual": 965,
+      "match": true
+    },
+    {
+      "field": "potion.count",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "power.count",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.player.FRAIL_POWER.amount",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "power.player.FRAIL_POWER.applier",
+      "projected": "enemy:TWO_TAILED_RAT:2",
+      "actual": "enemy:TWO_TAILED_RAT:2",
+      "match": true
+    },
+    {
+      "field": "power.player.FRAIL_POWER.counters",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.player.FRAIL_POWER.dynamic_vars",
+      "projected": [],
+      "actual": [],
+      "match": true
+    },
+    {
+      "field": "power.player.FRAIL_POWER.present",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "relic.BURNING_BLOOD.counter",
+      "projected": null,
+      "actual": null,
+      "match": true
+    },
+    {
+      "field": "relic.BURNING_BLOOD.dynamic_vars",
+      "projected": [
+        {
+          "Key": "Heal",
+          "Value": 6
+        }
+      ],
+      "actual": [
+        {
+          "Key": "Heal",
+          "Value": 6
+        }
+      ],
+      "match": true
+    },
+    {
+      "field": "relic.ids",
+      "projected": [
+        "BURNING_BLOOD"
+      ],
+      "actual": [
+        "BURNING_BLOOD"
+      ],
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 17,
+      "actual": 17,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 4,
+      "actual": 4,
+      "match": true
+    }
+  ]
+}

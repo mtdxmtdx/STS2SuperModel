@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "scope": "PLAN_NOSL_TEACHER_FIX batch 0 enemy.ids gate",
+  "real_summon_trace": {
+    "path": "m3c-enemy-ids-summon-trace.jsonl",
+    "sha256": "7D6165AFE5DDAB465A493F6BC526C6FFEED1A9B2489ADFE979C360C5C7F5521A",
+    "fixture": "TWO_TAILED_RATS_NORMAL",
+    "round_4_new_enemy": "enemy:TWO_TAILED_RAT:4",
+    "round_5_new_enemy": "enemy:TWO_TAILED_RAT:5"
+  },
+  "negative_gates": [
+    {
+      "case": "shadow_missing_real_summon",
+      "report_path": "m3c-enemy-ids-missing-shadow-diff-report.json",
+      "report_sha256": "83726EBA9D7F0D06FBF7BA75E592934424D33F2E4DC586C1346522CD82A51232",
+      "match": false,
+      "mismatch_count": 1,
+      "projected_enemy_count": 3,
+      "actual_enemy_count": 4
+    },
+    {
+      "case": "shadow_has_extra_enemy",
+      "trace_path": "m3c-enemy-ids-extra-shadow-trace.jsonl",
+      "trace_sha256": "4932654469F127A5D08B7F07156FE1DB1B1190B89F37962B9AF05770F75AB3A6",
+      "report_path": "m3c-enemy-ids-extra-shadow-diff-report.json",
+      "report_sha256": "C8AD98CB499511A63126DF6B4A92DC260732D97A20CB7C77425B0A42529ECBEB",
+      "match": false,
+      "projected_extra_id": "enemy:SYNTHETIC_EXTRA:999"
+    }
+  ],
+  "green_regression_reports": [
+    {
+      "path": "m3c-enemy-ids-regression-multi-0.json",
+      "sha256": "094A15C53AA6324556AEFDD2A3F497963817B3984579BE91D741F63C1E2EB845"
+    },
+    {
+      "path": "m3c-enemy-ids-regression-multi-1.json",
+      "sha256": "C4DFD2ED3A3EB133D98C2698941058F801AABBB770ABC6C8B17ED9C17B7EA253"
+    },
+    {
+      "path": "m3c-enemy-ids-regression-multi-2.json",
+      "sha256": "50E6C8F9A1E4CB5B16865EB9E131F13DE02056C9C338A2AEA920C8F80934F328"
+    },
+    {
+      "path": "m3c-enemy-ids-regression-endturn.json",
+      "sha256": "539094CCF0DF12E5B72062AF4200EC9645DF1CC5E49C2100617510A5B1920EF6"
+    }
+  ],
+  "targeted_test": "2 passed, 15 deselected",
+  "verdict": "pass",
+  "status": "enemy.ids detects missing and extra enemies; representative existing reports remain green"
+}
