@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import json
 from pathlib import Path
 
@@ -71,3 +72,44 @@ def test_character_distribution_uses_real_row_denominator():
         "The Ironclad": {"rows": 1, "ratio": 1 / 3},
         "The Silent": {"rows": 2, "ratio": 2 / 3},
     }
+
+
+def test_v4_is_authoritative_and_hashes_match():
+    model_dir = ROOT / "data/combat_model/model-v4"
+    manifest = json.loads((model_dir / "combat-nosl-model-manifest.json").read_text(encoding="utf-8"))
+    actual = hashlib.sha256((model_dir / "combat-nosl-v4.onnx").read_bytes()).hexdigest().upper()
+    assert manifest["model_stage"] == "authoritative"
+    assert manifest["promotion_status"] == "authoritative"
+    assert manifest["onnx_sha256"] == actual
+    assert manifest["promotion_cross_split_top1_comparison_used"] is False
+    comparison = json.loads((ROOT / "data/combat_model/model-comparison.json").read_text(encoding="utf-8"))
+    statuses = {run["model_id"]: run["promotion_status"] for run in comparison["runs"]}
+    assert statuses["combat-nosl-policy-value-v3"] == "superseded"
+    assert statuses["combat-nosl-policy-value-v4"] == "authoritative"
+
+
+def test_core_holdout_is_frozen_balanced_and_has_v4_baseline():
+    holdout_dir = ROOT / "data/combat_model/holdouts"
+    holdout = json.loads((holdout_dir / "holdout-core-v1.json").read_text(encoding="utf-8"))
+    test_ids = holdout["test_episode_ids"]
+    challenge_ids = holdout["challenge_episode_ids"]
+    assert test_ids == sorted(test_ids)
+    assert challenge_ids == sorted(challenge_ids)
+    assert not set(test_ids) & set(challenge_ids)
+    for split in ("test", "challenge"):
+        distribution = holdout["character_distribution"][split]
+        assert 0.45 <= distribution["The Ironclad"]["ratio"] <= 0.55
+        assert 0.45 <= distribution["The Silent"]["ratio"] <= 0.55
+    baseline = json.loads((holdout_dir / "holdout-core-v1-baseline.json").read_text(encoding="utf-8"))
+    assert baseline["model_id"] == "combat-nosl-policy-value-v4"
+    assert baseline["test"]["rows"] == holdout["test_reliable_row_count"]
+    assert baseline["challenge"]["rows"] == holdout["challenge_reliable_row_count"]
+    assert baseline["top1"] == baseline["test"]["top1"]
+
+
+def test_true_balanced_coverage_profile_is_version_locked():
+    report = json.loads((ROOT / "data/combat_model/true-balanced-v1/coverage-profile.json").read_text(encoding="utf-8"))
+    assert report["source_sha256"] == "93F9FCD4BF504FB737806E7A5074CA65FBDF802959A5917700121FD41DCF9AA3"
+    assert report["row_count"] == 26971
+    assert report["reliable_row_count"] == 20932
+    assert report["proposed_acceptance_thresholds"]["status"] == "pending_human_confirmation"
