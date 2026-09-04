@@ -60,12 +60,12 @@
   },
   "task_b": {
     "verdict": "pass",
-    "promotion_status": "authoritative",
+    "promotion_status": "superseded",
     "v2_status": "superseded",
     "v3_onnx_sha256": "B190380DA3787CCBD010846DBCC503B4AE1D87015C4062962CD696DB41F279A6",
-    "python_maximum_absolute_error": 0.00003814697265625,
-    "csharp_maximum_absolute_error": 0.000049591064453125,
-    "prior_conversational_measurement": 0.00001239776611328125,
+    "python_maximum_absolute_error": 3.814697265625E-05,
+    "csharp_maximum_absolute_error": 4.9591064453125E-05,
+    "prior_conversational_measurement": 1.239776611328125E-05,
     "measurement_difference_documented": true,
     "cross_split_top1_used_for_promotion": false,
     "evidence": [
@@ -73,7 +73,9 @@
       "data/combat_model/model-v3/onnx-python-parity.json",
       "data/combat_model/model-v3/onnx-csharp-parity.json",
       "data/combat_model/model-comparison-v1-v3.json"
-    ]
+    ],
+    "historical_promotion_status": "authoritative",
+    "superseded_by": "combat-nosl-policy-value-v4"
   },
   "task_c": {
     "verdict": "pass",
@@ -143,5 +145,6 @@
       "Uncalculable": 51,
       "evidence": "data/combat_model/decision-parity-repeat-verification.json"
     }
-  }
+  },
+  "lifecycle_status": "superseded_by_line_a_v4"
 }

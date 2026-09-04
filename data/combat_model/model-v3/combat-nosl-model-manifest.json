@@ -15,7 +15,7 @@
   "checkpoint": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\model-v3\\combat-nosl-best.pt",
   "checkpoint_sha256": "41769011931DCD7BF868B2E719668B8BE291B10B4F1068F2963B6D59B4F1F1A9",
   "created_at_utc": "2026-09-03T19:58:39.061354+08:00",
-  "csharp_onnx_maximum_absolute_error": 4.9591064453125e-05,
+  "csharp_onnx_maximum_absolute_error": 4.9591064453125E-05,
   "csharp_python_feature_maximum_absolute_error": 0,
   "early_stopping_patience": 12,
   "early_stopping_triggered": true,
@@ -39,9 +39,9 @@
     "run_seed"
   ],
   "model_id": "combat-nosl-policy-value-v3",
-  "model_stage": "promoted",
+  "model_stage": "superseded",
   "onnx_decision_parity_verdict": "pass",
-  "onnx_legacy_absolute_tolerance": 1e-05,
+  "onnx_legacy_absolute_tolerance": 1E-05,
   "onnx_legacy_absolute_verdict": "fail",
   "onnx_numeric_diagnostic_status": "normal",
   "onnx_numeric_diagnostic_threshold": 0.001,
@@ -55,8 +55,8 @@
   "onnx_top3_set_agreement_rate": 1.0,
   "parameter_count": 134277,
   "promotion_reason": "decision-equivalence parity passed; v3 uses more and more balanced training data; top1 is not compared across different split sources",
-  "promotion_status": "authoritative",
-  "python_onnx_maximum_absolute_error": 3.814697265625e-05,
+  "promotion_status": "superseded",
+  "python_onnx_maximum_absolute_error": 3.814697265625E-05,
   "reliable_training_only": true,
   "seed": 20260903,
   "selection_criterion": "fixed_denominator_validation_top1_then_ndcg_at_3_then_regret_fixed_then_policy_loss",
@@ -103,5 +103,6 @@
   "validation_rows": 2452,
   "validation_top1": 0.882952691680261,
   "vocabulary": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\model-v3\\vocabulary.json",
-  "vocabulary_sha256": "8DAE8AC8139CCE8BBE08B8E664EE237F4D2E0959AAE62027D2C44BFB018E4598"
+  "vocabulary_sha256": "8DAE8AC8139CCE8BBE08B8E664EE237F4D2E0959AAE62027D2C44BFB018E4598",
+  "superseded_by": "combat-nosl-policy-value-v4"
 }

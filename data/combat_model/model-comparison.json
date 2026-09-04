@@ -1,5 +1,5 @@
 {
-  "authoritative_model_id": null,
+  "authoritative_model_id": "combat-nosl-policy-value-v4",
   "comparison_policy": "metrics are run-local and must not be compared across different split sources; holdout-core-v1 is the first frozen cross-version benchmark",
   "runs": [
     {
@@ -82,6 +82,38 @@
       "validation_rows": 2452,
       "validation_top1": 0.882952691680261,
       "validation_top1_by_character": null
+    },
+    {
+      "best_epoch": 9,
+      "challenge_rows": 2077,
+      "challenge_top1": 0.8805970149253731,
+      "challenge_top1_by_character": {
+        "The Ironclad": 0.8562152133580705,
+        "The Silent": 0.9069069069069069
+      },
+      "character_difficulty_note": "Within the v4 run-local frozen evaluation, Ironclad trails Silent by about 4-5 percentage points across validation, test, and challenge; this is a coverage insight, not a cross-version top-1 claim.",
+      "epochs_completed": 21,
+      "model_id": "combat-nosl-policy-value-v4",
+      "model_stage": "authoritative",
+      "onnx_parity_status": "pass",
+      "promotion_reason": "true-balanced Ironclad/Silent training source; 512-sample decision-equivalence gate with 15,555 compared pairs and zero discordance; deterministic repeat training with 23 identical tensors; metrics are not compared across different split sources",
+      "promotion_status": "authoritative",
+      "source_manifest": "data\\combat_model\\model-v4\\combat-nosl-model-manifest.json",
+      "test_ndcg_at_3": 0.8884110118778107,
+      "test_regret_fixed": 0.032766065532131065,
+      "test_rows": 3937,
+      "test_top1": 0.8986537973075946,
+      "test_top1_by_character": {
+        "The Ironclad": 0.8791208791208791,
+        "The Silent": 0.9188630490956072
+      },
+      "training_rows": 10689,
+      "validation_rows": 4229,
+      "validation_top1": 0.8997398912272405,
+      "validation_top1_by_character": {
+        "The Ironclad": 0.8760703019378098,
+        "The Silent": 0.9258706467661691
+      }
     }
   ],
   "schema_version": 2

@@ -1,0 +1,359 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 2.969116898378852,
+    "learning_rate": 0.001,
+    "validation_loss": 2.5275952495787832,
+    "validation_policy_loss": 1.5052886964243675,
+    "validation_top1": 0.6786474343816505,
+    "validation_ndcg_at_3": 0.7638376967375105,
+    "validation_regret": 0.03816793893129771,
+    "validation_regret_fixed": 0.026010877275951763,
+    "validation_regret_coverage": 0.6814849846299361,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.6520955385308698,
+      "The Silent": 0.7079601990049751
+    }
+  },
+  {
+    "epoch": 2,
+    "train_loss": 2.1021127256489254,
+    "learning_rate": 0.001,
+    "validation_loss": 1.8989181690504715,
+    "validation_policy_loss": 1.2885207250400705,
+    "validation_top1": 0.8226531094821471,
+    "validation_ndcg_at_3": 0.8395902914681247,
+    "validation_regret": 0.038384417072472074,
+    "validation_regret_fixed": 0.031685977772523057,
+    "validation_regret_coverage": 0.8254906597304327,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.7841369986480397,
+      "The Silent": 0.8651741293532338
+    }
+  },
+  {
+    "epoch": 3,
+    "train_loss": 1.60622662835019,
+    "learning_rate": 0.001,
+    "validation_loss": 1.4372765785358452,
+    "validation_policy_loss": 1.2069039884879815,
+    "validation_top1": 0.8590683376684796,
+    "validation_ndcg_at_3": 0.8675308978018684,
+    "validation_regret": 0.08486175745962223,
+    "validation_regret_fixed": 0.07330338141404587,
+    "validation_regret_coverage": 0.8637975880822889,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8310049571879224,
+      "The Silent": 0.890049751243781
+    }
+  },
+  {
+    "epoch": 4,
+    "train_loss": 1.394949261427751,
+    "learning_rate": 0.001,
+    "validation_loss": 1.3412808269212984,
+    "validation_policy_loss": 1.1725912042249318,
+    "validation_top1": 0.8621423504374557,
+    "validation_ndcg_at_3": 0.879952713693454,
+    "validation_regret": 0.10035451322607036,
+    "validation_regret_fixed": 0.08701820761409317,
+    "validation_regret_coverage": 0.8671080633719556,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8273997296079315,
+      "The Silent": 0.900497512437811
+    }
+  },
+  {
+    "epoch": 5,
+    "train_loss": 1.3218532726844754,
+    "learning_rate": 0.001,
+    "validation_loss": 1.3363663256379779,
+    "validation_policy_loss": 1.1624101526941861,
+    "validation_top1": 0.883896902340979,
+    "validation_ndcg_at_3": 0.8854871728686857,
+    "validation_regret": 0.09635347351610328,
+    "validation_regret_fixed": 0.08559943248995035,
+    "validation_regret_coverage": 0.8883896902340979,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.857593510590356,
+      "The Silent": 0.9129353233830846
+    }
+  },
+  {
+    "epoch": 6,
+    "train_loss": 1.2975030509802588,
+    "learning_rate": 0.001,
+    "validation_loss": 1.290218360600502,
+    "validation_policy_loss": 1.1517462015546618,
+    "validation_top1": 0.8727831638685268,
+    "validation_ndcg_at_3": 0.8838251575628249,
+    "validation_regret": 0.10209564750134337,
+    "validation_regret_fixed": 0.08985575786237882,
+    "validation_regret_coverage": 0.8801135020099314,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8391167192429022,
+      "The Silent": 0.9099502487562189
+    }
+  },
+  {
+    "epoch": 7,
+    "train_loss": 1.2596279735571432,
+    "learning_rate": 0.001,
+    "validation_loss": 1.2723992762201417,
+    "validation_policy_loss": 1.1532721685218765,
+    "validation_top1": 0.875857176637503,
+    "validation_ndcg_at_3": 0.8851838382168666,
+    "validation_regret": 0.09828141783029001,
+    "validation_regret_fixed": 0.08654528257271223,
+    "validation_regret_coverage": 0.8805864270513124,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8675078864353313,
+      "The Silent": 0.8850746268656716
+    }
+  },
+  {
+    "epoch": 8,
+    "train_loss": 1.251827531662098,
+    "learning_rate": 0.0005,
+    "validation_loss": 1.278543550879658,
+    "validation_policy_loss": 1.1522894615990582,
+    "validation_top1": 0.8808228895720028,
+    "validation_ndcg_at_3": 0.8827585306942378,
+    "validation_regret": 0.0850494784701792,
+    "validation_regret_fixed": 0.07519508157956964,
+    "validation_regret_coverage": 0.8841333648616694,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8693105002253267,
+      "The Silent": 0.8935323383084577
+    }
+  },
+  {
+    "epoch": 9,
+    "train_loss": 1.214633303637009,
+    "learning_rate": 0.0005,
+    "validation_loss": 1.2356749099037783,
+    "validation_policy_loss": 1.1374665447712282,
+    "validation_top1": 0.8997398912272405,
+    "validation_ndcg_at_3": 0.8916642831546715,
+    "validation_regret": 0.09777777777777778,
+    "validation_regret_fixed": 0.08843698273823598,
+    "validation_regret_coverage": 0.9044691416410499,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8760703019378098,
+      "The Silent": 0.9258706467661691
+    }
+  },
+  {
+    "epoch": 10,
+    "train_loss": 1.2032726978115889,
+    "learning_rate": 0.0005,
+    "validation_loss": 1.2134010812919962,
+    "validation_policy_loss": 1.1325896304390566,
+    "validation_top1": 0.8812958146133838,
+    "validation_ndcg_at_3": 0.8875760838711151,
+    "validation_regret": 0.09471718249733191,
+    "validation_regret_fixed": 0.08394419484511705,
+    "validation_regret_coverage": 0.8862615275478837,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.857593510590356,
+      "The Silent": 0.9074626865671642
+    }
+  },
+  {
+    "epoch": 11,
+    "train_loss": 1.1969802741395914,
+    "learning_rate": 0.0005,
+    "validation_loss": 1.2546095118282479,
+    "validation_policy_loss": 1.135764874304742,
+    "validation_top1": 0.8846062899030503,
+    "validation_ndcg_at_3": 0.8886691449089902,
+    "validation_regret": 0.09412390321722947,
+    "validation_regret_fixed": 0.08370773232442658,
+    "validation_regret_coverage": 0.8893355403168598,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8566922036953583,
+      "The Silent": 0.9154228855721394
+    }
+  },
+  {
+    "epoch": 12,
+    "train_loss": 1.1987988066992241,
+    "learning_rate": 0.00025,
+    "validation_loss": 1.2122449439928926,
+    "validation_policy_loss": 1.1354383716461478,
+    "validation_top1": 0.8978481910617168,
+    "validation_ndcg_at_3": 0.8919100171046687,
+    "validation_regret": 0.09331585845347314,
+    "validation_regret_fixed": 0.08418065736580752,
+    "validation_regret_coverage": 0.9021045164341452,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8778729157278053,
+      "The Silent": 0.9199004975124379
+    }
+  },
+  {
+    "epoch": 13,
+    "train_loss": 1.1804692563757235,
+    "learning_rate": 0.00025,
+    "validation_loss": 1.2011620116363493,
+    "validation_policy_loss": 1.1291735965496936,
+    "validation_top1": 0.8872073776306455,
+    "validation_ndcg_at_3": 0.8905218326821583,
+    "validation_regret": 0.0993904055128545,
+    "validation_regret_fixed": 0.08867344525892645,
+    "validation_regret_coverage": 0.8921730905651454,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8652546191978369,
+      "The Silent": 0.9114427860696518
+    }
+  },
+  {
+    "epoch": 14,
+    "train_loss": 1.1762875952324952,
+    "learning_rate": 0.00025,
+    "validation_loss": 1.1944799834206528,
+    "validation_policy_loss": 1.1282322260752218,
+    "validation_top1": 0.8905178529203122,
+    "validation_ndcg_at_3": 0.8916837493941059,
+    "validation_regret": 0.09374174808555585,
+    "validation_regret_fixed": 0.08394419484511705,
+    "validation_regret_coverage": 0.895483565854812,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.868409193330329,
+      "The Silent": 0.9149253731343283
+    }
+  },
+  {
+    "epoch": 15,
+    "train_loss": 1.174910012570921,
+    "learning_rate": 0.00025,
+    "validation_loss": 1.1976895135016723,
+    "validation_policy_loss": 1.1299850998772716,
+    "validation_top1": 0.8862615275478837,
+    "validation_ndcg_at_3": 0.8897772138682384,
+    "validation_regret": 0.09394904458598727,
+    "validation_regret_fixed": 0.08370773232442658,
+    "validation_regret_coverage": 0.8909907779616931,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8630013519603424,
+      "The Silent": 0.9119402985074627
+    }
+  },
+  {
+    "epoch": 16,
+    "train_loss": 1.1741065376433235,
+    "learning_rate": 0.00025,
+    "validation_loss": 1.191186775465501,
+    "validation_policy_loss": 1.127089770473355,
+    "validation_top1": 0.8862615275478837,
+    "validation_ndcg_at_3": 0.8901069247518958,
+    "validation_regret": 0.09394904458598727,
+    "validation_regret_fixed": 0.08370773232442658,
+    "validation_regret_coverage": 0.8909907779616931,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8589454709328527,
+      "The Silent": 0.9164179104477612
+    }
+  },
+  {
+    "epoch": 17,
+    "train_loss": 1.1723678249317555,
+    "learning_rate": 0.00025,
+    "validation_loss": 1.1940189504149845,
+    "validation_policy_loss": 1.129753888090273,
+    "validation_top1": 0.8938283282099787,
+    "validation_ndcg_at_3": 0.8912459655066856,
+    "validation_regret": 0.09865824782951854,
+    "validation_regret_fixed": 0.08867344525892645,
+    "validation_regret_coverage": 0.8987940411444786,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8706624605678234,
+      "The Silent": 0.9194029850746268
+    }
+  },
+  {
+    "epoch": 18,
+    "train_loss": 1.1697064638472392,
+    "learning_rate": 0.000125,
+    "validation_loss": 1.2028648412715293,
+    "validation_policy_loss": 1.1335778116869797,
+    "validation_top1": 0.859777725230551,
+    "validation_ndcg_at_3": 0.8837153205741901,
+    "validation_regret": 0.09682713347921225,
+    "validation_regret_fixed": 0.08370773232442658,
+    "validation_regret_coverage": 0.8645069756443604,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.814781433077963,
+      "The Silent": 0.909452736318408
+    }
+  },
+  {
+    "epoch": 19,
+    "train_loss": 1.1644828792639472,
+    "learning_rate": 0.000125,
+    "validation_loss": 1.185847575429428,
+    "validation_policy_loss": 1.1262783473139537,
+    "validation_top1": 0.8895720028375502,
+    "validation_ndcg_at_3": 0.8912845311731062,
+    "validation_regret": 0.09912767644726407,
+    "validation_regret_fixed": 0.08867344525892645,
+    "validation_regret_coverage": 0.8945377157720501,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8675078864353313,
+      "The Silent": 0.9139303482587064
+    }
+  },
+  {
+    "epoch": 20,
+    "train_loss": 1.162779484498667,
+    "learning_rate": 0.000125,
+    "validation_loss": 1.1859191671898248,
+    "validation_policy_loss": 1.1266048176121164,
+    "validation_top1": 0.887916765192717,
+    "validation_ndcg_at_3": 0.8911382303157283,
+    "validation_regret": 0.09377483443708609,
+    "validation_regret_fixed": 0.08370773232442658,
+    "validation_regret_coverage": 0.8926460156065263,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8666065795403335,
+      "The Silent": 0.9114427860696518
+    }
+  },
+  {
+    "epoch": 21,
+    "train_loss": 1.1613235191362523,
+    "learning_rate": 0.000125,
+    "validation_loss": 1.183905855170038,
+    "validation_policy_loss": 1.126015917407505,
+    "validation_top1": 0.8888626152754788,
+    "validation_ndcg_at_3": 0.8911113860115347,
+    "validation_regret": 0.08814187400741133,
+    "validation_regret_fixed": 0.0787420193899267,
+    "validation_regret_coverage": 0.8933554031685977,
+    "validation_rows": 4229.0,
+    "validation_top1_by_character": {
+      "The Ironclad": 0.8657052726453357,
+      "The Silent": 0.9144278606965174
+    }
+  }
+]
