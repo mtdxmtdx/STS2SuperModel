@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1,
+    "feature_schema_version": "combat-feature-v1"
+  },
+  "task_a": {
+    "verdict": "pass",
+    "fixture_samples": {
+      "v2": 512,
+      "v3": 512
+    },
+    "coverage": {
+      "v2": {
+        "maximum_legal_actions_in_fixture": 18,
+        "maximum_enemies_in_fixture": 4,
+        "near_tie_samples_in_fixture": 357
+      },
+      "v3": {
+        "maximum_legal_actions_in_fixture": 18,
+        "maximum_enemies_in_fixture": 4,
+        "near_tie_samples_in_fixture": 340
+      }
+    },
+    "positive_gate": {
+      "v2_python": "pass",
+      "v2_csharp": "pass",
+      "v3_python": "pass",
+      "v3_csharp": "pass",
+      "top1_agreement_rate": 1.0,
+      "top3_set_agreement_rate": 1.0,
+      "ranking_agreement": 1.0,
+      "tie_break_deterministic": true
+    },
+    "negative_gate": {
+      "injected_logit_perturbation": 0.01,
+      "python_verdict": "fail",
+      "csharp_verdict": "fail",
+      "top1_agreement_rate": 0.998046875,
+      "top3_set_agreement_rate": 1.0,
+      "ranking_agreement": 0.9998344644926337,
+      "expected_exit_status": 1
+    },
+    "tie_break_rule": "ActionId Ordinal ascending within anchor-relative logit groups whose anchor delta is < 1e-4",
+    "numeric_diagnostic_threshold": 0.001,
+    "evidence": [
+      "data/combat_model/combat-feature-manifest.json",
+      "data/combat_model/model-v2/onnx-python-parity.json",
+      "data/combat_model/model-v2/onnx-csharp-parity.json",
+      "data/combat_model/model-v2/onnx-python-parity-negative.json",
+      "data/combat_model/model-v2/onnx-csharp-parity-negative.json",
+      "data/combat_model/model-v3/onnx-python-parity.json",
+      "data/combat_model/model-v3/onnx-csharp-parity.json"
+    ]
+  },
+  "task_b": {
+    "verdict": "pass",
+    "promotion_status": "authoritative",
+    "v2_status": "superseded",
+    "v3_onnx_sha256": "B190380DA3787CCBD010846DBCC503B4AE1D87015C4062962CD696DB41F279A6",
+    "python_maximum_absolute_error": 0.00003814697265625,
+    "csharp_maximum_absolute_error": 0.000049591064453125,
+    "prior_conversational_measurement": 0.00001239776611328125,
+    "measurement_difference_documented": true,
+    "cross_split_top1_used_for_promotion": false,
+    "evidence": [
+      "data/combat_model/model-v3/combat-nosl-model-manifest.json",
+      "data/combat_model/model-v3/onnx-python-parity.json",
+      "data/combat_model/model-v3/onnx-csharp-parity.json",
+      "data/combat_model/model-comparison-v1-v3.json"
+    ]
+  },
+  "task_c": {
+    "verdict": "pass",
+    "v3_historical_training_distribution": {
+      "The Ironclad": {
+        "rows": 13513,
+        "ratio": 0.9270083007477533
+      },
+      "The Silent": {
+        "rows": 1064,
+        "ratio": 0.07299169925224669
+      }
+    },
+    "selected_balance_plan": "true_balance",
+    "silent_seeds_collected": 3200,
+    "true_balanced_dataset": {
+      "rows": 26971,
+      "Reliable": 20932,
+      "Estimated": 6023,
+      "Uncalculable": 16,
+      "The Ironclad": 13513,
+      "The Silent": 13458,
+      "source_sha256": "93F9FCD4BF504FB737806E7A5074CA65FBDF802959A5917700121FD41DCF9AA3"
+    },
+    "v3_top1_by_character": {
+      "test": {
+        "The Ironclad": 0.8671328671328671,
+        "The Silent": 0.9565217391304348
+      },
+      "challenge": {
+        "The Ironclad": 0.8478664192949907,
+        "The Silent": 0.96
+      }
+    },
+    "evidence": [
+      "data/combat_model/model-v3/combat-nosl-model-manifest.json",
+      "data/combat_model/true-balanced-v1/character-distribution.json",
+      "data/combat_model/true-balanced-v1/dataset-manifest.json",
+      "data/combat_model/true-balanced-v1/quality-gate.json"
+    ]
+  },
+  "gates": {
+    "dotnet_build": {
+      "verdict": "pass",
+      "errors": 0,
+      "warnings": 2
+    },
+    "dotnet_test": {
+      "verdict": "pass",
+      "passed": 793,
+      "failed": 0
+    },
+    "python_training_tests": {
+      "verdict": "pass",
+      "passed": 132,
+      "skipped": 1
+    },
+    "repeat_runs": {
+      "verdict": "pass",
+      "report_count": 218,
+      "different": 0,
+      "missing": 0,
+      "added": 0,
+      "unexpected": 0,
+      "Reliable": 100,
+      "Estimated": 67,
+      "Uncalculable": 51,
+      "evidence": "data/combat_model/decision-parity-repeat-verification.json"
+    }
+  }
+}

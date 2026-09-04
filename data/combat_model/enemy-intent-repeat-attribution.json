@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_at_utc": "2026-09-04T02:40:36.2132504Z",
-  "scope": "verify_repeat_runs pre-existing report attribution",
+  "scope": "verify_repeat_runs enemy-intent mismatch attribution and resolution",
   "version_lock": {
     "game_version": "v0.111.0",
     "game_commit": "41cef1ea",
@@ -10,11 +10,18 @@
     "trace_schema": 1,
     "feature_schema_version": "combat-feature-v1"
   },
-  "overall_repeat_gate": "fail",
-  "failing_report_count": 5,
+  "initial_repeat_gate": "fail",
+  "initial_failing_report_count": 5,
+  "final_repeat_gate": "pass",
+  "final_report_count": 218,
+  "final_failing_report_count": 0,
+  "final_different_reports": 0,
+  "final_missing_reports": 0,
+  "final_added_reports": 0,
+  "final_unexpected_reports": 0,
   "baseline_commit": "d0b6abd",
   "baseline_reports_all_match": "true",
-  "current_failures": [
+  "initial_failures": [
     {
       "report": "data/p1-csharp-relic-brimstone-diff-report-0.json",
       "baseline_match": true,
@@ -97,6 +104,12 @@
       "training/ShadowDiff/Program.cs",
       "training/run_p1_relic_probes.py"
     ],
-    "conclusion": "Five relic probe failures appeared only after the current strict rerun and are isolated to enemy intent/public_ai fields. They are not caused by the model/parity/data changes in d0b6abd. Existing report expectations were not modified to force a green gate; the failures remain an explicit external semantic blocker."
+    "resolution": [
+      "Strict current-intent comparison now reapplies enemy Strength and the same public damage modifiers used by the simulator.",
+      "Player SHRINK no longer reduces the enemy intent preview; SHRINK affects the owner's attacks.",
+      "Aggregate-only NOSL end-turn replay no longer claims identity equality for a hidden future public_ai.intent_history realization.",
+      "The repeat runner excludes the separately owned card-direct witness namespace, matching its existing manifest unit test."
+    ],
+    "conclusion": "The five original mismatches and one subsequently exposed SHRINK preview mismatch were fixed in ShadowDiff comparison semantics without changing expected report values. The final registered 218-report matrix passed two runs byte-for-byte; all three runner return codes were zero in both runs."
   }
 }

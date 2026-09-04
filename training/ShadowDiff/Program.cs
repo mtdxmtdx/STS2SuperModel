@@ -669,9 +669,13 @@ else foreach (var enemy in actualTerminal
             actualAi.GetProperty("observed_turns").GetInt32());
         Compare($"enemy.{enemy.Id}.public_ai.phase", projectedAi.Phase,
             actualAi.GetProperty("phase").GetString() ?? string.Empty);
-        Compare($"enemy.{enemy.Id}.public_ai.intent_history", projectedAi.SafeIntentHistory,
-            actualAi.GetProperty("intent_history").EnumerateArray()
-                .Select(static item => item.GetString() ?? string.Empty).ToImmutableArray());
+        // Aggregate-only NOSL replay cannot predict the concrete future
+        // intent selected by hidden engine state. The public AI counters stay
+        // comparable, but its realized history is not an identity-level field.
+        if (!aggregateComparison)
+            Compare($"enemy.{enemy.Id}.public_ai.intent_history", projectedAi.SafeIntentHistory,
+                actualAi.GetProperty("intent_history").EnumerateArray()
+                    .Select(static item => item.GetString() ?? string.Empty).ToImmutableArray());
     }
 
     // Compare enemy powers / statuses
@@ -729,19 +733,7 @@ else foreach (var enemy in actualTerminal
         actualIntents.ValueKind == JsonValueKind.Array)
     {
         var projectedIntentSignature = enemy.Intents
-            .Select(intent =>
-            {
-                var damage = intent.DamagePerHit;
-                if (damage > 0m)
-                {
-                    var debilitate = StatusAmount(enemy.Statuses, "DEBILITATE") > 0;
-                    var weakFactor = StatusAmount(enemy.Statuses, "WEAK") > 0
-                        ? (debilitate ? 0.5m : 0.75m)
-                        : 1m;
-                    damage = decimal.Floor(damage * weakFactor);
-                }
-                return $"{intent.Type}:{damage.ToString(System.Globalization.CultureInfo.InvariantCulture)}:{intent.Hits}";
-            })
+            .Select(intent => $"{intent.Type}:{ProjectedEnemyIntentDamage(enemy, projected.Player, intent).ToString(System.Globalization.CultureInfo.InvariantCulture)}:{intent.Hits}")
             .ToArray();
         var actualIntentSignature = actualIntents.EnumerateArray()
             .Select(intent =>
@@ -2692,6 +2684,22 @@ static string? FindPlayedHandCardType(JsonElement observation, string normalized
 
 static decimal StatusAmount(ImmutableDictionary<string, StatusState> statuses, string id) =>
     statuses.TryGetValue(id, out var status) ? status.Amount : 0m;
+
+static decimal ProjectedEnemyIntentDamage(CreatureState enemy, PlayerState player, IntentState intent)
+{
+    if (intent.DamagePerHit <= 0m) return 0m;
+    var strength = StatusAmount(enemy.Statuses, "STRENGTH") -
+                   StatusAmount(enemy.Statuses, "TEMP_STRENGTH_LOSS");
+    var debilitate = StatusAmount(enemy.Statuses, "DEBILITATE") > 0;
+    var weak = StatusAmount(enemy.Statuses, "WEAK") > 0 ? (debilitate ? 0.5m : 0.75m) : 1m;
+    var vulnerable = StatusAmount(player.Statuses, "VULNERABLE") > 0 ? 1.5m : 1m;
+    var colossus = StatusAmount(enemy.Statuses, "VULNERABLE") > 0 &&
+                   StatusAmount(player.Statuses, "REDUCE_VULNERABLE_ATTACK_DAMAGE") > 0
+        ? 0.5m
+        : 1m;
+    return Math.Max(0m, decimal.Floor(
+        (intent.DamagePerHit + strength) * weak * vulnerable * colossus));
+}
 
 static IEnumerable<PowerState> BuildPowers(JsonElement powers, string fallbackOwner)
 {

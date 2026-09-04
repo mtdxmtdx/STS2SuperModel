@@ -87,7 +87,13 @@ def main() -> int:
         return 1
     expected = expected_report_names()
     actual = {path.name for path in DATA_DIR.glob("p0-csharp-*-diff-report*.json")}
-    actual |= {path.name for path in DATA_DIR.glob("p1-csharp-*-diff-report*.json")}
+    # The per-card direct witness sweep is produced and audited by its own
+    # runner. This repeat gate owns only the registered P0/P1 probe matrix,
+    # matching test_closeout_manifest_matches_registered_probes.
+    actual |= {
+        path.name for path in DATA_DIR.glob("p1-csharp-*-diff-report*.json")
+        if "card-direct-" not in path.name
+    }
     unexpected = sorted(actual - expected)
     hashes_a = report_hashes(expected)
     second = [run(command) for command in commands]
@@ -132,6 +138,7 @@ def main() -> int:
             "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
             "cli_protocol_version": "0.2.0",
             "trace_schema": 1,
+            "feature_schema_version": "combat-feature-v1",
         },
         "sha256": hashes_a,
     }

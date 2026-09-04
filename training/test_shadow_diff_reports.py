@@ -235,6 +235,30 @@ class ShadowDiffReportTests(unittest.TestCase):
         self.assertEqual(report["comparison_scope"], "strict_public_state")
         self.assertEqual(report["identity_comparison"], "compared")
 
+    def test_strict_intent_preview_reapplies_enemy_strength(self):
+        report = run_shadow_diff("p1-relic-brimstone-trace.jsonl", ordinal=0)
+        self.assertTrue(report["match"])
+        self.assertEqual(report["mismatch_count"], 0)
+        intent = next(item for item in report["fields"] if item["field"].endswith(".intents"))
+        self.assertEqual(intent["projected"], ["Attack:12:1"])
+        self.assertEqual(intent["actual"], ["Attack:12:1"])
+
+    def test_player_shrink_does_not_reduce_enemy_intent_preview(self):
+        report = run_shadow_diff("p1-relic-hand-drill-trace.jsonl", ordinal=1)
+        self.assertTrue(report["match"])
+        intent = next(item for item in report["fields"] if item["field"].endswith(".intents"))
+        self.assertEqual(intent["projected"], ["Attack:7:1"])
+        self.assertEqual(intent["actual"], ["Attack:7:1"])
+
+    def test_aggregate_end_turn_does_not_claim_future_intent_identity(self):
+        report = run_shadow_diff("p1-relic-fake-happy-flower-trace.jsonl", ordinal=4)
+        self.assertTrue(report["match"])
+        self.assertEqual(report["comparison_scope"], "aggregate_count_only")
+        self.assertNotIn(
+            "enemy.enemy:SEAPUNK:1.public_ai.intent_history",
+            {item["field"] for item in report["fields"]},
+        )
+
     def test_enemy_ids_detect_real_summon_missing_from_shadow(self):
         report = run_shadow_diff("m3c-enemy-ids-summon-trace.jsonl", ordinal=2)
         fields = {item["field"]: item for item in report["fields"]}
