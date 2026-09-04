@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-04T02:40:36.2132504Z",
+  "scope": "verify_repeat_runs pre-existing report attribution",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol": "0.2.0",
+    "trace_schema": 1,
+    "feature_schema_version": "combat-feature-v1"
+  },
+  "overall_repeat_gate": "fail",
+  "failing_report_count": 5,
+  "baseline_commit": "d0b6abd",
+  "baseline_reports_all_match": "true",
+  "current_failures": [
+    {
+      "report": "data/p1-csharp-relic-brimstone-diff-report-0.json",
+      "baseline_match": true,
+      "current_match": false,
+      "baseline_mismatch_count": 0,
+      "current_mismatch_count": 1,
+      "current_mismatched_fields": [
+        "enemy.enemy:SEAPUNK:1.intents"
+      ],
+      "confidence": "Estimated",
+      "current_engine_pre_state_hash": "AC7D535B2F336943A783316DBF6DE7D2A721FBDE13E325092F261850ABEDA030",
+      "current_engine_post_state_hash": "DA2CA6373004E0BB632BC49E9B7EA251DC853EC5992325D81D9B53E9DEAF00F1"
+    },
+    {
+      "report": "data/p1-csharp-relic-fake-happy-flower-diff-report-4.json",
+      "baseline_match": true,
+      "current_match": false,
+      "baseline_mismatch_count": 0,
+      "current_mismatch_count": 1,
+      "current_mismatched_fields": [
+        "enemy.enemy:SEAPUNK:1.public_ai.intent_history"
+      ],
+      "confidence": "Estimated",
+      "current_engine_pre_state_hash": "ADF534DC7ABA209959C7143535251349C90E5B5CCD1072296B3573CE93B3DC76",
+      "current_engine_post_state_hash": "B48528673FB286AF59089D9E44C4A66DA2590A13E5C922648FFBAB463058035F"
+    },
+    {
+      "report": "data/p1-csharp-relic-screaming-flagon-diff-report-5.json",
+      "baseline_match": true,
+      "current_match": false,
+      "baseline_mismatch_count": 0,
+      "current_mismatch_count": 1,
+      "current_mismatched_fields": [
+        "enemy.enemy:TERROR_EEL:1.public_ai.intent_history"
+      ],
+      "confidence": "Estimated",
+      "current_engine_pre_state_hash": "80153FFECEB3D26B6FBF540806C71B46D3F40827234FC5937C0064166318EF4D",
+      "current_engine_post_state_hash": "AFAAF1712E4EF24B39988925DC689CA059613B6C8C6B0DAB4217A47411F32C58"
+    },
+    {
+      "report": "data/p1-csharp-relic-combat-start-carried-diff-report-0.json",
+      "baseline_match": true,
+      "current_match": false,
+      "baseline_mismatch_count": 0,
+      "current_mismatch_count": 1,
+      "current_mismatched_fields": [
+        "enemy.enemy:SEAPUNK:1.intents"
+      ],
+      "confidence": "Estimated",
+      "current_engine_pre_state_hash": "1BAFFF30B1C38B025C5C7CE66982E3301A78165D8D7BE724414AD0998A8DB2A7",
+      "current_engine_post_state_hash": "6E04D19224FE46454964BE23C7CBDD25C97BBAAC0A9E87595DC26F64A5A2E804"
+    },
+    {
+      "report": "data/p1-csharp-relic-pantograph-diff-report-0.json",
+      "baseline_match": true,
+      "current_match": false,
+      "baseline_mismatch_count": 0,
+      "current_mismatch_count": 1,
+      "current_mismatched_fields": [
+        "enemy.enemy:VANTOM:1.public_ai.intent_history"
+      ],
+      "confidence": "Estimated",
+      "current_engine_pre_state_hash": "FA10292488074837741EF4FB60498BC08CD8369E187D46E5192765B250C7875D",
+      "current_engine_post_state_hash": "17A17CD9D007D82A6C85BD9FA06BB22D9959A05B6515B8DFC73D83F160752787"
+    }
+  ],
+  "attribution": {
+    "fields": "enemy intent damage/public_ai intent_history",
+    "model_task_files_modified": [
+      "training/CombatModelVerifier/Program.cs",
+      "training/CombatModelVerifier/DecisionParity.cs",
+      "training/combat_model/decision_parity.py",
+      "training/combat_model/export_onnx.py",
+      "training/combat_model/train.py",
+      "training/combat_model/dataset.py",
+      "training/combat_model/compare_runs.py"
+    ],
+    "model_task_does_not_modify": [
+      "STS2BestChoice.Core",
+      "training/ShadowDiff/Program.cs",
+      "training/run_p1_relic_probes.py"
+    ],
+    "conclusion": "Five relic probe failures appeared only after the current strict rerun and are isolated to enemy intent/public_ai fields. They are not caused by the model/parity/data changes in d0b6abd. Existing report expectations were not modified to force a green gate; the failures remain an explicit external semantic blocker."
+  }
+}
