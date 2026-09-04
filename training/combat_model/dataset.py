@@ -62,6 +62,7 @@ class CombatDataset(Dataset[dict[str, Any]]):
             "objective_mask": objective_mask,
             "death_target": float(row.get("death_probability") or 0.0),
             "state_hash_public": str(row.get("state_hash_public")),
+            "character": str(row.get("character") or "Unknown"),
         })
         return encoded
 
@@ -116,4 +117,5 @@ def collate_samples(samples: list[dict[str, Any]]) -> dict[str, Any]:
         "death_target": death_target,
         "action_ids": [item["action_ids"] for item in samples],
         "state_hash_public": [item["state_hash_public"] for item in samples],
+        "character": [item["character"] for item in samples],
     }

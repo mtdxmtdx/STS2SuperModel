@@ -31,8 +31,9 @@ def main() -> int:
             "challenge_top1": manifest.get("challenge_top1"),
             "test_ndcg_at_3": manifest.get("test_ndcg_at_3"),
             "test_regret_fixed": manifest.get("test_regret_fixed"),
-            "onnx_parity_status": "pass" if manifest.get("onnx_sha256") else "not_exported",
-            "promotion_status": "authoritative" if manifest.get("model_id") == "combat-nosl-policy-value-v2" else "candidate_or_baseline",
+            "onnx_parity_status": manifest.get("onnx_decision_parity_verdict") or
+                                  ("legacy_numeric_only" if manifest.get("onnx_sha256") else "not_exported"),
+            "promotion_status": manifest.get("promotion_status", "candidate_or_baseline"),
         })
     report = {"schema_version": 1, "runs": rows, "comparison_policy": "metrics are run-local; challenge values are not cross-comparable when split sources differ"}
     args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -7,15 +7,22 @@
   "challenge_regret_fixed": 0.15460852329038652,
   "challenge_rows": 1009,
   "challenge_top1": 0.8632309217046581,
+  "challenge_top1_by_character": {
+    "The Ironclad": 0.8629592850049652,
+    "The Silent": 1.0
+  },
+  "character_balance_note": "Original pilot is overwhelmingly Ironclad; v2 is retained as a superseded baseline.",
   "checkpoint": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\model-v2\\combat-nosl-best.pt",
   "checkpoint_sha256": "E505A8CBB6BBE5C388A7EE2D6ACA7720CD1CF8B3F0616C5A653DDAD471D708D0",
-  "created_at_utc": "2026-09-03T19:40:37.989252+08:00",
+  "created_at_utc": "2026-09-03T11:40:37.989252+00:00",
+  "csharp_onnx_maximum_absolute_error": 2.6702880859375e-05,
+  "csharp_python_feature_maximum_absolute_error": 0,
   "early_stopping_patience": 12,
   "early_stopping_triggered": true,
   "epochs_completed": 26,
   "epochs_configured": 100,
   "feature_manifest": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\combat-feature-manifest.json",
-  "feature_manifest_sha256": "51ECA845D7A6D4CBD7B0391294B1538C83EF641F5C7DCDDE2D86A897C09137BA",
+  "feature_manifest_sha256": "176416D08B9AE9381177F94940BB88EF6F93594EBDF0F8E4F39267AA403A74AB",
   "feature_schema_version": "combat-feature-v1",
   "forbidden_inputs": [
     "rng_state",
@@ -32,17 +39,39 @@
     "run_seed"
   ],
   "model_id": "combat-nosl-policy-value-v2",
-  "model_stage": "rerun",
+  "model_stage": "superseded",
+  "onnx_decision_parity_verdict": "pass",
+  "onnx_legacy_absolute_tolerance": 1e-05,
+  "onnx_legacy_absolute_verdict": "fail",
+  "onnx_numeric_diagnostic_status": "normal",
+  "onnx_numeric_diagnostic_threshold": 0.001,
   "onnx_opset": 18,
-  "onnx_parity_tolerance": 1E-05,
+  "onnx_parity_samples": 512,
+  "onnx_parity_tolerance": 1e-05,
   "onnx_path": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\model-v2\\combat-nosl-v2.onnx",
+  "onnx_ranking_agreement": 1.0,
   "onnx_sha256": "BD9334742F6E348F2599C563563F09252B9FFBD940533D0C43492114F656B16A",
+  "onnx_tie_break_deterministic": true,
+  "onnx_top1_agreement_rate": 1.0,
+  "onnx_top3_set_agreement_rate": 1.0,
   "parameter_count": 134277,
-  "python_onnx_maximum_absolute_error": 9.5367431640625E-06,
+  "promotion_reason": "superseded by v3 after v3 passed decision-equivalence parity",
+  "promotion_status": "superseded",
+  "python_onnx_maximum_absolute_error": 2.6702880859375e-05,
   "reliable_training_only": true,
   "seed": 20260903,
   "selection_criterion": "fixed_denominator_validation_top1_then_ndcg_at_3_then_regret_fixed_then_policy_loss",
   "selection_denominator": "validation_rows",
+  "supervised_training_character_distribution": {
+    "The Ironclad": {
+      "ratio": 0.995017530909762,
+      "rows": 5392
+    },
+    "The Silent": {
+      "ratio": 0.004982469090238051,
+      "rows": 27
+    }
+  },
   "test_ndcg_at_3": 0.8675708640570584,
   "test_policy_loss": 1.1147576104466317,
   "test_regret": 0.08601521357519017,
@@ -50,8 +79,22 @@
   "test_regret_fixed": 0.07561728395061729,
   "test_rows": 1944,
   "test_top1": 0.8698559670781894,
+  "test_top1_by_character": {
+    "The Ironclad": 0.8706493506493507,
+    "The Silent": 0.7894736842105263
+  },
   "threads": 16,
   "torch_version": "2.12.1+cpu",
+  "training_character_distribution": {
+    "The Ironclad": {
+      "ratio": 0.9944968553459119,
+      "rows": 12650
+    },
+    "The Silent": {
+      "ratio": 0.00550314465408805,
+      "rows": 70
+    }
+  },
   "training_rows": 5419,
   "validation_ndcg_at_3": 0.8731741501318385,
   "validation_policy_loss": 1.1086380246972793,

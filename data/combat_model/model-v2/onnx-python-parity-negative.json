@@ -1,28 +1,30 @@
 {
   "compared_pairs": 12082,
-  "discordant_pairs": 0,
+  "discordant_pairs": 1,
   "dynamic_axes": [
     "batch",
     "state_tokens",
     "enemies",
     "actions"
   ],
-  "injected_action_index": null,
-  "injected_logit_perturbation": 0.0,
-  "injected_sample_index": null,
+  "injected_action_index": 1,
+  "injected_logit_perturbation": 0.01,
+  "injected_sample_index": 0,
   "legacy_absolute_tolerance": 1e-05,
   "legacy_absolute_verdict": "fail",
-  "maximum_absolute_error": 2.6702880859375e-05,
+  "maximum_absolute_error": 0.009997844696044922,
+  "measurement_difference_note": null,
   "model_sha256": "BD9334742F6E348F2599C563563F09252B9FFBD940533D0C43492114F656B16A",
   "near_tie_sample_count": 357,
-  "numeric_diagnostic_status": "normal",
+  "numeric_diagnostic_status": "warning",
   "numeric_diagnostic_threshold": 0.001,
   "onnx_path": "D:\\STS2BestChoice\\work\\nosl-teacher-fix-stage-a\\combat-model-v2\\combat-nosl-v2.onnx",
   "onnx_sha256": "BD9334742F6E348F2599C563563F09252B9FFBD940533D0C43492114F656B16A",
   "opset": 18,
+  "prior_reported_maximum_absolute_error": null,
   "python_runtime": "onnxruntime",
   "python_runtime_version": "1.27.0",
-  "ranking_agreement": 1.0,
+  "ranking_agreement": 0.9998344644926337,
   "sample_count": 512,
   "samples": 512,
   "selection": {
@@ -44,7 +46,7 @@
   "tie_sample_count": 355,
   "tie_tolerance": 0.0001,
   "tolerance": 1e-05,
-  "top1_agreement_rate": 1.0,
+  "top1_agreement_rate": 0.998046875,
   "top3_set_agreement_rate": 1.0,
-  "verdict": "pass"
+  "verdict": "fail"
 }

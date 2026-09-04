@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import random
+from collections import Counter
 from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
@@ -42,13 +43,15 @@ def losses(outputs: tuple[torch.Tensor, torch.Tensor, torch.Tensor], batch: dict
 
 
 @torch.no_grad()
-def evaluate(model: CombatPolicyValueModel, loader: DataLoader, device: torch.device) -> dict[str, float]:
+def evaluate(model: CombatPolicyValueModel, loader: DataLoader, device: torch.device) -> dict[str, Any]:
     model.eval()
     rows = correct = 0
     ndcg_sum = regret_sum = 0.0
     regret_count = 0
     policy_loss_sum = 0.0
     total_loss = 0.0
+    character_rows: Counter[str] = Counter()
+    character_correct: Counter[str] = Counter()
     for raw in loader:
         batch = move(raw, device)
         outputs = model(
@@ -67,6 +70,8 @@ def evaluate(model: CombatPolicyValueModel, loader: DataLoader, device: torch.de
             target = batch["policy_target"][index, :valid_count]
             if float(target[chosen]) > 0:
                 correct += 1
+                character_correct[raw["character"][index]] += 1
+            character_rows[raw["character"][index]] += 1
             ranking = torch.argsort(logits[index, :valid_count], descending=True)[:3]
             gains = (target[ranking] > 0).to(torch.float32)
             discounts = 1.0 / torch.log2(torch.arange(2, 2 + len(ranking), device=device, dtype=torch.float32))
@@ -89,6 +94,19 @@ def evaluate(model: CombatPolicyValueModel, loader: DataLoader, device: torch.de
         "regret_fixed": regret_sum / max(rows, 1),
         "regret_coverage": regret_count / max(rows, 1),
         "rows": float(rows),
+        "top1_by_character": {
+            character: character_correct[character] / count
+            for character, count in sorted(character_rows.items())
+        },
+    }
+
+
+def character_distribution(rows: list[dict[str, Any]]) -> dict[str, dict[str, float | int]]:
+    counts = Counter(str(row.get("character") or "Unknown") for row in rows)
+    total = sum(counts.values())
+    return {
+        character: {"rows": count, "ratio": count / max(total, 1)}
+        for character, count in sorted(counts.items())
     }
 
 
@@ -111,6 +129,9 @@ def main() -> int:
     parser.add_argument("--learning-rate", type=float, default=1e-3)
     parser.add_argument("--seed", type=int, default=20260903)
     parser.add_argument("--threads", type=int, default=16)
+    parser.add_argument("--model-id", default="combat-nosl-policy-value-v1")
+    parser.add_argument("--model-stage", default="pilot")
+    parser.add_argument("--character-balance-note", default="Distribution is measured from all labelled source rows.")
     args = parser.parse_args()
     random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -121,6 +142,9 @@ def main() -> int:
     validation_rows = load_rows(args.split_dir / "validation.jsonl")
     test_rows = load_rows(args.split_dir / "test.jsonl")
     challenge_rows = load_rows(args.split_dir / "challenge.jsonl")
+    all_source_rows = []
+    for split in ("train", "validation", "test", "challenge"):
+        all_source_rows.extend(load_rows(args.split_dir / f"{split}.jsonl", reliable_only=False))
     vocabulary = TokenVocabulary.build(train_rows)
     encoder = CombatFeatureEncoder(vocabulary)
     train_loader = make_loader(train_rows, encoder, args.batch_size, shuffle=True, seed=args.seed)
@@ -193,8 +217,8 @@ def main() -> int:
     }, checkpoint_path)
     (args.out_dir / "training-history.json").write_text(json.dumps(history, indent=2) + "\n", encoding="utf-8")
     manifest = {
-        "model_id": "combat-nosl-policy-value-v1",
-        "model_stage": "pilot",
+        "model_id": args.model_id,
+        "model_stage": args.model_stage,
         "feature_schema_version": "combat-feature-v1",
         "feature_manifest": str(args.feature_manifest),
         "feature_manifest_sha256": sha256(args.feature_manifest),
@@ -203,6 +227,9 @@ def main() -> int:
         "vocabulary": str(vocabulary_path),
         "vocabulary_sha256": sha256(vocabulary_path),
         "reliable_training_only": True,
+        "training_character_distribution": character_distribution(all_source_rows),
+        "supervised_training_character_distribution": character_distribution(train_rows),
+        "character_balance_note": args.character_balance_note,
         "training_rows": len(train_rows),
         "validation_rows": len(validation_rows),
         "test_rows": len(test_rows),
@@ -223,18 +250,21 @@ def main() -> int:
         "validation_regret_coverage": validation_metrics["regret_coverage"],
         "validation_top1": validation_metrics["top1"],
         "validation_ndcg_at_3": validation_metrics["ndcg_at_3"],
+        "validation_top1_by_character": validation_metrics["top1_by_character"],
         "test_regret": test_metrics["regret"],
         "test_policy_loss": test_metrics["policy_loss"],
         "test_regret_fixed": test_metrics["regret_fixed"],
         "test_regret_coverage": test_metrics["regret_coverage"],
         "test_top1": test_metrics["top1"],
         "test_ndcg_at_3": test_metrics["ndcg_at_3"],
+        "test_top1_by_character": test_metrics["top1_by_character"],
         "challenge_regret": challenge_metrics["regret"],
         "challenge_policy_loss": challenge_metrics["policy_loss"],
         "challenge_regret_fixed": challenge_metrics["regret_fixed"],
         "challenge_regret_coverage": challenge_metrics["regret_coverage"],
         "challenge_top1": challenge_metrics["top1"],
         "challenge_ndcg_at_3": challenge_metrics["ndcg_at_3"],
+        "challenge_top1_by_character": challenge_metrics["top1_by_character"],
         "torch_version": torch.__version__,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "forbidden_inputs": json.loads(args.feature_manifest.read_text(encoding="utf-8"))["forbidden_input_fields"],

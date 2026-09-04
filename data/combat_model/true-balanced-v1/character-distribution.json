@@ -1,0 +1,34 @@
+{
+  "character_distribution": {
+    "The Ironclad": {
+      "confidence": {
+        "Estimated": 2531,
+        "Reliable": 10966,
+        "Uncalculable": 16
+      },
+      "ratio": 0.5010196136591153,
+      "rows": 13513
+    },
+    "The Silent": {
+      "confidence": {
+        "Estimated": 3492,
+        "Reliable": 9966
+      },
+      "ratio": 0.49898038634088465,
+      "rows": 13458
+    }
+  },
+  "row_count": 26971,
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\work\\nosl-teacher-fix-stage-a\\c5-true-balanced-dedup.jsonl",
+  "source_sha256": "93F9FCD4BF504FB737806E7A5074CA65FBDF802959A5917700121FD41DCF9AA3",
+  "version_lock": {
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "feature_schema_version": "combat-feature-v1",
+    "game_commit": "41cef1ea",
+    "game_version": "v0.111.0",
+    "source_record_feature_schema_version": "1",
+    "trace_schema": 1
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\work\\nosl-teacher-fix-stage-a\\c5-true-balanced-dedup.jsonl",
+  "row_count": 26971,
+  "unique_state_count": 26971,
+  "confidence_counts": {
+    "Estimated": 6023,
+    "Reliable": 20932,
+    "Uncalculable": 16
+  },
+  "label_quality_counts": {
+    "BudgetBound": 194,
+    "EstimatedByHeuristic": 5829,
+    "ExactComplete": 1,
+    "ExactWithKnownChance": 20931,
+    "Uncalculable": 16
+  },
+  "risk_event_counts": {
+    "card_effects_missing:SLIMED": 5916,
+    "card_effects_missing:CARD.SLIMED": 3454,
+    "card_effects_missing:WOUND": 2042,
+    "card_effects_missing:CARD.WOUND": 868,
+    "budget_bound": 194,
+    "enemy_state_missing": 20,
+    "uncalculable_pile_counts_missing": 20,
+    "teacher_label_missing": 16,
+    "card_effects_missing:CARD.BLOODLETTING": 4
+  },
+  "restricted_reason_counts": {
+    "uncalculable_shuffle_order": 40
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "action_count": 218630,
+  "action_kind_counts": {
+    "EndTurn": 26971,
+    "PlayCard": 191627,
+    "UsePotion": 32
+  },
+  "ascension_counts": {
+    "0": 26971
+  },
+  "character_counts": {
+    "The Ironclad": 13513,
+    "The Silent": 13458
+  },
+  "combat_count": 7545,
+  "confidence_counts": {
+    "Estimated": 6023,
+    "Reliable": 20932,
+    "Uncalculable": 16
+  },
+  "coverage": {
+    "card_ids": {
+      "CARD.AFTERIMAGE": 108,
+      "CARD.BARRICADE": 134,
+      "CARD.BASH": 6920,
+      "CARD.BLOODLETTING": 6,
+      "CARD.DEFEND_IRONCLAD": 26178,
+      "CARD.DEFEND_SILENT": 26168,
+      "CARD.DEMON_FORM": 202,
+      "CARD.INFLAME": 146,
+      "CARD.NEUTRALIZE": 6658,
+      "CARD.RUPTURE": 3,
+      "CARD.SLIMED": 2396,
+      "CARD.STRIKE_IRONCLAD": 32645,
+      "CARD.STRIKE_SILENT": 32633,
+      "CARD.SURVIVOR": 6584,
+      "CARD.WOUND": 569
+    },
+    "enemy_ids": {
+      "Leaf Slime (M)": 2180,
+      "Leaf Slime (S)": 4196,
+      "Seapunk": 7265,
+      "Shrinker Beetle": 4153,
+      "Terror Eel": 3664,
+      "Twig Slime (M)": 2016,
+      "Twig Slime (S)": 4196,
+      "Two-Tailed Rat": 13405,
+      "Vantom": 3557
+    },
+    "potion_ids": {
+      "BLOCK_POTION": 32
+    },
+    "power_ids": {
+      "SHRIEK_POWER": 3664,
+      "SLIPPERY_POWER": 3557,
+      "STRENGTH_POWER": 2138,
+      "VIGOR_POWER": 1078,
+      "VULNERABLE_POWER": 56,
+      "WEAK_POWER": 6
+    },
+    "relic_ids": {
+      "AKABEKO": 42,
+      "ANCHOR": 42,
+      "ART_OF_WAR": 52,
+      "BAG_OF_MARBLES": 42,
+      "BAG_OF_PREPARATION": 20,
+      "BURNING_BLOOD": 12951,
+      "CENTENNIAL_PUZZLE": 20,
+      "HAPPY_FLOWER": 62,
+      "LANTERN": 103,
+      "ODDLY_SMOOTH_STONE": 2,
+      "ORICHALCUM": 30,
+      "PEN_NIB": 144,
+      "RING_OF_THE_SNAKE": 13457,
+      "VAJRA": 3
+    }
+  },
+  "episode_count": 7545,
+  "metadata": {
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "feature_schema_version": "1",
+    "game_commit": "41cef1ea",
+    "game_version": "v0.111.0",
+    "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383",
+    "model_version": "none",
+    "scorer_version": "not-applicable",
+    "semantic_database_version": "game-runtime-v0111",
+    "simulator_version": "cli-v0111-headless"
+  },
+  "missing_metadata": {},
+  "report_kind": "p0_tooling_smoke",
+  "restriction_counts": {},
+  "risk_event_counts": {
+    "budget_bound": 194,
+    "card_effects_missing:CARD.BLOODLETTING": 2,
+    "card_effects_missing:CARD.SLIMED": 1727,
+    "card_effects_missing:CARD.WOUND": 434,
+    "card_effects_missing:SLIMED": 2958,
+    "card_effects_missing:WOUND": 1021,
+    "enemy_state_missing": 10,
+    "teacher_label_missing": 16,
+    "uncalculable_pile_counts_missing": 10
+  },
+  "row_count": 26971,
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\work\\nosl-teacher-fix-stage-a\\c5-true-balanced-dedup.jsonl",
+  "source_sha256": "93F9FCD4BF504FB737806E7A5074CA65FBDF802959A5917700121FD41DCF9AA3",
+  "teacher_pair_count": 1028,
+  "teacher_pair_rate": 0.03811501242074821
+}

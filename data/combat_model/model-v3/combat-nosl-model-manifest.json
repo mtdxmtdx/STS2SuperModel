@@ -1,0 +1,107 @@
+{
+  "best_epoch": 18,
+  "challenge_ndcg_at_3": 0.8574230041843585,
+  "challenge_policy_loss": 1.1591410968825853,
+  "challenge_regret": 0.24975514201762977,
+  "challenge_regret_coverage": 0.866723259762309,
+  "challenge_regret_fixed": 0.2164685908319185,
+  "challenge_rows": 1178,
+  "challenge_top1": 0.8573853989813243,
+  "challenge_top1_by_character": {
+    "The Ironclad": 0.8478664192949907,
+    "The Silent": 0.96
+  },
+  "character_balance_note": "Merged dataset is Ironclad-majority; the C4 balanced batch covers only the 1,986 newly collected rows.",
+  "checkpoint": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\model-v3\\combat-nosl-best.pt",
+  "checkpoint_sha256": "41769011931DCD7BF868B2E719668B8BE291B10B4F1068F2963B6D59B4F1F1A9",
+  "created_at_utc": "2026-09-03T19:58:39.061354+08:00",
+  "csharp_onnx_maximum_absolute_error": 4.9591064453125e-05,
+  "csharp_python_feature_maximum_absolute_error": 0,
+  "early_stopping_patience": 12,
+  "early_stopping_triggered": true,
+  "epochs_completed": 30,
+  "epochs_configured": 100,
+  "feature_manifest": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\combat-feature-manifest.json",
+  "feature_manifest_sha256": "176416D08B9AE9381177F94940BB88EF6F93594EBDF0F8E4F39267AA403A74AB",
+  "feature_schema_version": "combat-feature-v1",
+  "forbidden_inputs": [
+    "rng_state",
+    "rng_streams",
+    "rng_raw_words",
+    "rng_snapshot",
+    "draw_pile_order",
+    "ordered_draw_pile",
+    "future_draw_order",
+    "teacher_snapshot",
+    "actual_hidden_outcome",
+    "realized_chance_label",
+    "seed",
+    "run_seed"
+  ],
+  "model_id": "combat-nosl-policy-value-v3",
+  "model_stage": "promoted",
+  "onnx_decision_parity_verdict": "pass",
+  "onnx_legacy_absolute_tolerance": 1e-05,
+  "onnx_legacy_absolute_verdict": "fail",
+  "onnx_numeric_diagnostic_status": "normal",
+  "onnx_numeric_diagnostic_threshold": 0.001,
+  "onnx_opset": 18,
+  "onnx_parity_samples": 512,
+  "onnx_path": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\model-v3\\combat-nosl-v3.onnx",
+  "onnx_ranking_agreement": 1.0,
+  "onnx_sha256": "B190380DA3787CCBD010846DBCC503B4AE1D87015C4062962CD696DB41F279A6",
+  "onnx_tie_break_deterministic": true,
+  "onnx_top1_agreement_rate": 1.0,
+  "onnx_top3_set_agreement_rate": 1.0,
+  "parameter_count": 134277,
+  "promotion_reason": "decision-equivalence parity passed; v3 uses more and more balanced training data; top1 is not compared across different split sources",
+  "promotion_status": "authoritative",
+  "python_onnx_maximum_absolute_error": 3.814697265625e-05,
+  "reliable_training_only": true,
+  "seed": 20260903,
+  "selection_criterion": "fixed_denominator_validation_top1_then_ndcg_at_3_then_regret_fixed_then_policy_loss",
+  "selection_denominator": "validation_rows",
+  "supervised_training_character_distribution": {
+    "The Ironclad": {
+      "ratio": 0.9329930852815278,
+      "rows": 5667
+    },
+    "The Silent": {
+      "ratio": 0.06700691471847217,
+      "rows": 407
+    }
+  },
+  "test_ndcg_at_3": 0.8723596354095087,
+  "test_policy_loss": 1.1033544271454125,
+  "test_regret": 0.07878151260504201,
+  "test_regret_coverage": 0.8802588996763754,
+  "test_regret_fixed": 0.06934812760055478,
+  "test_rows": 2163,
+  "test_top1": 0.8737864077669902,
+  "test_top1_by_character": {
+    "The Ironclad": 0.8671328671328671,
+    "The Silent": 0.9565217391304348
+  },
+  "threads": 16,
+  "torch_version": "2.12.1+cpu",
+  "training_character_distribution": {
+    "The Ironclad": {
+      "ratio": 0.9270083007477533,
+      "rows": 13513
+    },
+    "The Silent": {
+      "ratio": 0.07299169925224669,
+      "rows": 1064
+    }
+  },
+  "training_rows": 6074,
+  "validation_ndcg_at_3": 0.8768417741604649,
+  "validation_policy_loss": 1.1115485544500305,
+  "validation_regret": 0.17741197988111568,
+  "validation_regret_coverage": 0.8919249592169658,
+  "validation_regret_fixed": 0.15823817292006526,
+  "validation_rows": 2452,
+  "validation_top1": 0.882952691680261,
+  "vocabulary": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\model-v3\\vocabulary.json",
+  "vocabulary_sha256": "8DAE8AC8139CCE8BBE08B8E664EE237F4D2E0959AAE62027D2C44BFB018E4598"
+}
