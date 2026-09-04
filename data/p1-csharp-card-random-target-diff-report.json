@@ -50,10 +50,10 @@
   "match": true,
   "mismatch_count": 0,
   "mismatches": [],
-  "engine_pre_state_hash": "C0820B0C8F50A5EEB9BB79989C0F1C11DD82893F00F4E10367C79B0D7594D4EA",
-  "engine_post_state_hash": "B0A170C94D87EB30BB1EC5D0BF0D5CC50B45EF370D0676A3212F1A5DC1C7EE2A",
-  "projected_comparison_hash": "8F302798BD9A264F629ECF133AD50C8FD9E648F6FD1CDBC8BF923948F5F831AD",
-  "actual_comparison_hash": "8F302798BD9A264F629ECF133AD50C8FD9E648F6FD1CDBC8BF923948F5F831AD",
+  "engine_pre_state_hash": "42DAE4354BAFCA3B75F3259B9EB3549AB6B7535D774E84CC6AEC8F72CF03FCA7",
+  "engine_post_state_hash": "C7B33C0EABC4C72C1B622DD31F45D9637556D19CBC560DCFE1722BE8BA1351A9",
+  "projected_comparison_hash": "AD8F047E29D55C481C3719F53F0BCE7134A680828D805490CE0CAA1557A9FE22",
+  "actual_comparison_hash": "AD8F047E29D55C481C3719F53F0BCE7134A680828D805490CE0CAA1557A9FE22",
   "rng_before": {
     "Shuffle": 4,
     "CombatCardGeneration": 0,
@@ -110,6 +110,20 @@
       "match": true
     },
     {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:LEAF_SLIME_S:3",
+        "enemy:TWIG_SLIME_M:2",
+        "enemy:TWIG_SLIME_S:1"
+      ],
+      "actual": [
+        "enemy:LEAF_SLIME_S:3",
+        "enemy:TWIG_SLIME_M:2",
+        "enemy:TWIG_SLIME_S:1"
+      ],
+      "match": true
+    },
+    {
       "field": "enemy_damage_total",
       "projected": 9,
       "actual": 9,
@@ -146,9 +160,9 @@
       "match": true
     },
     {
-      "field": "potion.ids",
-      "projected": [],
-      "actual": [],
+      "field": "potion.count",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
@@ -212,5 +226,5 @@
       "match": true
     }
   ],
-  "repeat_sha256": "79933236dd005b88cd80b9a49523aefd8e4d6bb1b276c8912b24d53fdd9f031f"
+  "repeat_sha256": "dbf53a8b1e0fc566739ead72837884a60f47dc592e8eef32991fa5a193135e7c"
 }

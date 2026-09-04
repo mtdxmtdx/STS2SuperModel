@@ -46,10 +46,10 @@
   "match": true,
   "mismatch_count": 0,
   "mismatches": [],
-  "engine_pre_state_hash": "0AA8F7817469BE2EDBD3A248ECB9D6FDBB31F31FAFF368A5F8CD2CAB13EAC8AB",
-  "engine_post_state_hash": "5C16894EF283CCA54A291D7C1C84C2FF8CAB8BD940B833A1959204519023E9C7",
-  "projected_comparison_hash": "B8F570E265DF09720EF735BE55949B0A5FB6558521119A53999AACD3CEEB2BAC",
-  "actual_comparison_hash": "B8F570E265DF09720EF735BE55949B0A5FB6558521119A53999AACD3CEEB2BAC",
+  "engine_pre_state_hash": "80153FFECEB3D26B6FBF540806C71B46D3F40827234FC5937C0064166318EF4D",
+  "engine_post_state_hash": "AFAAF1712E4EF24B39988925DC689CA059613B6C8C6B0DAB4217A47411F32C58",
+  "projected_comparison_hash": "A3416EF53B869EDFE33FD3A55793BF5A3FED0CAFC74185295A956CB5B26345D7",
+  "actual_comparison_hash": "A3416EF53B869EDFE33FD3A55793BF5A3FED0CAFC74185295A956CB5B26345D7",
   "rng_before": {
     "Shuffle": 9,
     "CombatCardGeneration": 0,
@@ -100,9 +100,67 @@
       "match": true
     },
     {
+      "field": "enemy.enemy:TERROR_EEL:1.is_hittable",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.is_minion",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.is_primary_enemy",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.is_secondary_enemy",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.public_ai.first_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.public_ai.last_observed_round",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.public_ai.observed_turns",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TERROR_EEL:1.public_ai.phase",
+      "projected": "active",
+      "actual": "active",
+      "match": true
+    },
+    {
       "field": "enemy.enemy:TERROR_EEL:1.status.SHRIEK.amount",
       "projected": 70,
       "actual": 70,
+      "match": true
+    },
+    {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:TERROR_EEL:1"
+      ],
+      "actual": [
+        "enemy:TERROR_EEL:1"
+      ],
       "match": true
     },
     {
@@ -136,9 +194,9 @@
       "match": true
     },
     {
-      "field": "potion.ids",
-      "projected": [],
-      "actual": [],
+      "field": "potion.count",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
@@ -258,5 +316,5 @@
       "match": true
     }
   ],
-  "repeat_sha256": "6da2a56a0e8fa77390a17001de22f4be7153ea5201d4ff26b8a7d2a402064de3"
+  "repeat_sha256": "68ecc2463eef83cc866bf4a21b6ed7280fc47421a776f75b93ac22e0437c301b"
 }

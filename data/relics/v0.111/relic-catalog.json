@@ -639,8 +639,8 @@
       "default_counter": null,
       "combat_relevance": "combat_end",
       "support_status": "simulator_supported",
-      "evidence_level": "live_observed",
-      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_level": "heuristic_inferred",
+      "evidence_source": "evidence_pending: one or more reports are not Reliable/mismatch-free",
       "evidence_reference": "p1-csharp-relic-combat-end-heal-diff-report-2.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: AfterCombatVictory"
@@ -699,8 +699,8 @@
         "Cards"
       ],
       "dynamic_vars": {
-        "Energy": 1,
-        "Cards": 3
+        "Cards": 3,
+        "Energy": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -902,8 +902,8 @@
         "Heal"
       ],
       "dynamic_vars": {
-        "Cards": 5,
-        "Heal": 20
+        "Heal": 20,
+        "Cards": 5
       },
       "has_counter": true,
       "default_counter": 0,
@@ -972,8 +972,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "Energy": 1,
-        "Cards": 2
+        "Cards": 2,
+        "Energy": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -1142,8 +1142,8 @@
         "EnemyStrength"
       ],
       "dynamic_vars": {
-        "SelfStrength": 2,
-        "EnemyStrength": 1
+        "EnemyStrength": 1,
+        "SelfStrength": 2
       },
       "has_counter": false,
       "default_counter": null,
@@ -2084,8 +2084,8 @@
         "Cards"
       ],
       "dynamic_vars": {
-        "Cards": 3,
-        "Curses": 2
+        "Curses": 2,
+        "Cards": 3
       },
       "has_counter": false,
       "default_counter": null,
@@ -2430,8 +2430,8 @@
         "StrengthPower"
       ],
       "dynamic_vars": {
-        "StrengthPower": 2,
-        "Combats": 5
+        "Combats": 5,
+        "StrengthPower": 2
       },
       "has_counter": true,
       "default_counter": 5,
@@ -2529,8 +2529,8 @@
         "Heal"
       ],
       "dynamic_vars": {
-        "Cards": 5,
-        "Heal": 3
+        "Heal": 3,
+        "Cards": 5
       },
       "has_counter": false,
       "default_counter": null,
@@ -2629,8 +2629,8 @@
         "Turns"
       ],
       "dynamic_vars": {
-        "Energy": 1,
-        "Turns": 5
+        "Turns": 5,
+        "Energy": 1
       },
       "has_counter": true,
       "default_counter": 0,
@@ -3053,8 +3053,8 @@
         "Cards"
       ],
       "dynamic_vars": {
-        "HpLoss": 15,
-        "Cards": 2
+        "Cards": 2,
+        "HpLoss": 15
       },
       "has_counter": false,
       "default_counter": null,
@@ -3610,8 +3610,8 @@
         "Cards"
       ],
       "dynamic_vars": {
-        "Energy": 1,
-        "Cards": 1
+        "Cards": 1,
+        "Energy": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -3679,8 +3679,8 @@
         "Turns"
       ],
       "dynamic_vars": {
-        "Energy": 1,
-        "Turns": 3
+        "Turns": 3,
+        "Energy": 1
       },
       "has_counter": true,
       "default_counter": 0,
@@ -3914,8 +3914,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "Energy": 2,
-        "Block": 4
+        "Block": 4,
+        "Energy": 2
       },
       "has_counter": false,
       "default_counter": null,
@@ -4212,8 +4212,8 @@
         "DexterityPower"
       ],
       "dynamic_vars": {
-        "DexterityPower": 1,
-        "Cards": 3
+        "Cards": 3,
+        "DexterityPower": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -4960,15 +4960,15 @@
         "Heal"
       ],
       "dynamic_vars": {
-        "HpThreshold": 50,
-        "Heal": 12
+        "Heal": 12,
+        "HpThreshold": 50
       },
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "combat_start",
       "support_status": "simulator_supported",
-      "evidence_level": "live_observed",
-      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_level": "heuristic_inferred",
+      "evidence_source": "evidence_pending: one or more reports are not Reliable/mismatch-free",
       "evidence_reference": "p1-csharp-relic-combat-end-heal-diff-report-2.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: BeforeCombatStart, AfterCurrentHpChanged, AfterCombatVictoryEarly, WillHealOnCombatFinished"
@@ -5540,8 +5540,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "Energy": 1,
-        "Cards": 10
+        "Cards": 10,
+        "Energy": 1
       },
       "has_counter": true,
       "default_counter": 0,
@@ -6365,8 +6365,8 @@
         "Turns"
       ],
       "dynamic_vars": {
-        "Cards": 1,
-        "Turns": 3
+        "Turns": 3,
+        "Cards": 1
       },
       "has_counter": true,
       "default_counter": 0,
@@ -6564,8 +6564,8 @@
         "StartOfTurn"
       ],
       "dynamic_vars": {
-        "StartOfCombat": 5,
-        "StartOfTurn": 2
+        "StartOfTurn": 2,
+        "StartOfCombat": 5
       },
       "has_counter": false,
       "default_counter": null,
@@ -6664,8 +6664,8 @@
         "Turns"
       ],
       "dynamic_vars": {
-        "Cards": 2,
-        "Turns": 4
+        "Turns": 4,
+        "Cards": 2
       },
       "has_counter": true,
       "default_counter": 0,
@@ -6966,8 +6966,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "Energy": 1,
-        "CombatCount": 5
+        "CombatCount": 5,
+        "Energy": 1
       },
       "has_counter": true,
       "default_counter": 0,
@@ -7073,8 +7073,8 @@
         "DexterityPower"
       ],
       "dynamic_vars": {
-        "StrengthPower": 1,
-        "DexterityPower": 1
+        "DexterityPower": 1,
+        "StrengthPower": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -7339,8 +7339,8 @@
         "Turns"
       ],
       "dynamic_vars": {
-        "Cards": 2,
-        "Turns": 3
+        "Turns": 3,
+        "Cards": 2
       },
       "has_counter": false,
       "default_counter": null,
@@ -7731,8 +7731,8 @@
         "Gold"
       ],
       "dynamic_vars": {
-        "Energy": 1,
-        "Gold": 3
+        "Gold": 3,
+        "Energy": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -7839,8 +7839,8 @@
         "Wishes"
       ],
       "dynamic_vars": {
-        "Wishes": 3,
-        "HpLoss": 9
+        "HpLoss": 9,
+        "Wishes": 3
       },
       "has_counter": false,
       "default_counter": null,
@@ -7904,8 +7904,8 @@
         "StrengthPower"
       ],
       "dynamic_vars": {
-        "StrengthPower": 1,
-        "Cards": 3
+        "Cards": 3,
+        "StrengthPower": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -8207,8 +8207,8 @@
         "DexterityPower"
       ],
       "dynamic_vars": {
-        "StrengthPower": 1,
-        "DexterityPower": 1
+        "DexterityPower": 1,
+        "StrengthPower": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -8647,9 +8647,9 @@
         "DazedCount"
       ],
       "dynamic_vars": {
+        "DazedCount": 2,
         "Heal": 1,
-        "Combats": 1,
-        "DazedCount": 2
+        "Combats": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -8946,8 +8946,8 @@
         "UpgradedRelic"
       ],
       "dynamic_vars": {
-        "UpgradedRelic": 0,
-        "StarterRelic": 0
+        "StarterRelic": 0,
+        "UpgradedRelic": 0
       },
       "has_counter": false,
       "default_counter": null,
@@ -9376,8 +9376,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "Energy": 1,
-        "Cards": 6
+        "Cards": 6,
+        "Energy": 1
       },
       "has_counter": false,
       "default_counter": null,

@@ -50,10 +50,10 @@
   "match": true,
   "mismatch_count": 0,
   "mismatches": [],
-  "engine_pre_state_hash": "C6D6F82F61E666E25E9B82C088962C88DD0A398AEA245CDD981FD3B4603D135F",
-  "engine_post_state_hash": "CCBBB925BB4CB6A6412742627420ACC14887809FE34812B255820B6A16861AA9",
-  "projected_comparison_hash": "137DD5EDA32AE160639D6656E6D4B4BFF4385CBDAC3218A9409AFFCCC33DC62E",
-  "actual_comparison_hash": "137DD5EDA32AE160639D6656E6D4B4BFF4385CBDAC3218A9409AFFCCC33DC62E",
+  "engine_pre_state_hash": "085D62991326032671D71A4E39C62D2CE752F0E6E7FDFF2710E41680F243D603",
+  "engine_post_state_hash": "1B29AF410349726EFF43F43417089B32CED1A2DA93AD7D9E59529580FBDF475F",
+  "projected_comparison_hash": "591131E9F7FA3B8E77D3FADD6BA3EE04CAE1F4722E5144AB0EAEDC023CD6462F",
+  "actual_comparison_hash": "591131E9F7FA3B8E77D3FADD6BA3EE04CAE1F4722E5144AB0EAEDC023CD6462F",
   "rng_before": {
     "Shuffle": 9,
     "CombatCardGeneration": 0,
@@ -98,6 +98,16 @@
       "match": true
     },
     {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:SEAPUNK:1"
+      ],
+      "actual": [
+        "enemy:SEAPUNK:1"
+      ],
+      "match": true
+    },
+    {
       "field": "enemy_damage_total",
       "projected": 0,
       "actual": 0,
@@ -134,9 +144,9 @@
       "match": true
     },
     {
-      "field": "potion.ids",
-      "projected": [],
-      "actual": [],
+      "field": "potion.count",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
@@ -234,5 +244,5 @@
       "match": true
     }
   ],
-  "repeat_sha256": "e9ef8da0576df3dcc6fb8ae197ba5f18116701e7196e09c6ae6fffca02f81a2c"
+  "repeat_sha256": "3f281b70979005a1597bdd04b40eea2a14c5022e50ff5c311abd34089292f1fe"
 }

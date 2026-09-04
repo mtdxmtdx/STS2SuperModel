@@ -46,10 +46,10 @@
   "match": true,
   "mismatch_count": 0,
   "mismatches": [],
-  "engine_pre_state_hash": "5B2D5D2F15672FD99BDFFDC6085684E68E1765DEE12A76692166F1AE5FE967D0",
-  "engine_post_state_hash": "173F746A1D942315880949FC93040EA5AEA96522D61178DC71FF8522886254D2",
-  "projected_comparison_hash": "57B3DCAC974FB558B6F7B2028E5E0FE0694AAC0629C3045A906A2FDA2110194C",
-  "actual_comparison_hash": "57B3DCAC974FB558B6F7B2028E5E0FE0694AAC0629C3045A906A2FDA2110194C",
+  "engine_pre_state_hash": "2670D4A6029B92B07BAE77BD5F968C744A2EE8D9901C10F10C90DFF851090733",
+  "engine_post_state_hash": "55E74F62A6B5F671696050F9FFFE229E37568F46E8A46EFC1CF420336146F7EC",
+  "projected_comparison_hash": "2957F4EF0B7D8172820C9EE7A2D2C469A7798D22DAF95E9BB16DF21A6D858B96",
+  "actual_comparison_hash": "2957F4EF0B7D8172820C9EE7A2D2C469A7798D22DAF95E9BB16DF21A6D858B96",
   "rng_before": {
     "Shuffle": 9,
     "CombatCardGeneration": 0,
@@ -70,27 +70,15 @@
   },
   "fields": [
     {
-      "field": "round",
+      "field": "combat.is_terminal",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "discard_pile_count",
       "projected": 1,
       "actual": 1,
-      "match": true
-    },
-    {
-      "field": "player.hp",
-      "projected": 80,
-      "actual": 80,
-      "match": true
-    },
-    {
-      "field": "player.block",
-      "projected": 5,
-      "actual": 5,
-      "match": true
-    },
-    {
-      "field": "player.energy",
-      "projected": 0,
-      "actual": 0,
       "match": true
     },
     {
@@ -100,9 +88,93 @@
       "match": true
     },
     {
-      "field": "discard_pile_count",
+      "field": "enemy.enemy:SEAPUNK:1.block",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.hp",
+      "projected": 44,
+      "actual": 44,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.intents",
+      "projected": [
+        "Attack:11:1"
+      ],
+      "actual": [
+        "Attack:11:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.is_hittable",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.is_minion",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.is_primary_enemy",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.is_secondary_enemy",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.public_ai.first_observed_round",
       "projected": 1,
       "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.public_ai.intent_history",
+      "projected": [
+        "Attack:1"
+      ],
+      "actual": [
+        "Attack:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.public_ai.last_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.public_ai.observed_turns",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.public_ai.phase",
+      "projected": "initial",
+      "actual": "initial",
+      "match": true
+    },
+    {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:SEAPUNK:1"
+      ],
+      "actual": [
+        "enemy:SEAPUNK:1"
+      ],
       "match": true
     },
     {
@@ -126,67 +198,73 @@
       "match": true
     },
     {
-      "field": "enemy.enemy:SEAPUNK:1.hp",
-      "projected": 44,
-      "actual": 44,
+      "field": "player.block",
+      "projected": 5,
+      "actual": 5,
       "match": true
     },
     {
-      "field": "enemy.enemy:SEAPUNK:1.block",
+      "field": "player.energy",
       "projected": 0,
       "actual": 0,
       "match": true
     },
     {
-      "field": "rng.Shuffle.counter",
-      "projected": 9,
-      "actual": 9,
+      "field": "player.hp",
+      "projected": 80,
+      "actual": 80,
       "match": true
     },
     {
-      "field": "rng.CombatCardGeneration.counter",
-      "projected": 0,
-      "actual": 0,
+      "field": "potion.ids",
+      "projected": [],
+      "actual": [],
       "match": true
     },
     {
-      "field": "rng.CombatPotionGeneration.counter",
-      "projected": 0,
-      "actual": 0,
+      "field": "power.count",
+      "projected": 1,
+      "actual": 1,
       "match": true
     },
     {
-      "field": "rng.CombatCardSelection.counter",
-      "projected": 0,
-      "actual": 0,
+      "field": "power.player.BARRICADE_POWER.amount",
+      "projected": 1,
+      "actual": 1,
       "match": true
     },
     {
-      "field": "rng.CombatEnergyCosts.counter",
-      "projected": 0,
-      "actual": 0,
+      "field": "power.player.BARRICADE_POWER.applier",
+      "projected": "player",
+      "actual": "player",
       "match": true
     },
     {
-      "field": "rng.CombatTargets.counter",
-      "projected": 0,
-      "actual": 0,
+      "field": "power.player.BARRICADE_POWER.counters",
+      "projected": [],
+      "actual": [],
       "match": true
     },
     {
-      "field": "rng.CombatOrbGeneration.counter",
-      "projected": 0,
-      "actual": 0,
-      "match": true
-    },
-    {
-      "field": "relic.ids",
+      "field": "power.player.BARRICADE_POWER.dynamic_vars",
       "projected": [
-        "LANTERN"
+        {
+          "Key": "ApplierName",
+          "Value": "0"
+        }
       ],
       "actual": [
-        "LANTERN"
+        {
+          "Key": "ApplierName",
+          "Value": "0"
+        }
       ],
+      "match": true
+    },
+    {
+      "field": "power.player.BARRICADE_POWER.present",
+      "projected": true,
+      "actual": true,
       "match": true
     },
     {
@@ -212,62 +290,63 @@
       "match": true
     },
     {
-      "field": "power.count",
-      "projected": 1,
-      "actual": 1,
-      "match": true
-    },
-    {
-      "field": "power.player.BARRICADE_POWER.present",
-      "projected": true,
-      "actual": true,
-      "match": true
-    },
-    {
-      "field": "power.player.BARRICADE_POWER.amount",
-      "projected": 1,
-      "actual": 1,
-      "match": true
-    },
-    {
-      "field": "power.player.BARRICADE_POWER.applier",
-      "projected": "player",
-      "actual": "player",
-      "match": true
-    },
-    {
-      "field": "power.player.BARRICADE_POWER.dynamic_vars",
+      "field": "relic.ids",
       "projected": [
-        {
-          "Key": "ApplierName",
-          "Value": "0"
-        }
+        "LANTERN"
       ],
       "actual": [
-        {
-          "Key": "ApplierName",
-          "Value": "0"
-        }
+        "LANTERN"
       ],
       "match": true
     },
     {
-      "field": "power.player.BARRICADE_POWER.counters",
-      "projected": [],
-      "actual": [],
+      "field": "rng.CombatCardGeneration.counter",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
-      "field": "potion.ids",
-      "projected": [],
-      "actual": [],
+      "field": "rng.CombatCardSelection.counter",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
-      "field": "combat.is_terminal",
-      "projected": false,
-      "actual": false,
+      "field": "rng.CombatEnergyCosts.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatOrbGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatPotionGeneration.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.CombatTargets.counter",
+      "projected": 0,
+      "actual": 0,
+      "match": true
+    },
+    {
+      "field": "rng.Shuffle.counter",
+      "projected": 9,
+      "actual": 9,
+      "match": true
+    },
+    {
+      "field": "round",
+      "projected": 1,
+      "actual": 1,
       "match": true
     }
-  ]
+  ],
+  "repeat_sha256": "e6b525036fc54f7353657a3fe6ea2e12ecbad90823246d3225f1e0c0a105240f"
 }

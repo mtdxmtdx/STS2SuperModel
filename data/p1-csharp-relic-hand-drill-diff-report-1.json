@@ -46,10 +46,10 @@
   "match": true,
   "mismatch_count": 0,
   "mismatches": [],
-  "engine_pre_state_hash": "50C7A011B2FA6AD989730580CFB6B06A89E2A67D24B5CB5970019157AD8DA9BE",
-  "engine_post_state_hash": "BEE7EE159A3222318F933AB2201E379DE5C54CFB0AD31D0E05E8A89A1B578D96",
-  "projected_comparison_hash": "48A3F71B6A921D28BCF8E3D566C82DE7C4392B18171E4CA121F4160CA6F14DA1",
-  "actual_comparison_hash": "48A3F71B6A921D28BCF8E3D566C82DE7C4392B18171E4CA121F4160CA6F14DA1",
+  "engine_pre_state_hash": "F9143FD1823E50A1070A1CAD97E6541110636EC067CD896E3DA10E1DC45A6082",
+  "engine_post_state_hash": "4F433189104D7B2C38BE59CDDC0F44778A2B4A67A2905219AF799281F135DB73",
+  "projected_comparison_hash": "2D8919E4C273E9FB45267205DD91318A25A987320A05F179E3BFEAA9F0177D9F",
+  "actual_comparison_hash": "2D8919E4C273E9FB45267205DD91318A25A987320A05F179E3BFEAA9F0177D9F",
   "rng_before": {
     "Shuffle": 9,
     "CombatCardGeneration": 0,
@@ -106,6 +106,76 @@
       ],
       "actual": [
         "Attack:7:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.is_hittable",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.is_minion",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.is_primary_enemy",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.is_secondary_enemy",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.public_ai.first_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.public_ai.intent_history",
+      "projected": [
+        "DebuffStrong:1",
+        "Attack:1"
+      ],
+      "actual": [
+        "DebuffStrong:1",
+        "Attack:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.public_ai.last_observed_round",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.public_ai.observed_turns",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SHRINKER_BEETLE:1.public_ai.phase",
+      "projected": "active",
+      "actual": "active",
+      "match": true
+    },
+    {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:SHRINKER_BEETLE:1"
+      ],
+      "actual": [
+        "enemy:SHRINKER_BEETLE:1"
       ],
       "match": true
     },
@@ -290,5 +360,5 @@
       "match": true
     }
   ],
-  "repeat_sha256": "813e1ee8955ae73936e4747375df163d413084a4c8634ac8be7f21c4b261b9d7"
+  "repeat_sha256": "e6be707e360c418fb57d6f610f23e4dc860d37c1fba168f387a08789a082f8ae"
 }

@@ -46,10 +46,10 @@
   "match": true,
   "mismatch_count": 0,
   "mismatches": [],
-  "engine_pre_state_hash": "F5D79504051632E1118E69E1400EEFF37EACC6A570CCB678B5DA5CD02C290A44",
-  "engine_post_state_hash": "38FFE42611F110DE16BC967B585709FBDDC88DD091772528068B948486DC79C2",
-  "projected_comparison_hash": "3B3635206FD06406D27DDC47437CCF37FC7C46FB5BC58CB31EE44259B805D73D",
-  "actual_comparison_hash": "3B3635206FD06406D27DDC47437CCF37FC7C46FB5BC58CB31EE44259B805D73D",
+  "engine_pre_state_hash": "ADC7DD72D0F4A21C9D0D42F25FDFDCC019DA1851A5783C8E54D27946211CFF59",
+  "engine_post_state_hash": "9CCB0EAF1B5C74D9247E92066C1E620BB7E5570ED86AA5FE4D8501FE955D4D62",
+  "projected_comparison_hash": "B16225B25A9321474E9710E60C0DD4B9B2EF4D02B3894595F012DDCF9E233C74",
+  "actual_comparison_hash": "B16225B25A9321474E9710E60C0DD4B9B2EF4D02B3894595F012DDCF9E233C74",
   "rng_before": {
     "Shuffle": 9,
     "CombatCardGeneration": 0,
@@ -100,6 +100,64 @@
       "match": true
     },
     {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.is_hittable",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.is_minion",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.is_primary_enemy",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.is_secondary_enemy",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.public_ai.first_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.public_ai.intent_history",
+      "projected": [
+        "StatusCard:1"
+      ],
+      "actual": [
+        "StatusCard:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.public_ai.last_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.public_ai.observed_turns",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_M:2.public_ai.phase",
+      "projected": "initial",
+      "actual": "initial",
+      "match": true
+    },
+    {
       "field": "enemy.enemy:LEAF_SLIME_S:1.block",
       "projected": 0,
       "actual": 0,
@@ -122,6 +180,64 @@
       "match": true
     },
     {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.is_hittable",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.is_minion",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.is_primary_enemy",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.is_secondary_enemy",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.public_ai.first_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.public_ai.intent_history",
+      "projected": [
+        "Attack:1"
+      ],
+      "actual": [
+        "Attack:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.public_ai.last_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.public_ai.observed_turns",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:LEAF_SLIME_S:1.public_ai.phase",
+      "projected": "initial",
+      "actual": "initial",
+      "match": true
+    },
+    {
       "field": "enemy.enemy:TWIG_SLIME_S:3.block",
       "projected": 0,
       "actual": 0,
@@ -140,6 +256,78 @@
       ],
       "actual": [
         "Attack:4:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.is_hittable",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.is_minion",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.is_primary_enemy",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.is_secondary_enemy",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.public_ai.first_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.public_ai.intent_history",
+      "projected": [
+        "Attack:1"
+      ],
+      "actual": [
+        "Attack:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.public_ai.last_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.public_ai.observed_turns",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:TWIG_SLIME_S:3.public_ai.phase",
+      "projected": "initial",
+      "actual": "initial",
+      "match": true
+    },
+    {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:LEAF_SLIME_M:2",
+        "enemy:LEAF_SLIME_S:1",
+        "enemy:TWIG_SLIME_S:3"
+      ],
+      "actual": [
+        "enemy:LEAF_SLIME_M:2",
+        "enemy:LEAF_SLIME_S:1",
+        "enemy:TWIG_SLIME_S:3"
       ],
       "match": true
     },
@@ -274,5 +462,5 @@
       "match": true
     }
   ],
-  "repeat_sha256": "c808f1f3f5a41a88187157c951294d66343b301d323f9004dec79353cc62ca14"
+  "repeat_sha256": "27cf22432ee458883571aa34abd09fcb34f29e35eb4c5e77454cff45921ae24f"
 }

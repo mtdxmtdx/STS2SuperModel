@@ -46,10 +46,10 @@
   "match": true,
   "mismatch_count": 0,
   "mismatches": [],
-  "engine_pre_state_hash": "0B90D75CC5F8592AA5155225D77C4B9A95FDE38CB21CEBA797D5F604E2AEE608",
-  "engine_post_state_hash": "4206DD361A6E19C79B8967098D6198671FCF82460606F64348C53D7803D8402F",
-  "projected_comparison_hash": "201C9048116C1FD5B1BD71DB76A4C17AAE2C138528959DCD68B440EEBCB79C9F",
-  "actual_comparison_hash": "201C9048116C1FD5B1BD71DB76A4C17AAE2C138528959DCD68B440EEBCB79C9F",
+  "engine_pre_state_hash": "C76B88CA35EC8E09A1DDA77088A9533C32E05BD86A2D53705DA586838A4CD8F8",
+  "engine_post_state_hash": "34AD8610BAE88F6422B6ACBEA82D4936D392AE495C2807F967194A8AAEA2C117",
+  "projected_comparison_hash": "D140387161BAA4022EDBBE867561243AD25846802F88CB43CD748327A28AA2D0",
+  "actual_comparison_hash": "D140387161BAA4022EDBBE867561243AD25846802F88CB43CD748327A28AA2D0",
   "rng_before": {
     "Shuffle": 9,
     "CombatCardGeneration": 0,
@@ -106,6 +106,74 @@
       ],
       "actual": [
         "Attack:11:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.is_hittable",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.is_minion",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.is_primary_enemy",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.is_secondary_enemy",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.public_ai.first_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.public_ai.intent_history",
+      "projected": [
+        "Attack:1"
+      ],
+      "actual": [
+        "Attack:1"
+      ],
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.public_ai.last_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.public_ai.observed_turns",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:SEAPUNK:1.public_ai.phase",
+      "projected": "initial",
+      "actual": "initial",
+      "match": true
+    },
+    {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:SEAPUNK:1"
+      ],
+      "actual": [
+        "enemy:SEAPUNK:1"
       ],
       "match": true
     },
@@ -244,5 +312,5 @@
       "match": true
     }
   ],
-  "repeat_sha256": "b4687aef0396093d2f8059e51fc186d6029acce22527f7a4cb32a98cb9856436"
+  "repeat_sha256": "1311d7e4395369e168928f793dc7c14f55f640e7e811986fc6401a8992c8b473"
 }

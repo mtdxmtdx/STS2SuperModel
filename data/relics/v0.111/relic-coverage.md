@@ -15,11 +15,11 @@
 | 已检查 IL 语义数量 | **0** | 0.0% |
 | 已完成真实引擎差分探针数量 | **100** | 33.4% |
 | 版本/结构字段有效的探针数量 | **100** | 33.4% |
-| 严格证据合格探针数量（Reliable eligible） | **24** | 8% |
+| 严格证据合格探针数量（Reliable eligible） | **22** | 7.4% |
 | 模拟器声明支持数量（不含证据待补的 PartiallySupported） | **99** | 33.1% |
 | 语义证据待补数量 | **1** | 0.3% |
 | 明确不影响当前回合数量 | **1** | 0.3% |
-| 能够产生 Reliable 教师标签数量 | **25** | 8.4% |
+| 能够产生 Reliable 教师标签数量 | **23** | 7.7% |
 | 已知不支持数量 (存在未支持战斗钩子) | **20** | 6.7% |
 | 未知遗物数量 | **0** | 0% |
 | 明确 OutOfScope 非战斗遗物数量 | **97** | 32.4% |
@@ -36,7 +36,7 @@
 | `BEATING_REMNANT` | 律动残余 | Beating Remnant | Rare | 你在一回合内失去的生命值不会超过[blue]20[/blue]点。 | `HeuristicInferred` |
 | `BELT_BUCKLE` | 腰带扣 | Belt Buckle | Shop | 当你没有药水时，你额外拥有[blue]{DexterityPower}[/blue]点[gold]敏捷[/gold]。 | `HeuristicInferred` |
 | `BIG_MUSHROOM` | 大蘑菇 | Big Mushroom | Event | 拾起时，将你的最大生命值提升[blue]{MaxHp}[/blue]。在每场战斗开始时，少抽[blue]{Cards}[/blue]张牌。 | `HeuristicInferred` |
-| `BLACK_BLOOD` | 黑暗之血 | Black Blood | Starter | 在战斗结束时，回复[green]{Heal}[/green]点生命。 | `LiveObserved` |
+| `BLACK_BLOOD` | 黑暗之血 | Black Blood | Starter | 在战斗结束时，回复[green]{Heal}[/green]点生命。 | `HeuristicInferred` |
 | `BLOOD_SOAKED_ROSE` | 血染玫瑰 | Blood-Soaked Rose | Ancient | 拾起时，将[blue]1[/blue]张[red]执迷[/red]加入你的[gold]牌组[/gold]。在回合开始时获得{Energy:energyIcons()}。 | `HeuristicInferred` |
 | `BLOOD_VIAL` | 小血瓶 | Blood Vial | Common | 在每场战斗开始时，回复[green]{Heal}[/green]点生命。 | `LiveObserved` |
 | `BOOMING_CONCH` | 轰鸣海螺 | Booming Conch | Ancient | 在[gold]精英[/gold]战的战斗开始时，额外抽[blue]{Cards}[/blue]张牌并获得{Energy:energyIcons()}。 | `HeuristicInferred` |
@@ -76,7 +76,7 @@
 | `LANTERN` | 灯笼 | Lantern | Common | 在每场战斗的第一回合获得{Energy:energyIcons()}。 | `LiveObserved` |
 | `LETTER_OPENER` | 开信刀 | Letter Opener | Uncommon | 你每在同一回合内打出[blue]{Cards}[/blue]张技能牌，就对所有敌人造成[blue]{Damage}[/blue]点伤害。 | `HeuristicInferred` |
 | `LOST_WISP` | 迷失鬼火 | Lost Wisp | Event | 你每打出一张能力牌，就对所有敌人造成[blue]{Damage}[/blue]点伤害。 | `LiveObserved` |
-| `MEAT_ON_THE_BONE` | 带骨肉 | Meat on the Bone | Rare | 如果你在战斗结束时生命值等于或低于[blue]{HpThreshold}%[/blue]，回复[green]{Heal}[/green]点生命。 | `LiveObserved` |
+| `MEAT_ON_THE_BONE` | 带骨肉 | Meat on the Bone | Rare | 如果你在战斗结束时生命值等于或低于[blue]{HpThreshold}%[/blue]，回复[green]{Heal}[/green]点生命。 | `HeuristicInferred` |
 | `MERCURY_HOURGLASS` | 水银沙漏 | Mercury Hourglass | Uncommon | 在你的回合开始时，对所有敌人造成[blue]{Damage}[/blue]点伤害。 | `HeuristicInferred` |
 | `MR_STRUGGLES` | 抱抱先生 | Mr. Struggles | Event | 在你的回合开始时，对所有敌人造成等量于当前回合数的伤害。 | `HeuristicInferred` |
 | `NINJA_SCROLL` | 忍术卷轴 | Ninja Scroll | Shop | 每场战斗开始时，将[blue]{Shivs}[/blue]张[gold]小刀[/gold]加入你的[gold]手牌[/gold]。 | `HeuristicInferred` |

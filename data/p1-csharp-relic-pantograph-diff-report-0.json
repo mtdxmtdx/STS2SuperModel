@@ -46,10 +46,10 @@
   "match": true,
   "mismatch_count": 0,
   "mismatches": [],
-  "engine_pre_state_hash": "BBDD42655F8DB1C46F72D1E658F978185DF31E626F8914DB329EE668D3B1C9DD",
-  "engine_post_state_hash": "EFBBD7F41BF94E3CCE28FD231A49389C51100F8F7597D02DFEBE6491EAC75963",
-  "projected_comparison_hash": "86513487604C6A4A91B91E492BCEAFA73AA0C4BD0A065E9F53609A2389B9261D",
-  "actual_comparison_hash": "86513487604C6A4A91B91E492BCEAFA73AA0C4BD0A065E9F53609A2389B9261D",
+  "engine_pre_state_hash": "FA10292488074837741EF4FB60498BC08CD8369E187D46E5192765B250C7875D",
+  "engine_post_state_hash": "17A17CD9D007D82A6C85BD9FA06BB22D9959A05B6515B8DFC73D83F160752787",
+  "projected_comparison_hash": "A822B63DD143284506F440FCCBF9FB53AD07282CA1D8264A3036A93E6F99C1CF",
+  "actual_comparison_hash": "A822B63DD143284506F440FCCBF9FB53AD07282CA1D8264A3036A93E6F99C1CF",
   "rng_before": {
     "Shuffle": 9,
     "CombatCardGeneration": 0,
@@ -100,9 +100,67 @@
       "match": true
     },
     {
+      "field": "enemy.enemy:VANTOM:1.is_hittable",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:VANTOM:1.is_minion",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:VANTOM:1.is_primary_enemy",
+      "projected": true,
+      "actual": true,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:VANTOM:1.is_secondary_enemy",
+      "projected": false,
+      "actual": false,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:VANTOM:1.public_ai.first_observed_round",
+      "projected": 1,
+      "actual": 1,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:VANTOM:1.public_ai.last_observed_round",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:VANTOM:1.public_ai.observed_turns",
+      "projected": 2,
+      "actual": 2,
+      "match": true
+    },
+    {
+      "field": "enemy.enemy:VANTOM:1.public_ai.phase",
+      "projected": "active",
+      "actual": "active",
+      "match": true
+    },
+    {
       "field": "enemy.enemy:VANTOM:1.status.SLIPPERY.amount",
       "projected": 8,
       "actual": 8,
+      "match": true
+    },
+    {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:VANTOM:1"
+      ],
+      "actual": [
+        "enemy:VANTOM:1"
+      ],
       "match": true
     },
     {
@@ -136,9 +194,9 @@
       "match": true
     },
     {
-      "field": "potion.ids",
-      "projected": [],
-      "actual": [],
+      "field": "potion.count",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
@@ -258,5 +316,5 @@
       "match": true
     }
   ],
-  "repeat_sha256": "e470f79ff155b566d755448a663a678f5c4532916401585ff6a83f5e8e979a90"
+  "repeat_sha256": "c266a5bdc31bd8d70c73f93c4d81ec9d445f3af1804b0591813d4f073627a56d"
 }

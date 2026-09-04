@@ -6006,8 +6006,8 @@
         "ApplierName"
       ],
       "dynamic_vars": {
-        "DamageDecrease": 30,
-        "ApplierName": 0
+        "ApplierName": 0,
+        "DamageDecrease": 30
       },
       "internal_counters": [],
       "trigger_phases": [

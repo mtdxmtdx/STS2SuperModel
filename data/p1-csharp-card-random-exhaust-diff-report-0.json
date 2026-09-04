@@ -14,7 +14,7 @@
   "normalized_action_id": "play_card:card:TRUE_GRIT:001:none",
   "draw_pile_source": "not_applicable",
   "attacks_played_this_turn": null,
-  "confidence": "Estimated",
+  "confidence": "Uncalculable",
   "chance_present": true,
   "random_operator": "CombatCardSelection",
   "probability_known": false,
@@ -50,10 +50,10 @@
   "match": true,
   "mismatch_count": 0,
   "mismatches": [],
-  "engine_pre_state_hash": "083C2F30BF809E1D1EEFEADE268A7495BAD222F3A5EAFB391FA4D41EFAE4E406",
-  "engine_post_state_hash": "A6EE9201D6E3352A6EBAC65F91A4166BA3C6132E4B9824909B585DA5BE234E13",
-  "projected_comparison_hash": "DB6420256489E9D453898BA29407E64057A65B86E1260E5D1791F991B55D78E7",
-  "actual_comparison_hash": "DB6420256489E9D453898BA29407E64057A65B86E1260E5D1791F991B55D78E7",
+  "engine_pre_state_hash": "6D1ED6C9AEE4C5EEEA24F3D8554695B6E27901FE1E7A35F92D3557E014F74711",
+  "engine_post_state_hash": "DFCBA636C4318BFD651BFC053D0476F9F2AC58E175F6B80F2F107F3009C10971",
+  "projected_comparison_hash": "BF4F5C403421E259B2E4E4F2E52E746CF1D32F974EA9163C4FB4BAC4A158B900",
+  "actual_comparison_hash": "BF4F5C403421E259B2E4E4F2E52E746CF1D32F974EA9163C4FB4BAC4A158B900",
   "rng_before": {
     "Shuffle": 4,
     "CombatCardGeneration": 0,
@@ -98,6 +98,16 @@
       "match": true
     },
     {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:SEAPUNK:1"
+      ],
+      "actual": [
+        "enemy:SEAPUNK:1"
+      ],
+      "match": true
+    },
+    {
       "field": "enemy_damage_total",
       "projected": 0,
       "actual": 0,
@@ -134,9 +144,9 @@
       "match": true
     },
     {
-      "field": "potion.ids",
-      "projected": [],
-      "actual": [],
+      "field": "potion.count",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
@@ -200,5 +210,5 @@
       "match": true
     }
   ],
-  "repeat_sha256": "91a35678b01f2960ad7e8ee8f85924f698b4c3e1b0414477c16ae5a03fee1aef"
+  "repeat_sha256": "cbee13e9aa575c5007a19ed723fa5b74cf708189b96c0df2ed74725c367247fb"
 }

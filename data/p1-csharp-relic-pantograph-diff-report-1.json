@@ -50,10 +50,10 @@
   "match": true,
   "mismatch_count": 0,
   "mismatches": [],
-  "engine_pre_state_hash": "EFBBD7F41BF94E3CCE28FD231A49389C51100F8F7597D02DFEBE6491EAC75963",
-  "engine_post_state_hash": "25A2BC6C116BBB1FAF06769DDCDA42D3CB99480BAAF160FF34D7C01E6663D335",
-  "projected_comparison_hash": "DE55C127F72527F9BDFB98C14FDC64814F992E42AD3A1F1A74C1F198C62CE9CC",
-  "actual_comparison_hash": "DE55C127F72527F9BDFB98C14FDC64814F992E42AD3A1F1A74C1F198C62CE9CC",
+  "engine_pre_state_hash": "17A17CD9D007D82A6C85BD9FA06BB22D9959A05B6515B8DFC73D83F160752787",
+  "engine_post_state_hash": "4CC0ECB53B224214E8729B69A4D9A63F0654E03048D10F595C4118644444E571",
+  "projected_comparison_hash": "866F09F4923FC312EF4C26691FE85D7C45429C81E722EB88857C9DEC0BE64ABE",
+  "actual_comparison_hash": "866F09F4923FC312EF4C26691FE85D7C45429C81E722EB88857C9DEC0BE64ABE",
   "rng_before": {
     "Shuffle": 9,
     "CombatCardGeneration": 0,
@@ -98,6 +98,16 @@
       "match": true
     },
     {
+      "field": "enemy.ids",
+      "projected": [
+        "enemy:VANTOM:1"
+      ],
+      "actual": [
+        "enemy:VANTOM:1"
+      ],
+      "match": true
+    },
+    {
       "field": "enemy_damage_total",
       "projected": 0,
       "actual": 0,
@@ -134,9 +144,9 @@
       "match": true
     },
     {
-      "field": "potion.ids",
-      "projected": [],
-      "actual": [],
+      "field": "potion.count",
+      "projected": 0,
+      "actual": 0,
       "match": true
     },
     {
@@ -256,5 +266,5 @@
       "match": true
     }
   ],
-  "repeat_sha256": "2706d5f87e6924c509e134cf08c5668cf2aa68dcc50170b68139f7f11c60c4dd"
+  "repeat_sha256": "5cd2aa1cabe401e2ea8b230363222b1f9d02b231681fc6c471e5fa2bc71497c1"
 }
