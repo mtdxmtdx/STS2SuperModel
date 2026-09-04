@@ -18,6 +18,7 @@ from torch.utils.data import DataLoader
 
 from .dataset import CombatDataset, collate_samples, load_rows
 from .encoder import CombatFeatureEncoder, TokenVocabulary
+from .holdout import load_frozen_splits
 from .model import CombatPolicyValueModel
 
 
@@ -116,9 +117,39 @@ def make_loader(rows: list[dict[str, Any]], encoder: CombatFeatureEncoder, batch
                       generator=generator if shuffle else None, collate_fn=collate_samples, num_workers=0)
 
 
+def load_training_rows(
+    split_dir: Path,
+    holdout: Path | None = None,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+    if holdout:
+        all_splits = load_frozen_splits(split_dir, holdout, reliable_only=False)
+        all_source_rows = [row for split in ("train", "validation", "test", "challenge")
+                           for row in all_splits[split]]
+        reliable_splits = {
+            split: [row for row in rows if row.get("confidence") == "Reliable"]
+            for split, rows in all_splits.items()
+        }
+        return (
+            reliable_splits["train"],
+            reliable_splits["validation"],
+            reliable_splits["test"],
+            reliable_splits["challenge"],
+            all_source_rows,
+        )
+    reliable = [load_rows(split_dir / f"{split}.jsonl") for split in ("train", "validation", "test", "challenge")]
+    all_source_rows = [
+        row
+        for split in ("train", "validation", "test", "challenge")
+        for row in load_rows(split_dir / f"{split}.jsonl", reliable_only=False)
+    ]
+    return (*reliable, all_source_rows)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--split-dir", required=True, type=Path)
+    parser.add_argument("--holdout", type=Path,
+                        help="Frozen episode holdout; overrides growing test/challenge membership")
     parser.add_argument("--feature-manifest", required=True, type=Path)
     parser.add_argument("--out-dir", required=True, type=Path)
     parser.add_argument("--epochs", type=int, default=100)
@@ -138,13 +169,9 @@ def main() -> int:
     torch.set_num_threads(args.threads)
     torch.use_deterministic_algorithms(True)
     device = torch.device("cpu")
-    train_rows = load_rows(args.split_dir / "train.jsonl")
-    validation_rows = load_rows(args.split_dir / "validation.jsonl")
-    test_rows = load_rows(args.split_dir / "test.jsonl")
-    challenge_rows = load_rows(args.split_dir / "challenge.jsonl")
-    all_source_rows = []
-    for split in ("train", "validation", "test", "challenge"):
-        all_source_rows.extend(load_rows(args.split_dir / f"{split}.jsonl", reliable_only=False))
+    train_rows, validation_rows, test_rows, challenge_rows, all_source_rows = load_training_rows(
+        args.split_dir, args.holdout
+    )
     vocabulary = TokenVocabulary.build(train_rows)
     encoder = CombatFeatureEncoder(vocabulary)
     train_loader = make_loader(train_rows, encoder, args.batch_size, shuffle=True, seed=args.seed)
@@ -230,6 +257,8 @@ def main() -> int:
         "training_character_distribution": character_distribution(all_source_rows),
         "supervised_training_character_distribution": character_distribution(train_rows),
         "character_balance_note": args.character_balance_note,
+        "holdout": str(args.holdout) if args.holdout else None,
+        "holdout_sha256": sha256(args.holdout) if args.holdout else None,
         "training_rows": len(train_rows),
         "validation_rows": len(validation_rows),
         "test_rows": len(test_rows),

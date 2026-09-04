@@ -1,0 +1,94 @@
+{
+  "challenge": {
+    "loss": 1.2679043491126598,
+    "ndcg_at_3": 0.876668012361892,
+    "policy_loss": 1.1647151052578746,
+    "regret": 0.13858695652173914,
+    "regret_coverage": 0.8858931150698123,
+    "regret_fixed": 0.12277323062108811,
+    "rows": 2077.0,
+    "top1": 0.8805970149253731,
+    "top1_by_character": {
+      "The Ironclad": 0.8562152133580705,
+      "The Silent": 0.9069069069069069
+    }
+  },
+  "challenge_character_distribution": {
+    "The Ironclad": {
+      "ratio": 0.5190178141550313,
+      "rows": 1078
+    },
+    "The Silent": {
+      "ratio": 0.4809821858449687,
+      "rows": 999
+    }
+  },
+  "holdout_id": "holdout-core-v1",
+  "holdout_sha256": "0BEB64C5C0A5E40073F1234356CD68A34716130D95699CFC68BF43281883A542",
+  "model_id": "combat-nosl-policy-value-v4",
+  "model_sha256": "C5EEE0E52417A14BCA6958AAB94C699630C8C5EA7A55FE8453022C42D96D5EC2",
+  "ndcg_at_3": 0.8884110118778107,
+  "regret_fixed": 0.032766065532131065,
+  "schema_version": 1,
+  "split_validation": {
+    "challenge": {
+      "episodes": 748,
+      "rows": 2077,
+      "states": 2077
+    },
+    "cross_split_episode_count": 0,
+    "cross_split_state_count": 0,
+    "test": {
+      "episodes": 1399,
+      "rows": 3937,
+      "states": 3937
+    },
+    "train": {
+      "episodes": 3678,
+      "rows": 10323,
+      "states": 10323
+    },
+    "validation": {
+      "episodes": 1621,
+      "rows": 4595,
+      "states": 4595
+    }
+  },
+  "test": {
+    "loss": 1.2415061767312636,
+    "ndcg_at_3": 0.8884110118778107,
+    "policy_loss": 1.129471261216082,
+    "regret": 0.036327794987327515,
+    "regret_coverage": 0.9019558039116078,
+    "regret_fixed": 0.032766065532131065,
+    "rows": 3937.0,
+    "top1": 0.8986537973075946,
+    "top1_by_character": {
+      "The Ironclad": 0.8791208791208791,
+      "The Silent": 0.9188630490956072
+    }
+  },
+  "test_character_distribution": {
+    "The Ironclad": {
+      "ratio": 0.5085090170180341,
+      "rows": 2002
+    },
+    "The Silent": {
+      "ratio": 0.491490982981966,
+      "rows": 1935
+    }
+  },
+  "top1": 0.8986537973075946,
+  "top1_by_character": {
+    "The Ironclad": 0.8791208791208791,
+    "The Silent": 0.9188630490956072
+  },
+  "version_lock": {
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "feature_schema_version": "combat-feature-v1",
+    "game_commit": "41cef1ea",
+    "game_version": "v0.111.0",
+    "trace_schema": 1
+  }
+}

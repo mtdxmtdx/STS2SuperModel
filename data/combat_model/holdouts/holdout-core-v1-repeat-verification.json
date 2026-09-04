@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "command": "python training/freeze_combat_holdout.py --source <locked-source> --split-dir <locked-splits> --frozen-at-utc 2026-09-04T03:00:00Z",
+  "first_sha256": "0BEB64C5C0A5E40073F1234356CD68A34716130D95699CFC68BF43281883A542",
+  "second_sha256": "0BEB64C5C0A5E40073F1234356CD68A34716130D95699CFC68BF43281883A542",
+  "byte_identical": true,
+  "test_episode_count": 1425,
+  "challenge_episode_count": 753,
+  "test_row_count": 5106,
+  "challenge_row_count": 2677,
+  "cross_split_episode_count": 0,
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1,
+    "feature_schema_version": "combat-feature-v1"
+  }
+}
