@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1,
+    "feature_schema_version": "combat-feature-v1"
+  },
+  "a1_v4_promotion": {
+    "verdict": "pass",
+    "artifact_count": 10,
+    "model_id": "combat-nosl-policy-value-v4",
+    "model_stage": "authoritative",
+    "onnx_sha256": "ED8EF99A70B89195052BC185D33B6314D9B2EA6F1ED17EA87F74FE200577EF63",
+    "onnx_hash_matches": true,
+    "decision_parity": {
+      "samples": 512,
+      "compared_pairs": 15555,
+      "discordant_pairs": 0,
+      "top1_agreement": 1.0,
+      "top3_set_agreement": 1.0,
+      "ranking_agreement": 1.0,
+      "tie_break_deterministic": true,
+      "near_tie_samples": 354,
+      "python_maximum_absolute_error": 0.000030517578125,
+      "csharp_maximum_absolute_error": 0.000026702880859375,
+      "numeric_diagnostic_status": "normal"
+    },
+    "training_repeat": {
+      "verdict": "pass",
+      "tensor_count": 23,
+      "different_tensors": 0,
+      "metrics_equal": true
+    },
+    "promotion_reason_uses_cross_split_top1": false,
+    "v3_promotion_status": "superseded",
+    "character_difficulty_note": "Within v4 run-local metrics, Ironclad trails Silent by about 4-5 percentage points; this is not a cross-version comparison."
+  },
+  "a2_frozen_holdout": {
+    "verdict": "pass",
+    "holdout_id": "holdout-core-v1",
+    "holdout_sha256": "0BEB64C5C0A5E40073F1234356CD68A34716130D95699CFC68BF43281883A542",
+    "deterministic_repeat": true,
+    "test": {
+      "episode_count": 1425,
+      "row_count": 5106,
+      "reliable_row_count": 3937,
+      "The Ironclad_ratio": 0.48531139835487663,
+      "The Silent_ratio": 0.5146886016451234
+    },
+    "challenge": {
+      "episode_count": 753,
+      "row_count": 2677,
+      "reliable_row_count": 2077,
+      "The Ironclad_ratio": 0.5039223010833022,
+      "The Silent_ratio": 0.4960776989166978
+    },
+    "cross_split_episode_count": 0,
+    "cross_split_state_count": 0,
+    "v4_baseline": {
+      "test_top1": 0.8986537973075946,
+      "test_top1_by_character": {
+        "The Ironclad": 0.8791208791208791,
+        "The Silent": 0.9188630490956072
+      },
+      "test_ndcg_at_3": 0.8884110118778107,
+      "test_regret_fixed": 0.032766065532131065,
+      "challenge_top1": 0.8805970149253731,
+      "challenge_top1_by_character": {
+        "The Ironclad": 0.8562152133580705,
+        "The Silent": 0.9069069069069069
+      }
+    },
+    "negative_leakage_gate": {
+      "verdict": "pass",
+      "injection": "test episode test-1 duplicated into train.jsonl",
+      "literal_error": "frozen test episode 'test-1' appears in 'train'"
+    }
+  },
+  "a3_coverage_profile": {
+    "verdict": "pass",
+    "source_sha256": "93F9FCD4BF504FB737806E7A5074CA65FBDF802959A5917700121FD41DCF9AA3",
+    "row_count": 26971,
+    "reliable_row_count": 20932,
+    "floor_distribution": {
+      "1": 26971
+    },
+    "act_distribution": {
+      "1": 26971
+    },
+    "round_range": [0, 4],
+    "starter_only_ratio": 0.979125727633384,
+    "nonstarter_relic_occurrences": 562,
+    "no_potion_ratio": 0.9988135404693931,
+    "enemy_count_distribution": {
+      "0": 10,
+      "1": 18639,
+      "3": 7295,
+      "4": 1027
+    },
+    "proposed_threshold_status": "pending_human_confirmation",
+    "handoff_sample_estimate_superseded_by_full_scan": true
+  },
+  "final_gates": {
+    "python_pytest": {
+      "verdict": "pass",
+      "passed": 137,
+      "skipped": 1
+    },
+    "semantic_repeat": {
+      "verdict": "pass",
+      "report_count": 218,
+      "different": 0,
+      "missing": 0,
+      "added": 0,
+      "unexpected": 0
+    },
+    "core_modified": false
+  }
+}
