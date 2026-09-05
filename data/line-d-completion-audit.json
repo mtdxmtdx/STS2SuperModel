@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "line": "D",
+  "verdict": "pass_local_commit_pending_remote_push",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1,
+    "feature_schema_version": "combat-feature-v1"
+  },
+  "commits": {
+    "model_repository": "04dab48",
+    "simulator_core_repository": "e9b1395"
+  },
+  "potion": {
+    "reliable_before": 2,
+    "reliable_after": 28,
+    "strict_reports": 28,
+    "mismatch_count": 0,
+    "holdout": "holdout-potion-v1"
+  },
+  "relic": {
+    "target_count": 20,
+    "reliable_count": 14,
+    "unsupported_with_reason": 6,
+    "catalog_reliable_before": 24,
+    "catalog_reliable_after": 38,
+    "affects_current_turn_filled": 20,
+    "semantic_holds": ["PARRYING_SHIELD"],
+    "resolved_hold": "UNCEASING_TOP",
+    "holdout": "holdout-relic-v1",
+    "reliable_nonstarter_ge2_ratio": 0.31997004897397496
+  },
+  "dataset": {
+    "unique_states": 67799,
+    "reliable": 49414,
+    "estimated": 18369,
+    "uncalculable": 16,
+    "quality_gate": "pass",
+    "public_leakage_count": 0,
+    "stable_id_missing": 0,
+    "malformed_lines": 0,
+    "conflicting_states": 0
+  },
+  "gates": {
+    "dotnet_tests": "808 passed / 0 failed",
+    "pytest": "148 passed / 1 skipped",
+    "repeat_reports": 226,
+    "repeat_different": 0,
+    "repeat_missing": 0,
+    "repeat_added": 0,
+    "holdout_relic_repeat": "pass",
+    "rollback_copy": "hash_mismatches=0, created_left=0, py_compile=0"
+  },
+  "artifacts": {
+    "modified_file": "D:/STS2BestChoice/work/line-d-d2-relics/MODIFIED_FILE",
+    "diff_file": "D:/STS2BestChoice/work/line-d-d2-relics/DIFF_FILE.patch",
+    "verification": "D:/STS2BestChoice/work/line-d-d2-relics/VERIFICATION.txt",
+    "rollback": "D:/STS2BestChoice/work/line-d-d2-relics/ROLLBACK.sh"
+  },
+  "remote": {
+    "model_repository": "https://github.com/mtdxmtdx/STS2SuperModel.git",
+    "model_push": "not_confirmed_environment_network_block",
+    "simulator_origin": null,
+    "simulator_push": "not_attempted_no_origin"
+  }
+}
