@@ -64,4 +64,4 @@ D:\STS2BestChoice\work\line-d-d2-relics\ROLLBACK.sh
 
 ## 远端状态
 
-模型仓库已在本地提交 `04dab48`，但本轮环境的网络/提权代理均拒绝连接 GitHub（`127.0.0.1:9` / approval service 503），所以远端尚未确认更新。Core 仓库没有配置 `origin`，需要指定其目标 GitHub 仓库后才能推送。
+模型仓库已成功推送到 `origin/main`，远端包含 `04dab48` 与 `4b01ce2`。Core 仓库没有配置 `origin`，需要指定其目标 GitHub 仓库后才能推送。

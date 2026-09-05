@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "line": "D",
-  "verdict": "pass_local_commit_pending_remote_push",
+  "verdict": "pass_model_remote_pushed",
   "version_lock": {
     "game_version": "v0.111.0",
     "game_commit": "41cef1ea",
@@ -62,7 +62,7 @@
   },
   "remote": {
     "model_repository": "https://github.com/mtdxmtdx/STS2SuperModel.git",
-    "model_push": "not_confirmed_environment_network_block",
+    "model_push": "pushed_origin_main_4b01ce2",
     "simulator_origin": null,
     "simulator_push": "not_attempted_no_origin"
   }
