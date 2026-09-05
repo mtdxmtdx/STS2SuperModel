@@ -1,0 +1,82 @@
+{
+  "dataset_path": "D:/STS2BestChoice/work/line-bc-round-depth/c6-rounddeep-merged-dedup.jsonl",
+  "dataset_kind": "teacher",
+  "generated_at": "2026-09-04T07:39:16Z",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol": "0.2.0",
+    "trace_schema": 1,
+    "training_schema": 1
+  },
+  "row_counts": {
+    "trace_rows": 0,
+    "training_rows": 34041,
+    "episodes": 10540,
+    "states_unique": 34041,
+    "actions_total": 264626
+  },
+  "split_violations": [],
+  "public_leakage_count": 0,
+  "stable_id_missing": 0,
+  "label_stats": {
+    "reliable": 26422,
+    "estimated": 7603,
+    "low_confidence": 0,
+    "uncalculable": 16,
+    "unknown": 0,
+    "empty_teacher_best_actions": 16,
+    "empty_teacher_categories": {
+      "uncalculable_teacher_unavailable": 16
+    }
+  },
+  "duplicate_states": {
+    "warning_count": 0,
+    "error_count": 0,
+    "entries": [],
+    "classification_legend": {
+      "warning_identical_duplicate": "same hash + same combo + same labels: redundant, merge recommended",
+      "error_conflicting_labels": "same hash + same combo but differing labels/confidence: dataset corruption"
+    }
+  },
+  "malformed_lines": [],
+  "metadata_checks": {
+    "manifest_count_cross_check": "ok",
+    "sources": [
+      {
+        "file": "D:/STS2BestChoice/work/line-bc-round-depth/c6-rounddeep-merged-dedup.jsonl",
+        "sha256": "CD0729EE5DDE63317C9902FB7CE8C5BBD073B13C5F773778C34DE504D921AE2C",
+        "listed_in_manifest": true
+      }
+    ],
+    "splits": {
+      "dir": "D:/STS2BestChoice/work/line-bc-round-depth/c6-rounddeep-splits",
+      "stats": {
+        "train": {
+          "row_count": 17247,
+          "episode_count": 5326
+        },
+        "validation": {
+          "row_count": 6913,
+          "episode_count": 2145
+        },
+        "test": {
+          "row_count": 6492,
+          "episode_count": 2013
+        },
+        "challenge": {
+          "row_count": 3389,
+          "episode_count": 1056
+        }
+      }
+    }
+  },
+  "warnings": [],
+  "verdict": "pass",
+  "failures": [],
+  "checked_files": [
+    "D:/STS2BestChoice/work/line-bc-round-depth/c6-rounddeep-manifest.json",
+    "D:/STS2BestChoice/work/line-bc-round-depth/c6-rounddeep-merged-dedup.jsonl"
+  ]
+}

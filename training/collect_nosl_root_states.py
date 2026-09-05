@@ -15,6 +15,7 @@ import subprocess
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
+import re
 
 
 LOCK = {
@@ -71,7 +72,32 @@ CHARACTER_DECKS: dict[str, tuple[str, list[str]]] = {
 }
 
 
-def collect_one(executable: Path, seed: str, turns: int, encounter: str, character: str) -> list[dict[str, Any]]:
+def parse_injection_sets(value: str) -> list[list[str]]:
+    """Parse deterministic round-robin sets; `EMPTY` denotes an empty slot set."""
+    result: list[list[str]] = []
+    for raw_set in re.split(r"[|,]", value):
+        raw_set = raw_set.strip()
+        if not raw_set or raw_set.upper() == "EMPTY":
+            result.append([])
+            continue
+        members = [member.strip().upper() for member in raw_set.split("+") if member.strip()]
+        if not members:
+            raise ValueError("injection set must contain an ID or EMPTY")
+        result.append(members)
+    if not result:
+        raise ValueError("injection sets must contain at least one set")
+    return result
+
+
+def collect_one(
+    executable: Path,
+    seed: str,
+    turns: int,
+    encounter: str,
+    character: str,
+    potions: list[str] | None = None,
+    relics: list[str] | None = None,
+) -> list[dict[str, Any]]:
     if character not in CHARACTER_DECKS:
         raise ValueError(f"unsupported collector character: {character}")
     character_name, deck = CHARACTER_DECKS[character]
@@ -84,7 +110,12 @@ def collect_one(executable: Path, seed: str, turns: int, encounter: str, charact
         if not ready.get("compatible"):
             raise RuntimeError(f"CLI incompatible for {seed}: {ready}")
         send(process, {"cmd": "start_run", "character": character, "seed": seed, "ascension": 0})
-        send(process, {"cmd": "set_player", "deck": deck})
+        player_setup: dict[str, Any] = {"cmd": "set_player", "deck": deck}
+        if potions is not None:
+            player_setup["potions"] = potions
+        if relics is not None:
+            player_setup["relics"] = relics
+        send(process, player_setup)
         entered = send(process, {"cmd": "enter_room", "type": "combat", "encounter": encounter})
         if entered.get("decision") != "combat_play":
             raise RuntimeError(f"seed {seed} did not enter combat: {entered.get('decision')}")
@@ -118,6 +149,8 @@ def collect_one(executable: Path, seed: str, turns: int, encounter: str, charact
                 "teacher_snapshot": teacher,
                 "legal_actions": public.get("action_candidates", []),
                 "legal_actions_complete": True,
+                "injected_potions": list(potions or []),
+                "injected_relics": list(relics or []),
             }
             rows.append(row)
             if step < turns:
@@ -151,6 +184,16 @@ def main() -> int:
         help="Comma-separated supported characters assigned to seeds round-robin (Ironclad,Silent)",
     )
     parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument("--potions", help="Comma-separated fixed potion IDs injected into every root")
+    parser.add_argument(
+        "--potion-sets",
+        help="Round-robin potion sets separated by | or comma; + joins potions; EMPTY selects no potions",
+    )
+    parser.add_argument("--relics", help="Comma-separated fixed relic IDs injected into every root")
+    parser.add_argument(
+        "--relic-sets",
+        help="Round-robin relic sets separated by | or comma; + joins relics; EMPTY selects no relics",
+    )
     args = parser.parse_args()
     if args.seeds is not None and (args.seed_prefix is not None or args.seed_count):
         raise SystemExit("choose either --seeds or --seed-prefix/--seed-count")
@@ -180,12 +223,39 @@ def main() -> int:
         raise SystemExit(f"unsupported characters: {', '.join(unsupported)}")
     if not characters:
         raise SystemExit("characters must contain at least one character")
-    jobs = [(seed, encounters[index % len(encounters)], characters[index % len(characters)]) for index, seed in enumerate(seeds)]
+    if args.potions and args.potion_sets:
+        raise SystemExit("choose either --potions or --potion-sets")
+    if args.relics and args.relic_sets:
+        raise SystemExit("choose either --relics or --relic-sets")
+    potion_sets = (
+        parse_injection_sets(args.potion_sets)
+        if args.potion_sets
+        else [[value.strip().upper() for value in args.potions.split(",") if value.strip()]]
+        if args.potions is not None
+        else [None]
+    )
+    relic_sets = (
+        parse_injection_sets(args.relic_sets)
+        if args.relic_sets
+        else [[value.strip().upper() for value in args.relics.split(",") if value.strip()]]
+        if args.relics is not None
+        else [None]
+    )
+    jobs = [
+        (
+            seed,
+            encounters[index % len(encounters)],
+            characters[index % len(characters)],
+            potion_sets[index % len(potion_sets)],
+            relic_sets[index % len(relic_sets)],
+        )
+        for index, seed in enumerate(seeds)
+    ]
     if args.workers == 1:
-        groups = [collect_one(args.executable, seed, args.turns, encounter, character) for seed, encounter, character in jobs]
+        groups = [collect_one(args.executable, seed, args.turns, encounter, character, potions, relics) for seed, encounter, character, potions, relics in jobs]
     else:
         with ThreadPoolExecutor(max_workers=args.workers) as pool:
-            groups = list(pool.map(lambda job: collect_one(args.executable, job[0], args.turns, job[1], job[2]), jobs))
+            groups = list(pool.map(lambda job: collect_one(args.executable, job[0], args.turns, job[1], job[2], job[3], job[4]), jobs))
     rows = [row for group in groups for row in group]
     rows.sort(key=lambda row: (row["episode_id"], row["round"], row["state_hash_public"]))
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -195,6 +265,8 @@ def main() -> int:
         "rows": len(rows),
         "encounters": encounters,
         "characters": characters,
+        "potion_sets": potion_sets,
+        "relic_sets": relic_sets,
         "output": str(args.output),
     }, ensure_ascii=False))
     return 0

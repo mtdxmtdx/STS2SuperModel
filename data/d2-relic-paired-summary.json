@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "results": [
+    {
+      "relic_id": "BOOK_REPAIR_KNIFE",
+      "match": true,
+      "repeat": "pass"
+    },
+    {
+      "relic_id": "DATA_DISK",
+      "match": true,
+      "repeat": "pass"
+    },
+    {
+      "relic_id": "DIVINE_RIGHT",
+      "match": true,
+      "repeat": "pass"
+    },
+    {
+      "relic_id": "EMBER_TEA",
+      "match": true,
+      "repeat": "pass"
+    },
+    {
+      "relic_id": "GORGET",
+      "match": true,
+      "repeat": "pass"
+    },
+    {
+      "relic_id": "LIZARD_TAIL",
+      "match": true,
+      "repeat": "pass"
+    },
+    {
+      "relic_id": "PAPER_KRANE",
+      "match": true,
+      "repeat": "pass"
+    },
+    {
+      "relic_id": "RINGING_TRIANGLE",
+      "match": true,
+      "repeat": "pass"
+    },
+    {
+      "relic_id": "RUNIC_PYRAMID",
+      "match": true,
+      "repeat": "pass"
+    },
+    {
+      "relic_id": "SLING_OF_COURAGE",
+      "match": true,
+      "repeat": "pass"
+    },
+    {
+      "relic_id": "SWORD_OF_JADE",
+      "match": true,
+      "repeat": "pass"
+    },
+    {
+      "relic_id": "THE_ABACUS",
+      "match": true,
+      "repeat": "pass"
+    }
+  ],
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  }
+}

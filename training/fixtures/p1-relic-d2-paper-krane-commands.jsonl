@@ -1,0 +1,11 @@
+{"cmd":"start_run","character":"Ironclad","seed":"d2-paper-krane-v1","ascension":0}
+{"cmd":"set_player","relics":["PAPER_KRANE"],"hp":80,"max_hp":80,"potions":["WEAK_POTION"],"deck":["STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","BASH"]}
+{"cmd":"enter_room","type":"combat","encounter":"SEAPUNK_WEAK"}
+{"cmd":"set_combat_resources","energy":3,"stars":0}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"action","action":"use_potion","args":{"potion_index":0,"target_index":0}}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"action","action":"end_turn","args":{}}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"quit"}

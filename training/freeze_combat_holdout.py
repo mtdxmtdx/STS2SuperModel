@@ -29,10 +29,30 @@ def sha256(path: Path) -> str:
     return digest.hexdigest().upper()
 
 
-def read_split(path: Path) -> tuple[list[str], int, int, dict[str, dict[str, float | int]]]:
+def _summary(selected: list[dict[str, Any]]) -> tuple[list[str], int, int, dict[str, dict[str, float | int]]]:
     episodes: set[str] = set()
     counts: Counter[str] = Counter()
     rows = reliable = 0
+    for row in selected:
+        episode = row.get("episode_id") or row.get("trace_id")
+        episodes.add(str(episode))
+        counts[str(row.get("character") or "Unknown")] += 1
+        rows += 1
+        reliable += int(row.get("confidence") == "Reliable")
+    distribution = {
+        character: {"rows": count, "ratio": count / max(rows, 1)}
+        for character, count in sorted(counts.items())
+    }
+    return sorted(episodes), rows, reliable, distribution
+
+
+def read_split(
+    path: Path,
+    *,
+    rebalance_by_character: bool = False,
+    selection_salt: str = "",
+) -> tuple[list[str], int, int, dict[str, dict[str, float | int]], list[dict[str, Any]]]:
+    values: list[dict[str, Any]] = []
     with path.open(encoding="utf-8") as stream:
         for line in stream:
             if not line.strip():
@@ -41,15 +61,39 @@ def read_split(path: Path) -> tuple[list[str], int, int, dict[str, dict[str, flo
             episode = row.get("episode_id") or row.get("trace_id")
             if not episode:
                 raise ValueError(f"{path}: row missing episode_id/trace_id")
-            episodes.add(str(episode))
-            counts[str(row.get("character") or "Unknown")] += 1
-            rows += 1
-            reliable += int(row.get("confidence") == "Reliable")
-    distribution = {
-        character: {"rows": count, "ratio": count / max(rows, 1)}
-        for character, count in sorted(counts.items())
-    }
-    return sorted(episodes), rows, reliable, distribution
+            values.append(row)
+    if rebalance_by_character:
+        grouped: dict[str, list[dict[str, Any]]] = {}
+        for row in values:
+            episode = str(row.get("episode_id") or row.get("trace_id"))
+            grouped.setdefault(episode, []).append(row)
+        by_character: dict[str, list[tuple[str, list[dict[str, Any]]]]] = {}
+        for episode, episode_rows in grouped.items():
+            characters = {str(row.get("character") or "Unknown") for row in episode_rows}
+            if len(characters) != 1:
+                raise ValueError(f"episode {episode!r} has mixed characters: {sorted(characters)}")
+            by_character.setdefault(next(iter(characters)), []).append((episode, episode_rows))
+        if set(by_character) != {"The Ironclad", "The Silent"}:
+            raise ValueError(f"character rebalance requires exactly Ironclad/Silent: {sorted(by_character)}")
+        row_totals = {key: sum(len(rows) for _, rows in groups) for key, groups in by_character.items()}
+        minority = min(row_totals, key=row_totals.get)
+        majority = max(row_totals, key=row_totals.get)
+        selected = [row for _, group in by_character[minority] for row in group]
+        target = row_totals[minority]
+        current = 0
+        ordered_majority = sorted(
+            by_character[majority],
+            key=lambda item: hashlib.sha256(
+                f"{selection_salt}|{item[0]}".encode("utf-8")
+            ).hexdigest(),
+        )
+        for _, group in ordered_majority:
+            if current + len(group) <= target:
+                selected.extend(group)
+                current += len(group)
+        values = selected
+    ids, row_count, reliable, distribution = _summary(values)
+    return ids, row_count, reliable, distribution, values
 
 
 def main() -> int:
@@ -59,6 +103,9 @@ def main() -> int:
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--frozen-at-utc", required=True)
     parser.add_argument("--holdout-id", default="holdout-core-v1")
+    parser.add_argument("--rebalance-by-character", action="store_true")
+    parser.add_argument("--coverage-potions", help="Comma-separated potion IDs represented by this holdout")
+    parser.add_argument("--coverage-relics", help="Comma-separated relic IDs represented by this holdout")
     parser.add_argument(
         "--expected-source-sha256",
         default="93F9FCD4BF504FB737806E7A5074CA65FBDF802959A5917700121FD41DCF9AA3",
@@ -68,9 +115,15 @@ def main() -> int:
     actual_sha = sha256(args.source)
     if actual_sha != expected_sha:
         raise ValueError(f"source SHA-256 mismatch: expected {expected_sha}, actual {actual_sha}")
-    test_ids, test_rows, test_reliable, test_distribution = read_split(args.split_dir / "test.jsonl")
-    challenge_ids, challenge_rows, challenge_reliable, challenge_distribution = read_split(
-        args.split_dir / "challenge.jsonl"
+    test_ids, test_rows, test_reliable, test_distribution, test_values = read_split(
+        args.split_dir / "test.jsonl",
+        rebalance_by_character=args.rebalance_by_character,
+        selection_salt=f"{args.holdout_id}|test",
+    )
+    challenge_ids, challenge_rows, challenge_reliable, challenge_distribution, challenge_values = read_split(
+        args.split_dir / "challenge.jsonl",
+        rebalance_by_character=args.rebalance_by_character,
+        selection_salt=f"{args.holdout_id}|challenge",
     )
     overlap = sorted(set(test_ids) & set(challenge_ids))
     if overlap:
@@ -89,18 +142,33 @@ def main() -> int:
         "source": args.source.name,
         "source_sha256": actual_sha,
         "selection_rule": (
-            "all episode_id values from the source split tree's existing test and challenge files; "
-            "IDs sorted by ordinal Unicode code point; accepted without resampling because each split's "
-            "Ironclad/Silent row ratios are within [0.45,0.55]"
+            "episode groups selected deterministically by sha256(holdout_id|split|episode_id); all minority-character "
+            "episodes retained and majority episodes greedily retained up to the minority row count; final IDs sorted "
+            "by ordinal Unicode code point"
+            if args.rebalance_by_character else
+            "all episode_id values from the source split tree's existing test and challenge files; IDs sorted by "
+            "ordinal Unicode code point; accepted without resampling because each split's Ironclad/Silent row ratios "
+            "are within [0.45,0.55]"
         ),
-        "coverage_profile": {
+        **({"rebalanced_by_character": True} if args.rebalance_by_character else {}),
+        "coverage_profile": ({
+            "act": sorted({int(row.get("act") or 0) for row in test_values + challenge_values}),
+            "floor": sorted({int(row.get("floor") or 0) for row in test_values + challenge_values}),
+            "round_min": min(int(row.get("round") or 0) for row in test_values + challenge_values),
+            "round_max": max(int(row.get("round") or 0) for row in test_values + challenge_values),
+            "relics": sorted(value.strip() for value in args.coverage_relics.split(",") if value.strip())
+                if args.coverage_relics else "measured_by_dataset_coverage_profile",
+            "potions": sorted(value.strip() for value in args.coverage_potions.split(",") if value.strip())
+                if args.coverage_potions else "measured_by_dataset_coverage_profile",
+            "characters": ["The Ironclad", "The Silent"],
+        } if args.rebalance_by_character else {
             "act": [1],
             "floor": [1],
             "round_max": 4,
             "relics": "starter_only_dominant",
             "potions": "none_dominant",
             "characters": ["The Ironclad", "The Silent"],
-        },
+        }),
         "test_episode_ids": test_ids,
         "challenge_episode_ids": challenge_ids,
         "test_episode_count": len(test_ids),

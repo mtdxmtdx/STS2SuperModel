@@ -108,6 +108,15 @@ PROBES: dict[str, list[int]] = {
     # Batch 15b (per-turn draw + carried max-energy/tea family).
     "p1-relic-fiddle": [0, 1],
     "p1-relic-tea-carried": [0, 1],
+    # D2 implemented hook witnesses.
+    "p1-relic-d2-gremlin-horn": [0],
+    "p1-relic-d2-paper-phrog": [1],
+    "p1-relic-d2-book-repair-knife": [3],
+    "p1-relic-d2-lizard-tail": [0],
+    "p1-relic-d2-paper-krane": [1],
+    "p1-relic-d2-runic-pyramid": [0],
+    "p1-relic-d2-ringing-triangle": [0],
+    "p1-relic-d2-the-abacus": [3],
 }
 
 

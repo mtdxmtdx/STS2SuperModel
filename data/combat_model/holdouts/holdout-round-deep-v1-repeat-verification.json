@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "holdout_id": "holdout-round-deep-v1",
+  "first_sha256": "4027D6949648DFBBDF717DBEC9A4D4CD20ABBB71676DB869F50812A2CD51F46D",
+  "second_sha256": "4027D6949648DFBBDF717DBEC9A4D4CD20ABBB71676DB869F50812A2CD51F46D",
+  "byte_identical": true,
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1,
+    "feature_schema_version": "combat-feature-v1"
+  }
+}

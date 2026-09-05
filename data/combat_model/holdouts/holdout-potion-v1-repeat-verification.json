@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "holdout_id": "holdout-potion-v1",
+  "first_sha256": "F8F76551527BFD9A31C4E481CFA5D7018C7219EF46A365597CFDF43A007586C3",
+  "second_sha256": "F8F76551527BFD9A31C4E481CFA5D7018C7219EF46A365597CFDF43A007586C3",
+  "byte_identical": true
+}

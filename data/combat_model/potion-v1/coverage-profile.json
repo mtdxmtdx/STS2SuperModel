@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\work\\line-d-d1-potions\\d1-potion-merged-dedup.jsonl",
+  "source_sha256": "021E088A94CEB6AD11361EB7108059FF5376CBA56DFBA396CC1A84D80BFDC7BC",
+  "row_count": 44531,
+  "reliable_row_count": 33603,
+  "all_rows": {
+    "floor_distribution": {
+      "1": 44531
+    },
+    "act_distribution": {
+      "1": 44531
+    },
+    "round_distribution": {
+      "0": 10,
+      "1": 8083,
+      "2": 7092,
+      "3": 8808,
+      "4": 8768,
+      "5": 1450,
+      "6": 1050,
+      "7": 726,
+      "8": 3619,
+      "9": 3521,
+      "10": 1404
+    },
+    "enemy_count_distribution": {
+      "0": 10,
+      "1": 31709,
+      "3": 11220,
+      "4": 1279,
+      "5": 313
+    },
+    "character_distribution": {
+      "The Ironclad": {
+        "rows": 23910,
+        "ratio": 0.5369293301295727
+      },
+      "The Silent": {
+        "rows": 20621,
+        "ratio": 0.46307066987042733
+      }
+    },
+    "starter_only_rows": 43968,
+    "starter_only_ratio": 0.9873571220048954,
+    "nonstarter_relic_occurrences": 562,
+    "rows_with_nonstarter_relic": 562,
+    "episodes_with_nonstarter_relic": 123,
+    "no_potion_rows": 34009,
+    "no_potion_ratio": 0.7637151647167142,
+    "enemy_count_ge_3_rows": 12812,
+    "enemy_count_ge_3_ratio": 0.2877096853877074,
+    "relic_id_counts": {
+      "AKABEKO": 42,
+      "ANCHOR": 42,
+      "ART_OF_WAR": 52,
+      "BAG_OF_MARBLES": 42,
+      "BAG_OF_PREPARATION": 20,
+      "BURNING_BLOOD": 23348,
+      "CENTENNIAL_PUZZLE": 20,
+      "HAPPY_FLOWER": 62,
+      "LANTERN": 103,
+      "ODDLY_SMOOTH_STONE": 2,
+      "ORICHALCUM": 30,
+      "PEN_NIB": 144,
+      "RING_OF_THE_SNAKE": 20620,
+      "VAJRA": 3
+    }
+  },
+  "reliable_coverage": {
+    "round_ge_8": {
+      "rows": 6634,
+      "ratio": 0.19742284915037348
+    },
+    "nonstarter_relic_count_ge_2": {
+      "rows": 0,
+      "ratio": 0.0
+    },
+    "has_potions": {
+      "rows": 7213,
+      "ratio": 0.21465345356069399
+    },
+    "act_ge_2": {
+      "rows": 0,
+      "ratio": 0.0
+    },
+    "enemy_count_ge_3": {
+      "rows": 5170,
+      "ratio": 0.15385531053774962
+    }
+  },
+  "reliable_character_distribution": {
+    "The Ironclad": {
+      "rows": 18016,
+      "ratio": 0.5361426063149124
+    },
+    "The Silent": {
+      "rows": 15587,
+      "ratio": 0.46385739368508766
+    }
+  },
+  "proposed_acceptance_thresholds": {
+    "status": "pending_human_confirmation",
+    "round_ge_8_reliable_ratio": 0.2,
+    "nonstarter_relic_count_ge_2_reliable_ratio": 0.3,
+    "has_potions_reliable_ratio": 0.2,
+    "act_ge_2_reliable_ratio": 0.25,
+    "enemy_count_ge_3_reliable_ratio": 0.35
+  },
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1,
+    "feature_schema_version": "combat-feature-v1"
+  }
+}

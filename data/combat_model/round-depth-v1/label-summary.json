@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "rows": 7070,
+  "reliable": 5490,
+  "reliable_ratio": 0.7765205091937766,
+  "estimated": 1580,
+  "uncalculable": 0,
+  "search_complete": 7070,
+  "budget_bound": 0,
+  "characters": {
+    "The Ironclad": 3492,
+    "The Silent": 1998
+  },
+  "rounds": [
+    {
+      "round": 8,
+      "count": 2332
+    },
+    {
+      "round": 9,
+      "count": 1996
+    },
+    {
+      "round": 10,
+      "count": 1162
+    }
+  ],
+  "expanded_nodes": {
+    "p50": 86.0,
+    "p90": 182.0,
+    "max": 542.0
+  },
+  "source_sha256": "96E58073058D6653C2A9015B27F1FCA1E46C49ADB5C980DD13AD54C2F72493FA"
+}

@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\work\\line-d-d2-relics\\d2-relic-merged-dedup.jsonl",
+  "source_sha256": "25B50DCDB1FCBD253E124AD3329FCBE730613E13F1919B0AB85656591FB21796",
+  "row_count": 67799,
+  "reliable_row_count": 49414,
+  "all_rows": {
+    "floor_distribution": {
+      "1": 67799
+    },
+    "act_distribution": {
+      "1": 67799
+    },
+    "round_distribution": {
+      "0": 10,
+      "1": 10885,
+      "2": 9964,
+      "3": 11708,
+      "4": 11667,
+      "5": 4350,
+      "6": 3452,
+      "7": 2522,
+      "8": 5113,
+      "9": 4886,
+      "10": 2243,
+      "11": 508,
+      "12": 200,
+      "13": 174,
+      "14": 105,
+      "15": 12
+    },
+    "enemy_count_distribution": {
+      "0": 10,
+      "1": 47748,
+      "3": 17137,
+      "4": 1784,
+      "5": 1120
+    },
+    "character_distribution": {
+      "The Ironclad": {
+        "rows": 36355,
+        "ratio": 0.5362173483384711
+      },
+      "The Silent": {
+        "rows": 31444,
+        "ratio": 0.46378265166152893
+      }
+    },
+    "starter_only_rows": 43968,
+    "starter_only_ratio": 0.6485051401938081,
+    "nonstarter_relic_occurrences": 47098,
+    "rows_with_nonstarter_relic": 23830,
+    "episodes_with_nonstarter_relic": 3023,
+    "no_potion_rows": 57277,
+    "no_potion_ratio": 0.8448059705895368,
+    "enemy_count_ge_3_rows": 20041,
+    "enemy_count_ge_3_ratio": 0.29559433029985693,
+    "relic_id_counts": {
+      "AKABEKO": 42,
+      "ANCHOR": 42,
+      "ART_OF_WAR": 52,
+      "BAG_OF_MARBLES": 42,
+      "BAG_OF_PREPARATION": 20,
+      "BOOK_REPAIR_KNIFE": 3472,
+      "BURNING_BLOOD": 23348,
+      "CENTENNIAL_PUZZLE": 20,
+      "DATA_DISK": 3302,
+      "EMBER_TEA": 2987,
+      "GORGET": 7863,
+      "GREMLIN_HORN": 2971,
+      "HAPPY_FLOWER": 62,
+      "LANTERN": 103,
+      "LIZARD_TAIL": 4561,
+      "ODDLY_SMOOTH_STONE": 2,
+      "ORICHALCUM": 30,
+      "PAPER_KRANE": 3000,
+      "PAPER_PHROG": 2975,
+      "PEN_NIB": 144,
+      "RINGING_TRIANGLE": 3000,
+      "RING_OF_THE_SNAKE": 20620,
+      "RUNIC_PYRAMID": 2975,
+      "SLING_OF_COURAGE": 2971,
+      "SWORD_OF_JADE": 2987,
+      "THE_ABACUS": 3472,
+      "VAJRA": 3
+    }
+  },
+  "reliable_coverage": {
+    "round_ge_8": {
+      "rows": 9752,
+      "ratio": 0.19735297688914072
+    },
+    "nonstarter_relic_count_ge_2": {
+      "rows": 15811,
+      "ratio": 0.31997004897397496
+    },
+    "has_potions": {
+      "rows": 7213,
+      "ratio": 0.14597077751244586
+    },
+    "act_ge_2": {
+      "rows": 0,
+      "ratio": 0.0
+    },
+    "enemy_count_ge_3": {
+      "rows": 7793,
+      "ratio": 0.15770834176549156
+    }
+  },
+  "reliable_character_distribution": {
+    "The Ironclad": {
+      "rows": 25855,
+      "ratio": 0.5232322823491318
+    },
+    "The Silent": {
+      "rows": 23559,
+      "ratio": 0.4767677176508682
+    }
+  },
+  "proposed_acceptance_thresholds": {
+    "status": "pending_human_confirmation",
+    "round_ge_8_reliable_ratio": 0.2,
+    "nonstarter_relic_count_ge_2_reliable_ratio": 0.3,
+    "has_potions_reliable_ratio": 0.2,
+    "act_ge_2_reliable_ratio": 0.25,
+    "enemy_count_ge_3_reliable_ratio": 0.35
+  },
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1,
+    "feature_schema_version": "combat-feature-v1"
+  }
+}

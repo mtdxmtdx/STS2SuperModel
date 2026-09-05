@@ -1,0 +1,10 @@
+{
+  "stage": "collect",
+  "seeds": 7000,
+  "turns": 14,
+  "workers": 16,
+  "seconds": 714.8290656,
+  "rows": 50657,
+  "seconds_per_seed": 0.10211843794285715,
+  "output": "D:\\STS2BestChoice\\work\\line-bc-round-depth\\rounddeep-7000-raw.jsonl"
+}

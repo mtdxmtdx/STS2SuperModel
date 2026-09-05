@@ -1,0 +1,15 @@
+{
+  "byte_identical": true,
+  "first_sha256": "4ECAA26A97E2D625881D8AEBCD8FC21F304C9E241C824A9D7FD8A4AF8B4A19A0",
+  "report_match": true,
+  "schema_version": 1,
+  "second_sha256": "4ECAA26A97E2D625881D8AEBCD8FC21F304C9E241C824A9D7FD8A4AF8B4A19A0",
+  "verdict": "pass",
+  "version_lock": {
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "game_commit": "41cef1ea",
+    "game_version": "v0.111.0",
+    "trace_schema": 1
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "before_reliable_eligible": 24,
+  "after_reliable_eligible": 38,
+  "d2_reliable": 14,
+  "d2_unsupported_with_reason": 6,
+  "strict_evidence_rule_changed": false,
+  "semantic_holds": [
+    "PARRYING_SHIELD"
+  ],
+  "resolved_prior_hold": "UNCEASING_TOP",
+  "relics": [
+    {
+      "relic_id": "BIIIG_HUG",
+      "terminal_status": "UnsupportedWithReason",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "affects_current_turn": true,
+      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.BiiigHug",
+      "reason": "shuffle-time Cinder generation needs an authoritative card template and stable generated identity"
+    },
+    {
+      "relic_id": "BOOKMARK",
+      "terminal_status": "UnsupportedWithReason",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "affects_current_turn": true,
+      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.Bookmark",
+      "reason": "the retained-card cost reduction selects a hidden random card and lacks a verified chance operator"
+    },
+    {
+      "relic_id": "BOOK_REPAIR_KNIFE",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-book-repair-knife-paired-report.json",
+      "reason": "version-locked paired public-state evidence plus zero-mismatch CLI-to-shadow action evidence passed"
+    },
+    {
+      "relic_id": "DATA_DISK",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-data-disk-paired-report.json",
+      "reason": "version-locked paired public-root evidence passed; the combat-start effect is materialized before search"
+    },
+    {
+      "relic_id": "DIVINE_RIGHT",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-divine-right-paired-report.json",
+      "reason": "version-locked paired public-root evidence passed; the combat-start effect is materialized before search"
+    },
+    {
+      "relic_id": "EMBER_TEA",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-ember-tea-paired-report.json",
+      "reason": "version-locked paired public-root evidence passed; the combat-start effect is materialized before search"
+    },
+    {
+      "relic_id": "GALACTIC_DUST",
+      "terminal_status": "UnsupportedWithReason",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "affects_current_turn": true,
+      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.GalacticDust",
+      "reason": "star-spend event history is absent from the current shadow state and feature contract"
+    },
+    {
+      "relic_id": "GIRYA",
+      "terminal_status": "UnsupportedWithReason",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "affects_current_turn": true,
+      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.Girya",
+      "reason": "rest-site training count is not injectable or observable in the current CLI relic-state contract"
+    },
+    {
+      "relic_id": "GORGET",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-gorget-paired-report.json",
+      "reason": "version-locked paired public-root evidence passed; the combat-start effect is materialized before search"
+    },
+    {
+      "relic_id": "GREMLIN_HORN",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "p1-csharp-relic-d2-gremlin-horn-diff-report.json",
+      "reason": "strict version-locked CLI-to-ShadowDiff evidence passed"
+    },
+    {
+      "relic_id": "HISTORY_COURSE",
+      "terminal_status": "UnsupportedWithReason",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "affects_current_turn": true,
+      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.HistoryCourse",
+      "reason": "previous-turn last Attack/Skill identity is absent from public history state"
+    },
+    {
+      "relic_id": "LIZARD_TAIL",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-lizard-tail-paired-report.json",
+      "reason": "version-locked paired public-state evidence plus zero-mismatch CLI-to-shadow action evidence passed"
+    },
+    {
+      "relic_id": "PAPER_KRANE",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-paper-krane-paired-report.json",
+      "reason": "version-locked paired public-state evidence plus zero-mismatch CLI-to-shadow action evidence passed"
+    },
+    {
+      "relic_id": "PAPER_PHROG",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "p1-csharp-relic-d2-paper-phrog-diff-report-1.json",
+      "reason": "strict version-locked CLI-to-ShadowDiff evidence passed"
+    },
+    {
+      "relic_id": "RINGING_TRIANGLE",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-ringing-triangle-paired-report.json",
+      "reason": "version-locked paired public-state evidence plus zero-mismatch CLI-to-shadow action evidence passed"
+    },
+    {
+      "relic_id": "RUNIC_PYRAMID",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-runic-pyramid-paired-report.json",
+      "reason": "version-locked paired public-state evidence plus zero-mismatch CLI-to-shadow action evidence passed"
+    },
+    {
+      "relic_id": "SLING_OF_COURAGE",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-sling-of-courage-paired-report.json",
+      "reason": "version-locked paired public-root evidence passed; the combat-start effect is materialized before search"
+    },
+    {
+      "relic_id": "STONE_CRACKER",
+      "terminal_status": "UnsupportedWithReason",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "affects_current_turn": true,
+      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.StoneCracker",
+      "reason": "random draw-pile upgrade identities require a validated no-replacement chance operator"
+    },
+    {
+      "relic_id": "SWORD_OF_JADE",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-sword-of-jade-paired-report.json",
+      "reason": "version-locked paired public-root evidence passed; the combat-start effect is materialized before search"
+    },
+    {
+      "relic_id": "THE_ABACUS",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "affects_current_turn": true,
+      "evidence_reference": "d2-relic-the-abacus-paired-report.json",
+      "reason": "version-locked paired public-state evidence plus zero-mismatch CLI-to-shadow action evidence passed"
+    }
+  ],
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  }
+}

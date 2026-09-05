@@ -1,0 +1,1804 @@
+{
+  "schema_version": 1,
+  "source": "MegaCrit.Sts2.Core.Models.ModelDb.AllPotions",
+  "authoritative_denominator": true,
+  "game_version": "v0.111.0",
+  "game_commit": "41cef1ea",
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "total_potions": 66,
+  "potions": [
+    {
+      "potion_id": "AMBERGRIS",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.Ambergris",
+      "rarity": "Event",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "HealPercent"
+      ],
+      "dynamic_vars": {
+        "HealPercent": 50
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "AMBERGRIS is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "376D0BE70C28C05516F00B57B71C3D651C8E5CFDB1E43998E0F767D4B24A3992",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "ASHWATER",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.Ashwater",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "ASHWATER is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "16420D7DBF845E49EE6BE607AF652C8040BB11DF55292180D7097B7EF4BF0393",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "ATTACK_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.AttackPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "ATTACK_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "17FF3EA2301968C6E75DC1F983A1CD27ACC5BA62139D73110192AF760B02EB1A",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "BEETLE_JUICE",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.BeetleJuice",
+      "rarity": "Rare",
+      "target_type": "AnyEnemy",
+      "dynamic_var_names": [
+        "DamageDecrease",
+        "Repeat"
+      ],
+      "dynamic_vars": {
+        "DamageDecrease": 30,
+        "Repeat": 4
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "BEETLE_JUICE is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "9C8D1A1E977E5A274955B5E400D26D1966C93318FB6D1B94B2E70FAA612F39DC",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "BLESSING_OF_THE_FORGE",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.BlessingOfTheForge",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "UpgradeCards",
+          "amount": 0,
+          "status_id": "HAND_ALL",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "BLESSING_OF_THE_FORGE"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "1FBEC30185CDA8AFFC45E8D98689B8A48FAC3C083A52CCF6D85D89541914F8B9",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "BLOCK_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.BlockPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Block"
+      ],
+      "dynamic_vars": {
+        "Block": 12
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "Block",
+          "amount": 12,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "BLOCK_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "DC552B3F725B8E194C0974E77CDB0F402A7559226B5A0BAAD9D872B68988D6D6",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "BLOOD_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.BloodPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "HealPercent"
+      ],
+      "dynamic_vars": {
+        "HealPercent": 20
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "HealPercent",
+          "amount": 20,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "BLOOD_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "ED42ABA0BC8288A6EB4857EBA896DBAFB825F73C1D1DA726D8BA65ADE9253695",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "BONE_BREW",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.BoneBrew",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Summon"
+      ],
+      "dynamic_vars": {
+        "Summon": 15
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "BONE_BREW is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "75F9FAFF61B8D2625DE1C5FB8846FC64057E935DAF9AEDEA2C94CEE7A625B65F",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "BOTTLED_POTENTIAL",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.BottledPotential",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Cards"
+      ],
+      "dynamic_vars": {
+        "Cards": 5
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "BOTTLED_POTENTIAL is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "D99C4524725037036212F7CB4D95C0E1A63B5D941DC8D6BB6F1E2927E4770FD2",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "CLARITY",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.Clarity",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Cards",
+        "ClarityPower"
+      ],
+      "dynamic_vars": {
+        "Cards": 1,
+        "ClarityPower": 3
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "Draw",
+          "amount": 1,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "CLARITY"
+        },
+        {
+          "kind": "ApplyStatus",
+          "amount": 3,
+          "status_id": "CLARITY",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "CLARITY"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "DDF5515C745695E60E747CA46DE4CDAC38837B7E89B892685805957AC476835F",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "COLORLESS_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.ColorlessPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "COLORLESS_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "9459B8F3FEC708D61FE91E21B166AF8FB2AD7C18A381666C4176B4B4AC4A84F0",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "COSMIC_CONCOCTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.CosmicConcoction",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Cards"
+      ],
+      "dynamic_vars": {
+        "Cards": 3
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "COSMIC_CONCOCTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "A408A81450CEC9EE17E76D0F349D81393B294C85D6F9EA6884C8CC1131401CB4",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "CUNNING_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.CunningPotion",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Cards"
+      ],
+      "dynamic_vars": {
+        "Cards": 3
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "CUNNING_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "C9E906036594E0C4CA726D58E73C39232149E05BB512477D953C1FF0A1FAEDCC",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "CURE_ALL",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.CureAll",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Cards",
+        "Energy"
+      ],
+      "dynamic_vars": {
+        "Cards": 2,
+        "Energy": 1
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "GainEnergy",
+          "amount": 1,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "CURE_ALL"
+        },
+        {
+          "kind": "Draw",
+          "amount": 2,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "CURE_ALL"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "A970E515017E0307FEEE019A3735E06779290C0171FC5AFAE6FB22508B511616",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "DEPRECATED_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.DeprecatedPotion",
+      "rarity": "None",
+      "target_type": "AnyEnemy",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "DEPRECATED_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": []
+    },
+    {
+      "potion_id": "DEXTERITY_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.DexterityPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "DexterityPower"
+      ],
+      "dynamic_vars": {
+        "DexterityPower": 2
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 2,
+          "status_id": "DEXTERITY",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "DEXTERITY_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "09EE69A2C73BD3D733E59A52C7DD47BDEBF227CD8EA4D770069C7C226A492AD8",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "DISTILLED_CHAOS",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.DistilledChaos",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Repeat"
+      ],
+      "dynamic_vars": {
+        "Repeat": 3
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "DISTILLED_CHAOS is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "9F8C2DCA882FA67F5239EFDF32D9A1B0B078EE02D6CC2C833385E44A3256CC38",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "DROPLET_OF_PRECOGNITION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.DropletOfPrecognition",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "DROPLET_OF_PRECOGNITION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "887DDF40CFC2D0182761938BD20EA2052047BDD814ADB9BA4C4AC0C81DEA3A71",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "DUPLICATOR",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.Duplicator",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "DUPLICATOR is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "6E5C740D5B2C64AD41EFB8318FAC0C808411C32D627615DC75F3FC9BD16DF5B6",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "ENERGY_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.EnergyPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Energy"
+      ],
+      "dynamic_vars": {
+        "Energy": 2
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "GainEnergy",
+          "amount": 2,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "ENERGY_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "F281358548561409241EA79CAB11B8F63DA7FB337AC6E9A317AAA23185A31115",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "ENTROPIC_BREW",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.EntropicBrew",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "ENTROPIC_BREW is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "F8CC9C1C7C4D93E36EA8A534CEF035CDD98606E14AB1B36F43F955283EDF8693",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "ESSENCE_OF_DARKNESS",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.EssenceOfDarkness",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "ESSENCE_OF_DARKNESS is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "9A898CFF91A42BE0072BD4AFBF5D244836C16397ED42ECD8F0B13CA49DA68495",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "EXPLOSIVE_AMPOULE",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.ExplosiveAmpoule",
+      "rarity": "Common",
+      "target_type": "AllEnemies",
+      "dynamic_var_names": [
+        "Damage"
+      ],
+      "dynamic_vars": {
+        "Damage": 10
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "Damage",
+          "amount": 10,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "EXPLOSIVE_AMPOULE"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "8A785A47D9E108C133129FFBC09540A124B4AAB9B1D9EAFC0B2610E22F5D27FA",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "FAIRY_IN_A_BOTTLE",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.FairyInABottle",
+      "rarity": "Rare",
+      "target_type": "Self",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "FAIRY_IN_A_BOTTLE is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "AfterPreventingDeath",
+          "signature": "System.Threading.Tasks.Task AfterPreventingDeath(MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "5A3D13DBF84B4266459F8DD5B9F6FF4BFB00B4C24920891736406335BD6122FE",
+          "has_il": true
+        },
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "6FFFD4038024C7E7F38C017C4355E304E5BDDCF00489E4CA790D0BED537DE2C5",
+          "has_il": true
+        },
+        {
+          "name": "ShouldDie",
+          "signature": "Boolean ShouldDie(MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "FE21262DECB6A32E707FA9818BACC591CC314DFE889ADD3D5519498538D83DA1",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "FIRE_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.FirePotion",
+      "rarity": "Common",
+      "target_type": "AnyEnemy",
+      "dynamic_var_names": [
+        "Damage"
+      ],
+      "dynamic_vars": {
+        "Damage": 20
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "Damage",
+          "amount": 20,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "FIRE_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "1C9CEA6D4F7CE82E013320B7F5BC0FE08665643EC1272C5077DAFEA28F29FC0B",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "FLEX_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.FlexPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "StrengthPower"
+      ],
+      "dynamic_vars": {
+        "StrengthPower": 5
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "FLEX_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "5A49D4B153F74669FB60285D1BD33C303E0B6200B3E5D68311D1ADBB24FD933C",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "FOCUS_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.FocusPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "FocusPower"
+      ],
+      "dynamic_vars": {
+        "FocusPower": 2
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 2,
+          "status_id": "FOCUS",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "FOCUS_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "46DB44AB085433E3FD7E22C41BB7D269EF6D29045BB668EC98D758CB47ECE7B8",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "FORTIFIER",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.Fortifier",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "FORTIFIER is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "1F4357C0672E310DA64E1F771F06752C01E659D541B8EA7EBC8B8F3119552597",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "FOUL_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.FoulPotion",
+      "rarity": "Event",
+      "target_type": "TargetedNoCreature",
+      "dynamic_var_names": [
+        "Damage",
+        "Gold"
+      ],
+      "dynamic_vars": {
+        "Damage": 12,
+        "Gold": 100
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "FOUL_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "GetFoulPotionMerchantTarget",
+          "signature": "System.ValueTuple\u00602[MegaCrit.Sts2.Core.Nodes.Rooms.NMerchantButton,Godot.Control] GetFoulPotionMerchantTarget(MegaCrit.Sts2.Core.Rooms.AbstractRoom)",
+          "il_sha256": "A7E7B30C59EB8AEF0598CAE375136D3F549BBC6F7719CF471ACC32A68EA50D05",
+          "has_il": true
+        },
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "D8695182FAB83819E560EE0135A1096663FB979BB6D6002B683BCB9B8FB2E11C",
+          "has_il": true
+        },
+        {
+          "name": "ShowPotionVfx",
+          "signature": "Void ShowPotionVfx(MegaCrit.Sts2.Core.Nodes.Rooms.NMerchantButton)",
+          "il_sha256": "E2F2F91D0E30B356B9710F7E5B1159835A326E0D15164702A9A082E748FF33A7",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "FRUIT_JUICE",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.FruitJuice",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "MaxHp"
+      ],
+      "dynamic_vars": {
+        "MaxHp": 5
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ModifyMaxHp",
+          "amount": 5,
+          "status_id": "HEAL_SAME_AMOUNT",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "FRUIT_JUICE"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "E5B1013EE5607999CA061D2219D54D7B3D7794EF3C1A425EC0B58C3796100198",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "FYSH_OIL",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.FyshOil",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "DexterityPower",
+        "StrengthPower"
+      ],
+      "dynamic_vars": {
+        "DexterityPower": 1,
+        "StrengthPower": 1
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 1,
+          "status_id": "STRENGTH",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "FYSH_OIL"
+        },
+        {
+          "kind": "ApplyStatus",
+          "amount": 1,
+          "status_id": "DEXTERITY",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "FYSH_OIL"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "05C4213681F7797B68CF155060DB31EFBD76910C7EE45C71332C6A22D47C676C",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "GAMBLERS_BREW",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.GamblersBrew",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "GAMBLERS_BREW is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "ED21C23EF6FD8CEDEA51F50D6D3277B29E66B785A7B0553996703B6A75EA2892",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "GHOST_IN_A_JAR",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.GhostInAJar",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "IntangiblePower"
+      ],
+      "dynamic_vars": {
+        "IntangiblePower": 1
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 1,
+          "status_id": "INTANGIBLE",
+          "duration": 1,
+          "is_debuff": false,
+          "source_id": "GHOST_IN_A_JAR"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "F8D286D402354212504672C129273414D600992D1EE6DB3DDDFB86F638FD3809",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "GIGANTIFICATION_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.GigantificationPotion",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "GigantificationPower"
+      ],
+      "dynamic_vars": {
+        "GigantificationPower": 1
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "GIGANTIFICATION_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "6E00F2D68DAC21EFC38D7C391CF25730FF17137A511E4055A7DCDECDC3111231",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "GLOWWATER_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.GlowwaterPotion",
+      "rarity": "Event",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Cards"
+      ],
+      "dynamic_vars": {
+        "Cards": 10
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ExhaustHand",
+          "amount": 0,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "GLOWWATER_POTION"
+        },
+        {
+          "kind": "Draw",
+          "amount": 10,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "GLOWWATER_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "0A5F2F4EC5044A71B7609C701452FF67B02F26B3A75D9090CA1771920F2CE07D",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "HEART_OF_IRON",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.HeartOfIron",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "PlatingPower"
+      ],
+      "dynamic_vars": {
+        "PlatingPower": 7
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 7,
+          "status_id": "PLATING",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "HEART_OF_IRON"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "E20A52F4CCC99D160CF7392946182331D9B41B6EAC129B8B6DD0EEEF472C7DFE",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "KINGS_COURAGE",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.KingsCourage",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Forge"
+      ],
+      "dynamic_vars": {
+        "Forge": 15
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "KINGS_COURAGE is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "627B0F9D1BB69D0924AAE64D4A0B1E8DA53045746CA7732E98A2CEF782F97E95",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "LIQUID_BRONZE",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.LiquidBronze",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "ThornsPower"
+      ],
+      "dynamic_vars": {
+        "ThornsPower": 3
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 3,
+          "status_id": "THORNS",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "LIQUID_BRONZE"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "8578728CA5B899060F6B14D72210415F1B87A5E7F377AE99D22E5567A751101E",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "LIQUID_MEMORIES",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.LiquidMemories",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "LIQUID_MEMORIES is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "D683F07E91E4D620A7CCAFB3A7746E16EC9F0C1B39835E9808932FD465D81839",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "LUCKY_TONIC",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.LuckyTonic",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "BufferPower"
+      ],
+      "dynamic_vars": {
+        "BufferPower": 1
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 1,
+          "status_id": "BUFFER",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "LUCKY_TONIC"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "FDE4DB965AEA32B891FB9AF77FFD34AB97A2C9A2D231DD34EC87E0EED1B5E512",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "MAZALETHS_GIFT",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.MazalethsGift",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "RitualPower"
+      ],
+      "dynamic_vars": {
+        "RitualPower": 1
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "MAZALETHS_GIFT is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "08CA50556BCFD41D1D41C5EE35D37976DAD04EFC813D0C852608E69759210F60",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "MOCK_DISCARD_AND_ADD_SHIVS_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.Mocks.MockDiscardAndAddShivsPotion",
+      "rarity": "None",
+      "target_type": "Self",
+      "dynamic_var_names": [
+        "Cards",
+        "Shivs"
+      ],
+      "dynamic_vars": {
+        "Cards": 2,
+        "Shivs": 2
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "MOCK_DISCARD_AND_ADD_SHIVS_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "AB470BDBE4AB18CFF52B9B2DB06926F0C985F3242CAC419C2F422873C26FA8C6",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "OROBIC_ACID",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.OrobicAcid",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "OROBIC_ACID is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "79A2D5ACE76A83D2EAE11A54E54D3329C1DC4EECABC6506BF3D17B4D9EAC0AFF",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "POISON_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.PoisonPotion",
+      "rarity": "Common",
+      "target_type": "AnyEnemy",
+      "dynamic_var_names": [
+        "PoisonPower"
+      ],
+      "dynamic_vars": {
+        "PoisonPower": 6
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 6,
+          "status_id": "POISON",
+          "duration": -1,
+          "is_debuff": true,
+          "source_id": "POISON_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "BD55FB150E1C08291FC30A91C560BD84FA937A87D91CD22A3ED2BBDADC89ACCE",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "POTION_OF_BINDING",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.PotionOfBinding",
+      "rarity": "Uncommon",
+      "target_type": "AllEnemies",
+      "dynamic_var_names": [
+        "VulnerablePower",
+        "WeakPower"
+      ],
+      "dynamic_vars": {
+        "VulnerablePower": 1,
+        "WeakPower": 1
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 1,
+          "status_id": "WEAK",
+          "duration": 1,
+          "is_debuff": true,
+          "source_id": "POTION_OF_BINDING"
+        },
+        {
+          "kind": "ApplyStatus",
+          "amount": 1,
+          "status_id": "VULNERABLE",
+          "duration": 1,
+          "is_debuff": true,
+          "source_id": "POTION_OF_BINDING"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "397484207EC38459E3E83F2CBAC3A2D57DBC95601F0591D5DBB8D0FB6C66DF7E",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "POTION_OF_CAPACITY",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.PotionOfCapacity",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Repeat"
+      ],
+      "dynamic_vars": {
+        "Repeat": 2
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "POTION_OF_CAPACITY is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "E8554924EAC448A1B64987F4B807ADC607330F7EB45AC68001C67534BA21AA4C",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "POTION_OF_DOOM",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.PotionOfDoom",
+      "rarity": "Common",
+      "target_type": "AnyEnemy",
+      "dynamic_var_names": [
+        "DoomPower"
+      ],
+      "dynamic_vars": {
+        "DoomPower": 33
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 33,
+          "status_id": "DOOM",
+          "duration": -1,
+          "is_debuff": true,
+          "source_id": "POTION_OF_DOOM"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "BE5BCABF8BDA0B5CD0661E70F5A54EB107B0A0704F96642A0C8E29BB1BB78415",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "POTION_SHAPED_ROCK",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.PotionShapedRock",
+      "rarity": "Token",
+      "target_type": "AnyEnemy",
+      "dynamic_var_names": [
+        "Damage"
+      ],
+      "dynamic_vars": {
+        "Damage": 15
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "Damage",
+          "amount": 15,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "POTION_SHAPED_ROCK"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "602D798E7136B618506C00EA98DE700A30C1385E8924A9E6C78ACF85EBE3DB4A",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "POT_OF_GHOULS",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.PotOfGhouls",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Cards"
+      ],
+      "dynamic_vars": {
+        "Cards": 2
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "POT_OF_GHOULS is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "4C0E9B18C5D517AE07027B5A6F0F30FB06B528B51B8903E521EC383CC32944D4",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "POWDERED_DEMISE",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.PowderedDemise",
+      "rarity": "Uncommon",
+      "target_type": "AnyEnemy",
+      "dynamic_var_names": [
+        "Demise"
+      ],
+      "dynamic_vars": {
+        "Demise": 9
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "POWDERED_DEMISE is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "DC90195A7054DDB085AF313B99030DECC1FD17C80B8754AE8CE5DAAB1DF7BBA0",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "POWER_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.PowerPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "POWER_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "39E03E2A003419D71C893582FDE0057486D8B7B8CEE1FCBA09AC56DEF6A1F631",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "RADIANT_TINCTURE",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.RadiantTincture",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Energy",
+        "RadiancePower"
+      ],
+      "dynamic_vars": {
+        "Energy": 1,
+        "RadiancePower": 3
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "GainEnergy",
+          "amount": 1,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "RADIANT_TINCTURE"
+        },
+        {
+          "kind": "ApplyStatus",
+          "amount": 3,
+          "status_id": "RADIANCE",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "RADIANT_TINCTURE"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "C1EB829BAD52B7C440D47B63033D95EDCB877BB6A8E9591C2F7F025CE375360E",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "REGEN_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.RegenPotion",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "RegenPower"
+      ],
+      "dynamic_vars": {
+        "RegenPower": 5
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 5,
+          "status_id": "REGEN",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "REGEN_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "3E53DD7D8EC84F28A3EA6BE9CE1BF0B8ED7F83B15726D4211B0DF0BBAF679198",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "SHACKLING_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.ShacklingPotion",
+      "rarity": "Rare",
+      "target_type": "AllEnemies",
+      "dynamic_var_names": [
+        "StrengthPower"
+      ],
+      "dynamic_vars": {
+        "StrengthPower": 7
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "SHACKLING_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "188A01C93F718E154C62DA48C5A77D4B01B5FD2D99A7DC0D905232A2174C49CF",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "SHIP_IN_A_BOTTLE",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.ShipInABottle",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Block"
+      ],
+      "dynamic_vars": {
+        "Block": 10
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "Block",
+          "amount": 10,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "SHIP_IN_A_BOTTLE"
+        },
+        {
+          "kind": "ApplyStatus",
+          "amount": 10,
+          "status_id": "SCHEDULED_BLOCK",
+          "duration": 1,
+          "is_debuff": false,
+          "source_id": "SHIP_IN_A_BOTTLE"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "11DD1CB85DCF1A8CD4D5460BBBB8A375D6547FE136703A03ED032A5A832E26DC",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "SKILL_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.SkillPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "SKILL_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "D3D72CE6C665DCB9CA5B18558FCC283537746BB6323714D0392DBC5A3D580624",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "SNECKO_OIL",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.SneckoOil",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Cards"
+      ],
+      "dynamic_vars": {
+        "Cards": 7
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "SNECKO_OIL is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "NextEnergyCost",
+          "signature": "Int32 NextEnergyCost()",
+          "il_sha256": "2A8832F5E5B02AB91E69269C2AA440EDCE257B547082D60700229C593E10A47B",
+          "has_il": true
+        },
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "E78D7BE9E8B0A85D4B9E027FD3532151A1A6C0BE75E53F119877B1377618F845",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "SOLDIERS_STEW",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.SoldiersStew",
+      "rarity": "Rare",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "SOLDIERS_STEW is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "D3CCBDA99D399356D70E50FC4F37BD92ABC90B78D15F5A214BFECE987F48CC04",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "SPEED_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.SpeedPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "DexterityPower"
+      ],
+      "dynamic_vars": {
+        "DexterityPower": 5
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "SPEED_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "0DD7D4D9CE102673E2CC34857E010EF2096B16671CEFB1355C683A52A6B54916",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "STABLE_SERUM",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.StableSerum",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Repeat"
+      ],
+      "dynamic_vars": {
+        "Repeat": 2
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "STABLE_SERUM is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "0C85EC4FFBA139B53820C60625F9E430EAA71DBEF541030E3F531ED2AF1DE08C",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "STAR_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.StarPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Stars"
+      ],
+      "dynamic_vars": {
+        "Stars": 3
+      },
+      "simulator_supported": false,
+      "unsupported_reason": "STAR_POTION is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "AD4D4366D80EB1CFA1BDA613C3583DF3701F163C98A0C28650616A6A7BC8D7F0",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "STRENGTH_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.StrengthPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "StrengthPower"
+      ],
+      "dynamic_vars": {
+        "StrengthPower": 2
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 2,
+          "status_id": "STRENGTH",
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "STRENGTH_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "FB2B111CD10536D353CA2267EC015BDBA5FCCF7CD86346C5493485EB27FBFAE7",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "SWIFT_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.SwiftPotion",
+      "rarity": "Common",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [
+        "Cards"
+      ],
+      "dynamic_vars": {
+        "Cards": 3
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "Draw",
+          "amount": 3,
+          "status_id": null,
+          "duration": -1,
+          "is_debuff": false,
+          "source_id": "SWIFT_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "5CB032CC7A520B9D6DE5E2E75E4BFE7C7EED5DB9ECCD2061467F0FF05FE369E5",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "TOUCH_OF_INSANITY",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.TouchOfInsanity",
+      "rarity": "Uncommon",
+      "target_type": "AnyPlayer",
+      "dynamic_var_names": [],
+      "dynamic_vars": {},
+      "simulator_supported": false,
+      "unsupported_reason": "TOUCH_OF_INSANITY is not deterministically modeled in potion-semantic-v0.111",
+      "effects": [],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "1331F704E7CA584793CE7CE5BF82BDA851DD5E0EC1335C3DECB7BB380539AE48",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "VULNERABLE_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.VulnerablePotion",
+      "rarity": "Common",
+      "target_type": "AnyEnemy",
+      "dynamic_var_names": [
+        "VulnerablePower"
+      ],
+      "dynamic_vars": {
+        "VulnerablePower": 3
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 3,
+          "status_id": "VULNERABLE",
+          "duration": 3,
+          "is_debuff": true,
+          "source_id": "VULNERABLE_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "E585FE1CF12C3CB1F9151218BD21BE6D460E0CA81FE74C0253285F2BFB562595",
+          "has_il": true
+        }
+      ]
+    },
+    {
+      "potion_id": "WEAK_POTION",
+      "runtime_type": "MegaCrit.Sts2.Core.Models.Potions.WeakPotion",
+      "rarity": "Common",
+      "target_type": "AnyEnemy",
+      "dynamic_var_names": [
+        "WeakPower"
+      ],
+      "dynamic_vars": {
+        "WeakPower": 3
+      },
+      "simulator_supported": true,
+      "unsupported_reason": null,
+      "effects": [
+        {
+          "kind": "ApplyStatus",
+          "amount": 3,
+          "status_id": "WEAK",
+          "duration": 3,
+          "is_debuff": true,
+          "source_id": "WEAK_POTION"
+        }
+      ],
+      "declared_methods": [
+        {
+          "name": "OnUse",
+          "signature": "System.Threading.Tasks.Task OnUse(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext, MegaCrit.Sts2.Core.Entities.Creatures.Creature)",
+          "il_sha256": "60C49FAA8A7410BD49782257C386FB97BF18EBCB51CF3DC166AA2A5B3E8EFD94",
+          "has_il": true
+        }
+      ]
+    }
+  ]
+}

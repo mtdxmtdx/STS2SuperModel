@@ -401,8 +401,8 @@
         "Swift"
       ],
       "dynamic_vars": {
-        "Cards": 4,
-        "Swift": 2
+        "Swift": 2,
+        "Cards": 4
       },
       "has_counter": false,
       "default_counter": null,
@@ -699,8 +699,8 @@
         "Cards"
       ],
       "dynamic_vars": {
-        "Cards": 3,
-        "Energy": 1
+        "Energy": 1,
+        "Cards": 3
       },
       "has_counter": false,
       "default_counter": null,
@@ -942,10 +942,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "hp_trigger",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.BookRepairKnife",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-book-repair-knife-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: AfterDiedToDoom"
     },
@@ -972,8 +972,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "Cards": 2,
-        "Energy": 1
+        "Energy": 1,
+        "Cards": 2
       },
       "has_counter": false,
       "default_counter": null,
@@ -1073,8 +1073,8 @@
         "LoseEnergy"
       ],
       "dynamic_vars": {
-        "GainEnergy": 1,
-        "LoseEnergy": 2
+        "LoseEnergy": 2,
+        "GainEnergy": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -1874,10 +1874,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "combat_start",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.DataDisk",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-data-disk-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: AfterRoomEntered"
     },
@@ -2154,10 +2154,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "combat_start",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.DivineRight",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-divine-right-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: AfterRoomEntered"
     },
@@ -2436,10 +2436,10 @@
       "has_counter": true,
       "default_counter": 5,
       "combat_relevance": "combat_start",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.EmberTea",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-ember-tea-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: AfterRoomEntered"
     },
@@ -2629,8 +2629,8 @@
         "Turns"
       ],
       "dynamic_vars": {
-        "Turns": 5,
-        "Energy": 1
+        "Energy": 1,
+        "Turns": 5
       },
       "has_counter": true,
       "default_counter": 0,
@@ -3450,8 +3450,8 @@
         "SharpAmount"
       ],
       "dynamic_vars": {
-        "Cards": 3,
-        "SharpAmount": 3
+        "SharpAmount": 3,
+        "Cards": 3
       },
       "has_counter": false,
       "default_counter": null,
@@ -3582,10 +3582,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "combat_start",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.Gorget",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-gorget-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: AfterRoomEntered"
     },
@@ -3610,16 +3610,16 @@
         "Cards"
       ],
       "dynamic_vars": {
-        "Cards": 1,
-        "Energy": 1
+        "Energy": 1,
+        "Cards": 1
       },
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "hp_trigger",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.GremlinHorn",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "p1-csharp-relic-d2-gremlin-horn-diff-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: AfterDeath"
     },
@@ -3679,8 +3679,8 @@
         "Turns"
       ],
       "dynamic_vars": {
-        "Turns": 3,
-        "Energy": 1
+        "Energy": 1,
+        "Turns": 3
       },
       "has_counter": true,
       "default_counter": 0,
@@ -3878,8 +3878,8 @@
         "ExtraDamage"
       ],
       "dynamic_vars": {
-        "ExtraDamage": 1,
-        "Lightning": 3
+        "Lightning": 3,
+        "ExtraDamage": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -3914,8 +3914,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "Block": 4,
-        "Energy": 2
+        "Energy": 2,
+        "Block": 4
       },
       "has_counter": false,
       "default_counter": null,
@@ -4081,8 +4081,8 @@
         "Cards"
       ],
       "dynamic_vars": {
-        "Cards": 1,
-        "ExhaustAmount": 5
+        "ExhaustAmount": 5,
+        "Cards": 1
       },
       "has_counter": true,
       "default_counter": 0,
@@ -4580,10 +4580,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "hp_trigger",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.LizardTail",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-lizard-tail-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: ShouldDieLate, AfterPreventingDeath"
     },
@@ -5540,8 +5540,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "Cards": 10,
-        "Energy": 1
+        "Energy": 1,
+        "Cards": 10
       },
       "has_counter": true,
       "default_counter": 0,
@@ -6102,8 +6102,8 @@
         "CardTitles"
       ],
       "dynamic_vars": {
-        "Cards": 5,
-        "CardTitles": 0
+        "CardTitles": 0,
+        "Cards": 5
       },
       "has_counter": false,
       "default_counter": null,
@@ -6239,10 +6239,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "damage_trigger",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.PaperKrane",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-paper-krane-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: ModifyWeakMultiplier"
     },
@@ -6271,10 +6271,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "damage_trigger",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.PaperPhrog",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "p1-csharp-relic-d2-paper-phrog-diff-report-1.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: ModifyVulnerableMultiplier"
     },
@@ -6301,8 +6301,8 @@
         "Damage"
       ],
       "dynamic_vars": {
-        "Damage": 6,
-        "Block": 10
+        "Block": 10,
+        "Damage": 6
       },
       "has_counter": false,
       "default_counter": null,
@@ -6365,8 +6365,8 @@
         "Turns"
       ],
       "dynamic_vars": {
-        "Turns": 3,
-        "Cards": 1
+        "Cards": 1,
+        "Turns": 3
       },
       "has_counter": true,
       "default_counter": 0,
@@ -6528,8 +6528,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "StrengthPower": 1,
-        "Energy": 1
+        "Energy": 1,
+        "StrengthPower": 1
       },
       "has_counter": false,
       "default_counter": null,
@@ -6664,8 +6664,8 @@
         "Turns"
       ],
       "dynamic_vars": {
-        "Turns": 4,
-        "Cards": 2
+        "Cards": 2,
+        "Turns": 4
       },
       "has_counter": true,
       "default_counter": 0,
@@ -6966,8 +6966,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "CombatCount": 5,
-        "Energy": 1
+        "Energy": 1,
+        "CombatCount": 5
       },
       "has_counter": true,
       "default_counter": 0,
@@ -7173,8 +7173,8 @@
         "StrengthPower"
       ],
       "dynamic_vars": {
-        "StrengthPower": 3,
-        "HpThreshold": 50
+        "HpThreshold": 50,
+        "StrengthPower": 3
       },
       "has_counter": false,
       "default_counter": null,
@@ -7311,10 +7311,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "turn_end",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.RingingTriangle",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-ringing-triangle-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: ShouldFlush"
     },
@@ -7339,16 +7339,16 @@
         "Turns"
       ],
       "dynamic_vars": {
-        "Turns": 3,
-        "Cards": 2
+        "Cards": 2,
+        "Turns": 3
       },
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "turn_start",
       "support_status": "simulator_supported",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "evidence_pending: one or more reports are not Reliable/mismatch-free",
-      "evidence_reference": "p1-csharp-relic-per-turn-draw-diff-report-0.json; p1-csharp-relic-per-turn-draw-diff-report-1.json",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "p1-relic-ring-of-the-drake-paired-control-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: ModifyHandDraw"
     },
@@ -7568,10 +7568,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "turn_end",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.RunicPyramid",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-runic-pyramid-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: ShouldFlush"
     },
@@ -7731,8 +7731,8 @@
         "Gold"
       ],
       "dynamic_vars": {
-        "Gold": 3,
-        "Energy": 1
+        "Energy": 1,
+        "Gold": 3
       },
       "has_counter": false,
       "default_counter": null,
@@ -7839,8 +7839,8 @@
         "Wishes"
       ],
       "dynamic_vars": {
-        "HpLoss": 9,
-        "Wishes": 3
+        "Wishes": 3,
+        "HpLoss": 9
       },
       "has_counter": false,
       "default_counter": null,
@@ -8046,10 +8046,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "combat_start",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.SlingOfCourage",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-sling-of-courage-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: AfterRoomEntered"
     },
@@ -8275,8 +8275,8 @@
         "DamageTurn"
       ],
       "dynamic_vars": {
-        "Damage": 52,
-        "DamageTurn": 7
+        "DamageTurn": 7,
+        "Damage": 52
       },
       "has_counter": false,
       "default_counter": null,
@@ -8513,10 +8513,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "combat_start",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.SwordOfJade",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-sword-of-jade-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: AfterRoomEntered"
     },
@@ -8647,9 +8647,9 @@
         "DazedCount"
       ],
       "dynamic_vars": {
-        "DazedCount": 2,
         "Heal": 1,
-        "Combats": 1
+        "Combats": 1,
+        "DazedCount": 2
       },
       "has_counter": false,
       "default_counter": null,
@@ -8689,10 +8689,10 @@
       "has_counter": false,
       "default_counter": null,
       "combat_relevance": "card_play",
-      "support_status": "unsupported_known_effect",
-      "evidence_level": "heuristic_inferred",
-      "evidence_source": "sts2.dll v0.111.0 ModelDb.AllRelics \u002B declared-method reflection",
-      "evidence_reference": "MegaCrit.Sts2.Core.Models.Relics.TheAbacus",
+      "support_status": "simulator_supported",
+      "evidence_level": "live_observed",
+      "evidence_source": "strict_cli_shadow_diff: all referenced reports passed",
+      "evidence_reference": "d2-relic-the-abacus-paired-report.json",
       "verified_game_version": "0.111.0",
       "notes": "Declared methods: AfterShuffle"
     },
@@ -8717,8 +8717,8 @@
         "DamageThreshold"
       ],
       "dynamic_vars": {
-        "DamageMinimum": 5,
-        "DamageThreshold": 4
+        "DamageThreshold": 4,
+        "DamageMinimum": 5
       },
       "has_counter": false,
       "default_counter": null,
@@ -8946,8 +8946,8 @@
         "UpgradedRelic"
       ],
       "dynamic_vars": {
-        "StarterRelic": 0,
-        "UpgradedRelic": 0
+        "UpgradedRelic": 0,
+        "StarterRelic": 0
       },
       "has_counter": false,
       "default_counter": null,
@@ -9376,8 +9376,8 @@
         "Energy"
       ],
       "dynamic_vars": {
-        "Cards": 6,
-        "Energy": 1
+        "Energy": 1,
+        "Cards": 6
       },
       "has_counter": false,
       "default_counter": null,

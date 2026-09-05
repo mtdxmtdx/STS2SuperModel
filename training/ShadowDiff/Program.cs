@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using STS2BestChoice.Core.Model;
+using STS2BestChoice.Core.Data;
 using STS2BestChoice.Core.Simulation;
 using STS2BestChoice.Core.Scoring;
 
@@ -247,6 +248,22 @@ if (!isEndTurn)
             .ToList();
         if (aliveEnemies.Count == 1)
             targetId = aliveEnemies[0].GetProperty("instance_id").GetString();
+        else if (isPotionAction && actual.TryGetProperty("enemies", out var postEnemies))
+        {
+            var postHp = postEnemies.EnumerateArray().ToDictionary(
+                static enemy => enemy.GetProperty("instance_id").GetString()!,
+                static enemy => enemy.GetProperty("hp").GetDecimal(),
+                StringComparer.OrdinalIgnoreCase);
+            targetId = aliveEnemies
+                .Select(enemy => (
+                    Id: enemy.GetProperty("instance_id").GetString()!,
+                    Delta: enemy.GetProperty("hp").GetDecimal() -
+                           (postHp.TryGetValue(enemy.GetProperty("instance_id").GetString()!, out var hp) ? hp : 0m)))
+                .Where(static item => item.Delta > 0m)
+                .OrderByDescending(static item => item.Delta)
+                .Select(static item => item.Id)
+                .FirstOrDefault();
+        }
     }
 }
 
@@ -307,6 +324,8 @@ for (var index = Math.Min(actionIndex - 1, rows.Length - 1); index >= 0; index--
     break;
 }
 var relics = playerElement.GetProperty("relics").EnumerateArray().Select(relic => BuildRelic(relic, teacherRelicUses)).ToImmutableArray();
+var paperKrane = relics.Any(static relic =>
+    relic.Id.Equals("PAPER_KRANE", StringComparison.OrdinalIgnoreCase) && relic.IsEnabled && !relic.IsUsedUp);
 // When Pen Nib is charged (counter >= 9), the CLI damage preview for attack
 // cards already includes the doubling, so BuildCard must halve it back.
 var penNibCharged = relics.Any(static relic =>
@@ -339,7 +358,7 @@ var enemies = enemyElements.Select(enemy =>
         enemy.GetProperty("max_hp").GetDecimal(),
         enemy.GetProperty("block").GetDecimal(),
         BuildStatuses(enemyPowers),
-        BuildIntents(enemy, BuildStatuses(enemyPowers), playerStatuses),
+        BuildIntents(enemy, BuildStatuses(enemyPowers), playerStatuses, paperKrane),
         0m,
         enemy.TryGetProperty("is_hittable", out var hittable) ? hittable.GetBoolean() : true,
         enemy.TryGetProperty("is_primary_enemy", out var primary) ? primary.GetBoolean() : true,
@@ -460,6 +479,7 @@ var snapshot = CombatSnapshot.Create(
         "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
         "0.2.0", "DeterministicSimulator", 1, ObservationView.Teacher,
         "ShadowDiff", "game-runtime-v0111", "core-default", "1", "none"));
+
 
 var state = MutableCombatState.FromSnapshot(snapshot);
 state.Gold = pre.GetProperty("player").TryGetProperty("gold", out var goldElement) && goldElement.ValueKind == JsonValueKind.Number
@@ -1097,7 +1117,8 @@ static EnemyAiPublicState? BuildEnemyPublicAi(JsonElement enemy)
 static ImmutableArray<IntentState> BuildIntents(
     JsonElement enemy,
     ImmutableDictionary<string, StatusState> enemyStatuses,
-    ImmutableDictionary<string, StatusState> playerStatuses)
+    ImmutableDictionary<string, StatusState> playerStatuses,
+    bool paperKrane)
 {
     var builder = ImmutableArray.CreateBuilder<IntentState>();
     if (!enemy.TryGetProperty("intents", out var intentsElement) || intentsElement.ValueKind != JsonValueKind.Array)
@@ -1110,7 +1131,7 @@ static ImmutableArray<IntentState> BuildIntents(
             : string.Empty;
         var previewDamage = intent.TryGetProperty("damage", out var damageElement) ? damageElement.GetDecimal() : 0m;
         var hits = intent.TryGetProperty("hits", out var hitsElement) ? hitsElement.GetInt32() : 1;
-        var weakFactor = StatusAmount(enemyStatuses, "WEAK") > 0 ? 0.75m : 1m;
+        var weakFactor = StatusAmount(enemyStatuses, "WEAK") > 0 ? (paperKrane ? 0.6m : 0.75m) : 1m;
         var vulnerableFactor = StatusAmount(playerStatuses, "VULNERABLE") > 0 ? 1.5m : 1m;
         var strengthAdditive = StatusAmount(enemyStatuses, "STRENGTH") - StatusAmount(enemyStatuses, "TEMP_STRENGTH_LOSS");
         var unmultiplied = previewDamage <= 0m
@@ -2561,56 +2582,35 @@ static PotionState BuildPotion(JsonElement potion)
 {
     var id = potion.GetProperty("id").GetString() ?? potion.GetProperty("name").GetString() ?? "UNKNOWN_POTION";
     var cleanId = id.Replace("POTION.", "", StringComparison.OrdinalIgnoreCase);
-    var effects = ImmutableArray.CreateBuilder<EffectSpec>();
-    
-    decimal GetVar(string name)
+    var dynamicVars = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase);
+    if (potion.TryGetProperty("vars", out var vars) && vars.ValueKind == JsonValueKind.Object)
     {
-        if (potion.TryGetProperty("vars", out var vars))
-        {
-            if (vars.TryGetProperty(name, out var val)) return val.GetDecimal();
-            if (vars.TryGetProperty(name.ToLowerInvariant(), out var val2)) return val2.GetDecimal();
-        }
-        return 0m;
+        foreach (var property in vars.EnumerateObject())
+            if (property.Value.ValueKind == JsonValueKind.Number)
+                dynamicVars[property.Name] = property.Value.GetDecimal();
     }
-
-    if (cleanId.Equals("BLOCK_POTION", StringComparison.OrdinalIgnoreCase))
-    {
-        var blk = GetVar("Block");
-        effects.Add(new EffectSpec(EffectKind.Block, blk > 0 ? blk : 12m));
-    }
-    else if (cleanId.Equals("FIRE_POTION", StringComparison.OrdinalIgnoreCase))
-    {
-        var dmg = GetVar("Damage");
-        effects.Add(new EffectSpec(EffectKind.Damage, dmg > 0 ? dmg : 20m));
-    }
-    else if (cleanId.Equals("ENERGY_POTION", StringComparison.OrdinalIgnoreCase))
-    {
-        var nrg = GetVar("Energy");
-        effects.Add(new EffectSpec(EffectKind.GainEnergy, nrg > 0 ? nrg : 2m));
-    }
-    else if (cleanId.Equals("SWIFT_POTION", StringComparison.OrdinalIgnoreCase))
-    {
-        var crd = GetVar("Cards");
-        effects.Add(new EffectSpec(EffectKind.Draw, crd > 0 ? crd : 3m));
-    }
+    var semantics = PotionSemanticCatalog.Resolve(cleanId, dynamicVars);
 
     var target = potion.TryGetProperty("target_type", out var targetElement)
         ? targetElement.GetString() switch
         {
             "AnyEnemy" => TargetKind.Enemy,
             "AllEnemies" => TargetKind.AllEnemies,
-            "Self" => TargetKind.Self,
+            "Self" or "AnyPlayer" => TargetKind.Self,
             _ => TargetKind.None
         }
         : cleanId.Equals("FIRE_POTION", StringComparison.OrdinalIgnoreCase) ? TargetKind.Enemy : TargetKind.None;
 
-    return new PotionState(
+    var result = new PotionState(
         potion.GetProperty("instance_id").GetString()!,
         cleanId,
         potion.GetProperty("name").GetString() ?? id,
         target,
-        effects.ToImmutable(),
-        0m);
+        semantics.Effects,
+        0m,
+        PriorityHint: semantics.IsSupported ? semantics.Effects.Sum(static effect => effect.Amount) : null,
+        RestrictionReason: semantics.UnsupportedReason);
+    return result;
 }
 
 static RngSnapshotSet BuildRngStreams(JsonElement counters)

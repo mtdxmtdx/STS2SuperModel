@@ -36,6 +36,8 @@ def profile(path: Path) -> dict[str, Any]:
     act_counts: Counter[int] = Counter()
     round_counts: Counter[int] = Counter()
     enemy_counts: Counter[int] = Counter()
+    character_counts: Counter[str] = Counter()
+    reliable_character_counts: Counter[str] = Counter()
     relic_id_counts: Counter[str] = Counter()
     nonstarter_episodes: set[str] = set()
     for row in rows(path):
@@ -49,6 +51,7 @@ def profile(path: Path) -> dict[str, Any]:
         act = int(row.get("act") or (state.get("context") or {}).get("act") or 0)
         round_number = int(row.get("round") or state.get("round") or 0)
         is_reliable = row.get("confidence") == "Reliable"
+        character = str(row.get("character") or player.get("name") or "Unknown")
         totals["rows"] += 1
         totals["starter_only"] += int(bool(relic_ids) and set(relic_ids) <= STARTER_RELIC_IDS)
         totals["no_potions"] += int(not potions)
@@ -70,8 +73,10 @@ def profile(path: Path) -> dict[str, Any]:
         act_counts[act] += 1
         round_counts[round_number] += 1
         enemy_counts[len(enemies)] += 1
+        character_counts[character] += 1
         relic_id_counts.update(relic_ids)
         if is_reliable:
+            reliable_character_counts[character] += 1
             reliable["rows"] += 1
             reliable["round_ge_8"] += int(round_number >= 8)
             reliable["nonstarter_relic_count_ge_2"] += int(
@@ -97,6 +102,10 @@ def profile(path: Path) -> dict[str, Any]:
             "act_distribution": {str(key): value for key, value in sorted(act_counts.items())},
             "round_distribution": {str(key): value for key, value in sorted(round_counts.items())},
             "enemy_count_distribution": {str(key): value for key, value in sorted(enemy_counts.items())},
+            "character_distribution": {
+                key: {"rows": value, "ratio": ratio(value, all_rows)}
+                for key, value in sorted(character_counts.items())
+            },
             "starter_only_rows": totals["starter_only"],
             "starter_only_ratio": ratio(totals["starter_only"], all_rows),
             "nonstarter_relic_occurrences": totals["nonstarter_relic_occurrences"],
@@ -120,6 +129,10 @@ def profile(path: Path) -> dict[str, Any]:
                 "act_ge_2",
                 "enemy_count_ge_3",
             )
+        },
+        "reliable_character_distribution": {
+            key: {"rows": value, "ratio": ratio(value, reliable_rows)}
+            for key, value in sorted(reliable_character_counts.items())
         },
         "proposed_acceptance_thresholds": {
             "status": "pending_human_confirmation",

@@ -1,0 +1,1070 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  },
+  "scope": "Line C1 handoff TurnStart evidence-repair candidates",
+  "summary": {
+    "target_count": 35,
+    "reliable_count": 1,
+    "pending_count": 34,
+    "handoff_expected_baseline": 24,
+    "observed_pre_ring_baseline": 23,
+    "catalog_reliable_eligible_count": 24,
+    "reliable_delta": 1,
+    "strict_evidence_rule_changed": false,
+    "semantic_hold_count": 1
+  },
+  "semantic_holds": [
+    {
+      "relic_id": "PARRYING_SHIELD",
+      "status": "PartiallySupported",
+      "reason": "evidence_pending: multi-enemy target is observed, but CombatTargets RNG is masked so target identity is not NOSL-Reliable"
+    }
+  ],
+  "resolved_stale_hold": {
+    "relic_id": "UNCEASING_TOP",
+    "status": "SimulatorSupported",
+    "reliable_eligible": true,
+    "evidence_reference": "p1-csharp-relic-unceasing-top-diff-report-0.json; p1-csharp-relic-unceasing-top-diff-report-1.json; p1-csharp-relic-unceasing-top-diff-report-2.json; p1-csharp-relic-unceasing-top-empty-diff-report-4.json"
+  },
+  "relics": [
+    {
+      "relic_id": "BEATING_REMNANT",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-beating-remnant-diff-report-0.json; p1-csharp-relic-beating-remnant-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-beating-remnant-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-beating-remnant-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-beating-remnant-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-beating-remnant-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "BIG_MUSHROOM",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-tea-carried-diff-report-0.json; p1-csharp-relic-tea-carried-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-tea-carried-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-tea-carried-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-tea-carried-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-tea-carried-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "BOOMING_CONCH",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-booming-conch-diff-report.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-booming-conch-diff-report.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-booming-conch-diff-report.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "BREAD",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-bread-diff-report-0.json; p1-csharp-relic-bread-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-bread-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-bread-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-bread-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-bread-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "BRILLIANT_SCARF",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-brilliant-scarf-diff-report-3.json; p1-csharp-relic-brilliant-scarf-diff-report-5.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-brilliant-scarf-diff-report-3.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        },
+        {
+          "report": "p1-csharp-relic-brilliant-scarf-diff-report-5.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-brilliant-scarf-diff-report-5.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "BRIMSTONE",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-brimstone-diff-report-0.json; p1-csharp-relic-brimstone-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-brimstone-diff-report-0.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        },
+        {
+          "report": "p1-csharp-relic-brimstone-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-brimstone-diff-report-1.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "CANDELABRA",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-candelabra-diff-report-0.json; p1-csharp-relic-candelabra-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-candelabra-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-candelabra-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-candelabra-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-candelabra-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "CHANDELIER",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-chandelier-diff-report-0.json; p1-csharp-relic-chandelier-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-chandelier-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-chandelier-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-chandelier-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-chandelier-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "FAKE_BLOOD_VIAL",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-combat-start-carried-diff-report-0.json; p1-csharp-relic-combat-start-carried-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-combat-start-carried-diff-report-0.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        },
+        {
+          "report": "p1-csharp-relic-combat-start-carried-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-combat-start-carried-diff-report-1.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "FAKE_HAPPY_FLOWER",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-fake-happy-flower-diff-report-0.json; p1-csharp-relic-fake-happy-flower-diff-report-4.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-fake-happy-flower-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-fake-happy-flower-diff-report-4.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-fake-happy-flower-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-fake-happy-flower-diff-report-4.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "FAKE_ORICHALCUM",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-fake-orichalcum-diff-report.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-fake-orichalcum-diff-report.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-fake-orichalcum-diff-report.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "FESTIVE_POPPER",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-festive-popper-diff-report-0.json; p1-csharp-relic-festive-popper-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-festive-popper-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-festive-popper-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-festive-popper-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-festive-popper-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "FIDDLE",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-fiddle-diff-report-0.json; p1-csharp-relic-fiddle-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-fiddle-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-fiddle-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-fiddle-diff-report-0.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only' | p1-csharp-relic-fiddle-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "HAPPY_FLOWER",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p0-csharp-happy-flower-diff-report.json",
+      "reports": [
+        {
+          "report": "p0-csharp-happy-flower-diff-report.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='observed_conditioned'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "observed_conditioned"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p0-csharp-happy-flower-diff-report.json: confidence='Estimated'; comparison_scope='observed_conditioned'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "KUNAI",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-attack-counters-diff-report-2.json; p1-csharp-relic-attack-counters-diff-report-3.json; p1-csharp-relic-attack-counters-diff-report-4.json; p1-csharp-relic-attack-counters-diff-report-5.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-2.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        },
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-3.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-4.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        },
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-5.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-attack-counters-diff-report-3.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "MERCURY_HOURGLASS",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-mercury-hourglass-diff-report-0.json; p1-csharp-relic-mercury-hourglass-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-mercury-hourglass-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-mercury-hourglass-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-mercury-hourglass-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-mercury-hourglass-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "MR_STRUGGLES",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-mr-struggles-diff-report-0.json; p1-csharp-relic-mr-struggles-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-mr-struggles-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-mr-struggles-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-mr-struggles-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-mr-struggles-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "NINJA_SCROLL",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-ninja-scroll-diff-report.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-ninja-scroll-diff-report.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-ninja-scroll-diff-report.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "ORICHALCUM",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p0-csharp-orichalcum-diff-report.json",
+      "reports": [
+        {
+          "report": "p0-csharp-orichalcum-diff-report.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='observed_conditioned'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "observed_conditioned"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p0-csharp-orichalcum-diff-report.json: confidence='Estimated'; comparison_scope='observed_conditioned'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "ORNAMENTAL_FAN",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-attack-counters-diff-report-2.json; p1-csharp-relic-attack-counters-diff-report-3.json; p1-csharp-relic-attack-counters-diff-report-4.json; p1-csharp-relic-attack-counters-diff-report-5.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-2.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        },
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-3.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-4.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        },
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-5.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-attack-counters-diff-report-3.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "PAELS_BLOOD",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-per-turn-draw-diff-report-0.json; p1-csharp-relic-per-turn-draw-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-per-turn-draw-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-per-turn-draw-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-per-turn-draw-diff-report-0.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only' | p1-csharp-relic-per-turn-draw-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "PAELS_TEARS",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-paels-tears-diff-report-1.json; p1-csharp-relic-paels-tears-diff-report-2.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-paels-tears-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-paels-tears-diff-report-2.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-paels-tears-diff-report-1.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-paels-tears-diff-report-2.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "PENDULUM",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-pendulum-diff-report-0.json; p1-csharp-relic-pendulum-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-pendulum-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-pendulum-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-pendulum-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-pendulum-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "POCKETWATCH",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-pocketwatch-diff-report-0.json; p1-csharp-relic-pocketwatch-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-pocketwatch-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-pocketwatch-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-pocketwatch-diff-report-0.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only' | p1-csharp-relic-pocketwatch-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "RED_MASK",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-red-mask-diff-report-0.json; p1-csharp-relic-red-mask-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-red-mask-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-red-mask-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-red-mask-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-red-mask-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "RING_OF_THE_DRAKE",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "LiveObserved",
+      "evidence_reference": "p1-relic-ring-of-the-drake-paired-control-report.json",
+      "reports": [
+        {
+          "report": "p1-relic-ring-of-the-drake-paired-control-report.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        }
+      ],
+      "terminal_status": "Reliable",
+      "terminal_reason": "all referenced reports satisfy strict evidence",
+      "next_action": "None"
+    },
+    {
+      "relic_id": "RIPPLE_BASIN",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-turn-end-block-diff-report-0.json; p1-csharp-relic-turn-end-block-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-turn-end-block-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-turn-end-block-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-turn-end-block-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-turn-end-block-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "ROYAL_POISON",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-royal-poison-diff-report-0.json; p1-csharp-relic-royal-poison-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-royal-poison-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-royal-poison-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-royal-poison-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-royal-poison-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "SAI",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-sai-diff-report.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-sai-diff-report.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-sai-diff-report.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "SEAL_OF_GOLD",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-seal-of-gold-diff-report-0.json; p1-csharp-relic-seal-of-gold-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-seal-of-gold-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-seal-of-gold-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-seal-of-gold-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-seal-of-gold-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "SHURIKEN",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-attack-counters-diff-report-2.json; p1-csharp-relic-attack-counters-diff-report-3.json; p1-csharp-relic-attack-counters-diff-report-4.json; p1-csharp-relic-attack-counters-diff-report-5.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-2.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        },
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-3.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-4.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        },
+        {
+          "report": "p1-csharp-relic-attack-counters-diff-report-5.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-attack-counters-diff-report-3.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "STONE_CALENDAR",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-stone-calendar-diff-report-6.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-stone-calendar-diff-report-6.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-stone-calendar-diff-report-6.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "TWISTED_FUNNEL",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-twisted-funnel-diff-report-0.json; p1-csharp-relic-twisted-funnel-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-twisted-funnel-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-twisted-funnel-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-twisted-funnel-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-twisted-funnel-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "VELVET_CHOKER",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-velvet-choker-diff-report-0.json; p1-csharp-relic-velvet-choker-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-velvet-choker-diff-report-0.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        },
+        {
+          "report": "p1-csharp-relic-velvet-choker-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+          "confidence": "Uncalculable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-velvet-choker-diff-report-0.json: confidence='Estimated'; comparison_scope='aggregate_count_only' | p1-csharp-relic-velvet-choker-diff-report-1.json: confidence='Uncalculable'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    },
+    {
+      "relic_id": "VERY_HOT_COCOA",
+      "combat_relevance": "TurnStart",
+      "support_status": "SimulatorSupported",
+      "evidence_level": "HeuristicInferred",
+      "evidence_reference": "p1-csharp-relic-combat-start-carried-diff-report-0.json; p1-csharp-relic-combat-start-carried-diff-report-1.json",
+      "reports": [
+        {
+          "report": "p1-csharp-relic-combat-start-carried-diff-report-0.json",
+          "strict": true,
+          "reason": "strict_evidence_pass",
+          "confidence": "Reliable",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "strict_public_state"
+        },
+        {
+          "report": "p1-csharp-relic-combat-start-carried-diff-report-1.json",
+          "strict": false,
+          "reason": "confidence='Estimated'; comparison_scope='aggregate_count_only'",
+          "confidence": "Estimated",
+          "match": true,
+          "mismatch_count": 0,
+          "comparison_scope": "aggregate_count_only"
+        }
+      ],
+      "terminal_status": "PendingWithReason",
+      "terminal_reason": "p1-csharp-relic-combat-start-carried-diff-report-1.json: confidence='Estimated'; comparison_scope='aggregate_count_only'",
+      "next_action": "Repair or extend evidence before Reliable promotion"
+    }
+  ]
+}

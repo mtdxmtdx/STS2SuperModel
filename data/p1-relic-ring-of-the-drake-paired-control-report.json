@@ -1,0 +1,99 @@
+{
+  "action_kind": "paired_runtime_observation",
+  "action_ordinal": 0,
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "chance_present": false,
+  "cli_protocol_version": "0.2.0",
+  "comparison_scope": "strict_public_state",
+  "confidence": "Reliable",
+  "control_observations": [
+    {
+      "hand_count": 5,
+      "public_state_hash": "9781AC3D72FA6ABAAF6DA34B47F5A85BCCB5F5378911151D045424E5AEBD4F8C",
+      "relic_ids": [],
+      "round": 1
+    },
+    {
+      "hand_count": 5,
+      "public_state_hash": "5112DF2F263C6AFC4046C7C41C623D003D5AAFC43FCFE964EA00A88E96C3DE3A",
+      "relic_ids": [],
+      "round": 2
+    },
+    {
+      "hand_count": 5,
+      "public_state_hash": "4A6BE61628694CA5A7D2ED31075D4DEA21188404A9B2DF183BF0383409E3991B",
+      "relic_ids": [],
+      "round": 3
+    }
+  ],
+  "fields": [
+    {
+      "actual": [
+        "RING_OF_THE_DRAKE"
+      ],
+      "field": "relic.ids",
+      "match": true,
+      "projected": [
+        "RING_OF_THE_DRAKE"
+      ]
+    },
+    {
+      "actual": [
+        2,
+        2,
+        2
+      ],
+      "field": "relic.RING_OF_THE_DRAKE.hand_draw_delta",
+      "match": true,
+      "projected": [
+        2,
+        2,
+        2
+      ]
+    }
+  ],
+  "fixture": "p1-relic-ring-of-the-drake-paired-control",
+  "game_commit": "41cef1ea",
+  "game_version": "v0.111.0",
+  "identity_comparison": "aggregate_count_exact",
+  "match": true,
+  "method": "same seed, character, 40-card deck, encounter and rounds; only relic list differs; compares public hand counts, never card order or RNG state",
+  "mismatch_count": 0,
+  "mismatches": [],
+  "normalized_action_id": "observe_turn_start_draw:ring_of_the_drake:rounds_1_2_3",
+  "outcome_quality": "Exact",
+  "probability_known": true,
+  "probability_mass_covered": 1.0,
+  "random_operator": "None",
+  "relic_observations": [
+    {
+      "hand_count": 7,
+      "public_state_hash": "CEA8BF1374507DEB2C67618FA1D9FB5EE889B92B1F04A01ADF7B1E65A03148B7",
+      "relic_ids": [
+        "RING_OF_THE_DRAKE"
+      ],
+      "round": 1
+    },
+    {
+      "hand_count": 7,
+      "public_state_hash": "2D46BA2414F0962D7E77CBB8BA5DB637293E9FA60D941D2DC315B67839F75B11",
+      "relic_ids": [
+        "RING_OF_THE_DRAKE"
+      ],
+      "round": 2
+    },
+    {
+      "hand_count": 7,
+      "public_state_hash": "1207E82428474610588722C2D4A743DB84778F5D2CA04099A593B5761E1FC107",
+      "relic_ids": [
+        "RING_OF_THE_DRAKE"
+      ],
+      "round": 3
+    }
+  ],
+  "schema_version": 1,
+  "seed": "p1-ring-of-the-drake-paired-v1",
+  "simulator": "paired-v0.111-headless-control",
+  "trace_id": "trace-v0111-p1-ring-of-the-drake-paired-v1",
+  "trace_schema": 1
+}

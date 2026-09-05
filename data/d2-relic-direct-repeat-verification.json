@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "report_count": 2,
+  "different_reports": [],
+  "sha256": {
+    "data\\p1-csharp-relic-d2-gremlin-horn-diff-report.json": "A9793A79AD5300D660B81F3BF589953259CE0CBA58B8E4606480C5E2ACB3DCC2",
+    "data\\p1-csharp-relic-d2-paper-phrog-diff-report-1.json": "2D83494885EB5E3523C100D323DD26996DA708B471888E77D78AF20D9A9C1B28"
+  }
+}

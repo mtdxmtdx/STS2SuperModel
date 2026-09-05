@@ -1,0 +1,68 @@
+{
+  "action_kind": "paired_runtime_observation",
+  "action_ordinal": 0,
+  "actual": {
+    "block": 0,
+    "decision": "combat_play",
+    "discard_pile_count": 0,
+    "draw_pile_count": 15,
+    "enemy_hp": {
+      "enemy:TERROR_EEL:1": 140
+    },
+    "energy": 3,
+    "focus": 0,
+    "hand_count": 5,
+    "hp": 40,
+    "plating": 0,
+    "stars": null,
+    "strength": 2
+  },
+  "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+  "chance_present": false,
+  "cli_protocol_version": "0.2.0",
+  "comparison_scope": "strict_public_state",
+  "confidence": "Reliable",
+  "control": {
+    "block": 0,
+    "decision": "combat_play",
+    "discard_pile_count": 0,
+    "draw_pile_count": 15,
+    "enemy_hp": {
+      "enemy:TERROR_EEL:1": 140
+    },
+    "energy": 3,
+    "focus": 0,
+    "hand_count": 5,
+    "hp": 40,
+    "plating": 0,
+    "stars": null,
+    "strength": 0
+  },
+  "fields": [
+    {
+      "actual": "effect_observed",
+      "field": "relic.SLING_OF_COURAGE.paired_delta",
+      "match": true,
+      "projected": "effect_observed"
+    }
+  ],
+  "fixture": "d2-relic-sling-of-courage-paired",
+  "game_commit": "41cef1ea",
+  "game_version": "v0.111.0",
+  "identity_comparison": "paired_public_effect_delta",
+  "match": true,
+  "method": "same seed/setup/combat-root sequence with only the relic changed; the start-of-combat effect is already materialized in the public root",
+  "mismatch_count": 0,
+  "mismatches": [],
+  "normalized_action_id": "observe_relic:sling_of_courage:combat_start",
+  "outcome_quality": "Exact",
+  "probability_known": true,
+  "probability_mass_covered": 1.0,
+  "random_operator": "None",
+  "schema_version": 1,
+  "shadow_diff_evidence": null,
+  "shadow_diff_match": true,
+  "shadow_diff_mismatch_count": null,
+  "trace_id": "trace-v0111-d2-relic-sling-of-courage-paired",
+  "trace_schema": 1
+}

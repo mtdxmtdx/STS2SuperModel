@@ -1,0 +1,10 @@
+{
+  "seeds": 1450,
+  "turns": 14,
+  "workers": 16,
+  "seconds": 144.0763514,
+  "potion_count": 28,
+  "probe_reliable_per_seed": 5.03,
+  "minimum_estimated_seeds": 1314,
+  "headroom_ratio": 0.1035007610350076
+}

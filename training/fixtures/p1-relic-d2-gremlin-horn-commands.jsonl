@@ -1,0 +1,8 @@
+{"cmd":"start_run","character":"Ironclad","seed":"d2-gremlin-horn-v1","ascension":0}
+{"cmd":"set_player","relics":["GREMLIN_HORN"],"hp":80,"max_hp":80,"potions":["FIRE_POTION"],"deck":["STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","BASH"]}
+{"cmd":"enter_room","type":"combat","encounter":"SLIMES_WEAK"}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"action","action":"use_potion","args":{"potion_index":0,"target_index":0}}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"quit"}

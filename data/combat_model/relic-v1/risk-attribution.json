@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\work\\line-d-d2-relics\\d2-relic-merged-dedup.jsonl",
+  "row_count": 67799,
+  "unique_state_count": 67799,
+  "confidence_counts": {
+    "Estimated": 18369,
+    "Reliable": 49414,
+    "Uncalculable": 16
+  },
+  "label_quality_counts": {
+    "BudgetBound": 194,
+    "EstimatedByHeuristic": 18175,
+    "ExactComplete": 1,
+    "ExactWithKnownChance": 49413,
+    "Uncalculable": 16
+  },
+  "risk_event_counts": {
+    "card_effects_missing:SLIMED": 19662,
+    "card_effects_missing:CARD.SLIMED": 13974,
+    "card_effects_missing:WOUND": 7258,
+    "card_effects_missing:CARD.WOUND": 4078,
+    "budget_bound": 194,
+    "enemy_state_missing": 20,
+    "uncalculable_pile_counts_missing": 20,
+    "teacher_label_missing": 16,
+    "card_effects_missing:CARD.BLOODLETTING": 4
+  },
+  "restricted_reason_counts": {
+    "uncalculable_shuffle_order": 1797
+  }
+}

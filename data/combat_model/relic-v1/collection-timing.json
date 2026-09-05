@@ -1,0 +1,10 @@
+{
+  "seeds": 2900,
+  "turns": 14,
+  "workers": 16,
+  "seconds": 289.3957296,
+  "probe_reliable_per_seed": 5.53,
+  "minimum_estimated_seeds": 2604,
+  "headroom_ratio": 0.11367127496159757,
+  "relic_sets": "DATA_DISK+GORGET|EMBER_TEA+SWORD_OF_JADE|SLING_OF_COURAGE+GREMLIN_HORN|RUNIC_PYRAMID+PAPER_PHROG|RINGING_TRIANGLE+PAPER_KRANE|THE_ABACUS+BOOK_REPAIR_KNIFE|LIZARD_TAIL+GORGET"
+}

@@ -1,0 +1,618 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "before": {
+    "simulator_supported": 4,
+    "reliable_eligible": 2
+  },
+  "after": {
+    "simulator_supported": 28,
+    "reliable_eligible": 28,
+    "unsupported_known": 36,
+    "out_of_scope": 2
+  },
+  "strict_evidence_rule_changed": false,
+  "potions": [
+    {
+      "potion_id": "AMBERGRIS",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "unsupported_power_hook",
+      "reason": "runtime applies a Power whose listener semantics are not modeled",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "ASHWATER",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "player_choice_contract",
+      "reason": "requires a potion-specific card-selection contract before deterministic execution",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "ATTACK_POTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "random_or_hidden_order",
+      "reason": "depends on a validated chance operator or hidden pile order; no realized result is guessed",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "BEETLE_JUICE",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "BLESSING_OF_THE_FORGE",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "BLOCK_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "BLOOD_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "BONE_BREW",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "unmodeled_resource_subsystem",
+      "reason": "depends on companion/orb/forge/star state outside the current combat-state contract",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "BOTTLED_POTENTIAL",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "random_or_hidden_order",
+      "reason": "depends on a validated chance operator or hidden pile order; no realized result is guessed",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "CLARITY",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "COLORLESS_POTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "random_or_hidden_order",
+      "reason": "depends on a validated chance operator or hidden pile order; no realized result is guessed",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "COSMIC_CONCOCTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "generated_card_template",
+      "reason": "requires authoritative generated-card templates and stable instance construction",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "CUNNING_POTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "generated_card_template",
+      "reason": "requires authoritative generated-card templates and stable instance construction",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "CURE_ALL",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "DEPRECATED_POTION",
+      "terminal_status": "OutOfScope",
+      "support_status": "OutOfScope",
+      "reliable_eligible": false,
+      "category": null,
+      "reason": "deprecated_or_test_only_registry_entry",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "DEXTERITY_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "DISTILLED_CHAOS",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "random_or_hidden_order",
+      "reason": "depends on a validated chance operator or hidden pile order; no realized result is guessed",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "DROPLET_OF_PRECOGNITION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "player_choice_contract",
+      "reason": "requires a potion-specific card-selection contract before deterministic execution",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "DUPLICATOR",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "ENERGY_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "ENTROPIC_BREW",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "random_or_hidden_order",
+      "reason": "depends on a validated chance operator or hidden pile order; no realized result is guessed",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "ESSENCE_OF_DARKNESS",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "unmodeled_resource_subsystem",
+      "reason": "depends on companion/orb/forge/star state outside the current combat-state contract",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "EXPLOSIVE_AMPOULE",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "FAIRY_IN_A_BOTTLE",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "FIRE_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "FLEX_POTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "FOCUS_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "FORTIFIER",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "FOUL_POTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "multi_domain_targeting",
+      "reason": "targets players and enemies or a merchant branch; the current target contract cannot represent it",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "FRUIT_JUICE",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "FYSH_OIL",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "GAMBLERS_BREW",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "player_choice_contract",
+      "reason": "requires a potion-specific card-selection contract before deterministic execution",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "GHOST_IN_A_JAR",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "GIGANTIFICATION_POTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "GLOWWATER_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "HEART_OF_IRON",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "KINGS_COURAGE",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "unmodeled_resource_subsystem",
+      "reason": "depends on companion/orb/forge/star state outside the current combat-state contract",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "LIQUID_BRONZE",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "LIQUID_MEMORIES",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "player_choice_contract",
+      "reason": "requires a potion-specific card-selection contract before deterministic execution",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "LUCKY_TONIC",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "MAZALETHS_GIFT",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "MOCK_DISCARD_AND_ADD_SHIVS_POTION",
+      "terminal_status": "OutOfScope",
+      "support_status": "OutOfScope",
+      "reliable_eligible": false,
+      "category": null,
+      "reason": "deprecated_or_test_only_registry_entry",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "OROBIC_ACID",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "random_or_hidden_order",
+      "reason": "depends on a validated chance operator or hidden pile order; no realized result is guessed",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "POISON_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "POTION_OF_BINDING",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "POTION_OF_CAPACITY",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "unmodeled_resource_subsystem",
+      "reason": "depends on companion/orb/forge/star state outside the current combat-state contract",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "POTION_OF_DOOM",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "POTION_SHAPED_ROCK",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "POT_OF_GHOULS",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "generated_card_template",
+      "reason": "requires authoritative generated-card templates and stable instance construction",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "POWDERED_DEMISE",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "POWER_POTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "random_or_hidden_order",
+      "reason": "depends on a validated chance operator or hidden pile order; no realized result is guessed",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "RADIANT_TINCTURE",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "REGEN_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "SHACKLING_POTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "SHIP_IN_A_BOTTLE",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "SKILL_POTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "random_or_hidden_order",
+      "reason": "depends on a validated chance operator or hidden pile order; no realized result is guessed",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "SNECKO_OIL",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "random_or_hidden_order",
+      "reason": "depends on a validated chance operator or hidden pile order; no realized result is guessed",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "SOLDIERS_STEW",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "SPEED_POTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "STABLE_SERUM",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "deferred_listener_or_temporary_state",
+      "reason": "requires a verified listener/temporary-state lifecycle beyond immediate effects",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "STAR_POTION",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "unmodeled_resource_subsystem",
+      "reason": "depends on companion/orb/forge/star state outside the current combat-state contract",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "STRENGTH_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "SWIFT_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "TOUCH_OF_INSANITY",
+      "terminal_status": "UnsupportedKnownEffect",
+      "support_status": "UnsupportedKnownEffect",
+      "reliable_eligible": false,
+      "category": "player_choice_contract",
+      "reason": "requires a potion-specific card-selection contract before deterministic execution",
+      "next_action": "Implement simulator handler, then add version-locked CLI ShadowDiff fixture"
+    },
+    {
+      "potion_id": "VULNERABLE_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    },
+    {
+      "potion_id": "WEAK_POTION",
+      "terminal_status": "Reliable",
+      "support_status": "SimulatorSupported",
+      "reliable_eligible": true,
+      "category": null,
+      "reason": "strict version-locked CLI ShadowDiff passed",
+      "next_action": "None"
+    }
+  ],
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1
+  }
+}

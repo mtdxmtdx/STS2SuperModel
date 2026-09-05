@@ -1,0 +1,15 @@
+{"cmd":"start_run","character":"Ironclad","seed":"d2-the-abacus-v1","ascension":0}
+{"cmd":"set_player","relics":["THE_ABACUS"],"hp":80,"max_hp":80,"potions":["SWIFT_POTION"],"deck":["STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD"]}
+{"cmd":"enter_room","type":"combat","encounter":"TERROR_EEL_ELITE"}
+{"cmd":"set_combat_resources","energy":10,"stars":0}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":0}}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":0}}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"action","action":"play_card","args":{"card_index":0,"target_index":0}}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"action","action":"use_potion","args":{"potion_index":0}}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"quit"}

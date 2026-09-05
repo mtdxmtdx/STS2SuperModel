@@ -1,0 +1,22 @@
+{
+  "rows": 23268,
+  "reliable": 15811,
+  "estimated": 7457,
+  "uncalculable": 0,
+  "reliable_nonstarter_ge2": 15811,
+  "reliable_per_seed": 5.452068965517241,
+  "changed_label_signatures_vs_v1": 2613,
+  "sha256": "4D6D117A8027E054736774CAAEE8B9B060FA1E65F81941B65BCD3B8BB47C4760",
+  "characters": [
+    {
+      "character": "The Ironclad",
+      "rows": 12445,
+      "ratio": 0.534854736118274
+    },
+    {
+      "character": "The Silent",
+      "rows": 10823,
+      "ratio": 0.465145263881726
+    }
+  ]
+}

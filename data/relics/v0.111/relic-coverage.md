@@ -13,14 +13,14 @@
 | 已结构化数量 | **299** | 100.0% |
 | 已捕获状态数量 | **299** | 100.0% |
 | 已检查 IL 语义数量 | **0** | 0.0% |
-| 已完成真实引擎差分探针数量 | **100** | 33.4% |
-| 版本/结构字段有效的探针数量 | **100** | 33.4% |
-| 严格证据合格探针数量（Reliable eligible） | **22** | 7.4% |
-| 模拟器声明支持数量（不含证据待补的 PartiallySupported） | **99** | 33.1% |
+| 已完成真实引擎差分探针数量 | **114** | 38.1% |
+| 版本/结构字段有效的探针数量 | **114** | 38.1% |
+| 严格证据合格探针数量（Reliable eligible） | **37** | 12.4% |
+| 模拟器声明支持数量（不含证据待补的 PartiallySupported） | **113** | 37.8% |
 | 语义证据待补数量 | **1** | 0.3% |
 | 明确不影响当前回合数量 | **1** | 0.3% |
-| 能够产生 Reliable 教师标签数量 | **23** | 7.7% |
-| 已知不支持数量 (存在未支持战斗钩子) | **20** | 6.7% |
+| 能够产生 Reliable 教师标签数量 | **38** | 12.7% |
+| 已知不支持数量 (存在未支持战斗钩子) | **6** | 2% |
 | 未知遗物数量 | **0** | 0% |
 | 明确 OutOfScope 非战斗遗物数量 | **97** | 32.4% |
 
@@ -39,6 +39,7 @@
 | `BLACK_BLOOD` | 黑暗之血 | Black Blood | Starter | 在战斗结束时，回复[green]{Heal}[/green]点生命。 | `HeuristicInferred` |
 | `BLOOD_SOAKED_ROSE` | 血染玫瑰 | Blood-Soaked Rose | Ancient | 拾起时，将[blue]1[/blue]张[red]执迷[/red]加入你的[gold]牌组[/gold]。在回合开始时获得{Energy:energyIcons()}。 | `HeuristicInferred` |
 | `BLOOD_VIAL` | 小血瓶 | Blood Vial | Common | 在每场战斗开始时，回复[green]{Heal}[/green]点生命。 | `LiveObserved` |
+| `BOOK_REPAIR_KNIFE` | 修书小刀 | Book Repair Knife | Uncommon | 每当有一名不是“爪牙”的敌人死于[gold]灾厄[/gold]时，回复[green]{Heal}[/green]点生命。 | `LiveObserved` |
 | `BOOMING_CONCH` | 轰鸣海螺 | Booming Conch | Ancient | 在[gold]精英[/gold]战的战斗开始时，额外抽[blue]{Cards}[/blue]张牌并获得{Energy:energyIcons()}。 | `HeuristicInferred` |
 | `BREAD` | 面包 | Bread | Shop | 在你的第一个回合开始时，失去{LoseEnergy:energyIcons()}。在其余的回合开始时，获得{GainEnergy:energyIcons()}。 | `HeuristicInferred` |
 | `BRILLIANT_SCARF` | 艳丽围巾 | Brilliant Scarf | Ancient | 你每回合从你的手牌打出的第[blue]5[/blue]张牌可以被免费打出。 | `HeuristicInferred` |
@@ -49,9 +50,12 @@
 | `CENTENNIAL_PUZZLE` | 百年积木 | Centennial Puzzle | Common | 你在每场战斗中第一次损失生命值时，抽[blue]{Cards}[/blue]张牌。 | `HeuristicInferred` |
 | `CHANDELIER` | 吊灯 | Chandelier | Rare | 在你的[blue]第三[/blue]回合开始时，获得{Energy:energyIcons()}。 | `HeuristicInferred` |
 | `CLOAK_CLASP` | 斗篷扣 | Cloak Clasp | Rare | 在你的回合结束时，每有一张[gold]手牌[/gold]，就获得[blue]{Block}[/blue]点[gold]格挡[/gold] | `HeuristicInferred` |
+| `DATA_DISK` | 数据磁盘 | Data Disk | Common | 在每场战斗开始时，获得[blue]{FocusPower}[/blue]点[gold]集中[/gold]。 | `LiveObserved` |
 | `DAUGHTER_OF_THE_WIND` | 风的女儿 | Daughter of the Wind | Event | 每当你打出一张攻击牌时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。 | `HeuristicInferred` |
 | `DELICATE_FROND` | 娇嫩蕨草 | Delicate Frond | Ancient | 在每场战斗开始时，用随机药水将你的空药水栏位填满。 | `HeuristicInferred` |
+| `DIVINE_RIGHT` | 天赋君权 | Divine Right | Starter | 在每场战斗开始时，获得{Stars:starIcons()}。 | `LiveObserved` |
 | `ECTOPLASM` | 灵体外质 | Ectoplasm | Ancient | 你不能再获得任何[gold]金币[/gold]。在回合开始时获得{Energy:energyIcons()} | `HeuristicInferred` |
+| `EMBER_TEA` | 余烬茶 | Ember Tea | Event | 在接下来的[blue]{Combats}[/blue]场战斗开始时，获得[blue]{StrengthPower}[/blue]点[gold]力量[/gold]。 | `LiveObserved` |
 | `FAKE_ANCHOR` | 锚？？？ | Anchor??? | Event | 在每场战斗开始时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。 | `HeuristicInferred` |
 | `FAKE_BLOOD_VIAL` | 小血瓶？？？ | Blood Vial??? | Event | 在每场战斗开始时，回复[green]{Heal}[/green]点生命。 | `HeuristicInferred` |
 | `FAKE_HAPPY_FLOWER` | 开心小花？？？ | Happy Flower??? | Event | 每[blue]{Turns}[/blue]个回合，获得{Energy:energyIcons()}。 | `HeuristicInferred` |
@@ -63,6 +67,8 @@
 | `FIDDLE` | 小提琴 | Fiddle | Ancient | 在每个回合开始时，额外抽[blue]{Cards}[/blue]张牌。你在回合进行中不再能抽任何牌。 | `HeuristicInferred` |
 | `FISHING_ROD` | 钓鱼竿 | Fishing Rod | Ancient | 每[blue]{Combats}[/blue]场普通战斗，随机[gold]升级[/gold]你[gold]牌组[/gold]中的一张牌。 | `HeuristicInferred` |
 | `GAME_PIECE` | 棋子 | Game Piece | Rare | 每当你打出能力牌时，抽[blue]{Cards}[/blue]张牌。 | `LiveObserved` |
+| `GORGET` | 护喉甲 | Gorget | Common | 在每场战斗开始时，获得[blue]{PlatingPower}[/blue]层[gold]覆甲[/gold]。 | `LiveObserved` |
+| `GREMLIN_HORN` | 地精之角 | Gremlin Horn | Uncommon | 每当有一名敌人死亡时，获得{Energy:energyIcons()}并抽[blue]{Cards}[/blue]张牌。 | `LiveObserved` |
 | `HAND_DRILL` | 手钻 | Hand Drill | Event | 每当你突破敌人的[gold]格挡[/gold]时，给予其[blue]{VulnerablePower}[/blue]层[gold]易伤[/gold]。 | `LiveObserved` |
 | `HAPPY_FLOWER` | 开心小花 | Happy Flower | Common | 每[blue]{Turns}[/blue]个回合，获得{Energy:energyIcons()}。 | `HeuristicInferred` |
 | `HORN_CLEAT` | 船夹板 | Horn Cleat | Uncommon | 在你的[blue]第二[/blue]回合开始时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。 | `HeuristicInferred` |
@@ -75,6 +81,7 @@
 | `KUSARIGAMA` | 锁镰 | Kusarigama | Uncommon | 你每在同一回合内打出[blue]{Cards}[/blue]张攻击牌，就随机对一名敌人造成[blue]{Damage}[/blue]点伤害。 | `HeuristicInferred` |
 | `LANTERN` | 灯笼 | Lantern | Common | 在每场战斗的第一回合获得{Energy:energyIcons()}。 | `LiveObserved` |
 | `LETTER_OPENER` | 开信刀 | Letter Opener | Uncommon | 你每在同一回合内打出[blue]{Cards}[/blue]张技能牌，就对所有敌人造成[blue]{Damage}[/blue]点伤害。 | `HeuristicInferred` |
+| `LIZARD_TAIL` | 蜥蜴尾巴 | Lizard Tail | Rare | 当你的生命值将要降低至[blue]0[/blue]或以下时，回复到最大生命值的[green]{Heal}%[/green]（仅能起效一次）。 | `LiveObserved` |
 | `LOST_WISP` | 迷失鬼火 | Lost Wisp | Event | 你每打出一张能力牌，就对所有敌人造成[blue]{Damage}[/blue]点伤害。 | `LiveObserved` |
 | `MEAT_ON_THE_BONE` | 带骨肉 | Meat on the Bone | Rare | 如果你在战斗结束时生命值等于或低于[blue]{HpThreshold}%[/blue]，回复[green]{Heal}[/green]点生命。 | `HeuristicInferred` |
 | `MERCURY_HOURGLASS` | 水银沙漏 | Mercury Hourglass | Uncommon | 在你的回合开始时，对所有敌人造成[blue]{Damage}[/blue]点伤害。 | `HeuristicInferred` |
@@ -88,6 +95,8 @@
 | `PAELS_FLESH` | 佩尔之肉 | Pael's Flesh | Ancient | 从你的第[blue]3[/blue]回合开始，在回合开始时额外获得{Energy:energyIcons()}。 | `HeuristicInferred` |
 | `PAELS_TEARS` | 佩尔之泪 | Pael's Tears | Ancient | 如果你在拥有未花费的{energyPrefix:energyIcons(1)}情况下结束回合，则下个回合额外获得{Energy:energyIcons()}。 | `HeuristicInferred` |
 | `PANTOGRAPH` | 缩放仪 | Pantograph | Uncommon | 在[gold]Boss[/gold]战开始时，回复[green]{Heal}[/green]点生命值。 | `HeuristicInferred` |
+| `PAPER_KRANE` | 纸鹤 | Paper Krane | Rare | 有[gold]虚弱[/gold]状态的敌人造成的伤害降低[blue]40%[/blue]而非[blue]25%[/blue]。 | `LiveObserved` |
+| `PAPER_PHROG` | 纸蛙 | Paper Phrog | Uncommon | 有[gold]易伤[/gold]状态的敌人受到的伤害增加[blue]75%[/blue]而非[blue]50%[/blue]。 | `LiveObserved` |
 | `PENDULUM` | 摆动球 | Pendulum | Common | 每[blue]{Turns}[/blue]个回合，抽[blue]{Cards}[/blue]张牌 | `HeuristicInferred` |
 | `PEN_NIB` | 钢笔尖 | Pen Nib | Uncommon | 你每打出的第[blue]10[/blue]张攻击牌将会造成双倍伤害。 | `LiveObserved` |
 | `PERMAFROST` | 永冻冰晶 | Permafrost | Uncommon | 当你在战斗中第一次打出能力牌时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。 | `LiveObserved` |
@@ -97,22 +106,27 @@
 | `PUMPKIN_CANDLE` | 南瓜蜡烛 | Pumpkin Candle | Ancient | 在每个回合开始时获得{Energy:energyIcons()}。这件遗物会在[blue]{CombatCount}[/blue]场战斗后熄灭。可以在[gold]休息处[/gold]为其[gold]添火[/gold]。 | `HeuristicInferred` |
 | `RAINBOW_RING` | 彩虹戒指 | Rainbow Ring | Rare | 每回合，你第一次打出攻击牌、技能牌和能力牌各一张时，获得[blue]{StrengthPower}[/blue]点[gold]力量[/gold]和[blue]{DexterityPower}[/blue]点[gold]敏捷[/gold]。 | `LiveObserved` |
 | `RED_MASK` | 红面具 | Red Mask | Common | 在每场战斗开始时，给于所有敌人[blue]{WeakPower}[/blue]层[gold]虚弱[/gold]。 | `HeuristicInferred` |
-| `RING_OF_THE_DRAKE` | 长蛇戒指 | Ring of the Drake | Starter | 在战斗开始时的前[blue]{Turns}[/blue]个回合，你额外抽[blue]{Cards}[/blue]张牌。 | `HeuristicInferred` |
+| `RINGING_TRIANGLE` | 三角铃鼓 | Ringing Triangle | Shop | 在每场战斗的第一回合[gold]保留[/gold]你的[gold]手牌[/gold]。 | `LiveObserved` |
+| `RING_OF_THE_DRAKE` | 长蛇戒指 | Ring of the Drake | Starter | 在战斗开始时的前[blue]{Turns}[/blue]个回合，你额外抽[blue]{Cards}[/blue]张牌。 | `LiveObserved` |
 | `RING_OF_THE_SNAKE` | 蛇之戒指 | Ring of the Snake | Starter | 在每场战斗开始时，额外抽[blue]{Cards}[/blue]张牌。 | `LiveObserved` |
 | `RIPPLE_BASIN` | 波纹水盆 | Ripple Basin | Uncommon | 如果你在本回合中没有打出过攻击牌，则获得[blue]{Block}[/blue]点[gold]格挡[/gold]。 | `HeuristicInferred` |
 | `ROYAL_POISON` | 王室猛毒 | Royal Poison | Event | 在每场战斗开始时，失去[blue]{Damage}[/blue]点生命。 | `HeuristicInferred` |
+| `RUNIC_PYRAMID` | 符文金字塔 | Runic Pyramid | Ancient | 你在回合结束时不再自动丢弃所有[gold]手牌[/gold]。 | `LiveObserved` |
 | `SAI` | 钗 | Sai | Ancient | 在你的回合开始时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。 | `HeuristicInferred` |
 | `SCREAMING_FLAGON` | 尖叫酒壶 | Screaming Flagon | Shop | 如果你在回合结束时没有任何[gold]手牌[/gold]，则对所有敌人造成[blue]{Damage}[/blue]点伤害。 | `HeuristicInferred` |
 | `SEAL_OF_GOLD` | 黄金印 | Seal of Gold | Ancient | 在你的回合开始时，花费[blue]{Gold}[/blue][gold]金币[/gold]来获得{Energy:energyIcons()}。 | `HeuristicInferred` |
 | `SELF_FORMING_CLAY` | 自成型黏土 | Self-Forming Clay | Uncommon | 每当你在战斗中失去生命，就在下回合获得[blue]{BlockNextTurn}[/blue]点[gold]格挡[/gold]。 | `HeuristicInferred` |
 | `SHURIKEN` | 手里剑 | Shuriken | Rare | 你每在同一回合内打出[blue]{Cards}[/blue]张攻击牌，获得[blue]{StrengthPower}[/blue]点[gold]力量[/gold]。 | `HeuristicInferred` |
+| `SLING_OF_COURAGE` | 勇气投石索 | Sling of Courage | Shop | 在与[gold]精英[/gold]敌人战斗时，获得[blue]{StrengthPower}[/blue]点[gold]力量[/gold]。 | `LiveObserved` |
 | `SNECKO_EYE` | 异蛇之眼 | Snecko Eye | Ancient | 每回合多抽[blue]{Cards}[/blue]张牌。每场战斗开始时获得[red]混乱[/red]效果。 | `HeuristicInferred` |
 | `SOZU` | 添水 | Sozu | Ancient | 你无法再获得药水。在每回合开始时获得{Energy:energyIcons()}。 | `HeuristicInferred` |
 | `SPARKLING_ROUGE` | 闪亮口红 | Sparkling Rouge | Uncommon | 在你的第[blue]3[/blue]回合开始时，获得[blue]{StrengthPower}[/blue]点[gold]力量[/gold]和[blue]{DexterityPower}[/blue]点[gold]敏捷[/gold]。 | `HeuristicInferred` |
 | `SPIKED_GAUNTLETS` | 带刺手甲 | Spiked Gauntlets | Ancient | 在每回合开始时获得{Energy:energyIcons()}。能力牌的耗能增加[blue]1[/blue]{energyPrefix:energyIcons(1)}。 | `HeuristicInferred` |
 | `STONE_CALENDAR` | 历石 | Stone Calendar | Rare | 在第[blue]{DamageTurn}[/blue]回合结束时，对所有敌人造成[blue]{Damage}[/blue]点伤害。 | `HeuristicInferred` |
 | `STRIKE_DUMMY` | 打击木偶 | Strike Dummy | Common | 名字中有“打击”的卡牌造成[blue]{ExtraDamage}[/blue]点额外伤害。 | `HeuristicInferred` |
+| `SWORD_OF_JADE` | 玉之剑 | Sword of Jade | Event | 在每场战斗开始时，获得[blue]{StrengthPower}[/blue]点[gold]力量[/gold]。 | `LiveObserved` |
 | `SWORD_OF_STONE` | 石之剑 | Sword of Stone | Event | 在击败[blue]{Elites}[/blue]名[gold]精英[/gold]敌人之后将变化为一件强力[gold]遗物[/gold]。 | `HeuristicInferred` |
+| `THE_ABACUS` | 算盘 | The Abacus | Shop | 你每次将[gold]抽牌堆[/gold]洗牌时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。 | `LiveObserved` |
 | `THE_BOOT` | 发条靴 | The Boot | Event | 每当你造成小于等于[blue]{DamageThreshold}[/blue]点未被格挡的攻击伤害时，将伤害提升为[blue]{DamageMinimum}[/blue]。 | `HeuristicInferred` |
 | `TOUGH_BANDAGES` | 结实绷带 | Tough Bandages | Rare | 你每在你的回合丢弃一张牌，就获得[blue]{Block}[/blue]点[gold]格挡[/gold]。 | `LiveObserved` |
 | `TOY_BOX` | 玩具盒 | Toy Box | Ancient | 拾起时，获得[blue]{Relics}[/blue]件[gold]蜡制遗物[/gold]。每经过[blue]{Combats}[/blue]场战斗，你最左侧的[gold]蜡制遗物[/gold]将会融化。 | `HeuristicInferred` |

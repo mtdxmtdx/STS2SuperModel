@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "generated_at_utc": "2026-09-04T07:17:55.1760423Z",
+  "configuration": {
+    "seeds_per_level": 50,
+    "workers": 16,
+    "maximum_expanded_nodes": 10000,
+    "node_budget_only": true,
+    "encounters": [
+      "SEAPUNK_WEAK",
+      "SHRINKER_BEETLE_WEAK",
+      "SLIMES_WEAK",
+      "TERROR_EEL_ELITE",
+      "TWO_TAILED_RATS_NORMAL",
+      "VANTOM_BOSS"
+    ],
+    "characters": [
+      "Ironclad",
+      "Silent"
+    ]
+  },
+  "levels": [
+    {
+      "turns": 3,
+      "seeds": 50,
+      "rows": 200,
+      "collect_seconds": 6.6123032,
+      "collect_seconds_per_seed": 0.132246064,
+      "label_seconds": 12.2374912,
+      "label_seconds_per_state": 0.061187455999999994,
+      "expanded_nodes_p50": 182.0,
+      "expanded_nodes_p90": 542.0,
+      "expanded_nodes_max": 1010.0,
+      "reliable_count": 151,
+      "reliable_ratio": 0.755,
+      "search_complete_count": 200,
+      "search_complete_ratio": 1,
+      "budget_bound_count": 0,
+      "round_ge_8_reliable_count": 0,
+      "round_ge_8_reliable_per_seed": 0
+    },
+    {
+      "turns": 6,
+      "seeds": 50,
+      "rows": 313,
+      "collect_seconds": 6.8579348,
+      "collect_seconds_per_seed": 0.137158696,
+      "label_seconds": 18.0115617,
+      "label_seconds_per_state": 0.05754492555910544,
+      "expanded_nodes_p50": 176.0,
+      "expanded_nodes_p90": 450.0,
+      "expanded_nodes_max": 1622.0,
+      "reliable_count": 210,
+      "reliable_ratio": 0.670926517571885,
+      "search_complete_count": 313,
+      "search_complete_ratio": 1,
+      "budget_bound_count": 0,
+      "round_ge_8_reliable_count": 0,
+      "round_ge_8_reliable_per_seed": 0
+    },
+    {
+      "turns": 10,
+      "seeds": 50,
+      "rows": 365,
+      "collect_seconds": 6.5755396,
+      "collect_seconds_per_seed": 0.131510792,
+      "label_seconds": 20.765826,
+      "label_seconds_per_state": 0.05689267397260274,
+      "expanded_nodes_p50": 129.0,
+      "expanded_nodes_p90": 416.0,
+      "expanded_nodes_max": 1622.0,
+      "reliable_count": 254,
+      "reliable_ratio": 0.6958904109589041,
+      "search_complete_count": 365,
+      "search_complete_ratio": 1,
+      "budget_bound_count": 0,
+      "round_ge_8_reliable_count": 41,
+      "round_ge_8_reliable_per_seed": 0.82
+    },
+    {
+      "turns": 14,
+      "seeds": 50,
+      "rows": 363,
+      "collect_seconds": 6.7124714,
+      "collect_seconds_per_seed": 0.134249428,
+      "label_seconds": 22.2009596,
+      "label_seconds_per_state": 0.061159668319559234,
+      "expanded_nodes_p50": 130.0,
+      "expanded_nodes_p90": 506.0,
+      "expanded_nodes_max": 1622.0,
+      "reliable_count": 258,
+      "reliable_ratio": 0.7107438016528925,
+      "search_complete_count": 363,
+      "search_complete_ratio": 1,
+      "budget_bound_count": 0,
+      "round_ge_8_reliable_count": 41,
+      "round_ge_8_reliable_per_seed": 0.82
+    }
+  ],
+  "selection": {
+    "selected_turns": 14,
+    "reason": "largest probed turns value with Reliable ratio >= 0.70; search_complete=1 and BudgetBound=0",
+    "observed_deep_reliable_per_seed": 0.82,
+    "minimum_seeds_for_20_percent_when_merging_deep_only": 6382.0,
+    "production_seed_count": 7000,
+    "headroom_ratio": 0.09683484801002828,
+    "merge_policy": "retain only round>=8 rows from the new shard, then deterministically cap character ratio if necessary; existing shallow dataset remains intact"
+  },
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1,
+    "feature_schema_version": "combat-feature-v1"
+  }
+}

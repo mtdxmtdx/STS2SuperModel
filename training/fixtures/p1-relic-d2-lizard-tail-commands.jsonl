@@ -1,0 +1,8 @@
+{"cmd":"start_run","character":"Ironclad","seed":"d2-lizard-tail-v1","ascension":0}
+{"cmd":"set_player","relics":["LIZARD_TAIL"],"hp":5,"max_hp":80,"deck":["STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","STRIKE_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","DEFEND_IRONCLAD","BASH"]}
+{"cmd":"enter_room","type":"combat","encounter":"SEAPUNK_WEAK"}
+{"cmd":"get_combat_snapshot","view":"public"}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"action","action":"end_turn","args":{}}
+{"cmd":"get_combat_snapshot","view":"teacher"}
+{"cmd":"quit"}

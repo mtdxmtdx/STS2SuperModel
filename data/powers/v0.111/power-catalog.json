@@ -6231,8 +6231,8 @@
         "DisplayAmount"
       ],
       "dynamic_vars": {
-        "DisplayAmount": 0,
-        "SlowAmount": 0
+        "SlowAmount": 0,
+        "DisplayAmount": 0
       },
       "internal_counters": [],
       "trigger_phases": [
@@ -7090,8 +7090,8 @@
         "DamageDecrease"
       ],
       "dynamic_vars": {
-        "DamageDecrease": 0.5,
-        "DamageIncrease": 1.5
+        "DamageIncrease": 1.5,
+        "DamageDecrease": 0.5
       },
       "internal_counters": [],
       "trigger_phases": [

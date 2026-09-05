@@ -296,9 +296,9 @@ class ShadowDiffReportTests(unittest.TestCase):
         # power batch, then 91/111/121/127/136/144/148/149/153/159/165/167/171/179
         # through relic batches 1-14, 183 after relic batch 16 + the two R1
         # holds, and 212 after card batch C1 (29 card reports), plus six
-        # current closeout reports.
+        # current closeout reports, plus eight D2 relic hook witnesses.
         names = expected_report_names()
-        self.assertEqual(len(names), 218)
+        self.assertEqual(len(names), 226)
         actual = {path.name for path in DATA_DIR.glob("p0-csharp-*-diff-report*.json")}
         # The 607-row card direct-matrix reports are a separate coverage
         # artifact and are audited by card-specific tests; they are not part

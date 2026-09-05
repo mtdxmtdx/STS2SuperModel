@@ -1,0 +1,21 @@
+{
+  "rows": 10490,
+  "reliable": 7181,
+  "estimated": 3309,
+  "uncalculable": 0,
+  "reliable_with_potion": 7181,
+  "reliable_ratio": 0.684556720686368,
+  "reliable_with_potion_per_seed": 4.952413793103449,
+  "characters": [
+    {
+      "character": "The Ironclad",
+      "rows": 5661,
+      "ratio": 0.5396568160152526
+    },
+    {
+      "character": "The Silent",
+      "rows": 4829,
+      "ratio": 0.4603431839847474
+    }
+  ]
+}

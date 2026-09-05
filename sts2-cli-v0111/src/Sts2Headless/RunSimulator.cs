@@ -3779,6 +3779,7 @@ public class RunSimulator
                     ["target_type"] = p.TargetType.ToString(),
                 };
             }).Where(x => x != null).ToList(),
+            ["potion_slot_count"] = player.PotionSlots.Count,
             ["deck_size"] = player.Deck?.Cards?.Count(c => c != null) ?? 0,
             ["deck"] = player.Deck?.Cards?.Where(c => c != null).Select(c =>
             {
