@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "pytest_command": "python -m pytest training\\test_joint_coverage_gate.py -q -p no:cacheprovider",
+  "pytest_result": "6 passed in 0.50s",
+  "cases": [
+    {
+      "case": "boundary",
+      "verdict": "pass",
+      "failures": [],
+      "N": 20,
+      "P": 4,
+      "G": 6,
+      "dataset_sha256": "1C536DADCBD4E73BB13CFDE1E2EBB8DF3D2C8269052F54F5CA4DA647F56AFE77",
+      "expected_dataset_sha256": "1C536DADCBD4E73BB13CFDE1E2EBB8DF3D2C8269052F54F5CA4DA647F56AFE77"
+    },
+    {
+      "case": "character-range",
+      "verdict": "fail",
+      "failures": [
+        "reliable_character_ratio_out_of_range:The Ironclad",
+        "reliable_character_ratio_out_of_range:The Silent"
+      ],
+      "N": 20,
+      "P": 4,
+      "G": 6,
+      "dataset_sha256": "985FAF91314406F9F29DF3D0A49B3CB8F4A43B7F0EF62B3D417F973D07948520",
+      "expected_dataset_sha256": "985FAF91314406F9F29DF3D0A49B3CB8F4A43B7F0EF62B3D417F973D07948520"
+    },
+    {
+      "case": "potion-low",
+      "verdict": "fail",
+      "failures": [
+        "potion_coverage_below_20_percent"
+      ],
+      "N": 20,
+      "P": 3,
+      "G": 6,
+      "dataset_sha256": "DC7DE320A61B9967C0249C43A5BD48C00B9874B1F7E28A5385E93549A9A266A2",
+      "expected_dataset_sha256": "DC7DE320A61B9967C0249C43A5BD48C00B9874B1F7E28A5385E93549A9A266A2"
+    },
+    {
+      "case": "relic-low",
+      "verdict": "fail",
+      "failures": [
+        "multi_relic_coverage_below_30_percent"
+      ],
+      "N": 20,
+      "P": 4,
+      "G": 5,
+      "dataset_sha256": "8A633A0C27F3FE996853DFE7177FB19055ADB2C6F2CC0CFC2D3FBFEC6AB8740B",
+      "expected_dataset_sha256": "8A633A0C27F3FE996853DFE7177FB19055ADB2C6F2CC0CFC2D3FBFEC6AB8740B"
+    },
+    {
+      "case": "stale-hash",
+      "verdict": "fail",
+      "failures": [
+        "dataset_sha256_mismatch"
+      ],
+      "N": 20,
+      "P": 4,
+      "G": 6,
+      "dataset_sha256": "1C536DADCBD4E73BB13CFDE1E2EBB8DF3D2C8269052F54F5CA4DA647F56AFE77",
+      "expected_dataset_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "case": "zero-reliable",
+      "verdict": "fail",
+      "failures": [
+        "zero_reliable_rows"
+      ],
+      "N": 0,
+      "P": 0,
+      "G": 0,
+      "dataset_sha256": "D4DC021C794F00112B9DFEB74302D8F0D88E016BE10F48F490A536568E3BBCC1",
+      "expected_dataset_sha256": "D4DC021C794F00112B9DFEB74302D8F0D88E016BE10F48F490A536568E3BBCC1"
+    }
+  ],
+  "verdict": "pass"
+}

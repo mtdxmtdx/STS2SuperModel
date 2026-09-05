@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "dataset_path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\line-d-final-merged-dedup.jsonl",
+  "dataset_sha256": "BD616CF875CD324DE278B7783CB05AA432E24A98642C5E666C4413AD0E8F8E21",
+  "expected_dataset_sha256": "BD616CF875CD324DE278B7783CB05AA432E24A98642C5E666C4413AD0E8F8E21",
+  "row_count": 72096,
+  "reliable_denominator": 53370,
+  "reliable_with_potions": 11169,
+  "reliable_with_potions_ratio": 0.20927487352445193,
+  "reliable_with_two_nonstarter_relics": 19767,
+  "reliable_with_two_nonstarter_relics_ratio": 0.37037661607644745,
+  "integer_checks": {
+    "five_times_p_ge_n": true,
+    "ten_times_g_ge_three_n": true
+  },
+  "reliable_character_distribution": {
+    "The Ironclad": {
+      "rows": 28671,
+      "ratio": 0.537211916807195
+    },
+    "The Silent": {
+      "rows": 24699,
+      "ratio": 0.46278808319280496
+    }
+  },
+  "all_row_character_distribution": {
+    "The Ironclad": {
+      "rows": 39171,
+      "ratio": 0.5433172436750998
+    },
+    "The Silent": {
+      "rows": 32925,
+      "ratio": 0.45668275632490013
+    }
+  },
+  "soft_slices": {
+    "round_ge_8": {
+      "rows": 10778,
+      "ratio": 0.20194866029604647
+    },
+    "enemy_count_ge_3": {
+      "rows": 7793,
+      "ratio": 0.1460183623758666
+    },
+    "act_ge_2": {
+      "rows": 0,
+      "ratio": 0.0
+    }
+  },
+  "malformed_lines": [],
+  "version_mismatch_counts": {},
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1,
+    "feature_schema_version": "1",
+    "feature_contract": "combat-feature-v1",
+    "feature_manifest": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\combat-feature-manifest.json",
+    "feature_manifest_sha256": "176416D08B9AE9381177F94940BB88EF6F93594EBDF0F8E4F39267AA403A74AB"
+  },
+  "failures": []
+}

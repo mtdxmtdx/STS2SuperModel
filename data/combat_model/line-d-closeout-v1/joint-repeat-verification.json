@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "first": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\probe-20-labeled.jsonl",
+  "second": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\probe-20-repeat-labeled.jsonl",
+  "first_rows": 163,
+  "second_rows": 163,
+  "different_rows": 0,
+  "different_examples": [],
+  "missing_in_second": [],
+  "added_in_second": [],
+  "ignored_fields": [
+    "search_metrics.allocated_bytes",
+    "search_metrics.bytes_per_node",
+    "search_metrics.cpu_time",
+    "search_metrics.gen0_collections",
+    "search_metrics.gen1_collections",
+    "search_metrics.gen2_collections"
+  ],
+  "first_raw_sha256": "A5FEDB06461D58015090B8B232288ADBBD5EF039E39269B412B28FB5B8786669",
+  "second_raw_sha256": "7B1E80A2D245A21A91F42E04FEA4899BE8E2AEAEFDFEAF1B9C83ABA385AED042",
+  "first_semantic_sha256": "931FEF1D6AF246E2D1033E0A29E91C27DDDA0AC7E391017956519A419D0925D9",
+  "second_semantic_sha256": "931FEF1D6AF246E2D1033E0A29E91C27DDDA0AC7E391017956519A419D0925D9"
+}

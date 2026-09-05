@@ -1,0 +1,19 @@
+{
+  "model": {
+    "command": "ROLLBACK.sh D:\\STS2BestChoice\\work\\line-d-joint-closeout\\rollback-test-model",
+    "literal_output": "{\"root\":\"D:\\\\STS2BestChoice\\\\work\\\\line-d-joint-closeout\\\\rollback-test-model\",\"restored\":1,\"deleted\":4,\"status\":\"restored\"}",
+    "exit_status": 0,
+    "baseline_hash": "722C09D86B6CB6D12116670C8B1BD04B8D40FBEAD3BE628F20B4C6E6611588C7",
+    "restored_hash": "722C09D86B6CB6D12116670C8B1BD04B8D40FBEAD3BE628F20B4C6E6611588C7",
+    "hash_match": true,
+    "created_left": []
+  },
+  "core": {
+    "command": "ROLLBACK.sh D:\\STS2BestChoice\\work\\line-d-joint-closeout\\rollback-test-core",
+    "literal_output": "{\"root\":\"D:\\\\STS2BestChoice\\\\work\\\\line-d-joint-closeout\\\\rollback-test-core\",\"restored\":1,\"deleted\":0,\"status\":\"restored\"}",
+    "exit_status": 0,
+    "baseline_hash": "54A047861283E025B82E0BEF89BBD9043DEC6B973C8E355BAA4BC4E8460202C5",
+    "restored_hash": "54A047861283E025B82E0BEF89BBD9043DEC6B973C8E355BAA4BC4E8460202C5",
+    "hash_match": true
+  }
+}

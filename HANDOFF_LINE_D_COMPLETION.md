@@ -64,4 +64,32 @@ D:\STS2BestChoice\work\line-d-d2-relics\ROLLBACK.sh
 
 ## 远端状态
 
-模型仓库已成功推送到 `origin/main`，远端包含 `04dab48` 与 `4b01ce2`。Core 仓库没有配置 `origin`，需要指定其目标 GitHub 仓库后才能推送。
+模型仓库通过 `origin/main` 发布。由于 Core 仓库没有独立远端，本次同时在
+`data/combat_model/line-d-closeout-v1/` 附带当前影子模拟器 Core 与测试源码快照；
+该快照不包含 `Mod/`、游戏程序集、`bin/` 或 `obj/`。
+
+## Joint closeout v1（2026-09-05）
+
+历史 D1/D2 快照保持不变。联合收口新增的权威候选为：
+
+```text
+D:\STS2BestChoice\work\line-d-joint-closeout\line-d-final-merged-dedup.jsonl
+SHA-256: BD616CF875CD324DE278B7783CB05AA432E24A98642C5E666C4413AD0E8F8E21
+```
+
+在同一 Reliable 分母上：`N=53,370`、`P=11,169 (20.9275%)`、
+`G=19,767 (37.0377%)`；Ironclad/Silent 为
+`28,671/24,699 (53.7212%/46.2788%)`。联合整数门禁、既有质量门禁及
+core/potion/relic 三套冻结 holdout 完整性与 train/validation 泄漏检查均通过。
+
+完整配置、证据矩阵、门禁输出和回滚说明见：
+
+```text
+data/combat_model/line-d-closeout-v1/
+D:\STS2BestChoice\work\line-d-joint-closeout\
+```
+
+本轮未改变特征契约、模型、训练目标或语义支持状态；仅增加联合覆盖率门禁、
+冻结集检查入口、验收行为测试及定向组合数据。影子模拟器源码随同模型仓库以
+`shadow-simulator-core-e9b1395-line-d.zip` 发布，恢复方式和 SHA-256 见同目录
+`simulator-source-manifest.json`。

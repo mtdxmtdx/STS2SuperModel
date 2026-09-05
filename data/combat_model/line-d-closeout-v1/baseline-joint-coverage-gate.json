@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "verdict": "fail",
+  "dataset_path": "D:\\STS2BestChoice\\work\\line-d-d2-relics\\d2-relic-merged-dedup.jsonl",
+  "dataset_sha256": "25B50DCDB1FCBD253E124AD3329FCBE730613E13F1919B0AB85656591FB21796",
+  "expected_dataset_sha256": "25B50DCDB1FCBD253E124AD3329FCBE730613E13F1919B0AB85656591FB21796",
+  "row_count": 67799,
+  "reliable_denominator": 49414,
+  "reliable_with_potions": 7213,
+  "reliable_with_potions_ratio": 0.14597077751244586,
+  "reliable_with_two_nonstarter_relics": 15811,
+  "reliable_with_two_nonstarter_relics_ratio": 0.31997004897397496,
+  "integer_checks": {
+    "five_times_p_ge_n": false,
+    "ten_times_g_ge_three_n": true
+  },
+  "reliable_character_distribution": {
+    "The Ironclad": {
+      "rows": 25855,
+      "ratio": 0.5232322823491318
+    },
+    "The Silent": {
+      "rows": 23559,
+      "ratio": 0.4767677176508682
+    }
+  },
+  "all_row_character_distribution": {
+    "The Ironclad": {
+      "rows": 36355,
+      "ratio": 0.5362173483384711
+    },
+    "The Silent": {
+      "rows": 31444,
+      "ratio": 0.46378265166152893
+    }
+  },
+  "soft_slices": {
+    "round_ge_8": {
+      "rows": 9752,
+      "ratio": 0.19735297688914072
+    },
+    "enemy_count_ge_3": {
+      "rows": 7793,
+      "ratio": 0.15770834176549156
+    },
+    "act_ge_2": {
+      "rows": 0,
+      "ratio": 0.0
+    }
+  },
+  "malformed_lines": [],
+  "version_mismatch_counts": {},
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol_version": "0.2.0",
+    "trace_schema": 1,
+    "feature_schema_version": "1",
+    "feature_contract": "combat-feature-v1",
+    "feature_manifest": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\combat-feature-manifest.json",
+    "feature_manifest_sha256": "176416D08B9AE9381177F94940BB88EF6F93594EBDF0F8E4F39267AA403A74AB"
+  },
+  "failures": [
+    "potion_coverage_below_20_percent"
+  ]
+}

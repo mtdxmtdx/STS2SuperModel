@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-09-05T10:01:20.1426244Z",
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_path": "D:\\steam\\steamapps\\common\\Slay the Spire 2\\data_sts2_windows_x86_64\\sts2.dll",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol": "0.2.0",
+    "trace_schema": 1,
+    "feature_contract": "combat-feature-v1",
+    "feature_schema_version": "1",
+    "feature_manifest_sha256": "176416D08B9AE9381177F94940BB88EF6F93594EBDF0F8E4F39267AA403A74AB",
+    "simulator_version": "cli-v0111-headless",
+    "semantic_database_version": "game-runtime-v0111",
+    "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383"
+  },
+  "repositories": {
+    "model": {
+      "root": "D:\\STS2BestChoice\\STS2SuperModel",
+      "branch": "main",
+      "head": "da18d66571c2674e6fea019bbc399c41e891b52a",
+      "remote": [
+        "origin\thttps://github.com/mtdxmtdx/STS2SuperModel.git (fetch)",
+        "origin\thttps://github.com/mtdxmtdx/STS2SuperModel.git (push)"
+      ],
+      "publication_status": "REMOTE_PENDING: no push performed in this closeout"
+    },
+    "core": {
+      "root": "D:\\STS2BestChoice\\STS2BestChoice",
+      "branch": "main",
+      "head": "e9b139561ab586febf2e8f12b0417beeae8a22ee",
+      "remote": [],
+      "bundle": {
+        "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\core-main-e9b1395.bundle",
+        "sha256": "DE404796AA1597CFA459C758D44C69E841106AC91A68EDD6302A09388730A505",
+        "contains": "committed main history through e9b1395 only",
+        "uncommitted_patch": "delivered separately in core/DIFF_FILE.patch"
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "name": "line-d-final-merged-dedup.jsonl",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\line-d-final-merged-dedup.jsonl",
+      "sha256": "BD616CF875CD324DE278B7783CB05AA432E24A98642C5E666C4413AD0E8F8E21",
+      "bytes": 1824732054
+    },
+    {
+      "name": "line-d-closeout-v1.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\line-d-closeout-v1.json",
+      "sha256": "4FFA0DBA15EF7CF8498B07B5DC39FF70439C31CFE90CE2409826AE17BFCD9B50",
+      "bytes": 1101
+    },
+    {
+      "name": "coverage-profile.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\coverage-profile.json",
+      "sha256": "3DDE3B2D9F8033A40C4D1DC19ABE584F751BC172B4281DBE2031102E72DD8B17",
+      "bytes": 3536
+    },
+    {
+      "name": "joint-coverage-gate.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-coverage-gate.json",
+      "sha256": "3CB71CFEE02DB0E98B4216C61D91D52C85316D3183734BE1B7A2BEB97B536842",
+      "bytes": 2028
+    },
+    {
+      "name": "quality-gate-authoritative.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\quality-gate-authoritative.json",
+      "sha256": "5AF65F5060FF32BD1303EB1CFDFD0160E1D7171273B835EA2AD5579789C617E0",
+      "bytes": 2446
+    },
+    {
+      "name": "holdout-integrity.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\holdout-integrity.json",
+      "sha256": "BC620F943340781DD0DEE130056AEC413B389351D99819F4D3CFB2503260843C",
+      "bytes": 2736
+    },
+    {
+      "name": "generation-config.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\generation-config.json",
+      "sha256": "D8E41B22FBDD5663C0A178C7A1C59EEAB76238B4A7812EDAE2DE7FF20EF80D5C",
+      "bytes": 3772
+    },
+    {
+      "name": "risk-attribution.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\risk-attribution.json",
+      "sha256": "BF18C2E667E99697DEA51208AB527F5700C9108B826BE6FB2E2D588017799037",
+      "bytes": 942
+    },
+    {
+      "name": "joint-repeat-verification.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-repeat-verification.json",
+      "sha256": "68D852A00ABDCCDF80DFA2BB085878639C260C571D051C8CB55F776B2237B9B8",
+      "bytes": 1018
+    },
+    {
+      "name": "joint-payload-repeat.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-payload-repeat.json",
+      "sha256": "E3CA16B9E5E8F0EE9606A27995CA7EBEFB3F237D612C6CA3BBEC99BB373FA564",
+      "bytes": 259
+    },
+    {
+      "name": "negative-test-evidence.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\negative-test-evidence.json",
+      "sha256": "5DAF5551EED74A87F8EEBBCA93776E0B98551744840A45913B2767D8011C04DA",
+      "bytes": 251
+    },
+    {
+      "name": "joint-gate-negative-evidence.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-gate-negative-evidence.json",
+      "sha256": "5C3B9ABEA05F55F1365CD868DAF64A452377935751245EB72C85819356FF6E01",
+      "bytes": 2536
+    },
+    {
+      "name": "injection-contract-audit.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\injection-contract-audit.json",
+      "sha256": "EF4F456C023CFAB32DA1A21AD305033EDBBCDD80873E22E24EBD6E67AEE18646",
+      "bytes": 1091
+    },
+    {
+      "name": "p1-repeat-verification.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\p1-repeat-verification.json",
+      "sha256": "D21BF1ACF06C1810820C3487380F25AA4D9A852962143C0A3AABD6436E77AE2A",
+      "bytes": 41853
+    },
+    {
+      "name": "rollback-verification.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\rollback-verification.json",
+      "sha256": "9B74779232DD1AB76DE71EB425438D898EA039A20BB6F34394F626FF5DF55600",
+      "bytes": 1063
+    },
+    {
+      "name": "evidence-matrix.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\evidence-matrix.json",
+      "sha256": "32AD742FFDE4F1540BB3346F5D4BA11397783E3831E2F27E9B9D5993EAEE424F",
+      "bytes": 6322
+    },
+    {
+      "name": "holdout-negative-evidence.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\holdout-negative-evidence.json",
+      "sha256": "08EF9A25019893DEB34027339D871E29C3C8BF7BBD968367D29B2AD678FE3CB1",
+      "bytes": 219
+    },
+    {
+      "name": "completion-audit.json",
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\completion-audit.json",
+      "sha256": "8607688BBB3B00205507EEFA7644F105195ABDC15DC816C4FD65BACFE1A96D5E",
+      "bytes": 1250
+    }
+  ],
+  "historical_evidence": {
+    "d1_fire_mutation": {
+      "verification": "D:\\STS2BestChoice\\work\\line-d-d1-potions\\VERIFICATION.txt",
+      "negative_report": "D:\\STS2BestChoice\\work\\line-d-d1-potions\\negative\\d1-csharp-potion-fire-potion-diff-report.json",
+      "negative_report_sha256": "798E584434B9EE16877A11945D0B683980DDF1F19AEA297C9B1CAA46369F6A79"
+    },
+    "d2_paper_phrog_mutation": {
+      "verification": "D:\\STS2BestChoice\\work\\line-d-d2-relics\\VERIFICATION.txt",
+      "negative_log": "D:\\STS2BestChoice\\work\\line-d-d2-relics\\negative-output.txt",
+      "negative_log_sha256": "3593C4A666591E045ABB74BE56A741D5BB8C9D83F878EFCBF97D357B7A078984"
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "captured_at_utc": "2026-09-05T09:24:24.8352082Z",
+  "attachment_sha256": "5E3C16F428A5E9390F2BE5C471E958C34B71FF60ACA7B24B2B08DB4C3FE59678",
+  "model_repo": {
+    "root": "D:\\STS2BestChoice\\STS2SuperModel",
+    "branch": "main",
+    "head": "da18d66571c2674e6fea019bbc399c41e891b52a",
+    "status": [],
+    "remotes": [
+      "origin\thttps://github.com/mtdxmtdx/STS2SuperModel.git (fetch)",
+      "origin\thttps://github.com/mtdxmtdx/STS2SuperModel.git (push)"
+    ],
+    "files": [
+      {
+        "path": "HANDOFF_LINE_D_COMPLETION.md",
+        "sha256": "722C09D86B6CB6D12116670C8B1BD04B8D40FBEAD3BE628F20B4C6E6611588C7",
+        "bytes": 3298
+      },
+      {
+        "path": "training\\report_coverage_profile.py",
+        "sha256": "D6F252847300B275047C21D24E28959383669894A06D155509730D73C9B1635E",
+        "bytes": 7253
+      },
+      {
+        "path": "training\\run_quality_gate.py",
+        "sha256": "F0CD789C8FBAC1A6F6213B79EFF2B0202F77545205AF0BBC5AC9CA344B433FDC",
+        "bytes": 15980
+      },
+      {
+        "path": "training\\split_dataset.py",
+        "sha256": "5C1A10C511FF48E6934F50DE31CFCF17B415FC04A158FD9283A32B71B79E72CE",
+        "bytes": 14662
+      },
+      {
+        "path": "training\\verify_holdout_leakage_gate.py",
+        "sha256": "DFD2CFE8E281BBFD0E0A7E2858522AE4B14FAEE41C372F09A515F65716E70AFF",
+        "bytes": 2811
+      },
+      {
+        "path": "data\\combat_model\\relic-v1\\dataset-manifest.json",
+        "sha256": "EE327A96EF1B20089F1F0074A1EFE8778A3FCFF9B0DB6285300DF5F752E9AE77",
+        "bytes": 1100
+      },
+      {
+        "path": "data\\combat_model\\relic-v1\\coverage-profile.json",
+        "sha256": "AC752A338CF5E4FE2E1F0D91CC9D0C2CBAA9B3676DC1C08BC9F8A9B09A80F2E3",
+        "bytes": 3526
+      },
+      {
+        "path": "data\\combat_model\\relic-v1\\quality-gate.json",
+        "sha256": "6BE67BF0B01570206DB944B993FDFD5874A1FB24A886B88263B1AFB6C39DFF01",
+        "bytes": 2404
+      },
+      {
+        "path": "data\\combat_model\\holdouts\\holdout-core-v1.json",
+        "sha256": "0BEB64C5C0A5E40073F1234356CD68A34716130D95699CFC68BF43281883A542",
+        "bytes": 109699
+      },
+      {
+        "path": "data\\combat_model\\holdouts\\holdout-potion-v1.json",
+        "sha256": "F8F76551527BFD9A31C4E481CFA5D7018C7219EF46A365597CFDF43A007586C3",
+        "bytes": 19923
+      },
+      {
+        "path": "data\\combat_model\\holdouts\\holdout-relic-v1.json",
+        "sha256": "B7018CB52EF95807403575B843BC0D234A717CEDAF0744186F900DBE7A4563C2",
+        "bytes": 38368
+      }
+    ]
+  },
+  "core_repo": {
+    "root": "D:\\STS2BestChoice\\STS2BestChoice",
+    "branch": "main",
+    "head": "e9b139561ab586febf2e8f12b0417beeae8a22ee",
+    "status": [],
+    "remotes": [],
+    "files": [
+      {
+        "path": "Mod\\LiveCombatSnapshotAdapter.cs",
+        "sha256": "EC3C2B34FA3097FB6E164068CAC52F1205CC41AEBF4573355CFB6F00E62547FB",
+        "bytes": 180851
+      },
+      {
+        "path": "STS2BestChoice.Core\\Data\\PotionSemanticCatalog.cs",
+        "sha256": "6671FC7877278652C622E6467602F4334F6CC54094C01FFB3FBE38414F337797",
+        "bytes": 7149
+      },
+      {
+        "path": "STS2BestChoice.Core\\Simulation\\DeterministicSimulator.cs",
+        "sha256": "21D8CEA7284CB8E0C045D6CB95C249E06142B094F83D6FCA9EFF3CC2140B5FCF",
+        "bytes": 293738
+      },
+      {
+        "path": "STS2BestChoice.Core\\Search\\CombatSearchSession.cs",
+        "sha256": "6B07F071723EB36ACF7119334B3913BDCE202EF19077254B111CAED1591E18BB",
+        "bytes": 41689
+      },
+      {
+        "path": "tests\\PotionSemanticCatalogTests.cs",
+        "sha256": "54A047861283E025B82E0BEF89BBD9043DEC6B973C8E355BAA4BC4E8460202C5",
+        "bytes": 3560
+      },
+      {
+        "path": "tests\\D2RelicSemanticTests.cs",
+        "sha256": "7D9FED319222B513E4397EF3C0C76C422A7BCAC087D7FA48EC637F82F3CA867A",
+        "bytes": 6197
+      }
+    ]
+  },
+  "game": {
+    "root": "D:\\steam\\steamapps\\common\\Slay the Spire 2",
+    "dll": "D:\\steam\\steamapps\\common\\Slay the Spire 2\\data_sts2_windows_x86_64\\sts2.dll",
+    "available": true,
+    "dll_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9"
+  },
+  "dataset": {
+    "path": "D:\\STS2BestChoice\\work\\line-d-d2-relics\\d2-relic-merged-dedup.jsonl",
+    "sha256": "25B50DCDB1FCBD253E124AD3329FCBE730613E13F1919B0AB85656591FB21796",
+    "rows": 67799
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "package": "shadow-simulator-core",
+  "source_repository": "D:\\STS2BestChoice\\STS2BestChoice",
+  "source_branch": "main",
+  "source_commit": "e9b139561ab586febf2e8f12b0417beeae8a22ee",
+  "includes_uncommitted_closeout_test": true,
+  "excludes": [
+    "Mod/",
+    "sts2.dll",
+    "bin/",
+    "obj/"
+  ],
+  "file_count": 56,
+  "archive_file": "shadow-simulator-core-e9b1395-line-d.zip",
+  "archive_bytes": 299280,
+  "archive_sha256": "B49ADDFA30147DFF6C4BE5D8CEAC66D8A632DF1849C0A09F6A074D9E3B2D5E8B",
+  "restore": "Expand-Archive shadow-simulator-core-e9b1395-line-d.zip -DestinationPath <target>"
+}

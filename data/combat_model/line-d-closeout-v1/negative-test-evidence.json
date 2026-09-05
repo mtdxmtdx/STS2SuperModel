@@ -1,0 +1,9 @@
+{
+  "baseline_exit": 0,
+  "opportunity_cost_mutation_exit": 1,
+  "opportunity_cost_restored_exit": 0,
+  "priority_hint_mutation_exit": 1,
+  "priority_hint_restored_exit": 0,
+  "simulator_hash_restored": true,
+  "search_hash_restored": true
+}

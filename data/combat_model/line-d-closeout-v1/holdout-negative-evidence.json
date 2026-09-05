@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "injection": "test episode test-1 duplicated into train.jsonl",
+  "literal_error": "frozen test episode 'test-1' appears in 'train'",
+  "expected_exit_status": 1
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "source": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-520-raw.jsonl",
+  "source_sha256": "F7CED5209D2D857035C515BCD77A61A25DA296CF9322905994645BD3B4B237DA",
+  "row_count": 4308,
+  "episode_count": 520,
+  "episodes_with_public_injection": 520,
+  "episodes_missing_public_injection": [],
+  "null_or_empty_potion_entries": 0,
+  "potion_slot_count_distribution": {
+    "3": 4308
+  },
+  "empty_slot_contract": {
+    "source": "D:\\STS2BestChoice\\work\\line-d-d1-potions\\collector-smoke-a.jsonl",
+    "source_sha256": "0D0EAFCDA8BB5B3C4F5DD8FF813B7ED196914233439C02D6857E70076752BC14",
+    "empty_potion_rows": 1,
+    "samples": [
+      {
+        "episode_id": "trace-v0111-root-d1-inject-smoke-00001",
+        "potion_count": 0,
+        "potion_slot_count": 3
+      }
+    ],
+    "interpretation": "held potions are a dense list; empty inventory is []; capacity is public_state.player.potion_slot_count"
+  },
+  "feature_manifest_sha256": "176416D08B9AE9381177F94940BB88EF6F93594EBDF0F8E4F39267AA403A74AB",
+  "verdict": "pass"
+}

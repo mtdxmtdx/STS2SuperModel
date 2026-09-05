@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "dataset_id": "line-d-closeout-v1",
+  "scenario_type": "synthetic_combat_root_injection",
+  "seed_prefix": "line-d-joint-v1",
+  "seed_count": 520,
+  "turns": 14,
+  "encounters": [
+    "SEAPUNK_WEAK",
+    "TERROR_EEL_ELITE"
+  ],
+  "characters": [
+    "Ironclad",
+    "Silent"
+  ],
+  "workers": 16,
+  "potion_sets": [
+    [
+      "FIRE_POTION",
+      "BLOCK_POTION"
+    ],
+    [
+      "ENERGY_POTION",
+      "SWIFT_POTION"
+    ],
+    [
+      "STRENGTH_POTION",
+      "DEXTERITY_POTION"
+    ],
+    [
+      "WEAK_POTION",
+      "VULNERABLE_POTION"
+    ]
+  ],
+  "relic_sets": [
+    [
+      "DATA_DISK",
+      "GORGET"
+    ],
+    [
+      "EMBER_TEA",
+      "SWORD_OF_JADE"
+    ],
+    [
+      "SLING_OF_COURAGE",
+      "GREMLIN_HORN"
+    ],
+    [
+      "RUNIC_PYRAMID",
+      "PAPER_PHROG"
+    ],
+    [
+      "RINGING_TRIANGLE",
+      "PAPER_KRANE"
+    ],
+    [
+      "THE_ABACUS",
+      "BOOK_REPAIR_KNIFE"
+    ],
+    [
+      "LIZARD_TAIL",
+      "GORGET"
+    ]
+  ],
+  "teacher": {
+    "top_k": 5,
+    "budget_ms": 500,
+    "maximum_expanded_nodes": 10000,
+    "workers": 16,
+    "node_budget_only": true,
+    "evaluator": "training/TeacherEvaluator/bin/Release/net9.0/STS2BestChoice.TeacherEvaluator.exe"
+  },
+  "pipeline": [
+    "collect_nosl_root_states.py",
+    "materialize_public_pile_contents.py",
+    "generate_teacher_smoke.py",
+    "deduplicate_teacher_states.py",
+    "merge_teacher_datasets.py",
+    "split_dataset.py",
+    "build_dataset_manifest.py",
+    "report_coverage_profile.py",
+    "build_teacher_risk_attribution.py",
+    "run_quality_gate.py",
+    "run_joint_coverage_gate.py",
+    "verify_frozen_holdouts.py"
+  ],
+  "artifacts": {
+    "base_dataset": {
+      "path": "D:\\STS2BestChoice\\work\\line-d-d2-relics\\d2-relic-merged-dedup.jsonl",
+      "sha256": "25B50DCDB1FCBD253E124AD3329FCBE730613E13F1919B0AB85656591FB21796",
+      "rows": 67799
+    },
+    "raw": {
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-520-raw.jsonl",
+      "sha256": "F7CED5209D2D857035C515BCD77A61A25DA296CF9322905994645BD3B4B237DA",
+      "rows": 4308
+    },
+    "public": {
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-520-public.jsonl",
+      "sha256": "AA82FF6E3EB89893E6E83923A1442CA7664DA65FC592D83E66DD91E5AD17C02D",
+      "rows": 4308
+    },
+    "labeled": {
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-520-labeled.jsonl",
+      "sha256": "3FB0ED93BEBA701DFF83338EF66B81658F76948FAC173C495AD50EC3E1DF49F2",
+      "rows": 4308
+    },
+    "dedup": {
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-520-dedup.jsonl",
+      "sha256": "662AECC534A76591BAD1DAC0EE38968EF669D762657D773C56FF7D87B9599BC1",
+      "rows": 4297,
+      "reliable": 3956
+    },
+    "final": {
+      "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\line-d-final-merged-dedup.jsonl",
+      "sha256": "BD616CF875CD324DE278B7783CB05AA432E24A98642C5E666C4413AD0E8F8E21",
+      "rows": 72096,
+      "reliable": 53370
+    }
+  },
+  "version_lock": {
+    "game_version": "v0.111.0",
+    "game_commit": "41cef1ea",
+    "assembly_sha256": "0861BFA1DF347538D932F22D580E75420F08082792EB914E53B4882764ACDBE9",
+    "cli_protocol": "0.2.0",
+    "trace_schema": 1,
+    "feature_contract": "combat-feature-v1",
+    "feature_schema_version": "1",
+    "feature_manifest_sha256": "176416D08B9AE9381177F94940BB88EF6F93594EBDF0F8E4F39267AA403A74AB",
+    "simulator_version": "cli-v0111-headless",
+    "semantic_database_version": "game-runtime-v0111",
+    "generator_config_hash": "1DEB4733836B2B4CB051E4810C467E1B72A4706BEDFE45FF7C675A9D7CCDC383"
+  }
+}

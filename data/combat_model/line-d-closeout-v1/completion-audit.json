@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-05T10:01:06.8879860Z",
+  "conclusion": "D_CLOSEOUT_PASS",
+  "failures": [],
+  "dataset": {
+    "path": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\line-d-final-merged-dedup.jsonl",
+    "sha256": "BD616CF875CD324DE278B7783CB05AA432E24A98642C5E666C4413AD0E8F8E21",
+    "rows": 72096,
+    "N": 53370,
+    "P": 11169,
+    "G": 19767,
+    "characters": {
+      "The Ironclad": {
+        "rows": 28671,
+        "ratio": 0.537211916807195
+      },
+      "The Silent": {
+        "rows": 24699,
+        "ratio": 0.46278808319280496
+      }
+    }
+  },
+  "checks": {
+    "joint_coverage": "pass",
+    "data_quality": "pass",
+    "holdout_integrity": "pass",
+    "full_probe_repeat": "pass",
+    "combination_repeat": "pass",
+    "joint_negative_tests": "pass",
+    "opportunity_cost_mutation": "pass",
+    "priority_hint_mutation": "pass",
+    "core_build": "pass",
+    "core_tests": "810 passed, 0 failed, 0 skipped",
+    "python_tests": "154 passed, 0 failed, 1 skipped; training/test_replay_action.py excluded",
+    "model_rollback": "pass",
+    "core_rollback": "pass",
+    "feature_contract_unchanged": "pass"
+  },
+  "remote_status": "REMOTE_PENDING"
+}

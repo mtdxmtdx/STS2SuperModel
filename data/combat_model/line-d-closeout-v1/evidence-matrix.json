@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-05T09:55:03.494989Z",
+  "items": [
+    {
+      "requirement": "two repository baseline",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\baseline-audit.json",
+      "decision": "reuse clean main baselines"
+    },
+    {
+      "requirement": "game and schema version lock",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\version-manifest.json",
+      "decision": "v0.111.0 assembly hash and feature manifest match"
+    },
+    {
+      "requirement": "three frozen holdouts intact and absent from train/validation",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\holdout-integrity.json",
+      "decision": "all named members present in test/challenge; zero leakage"
+    },
+    {
+      "requirement": "D1 FIRE_POTION effect mutation",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-d1-potions\\VERIFICATION.txt; negative\\d1-csharp-potion-fire-potion-diff-report.json",
+      "decision": "reuse traceable historical isolated mutation and restored hash"
+    },
+    {
+      "requirement": "OpportunityCost named source contract",
+      "status": "verified",
+      "evidence": "Mod\\LiveCombatSnapshotAdapter.cs; training\\test_d1_potion_contract.py",
+      "decision": "pending-calibration preservation prior remains explicit"
+    },
+    {
+      "requirement": "OpportunityCost runtime consumption",
+      "status": "verified",
+      "evidence": "tests\\PotionSemanticCatalogTests.cs; negative-test-evidence.json; logs\\mutation-opportunity-cost-*.txt",
+      "decision": "added behavior and mutation regression evidence only"
+    },
+    {
+      "requirement": "unknown PriorityHint actual consumer behavior",
+      "status": "verified",
+      "evidence": "tests\\PotionSemanticCatalogTests.cs; negative-test-evidence.json; logs\\mutation-priority-hint-*.txt",
+      "decision": "real GenerateActions path distinguishes strong/unknown/zero"
+    },
+    {
+      "requirement": "potion does not consume energy/card count/Vigor",
+      "status": "verified",
+      "evidence": "PotionSemanticCatalogTests.PotionUseDoesNotSpendEnergyOrIncrementCardPlayCounters; CombatSearchSessionTests.PotionDamageDoesNotUseOrConsumeVigor",
+      "decision": "existing and new direct Core tests pass"
+    },
+    {
+      "requirement": "potion/relic injection in public state and empty-slot contract",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\injection-contract-audit.json",
+      "decision": "520/520 episodes observed injected state; [] plus slot capacity contract"
+    },
+    {
+      "requirement": "feature contract unchanged",
+      "status": "verified",
+      "evidence": "combat-feature-manifest.json SHA-256 176416D08B9AE9381177F94940BB88EF6F93594EBDF0F8E4F39267AA403A74AB",
+      "decision": "no schema/encoder/training target change"
+    },
+    {
+      "requirement": "D2 Paper Phrog mutation",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-d2-relics\\VERIFICATION.txt; negative-output.txt",
+      "decision": "reuse traceable historical mutation and restored pass"
+    },
+    {
+      "requirement": "six unsupported relic terminal reasons",
+      "status": "verified",
+      "evidence": "data\\relics\\v0.111\\d2-relic-closeout.json; line-d-closeout-v1\\README.md",
+      "decision": "remain non-Reliable with explicit next action"
+    },
+    {
+      "requirement": "same-file P>=20%, G>=30%, characters 45-55%",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-coverage-gate.json",
+      "decision": "N=53370 P=11169 G=19767; exact integer checks pass"
+    },
+    {
+      "requirement": "joint gate negative tests",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-gate-negative-evidence.json",
+      "decision": "all five required failure modes exit nonzero; exact boundary passes"
+    },
+    {
+      "requirement": "dataset quality",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\quality-gate-authoritative.json",
+      "decision": "zero leaks, missing IDs, malformed, duplicates/conflicts, split violations"
+    },
+    {
+      "requirement": "combination repeat determinism",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\joint-repeat-verification.json",
+      "decision": "raw/public byte identical; semantic hash identical"
+    },
+    {
+      "requirement": "Core build and tests",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\logs\\core-build.txt; D:\\STS2BestChoice\\work\\line-d-joint-closeout\\logs\\core-tests.txt",
+      "decision": "0 build errors; 810/810 tests pass"
+    },
+    {
+      "requirement": "Python training regression",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\logs\\python-tests-final.txt",
+      "decision": "154 passed, 1 skipped; test_replay_action.py explicitly excluded"
+    },
+    {
+      "requirement": "P0/P1 full repeat matrix",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\p1-repeat-verification.json; logs\\verify-repeat-runs.txt",
+      "decision": "226 reports; different=0 missing=0 added=0 unexpected=0"
+    },
+    {
+      "requirement": "per-repository rollback transaction",
+      "status": "verified",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\rollback-verification.json; model\\; core\\",
+      "decision": "both isolated-copy rollbacks exit 0; baseline hashes restored; no new files remain"
+    },
+    {
+      "requirement": "remote publication",
+      "status": "out_of_scope",
+      "evidence": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\version-manifest.json",
+      "decision": "REMOTE_PENDING; no push in this closeout"
+    }
+  ],
+  "summary": {
+    "verified": 20,
+    "pending": 0,
+    "blocked": 0,
+    "out_of_scope": 1
+  }
+}

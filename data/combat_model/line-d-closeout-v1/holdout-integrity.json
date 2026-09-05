@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "split_dir": "D:\\STS2BestChoice\\work\\line-d-joint-closeout\\line-d-final-splits",
+  "split_episode_counts": {
+    "train": 7759,
+    "validation": 3119,
+    "test": 2984,
+    "challenge": 1548
+  },
+  "frozen_episode_union_count": 3361,
+  "checks": [
+    {
+      "holdout_id": "holdout-core-v1",
+      "path": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\holdouts\\holdout-core-v1.json",
+      "sha256": "0BEB64C5C0A5E40073F1234356CD68A34716130D95699CFC68BF43281883A542",
+      "expected_sha256": "0BEB64C5C0A5E40073F1234356CD68A34716130D95699CFC68BF43281883A542",
+      "test_episode_count": 1425,
+      "challenge_episode_count": 753,
+      "leaked_train": [],
+      "leaked_validation": [],
+      "missing_test": [],
+      "missing_challenge": [],
+      "verdict": "pass"
+    },
+    {
+      "holdout_id": "holdout-potion-v1",
+      "path": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\holdouts\\holdout-potion-v1.json",
+      "sha256": "F8F76551527BFD9A31C4E481CFA5D7018C7219EF46A365597CFDF43A007586C3",
+      "expected_sha256": "F8F76551527BFD9A31C4E481CFA5D7018C7219EF46A365597CFDF43A007586C3",
+      "test_episode_count": 251,
+      "challenge_episode_count": 127,
+      "leaked_train": [],
+      "leaked_validation": [],
+      "missing_test": [],
+      "missing_challenge": [],
+      "verdict": "pass"
+    },
+    {
+      "holdout_id": "holdout-relic-v1",
+      "path": "D:\\STS2BestChoice\\STS2SuperModel\\data\\combat_model\\holdouts\\holdout-relic-v1.json",
+      "sha256": "B7018CB52EF95807403575B843BC0D234A717CEDAF0744186F900DBE7A4563C2",
+      "expected_sha256": "B7018CB52EF95807403575B843BC0D234A717CEDAF0744186F900DBE7A4563C2",
+      "test_episode_count": 529,
+      "challenge_episode_count": 276,
+      "leaked_train": [],
+      "leaked_validation": [],
+      "missing_test": [],
+      "missing_challenge": [],
+      "verdict": "pass"
+    }
+  ],
+  "specialist_holdout_overlaps": [
+    {
+      "left": "holdout-core-v1",
+      "right": "holdout-potion-v1",
+      "episode_count": 0,
+      "sample": [],
+      "note": "reported only; specialist holdouts are not required to be mutually exclusive"
+    },
+    {
+      "left": "holdout-core-v1",
+      "right": "holdout-relic-v1",
+      "episode_count": 0,
+      "sample": [],
+      "note": "reported only; specialist holdouts are not required to be mutually exclusive"
+    },
+    {
+      "left": "holdout-potion-v1",
+      "right": "holdout-relic-v1",
+      "episode_count": 0,
+      "sample": [],
+      "note": "reported only; specialist holdouts are not required to be mutually exclusive"
+    }
+  ],
+  "failures": []
+}
