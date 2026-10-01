@@ -1,1 +1,0 @@
-"""Teacher data collection adapters."""

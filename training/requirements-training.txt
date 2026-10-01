@@ -1,2 +1,0 @@
-pyarrow>=17,<22
-jsonschema>=4.23,<5
