@@ -831,7 +831,7 @@
 
  全局模型先从 `.run` 行为数据开始，随后加入 CLI 可见状态和 NOSL 反事实教师；战斗逐动作训练继续沿用现有数据管线。两类数据通过 `episode_id`、`floor`、`node_id` 和状态 hash 关联，但不混用动作契约。
 
-数据标注 GUI 的具体实施计划见：[PLAN_GUI.md](./PLAN_GUI.md)。
+数据标注 GUI 的具体实施计划见：[PLAN_GUI.md](../archive/plans/PLAN_GUI.md)。
 
 基线模型完成后的自我对抗式策略迭代构想见：[SELF_PLAY_POLICY_ITERATION_IDEA.md](./SELF_PLAY_POLICY_ITERATION_IDEA.md)。
  

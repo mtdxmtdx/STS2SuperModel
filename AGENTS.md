@@ -1,34 +1,26 @@
 # STS2SuperModel Agent 入口
 
-## 项目定位
+## 范围与阅读顺序
 
-本仓库实现 STS2 单回合教师数据与模型训练管道，不包含主模组运行时代码。
+本仓库实现战斗教师、数据及训练研究，不包含主模组运行时代码。开始工作先读：
 
-## 版本锁
+1. [README.md](README.md)：用途、依赖和目录。
+2. [docs/STATUS.md](docs/STATUS.md)：当前状态与已停止事项。
+3. [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)：本次需要的构建及验证入口。
+4. [docs/README.md](docs/README.md)：按任务定位基线设计和历史证据。
 
-- Game `v0.111.0` / commit `41cef1ea`
-- CLI protocol `0.2.0` / trace schema `1`
-- 主要入口：`training/collectors/teacher_worker.py`
-- C# evaluator：`training/TeacherEvaluator/`
+## 版本与接口
 
-## 常用验证
+- Game `v0.111.0` / commit `41cef1ea`；CLI protocol `0.2.0` / trace schema `1`。
+- 教师采集入口：`training/collectors/teacher_worker.py`。
+- C# evaluator：`training/TeacherEvaluator/`；依赖同级 `STS2BestChoice` 仓库中的纯 Core。
+- 只使用当前请求明确涉及的仓库；不因同级依赖存在就扩展修改范围。
 
-```powershell
-python -m pytest training -q --disable-warnings --ignore=training/test_replay_action.py
-dotnet build training/TeacherEvaluator/STS2BestChoice.TeacherEvaluator.csproj -c Release --no-restore
-python training/verify_repeat_runs.py
-```
+## 执行与证据
 
-1,000 状态 Smoke 产物位于 `data/teacher-realsmoke-1000*`，质量门禁报告必须为
-`verdict=pass`。未知语义或 evaluator 回退只能标记 Estimated，不能提升为 Reliable。
-
-## 当前状态
-
-M0-M2 NOSL 教师基础闭环已完成并通过当前工作树验证：`NoslBeliefState` 只来自
-CLI 公共观测，未知随机效果走概率分支，`NOSL_EXACT_OFFLINE` 入口已接通。
-Core 测试为 713 passed，Training 测试为 65 passed/1 skipped；TeacherEvaluator
-Release 构建无错误。下一阶段是补齐剩余语义、生成并分层验证 1k/10k/100k NOSL
-数据；随机药水池和未确认语义必须继续标记 Estimated/Uncalculable。
-
-权威计划：`PLAN_NOSL.md`（NOSL 流程）、`RELIC_CARD_GAP_COMPLETION_PLAN.md`
-（遗物/卡牌语义收口）和 `PLAN.md`（全局数据/训练路线）。
+- 保留已有未提交改动；按本次任务精确选择提交文件，不把本地草稿、数据或整个 `docs/` 顺手加入。
+- 旧计划、交接文件和测试数量是历史记录，不是当前通过证明。按 `docs/STATUS.md` 区分现行状态、基线设计与归档。
+- B/C/D 语义工作包已停止归档；不从旧提示词自动恢复。候选新后端的评估不等于已经接入。
+- 未知语义、缺失概率或 evaluator 回退保持 `Estimated` / `Uncalculable`；单项零差不授予总体训练资格。
+- 数据与模型入库规则遵守 `.gitignore` 的现有例外；未读取输入或未运行门禁时不宣称可重建或验收通过。
+- 源码变更运行对应测试；纯文档整理验证导航和提交范围即可。关键里程碑更新当前状态，不把临时流水账写进本文件。

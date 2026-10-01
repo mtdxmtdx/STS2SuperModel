@@ -1,3 +1,5 @@
+> **基线 / 历史计划。** 当前执行状态以 [docs/STATUS.md](docs/STATUS.md) 为准；旧待办不自动续做，历史通过数不代表当前全量验收。本文保留原文供追溯。
+
 - 本轮追加：CLI 支持 `reset_run` 批量隔离运行并正确关闭 trace writer；ShadowDiff 对 choice/error-only trace 输出确定性 `Uncalculable` 报告并以 exit 0 结束，不再触发 CLR 弹窗；direct-matrix 非 combat_play 行在模拟前直接降级，607 条批量报告现可无超时生成。卡牌 direct matrix 已采集 607 个真实 CLI play 行，证据仍按 match/timeout/degraded 分级，未把 timeout 晋级 Reliable。Expectimax 等价 post-state 合并现在保留 probability coverage、ESS、置信区间与 RNG consumption vector，并按最差 outcome quality 传播；ExpectimaxEngineTests 定向 8/8 通过。
 # STS2 NOSL Expectimax 教师模型计划（PLAN.md 更新版）
 
