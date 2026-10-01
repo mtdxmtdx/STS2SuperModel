@@ -1,0 +1,356 @@
+{
+  "version": "4.0",
+  "note": "本目录为待接入真实组件的验收规范；不是已运行测试结果。合成测试结果另见contract_test_report.txt。",
+  "cases": [
+    {
+      "id": "N01",
+      "category": "NOSL",
+      "title": "真实隐藏牌序替换",
+      "expected": "公共信息与sampler配置不变时输入、候选和教师根值不变。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "N02",
+      "category": "NOSL",
+      "title": "真实seed替换",
+      "expected": "真实seed和stream内部状态不进入策略；采样使用独立配置。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "N03",
+      "category": "NOSL",
+      "title": "相同信息同策略",
+      "expected": "假想world不同但尚未有新公开信息时动作分布相同。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "N04",
+      "category": "NOSL",
+      "title": "信息公开后分化",
+      "expected": "实际抽到不同公开手牌后允许采取不同动作。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "N05",
+      "category": "NOSL",
+      "title": "已知牌顶",
+      "expected": "保留合法已知位置；只采样未知位置。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "N06",
+      "category": "NOSL",
+      "title": "洗牌更新",
+      "expected": "已知位置约束在真实洗牌后按规则撤销/更新。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "N07",
+      "category": "NOSL",
+      "title": "当前意图冻结",
+      "expected": "不能把已公开intent当成未来未知重新抽样。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "N08",
+      "category": "NOSL",
+      "title": "历史必要性",
+      "expected": "屏幕相同但必要历史不同的节点不得错误合并。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "N09",
+      "category": "NOSL",
+      "title": "候选旁路",
+      "expected": "合法候选数量、顺序或过滤不能泄漏隐藏未来。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "N10",
+      "category": "NOSL",
+      "title": "元数据隔离",
+      "expected": "seed、private hash、teacher值、预算、排名、标签质量不成为输入。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "N11",
+      "category": "NOSL",
+      "title": "子选择策略",
+      "expected": "弃牌/消耗/选目标等同样遵守公共信息约束。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "N12",
+      "category": "NOSL",
+      "title": "精确小世界概率",
+      "expected": "可枚举场景中采样和精确期望一致且概率质量正确。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "L01",
+      "category": "生命周期",
+      "title": "合法动作覆盖",
+      "expected": "支持内容的合法动作完整，非法输入明确拒绝。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "L02",
+      "category": "生命周期",
+      "title": "clone对象映射",
+      "expected": "卡牌、目标、玩家映射正确，无活局对象交叉执行。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "L03",
+      "category": "生命周期",
+      "title": "clone无污染",
+      "expected": "分支动作/选择/结算不改变活局及其他分支。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "L04",
+      "category": "生命周期",
+      "title": "选择悬挂恢复",
+      "expected": "真实子选择可完成；异步栈不假装被clone。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "L05",
+      "category": "生命周期",
+      "title": "战后自动效果",
+      "expected": "最后敌人死亡后必要hooks结算一次，HP与原驱动一致。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "L06",
+      "category": "生命周期",
+      "title": "胜负规则",
+      "expected": "同时死亡、逃跑、延迟效果按引擎判定，不自行简化。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "L07",
+      "category": "生命周期",
+      "title": "终点一致",
+      "expected": "不同入口得到同一声明终点，奖励选择未被教师代做。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "P01",
+      "category": "偏好",
+      "title": "低均值风险取舍",
+      "expected": "60血都获胜资源相同，0/.9与30/.1优于固定8。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "P02",
+      "category": "偏好",
+      "title": "同均值稳定性",
+      "expected": "同样前提固定3优于均值3的0/30波动。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "P03",
+      "category": "偏好",
+      "title": "全程保血非速杀",
+      "expected": "安全无伤多回合优于仅为速度损失5血。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "P04",
+      "category": "偏好",
+      "title": "整场非机械满防",
+      "expected": "全程掉5优于眼前无伤但后面掉12。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "P05",
+      "category": "偏好",
+      "title": "药水时机",
+      "expected": "达9点可用但等待更好且安全的时机可以更优。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "P06",
+      "category": "偏好",
+      "title": "药水救命",
+      "expected": "低于9点但真实保命需要不被一般门槛否决。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "P07",
+      "category": "偏好",
+      "title": "物品不重复计价",
+      "expected": "保留价值与消耗扣分不能双算；两路线都喝只计一次。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "P08",
+      "category": "偏好",
+      "title": "回血不重复",
+      "expected": "当前HP和永久最大HP未来价值拆分；累计伤害不重复扣分。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "B01",
+      "category": "额外收益",
+      "title": "5与80边界",
+      "expected": "精确Delta=5,p=.8时可考虑而非强制；采样跨界是未决。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "B02",
+      "category": "额外收益",
+      "title": "不是单轨迹上限",
+      "expected": "预计额外代价上限不能误写成每个结果最多5。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "B03",
+      "category": "额外收益",
+      "title": "成功分母",
+      "expected": "指定斩杀且获益且未失败，不只统计活下来的分支。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "B04",
+      "category": "额外收益",
+      "title": "预算与截止不重开",
+      "expected": "固定公开锚点和deadline，跨回合不自动获得新预算。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "B05",
+      "category": "额外收益",
+      "title": "反事实基准",
+      "expected": "基准为不特意追收益的正常策略，不能故意弱化。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "B06",
+      "category": "额外收益",
+      "title": "部署记忆非教师数值",
+      "expected": "学生仅公共自身记忆，不要求现场教师反事实值。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "C01",
+      "category": "循环",
+      "title": "合法致胜无限",
+      "expected": "低效率但有限可结束的循环不因次数多被判差。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "C02",
+      "category": "循环",
+      "title": "防够继续有益动作",
+      "expected": "停无益防御循环，保留有效攻击和其他收益。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "C03",
+      "category": "循环",
+      "title": "安全有限拖回合",
+      "expected": "真正安全且收益增加允许拖；无收益不无限空转。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "C04",
+      "category": "循环",
+      "title": "macro等价",
+      "expected": "加速循环可展开并保持规则/RNG/副作用/退出等价。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "C05",
+      "category": "循环",
+      "title": "隐藏进展不误判循环",
+      "expected": "公开状态重复不直接证明完整语义无进展。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "D01",
+      "category": "数据",
+      "title": "计数守恒",
+      "expected": "所有采样world的完成/截断/异常均记录，不丢困难轨迹。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "D02",
+      "category": "数据",
+      "title": "独立最终评估",
+      "expected": "搜索选优样本与冻结续策后的最终标签评估隔离。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "D03",
+      "category": "数据",
+      "title": "动作覆盖质量",
+      "expected": "未评动作不填0；未评完全不称全动作最优。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "D04",
+      "category": "数据",
+      "title": "源战斗分组切分",
+      "expected": "同run/战斗/反事实分支不跨train与test。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "D05",
+      "category": "数据",
+      "title": "范围缺口诚实",
+      "expected": "未知效果不静默删除；首版全范围与pilot明确区分。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "D06",
+      "category": "数据",
+      "title": "续策版本",
+      "expected": "Q^pi记录pi版本；不冒称最优或纯学生胜率。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "E01",
+      "category": "评测",
+      "title": "纯学生闭环",
+      "expected": "独立种子下学生连续决策，标签预测与真实结果分别报告。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "E02",
+      "category": "评测",
+      "title": "原版对拍",
+      "expected": "顺序RNG、固定版本，最后自动结算也纳入；缺客户端不标通过。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "E03",
+      "category": "评测",
+      "title": "统计不确定性",
+      "expected": "胜率战损区间按独立源局统计，零次死亡不称概率零。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "E04",
+      "category": "交付",
+      "title": "无模拟器独立推理",
+      "expected": "只有模型包＋公共输入可运行，禁止在线搜索隐性依赖。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "E05",
+      "category": "交付",
+      "title": "输入范围与非法候选",
+      "expected": "未知机制/关键历史缺失/空候选给明确状态，不自信乱选。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "E06",
+      "category": "交付",
+      "title": "导出一致性",
+      "expected": "最终部署格式与训练框架输出在声明容差内一致。",
+      "status": "SPECIFIED_NOT_EXECUTED"
+    }
+  ]
+}

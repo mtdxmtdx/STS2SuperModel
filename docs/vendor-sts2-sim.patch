@@ -1,0 +1,198 @@
+--- a/src/Sts2Sim.Core/Combat/CombatEngine.cs
++++ b/src/Sts2Sim.Core/Combat/CombatEngine.cs
+@@ -14,7 +14,7 @@
+ public sealed class CombatEngine
+ {
+     private const decimal BaseHandDrawCount = 5m;
+-    private readonly ICombatObserver? _observer;
++    private ICombatObserver? _observer;
+     private bool _endPlayerTurnRequested;
+     private int _cardActionBoundaryDepth;
+ 
+@@ -30,6 +30,12 @@
+         State.AttachEngine(this);
+     }
+ 
++    internal void ConfigureNoslProjectionObserver(ICombatObserver observer)
++    {
++        if (!State.IsProjection) throw new InvalidOperationException("Only projections can replace their observer.");
++        _observer = observer;
++    }
++
+     internal CombatEngine CloneFor(CombatState state)
+     {
+         var clone = new CombatEngine(state, observer: null)
+--- a/src/Sts2Sim.Core/Combat/CombatState.Clone.cs
++++ b/src/Sts2Sim.Core/Combat/CombatState.Clone.cs
+@@ -38,7 +38,39 @@
+     /// 届时在此之上组装即可，不需要再改接口层。
+     /// </para>
+     /// </remarks>
+-    public CombatState Clone() => Clone(out _);
++    public CombatState Clone() => Clone(out _);
++
++    // Explicit NOSL branch lifetime; the existing exact clone API is unchanged.
++    internal CombatState CloneForNosl(out CombatCloneMap map, ICombatObserver observer)
++    {
++        if (Engine is null || !Engine.IsInProgress) throw new InvalidOperationException("Clone a stable active decision.");
++        if (RunState.CurrentRoom is not CombatRoom room) throw new NotSupportedException("A combat room is required.");
++        CombatState clone = Clone(out map);
++        CombatRoom localRoom = room.CreateNoslProjection(clone);
++        ((CombatRunStateSnapshot)clone.RunState).SetNoslRoom(localRoom);
++        clone.Engine!.ConfigureNoslProjectionObserver(observer);
++        return clone;
++    }
++
++    internal void ReseedNoslFuture(ulong samplerSeed)
++    {
++        if (!IsProjection || RunState is not CombatRunStateSnapshot snapshot)
++            throw new InvalidOperationException("Only a NOSL projection can sample future streams.");
++        snapshot.SetNoslRng(new RunRngSet($"NOSL-FUTURE:{samplerSeed}"));
++        for (int i = 0; i < Players.Count; i++)
++        {
++            Player player = Players[i];
++            var streams = new Sts2Sim.Core.Random.PlayerRngSet(samplerSeed + (ulong)i).ToSerializable();
++            var save = new Sts2Sim.Core.Saves.SerializablePlayerRngSet { Seed = player.PlayerRng.Seed, Rngs = streams.Rngs };
++            // Keep the odds object's references to its own stream objects, but replace every generator state.
++            player.PlayerRng.LoadFromSerializable(save);
++        }
++        for (int i = 0; i < Enemies.Count; i++)
++        {
++            Enemies[i].Monster!.RunRng = snapshot.Rng;
++            Enemies[i].Monster!.Rng = new Sts2Sim.Core.Random.Rng(samplerSeed, $"nosl-monster:{i}");
++        }
++    }
+ 
+     public CombatState Clone(out CombatCloneMap map)
+     {
+@@ -200,9 +232,12 @@
+         }
+         else if (source.Monster is { } sourceMonster)
+         {
+-            var clonedMonster = (MonsterModel)sourceMonster.MutableClone();
+-            clone = new Creature(clonedMonster, source.Side);
+-            clonedMonster.PrepareCombatCloneStateFrom(sourceMonster, clone, runState.Rng);
++            var clonedMonster = (MonsterModel)sourceMonster.MutableClone();
++            clone = new Creature(clonedMonster, source.Side);
++            // Move graphs capture ascension-dependent values when generated. Attach the branch
++            // context first; otherwise e.g. Nibbit's A10 intent is silently rebuilt with A0 damage.
++            clone.CombatState = combatState;
++            clonedMonster.PrepareCombatCloneStateFrom(sourceMonster, clone, runState.Rng);
+         }
+         else
+         {
+@@ -237,7 +272,7 @@
+             _ => default,
+         };
+ 
+-        public RunRngSet Rng { get; } = source.Rng.CloneExact();
++        public RunRngSet Rng { get; private set; } = source.Rng.CloneExact();
+ 
+         // AscensionManager contains only a readonly level, so it is immutable after construction.
+         public AscensionManager Ascension { get; } = source.Ascension;
+@@ -246,9 +281,12 @@
+ 
+         public int TotalFloor => _totalFloor;
+ 
+-        public AbstractRoom? CurrentRoom { get; } = source.CurrentRoom;
+-
+-        public AbstractRoom? BaseRoom { get; } = source.BaseRoom;
++        public AbstractRoom? CurrentRoom { get; private set; } = source.CurrentRoom;
++
++        public AbstractRoom? BaseRoom { get; private set; } = source.BaseRoom;
++
++        public void SetNoslRoom(CombatRoom room) { CurrentRoom = room; BaseRoom = room; }
++        public void SetNoslRng(RunRngSet rng) => Rng = rng;
+ 
+         public void AddPlayer(Player player) => _players.Add(player);
+ 
+--- a/src/Sts2Sim.Core/Combat/ICombatObserver.cs
++++ b/src/Sts2Sim.Core/Combat/ICombatObserver.cs
+@@ -14,7 +14,11 @@
+ 
+     void PlayerTurnStarted(CombatState state);
+ 
+-    void CardDrawn(CardModel card);
++    void CardDrawn(CardModel card);
++
++    // Notifications only: no RNG, hooks, or card rules are changed.
++    void CardMoved(CardModel card, PileType? from, PileType to, CardPilePosition position) { }
++    void CardsShuffled(Sts2Sim.Core.Entities.Players.Player player) { }
+ 
+     void CardPlayStarted(CardModel card, Creature? target);
+ 
+--- a/src/Sts2Sim.Core/Commands/CardPileCmd.cs
++++ b/src/Sts2Sim.Core/Commands/CardPileCmd.cs
+@@ -24,6 +24,7 @@
+ 
+     public static void Add(CardModel card, PileType pileType, CardPilePosition position = CardPilePosition.Bottom)
+     {
++        PileType? previousPile = card.Pile?.Type;
+         card.Pile?.RemoveInternal(card);
+         CardPile newPile = Get(pileType, card.Owner) ?? throw new InvalidOperationException($"Player has no {pileType} pile.");
+         if (pileType == PileType.Hand && newPile.Cards.Count >= CardPile.MaxCardsInHand)
+@@ -33,7 +34,8 @@
+         }
+ 
+         if (newPile.Type == PileType.Deck) card.FloorAddedToDeck = card.Owner.RunState.TotalFloor;
+-        newPile.AddInternal(card, GetInsertionIndex(card, newPile, position));
++        newPile.AddInternal(card, GetInsertionIndex(card, newPile, position));
++        (card.CombatState as CombatState)?.Observer?.CardMoved(card, previousPile, newPile.Type, position);
+     }
+ 
+     private static int GetInsertionIndex(CardModel card, CardPile pile, CardPilePosition position) => position switch
+@@ -397,6 +399,7 @@
+             state.DrawPile.AddInternal(card);
+         }
+ 
++        (combatState as CombatState)?.Observer?.CardsShuffled(player);
+         await Hook.AfterShuffle(combatState, player);
+     }
+ 
+--- a/src/Sts2Sim.Core/Rooms/CombatRoom.cs
++++ b/src/Sts2Sim.Core/Rooms/CombatRoom.cs
+@@ -309,6 +309,23 @@
+             yield return reward;
+         }
+     }
++    // Reuse the actual lifecycle implementation, with fresh tasks/lock/reward containers.
++    // Uncloneable queued rewards are explicit unsupported content, never silently discarded.
++    internal CombatRoom CreateNoslProjection(CombatState state)
++    {
++        if (_pendingExtraRewards.Count != 0 || _outcomeTask is not null || _exitTask is not null)
++            throw new NotSupportedException("NOSL projection requires a stable pre-settlement room without queued extra rewards.");
++        return new CombatRoom((Func<MonsterModel>)(() => throw new InvalidOperationException("Projection cannot be entered again.")), RoomType, EncounterName)
++        {
++            Engine = state.Engine!,
++            Encounter = Encounter,
++            FixedGoldAmount = FixedGoldAmount,
++            _noslFinalActBoss = IsFinalActBoss(),
++        };
++    }
++
++    private bool _noslFinalActBoss;
++
+     public Task ResolveOutcomeAsync(bool generateRewards = true)
+     {
+         RejectLifecycleReentry();
+@@ -369,7 +386,7 @@
+     /// 用模式匹配而非给 <c>IRunState</c> 加成员：幕信息只在 <see cref="RunState"/> 上，
+     /// 而 <c>IRunState</c> 有大量测试替身实现。</summary>
+     private bool IsFinalActBoss() =>
+-        RoomType == RoomType.Boss &&
++        _noslFinalActBoss || RoomType == RoomType.Boss &&
+         Engine.State.RunState is RunState runState &&
+         runState.CurrentActIndex >= runState.Acts.Count - 1;
+ 
+--- a/src/Sts2Sim.Core/Sts2Sim.Core.csproj
++++ b/src/Sts2Sim.Core/Sts2Sim.Core.csproj
+@@ -12,7 +12,8 @@
+ 
+   <ItemGroup>
+     <InternalsVisibleTo Include="Sts2Sim.Core.Tests" />
+-    <InternalsVisibleTo Include="SimFuzz" />
++    <InternalsVisibleTo Include="SimFuzz" />
++    <InternalsVisibleTo Include="Nosl.Worker" />
+     <InternalsVisibleTo Include="Sts2Sim.Solver.Tests" />
+     <InternalsVisibleTo Include="SolverDiff" />
+   </ItemGroup>

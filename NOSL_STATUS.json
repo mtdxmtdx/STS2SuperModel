@@ -1,0 +1,49 @@
+{
+  "status": "M0_M1_M2_SUPPORTED_SCOPE",
+  "milestones": {
+    "M0": "COMPLETE",
+    "M1": "COMPLETE_RESTRICTED_TECHNICAL_CLOSURE",
+    "M2": "COMPLETE_FINITE_SUPPORTED_POSTERIOR"
+  },
+  "scope": {
+    "character": "Silent",
+    "ascension": 10,
+    "cards": 11,
+    "potions": 5,
+    "relics": 3,
+    "enemies": [
+      "TwigSlimeS",
+      "LeafSlimeS",
+      "Nibbit"
+    ],
+    "single_enemy": true
+  },
+  "evidence": {
+    "baseline_build": true,
+    "baseline_tests": 45,
+    "integration_tests": 31,
+    "core_regression_tests": 93,
+    "root_complete_outcome_invariance": "PASS",
+    "protocol_two_process": "PASS",
+    "rollback_original_tests": 45,
+    "original_checkout": "UNMODIFIED"
+  },
+  "full_silent_content_ready": false,
+  "ready_for_training": false,
+  "ready_for_pilot": false,
+  "client_version": "client_version_unverified",
+  "client_fidelity": "NOT_RUN",
+  "formal_teacher": "M4_NOT_STARTED",
+  "training": "NOT_STARTED",
+  "next_milestone": "M3_NOT_STARTED",
+  "remaining_full_scope_gaps": [
+    "Full Silent reachable-content posterior and legality audit (M5)",
+    "Unknown monster latent-memory posteriors outside TwigSlimeS/LeafSlimeS/Nibbit",
+    "Queued extra rewards cannot yet be projected",
+    "Bundle/draw-pile/outside-combat choices",
+    "Afflictions/enchantments",
+    "Semantic-key RNG unsupported in this checkpoint",
+    "General mid-choice sampled replay",
+    "Client differential harness/version unverified"
+  ]
+}

@@ -1,0 +1,35 @@
+test_01_user_accepts_lower_mean_lottery (test_preference_contract.PreferenceContractTests.test_01_user_accepts_lower_mean_lottery) ... ok
+test_02_equal_mean_prefers_stable (test_preference_contract.PreferenceContractTests.test_02_equal_mean_prefers_stable) ... ok
+test_03_safe_no_loss_beats_faster_hp_loss (test_preference_contract.PreferenceContractTests.test_03_safe_no_loss_beats_faster_hp_loss) ... ok
+test_04_whole_combat_five_beats_twelve (test_preference_contract.PreferenceContractTests.test_04_whole_combat_five_beats_twelve) ... ok
+test_05_net_healing_can_be_beneficial (test_preference_contract.PreferenceContractTests.test_05_net_healing_can_be_beneficial) ... ok
+test_06_equal_terminal_results_have_equal_primary_score (test_preference_contract.PreferenceContractTests.test_06_equal_terminal_results_have_equal_primary_score) ... ok
+test_07_defeat_is_not_dropped (test_preference_contract.PreferenceContractTests.test_07_defeat_is_not_dropped) ... ok
+test_08_inventory_cost_is_applied_once (test_preference_contract.PreferenceContractTests.test_08_inventory_cost_is_applied_once) ... ok
+test_09_net_heal_not_clamped_to_zero (test_preference_contract.PreferenceContractTests.test_09_net_heal_not_clamped_to_zero) ... ok
+test_10_potion_seven_is_below_general_reference (test_preference_contract.PreferenceContractTests.test_10_potion_seven_is_below_general_reference) ... ok
+test_11_potion_nine_is_eligible_not_mandatory (test_preference_contract.PreferenceContractTests.test_11_potion_nine_is_eligible_not_mandatory) ... ok
+test_12_potion_can_rescue_below_nine (test_preference_contract.PreferenceContractTests.test_12_potion_can_rescue_below_nine) ... ok
+test_13_uncertain_potion_value_stays_unresolved (test_preference_contract.PreferenceContractTests.test_13_uncertain_potion_value_stays_unresolved) ... ok
+test_14_higher_potion_reference_is_explicit (test_preference_contract.PreferenceContractTests.test_14_higher_potion_reference_is_explicit) ... ok
+test_15_bonus_exact_five_eighty_is_eligible (test_preference_contract.PreferenceContractTests.test_15_bonus_exact_five_eighty_is_eligible) ... ok
+test_16_bonus_over_five_fails (test_preference_contract.PreferenceContractTests.test_16_bonus_over_five_fails) ... ok
+test_17_bonus_below_eighty_fails (test_preference_contract.PreferenceContractTests.test_17_bonus_below_eighty_fails) ... ok
+test_18_bonus_uncertain_threshold_not_fabricated (test_preference_contract.PreferenceContractTests.test_18_bonus_uncertain_threshold_not_fabricated) ... ok
+test_19_bonus_not_a_per_trajectory_cap (test_preference_contract.PreferenceContractTests.test_19_bonus_not_a_per_trajectory_cap) ... ok
+test_20_bonus_cannot_override_safety (test_preference_contract.PreferenceContractTests.test_20_bonus_cannot_override_safety) ... ok
+test_21_unknown_safety_remains_unknown (test_preference_contract.PreferenceContractTests.test_21_unknown_safety_remains_unknown) ... ok
+test_22_truncation_is_not_a_terminal_loss (test_preference_contract.PreferenceContractTests.test_22_truncation_is_not_a_terminal_loss) ... ok
+test_23_engine_error_is_not_a_game_result (test_preference_contract.PreferenceContractTests.test_23_engine_error_is_not_a_game_result) ... ok
+test_24_cannot_normalize_away_missing_mass (test_preference_contract.PreferenceContractTests.test_24_cannot_normalize_away_missing_mass) ... ok
+test_25_nonfinite_fields_are_rejected (test_preference_contract.PreferenceContractTests.test_25_nonfinite_fields_are_rejected) ... ok
+test_26_provisional_profile_blocks_production (test_preference_contract.PreferenceContractTests.test_26_provisional_profile_blocks_production) ... ok
+test_27_invalid_intervals_are_rejected (test_preference_contract.PreferenceContractTests.test_27_invalid_intervals_are_rejected) ... ok
+test_28_invalid_probability_is_rejected (test_preference_contract.PreferenceContractTests.test_28_invalid_probability_is_rejected) ... ok
+test_29_empty_distribution_is_rejected (test_preference_contract.PreferenceContractTests.test_29_empty_distribution_is_rejected) ... ok
+test_30_loss_does_not_keep_future_reward (test_preference_contract.PreferenceContractTests.test_30_loss_does_not_keep_future_reward) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.001s
+
+OK

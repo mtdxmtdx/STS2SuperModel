@@ -1,0 +1,19 @@
+{
+  "repository": "mtdxmtdx/sts2-sim",
+  "commit": "a3a66276ee79bf9f75e8af32e9ef5a51592b26f8",
+  "game_version": "0.111.0",
+  "game_release_commit": "41cef1ea",
+  "assembly_hash": "222455745",
+  "sdk": "9.0.303",
+  "rng_mode": "sequential",
+  "client_version_status": "client_version_unverified",
+  "input_package_sha256": "d5b2c11c8fe3a6a0a431b25ba9fee769276891efd112dd0cecd597c7b2e5b447",
+  "baseline_archive_sha256": "4a128333c9fefb02be4a6160e7ec93d234ba8f9671db885b8c266f9758e9c7cc",
+  "original_checkout_modified": false,
+  "baseline_build": "PASS",
+  "baseline_tests": 45,
+  "modified_integration_tests": 31,
+  "modified_core_regression_tests": 93,
+  "runtime_build_verified": true,
+  "client_fidelity": "NOT_RUN"
+}

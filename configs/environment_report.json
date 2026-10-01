@@ -1,0 +1,24 @@
+{
+  "cpu": [
+    {
+      "Name": "AMD Ryzen 9 9950X3D 16-Core Processor          ",
+      "NumberOfCores": 16,
+      "NumberOfLogicalProcessors": 32
+    }
+  ],
+  "memory": [
+    {
+      "TotalPhysicalMemory": 33448386560
+    }
+  ],
+  "os": "Microsoft Windows NT 10.0.26100.0",
+  "sdk": "9.0.303",
+  "client_version": "client_version_unverified",
+  "concurrency": "single isolated worker",
+  "gpu_nvml": {
+    "name": "NVIDIA GeForce RTX 5070",
+    "memory_total_mib": 12227,
+    "driver": "610.62",
+    "source": "nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "checked_date": "2026-10-01",
+  "repository": "mtdxmtdx/sts2-sim",
+  "simulator_commit": "a3a66276ee79bf9f75e8af32e9ef5a51592b26f8",
+  "simulator_declared_game_version": "0.111.0",
+  "simulator_declared_game_release_commit": "41cef1ea",
+  "simulator_declared_assembly_hash": "222455745",
+  "declared_dotnet_target": "9",
+  "actual_user_client_version": null,
+  "actual_user_hardware": null,
+  "runtime_build_verified": false,
+  "source_audit_scope": "targeted_read_only_via_GitHub_connector",
+  "automatic_update": false
+}

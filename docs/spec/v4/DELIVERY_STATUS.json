@@ -1,0 +1,31 @@
+{
+  "created_date": "2026-10-01",
+  "delivery_status": "SPEC_AND_SYNTHETIC_CONTRACTS_DELIVERED",
+  "synthetic_contract_tests": {
+    "executed": true,
+    "passed": 30,
+    "failed": 0,
+    "command": "python -m unittest discover -s tests -v",
+    "report": "contract_test_report.txt"
+  },
+  "integration_acceptance_cases": {
+    "specified": 50,
+    "executed": 0
+  },
+  "simulator_build_test": "NOT_RUN",
+  "simulator_adapter": "NOT_IMPLEMENTED_IN_THIS_DELIVERY",
+  "belief_sampler": "NOT_IMPLEMENTED_IN_THIS_DELIVERY",
+  "full_combat_teacher": "NOT_IMPLEMENTED_IN_THIS_DELIVERY",
+  "real_training_dataset": "NOT_GENERATED",
+  "neural_training": "NOT_STARTED",
+  "github_writes": "NONE",
+  "client_fidelity": "NOT_RUN",
+  "objective_calibration": "PROVISIONAL_CANDIDATE_ONLY",
+  "ready_for_training": false,
+  "ready_for_pilot": false,
+  "external_values_pending": [
+    "actual user game version",
+    "actual training hardware"
+  ],
+  "next_technical_checkpoint": "M0-M2 + M3 synthetic contracts; then continue M3-M6 as evidence allows"
+}

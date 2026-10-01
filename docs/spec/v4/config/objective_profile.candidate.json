@@ -1,0 +1,55 @@
+{
+  "spec_version": "4.0",
+  "objective_profile_id": "nosl_silent_a10_terminal_v4_candidate",
+  "scope": {
+    "character": "Silent",
+    "ascension": 10,
+    "single_player": true,
+    "combat_decisions_only": true,
+    "online_search_required": false
+  },
+  "confirmed_preferences": {
+    "potion_general_reference_hp": 9.0,
+    "potion_eligible_does_not_mean_use_now": true,
+    "potion_rescue_exception": true,
+    "extra_benefit_whole_plan_incremental_expected_loss_cap": 5.0,
+    "specified_finish_success_probability_floor": 0.8,
+    "specified_finish_deadline": "END_OF_NEXT_PLAYER_TURN_FROM_FIXED_ANCHOR",
+    "safe_finite_stalling_allowed": true,
+    "legal_terminating_infinite_allowed": true,
+    "after_enough_block": "STOP_USELESS_LOOP_THEN_OTHER_BENEFICIAL_ACTIONS_THEN_END_TURN",
+    "risk_example": {
+      "start_hp": 60,
+      "all_actions_win": true,
+      "resources_equal": true,
+      "prefer": "90pct_loss0_10pct_loss30",
+      "over": "constant_loss8"
+    },
+    "same_mean_risk_example": {
+      "prefer": "constant_loss3",
+      "over": "90pct_loss0_10pct_loss30"
+    }
+  },
+  "provisional_engineering_values": {
+    "defeat_cost": 1000.0,
+    "downside_coefficient": 0.2,
+    "calibrated": false,
+    "time_discount": 1.0,
+    "time_only_final_tie_break": true,
+    "reference_hp": "FIXED_AT_COMBAT_START",
+    "potion_exception_values": {},
+    "permanent_future_values": {}
+  },
+  "epistemic_rules": {
+    "unknown_threshold_result": "UNRESOLVED",
+    "search_and_final_eval_separated": true,
+    "truncation_is_game_loss": false,
+    "drop_incomplete_worlds_and_renormalize": false,
+    "risk_metric_reanchored_each_turn": false,
+    "extra_budget_reset_each_turn": false
+  },
+  "production_gate": {
+    "allow_formal_labels_with_uncalibrated_profile": false,
+    "missing_resource_values": "OBJECTIVE_VALUE_UNRESOLVED"
+  }
+}
