@@ -1,0 +1,1689 @@
+{
+  "schema": "nosl.objective-calibration-evidence.v2",
+  "method": "exact_synthetic_distributions_no_parameter_fitting",
+  "contract_source": "docs/spec/v4/contracts/preference_contract.py",
+  "contract_sha256": "9afa538365ea3e58eff065fff94cb804207b57b461f787a7c233e23ea19321a1",
+  "candidate": {
+    "defeat_cost": 1000,
+    "downside_coefficient": 0.2,
+    "calibrated": false
+  },
+  "confirmed_examples_preserved": true,
+  "formal_label_gate_blocks_candidate": true,
+  "eta_sensitivity": [
+    {
+      "eta": 0,
+      "mixture_cost": 3.0,
+      "fixed3_cost": 3.0,
+      "fixed8_cost": 8.0,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": false
+    },
+    {
+      "eta": 0.01,
+      "mixture_cost": 3.015,
+      "fixed3_cost": 3.0015,
+      "fixed8_cost": 8.010666666666667,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 0.1,
+      "mixture_cost": 3.1500000000000004,
+      "fixed3_cost": 3.015,
+      "fixed8_cost": 8.106666666666667,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 0.2,
+      "mixture_cost": 3.3000000000000003,
+      "fixed3_cost": 3.03,
+      "fixed8_cost": 8.213333333333333,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 0.5,
+      "mixture_cost": 3.75,
+      "fixed3_cost": 3.075,
+      "fixed8_cost": 8.533333333333333,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 1,
+      "mixture_cost": 4.5,
+      "fixed3_cost": 3.15,
+      "fixed8_cost": 9.066666666666666,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 2,
+      "mixture_cost": 6.0,
+      "fixed3_cost": 3.3,
+      "fixed8_cost": 10.133333333333333,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 5,
+      "mixture_cost": 10.5,
+      "fixed3_cost": 3.75,
+      "fixed8_cost": 13.333333333333332,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 10,
+      "mixture_cost": 18.0,
+      "fixed3_cost": 4.5,
+      "fixed8_cost": 18.666666666666664,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 12,
+      "mixture_cost": 21.0,
+      "fixed3_cost": 4.8,
+      "fixed8_cost": 20.8,
+      "mixture_preferred_to_fixed8": false,
+      "fixed3_preferred_to_mixture": true
+    }
+  ],
+  "identified_family_constraints": {
+    "eta_strict_lower": 0,
+    "eta_strict_upper": 11.538461538461538,
+    "K_identified_by_two_all_win_examples": false,
+    "interpretation": "Within this proposed quadratic family only: 0 < eta < 150/13 preserves both strict examples; it does not choose a coefficient or validate the family"
+  },
+  "fixed_sample_success_illustrations": [
+    {
+      "successes": 4,
+      "n": 4,
+      "alpha": 0.05,
+      "hoeffding_lower": 0.3209492421296902,
+      "hoeffding_upper": 1,
+      "exact_probability_claimed": false
+    },
+    {
+      "successes": 80,
+      "n": 100,
+      "alpha": 0.05,
+      "hoeffding_lower": 0.6641898484259381,
+      "hoeffding_upper": 0.935810151574062,
+      "exact_probability_claimed": false
+    }
+  ],
+  "micro_death_risk_sensitivity_not_user_calibration": [
+    {
+      "defeat_cost": 100,
+      "death_probability": 0.0001,
+      "risky_cost": 0.0172,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 100,
+      "death_probability": 0.001,
+      "risky_cost": 0.17200000000000001,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 100,
+      "death_probability": 0.01,
+      "risky_cost": 1.72,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 1000,
+      "death_probability": 0.0001,
+      "risky_cost": 0.1072,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 1000,
+      "death_probability": 0.001,
+      "risky_cost": 1.072,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 1000,
+      "death_probability": 0.01,
+      "risky_cost": 10.72,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": false,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 10000,
+      "death_probability": 0.0001,
+      "risky_cost": 1.0072,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 10000,
+      "death_probability": 0.001,
+      "risky_cost": 10.072000000000001,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": false,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 10000,
+      "death_probability": 0.01,
+      "risky_cost": 100.72,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": false,
+      "user_preference_known": false
+    }
+  ],
+  "boundary_checks": [
+    {
+      "case": "potion",
+      "hp_saved_interval": [
+        9,
+        9
+      ],
+      "status": "eligible_not_mandatory"
+    },
+    {
+      "case": "potion",
+      "hp_saved_interval": [
+        8.99,
+        8.99
+      ],
+      "status": "ineligible"
+    },
+    {
+      "case": "potion",
+      "hp_saved_interval": [
+        8.9,
+        9.1
+      ],
+      "status": "unresolved"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        5,
+        5
+      ],
+      "success_interval": [
+        0.8,
+        0.8
+      ],
+      "safety": true,
+      "status": "eligible_not_mandatory"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        5.01,
+        5.01
+      ],
+      "success_interval": [
+        1,
+        1
+      ],
+      "safety": true,
+      "status": "ineligible"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        4,
+        4
+      ],
+      "success_interval": [
+        0.799,
+        0.799
+      ],
+      "safety": true,
+      "status": "ineligible"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        4.9,
+        5.1
+      ],
+      "success_interval": [
+        0.8,
+        0.9
+      ],
+      "safety": true,
+      "status": "unresolved"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        4,
+        4
+      ],
+      "success_interval": [
+        0.79,
+        0.81
+      ],
+      "safety": true,
+      "status": "unresolved"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        4,
+        4
+      ],
+      "success_interval": [
+        0.9,
+        0.9
+      ],
+      "safety": null,
+      "status": "unresolved"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        4,
+        4
+      ],
+      "success_interval": [
+        0.9,
+        0.9
+      ],
+      "safety": false,
+      "status": "ineligible"
+    }
+  ],
+  "boundary_check_count": 10,
+  "calibration_status": "BLOCKED_PENDING_PREFERENCE_AND_RESOURCE_EVIDENCE",
+  "finite_sample_rule": "fixed-predeclared-N Hoeffding intervals require valid support; exact .8 is eligible but sampled 80/100 remains unresolved",
+  "simulator_evidence": {
+    "test_source": "tests/Nosl.Tests/ObjectiveTests.cs",
+    "tests_declared": [
+      "RealSimulator_FiveHpWholePlanDifferenceAndSamePotionTimingCancel",
+      "RealSimulator_AutomaticHealingAndMaxHpRemainSeparateFromFutureValue",
+      "RealSimulator_RescueBelowNineIsConsiderationAndActualLossIsDistinct"
+    ],
+    "execution_status": "NOT_ASSERTED_BY_THIS_SYNTHETIC_TOOL_SEE_BUILD_TEST_REPORT"
+  },
+  "unresolved": [
+    "K and eta are engineering candidates; examples do not identify unique risk preferences",
+    "all potion inventory and permanent-future values require versioned evidence; 9 is not a universal liquidation price",
+    "micro-death-risk tradeoffs have no confirmed target",
+    "safe multi-turn healing templates require their own value/safety evidence",
+    "arbitrary conditional bonus-budget allocation and general loop macros are unsupported",
+    "original-client differential fidelity and full Silent A10 coverage remain separate gates"
+  ],
+  "formal_labels_allowed": false,
+  "formal_training_started": false,
+  "archived_corpus_evidence": {
+    "schema": "nosl.archived-corpus-objective-audit.v1",
+    "counts": {
+      "actions": 1041,
+      "all_candidate_utility_roots": 177,
+      "bonus_fields_all_present": 0,
+      "checks": 21180,
+      "healing_received_missing": 4164,
+      "hpEventDiagnosticsComplete_true": 0,
+      "inventorySnapshotsComplete_true": 4164,
+      "masked_utility_actions": 64,
+      "max_hp_changed_outcomes": 0,
+      "net_healing_outcomes": 24,
+      "outcomes": 4164,
+      "permanentChangesComplete_true": 4164,
+      "persistent_asset_snapshots_changed": 0,
+      "reconciled_utility_actions": 977,
+      "resourceProvenanceComplete_true": 0,
+      "root_world_draws": 800,
+      "roots": 200,
+      "roots_with_changed_current_hp": 0
+    },
+    "source_run_groups": 68,
+    "source_combat_groups": 68,
+    "terminal_kinds": {
+      "Win": 4095,
+      "Loss": 69
+    },
+    "action_quality": {
+      "complete": 977,
+      "objective_value_unresolved": 64
+    },
+    "unresolved_value_reasons_by_outcome": {
+      "inventory_value_unresolved:Ambergris": 24,
+      "inventory_value_unresolved:Ashwater": 28,
+      "inventory_value_unresolved:AttackPotion": 16,
+      "inventory_value_unresolved:BeetleJuice": 72,
+      "inventory_value_unresolved:BlessingOfTheForge": 24,
+      "inventory_value_unresolved:BlockPotion": 24,
+      "inventory_value_unresolved:BloodPotion": 24,
+      "permanent_future_value_unresolved:earned_extra_reward_opportunity:GoldReward": 44
+    },
+    "inventory_ids_by_outcome": {
+      "Ambergris": 72,
+      "Ashwater": 72,
+      "AttackPotion": 52,
+      "BeetleJuice": 72,
+      "BlessingOfTheForge": 72,
+      "BlockPotion": 72,
+      "BloodPotion": 68
+    },
+    "recorded_resource_events": {
+      "consumed:Ambergris": 12,
+      "consumed:Ashwater": 12,
+      "consumed:AttackPotion": 8,
+      "consumed:BeetleJuice": 12,
+      "consumed:BlessingOfTheForge": 12,
+      "consumed:BlockPotion": 12,
+      "consumed:BloodPotion": 12
+    },
+    "permanent_change_kinds_by_outcome": {
+      "earned_extra_reward_opportunity:GoldReward": 44
+    },
+    "attempt_statuses": {
+      "accepted": 200,
+      "failed_attempt": 9
+    },
+    "failed_attempt_reasons": {
+      "worker_response_deadline": 5,
+      "reset": 4
+    },
+    "versions": {
+      "continuation": [
+        "nosl-public-rules-v1"
+      ],
+      "generation_config": [
+        "6a2d74649c7c9c1bd6c9bf1ac656d9e7b236b3d65d16112dfb73181ea09a9593"
+      ],
+      "objective": [
+        "nosl_silent_a10_terminal_v4_candidate"
+      ],
+      "observation_schema": [
+        "nosl.public.v2"
+      ],
+      "public_schema": [
+        "nosl.student.public.v1"
+      ],
+      "simulator": [
+        "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0"
+      ],
+      "teacher": [
+        "nosl-full-combat-teacher-v1:T0"
+      ]
+    },
+    "maximum_absolute_utility_reconstruction_error": 3.552713678800501e-15,
+    "audit_passed": true,
+    "failures_first_50": [],
+    "risk_sensitivity": [
+      {
+        "K": 100,
+        "eta": 0,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 100,
+        "eta": 0.01,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 100,
+        "eta": 0.1,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 100,
+        "eta": 0.2,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 100,
+        "eta": 0.5,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 100,
+        "eta": 1,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 100,
+        "eta": 2,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 100,
+        "eta": 5,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 100,
+        "eta": 10,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 100,
+        "eta": 12,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 1000,
+        "eta": 0,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 1000,
+        "eta": 0.01,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 1000,
+        "eta": 0.1,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 1000,
+        "eta": 0.2,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 1000,
+        "eta": 0.5,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 1000,
+        "eta": 1,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 1000,
+        "eta": 2,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 1000,
+        "eta": 5,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 1000,
+        "eta": 10,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 1000,
+        "eta": 12,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 10000,
+        "eta": 0,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 10000,
+        "eta": 0.01,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 10000,
+        "eta": 0.1,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 10000,
+        "eta": 0.2,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 10000,
+        "eta": 0.5,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 10000,
+        "eta": 1,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 10000,
+        "eta": 2,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 10000,
+        "eta": 5,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 10000,
+        "eta": 10,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      },
+      {
+        "K": 10000,
+        "eta": 12,
+        "all_candidate_resolved_roots": 177,
+        "empirical_argmin_sets_changed_vs_candidate": 0
+      }
+    ],
+    "potion_contrasts": [
+      {
+        "source_index": 24,
+        "potion_action": 4,
+        "hold_action": 0,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 1.0,
+        "sample_min": 1,
+        "sample_max": 1,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 24,
+        "potion_action": 4,
+        "hold_action": 1,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 1.0,
+        "sample_min": 1,
+        "sample_max": 1,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 24,
+        "potion_action": 4,
+        "hold_action": 2,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 1.0,
+        "sample_min": 1,
+        "sample_max": 1,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 24,
+        "potion_action": 4,
+        "hold_action": 3,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 1.0,
+        "sample_min": 1,
+        "sample_max": 1,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 24,
+        "potion_action": 4,
+        "hold_action": 6,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 6.0,
+        "sample_min": 6,
+        "sample_max": 6,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 25,
+        "potion_action": 3,
+        "hold_action": 0,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 1.0,
+        "sample_min": 1,
+        "sample_max": 1,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 25,
+        "potion_action": 3,
+        "hold_action": 1,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 1.0,
+        "sample_min": 1,
+        "sample_max": 1,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 25,
+        "potion_action": 3,
+        "hold_action": 2,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 1.0,
+        "sample_min": 1,
+        "sample_max": 1,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 25,
+        "potion_action": 3,
+        "hold_action": 5,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 6.0,
+        "sample_min": 6,
+        "sample_max": 6,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 26,
+        "potion_action": 2,
+        "hold_action": 0,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 1.0,
+        "sample_min": 1,
+        "sample_max": 1,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 26,
+        "potion_action": 2,
+        "hold_action": 1,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 1.0,
+        "sample_min": 1,
+        "sample_max": 1,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 26,
+        "potion_action": 2,
+        "hold_action": 4,
+        "potion_id": "Ambergris",
+        "n": 4,
+        "sample_mean_hp_improvement": 6.0,
+        "sample_min": 6,
+        "sample_max": 6,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 54,
+        "potion_action": 4,
+        "hold_action": 0,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 54,
+        "potion_action": 4,
+        "hold_action": 1,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 54,
+        "potion_action": 4,
+        "hold_action": 2,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 54,
+        "potion_action": 4,
+        "hold_action": 3,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 54,
+        "potion_action": 4,
+        "hold_action": 6,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 19.0,
+        "sample_min": 19,
+        "sample_max": 19,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 55,
+        "potion_action": 3,
+        "hold_action": 0,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 55,
+        "potion_action": 3,
+        "hold_action": 1,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 55,
+        "potion_action": 3,
+        "hold_action": 2,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 55,
+        "potion_action": 3,
+        "hold_action": 5,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 5.0,
+        "sample_min": 5,
+        "sample_max": 5,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 56,
+        "potion_action": 2,
+        "hold_action": 0,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 56,
+        "potion_action": 2,
+        "hold_action": 1,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 56,
+        "potion_action": 2,
+        "hold_action": 4,
+        "potion_id": "Ashwater",
+        "n": 4,
+        "sample_mean_hp_improvement": 5.0,
+        "sample_min": 5,
+        "sample_max": 5,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 84,
+        "potion_action": 4,
+        "hold_action": 0,
+        "potion_id": "AttackPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 84,
+        "potion_action": 4,
+        "hold_action": 1,
+        "potion_id": "AttackPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 84,
+        "potion_action": 4,
+        "hold_action": 2,
+        "potion_id": "AttackPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 84,
+        "potion_action": 4,
+        "hold_action": 3,
+        "potion_id": "AttackPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 84,
+        "potion_action": 4,
+        "hold_action": 6,
+        "potion_id": "AttackPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 5.0,
+        "sample_min": 5,
+        "sample_max": 5,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 85,
+        "potion_action": 3,
+        "hold_action": 0,
+        "potion_id": "AttackPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 85,
+        "potion_action": 3,
+        "hold_action": 1,
+        "potion_id": "AttackPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 85,
+        "potion_action": 3,
+        "hold_action": 2,
+        "potion_id": "AttackPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 85,
+        "potion_action": 3,
+        "hold_action": 5,
+        "potion_id": "AttackPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 5.0,
+        "sample_min": 5,
+        "sample_max": 5,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 114,
+        "potion_action": 4,
+        "hold_action": 0,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 114,
+        "potion_action": 4,
+        "hold_action": 1,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 114,
+        "potion_action": 4,
+        "hold_action": 2,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 114,
+        "potion_action": 4,
+        "hold_action": 3,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 114,
+        "potion_action": 4,
+        "hold_action": 6,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 115,
+        "potion_action": 3,
+        "hold_action": 0,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 115,
+        "potion_action": 3,
+        "hold_action": 1,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 115,
+        "potion_action": 3,
+        "hold_action": 2,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 115,
+        "potion_action": 3,
+        "hold_action": 5,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 116,
+        "potion_action": 2,
+        "hold_action": 0,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 116,
+        "potion_action": 2,
+        "hold_action": 1,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 116,
+        "potion_action": 2,
+        "hold_action": 4,
+        "potion_id": "BeetleJuice",
+        "n": 4,
+        "sample_mean_hp_improvement": 9.0,
+        "sample_min": 9,
+        "sample_max": 9,
+        "use_losses": 0,
+        "hold_losses": 4,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 144,
+        "potion_action": 4,
+        "hold_action": 0,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 144,
+        "potion_action": 4,
+        "hold_action": 1,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": -5.0,
+        "sample_min": -5,
+        "sample_max": -5,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 144,
+        "potion_action": 4,
+        "hold_action": 2,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 144,
+        "potion_action": 4,
+        "hold_action": 3,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 144,
+        "potion_action": 4,
+        "hold_action": 6,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": 5.0,
+        "sample_min": 5,
+        "sample_max": 5,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 145,
+        "potion_action": 3,
+        "hold_action": 0,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": -5.0,
+        "sample_min": -5,
+        "sample_max": -5,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 145,
+        "potion_action": 3,
+        "hold_action": 1,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 145,
+        "potion_action": 3,
+        "hold_action": 2,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 145,
+        "potion_action": 3,
+        "hold_action": 5,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": 5.0,
+        "sample_min": 5,
+        "sample_max": 5,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 146,
+        "potion_action": 2,
+        "hold_action": 0,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": -5.0,
+        "sample_min": -5,
+        "sample_max": -5,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 146,
+        "potion_action": 2,
+        "hold_action": 1,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 146,
+        "potion_action": 2,
+        "hold_action": 4,
+        "potion_id": "BlessingOfTheForge",
+        "n": 4,
+        "sample_mean_hp_improvement": 0.0,
+        "sample_min": 0,
+        "sample_max": 0,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 174,
+        "potion_action": 4,
+        "hold_action": 0,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 8.0,
+        "sample_min": 8,
+        "sample_max": 8,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 174,
+        "potion_action": 4,
+        "hold_action": 1,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 8.0,
+        "sample_min": 8,
+        "sample_max": 8,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 174,
+        "potion_action": 4,
+        "hold_action": 2,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 8.0,
+        "sample_min": 8,
+        "sample_max": 8,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 174,
+        "potion_action": 4,
+        "hold_action": 3,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 8.0,
+        "sample_min": 8,
+        "sample_max": 8,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 174,
+        "potion_action": 4,
+        "hold_action": 6,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 15.0,
+        "sample_min": 15,
+        "sample_max": 15,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 175,
+        "potion_action": 3,
+        "hold_action": 0,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 8.0,
+        "sample_min": 8,
+        "sample_max": 8,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 175,
+        "potion_action": 3,
+        "hold_action": 1,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 8.0,
+        "sample_min": 8,
+        "sample_max": 8,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 175,
+        "potion_action": 3,
+        "hold_action": 2,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 8.0,
+        "sample_min": 8,
+        "sample_max": 8,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 175,
+        "potion_action": 3,
+        "hold_action": 5,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 13.0,
+        "sample_min": 13,
+        "sample_max": 13,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 176,
+        "potion_action": 2,
+        "hold_action": 0,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 8.0,
+        "sample_min": 8,
+        "sample_max": 8,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 176,
+        "potion_action": 2,
+        "hold_action": 1,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 8.0,
+        "sample_min": 8,
+        "sample_max": 8,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 176,
+        "potion_action": 2,
+        "hold_action": 4,
+        "potion_id": "BlockPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 13.0,
+        "sample_min": 13,
+        "sample_max": 13,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 204,
+        "potion_action": 4,
+        "hold_action": 0,
+        "potion_id": "BloodPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 14.0,
+        "sample_min": 14,
+        "sample_max": 14,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 204,
+        "potion_action": 4,
+        "hold_action": 1,
+        "potion_id": "BloodPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 14.0,
+        "sample_min": 14,
+        "sample_max": 14,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 204,
+        "potion_action": 4,
+        "hold_action": 2,
+        "potion_id": "BloodPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 14.0,
+        "sample_min": 14,
+        "sample_max": 14,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 204,
+        "potion_action": 4,
+        "hold_action": 3,
+        "potion_id": "BloodPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 19.0,
+        "sample_min": 19,
+        "sample_max": 19,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 204,
+        "potion_action": 4,
+        "hold_action": 6,
+        "potion_id": "BloodPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 19.0,
+        "sample_min": 19,
+        "sample_max": 19,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 205,
+        "potion_action": 3,
+        "hold_action": 0,
+        "potion_id": "BloodPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 14.0,
+        "sample_min": 14,
+        "sample_max": 14,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 205,
+        "potion_action": 3,
+        "hold_action": 1,
+        "potion_id": "BloodPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 14.0,
+        "sample_min": 14,
+        "sample_max": 14,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 205,
+        "potion_action": 3,
+        "hold_action": 2,
+        "potion_id": "BloodPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 19.0,
+        "sample_min": 19,
+        "sample_max": 19,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 205,
+        "potion_action": 3,
+        "hold_action": 5,
+        "potion_id": "BloodPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 19.0,
+        "sample_min": 19,
+        "sample_max": 19,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 206,
+        "potion_action": 1,
+        "hold_action": 0,
+        "potion_id": "BloodPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 14.0,
+        "sample_min": 14,
+        "sample_max": 14,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      },
+      {
+        "source_index": 206,
+        "potion_action": 1,
+        "hold_action": 3,
+        "potion_id": "BloodPotion",
+        "n": 4,
+        "sample_mean_hp_improvement": 19.0,
+        "sample_min": 19,
+        "sample_max": 19,
+        "use_losses": 0,
+        "hold_losses": 0,
+        "eligibility": "UNRESOLVED_NO_CERTIFIED_SUPPORT_OR_FIXED_BASELINE_PLAN"
+      }
+    ],
+    "potion_contrast_point_estimates": {
+      "below_9": 53,
+      "above_9": 15,
+      "equal_9": 12
+    },
+    "interpretation": [
+      "Descriptive audit of accepted archived constructed roots only; failed attempts are a separate selection mechanism, not game losses",
+      "Action-world copies share sampled worlds; roots share source runs. Outcome counts are not independent battles",
+      "Empirical argmin sets and four-world potion differences are not reliable preference labels, exact equivalence, or calibrated probabilities",
+      "No public-boundary conformance, item price, counterfactual bonus plan, client fidelity or full-content claim follows from this arithmetic audit"
+    ],
+    "formal_labels_allowed": false,
+    "training_authorized_by_report": false,
+    "corpus": "artifacts/data/engineering-200-v2",
+    "source_sha256": {
+      "decisions.jsonl": "ee10929758e47404cda447a1ed0bdb6548384428f068827d726e6d7baa45dc32",
+      "attempts.jsonl": "c0aa21b7df63750337338e6baa3aeb878989fc9ee5a3d3c863cf8081f15a1884",
+      "generation_config.json": "13aa97c4166156c98d8a51ec96c137e000286f6004d799820744a0f5e7e96c36",
+      "generation_recipe.py": "a05a646e24557ad3bfa87e698dc84e9cf408105da94828522757e9bd4d2403c2",
+      "progress.json": "e94196872b5a33309a36fbc3d0a71880e8e2efa43296b9db8e96d2f66c3c5bb9"
+    },
+    "archived_generator_hash_matches": true,
+    "all_records_generation_config_hash_matches": true,
+    "source_files_unchanged_during_audit": true,
+    "runtime_fingerprints": {
+      "Nosl.Contracts.dll": "10792e53cdeb9485dfb2b3e16258f2f27750d3485469708dce1a330df886ebf1",
+      "Nosl.Objectives.dll": "7ba58e4c7f25a688559d7fc17b92e5308f6ec530e3762189a51d96d631284730",
+      "Nosl.Worker.deps.json": "630bf3c29f9ba1ba9db5d6300f406056aebca9ce482a4664f65fcc74c67a5c4f",
+      "Nosl.Worker.dll": "a55cc965e231734c79c6670d22179a5d0bf9e79c06045b0fd0996dfb88ee3111",
+      "Nosl.Worker.runtimeconfig.json": "4719954ee973dde9617a64d30002c1df89df2f75ab40e6b01db8b3126388ce5f",
+      "Sts2Sim.Core.dll": "2b8a0dd67ff7f324d323c4553181ff995a4c0702c5db1d09b9ddfb5f4cfc3970",
+      "System.IO.Hashing.dll": "fbe8c2fcb4adc01da5c3c8ed0d727903b8fda1e6b84da3c447c9794615f30664"
+    },
+    "use_for_current_training_or_boundary_validation": false,
+    "boundary_status": "ARCHIVED_PUBLIC_V2_EVIDENCE_ONLY_PENDING_PUBLIC_BOUNDARY_REVERSIONING"
+  }
+}

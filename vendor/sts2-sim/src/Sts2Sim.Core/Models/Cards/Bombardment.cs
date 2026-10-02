@@ -9,6 +9,9 @@ namespace Sts2Sim.Core.Models.Cards;
 /// 但不会像真实游戏那样产生第二个独立的 CardPlay/出牌历史记录。</summary>
 public sealed class Bombardment : CardModel, ICardDamageVariableProvider
 {
+    // Public-origin effect history, exposed without identity or private future state.
+    internal bool NoslHasReplayed => _hasReplayed;
+
     public bool TryGetThrashDamageVariable(out decimal amount)
     {
         amount = _damage;

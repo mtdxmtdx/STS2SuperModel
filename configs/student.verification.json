@@ -1,0 +1,57 @@
+{
+  "milestone": "M6",
+  "status": "ENGINEERING_TESTED_LIMITED_APPLICABILITY",
+  "date_utc": "2026-10-01",
+  "python": "3.12.14",
+  "torch": "2.6.0+cpu",
+  "tests_passed": 55,
+  "tests_failed": 0,
+  "test_command": "PYTHONPATH=python python -m unittest discover -s tests/python -v",
+  "parameters": 976710,
+  "optimizer_steps_executed": 0,
+  "pilot_training_run": false,
+  "formal_training_run": false,
+  "learned_weights_written": false,
+  "model_promoted": false,
+  "config_sha256": "4ae365791770d22917f3ce87298c76baecafb2b4a5e2cd2b57d8716bd50f974f",
+  "cross_language_evidence": [
+    "real C# v1 teacher record: strict loader, full head masks, forward/backward",
+    "real C# v2 reset packet: strict validator and model forward",
+    "real integrated C# v2 teacher record: preparation CLI, immutable prepared-data loader, forward/backward CLI"
+  ],
+  "measurements": [
+    {
+      "case": "one real teacher root",
+      "roots": 1,
+      "candidates": 7,
+      "history_events": 10,
+      "wall_seconds": 0.1044,
+      "peak_rss_mib": 249.16
+    },
+    {
+      "case": "eight copies of one real root; engineering benchmark, not independent samples",
+      "roots": 8,
+      "candidates": 56,
+      "history_events": 80,
+      "wall_seconds": 0.5266,
+      "peak_rss_mib": 258.28
+    }
+  ],
+  "not_yet_verified": [
+    "actual learned optimizer trajectory/resume equivalence",
+    "trained student closed-loop outcomes or calibration"
+  ],
+  "limits": [
+    "inactive public controller only; bonus plan heads disabled",
+    "explicit entity/history/candidate/HP bounds reject excess",
+    "registry admission is not complete interaction/NOSL validation",
+    "public detail/history hashing is lossy",
+    "formal training CLI disabled; bounded pilot requires later audited corpus and explicit limits"
+  ],
+  "audit_fixes": [
+    "canonical configuration checksum",
+    "T1 continuation family versus per-root digest separation",
+    "canonical public-input cross-split duplicate rejection",
+    "immutable split-state conflict consistency"
+  ]
+}

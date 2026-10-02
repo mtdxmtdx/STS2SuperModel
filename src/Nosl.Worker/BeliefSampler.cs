@@ -6,9 +6,113 @@ namespace Nosl.Worker;
 
 public static class BeliefSampler
 {
+    public const string ImplementationVersion = "nosl-belief-dispatch-v2";
+    public const string ExchangeableProfile = "reviewed-stable-exchangeable-v1";
+    public const string ConditionalChoiceProfile = "reviewed-stable-origin-conditional-choice-v1";
+    public const string WholeSetupReplayProfile = "whole-setup-rejection-v1";
+    public const string UnsupportedProfile = "unsupported-posterior-provenance-v1";
+
+    // Audit-only implementation identity. No profile/seed/provenance enters policy DTOs.
+    public static string PosteriorProfileFor(CombatSession source)
+    {
+        try
+        {
+            if(UsesExchangeablePosterior(source)) return source.HasNativeProvenance ? NativeBeliefCertificate.Profile : ExchangeableProfile;
+            if(UsesConditionalChoicePosterior(source)) return ConditionalChoiceProfile;
+        }
+        catch(NotSupportedException) { return UnsupportedProfile; }
+        return source.HasNativeProvenance || source.HasInPlaceSampledProvenance ? UnsupportedProfile : WholeSetupReplayProfile;
+    }
     // Public constraints define an exchangeable posterior for this finite supported scope.
     // Canonicalize BEFORE shuffling: shuffling the private source order with a fixed RNG leaks its permutation.
-    public static CombatSession SampleWorld(CombatSession source, ulong samplerSeed)
+    public static CombatSession SampleWorld(CombatSession source, ulong samplerSeed) =>
+        SampleWorldAsync(source,samplerSeed).GetAwaiter().GetResult();
+
+    // The fast exchangeable posterior is deliberately capability-bound. Catalog execution
+    // remains unrestricted; complex materialized state uses independent native replay.
+    public static bool UsesExchangeablePosterior(CombatSession source)
+    {
+        if(source.NativeCertificate is { } certificate) return certificate.AllowsCurrent(source);
+        var p=source.State.Players.Single();
+        string[] cards=["StrikeSilent","DefendSilent","Neutralize","Survivor","AscendersBane","Acrobatics","Backflip","Prepared","ThinkingAhead","DeadlyPoison","Slimed","CloakAndDagger","DaggerThrow","Dash","LegSweep","Blur","DodgeAndRoll","BladeDance","PoisonedStab","Slice","NoxiousFumes","DaggerSpray","Footwork","Shiv"];
+        string[] relics=["RingOfTheSnake","MeatOnTheBone","ChosenCheese"];
+        string[] potions=["FirePotion","BlockPotion","EnergyPotion","SwiftPotion","FruitJuice"];
+        string[] enemies=["TwigSlimeS","LeafSlimeS","Nibbit","TwigSlimeM"];
+        var setup=source.InitialScenario;
+        var declaredEnemies=setup.Enemies??[setup.Enemy];
+        if(setup.Encounter is not null || declaredEnemies.Length!=1 || !enemies.Contains(declaredEnemies[0])) return false;
+        // Eligibility is pinned to the declared source prior, not whatever remains after
+        // broader potions/powers/cards have been consumed or left the piles.
+        if((setup.Deck??[]).Any(c=>!cards.Contains(c.TrimEnd('+')))
+            || (setup.Relics??[]).Any(r=>!relics.Contains(r))
+            || (setup.Potions??[]).Any(p=>!potions.Contains(p))) return false;
+        return source.Observe().Status=="player_decision" && source.Observe().Observation?.UnidentifiedDrawCount==0 && source.InitialScenario.Encounter is null && source.State.Enemies.Count==1
+            && source.State.Enemies.All(e=>enemies.Contains(e.Monster!.GetType().Name))
+            && p.Relics.All(r=>relics.Contains(r.GetType().Name))
+            && p.PotionSlots.Where(x=>x is not null).All(x=>potions.Contains(x!.GetType().Name))
+            && p.PlayerCombatState!.AllPiles.SelectMany(x=>x.Cards).All(c=>cards.Contains(c.GetType().Name)&&c.Enchantments.Count==0&&c.Affliction is null);
+    }
+    public static Task<CombatSession> SampleWorldAsync(CombatSession source,ulong samplerSeed,int maxReplayAttempts=256)
+    {
+        if(UsesExchangeablePosterior(source)) return Task.FromResult(SampleExchangeable(source,samplerSeed));
+        if(UsesConditionalChoicePosterior(source)) return SampleConditionalChoiceAsync(source,samplerSeed,maxReplayAttempts);
+        return SampleByReplayAsync(source,samplerSeed,maxReplayAttempts);
+    }
+    public static bool UsesConditionalChoicePosterior(CombatSession source) =>
+        source.TryGetConditionalChoiceOrigin(out _, out _, out _);
+
+    private static async Task<CombatSession> SampleConditionalChoiceAsync(CombatSession source, ulong samplerSeed, int maxAttempts)
+    {
+        if(maxAttempts < 1) throw new ArgumentOutOfRangeException(nameof(maxAttempts));
+        if(!source.TryGetConditionalChoiceOrigin(out var origin, out var actions, out var packets))
+            throw new NotSupportedException("No reviewed conditional choice posterior");
+        var proposalRng = new Rng(samplerSeed, "nosl-independent-choice-prior-v1");
+        for(int attempt = 0; attempt < maxAttempts; attempt++)
+        {
+            // Resample every outcome-relevant hidden variable at the stable boundary,
+            // before any observed draw/choice suffix. Never reseed at the pending choice.
+            var proposed = SampleExchangeable(origin, proposalRng.NextUnsignedLong());
+            try
+            {
+                if(await CombatSession.ReplayChoiceSuffixAsync(proposed, actions, packets)) return proposed;
+            }
+            catch { await proposed.DisposeAsync(); throw; }
+            await proposed.DisposeAsync();
+        }
+        throw new PosteriorSamplingException(maxAttempts);
+    }
+
+    public static async Task<CombatSession> SampleByReplayAsync(CombatSession source,ulong samplerSeed,int maxAttempts=256)
+    {
+        if(source.HasNativeProvenance) throw new NotSupportedException("native_prior_mismatch: fresh Scenario replay is forbidden for native carry-in");
+        if(maxAttempts<1) throw new ArgumentOutOfRangeException(nameof(maxAttempts));
+        if(source.HasInPlaceSampledProvenance) throw new NotSupportedException("posterior_prior_mismatch: an in-place sampled world cannot be silently switched to the whole-setup replay prior");
+        if(source.PublicTrace.Count!=source.ReplayActions.Count+1 || source.PublicTrace.Last()!=PublicJson.Serialize(source.Observe()))
+            throw new NotSupportedException("public_history_incomplete: replay posterior requires every decision since declared setup");
+        if(source.Observe().Status is not ("player_decision" or "card_choice")) throw new InvalidOperationException("No active public decision");
+        var proposalRng=new Rng(samplerSeed,"nosl-independent-setup-prior-v1");
+        // Full setup prior: the actual source seed is discarded before each proposal.
+        // Current/earlier public observations alone determine acceptance, never branch outcomes.
+        for(int attempt=0;attempt<maxAttempts;attempt++)
+        {
+            var setup=source.InitialScenario with {Seed=$"NOSL-REPLAY:{proposalRng.NextUnsignedLong():X16}"};
+            var proposed=await CombatSession.CreateAsync(setup);
+            bool accepted=true;
+            try
+            {
+                for(int step=0;step<=source.ReplayActions.Count;step++)
+                {
+                    if(PublicJson.Serialize(proposed.Observe())!=source.PublicTrace[step]) { accepted=false; break; }
+                    if(step<source.ReplayActions.Count) await proposed.StepAsync(source.ReplayActions[step]);
+                }
+                if(accepted) return proposed; // Keep its RNG/deck/memory unchanged: it is the accepted world.
+            }
+            catch { await proposed.DisposeAsync(); throw; }
+            await proposed.DisposeAsync();
+        }
+        throw new PosteriorSamplingException(maxAttempts);
+    }
+    private static CombatSession SampleExchangeable(CombatSession source, ulong samplerSeed)
     {
         var packet=source.Observe();
         if(packet.Status!="player_decision") throw new InvalidOperationException("Sample worlds only at stable player decisions");
@@ -23,7 +127,11 @@ public static class BeliefSampler
             foreach(var k in packet.Observation!.KnownDraw)
             {
                 if(k.Position<0 || k.Position>=slots.Length || slots[k.Position] is not null) throw new InvalidOperationException("Invalid public position constraint");
-                slots[k.Position]=bySignature[PublicJson.Serialize(k.Card)].Dequeue();
+                var knownCard=world.Knowledge.Known[k.Position];
+                string signature=PublicJson.Serialize(k.Card);
+                if(!bySignature[signature].Contains(knownCard)) throw new InvalidOperationException("Known physical card is absent from its public signature group");
+                slots[k.Position]=knownCard;
+                bySignature[signature]=new Queue<CardModel>(bySignature[signature].Where(c=>!ReferenceEquals(c,knownCard)));
             }
             var unknown=bySignature.OrderBy(x=>x.Key,StringComparer.Ordinal).SelectMany(x=>x.Value).ToList();
             new Rng(samplerSeed,"nosl-hidden-order").Shuffle(unknown);
@@ -39,6 +147,7 @@ public static class BeliefSampler
     // Exact draw-order posterior for small enumeratable cases. This is not enumeration of every future RNG draw.
     public static IReadOnlyList<(PublicCard[] Order,double Probability)> EnumerateDrawPosterior(PublicObservation o)
     {
+        if(o.UnidentifiedDrawCount>0) throw new NotSupportedException("This finite multiset enumerator does not enumerate unknown generated identities; use native replay conditioning");
         if(o.DrawCount>8) throw new NotSupportedException("Exact posterior is capped at eight draw cards");
         var known=o.KnownDraw.ToDictionary(x=>x.Position,x=>x.Card);
         var counts=o.UnknownDraw.ToDictionary(x=>PublicJson.Serialize(x.Card),x=>(x.Card,x.Count));
@@ -58,4 +167,9 @@ public static class BeliefSampler
         }
         Recurse(0,1); return output;
     }
+}
+
+public sealed class PosteriorSamplingException(int attempts) : Exception($"posterior_budget_exhausted: no accepted world in {attempts} independent proposals; computationally inconclusive, not a game loss or proof of impossible content")
+{
+    public int Attempts { get; } = attempts;
 }

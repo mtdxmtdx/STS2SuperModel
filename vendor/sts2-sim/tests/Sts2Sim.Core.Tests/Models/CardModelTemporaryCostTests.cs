@@ -12,6 +12,7 @@ using Sts2Sim.Core.Models.Powers;
 using Sts2Sim.Core.Random;
 using Sts2Sim.Core.Rooms;
 using Sts2Sim.Core.Runs;
+using Sts2Sim.Core.Models.Afflictions;
 
 namespace Sts2Sim.Core.Tests.Models;
 
@@ -26,7 +27,7 @@ public sealed class CardModelTemporaryCostTests : IDisposable
             typeof(Regent), typeof(StrikeRegent), typeof(DefendRegent), typeof(FallingStar), typeof(Venerate),
             typeof(DivineRight), typeof(WanderingGrunt), typeof(TemporaryCostReplayCard),
             typeof(ThrowingHandDepartureCard), typeof(TemporaryFixedStarCostCard), typeof(Stardust),
-            typeof(TangledPower),
+            typeof(TangledPower), typeof(Entangled),
         });
     }
 
@@ -106,18 +107,21 @@ public sealed class CardModelTemporaryCostTests : IDisposable
     }
 
     [Fact]
-    public async Task MakeTemporaryFreeThisTurn_ZeroesXStarCostAndDoesNotSpendStars()
+    public async Task MakeTemporaryFreeThisTurn_DoesNotChangeXStarCostOrCapturedEffect()
     {
-        (Player player, _) = await CreateCombatAsync("temporary-x-stars");
+        (Player player, CombatRoom room) = await CreateCombatAsync("temporary-x-stars");
         Stardust card = AddToHand<Stardust>(player);
         player.PlayerCombatState!.GainStars(3);
         int starsBefore = player.PlayerCombatState.Stars;
+        Creature enemy = room.Engine.State.Enemies.Single();
+        decimal hpBefore = enemy.CurrentHp;
 
         card.MakeTemporaryFreeThisTurn();
 
-        Assert.Equal(0, card.StarCost);
+        Assert.Equal(starsBefore, card.StarCost);
         await card.PlayAsync(target: null);
-        Assert.Equal(starsBefore, player.PlayerCombatState.Stars);
+        Assert.Equal(0, player.PlayerCombatState.Stars);
+        Assert.Equal(hpBefore - 5m * starsBefore, enemy.CurrentHp);
     }
 
     [Fact]

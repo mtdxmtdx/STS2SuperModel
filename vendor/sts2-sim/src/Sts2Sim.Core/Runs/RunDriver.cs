@@ -106,6 +106,10 @@ public sealed class RunDriver
 
     public event Action<MapPoint, RoomType>? OnRoomResolved;
 
+    // Read-only NOSL observation adapter, installed before native room entry. The
+    // decorator must forward the original observer; it may not mutate state or RNG.
+    internal Func<ICombatObserver, ICombatObserver>? CombatObserverDecorator { get; set; }
+
     public async Task<Result> RunAsync(int maxFloors)
     {
         _recorder?.BeginRun(_runState);
@@ -476,7 +480,7 @@ public sealed class RunDriver
         }
 
         var observer = new CombatRecordingObserver(_recorder, _runState, combatRoom);
-        combatRoom.ConfigureObserver(observer);
+        combatRoom.ConfigureObserver(CombatObserverDecorator?.Invoke(observer) ?? observer);
         return observer;
     }
 

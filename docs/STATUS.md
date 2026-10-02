@@ -1,3 +1,7 @@
+当前 M3–M6 的实现、测试和进行中的数据阶段请看 [M3–M6检查点](M3_M6_STATUS.md) 与 [TRAINING_READINESS](../TRAINING_READINESS.json)。以下原M0–M2记录仅供追溯。
+
+> 历史基线记录：本文的11卡等数量属于 d01c5f8e 的原始 M0–M2 检查点。当前上游接入与验证请看 [COVERAGE_BRIDGE](../docs/COVERAGE_BRIDGE.md) 和 coverage_manifest.json；不要把历史数量视为现有目录限制。
+
 # 当前状态（2026-10-01）
 
 机器可读状态：[NOSL_STATUS.json](../NOSL_STATUS.json)。状态为 `M0_M1_M2_SUPPORTED_SCOPE`。

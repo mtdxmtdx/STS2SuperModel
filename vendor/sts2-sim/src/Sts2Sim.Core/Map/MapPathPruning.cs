@@ -1,4 +1,5 @@
 using System.Text;
+using System.Runtime.CompilerServices;
 using Sts2Sim.Core.Helpers;
 using Sts2Sim.Core.Random;
 
@@ -101,9 +102,14 @@ public static class MapPathPruning
     {
         List<List<MapPoint>> allPaths = FindAllPaths(startingMapPoint);
         var segments = new SortedDictionary<string, List<MapPoint[]>>(StringComparer.Ordinal);
+        // A complete map path can repeat the very same node segment from another
+        // prefix/suffix. Once visited, that exact segment always overlaps its earlier
+        // occurrence (or the segment which already rejected it). Skip only this pure
+        // duplicate work; keep first-visit order, key sorting and every RNG draw intact.
+        var seen = new HashSet<SegmentSlice>();
         foreach (List<MapPoint> path in allPaths)
         {
-            AddSegmentsToDictionary(path, segments);
+            AddSegmentsToDictionary(path, segments, seen);
         }
 
         return GetDuplicateSegments(segments);
@@ -131,8 +137,18 @@ public static class MapPathPruning
         return result;
     }
 
-    private static void AddSegmentsToDictionary(IReadOnlyList<MapPoint> path, IDictionary<string, List<MapPoint[]>> segments)
+    private static void AddSegmentsToDictionary(IReadOnlyList<MapPoint> path, IDictionary<string, List<MapPoint[]>> segments, HashSet<SegmentSlice> seen)
     {
+        // O(1) slice hashes avoid re-reading every interior node merely to find a
+        // repeated segment. Full identity comparison below still resolves collisions.
+        var prefixHashes = new int[path.Count + 1];
+        var powers = new int[path.Count + 1];
+        powers[0] = 1;
+        for (int index = 0; index < path.Count; index++)
+        {
+            prefixHashes[index + 1] = unchecked(prefixHashes[index] * 31 + RuntimeHelpers.GetHashCode(path[index]));
+            powers[index + 1] = unchecked(powers[index] * 31);
+        }
         for (int i = 0; i < path.Count - 1; i++)
         {
             if (!IsValidSegmentStartMapPoint(path[i]))
@@ -144,6 +160,12 @@ public static class MapPathPruning
             {
                 MapPoint end = path[i + j];
                 if (!IsValidSegmentEndMapPoint(end))
+                {
+                    continue;
+                }
+
+                int sliceHash = unchecked(prefixHashes[i + j + 1] - prefixHashes[i] * powers[j + 1]);
+                if (!seen.Add(new SegmentSlice(path, i, j + 1, sliceHash)))
                 {
                     continue;
                 }
@@ -160,6 +182,27 @@ public static class MapPathPruning
                 }
             }
         }
+    }
+
+    // Call-local identity metadata only. Paths and points cannot mutate during
+    // FindMatchingSegments; hash collisions are resolved by full reference equality.
+    // Never enumerate this set, reuse it across pruning passes, or key it by point type.
+    private readonly struct SegmentSlice(IReadOnlyList<MapPoint> path, int start, int count, int hash) : IEquatable<SegmentSlice>
+    {
+        private readonly IReadOnlyList<MapPoint> _path = path;
+        private readonly int _start = start;
+        private readonly int _count = count;
+        private readonly int _hash = hash;
+
+        public bool Equals(SegmentSlice other)
+        {
+            if (_count != other._count) return false;
+            for (int i = 0; i < _count; i++)
+                if (!ReferenceEquals(_path[_start + i], other._path[other._start + i])) return false;
+            return true;
+        }
+        public override bool Equals(object? obj) => obj is SegmentSlice other && Equals(other);
+        public override int GetHashCode() => _hash;
     }
 
     private static bool IsValidSegmentStartMapPoint(MapPoint start) =>

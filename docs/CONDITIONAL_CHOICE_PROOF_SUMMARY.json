@@ -1,0 +1,173 @@
+{
+  "schema_version": "nosl.conditional-choice-proof.v1",
+  "base_commit": "6bfe268",
+  "posterior_profile": "reviewed-stable-origin-conditional-choice-v1",
+  "training_performed": false,
+  "formal_labels": false,
+  "new_corpus_rows": 0,
+  "source_kind": "constructed diagnostic replay of existing timed-out phase roots",
+  "root_count": 9,
+  "allocated_action_worlds": 84,
+  "completed_action_worlds": 84,
+  "max_posterior_attempts": 1,
+  "elapsed_seconds": {
+    "total": 6.385443178998685,
+    "min": 0.12382241799787153,
+    "median": 0.3058224420019542,
+    "max": 3.4643665139992663
+  },
+  "cases": [
+    {
+      "source_index": 43,
+      "scenario": {
+        "enemy": "Nibbit",
+        "enemyHp": 17,
+        "hp": 44,
+        "seed": "nosl-m5-pilot-5000-v3:source:10"
+      },
+      "decision_index": 4,
+      "prior_deadline_seconds": 45.167306921999625,
+      "elapsed_seconds": 3.4643665139992663,
+      "allocated_action_worlds": 12,
+      "completed_action_worlds": 12,
+      "source_unchanged": true
+    },
+    {
+      "source_index": 403,
+      "scenario": {
+        "enemy": "TwigSlimeS",
+        "enemyHp": 56,
+        "hp": 59,
+        "seed": "nosl-m5-pilot-5000-v3:source:100"
+      },
+      "decision_index": 11,
+      "prior_deadline_seconds": 45.099182391000795,
+      "elapsed_seconds": 0.4424844489985844,
+      "allocated_action_worlds": 8,
+      "completed_action_worlds": 8,
+      "source_unchanged": true
+    },
+    {
+      "source_index": 3,
+      "scenario": {
+        "enemy": "TwigSlimeS",
+        "enemyHp": 34,
+        "hp": 11,
+        "seed": "nosl-m5-pilot-5000-v3:source:0"
+      },
+      "decision_index": 3,
+      "prior_deadline_seconds": 47.067923530999906,
+      "elapsed_seconds": 0.5098410999999032,
+      "allocated_action_worlds": 16,
+      "completed_action_worlds": 16,
+      "source_unchanged": true
+    },
+    {
+      "source_index": 447,
+      "scenario": {
+        "enemy": "TwigSlimeM",
+        "enemyHp": 39,
+        "hp": 53,
+        "seed": "nosl-m5-pilot-5000-v3:source:111"
+      },
+      "decision_index": 11,
+      "prior_deadline_seconds": 46.14543087600032,
+      "elapsed_seconds": 0.3058224420019542,
+      "allocated_action_worlds": 8,
+      "completed_action_worlds": 8,
+      "source_unchanged": true
+    },
+    {
+      "source_index": 47,
+      "scenario": {
+        "enemy": "TwigSlimeM",
+        "enemyHp": 52,
+        "hp": 47,
+        "seed": "nosl-m5-pilot-5000-v3:source:11"
+      },
+      "decision_index": 7,
+      "prior_deadline_seconds": 45.23062359100004,
+      "elapsed_seconds": 1.045864392999647,
+      "allocated_action_worlds": 8,
+      "completed_action_worlds": 8,
+      "source_unchanged": true
+    },
+    {
+      "source_index": 131,
+      "scenario": {
+        "enemy": "TwigSlimeS",
+        "enemyHp": 63,
+        "hp": 53,
+        "seed": "nosl-m5-pilot-5000-v3:source:32"
+      },
+      "decision_index": 8,
+      "prior_deadline_seconds": 45.28837760999886,
+      "elapsed_seconds": 0.21090198700039764,
+      "allocated_action_worlds": 8,
+      "completed_action_worlds": 8,
+      "source_unchanged": true
+    },
+    {
+      "source_index": 287,
+      "scenario": {
+        "enemy": "TwigSlimeM",
+        "enemyHp": 57,
+        "hp": 60,
+        "seed": "nosl-m5-pilot-5000-v3:source:71"
+      },
+      "decision_index": 14,
+      "prior_deadline_seconds": 46.094789978000335,
+      "elapsed_seconds": 0.15306583200072055,
+      "allocated_action_worlds": 8,
+      "completed_action_worlds": 8,
+      "source_unchanged": true
+    },
+    {
+      "source_index": 335,
+      "scenario": {
+        "enemy": "TwigSlimeM",
+        "enemyHp": 52,
+        "hp": 68,
+        "seed": "nosl-m5-pilot-5000-v3:source:83"
+      },
+      "decision_index": 12,
+      "prior_deadline_seconds": 45.41611535300035,
+      "elapsed_seconds": 0.12382241799787153,
+      "allocated_action_worlds": 8,
+      "completed_action_worlds": 8,
+      "source_unchanged": true
+    },
+    {
+      "source_index": 455,
+      "scenario": {
+        "enemy": "LeafSlimeS",
+        "enemyHp": 64,
+        "hp": 15,
+        "seed": "nosl-m5-pilot-5000-v3:source:113"
+      },
+      "decision_index": 12,
+      "prior_deadline_seconds": 46.1840962569986,
+      "elapsed_seconds": 0.12927404400033993,
+      "allocated_action_worlds": 8,
+      "completed_action_worlds": 8,
+      "source_unchanged": true
+    }
+  ],
+  "artifacts_sha256": {
+    "choice-timeout-cases.json": "464936f4b31f270ce6f87b26c4a50a2168ca5fd9bc1c0b01d4acfd09ab1dc106",
+    "choice-timeout-results.json": "a7edc71e7bbaf7e67a80e8a2333dc250b521cf93b67fa4c1c4f79e4a8059aec3",
+    "choice-source-baseline.jsonl": "90e799a3c0afeacef739aed17328d42371cb424b2baa3125aa83225434a4ad06",
+    "choice-source-current.jsonl": "90e799a3c0afeacef739aed17328d42371cb424b2baa3125aa83225434a4ad06"
+  },
+  "verification": {
+    "full_nosl_passed": 879,
+    "new_conditional_choice_tests_passed": 6,
+    "protocol_smoke": "passed",
+    "native_choice_exclusion_regressions": "passed in full suite",
+    "unsupported_in_place_and_generic_prior_fallback_guards": "passed in full suite",
+    "exact_prechange_public_packet_action_trace_and_source_rng_draw_matches": 9,
+    "discard_reshuffle_rng_conditioning_and_accepted_replay": "passed",
+    "declared_enemy_prior_cannot_narrow_after_deaths": "passed",
+    "audit_profile_dispatcher": "passed"
+  }
+}

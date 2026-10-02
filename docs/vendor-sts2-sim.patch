@@ -1,36 +1,18 @@
 --- a/src/Sts2Sim.Core/Combat/CombatEngine.cs
 +++ b/src/Sts2Sim.Core/Combat/CombatEngine.cs
-@@ -14,7 +14,7 @@
- public sealed class CombatEngine
- {
-     private const decimal BaseHandDrawCount = 5m;
+@@ -17 +17 @@
 -    private readonly ICombatObserver? _observer;
 +    private ICombatObserver? _observer;
-     private bool _endPlayerTurnRequested;
-     private int _cardActionBoundaryDepth;
- 
-@@ -30,6 +30,12 @@
-         State.AttachEngine(this);
-     }
- 
+@@ -30,0 +31,6 @@
++    }
++
 +    internal void ConfigureNoslProjectionObserver(ICombatObserver observer)
 +    {
 +        if (!State.IsProjection) throw new InvalidOperationException("Only projections can replace their observer.");
 +        _observer = observer;
-+    }
-+
-     internal CombatEngine CloneFor(CombatState state)
-     {
-         var clone = new CombatEngine(state, observer: null)
 --- a/src/Sts2Sim.Core/Combat/CombatState.Clone.cs
 +++ b/src/Sts2Sim.Core/Combat/CombatState.Clone.cs
-@@ -38,7 +38,39 @@
-     /// 届时在此之上组装即可，不需要再改接口层。
-     /// </para>
-     /// </remarks>
--    public CombatState Clone() => Clone(out _);
-+    public CombatState Clone() => Clone(out _);
-+
+@@ -42,0 +43,32 @@
 +    // Explicit NOSL branch lifetime; the existing exact clone API is unchanged.
 +    internal CombatState CloneForNosl(out CombatCloneMap map, ICombatObserver observer)
 +    {
@@ -62,38 +44,15 @@
 +            Enemies[i].Monster!.Rng = new Sts2Sim.Core.Random.Rng(samplerSeed, $"nosl-monster:{i}");
 +        }
 +    }
- 
-     public CombatState Clone(out CombatCloneMap map)
-     {
-@@ -200,9 +232,12 @@
-         }
-         else if (source.Monster is { } sourceMonster)
-         {
--            var clonedMonster = (MonsterModel)sourceMonster.MutableClone();
--            clone = new Creature(clonedMonster, source.Side);
--            clonedMonster.PrepareCombatCloneStateFrom(sourceMonster, clone, runState.Rng);
-+            var clonedMonster = (MonsterModel)sourceMonster.MutableClone();
-+            clone = new Creature(clonedMonster, source.Side);
++
+@@ -204,0 +237,3 @@
 +            // Move graphs capture ascension-dependent values when generated. Attach the branch
 +            // context first; otherwise e.g. Nibbit's A10 intent is silently rebuilt with A0 damage.
 +            clone.CombatState = combatState;
-+            clonedMonster.PrepareCombatCloneStateFrom(sourceMonster, clone, runState.Rng);
-         }
-         else
-         {
-@@ -237,7 +272,7 @@
-             _ => default,
-         };
- 
+@@ -240 +275 @@
 -        public RunRngSet Rng { get; } = source.Rng.CloneExact();
 +        public RunRngSet Rng { get; private set; } = source.Rng.CloneExact();
- 
-         // AscensionManager contains only a readonly level, so it is immutable after construction.
-         public AscensionManager Ascension { get; } = source.Ascension;
-@@ -246,9 +281,12 @@
- 
-         public int TotalFloor => _totalFloor;
- 
+@@ -249,3 +284,6 @@
 -        public AbstractRoom? CurrentRoom { get; } = source.CurrentRoom;
 -
 -        public AbstractRoom? BaseRoom { get; } = source.BaseRoom;
@@ -103,58 +62,90 @@
 +
 +        public void SetNoslRoom(CombatRoom room) { CurrentRoom = room; BaseRoom = room; }
 +        public void SetNoslRng(RunRngSet rng) => Rng = rng;
- 
-         public void AddPlayer(Player player) => _players.Add(player);
- 
 --- a/src/Sts2Sim.Core/Combat/ICombatObserver.cs
 +++ b/src/Sts2Sim.Core/Combat/ICombatObserver.cs
-@@ -14,7 +14,11 @@
- 
-     void PlayerTurnStarted(CombatState state);
- 
--    void CardDrawn(CardModel card);
-+    void CardDrawn(CardModel card);
+@@ -17,0 +18,5 @@
 +
 +    // Notifications only: no RNG, hooks, or card rules are changed.
 +    void CardMoved(CardModel card, PileType? from, PileType to, CardPilePosition position) { }
 +    void CardsShuffled(Sts2Sim.Core.Entities.Players.Player player) { }
- 
-     void CardPlayStarted(CardModel card, Creature? target);
- 
++    void CardEnteredCombat(CardModel card, PileType to, CardPilePosition position) { }
+--- a/src/Sts2Sim.Core/Commands/CardCmd.cs
++++ b/src/Sts2Sim.Core/Commands/CardCmd.cs
+@@ -287,0 +288 @@
++            (combatState as Sts2Sim.Core.Combat.CombatState)?.Observer?.CardMoved(original,pileType,PileType.None,CardPilePosition.None);
+@@ -443,0 +445 @@
++            (entry.Original.Owner.Creature.CombatState as Sts2Sim.Core.Combat.CombatState)?.Observer?.CardMoved(entry.Original,entry.Pile.Type,PileType.None,CardPilePosition.None);
 --- a/src/Sts2Sim.Core/Commands/CardPileCmd.cs
 +++ b/src/Sts2Sim.Core/Commands/CardPileCmd.cs
-@@ -24,6 +24,7 @@
- 
-     public static void Add(CardModel card, PileType pileType, CardPilePosition position = CardPilePosition.Bottom)
-     {
+@@ -26,0 +27 @@
 +        PileType? previousPile = card.Pile?.Type;
-         card.Pile?.RemoveInternal(card);
-         CardPile newPile = Get(pileType, card.Owner) ?? throw new InvalidOperationException($"Player has no {pileType} pile.");
-         if (pileType == PileType.Hand && newPile.Cards.Count >= CardPile.MaxCardsInHand)
-@@ -33,7 +34,8 @@
-         }
- 
-         if (newPile.Type == PileType.Deck) card.FloorAddedToDeck = card.Owner.RunState.TotalFloor;
--        newPile.AddInternal(card, GetInsertionIndex(card, newPile, position));
-+        newPile.AddInternal(card, GetInsertionIndex(card, newPile, position));
+@@ -36,0 +38 @@
 +        (card.CombatState as CombatState)?.Observer?.CardMoved(card, previousPile, newPile.Type, position);
-     }
- 
-     private static int GetInsertionIndex(CardModel card, CardPile pile, CardPilePosition position) => position switch
-@@ -397,6 +399,7 @@
-             state.DrawPile.AddInternal(card);
-         }
- 
+@@ -110,0 +113,3 @@
++            // Read-only entry observation; does not consume randomness or change hook ordering.
++            if (card.Pile is { } enteredPile)
++                (combatState as CombatState)?.Observer?.CardEnteredCombat(card, enteredPile.Type, position);
+@@ -309,0 +315 @@
++        PileType? previous=card.Pile?.Type;
+@@ -310,0 +317 @@
++        (card.Owner.Creature.CombatState as CombatState)?.Observer?.CardMoved(card,previous,PileType.None,CardPilePosition.None);
+@@ -405,0 +413 @@
 +        (combatState as CombatState)?.Observer?.CardsShuffled(player);
-         await Hook.AfterShuffle(combatState, player);
-     }
- 
+--- a/src/Sts2Sim.Core/Models/CardModel.cs
++++ b/src/Sts2Sim.Core/Models/CardModel.cs
+@@ -58,0 +59,5 @@
++
++    // A narrow read-only snapshot of publicly applied cost effects. No card identities,
++    // RNG, private state-description machinery or rule execution is exposed here.
++    internal IReadOnlyList<(string Kind, int Amount)> NoslPublicEnergyModifiers =>
++        _localEnergyModifiers.Select(x => (x.Kind.ToString(), x.Amount)).ToArray();
+--- a/src/Sts2Sim.Core/Models/Cards/Bolas.cs
++++ b/src/Sts2Sim.Core/Models/Cards/Bolas.cs
+@@ -11,0 +12,3 @@
++    // Public-origin effect history, exposed without identity or private future state.
++    internal int? NoslPlayedOnTurnNumber => _playedOnTurnNumber;
++
+--- a/src/Sts2Sim.Core/Models/Cards/Bombardment.cs
++++ b/src/Sts2Sim.Core/Models/Cards/Bombardment.cs
+@@ -11,0 +12,3 @@
++    // Public-origin effect history, exposed without identity or private future state.
++    internal bool NoslHasReplayed => _hasReplayed;
++
+--- a/src/Sts2Sim.Core/Models/Cards/Dowsing.cs
++++ b/src/Sts2Sim.Core/Models/Cards/Dowsing.cs
+@@ -11,0 +12,3 @@
++    // Public-origin effect history, exposed without identity or private future state.
++    internal int NoslUnknownRoomsEntered => _unknownRoomsEntered;
++
+--- a/src/Sts2Sim.Core/Models/Cards/Fetch.cs
++++ b/src/Sts2Sim.Core/Models/Cards/Fetch.cs
+@@ -11,0 +12,3 @@
++    // Public-origin effect history, exposed without identity or private future state.
++    internal bool NoslPlayedThisTurn => HasBeenPlayedThisTurn;
++
+--- a/src/Sts2Sim.Core/Models/Cards/Guilty.cs
++++ b/src/Sts2Sim.Core/Models/Cards/Guilty.cs
+@@ -6,0 +7,3 @@
++    // Public-origin effect history, exposed without identity or private future state.
++    internal int NoslCombatsCompleted => _combatsCompleted;
++
+--- a/src/Sts2Sim.Core/Models/Cards/ThrummingHatchet.cs
++++ b/src/Sts2Sim.Core/Models/Cards/ThrummingHatchet.cs
+@@ -13,0 +14,3 @@
++    // Public-origin effect history, exposed without identity or private future state.
++    internal int? NoslPlayedOnTurnNumber => _playedOnTurnNumber;
++
+--- a/src/Sts2Sim.Core/Models/Powers/NightmarePower.cs
++++ b/src/Sts2Sim.Core/Models/Powers/NightmarePower.cs
+@@ -13,0 +14,4 @@
++
++    // This payload originates in an explicit public card choice, not hidden draw order.
++    internal CardModel? NoslSelectedCard => _hasSelectedCard ? ModelDb.GetById<CardModel>(_selectedCardId) : null;
++    internal int? NoslSelectedUpgrade => _hasSelectedCard ? _selectedCardUpgradeLevel : null;
 --- a/src/Sts2Sim.Core/Rooms/CombatRoom.cs
 +++ b/src/Sts2Sim.Core/Rooms/CombatRoom.cs
-@@ -309,6 +309,23 @@
-             yield return reward;
-         }
-     }
+@@ -311,0 +312,17 @@
 +    // Reuse the actual lifecycle implementation, with fresh tasks/lock/reward containers.
 +    // Uncloneable queued rewards are explicit unsupported content, never silently discarded.
 +    internal CombatRoom CreateNoslProjection(CombatState state)
@@ -172,27 +163,10 @@
 +
 +    private bool _noslFinalActBoss;
 +
-     public Task ResolveOutcomeAsync(bool generateRewards = true)
-     {
-         RejectLifecycleReentry();
-@@ -369,7 +386,7 @@
-     /// 用模式匹配而非给 <c>IRunState</c> 加成员：幕信息只在 <see cref="RunState"/> 上，
-     /// 而 <c>IRunState</c> 有大量测试替身实现。</summary>
-     private bool IsFinalActBoss() =>
+@@ -372 +389 @@
 -        RoomType == RoomType.Boss &&
 +        _noslFinalActBoss || RoomType == RoomType.Boss &&
-         Engine.State.RunState is RunState runState &&
-         runState.CurrentActIndex >= runState.Acts.Count - 1;
- 
 --- a/src/Sts2Sim.Core/Sts2Sim.Core.csproj
 +++ b/src/Sts2Sim.Core/Sts2Sim.Core.csproj
-@@ -12,7 +12,8 @@
- 
-   <ItemGroup>
-     <InternalsVisibleTo Include="Sts2Sim.Core.Tests" />
--    <InternalsVisibleTo Include="SimFuzz" />
-+    <InternalsVisibleTo Include="SimFuzz" />
+@@ -15,0 +16 @@
 +    <InternalsVisibleTo Include="Nosl.Worker" />
-     <InternalsVisibleTo Include="Sts2Sim.Solver.Tests" />
-     <InternalsVisibleTo Include="SolverDiff" />
-   </ItemGroup>

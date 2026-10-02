@@ -157,7 +157,7 @@ public sealed class M012Tests
         CardPileCmd.Add(card,PileType.Hand);
         var packet=await s.StepAsync(Play(s,"ThinkingAhead"));
         Assert.Equal("card_choice",packet.Status); var selected=packet.Observation!.Choice!.Candidates[0];
-        await s.StepAsync(packet.Actions[0]); Assert.Equal(selected,s.Observe().Observation!.KnownDraw.Single().Card);
+        await s.StepAsync(packet.Actions[0]); Assert.Equal(PublicJson.Serialize(selected),PublicJson.Serialize(s.Observe().Observation!.KnownDraw.Single().Card));
         string intent=PublicJson.Serialize(s.Observe().Observation!.Enemies[0].Intents);
         await using var sampled=BeliefSampler.SampleWorld(s,77);
         Assert.Equal(PublicJson.Serialize(selected),PublicJson.Serialize(PublicViews.Card(sampled.State.Players[0].PlayerCombatState!.DrawPile.Cards[0])));
@@ -207,9 +207,9 @@ public sealed class M012Tests
     [Fact]
     public async Task M0_UnsupportedContentIsExplicit_NotSilentlyRemoved()
     {
-        await Assert.ThrowsAsync<NotSupportedException>(()=>CombatSession.CreateAsync(new(Enemy:"Fogmog")));
-        await Assert.ThrowsAsync<NotSupportedException>(()=>CombatSession.CreateAsync(new(Deck:["WraithForm"])));
-        await Assert.ThrowsAsync<NotSupportedException>(()=>CombatSession.CreateAsync(new(Relics:["ToyBox"])));
+        await Assert.ThrowsAsync<NotSupportedException>(()=>CombatSession.CreateAsync(new(Enemy:"NotRegisteredEnemy")));
+        await Assert.ThrowsAsync<NotSupportedException>(()=>CombatSession.CreateAsync(new(Deck:["NotRegisteredCard"])));
+        await Assert.ThrowsAsync<NotSupportedException>(()=>CombatSession.CreateAsync(new(Relics:["NotRegisteredRelic"])));
     }
     [Theory]
     [InlineData("TwigSlimeS")]

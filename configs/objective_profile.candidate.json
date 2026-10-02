@@ -1,0 +1,13 @@
+{
+  "id": "nosl_silent_a10_terminal_v4_candidate",
+  "defeatCost": 1000.0,
+  "downsideCoefficient": 0.2,
+  "calibrated": false,
+  "calibrationEvidence": "",
+  "valueTableVersion": "unresolved-v1",
+  "maximumAbsoluteUnitValue": 100.0,
+  "maximumAbsoluteInventoryAdjustment": 100.0,
+  "maximumAbsolutePermanentAdjustment": 100.0,
+  "inventoryValues": {},
+  "permanentFutureValues": {}
+}

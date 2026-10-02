@@ -11,6 +11,9 @@ namespace Sts2Sim.Core.Models.Cards;
 /// 所以"上一回合打出"精确等价于"当前 TurnNumber == 打出时记录的 TurnNumber + 1"）。</summary>
 public sealed class ThrummingHatchet : CardModel, ICardDamageVariableProvider
 {
+    // Public-origin effect history, exposed without identity or private future state.
+    internal int? NoslPlayedOnTurnNumber => _playedOnTurnNumber;
+
     private decimal _damage = 11m;
     private int? _playedOnTurnNumber;
 

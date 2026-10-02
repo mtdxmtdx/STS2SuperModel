@@ -67,6 +67,8 @@ file sealed class LanternKeyCombatDecisionSource : IRunDecisionSource
 [Collection("ModelDb")]
 public sealed class HiveEventTests : IDisposable
 {
+    private static readonly string[] NativeFullUnlockColorOrder =
+        ["NECROBINDER", "IRONCLAD", "REGENT", "SILENT", "DEFECT"];
     private static readonly Type[] ExpectedPool =
     {
         typeof(Amalgamator), typeof(Bugslayer), typeof(ColorfulPhilosophers), typeof(ColossalFlower),
@@ -138,10 +140,15 @@ public sealed class HiveEventTests : IDisposable
     public async Task ColorfulPhilosophers_OffersOtherUnlockedColor_AndThreeRarityRewards()
     {
         (RunState run, Player player) = CreateRun("colorful");
+        await RelicCmd.Obtain(ModelDb.Relic<Driftwood>(), player);
         var ev = Begin<ColorfulPhilosophers>(run, player);
         Assert.True(ev.IsAllowed(run));
-        // Regent sees four other colors, as in the full native roster, so one is removed with the event Rng.
-        Assert.Equal(new[] { "NECROBINDER", "IRONCLAD", "SILENT" },
+        Assert.Equal(NativeFullUnlockColorOrder.OrderBy(id => id, StringComparer.Ordinal),
+            ModelDb.AllCharacters.Where(character => character.IsPlayable)
+                .Select(character => character.Id.Entry)
+                .OrderBy(id => id, StringComparer.Ordinal));
+        // Five unlocked characters give Regent four other colors; this seed removes Defect.
+        Assert.Equal(NativeFullUnlockColorOrder.Where(id => id is not ("REGENT" or "DEFECT")),
             ev.CurrentOptions.Select(candidate => candidate.Key));
         EventOption option = ev.CurrentOptions[^1];
         Assert.Equal(1, ev.Rng.Counter);
@@ -159,6 +166,19 @@ public sealed class HiveEventTests : IDisposable
             offered.Select(set => Assert.Single(set.Card.Options.Select(card => card.Rarity).Distinct())));
         Assert.All(offered, set => Assert.Equal(3, set.Card.Options.Count));
         Assert.Equal(18, player.PlayerRng.Rewards.Counter - rewardsBefore);
+        var silentCards = ModelDb.Character<Silent>().CardPool.AllCards.Select(card => card.Id).ToHashSet();
+        foreach (RewardsSet rewardSet in offered)
+        {
+            CardReward cardReward = rewardSet.Card;
+            CardRarity rarity = cardReward.Options[0].Rarity;
+            Assert.True(cardReward.CanReroll);
+            await cardReward.Reroll();
+            Assert.All(cardReward.Options, card =>
+            {
+                Assert.Equal(rarity, card.Rarity);
+                Assert.Contains(card.Id, silentCards);
+            });
+        }
         Assert.True(ev.IsFinished);
     }
 
@@ -417,11 +437,11 @@ public sealed class HiveEventTests : IDisposable
     }
 
     [Theory]
-    [InlineData(typeof(Orobas), 5, 14)]
+    [InlineData(typeof(Orobas), 5, 9)]
     [InlineData(typeof(Pael), 3, 10)]
     [InlineData(typeof(Tezcatara), 3, 10)]
     public async Task HiveAncients_HealOfferThreeRngChoicesAndObtainAncientRelic(
-        Type ancientType, int expectedRngCalls, int expectedAllOptions)
+        Type ancientType, int expectedRngCalls, int expectedBaseOptions)
     {
         (RunState run, Player player) = CreateRun($"ancient-{ancientType.Name}");
         player.Creature.LoseHpInternal(30, default);
@@ -433,7 +453,14 @@ public sealed class HiveEventTests : IDisposable
         Assert.Equal(player.Creature.MaxHp, player.Creature.CurrentHp);
         Assert.Equal(3, ancient.CurrentOptions.Count);
         Assert.Equal(expectedRngCalls, ancient.Rng.Counter);
-        Assert.Equal(expectedAllOptions, ancient.AllPossibleOptions.Count);
+        Assert.Equal(expectedBaseOptions +
+            (ancientType == typeof(Orobas) ? NativeFullUnlockColorOrder.Length : 0),
+            ancient.AllPossibleOptions.Count);
+        if (ancientType == typeof(Orobas))
+        {
+            Assert.Equal(NativeFullUnlockColorOrder.Length,
+                ancient.AllPossibleOptions.Count(relic => relic is SeaGlass));
+        }
         string[] generatedKeys = ancient.CurrentOptions.Select(x => x.Key).ToArray();
         EventOption chosen = ancient.CurrentOptions[0];
         await ancient.ChooseOption(chosen);

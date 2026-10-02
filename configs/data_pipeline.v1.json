@@ -1,0 +1,48 @@
+{
+  "schema_version": "nosl.dataset.config.v1",
+  "split_seed": "nosl-v4-provenance-split-v1",
+  "split_ratios": {
+    "train": 0.8,
+    "validation": 0.1,
+    "test": 0.1
+  },
+  "split_unit": "transitive_provenance_connected_component",
+  "source_kinds": [
+    "constructed",
+    "natural",
+    "stress_test"
+  ],
+  "required_provenance": [
+    "source_run_group",
+    "source_combat_id",
+    "branch_family",
+    "public_state_digest"
+  ],
+  "keep_unresolved_actions": true,
+  "formal_labels_enabled": false,
+  "formal_blockers": [
+    "Objective risk and resource/permanent-future value profile is not calibrated",
+    "Broad natural-run carry-in posterior is not yet implemented; sparse declared-setup posterior can exhaust budgets",
+    "Five forced-event native lifecycle contexts remain unsupported",
+    "Formal training and model promotion are not authorized"
+  ],
+  "note": "data200 is engineering smoke in a separate corpus; first 5k pilot initializes frozen test. Later append never changes that holdout. No formal data, formal labels or M7 claims.",
+  "append_policy": {
+    "freeze_initial_test": true,
+    "deduplicate_exact_public_input": true,
+    "lock_all_versions": true,
+    "quarantine_historical_split_merges": true,
+    "engineering_smoke_is_separate_corpus": true
+  },
+  "stage_targets": [
+    200,
+    5000,
+    10000,
+    30000,
+    100000
+  ],
+  "stage_target_metric": "usable_new_roots_before_holdout_exclusion",
+  "promotion": "Explicit review of quality, independent groups, content/source coverage and throughput required; this tool never generates data or starts training",
+  "rule_authority": "USER_ACCEPTED_PINNED_UPSTREAM_5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
+  "runtime_resources": "Measured cloud CPU-only; bounded experimental pilot trial permitted after data gates"
+}

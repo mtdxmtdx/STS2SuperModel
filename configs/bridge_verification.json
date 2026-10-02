@@ -1,0 +1,61 @@
+{
+  "upstream_commit": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
+  "bridge_base": "d01c5f8ec56d799a80cf7a62a0f9296b3ac8d218",
+  "build": {
+    "status": "PASS",
+    "warnings": 0,
+    "errors": 0,
+    "command": "dotnet build Nosl.M012.sln -c Release --no-restore -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false"
+  },
+  "integration": {
+    "passed": 803,
+    "failed": 0,
+    "skipped": 0,
+    "duration": "3m26s",
+    "trx": "artifacts/reports/coverage/coverage-final.trx",
+    "groups": {
+      "CardCoverageTests": 219,
+      "EncounterCoverageTests": 169,
+      "EnvironmentCoverageTests": 374,
+      "M012Tests": 31,
+      "BridgeSafetyTests": 10
+    }
+  },
+  "protocol": {
+    "status": "PASS",
+    "decisions": 2,
+    "result": "win",
+    "final_hp": 70,
+    "reward_choices": 0
+  },
+  "upstream_core": {
+    "status": "PASS",
+    "passed": 4479,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4482,
+    "duration": "22m14s",
+    "trx": "artifacts/reports/coverage/upstream-core-final.trx",
+    "tested_core_checkpoint": "fcbec1b68aab96c579351352d8b56ce6fdcfdc1d",
+    "later_core_changes": "Not covered; rerun their affected regressions",
+    "upstream_ci_reference": "https://github.com/iRyougi/sts2-sim/actions/runs/36843230604",
+    "upstream_ci_counts": {
+      "passed": 4479,
+      "failed": 0,
+      "skipped": 3,
+      "duration": "10m57s"
+    },
+    "intentional_skips": [
+      "AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants",
+      "UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant"
+    ]
+  },
+  "independent_review": {
+    "method": "SOURCE_ONLY",
+    "result": "No remaining confirmed high-severity finding in reviewed checkpoint",
+    "does_not_claim": "Independent execution of 803 tests or full-content/NOSL certification"
+  },
+  "fidelity": "PINNED_UPSTREAM_TRUSTED_NOT_INDEPENDENT_CLIENT_CERTIFICATION",
+  "bridge_checkpoint": "fcbec1b68aab96c579351352d8b56ce6fdcfdc1d"
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "nosl.m3.acceptance-disposition.v1",
+  "objective_profile_id": "nosl_silent_a10_terminal_v4_candidate",
+  "contract_implementation_status": "BOUNDED_CONTRACT_AND_ACCOUNTING_EVIDENCE_PASSED",
+  "production_calibration_status": "BLOCKED_UNCALIBRATED_PREFERENCES_AND_RESOURCE_VALUES",
+  "calibrated": false,
+  "formal_label_profiles_admitted": [],
+  "formal_labels_allowed": false,
+  "training_authorized_by_report": false,
+  "archived_corpus": "artifacts/data/engineering-200-v2",
+  "archived_corpus_current_training_admitted": false,
+  "evidence_report": "configs/objective_calibration_engineering200.json",
+  "tests": {
+    "earlier_original_checkout_objective_csharp": 21,
+    "earlier_real_simulator_integrations": 3,
+    "original_contract_python_rerun": 30,
+    "evidence_tool_mutation_tests": 16,
+    "archived_record_checks": 21180,
+    "bounded_hunt_real_integrations": 12
+  },
+  "criteria": [
+    {
+      "id": "confirmed_preferences_not_reversed",
+      "status": "BOUNDED_PASS",
+      "evidence": "Original contracts and exact candidate sensitivity; 0 < eta < 150/13 in the proposed family",
+      "remaining": "K and unique eta not identified; micro-death-risk preferences unknown"
+    },
+    {
+      "id": "potion_nine_consideration_only",
+      "status": "CONTRACT_PASS_EMPIRICAL_GATE_OPEN",
+      "evidence": "Inclusive exact threshold/rescue; 80 saved contrasts all explicitly unresolved",
+      "remaining": "Certified policy-comparison uncertainty and item-specific exception values"
+    },
+    {
+      "id": "whole_anchored_five_no_reset",
+      "status": "BOUNDED_THE_HUNT_TEMPLATE_INTEGRATED",
+      "evidence": "12 real Hunt integrations: paired full baseline/plan outcomes; immutable next-turn deadline; exact observed5HP delay; anchor after prior HP loss; irreversible failure exit; independent hidden replacement",
+      "remaining": "Only the reviewed finite Hunt/no-healing family; arbitrary plans and deployed active student control remain unsupported"
+    },
+    {
+      "id": "exact_eighty_vs_sampling_uncertainty",
+      "status": "CONTRACT_AND_REAL_BONUS_MASKS_VERIFIED",
+      "evidence": "Exact.8 contract boundary; actual fatal/earned CardReward/deadline outcomes with fixed-N intervals and retained missing mass",
+      "remaining": "Small-N intervals and equal observed death rates remain inconclusive; no fabricated eligibility or calibrated resource value"
+    },
+    {
+      "id": "settlement_resource_accounting",
+      "status": "ARCHIVED_ACCOUNTING_PASS_EVENT_LEDGER_OPEN",
+      "evidence": "977 targets reproduced,64 unpriced actions masked, prior3 physical integration cases",
+      "remaining": "Healing/resource event provenance; broad permanent-effect integration; updated public boundary"
+    },
+    {
+      "id": "formal_profile_admission",
+      "status": "NONE_ADMITTED",
+      "evidence": "Candidate stays calibrated=false; no item prices invented",
+      "remaining": "Versioned defensible preference and future-resource calibration"
+    }
+  ],
+  "distinct_nonpreference_blockers": [
+    "Archived engineering corpus has old public-boundary fingerprint; corrected runtime verified separately and pilot corpus must remain re-versioned",
+    "complete HP-event/provenance instrumentation absent",
+    "Bounded opt-in Hunt template now has real success/deadline evidence; general bonus-context student training remains unsupported",
+    "corpus has no maxHP-change or root-after-HP-loss cases"
+  ],
+  "preference_and_valuation_blockers": [
+    "risk-family and coefficients not uniquely identified",
+    "micro-death-risk tradeoffs unconfirmed",
+    "potion exception and permanent future values unresolved"
+  ],
+  "client_differential": "Not independently measured; informational under user-accepted pinned upstream rule authority, not a new prerequisite"
+}

@@ -296,7 +296,8 @@ public sealed partial class CombatState
             {
                 foreach (RelicModel relic in player.Relics)
                 {
-                    yield return relic;
+                    if (!relic.IsMelted)
+                        yield return relic;
                 }
 
                 foreach (PotionModel potion in player.PotionSlots.OfType<PotionModel>())

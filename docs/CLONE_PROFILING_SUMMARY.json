@@ -1,0 +1,98 @@
+{
+  "schema_version": "nosl.clone-profile.v1",
+  "base_commit": "df13220e940de7bb7082273b9e59b8ea590085fa",
+  "engineering_only": true,
+  "new_training_samples": 0,
+  "training_performed": false,
+  "remote_writes": false,
+  "historical_engineering_200": {
+    "fast": {
+      "roots": 118,
+      "clone_seconds": 1.4193189,
+      "total_seconds": 28.6878839
+    },
+    "replay": {
+      "roots": 82,
+      "clone_seconds": 1095.5171298,
+      "total_seconds": 1103.0765483
+    },
+    "source_file_sha256": "ee10929758e47404cda447a1ed0bdb6548384428f068827d726e6d7baa45dc32"
+  },
+  "map_runs": [
+    {
+      "baseline": "maps-baseline.jsonl",
+      "optimized": "maps-prefix.jsonl",
+      "maps": 64,
+      "exact_topology_order_rng_matches": 64,
+      "baseline_seconds": 9.5466841,
+      "optimized_seconds": 4.6145343,
+      "speedup": 2.0688293724460993,
+      "baseline_allocated_bytes": 4370831712,
+      "optimized_allocated_bytes": 1364003896
+    },
+    {
+      "baseline": "maps-baseline-repeat.jsonl",
+      "optimized": "maps-optimized-repeat.jsonl",
+      "maps": 64,
+      "exact_topology_order_rng_matches": 64,
+      "baseline_seconds": 9.15522,
+      "optimized_seconds": 3.6436143,
+      "speedup": 2.512675394868222,
+      "baseline_allocated_bytes": 4371101200,
+      "optimized_allocated_bytes": 1371763848
+    }
+  ],
+  "teacher_runs": [
+    {
+      "baseline": "teacher-baseline.jsonl",
+      "optimized": "teacher-optimized.jsonl",
+      "roots": 6,
+      "branches": 58,
+      "exact_outcome_matches": 6,
+      "baseline_seconds": 16.0917317,
+      "optimized_seconds": 8.8262909,
+      "speedup": 1.8231590010249945
+    },
+    {
+      "baseline": "teacher-baseline-traces.jsonl",
+      "optimized": "teacher-optimized-traces.jsonl",
+      "roots": 6,
+      "branches": 58,
+      "exact_outcome_matches": 6,
+      "baseline_seconds": 19.8750986,
+      "optimized_seconds": 11.580747500000001,
+      "speedup": 1.7162189746387269
+    }
+  ],
+  "private_and_public_trace_matches": {
+    "roots": 6,
+    "checks": [
+      "sourceRandomSha256",
+      "sampledRandomSha256",
+      "settledRandomSha256",
+      "publicAndTerminalTraceSha256"
+    ]
+  },
+  "native_regression": {
+    "source_roots": 200,
+    "eligible_roots": 16,
+    "settled_branches": 174,
+    "public_inputs_targets_source_traces_and_outcomes_unchanged": true
+  },
+  "baseline_core_sha256": "f2af38c2d9c165995b3e67b4a75003bf015a6ff458a6515088bac0e74af527bb",
+  "optimized_core_sha256": "4a7ab087016afb8e53a5ab77a885b68f39e5bd290d56899c11742793087624d0",
+  "timing_limitations": [
+    "Shared cloud CPU with active authoritative workers; figures are paired diagnostic measurements, not corpus-wide throughput guarantees",
+    "Six deterministic fixtures intentionally span fast and costly replay paths; they are not a random sample",
+    "No fast-path speedup claimed"
+  ],
+  "verification": {
+    "full_nosl_passed": 871,
+    "targeted_optimization_passed": 17,
+    "protocol_smoke": "passed",
+    "new_training_samples": 0,
+    "upstream_existing_map_tests_passed": 37,
+    "supplemental_patch_apply": "passed",
+    "original_recorded_public_root_digests_matched": 6
+  }
+}
