@@ -2,10 +2,11 @@ using System.Collections.Immutable;
 using Nosl.Contracts;
 using Nosl.Worker;
 using Sts2Sim.Core.Random;
+using Xunit.Abstractions;
 
 namespace Nosl.Tests;
 
-public sealed class NativePublicDrawPrefixConditionTests
+public sealed class NativePublicDrawPrefixConditionTests(ITestOutputHelper output)
 {
     private static PublicCard Card(string id) => new(id, 0, 1, -1, "Skill", []);
     private sealed record Fixture(PublicRunEvidenceRecorder Recorder, long Owner, long First,
@@ -164,6 +165,131 @@ public sealed class NativePublicDrawPrefixConditionTests
     };
 
     [Theory]
+    [InlineData("NeowsFury", false)]
+    [InlineData("NeowsFury", true)]
+    [InlineData("Strangle", false)]
+    [InlineData("Strangle", true)]
+    [InlineData("Finisher", false)]
+    [InlineData("Finisher", true)]
+    [InlineData("SuckerPunch", false)]
+    [InlineData("SuckerPunch", true)]
+    public async Task ReviewedV2CardAndPowerContinuationsPreserveThePileThroughNativeDraws(string id, bool upgraded)
+    {
+        string cardName = id + (upgraded ? "+" : "");
+        await using var session = await CombatSession.CreateAsync(new(Seed: "closure-v2:" + cardName,
+            Deck: Enumerable.Repeat(cardName, 6).Concat(Enumerable.Repeat("StrikeSilent", 6)).ToArray(),
+            Potions: ["SwiftPotion"], Enemy: "SludgeSpinner", EnemyHp: 1000));
+        var entry = NativeEntryAssets.Capture(session.InitialAssets, session.StartHp, session.StartPotions);
+        var assets = new PublicEvidenceAssets(entry.Hp, entry.MaxHp, entry.Gold, entry.Deck, entry.Relics,
+            entry.Potions.ToImmutableArray(), entry.MaxEnergy, entry.PotionSlots, entry.OrbSlots, entry.CardRemovalsUsed);
+        var recorder = new PublicRunEvidenceRecorder(new("Silent", 10, assets));
+        long owner = recorder.BeginOwner(PublicEvidenceOwnerKind.Combat, 0, 1);
+        DecisionPacket Record(DecisionPacket packet)
+        {
+            packet = packet with { Observation = packet.Observation! with
+            {
+                History = [packet.Observation.History[0], new(NativeEntryAssets.EventKind, PublicJson.Serialize(entry)),
+                    .. packet.Observation.History.Skip(1)],
+            } };
+            recorder.ObserveCombatDecision(owner, packet);
+            var certificate = NativePublicCombatPrefixCondition.Create(recorder.Capture()).Combats[0];
+            Assert.Equal("nosl.public-first-draw-cycle.v3", certificate.DrawPrefix!.CertificateVersion);
+            Assert.Contains(certificate.DrawPrefix.StopReason, new[] { "observed_prefix_complete", "first_reshuffle" });
+            return packet;
+        }
+        var current = Record(session.Observe());
+        var strike = current.Actions.First(action => action.Kind == "play" && current.Observation!.Hand[action.Slot].Id == "StrikeSilent");
+        current = Record(await session.StepAsync(strike));
+        int beforeCardDrawCount = current.Observation!.DrawCount;
+        var selected = current.Actions.First(action => action.Kind == "play" && current.Observation.Hand[action.Slot].Id == id);
+        current = Record(await session.StepAsync(selected));
+        Assert.Equal(beforeCardDrawCount, current.Observation!.DrawCount);
+        if (id == "NeowsFury")
+        {
+            Assert.Empty(current.Observation.Discard);
+            Assert.Contains(current.Observation.Exhaust, card => card.Id == id);
+        }
+        if (id == "Strangle") Assert.Contains(current.Observation.Enemies[0].Powers, power => power.Id == "StranglePower");
+        if (id == "SuckerPunch") Assert.Contains(current.Observation.Enemies[0].Powers, power => power.Id == "WeakPower");
+        int factsBefore = current.Observation.History.Length;
+        var follow = current.Actions.FirstOrDefault(action => action.Kind == "play" && current.Observation.Hand[action.Slot].Id == "StrikeSilent")
+            ?? current.Actions.First(action => action.Kind == "play");
+        current = Record(await session.StepAsync(follow));
+        if (id == "Strangle") Assert.True(current.Observation!.History.Skip(factsBefore).Count(item => item.Kind == "damage") >= 2);
+        current = Record(await session.StepAsync(current.Actions.First(action => action.Kind == "potion")));
+        Assert.Equal(10, NativePublicCombatPrefixCondition.Create(recorder.Capture()).Combats[0].Shuffle!.DrawPrefixIds.Length);
+        current = Record(await session.StepAsync(current.Actions.Single(action => action.Kind == "end_turn")));
+        Assert.Equal(12, NativePublicCombatPrefixCondition.Create(recorder.Capture()).Combats[0].Shuffle!.DrawPrefixIds.Length);
+        var reshuffles = NativePublicReshuffleCondition.Create(current with { PublicEvidence = recorder.Capture() });
+        var reshuffle = Assert.Single(reshuffles.Combats[0].Targets);
+        Assert.Equal(id == "NeowsFury" ? 9 : 10, reshuffle.PoolIds.Count);
+        Assert.Equal(3, reshuffle.DrawPrefixIds.Count);
+        if (id == "Strangle") Assert.DoesNotContain(current.Observation!.Enemies[0].Powers, power => power.Id == "StranglePower");
+    }
+
+    [Theory]
+    [InlineData(false, 2)]
+    [InlineData(true, 3)]
+    public async Task NativeNeowsFuryRetrievesItsBaseOrUpgradedLimitWithoutAHiddenDraw(bool upgraded, int count)
+    {
+        await using var session = await CombatSession.CreateAsync(new(Seed: "closure-v2-retrieval",
+            Deck: Enumerable.Repeat("NeowsFury" + (upgraded ? "+" : ""), 4)
+                .Concat(Enumerable.Repeat("StrikeSilent", 8)).ToArray(),
+            Potions: ["EnergyPotion"], Enemy: "SludgeSpinner", EnemyHp: 1000));
+        var entry = NativeEntryAssets.Capture(session.InitialAssets, session.StartHp, session.StartPotions);
+        var assets = new PublicEvidenceAssets(entry.Hp, entry.MaxHp, entry.Gold, entry.Deck, entry.Relics,
+            entry.Potions.ToImmutableArray(), entry.MaxEnergy, entry.PotionSlots, entry.OrbSlots, entry.CardRemovalsUsed);
+        var recorder = new PublicRunEvidenceRecorder(new("Silent", 10, assets));
+        long owner = recorder.BeginOwner(PublicEvidenceOwnerKind.Combat, 0, 1);
+        DecisionPacket Record(DecisionPacket packet)
+        {
+            packet = packet with { Observation = packet.Observation! with
+            {
+                History = [packet.Observation.History[0], new(NativeEntryAssets.EventKind, PublicJson.Serialize(entry)),
+                    .. packet.Observation.History.Skip(1)],
+            } };
+            recorder.ObserveCombatDecision(owner, packet); return packet;
+        }
+        var current = Record(session.Observe());
+        for (int i = 0; i < 3; i++) current = Record(await session.StepAsync(current.Actions.First(action =>
+            action.Kind == "play" && current.Observation!.Hand[action.Slot].Id == "StrikeSilent")));
+        Assert.Equal(3, current.Observation!.Discard.Length);
+        current = Record(await session.StepAsync(current.Actions.Single(action => action.Kind == "potion")));
+        current = Record(await session.StepAsync(current.Actions.First(action => action.Kind == "play"
+            && current.Observation!.Hand[action.Slot].Id == "NeowsFury")));
+        Assert.Equal(3 - count, current.Observation!.Discard.Length);
+        Assert.Equal(3 + count, current.Observation.Hand.Length);
+        Assert.Equal(5, current.Observation.DrawCount);
+        Assert.Equal(7, current.Observation.History.Count(item => item.Kind == "draw"));
+        var certificate = NativePublicCombatPrefixCondition.Create(recorder.Capture()).Combats[0];
+        Assert.Equal("observed_prefix_complete", certificate.DrawPrefix!.StopReason);
+    }
+
+    [Theory]
+    [InlineData(11004UL, 1, "Strangle")]
+    [InlineData(11004UL, 2, "Finisher")]
+    [InlineData(11007UL, 0, "NeowsFury")]
+    [InlineData(11007UL, 2, "SuckerPunch")]
+    public async Task RetainedMeasuredCardBlockersAreCrossedByTheV2Closure(ulong seed, int index, string id)
+    {
+        var prior = Hybrid;
+        var recipe = prior.Draw(new Rng(seed, "nosl-native-tape-source-draw-v1"));
+        await using var world = await NativeRunWorld.OpenLabelTapeAsync(prior.Execution, recipe,
+            NativeLabelTape.ForDeclaredPrior(prior, recipe));
+        Assert.NotNull(world);
+        var root = PublicJson.Read<DecisionPacket>(PublicJson.Serialize(world.Observe()));
+        var input = NativePublicCombatPrefixCondition.Create(root).Combats[index];
+        var played = root.PublicEvidence!.Events.First(item => item.OwnerOrdinal == input.OwnerOrdinal
+            && item.Payload is PublicCombatFact { FactKind: PublicCombatFactKind.CardPlayed } fact && fact.Cards[0].Id == id);
+        Assert.True(input.DrawPrefix!.ThroughEventOrdinal >= played.EventOrdinal,
+            $"{seed} combat {index}: {input.DrawPrefix.StopReason} at {input.DrawPrefix.ThroughEventOrdinal}, before {played.EventOrdinal}");
+        Assert.DoesNotContain(id, input.DrawPrefix.StopReason);
+        Assert.Equal("nosl.public-first-draw-cycle.v3", input.DrawPrefix.CertificateVersion);
+        var full = NativePublicReshuffleCondition.Create(root).CombatAudits[index];
+        output.WriteLine($"{seed} C{index}: first prefix={input.Shuffle!.DrawPrefixIds.Length}, through={input.DrawPrefix.ThroughEventOrdinal}, stop={input.DrawPrefix.StopReason}; full through={full.ThroughEventOrdinal}, stop={full.StopReason}");
+    }
+
+    [Theory]
     [InlineData(11002UL, 16, "first_reshuffle")]
     [InlineData(11003UL, 12, "observed_prefix_complete")]
     [InlineData(11004UL, 13, "first_reshuffle")]
@@ -190,8 +316,8 @@ public sealed class NativePublicDrawPrefixConditionTests
         if (sourceSeed == 11004)
         {
             Assert.All(condition.Combats.Values, combat => Assert.NotNull(combat.Shuffle));
-            Assert.Equal("draw_cycle_play_not_certified:Strangle", condition.Combats[1].DrawPrefix!.StopReason);
-            Assert.Equal("draw_cycle_play_not_certified:Finisher", condition.Combats[2].DrawPrefix!.StopReason);
+            Assert.Equal("first_reshuffle", condition.Combats[1].DrawPrefix!.StopReason);
+            Assert.Equal("observed_prefix_complete", condition.Combats[2].DrawPrefix!.StopReason);
         }
         Assert.Equal(before, PublicJson.Serialize(root));
         if (sourceSeed is 11002 or 11003)

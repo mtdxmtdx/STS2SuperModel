@@ -14,6 +14,7 @@
 - `src/Sts2Sim.Core/Commands/CardCmd.cs`
 - `src/Sts2Sim.Core/Commands/CardPileCmd.cs`
 - `src/Sts2Sim.Core/Commands/PotionCmd.cs`
+- `src/Sts2Sim.Core/Content/Acts/Overgrowth.cs`
 - `src/Sts2Sim.Core/Content/EncounterDefinition.cs`
 - `src/Sts2Sim.Core/Entities/Creatures/Creature.cs`
 - `src/Sts2Sim.Core/Entities/Players/IPlayerOutcomeObserver.cs`
@@ -21,6 +22,7 @@
 - `src/Sts2Sim.Core/Factories/CardFactory.cs`
 - `src/Sts2Sim.Core/Map/StandardActMap.cs`
 - `src/Sts2Sim.Core/Models/CardModel.cs`
+- `src/Sts2Sim.Core/Models/MonsterModel.cs`
 - `src/Sts2Sim.Core/Models/Cards/Bolas.cs`
 - `src/Sts2Sim.Core/Models/Cards/Bombardment.cs`
 - `src/Sts2Sim.Core/Models/Cards/Dowsing.cs`
@@ -30,8 +32,12 @@
 - `src/Sts2Sim.Core/Models/Monsters/CorpseSlug.cs`
 - `src/Sts2Sim.Core/Models/Monsters/TwoTailedRat.cs`
 - `src/Sts2Sim.Core/Models/Powers/NightmarePower.cs`
+- `src/Sts2Sim.Core/MonsterMoves/RandomBranchState.cs`
 - `src/Sts2Sim.Core/Odds/CardRarityOdds.cs`
+- `src/Sts2Sim.Core/Random/LabelCombatReshuffleScope.cs`
 - `src/Sts2Sim.Core/Random/LabelCorpseSlugScope.cs`
+- `src/Sts2Sim.Core/Random/LabelMonsterMoveScope.cs`
+- `src/Sts2Sim.Core/Random/LabelSlimesWeakScope.cs`
 - `src/Sts2Sim.Core/Random/LabelRandomProvenance.cs`
 - `src/Sts2Sim.Core/Random/LabelRandomScope.cs`
 - `src/Sts2Sim.Core/Random/MegaRandom.cs`
@@ -71,3 +77,9 @@ v4组合检查点重新复现全部2,231个跟踪源码文件，并在固定生�
 v5连接层相对已打包源码`ded6aeb7`只修改4个Core文件：`Content/EncounterDefinition.cs`、`Models/Monsters/CorpseSlug.cs`、新增`Random/LabelCorpseSlugScope.cs`和`Rooms/CombatRoom.cs`。显式启用的label作用域在遭遇工厂、战斗房间准备及CorpseSlug原生`NextInt(3)`之前提供实际假想工厂上下文；不传入来源seed或目标招式，也不直接改写怪物状态。未启用作用域时保持原生生成和抽取顺序。对固定源码`18075150`从上游归档加两个补丁重新复现全部2,232个跟踪Core／Core.Tests文件，字节与文件集合完全一致；其余补丁段、独立地图性能补丁与Core测试树保持不变。
 
 该v5固定源码另全新运行一次完整Core套件：4,493通过、3个既有opt-in跳过、0失败，构建加测试270.32秒。使用独立构建目录，保留本次真实stdout／stderr、TRX、执行记录、源码清单及程序集哈希；运行前后源码哈希均一致。上一v4报告和原始回归记录按原源码固定点单独保留，不计作本次新测试。准确路径、时间与SHA-256见[最新重建证据](../../configs/vendor_patch_verification.json)。
+
+v6连接层相对上一打包源码`18075150`只修改9个Core文件：`Commands/CardPileCmd.cs`、`Content/Acts/Overgrowth.cs`、`Content/EncounterDefinition.cs`、`Models/MonsterModel.cs`、`MonsterMoves/RandomBranchState.cs`、新增`Random/LabelCombatReshuffleScope.cs`、`Random/LabelMonsterMoveScope.cs`、`Random/LabelSlimesWeakScope.cs`及`Rooms/CombatRoom.cs`。这些显式启用的label作用域分别标记战斗弃牌重洗、怪物分支招式及弱史莱姆编队；普通原生调用仍按原顺序执行getter和随机抽取，包括编队的一元素抽取。重洗只在原生`StableShuffle`正常返回后确认成功，怪物招式只在原生赋值完成后记录完成状态；条件分支另外核对遍历时权重与原生求和时一致。
+
+对固定源码`4c589ed0`从上游归档加两个补丁重新复现全部2,235个跟踪Core／Core.Tests文件，字节与文件集合完全一致。其余补丁段、独立地图性能补丁和Core测试树保持不变；v5与更早回归证据保留各自原始源码固定点。
+
+该v6固定源码另全新运行一次完整Core套件：4,493通过、3个既有opt-in跳过、0失败，构建加测试261.96秒。采用独立构建目录与单MSBuild worker；保留本次真实stdout／stderr、TRX、执行记录、源码清单及程序集SHA-256，运行前后源码哈希均一致。上一v5报告和原始回归记录独立保留，不计作本次新测试。准确路径、时间与哈希见[最新重建证据](../../configs/vendor_patch_verification.json)。

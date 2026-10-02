@@ -29,7 +29,7 @@ internal static class NativeTapeReplayDataset
         ? ImplementationVersion + "-public-evidence-v1" : ImplementationVersion;
 
     internal static string ImplementationFor(NativeTapePrior prior) => prior.UsesRewardsProvenance
-        ? "nosl-native-rewards-state-tape-conditional-v5-public-evidence-v1" : ImplementationFor(prior.Execution);
+        ? "nosl-native-rewards-state-tape-conditional-v6-public-evidence-v1" : ImplementationFor(prior.Execution);
     internal static string DatasetFor(NativeTapePrior prior) => prior.UsesRewardsProvenance
         ? "nosl.native-rewards-tape-replay-development.v1" : DatasetVersion;
 
@@ -123,6 +123,14 @@ internal static class NativeTapeReplayDataset
                     audit["public_combat_hp_targets"] = source.PublicCombatHpTargets;
                     audit["public_slug_intent_conditioning_eligible"] = source.UsesConditionalSlugIntents;
                     audit["public_slug_intent_targets"] = source.SlugIntentTargets;
+                    audit["public_weak_formation_conditioning_eligible"] = source.UsesConditionalWeakFormation;
+                    audit["public_reshuffle_conditioning_eligible"] = source.UsesConditionalReshuffles;
+                    audit["public_reshuffle_targets"] = source.PublicReshuffleTargets;
+                    audit["public_monster_branch_conditioning_eligible"] = source.UsesConditionalMonsterBranches;
+                    audit["public_monster_roll_targets"] = source.PublicMonsterRollTargets;
+                    audit["public_monster_branch_targets"] = source.PublicMonsterBranchTargets;
+                    audit["public_reshuffle_conditioning"] = JsonNode.Parse(PublicJson.Serialize(source.PublicReshuffleDiagnostics));
+                    audit["public_monster_roll_conditioning"] = JsonNode.Parse(PublicJson.Serialize(source.PublicMonsterRollDiagnostics));
                     audit["public_combat_conditioning"] = JsonNode.Parse(PublicJson.Serialize(source.PublicCombatDiagnostics));
                 }
                 audit["public_local_decision_conditioning"] = source.ConditionedPublicDecisionIndex;

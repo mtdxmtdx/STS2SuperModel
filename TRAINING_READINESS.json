@@ -28,7 +28,7 @@
     "data_pipeline_passed": 145,
     "generator_archive_passed": 63,
     "integrated_v2_teacher_to_backward": true,
-    "full_current_integration_passed": 1485,
+    "full_current_integration_passed": 1689,
     "natural_source_tests_passed": 5,
     "native_recorder_tests_passed": 7,
     "natural_raw_roots": 200,
@@ -98,7 +98,7 @@
     "confirmed_hard_preference_cases": 2,
     "confirmed_numerically_evaluated_preference_cases": 1,
     "cross_version_protection_cases": 24,
-    "current_full_suite": "PASS_1485_OF_1485",
+    "current_full_suite": "PASS_1689_OF_1689",
     "v2_trainer_no_fit_tests_passed": 21,
     "v2_student_no_backward_tests_passed": 19,
     "student_regression": 185,
@@ -199,5 +199,15 @@
     "combat_index2_completed": false,
     "gate_passed": false,
     "seconds": 336.0722794
+  },
+  "native_rewards_hybrid_v6": {
+    "status": "VERIFIED_COMPOSITION_BOUNDED_DIAGNOSTIC_RUNNING",
+    "native_tests_passed": 1689,
+    "core_tests_passed": 4493,
+    "core_tests_opt_in_skipped": 3,
+    "new_production_rows": 0,
+    "new_optimizer_steps": 0,
+    "full_readiness": false,
+    "report": "configs/native_rewards_hybrid_v6_verification.json"
   }
 }

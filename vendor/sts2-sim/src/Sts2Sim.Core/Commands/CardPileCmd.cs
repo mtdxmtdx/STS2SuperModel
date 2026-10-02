@@ -392,7 +392,11 @@ public static class CardPileCmd
         Rng shuffleRng = combatState is CombatState concreteState
             ? concreteState.NextShuffleRng()
             : combatState.RunState.Rng.Shuffle;
-        combined.StableShuffle(shuffleRng);
+        using (var labelBoundary = LabelCombatReshuffleScope.Mark(combatState, player, shuffleRng, combined))
+        {
+            combined.StableShuffle(shuffleRng);
+            labelBoundary?.Complete();
+        }
         foreach (EnchantmentModel enchantment in combined.SelectMany(card => card.Enchantments).ToList())
         {
             enchantment.ModifyShuffleOrder(player, combined, isInitialShuffle: false);

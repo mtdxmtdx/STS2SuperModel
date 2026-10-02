@@ -29,6 +29,12 @@ internal sealed class NativeLabelTape
     private readonly NativePublicCombatPrefixProposal? _publicCombatProposal;
     private readonly NativePublicCorpseSlugIntentCondition? _slugIntentCondition;
     private readonly NativePublicCorpseSlugIntentProposal? _slugIntentProposal;
+    private readonly NativePublicWeakSlimeFormationCondition? _weakFormationCondition;
+    private readonly NativePublicWeakSlimeFormationProposal? _weakFormationProposal;
+    private readonly NativePublicReshuffleCondition? _publicReshuffleCondition;
+    private readonly NativePublicReshuffleProposal? _publicReshuffleProposal;
+    private readonly NativePublicMonsterBranchIntentCondition? _monsterBranchCondition;
+    private readonly NativePublicMonsterBranchIntentProposal? _monsterBranchProposal;
     private readonly PublicRunEvidence? _expectedPublicEvidence;
     private readonly NativePublicPrefixConstraint? _publicPrefixConstraint;
     private readonly NativeInitialShuffleCondition? _condition;
@@ -48,6 +54,7 @@ internal sealed class NativeLabelTape
     private readonly string? _expectedEntryJson;
     private readonly Dictionary<LabelRandomState, ulong> _overrides;
     private readonly HashSet<LabelRandomState> _visited = [];
+    private Exception? _conditionedWordFailure;
     private bool _awaitingInitialShuffle;
     private Rng? _initialShuffleRng;
     private ConditionalShufflePlan? _plan;
@@ -75,6 +82,16 @@ internal sealed class NativeLabelTape
     internal ShuffleRational? PublicResourceEnvelope => _publicResourceProposal?.Envelope;
     internal int ConditionedPublicCombatShuffles => _publicCombatProposal?.ConditionedShuffleCount ?? 0;
     internal int ConditionedPublicCombatHp => _publicCombatProposal?.ConditionedHpCount ?? 0;
+    internal int ConditionedReshuffles => _publicReshuffleProposal?.ConditionedShuffleCount ?? 0;
+    internal ShuffleRational? ReshuffleRatio => _publicReshuffleProposal?.NativeToProposalRatio;
+    internal ShuffleRational? ReshuffleEnvelope => _publicReshuffleProposal?.Envelope;
+    internal int ConditionedMonsterRolls => _monsterBranchProposal?.ConditionedRollCount ?? 0;
+    internal int ConditionedMonsterBranches => _monsterBranchProposal?.ConditionedBranchCount ?? 0;
+    internal ShuffleRational? MonsterBranchRatio => _monsterBranchProposal?.NativeToProposalRatio;
+    internal ShuffleRational? MonsterBranchEnvelope => _monsterBranchProposal?.Envelope;
+    internal int ConditionedWeakFormations => _weakFormationProposal?.ConditionedCombatCount ?? 0;
+    internal ShuffleRational? WeakFormationRatio => _weakFormationProposal?.NativeToProposalRatio;
+    internal ShuffleRational? WeakFormationEnvelope => _weakFormationProposal?.Envelope;
     internal int ConditionedSlugIntents => _slugIntentProposal?.ConditionedCombatCount ?? 0;
     internal ShuffleRational? SlugIntentRatio => _slugIntentProposal?.NativeToProposalRatio;
     internal ShuffleRational? SlugIntentEnvelope => _slugIntentProposal?.Envelope;
@@ -94,7 +111,10 @@ internal sealed class NativeLabelTape
         NativePublicCombatPrefixCondition? publicCombatCondition = null, PublicRunEvidence? expectedPublicEvidence = null,
         NativePublicOpeningEncounterCondition? publicOpeningEncounterCondition = null, NativeNeowCardCondition? neowCardCondition = null,
         NativePublicRewardResourceCondition? publicResourceCondition = null,
-        NativePublicCorpseSlugIntentCondition? slugIntentCondition = null)
+        NativePublicCorpseSlugIntentCondition? slugIntentCondition = null,
+        NativePublicWeakSlimeFormationCondition? weakFormationCondition = null,
+        NativePublicReshuffleCondition? publicReshuffleCondition = null,
+        NativePublicMonsterBranchIntentCondition? monsterBranchCondition = null)
     {
         _recipe = recipe; _condition = condition; _expectedEntryJson = expectedEntryJson ?? condition?.EntryJson;
         _rewardsOracle = rewardsOracle;
@@ -110,6 +130,30 @@ internal sealed class NativeLabelTape
             if (rewardsOracle is null) throw new ArgumentException("Initial public Neow cards require the explicit Rewards hybrid law");
             var random = new Rng(recipe.ProposalSeed, "nosl-public-neow-cards-v1");
             _neowCardProposal = new(neowCardCondition, rewardsOracle.WasVisited, rewardsOracle.ForceFresh, random.NextUnsignedLong, ForceWords);
+        }
+        _publicReshuffleCondition = publicReshuffleCondition;
+        if (publicReshuffleCondition is not null)
+        {
+            if (rewardsOracle is null)
+                throw new ArgumentException("Public reshuffles require the explicit Rewards hybrid law");
+            var random = new Rng(recipe.ProposalSeed, "nosl-public-witnessed-reshuffles-v1");
+            _publicReshuffleProposal = new(publicReshuffleCondition, random.NextUnsignedLong, ForcePrefixWords);
+        }
+        _monsterBranchCondition = monsterBranchCondition;
+        if (monsterBranchCondition is not null)
+        {
+            if (rewardsOracle is null)
+                throw new ArgumentException("Public monster branches require the explicit Rewards hybrid law");
+            var random = new Rng(recipe.ProposalSeed, "nosl-public-monster-branch-intents-v1");
+            _monsterBranchProposal = new(monsterBranchCondition, random.NextUnsignedLong, ForcePrefixWords);
+        }
+        _weakFormationCondition = weakFormationCondition;
+        if (weakFormationCondition is not null)
+        {
+            if (rewardsOracle is null)
+                throw new ArgumentException("Public weak formations require the explicit Rewards hybrid law");
+            var random = new Rng(recipe.ProposalSeed, "nosl-public-weak-slime-formations-v1");
+            _weakFormationProposal = new(weakFormationCondition, random.NextUnsignedLong, ForcePrefixWords);
         }
         _slugIntentCondition = slugIntentCondition;
         if (slugIntentCondition is not null)
@@ -179,19 +223,32 @@ internal sealed class NativeLabelTape
         NativePublicCombatPrefixCondition? publicCombatCondition = null, PublicRunEvidence? expectedPublicEvidence = null,
         NativePublicOpeningEncounterCondition? publicOpeningEncounterCondition = null, NativeNeowCardCondition? neowCardCondition = null,
         NativePublicRewardResourceCondition? publicResourceCondition = null,
-        NativePublicCorpseSlugIntentCondition? slugIntentCondition = null) =>
+        NativePublicCorpseSlugIntentCondition? slugIntentCondition = null,
+        NativePublicWeakSlimeFormationCondition? weakFormationCondition = null,
+        NativePublicReshuffleCondition? publicReshuffleCondition = null,
+        NativePublicMonsterBranchIntentCondition? monsterBranchCondition = null) =>
         new(recipe, condition, expectedEntryJson: expectedEntryJson, hpCondition: hpCondition, neowCondition: neowCondition,
             firstRewardCondition: firstRewardCondition, firstEncounterCondition: firstEncounterCondition, initialPrefixPlan: initialPrefixPlan,
             rewardsOracle: prior.Freeze().UsesRewardsProvenance ? new(recipe.TapeSeed) : null,
             publicRewardCondition: publicRewardCondition, publicCombatCondition: publicCombatCondition,
-            expectedPublicEvidence: expectedPublicEvidence, publicOpeningEncounterCondition: publicOpeningEncounterCondition, neowCardCondition: neowCardCondition, publicResourceCondition: publicResourceCondition, slugIntentCondition: slugIntentCondition);
+            expectedPublicEvidence: expectedPublicEvidence, publicOpeningEncounterCondition: publicOpeningEncounterCondition, neowCardCondition: neowCardCondition, publicResourceCondition: publicResourceCondition, slugIntentCondition: slugIntentCondition, weakFormationCondition: weakFormationCondition, publicReshuffleCondition: publicReshuffleCondition, monsterBranchCondition: monsterBranchCondition);
 
     internal IDisposable EnterScope()
     {
-        var tape = EnterTapeScope();
-        if (_slugIntentProposal is null) return tape;
-        try { return new NestedScope(tape, LabelCorpseSlugScope.Enter(_slugIntentProposal.BeginInitialIntents)); }
-        catch { tape.Dispose(); throw; }
+        var scope = EnterTapeScope();
+        try
+        {
+            if (_slugIntentProposal is not null)
+                scope = new NestedScope(scope, LabelCorpseSlugScope.Enter(_slugIntentProposal.BeginInitialIntents));
+            if (_weakFormationProposal is not null)
+                scope = new NestedScope(scope, LabelSlimesWeakScope.Enter(_weakFormationProposal.BeginFormation));
+            if (_publicReshuffleProposal is not null)
+                scope = new NestedScope(scope, _publicReshuffleProposal.EnterScope());
+            if (_monsterBranchProposal is not null)
+                scope = new NestedScope(scope, LabelMonsterMoveScope.Enter(_monsterBranchProposal.BeginRoll, _monsterBranchProposal.BeginBranch));
+            return scope;
+        }
+        catch { scope.Dispose(); throw; }
     }
     private sealed class NestedScope(IDisposable outer, IDisposable inner) : IDisposable
     {
@@ -209,9 +266,25 @@ internal sealed class NativeLabelTape
             BeginNormalEncounterGeneration, BeginMapGeneration,
             _neowCardProposal is null && _publicRewardProposal is null ? null : BeginRewardCardSelection,
             BeginNeowInitialOptions, _neowCardProposal is null ? null : _neowCardProposal.BeginScrollBoxes);
-    internal NativeLabelTape ReplayCopy() => new(_recipe, _condition, _overrides, _expectedEntryJson, _hpCondition, _neowCondition,
-        _firstRewardCondition, _firstEncounterCondition, _initialPrefixPlan, _rewardsOracle?.ReplayCopy(), _publicRewardCondition, _publicCombatCondition, _expectedPublicEvidence, _publicOpeningEncounterCondition, _neowCardCondition, _publicResourceCondition, _slugIntentCondition);
-    internal void CheckPublicPrefix(PublicRunEvidence? evidence) => _publicPrefixConstraint?.Check(evidence);
+    internal NativeLabelTape ReplayCopy()
+    {
+        RequireSuccessfulConditionedWords();
+        return new(_recipe, _condition, _overrides, _expectedEntryJson, _hpCondition, _neowCondition,
+            _firstRewardCondition, _firstEncounterCondition, _initialPrefixPlan, _rewardsOracle?.ReplayCopy(), _publicRewardCondition, _publicCombatCondition, _expectedPublicEvidence, _publicOpeningEncounterCondition, _neowCardCondition, _publicResourceCondition, _slugIntentCondition, _weakFormationCondition, _publicReshuffleCondition, _monsterBranchCondition);
+    }
+    internal bool HasConditionedWordFailure => _conditionedWordFailure is not null;
+    internal InvalidOperationException? ConditionedWordError => _conditionedWordFailure is { } original
+        ? new InvalidOperationException("A conditioned native word callback failed; this tape remains unresolved: "
+            + original.Message, original) : null;
+    internal void RequireSuccessfulConditionedWords()
+    {
+        if (ConditionedWordError is { } error) throw error;
+    }
+    internal void CheckPublicPrefix(PublicRunEvidence? evidence)
+    {
+        RequireSuccessfulConditionedWords();
+        _publicPrefixConstraint?.Check(evidence);
+    }
 
     private IDisposable EnterStateOverride(Func<LabelRandomState, ulong> nextState) => _rewardsOracle is null
         ? LabelRandomScope.Enter(nextState)
@@ -224,6 +297,9 @@ internal sealed class NativeLabelTape
         _run = run;
         _publicCombatProposal?.AttachHypotheticalRun(run);
         _slugIntentProposal?.AttachHypotheticalRun(run);
+        _weakFormationProposal?.AttachHypotheticalRun(run);
+        _publicReshuffleProposal?.AttachHypotheticalRun(run);
+        _monsterBranchProposal?.AttachHypotheticalRun(run);
         _publicOpeningEncounterProposal?.AttachHypotheticalRun(run);
         _neowCardProposal?.AttachHypotheticalRun(run);
     }
@@ -233,6 +309,9 @@ internal sealed class NativeLabelTape
         _currentCombatIndex = combatIndex;
         _publicCombatProposal?.CombatEntering(combatIndex, entry, initialShuffleRng);
         _slugIntentProposal?.CombatEntering(combatIndex, entry, initialShuffleRng);
+        _weakFormationProposal?.CombatEntering(combatIndex, entry, initialShuffleRng);
+        _publicReshuffleProposal?.CombatEntering(combatIndex, entry, initialShuffleRng);
+        _monsterBranchProposal?.CombatEntering(combatIndex, entry, initialShuffleRng);
         if (combatIndex != _recipe.CombatIndex) return;
         if (_expectedEntryJson is not null && _expectedEntryJson != PublicJson.Serialize(entry))
             throw new NativePublicConstraintMismatchException("Published target combat entry differs");
@@ -285,6 +364,7 @@ internal sealed class NativeLabelTape
             return ForceWords(_neowPlan.Plan.RawWords, "Neow");
         }
         if (_neowCardProposal?.BeginShuffle(rng, items) is { } neowCards) return neowCards;
+        if (_publicReshuffleProposal?.BeginShuffle(rng, items) is { } reshuffle) return reshuffle;
         if (_publicCombatProposal is not null) return _publicCombatProposal.BeginShuffle(rng, items);
         if (!_awaitingInitialShuffle || items.Count == 0 || items.Any(x => x is not CardModel)) return null;
         if (!ReferenceEquals(rng, _initialShuffleRng)) return null;
@@ -310,12 +390,16 @@ internal sealed class NativeLabelTape
 
     internal void ValidateProposalCompletion()
     {
+        RequireSuccessfulConditionedWords();
         _neowCardProposal?.ValidateCompletion();
         _publicOpeningEncounterProposal?.ValidateCompletion();
         _publicRewardProposal?.ValidateCompletion();
         _publicResourceProposal?.ValidateCompletion();
         _publicCombatProposal?.ValidateCompletion();
         _slugIntentProposal?.ValidateCompletion();
+        _weakFormationProposal?.ValidateCompletion();
+        _publicReshuffleProposal?.ValidateCompletion();
+        _monsterBranchProposal?.ValidateCompletion();
         if (_initialPrefixPlan is not null && !_prefixComplete)
             throw new InvalidOperationException("Native initial prefix is incomplete");
         if (_firstEncounterCondition is not null && _firstEncounterPlan is null)
@@ -346,6 +430,9 @@ internal sealed class NativeLabelTape
         if (_publicResourceProposal is not null && !_publicResourceProposal.AcceptCorrection(nextWord)) return false;
         if (_publicCombatProposal is not null && !_publicCombatProposal.AcceptCorrection(nextWord)) return false;
         if (_slugIntentProposal is not null && !_slugIntentProposal.AcceptCorrection(nextWord)) return false;
+        if (_weakFormationProposal is not null && !_weakFormationProposal.AcceptCorrection(nextWord)) return false;
+        if (_publicReshuffleProposal is not null && !_publicReshuffleProposal.AcceptCorrection(nextWord)) return false;
+        if (_monsterBranchProposal is not null && !_monsterBranchProposal.AcceptCorrection(nextWord)) return false;
         foreach (var hp in _hpPlans) if (!hp.AcceptCorrection(nextWord)) return false;
         return _plan?.AcceptCorrection(nextWord) ?? true;
     }
@@ -390,7 +477,7 @@ internal sealed class NativeLabelTape
                 _overrides[state] = forced.Value; _visited.Add(state);
                 return forced.Value;
             }
-            catch { callbackFailed = true; throw; }
+            catch (Exception exception) { callbackFailed = true; _conditionedWordFailure ??= exception; throw; }
         });
         return new CompleteWordScope(inner, () => callbackFailed || ordinal == words.Count, "Neow opening");
     }
@@ -539,7 +626,7 @@ internal sealed class NativeLabelTape
                 _overrides[state] = value; _visited.Add(state);
                 return value;
             }
-            catch { callbackFailed = true; throw; }
+            catch (Exception exception) { callbackFailed = true; _conditionedWordFailure ??= exception; throw; }
         });
         return new CompleteWordScope(inner, () => callbackFailed || ordinal == words.Count, $"{purpose} prefix");
     }
@@ -560,7 +647,7 @@ internal sealed class NativeLabelTape
                 _overrides[state] = value; _visited.Add(state);
                 return value;
             }
-            catch { callbackFailed = true; throw; }
+            catch (Exception exception) { callbackFailed = true; _conditionedWordFailure ??= exception; throw; }
         });
         return new CompleteWordScope(inner, () => callbackFailed || ordinal == words.Count, purpose);
     }

@@ -5,6 +5,75 @@ namespace Nosl.Tests;
 
 public class ConditionalShuffleProposalTests
 {
+    [Fact]
+    public void TwoWitnessedCyclesPreserveLatentPhysicalVariantOddsAndAllNativeWordMass()
+    {
+        const int bits = 2, domain = 4;
+        // A0 and A1 are physical variants of the same coarse public ID. The first
+        // drawn A stays in hand; the later pool therefore has latent membership,
+        // but the same witnessed public multiplicities A/B/C in every world.
+        string[] ids = ["A", "A", "B", "C"];
+        string[] prefix = ["A"];
+        var native = new Dictionary<string, int>();
+        for (int a = 0; a < 64; a++)
+        {
+            var first = NativeOrder(4, a);
+            if (ids[first[0]] != "A") continue;
+            int[] pool = first.Skip(1).OrderBy(index => ids[index]).ThenBy(index => index).ToArray();
+            for (int b = 0; b < 16; b++)
+            {
+                int[] second = NativeOrder(3, b).Select(index => pool[index]).ToArray();
+                if (ids[second[0]] != "A") continue;
+                string key = string.Join(",", first) + ":" + string.Join(",", second);
+                native[key] = native.GetValueOrDefault(key) + 1;
+            }
+        }
+        ShuffleRational? envelope = null;
+        int checkedWorlds = 0;
+        foreach (int[] first in Permutations([0, 1, 2, 3]).Where(order => ids[order[0]] == "A"))
+        {
+            var firstPlan = ConditionalShuffleProposal.Create(ids, prefix, RandomForPermutation(first, ids, prefix), bits)!;
+            int[] pool = first.Skip(1).OrderBy(index => ids[index]).ThenBy(index => index).ToArray();
+            string[] poolIds = pool.Select(index => ids[index]).ToArray();
+            foreach (int[] second in Permutations([0, 1, 2]).Where(order => poolIds[order[0]] == "A"))
+            {
+                var secondPlan = ConditionalShuffleProposal.Create(poolIds, prefix, RandomForPermutation(second, poolIds, prefix), bits)!;
+                string key = string.Join(",", first) + ":" + string.Join(",", second.Select(index => pool[index]));
+                var ratio = firstPlan.NativeToProposalRatio.Multiply(secondPlan.NativeToProposalRatio.Numerator, secondPlan.NativeToProposalRatio.Denominator);
+                var bound = firstPlan.Envelope.Multiply(secondPlan.Envelope.Numerator, secondPlan.Envelope.Denominator);
+                envelope ??= bound; Assert.Equal(envelope.Value, bound);
+                // There are twelve first-cycle and two later-cycle proposal permutations.
+                Assert.Equal(new ShuffleRational(native[key] * 24, 1024), ratio);
+                var active = firstPlan.Factors.Concat(secondPlan.Factors).Where(factor => factor.BucketSize != factor.MaxBucketSize).ToArray();
+                int outcomes = active.Aggregate(1, (product, factor) => product * (int)factor.MaxBucketSize), accepted = 0;
+                for (int outcome = 0; outcome < outcomes; outcome++)
+                {
+                    int remainder = outcome; var words = new Queue<ulong>();
+                    foreach (var factor in active)
+                    { words.Enqueue(RawForResidue((ulong)remainder % factor.MaxBucketSize, factor.MaxBucketSize)); remainder /= (int)factor.MaxBucketSize; }
+                    if (firstPlan.AcceptCorrection(words.Dequeue) && secondPlan.AcceptCorrection(words.Dequeue)) accepted++;
+                }
+                Assert.Equal(new ShuffleRational(accepted, outcomes),
+                    new ShuffleRational(ratio.Numerator * bound.Denominator, ratio.Denominator * bound.Numerator));
+                checkedWorlds++;
+            }
+        }
+        Assert.Equal(native.Count, checkedWorlds);
+        Assert.Equal(24, checkedWorlds);
+
+        static int[] NativeOrder(int count, int encoded)
+        {
+            int[] order = Enumerable.Range(0, count).ToArray();
+            for (int i = count - 1; i > 0; i--)
+            {
+                int high = encoded % domain; encoded /= domain;
+                int index = (int)((double)high / domain * (i + 1));
+                (order[i], order[index]) = (order[index], order[i]);
+            }
+            return order;
+        }
+    }
+
     [Theory]
     [InlineData(2, 96, 2, 15)]
     [InlineData(4, 8, 1, 90)]

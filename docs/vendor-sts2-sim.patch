@@ -96,7 +96,14 @@
 +        PileType? previous=card.Pile?.Type;
 @@ -310,0 +317 @@
 +        (card.Owner.Creature.CombatState as CombatState)?.Observer?.CardMoved(card,previous,PileType.None,CardPilePosition.None);
-@@ -405,0 +413 @@
+@@ -388 +395,5 @@
+-        combined.StableShuffle(shuffleRng);
++        using (var labelBoundary = LabelCombatReshuffleScope.Mark(combatState, player, shuffleRng, combined))
++        {
++            combined.StableShuffle(shuffleRng);
++            labelBoundary?.Complete();
++        }
+@@ -405,0 +417 @@
 +        (combatState as CombatState)?.Observer?.CardsShuffled(player);
 --- a/src/Sts2Sim.Core/Commands/PotionCmd.cs
 +++ b/src/Sts2Sim.Core/Commands/PotionCmd.cs
@@ -106,10 +113,15 @@
 @@ -153 +153 @@
 -            player.RemovePotionInternal(potion);
 +            player.RemovePotionInternal(potion, PotionMutationKind.Consumed);
+--- a/src/Sts2Sim.Core/Content/Acts/Overgrowth.cs
++++ b/src/Sts2Sim.Core/Content/Acts/Overgrowth.cs
+@@ -147,0 +148 @@
++        using IDisposable? labelScope = LabelSlimesWeakScope.BeginFormation(rng);
 --- a/src/Sts2Sim.Core/Content/EncounterDefinition.cs
 +++ b/src/Sts2Sim.Core/Content/EncounterDefinition.cs
-@@ -135,0 +136 @@
+@@ -135,0 +136,2 @@
 +        using IDisposable? labelScope = Sts2Sim.Core.Random.LabelCorpseSlugScope.EnterEncounter(this, rng);
++        using IDisposable? formationScope = Sts2Sim.Core.Random.LabelSlimesWeakScope.EnterEncounter(this, rng);
 --- a/src/Sts2Sim.Core/Entities/Creatures/Creature.cs
 +++ b/src/Sts2Sim.Core/Entities/Creatures/Creature.cs
 @@ -142,0 +143 @@
@@ -304,6 +316,12 @@
 @@ -80,2 +88,0 @@
 -        positives.Add(Rng.NextBool() ? typeof(NutritiousOyster) : typeof(StoneHumidifier));
 -        positives.Add(Rng.NextBool() ? typeof(NeowsTalisman) : typeof(Pomander));
+--- a/src/Sts2Sim.Core/Models/MonsterModel.cs
++++ b/src/Sts2Sim.Core/Models/MonsterModel.cs
+@@ -61,0 +62 @@
++        using IDisposable? labelScope = LabelMonsterMoveScope.BeginRoll(this, moveRng);
+@@ -62,0 +64 @@
++        LabelMonsterMoveScope.CompleteRoll(NextMove);
 --- a/src/Sts2Sim.Core/Models/Monsters/CorpseSlug.cs
 +++ b/src/Sts2Sim.Core/Models/Monsters/CorpseSlug.cs
 @@ -52,0 +53 @@
@@ -328,6 +346,16 @@
 @@ -67,0 +69,2 @@
 +        // Label-only snapshot after native modifiers; ordinary generation is unchanged.
 +        using IDisposable? labelBundles = LabelRandomScope.BeginScrollBoxes(player, rewards, commons, uncommons);
+--- a/src/Sts2Sim.Core/MonsterMoves/RandomBranchState.cs
++++ b/src/Sts2Sim.Core/MonsterMoves/RandomBranchState.cs
+@@ -56 +56,3 @@
+-        float totalWeight = States.Sum(state => GetStateWeight(state, owner));
++        using IDisposable? labelBranch = LabelMonsterMoveScope.BeginBranch(this, owner, rng);
++        float totalWeight = States.Sum(state => LabelMonsterMoveScope.RecordWeight(GetStateWeight(state, owner)));
++        using IDisposable? labelChoice = LabelMonsterMoveScope.ConditionBranch(totalWeight);
+@@ -60 +62 @@
+-            randomWeight -= GetStateWeight(state, owner);
++            randomWeight -= LabelMonsterMoveScope.VerifyWeight(GetStateWeight(state, owner));
 --- a/src/Sts2Sim.Core/Odds/CardRarityOdds.cs
 +++ b/src/Sts2Sim.Core/Odds/CardRarityOdds.cs
 @@ -87 +87,2 @@
@@ -367,6 +395,80 @@
 @@ -37,2 +40,0 @@
 -        float bonus = roomType == RoomType.Elite ? eliteBonus : 0f;
 -        float threshold = currentValue + bonus * 0.5f;
+--- /dev/null
++++ b/src/Sts2Sim.Core/Random/LabelCombatReshuffleScope.cs
+@@ -0,0 +1,71 @@
++using Sts2Sim.Core.Combat;
++using Sts2Sim.Core.Entities.Players;
++using Sts2Sim.Core.Models;
++
++namespace Sts2Sim.Core.Random;
++
++/// <summary>Owned native call-site context; Cards follows the actual list through its native sort.</summary>
++public sealed record LabelCombatReshuffleContext(ICombatState Combat, Player Player, Rng Rng,
++    IReadOnlyList<CardModel> Cards)
++{
++    private Action? _afterSuccess;
++    private bool _completed;
++    /// <summary>Runs only after the exact native StableShuffle returns normally, including its forcing scope.</summary>
++    public void AfterSuccessfulShuffle(Action callback)
++    {
++        ArgumentNullException.ThrowIfNull(callback);
++        if (_completed || _afterSuccess is not null || !ReferenceEquals(LabelCombatReshuffleScope.Current, this))
++            throw new InvalidOperationException("Native reshuffle success callback is repeated or outside its exact boundary");
++        _afterSuccess = callback;
++    }
++    internal void Complete()
++    {
++        if (_completed) throw new InvalidOperationException("Native reshuffle completed twice");
++        _completed = true;
++        _afterSuccess?.Invoke();
++    }
++}
++
++/// <summary>
++/// Optional label-only marker around CardPileCmd.Shuffle's original StableShuffle.
++/// It distinguishes that call from other card-list shuffles using the same RNG.
++/// It can acknowledge normal native completion; it performs no random draw,
++/// sorting, or pile mutation.
++/// </summary>
++public static class LabelCombatReshuffleScope
++{
++    private static readonly AsyncLocal<Scope?> Active = new();
++    private static readonly AsyncLocal<LabelCombatReshuffleContext?> Boundary = new();
++    public static LabelCombatReshuffleContext? Current => Active.Value is null ? null : Boundary.Value;
++
++    public static IDisposable Enter()
++    {
++        var scope = new Scope(Active.Value); Active.Value = scope; return scope;
++    }
++
++    internal static BoundaryScope? Mark(ICombatState combat, Player player, Rng rng, List<CardModel> cards)
++    {
++        if (Active.Value is null) return null;
++        var previous = Boundary.Value;
++        var context = new LabelCombatReshuffleContext(combat, player, rng, cards.AsReadOnly());
++        Boundary.Value = context;
++        return new BoundaryScope(context, () => Boundary.Value = previous);
++    }
++
++    internal sealed class BoundaryScope(LabelCombatReshuffleContext context, Action restore) : IDisposable
++    {
++        private bool _disposed;
++        internal void Complete() => context.Complete();
++        public void Dispose() { if (_disposed) return; _disposed = true; restore(); }
++    }
++    private sealed class Scope(Scope? previous) : IDisposable
++    {
++        internal Scope? Previous => previous;
++        public void Dispose()
++        {
++            if (ReferenceEquals(Active.Value, this)) { Active.Value = previous; return; }
++            for (var current = Active.Value; current is not null; current = current.Previous)
++                if (ReferenceEquals(current, this)) throw new InvalidOperationException("Reshuffle scopes must be disposed in nesting order");
++        }
++    }
++}
 --- /dev/null
 +++ b/src/Sts2Sim.Core/Random/LabelCorpseSlugScope.cs
 @@ -0,0 +1,78 @@
@@ -446,6 +548,135 @@
 +            for (var scope = Current.Value; scope is not null; scope = scope.Previous)
 +                if (ReferenceEquals(scope, this)) throw new InvalidOperationException("Slug scopes must be disposed in nesting order");
 +        }
++    }
++}
+--- /dev/null
++++ b/src/Sts2Sim.Core/Random/LabelMonsterMoveScope.cs
+@@ -0,0 +1,126 @@
++using Sts2Sim.Core.Entities.Creatures;
++using Sts2Sim.Core.Models;
++using Sts2Sim.Core.MonsterMoves;
++
++namespace Sts2Sim.Core.Random;
++
++/// <summary>The actual hypothetical RollMove owner; completion is set only after native assignment.</summary>
++public sealed class LabelMonsterMoveContext(MonsterModel monster, Rng rng)
++{
++    public MonsterModel Monster { get; } = monster;
++    public Rng Rng { get; } = rng;
++    public MoveState? CompletedMove { get; internal set; }
++    public int BranchCount { get; internal set; }
++}
++
++/// <summary>Original ordered effective weights, evaluated once by the native Sum.</summary>
++public sealed record LabelMonsterBranchContext(LabelMonsterMoveContext? Roll, RandomBranchState Branch,
++    Creature Owner, Rng Rng, float TotalWeight, IReadOnlyList<float> Weights);
++
++/// <summary>
++/// Optional label-only resources. The ordinary algorithm still evaluates its Sum,
++/// draws NextFloat, evaluates traversal weights, subtracts, and selects in order.
++/// Proposal callbacks cannot recursively consume the native random tape.
++/// </summary>
++public static class LabelMonsterMoveScope
++{
++    private static readonly AsyncLocal<Scope?> Current = new();
++    private static readonly AsyncLocal<Roll?> CurrentRoll = new();
++    private static readonly AsyncLocal<Branch?> CurrentBranch = new();
++
++    public static IDisposable Enter(Func<LabelMonsterMoveContext, IDisposable?> beginRoll,
++        Func<LabelMonsterBranchContext, IDisposable?> beginBranch)
++    {
++        ArgumentNullException.ThrowIfNull(beginRoll); ArgumentNullException.ThrowIfNull(beginBranch);
++        var scope = new Scope(Current.Value, beginRoll, beginBranch); Current.Value = scope; return scope;
++    }
++
++    internal static IDisposable? BeginRoll(MonsterModel monster, Rng rng)
++    {
++        if (Current.Value is not { } scope) return null;
++        var context = new LabelMonsterMoveContext(monster, rng);
++        var resource = LabelRandomScope.InvokeResourceCallback(() => scope.BeginRoll(context));
++        var roll = new Roll(CurrentRoll.Value, context, resource); CurrentRoll.Value = roll; return roll;
++    }
++
++    internal static void CompleteRoll(MoveState move)
++    { if (CurrentRoll.Value is { } roll) roll.Context.CompletedMove = move; }
++
++    internal static IDisposable? BeginBranch(RandomBranchState branch, Creature owner, Rng rng)
++    {
++        if (Current.Value is null) return null;
++        var frame = new Branch(CurrentBranch.Value, branch, owner, rng, CurrentRoll.Value?.Context);
++        CurrentBranch.Value = frame;
++        if (frame.Roll is { } roll) roll.BranchCount++;
++        return frame;
++    }
++
++    internal static float RecordWeight(float value)
++    { CurrentBranch.Value?.Weights.Add(value); return value; }
++
++    internal static IDisposable? ConditionBranch(float total)
++    {
++        if (Current.Value is not { } scope || CurrentBranch.Value is not { } branch) return null;
++        var context = new LabelMonsterBranchContext(branch.Roll, branch.State, branch.Owner,
++            branch.Rng, total, Array.AsReadOnly(branch.Weights.ToArray()));
++        var resource = LabelRandomScope.InvokeResourceCallback(() => scope.BeginBranch(context));
++        branch.Conditioned = resource is not null;
++        return resource;
++    }
++
++    internal static float VerifyWeight(float value)
++    {
++        if (CurrentBranch.Value is { Conditioned: true } branch
++            && (branch.Traversed >= branch.Weights.Count
++                || BitConverter.SingleToInt32Bits(branch.Weights[branch.Traversed++]) != BitConverter.SingleToInt32Bits(value)))
++            throw new InvalidOperationException("Conditioned native branch weights changed during traversal");
++        return value;
++    }
++
++    private sealed class Branch(Branch? previous, RandomBranchState state, Creature owner, Rng rng,
++        LabelMonsterMoveContext? roll) : IDisposable
++    {
++        internal RandomBranchState State { get; } = state;
++        internal Creature Owner { get; } = owner;
++        internal Rng Rng { get; } = rng;
++        internal LabelMonsterMoveContext? Roll { get; } = roll;
++        internal List<float> Weights { get; } = [];
++        internal int Traversed;
++        internal bool Conditioned;
++        private bool _disposed;
++        public void Dispose()
++        {
++            if (_disposed) return; _disposed = true;
++            if (!ReferenceEquals(CurrentBranch.Value, this)) throw new InvalidOperationException("Branch scopes disposed out of order");
++            CurrentBranch.Value = previous;
++        }
++    }
++    private sealed class Roll(Roll? previous, LabelMonsterMoveContext context, IDisposable? resource) : IDisposable
++    {
++        internal LabelMonsterMoveContext Context { get; } = context;
++        private bool _disposed;
++        public void Dispose()
++        {
++            if (_disposed) return; _disposed = true;
++            try { resource?.Dispose(); }
++            finally
++            {
++                if (!ReferenceEquals(CurrentRoll.Value, this)) throw new InvalidOperationException("Move scopes disposed out of order");
++                CurrentRoll.Value = previous;
++            }
++        }
++    }
++    private sealed class Scope(Scope? previous, Func<LabelMonsterMoveContext, IDisposable?> beginRoll,
++        Func<LabelMonsterBranchContext, IDisposable?> beginBranch) : IDisposable
++    {
++        internal Func<LabelMonsterMoveContext, IDisposable?> BeginRoll => beginRoll;
++        internal Func<LabelMonsterBranchContext, IDisposable?> BeginBranch => beginBranch;
++        public void Dispose()
++        {
++            if (ReferenceEquals(Current.Value, this)) { Current.Value = previous; return; }
++            for (var scope = Current.Value; scope is not null; scope = scope.Previous)
++                if (ReferenceEquals(scope, this)) throw new InvalidOperationException("Monster move scopes disposed out of order");
++        }
++        private Scope? Previous => previous;
 +    }
 +}
 --- /dev/null
@@ -876,6 +1107,85 @@
 +        }
 +    }
 +}
+--- /dev/null
++++ b/src/Sts2Sim.Core/Random/LabelSlimesWeakScope.cs
+@@ -0,0 +1,76 @@
++using Sts2Sim.Core.Content;
++using Sts2Sim.Core.Rooms;
++using Sts2Sim.Core.Runs;
++
++namespace Sts2Sim.Core.Random;
++
++/// <summary>Actual hypothetical factory references, before the three native formation draws.</summary>
++public sealed record LabelSlimesWeakFormationContext(RunState? Run, CombatRoom? Room,
++    EncounterDefinition? Encounter, Rng? FactoryRng, Rng Rng);
++
++/// <summary>
++/// Optional label-only observation of Overgrowth's weak-slime factory. Its native
++/// calls, including the one-item draw, remain unchanged. Event preparation outside
++/// CombatRoom.Prepare carries no run/room certificate.
++/// </summary>
++public static class LabelSlimesWeakScope
++{
++    private static readonly AsyncLocal<Scope?> Current = new();
++    private static readonly AsyncLocal<Factory?> CurrentFactory = new();
++    private static readonly AsyncLocal<Encounter?> CurrentEncounter = new();
++
++    public static IDisposable Enter(Func<LabelSlimesWeakFormationContext, IDisposable?> begin)
++    {
++        ArgumentNullException.ThrowIfNull(begin);
++        var scope = new Scope(Current.Value, begin);
++        Current.Value = scope;
++        return scope;
++    }
++
++    internal static IDisposable? EnterFactory(RunState run, CombatRoom room)
++    {
++        if (Current.Value is null) return null;
++        var previous = CurrentFactory.Value;
++        CurrentFactory.Value = new(run, room);
++        return new Restore(() => CurrentFactory.Value = previous);
++    }
++
++    internal static IDisposable? EnterEncounter(EncounterDefinition definition, Rng? rng)
++    {
++        if (Current.Value is null) return null;
++        var previous = CurrentEncounter.Value;
++        CurrentEncounter.Value = new(definition, rng);
++        return new Restore(() => CurrentEncounter.Value = previous);
++    }
++
++    internal static IDisposable? BeginFormation(Rng rng)
++    {
++        if (Current.Value is not { } scope) return null;
++        return LabelRandomScope.InvokeResourceCallback(() =>
++        {
++            var factory = CurrentFactory.Value;
++            var encounter = CurrentEncounter.Value;
++            return scope.Begin(new(factory?.Run, factory?.Room, encounter?.Definition, encounter?.Rng, rng));
++        });
++    }
++
++    private sealed record Factory(RunState Run, CombatRoom Room);
++    private sealed record Encounter(EncounterDefinition Definition, Rng? Rng);
++    private sealed class Restore(Action restore) : IDisposable
++    {
++        private bool _disposed;
++        public void Dispose() { if (_disposed) return; _disposed = true; restore(); }
++    }
++    private sealed class Scope(Scope? previous,
++        Func<LabelSlimesWeakFormationContext, IDisposable?> begin) : IDisposable
++    {
++        internal Scope? Previous => previous;
++        internal Func<LabelSlimesWeakFormationContext, IDisposable?> Begin => begin;
++        public void Dispose()
++        {
++            if (ReferenceEquals(Current.Value, this)) { Current.Value = previous; return; }
++            for (var scope = Current.Value; scope is not null; scope = scope.Previous)
++                if (ReferenceEquals(scope, this)) throw new InvalidOperationException("Slime formation scopes must be disposed in nesting order");
++        }
++    }
++}
 --- a/src/Sts2Sim.Core/Random/MegaRandom.cs
 +++ b/src/Sts2Sim.Core/Random/MegaRandom.cs
 @@ -26,0 +27,10 @@
@@ -1116,9 +1426,10 @@
 -        return new RewardsSet(gold, potion, card, relic, extraRewards);
 --- a/src/Sts2Sim.Core/Rooms/CombatRoom.cs
 +++ b/src/Sts2Sim.Core/Rooms/CombatRoom.cs
-@@ -182,0 +183 @@
+@@ -182,0 +183,2 @@
 +        using IDisposable? labelScope = Sts2Sim.Core.Random.LabelCorpseSlugScope.EnterFactory(runState, this);
-@@ -311,0 +313,17 @@
++        using IDisposable? formationScope = Sts2Sim.Core.Random.LabelSlimesWeakScope.EnterFactory(runState, this);
+@@ -311,0 +314,17 @@
 +    // Reuse the actual lifecycle implementation, with fresh tasks/lock/reward containers.
 +    // Uncloneable queued rewards are explicit unsupported content, never silently discarded.
 +    internal CombatRoom CreateNoslProjection(CombatState state)
@@ -1136,7 +1447,7 @@
 +
 +    private bool _noslFinalActBoss;
 +
-@@ -372 +390 @@
+@@ -372 +391 @@
 -        RoomType == RoomType.Boss &&
 +        _noslFinalActBoss || RoomType == RoomType.Boss &&
 --- a/src/Sts2Sim.Core/Runs/RunDriver.cs

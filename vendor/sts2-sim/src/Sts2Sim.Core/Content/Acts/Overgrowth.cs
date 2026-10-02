@@ -145,6 +145,7 @@ public sealed class Overgrowth : ActDefinition
 
     private static IReadOnlyList<(MonsterModel Monster, string? SlotName)> CreateSlimesWeak(Rng rng)
     {
+        using IDisposable? labelScope = LabelSlimesWeakScope.BeginFormation(rng);
         var smallSlimes = new List<MonsterModel> { CreateMonster<LeafSlimeS>(), CreateMonster<TwigSlimeS>() };
         MonsterModel smallA = rng.NextItem(smallSlimes)!;
         smallSlimes.Remove(smallA);

@@ -99,6 +99,8 @@ internal sealed class NativePublicCombatPrefixProposal(
             ?? throw new InvalidOperationException("Public combat HP conditioning requires a monster");
         var plan = _active!.SlugHp is { } slugs
             ? slugs.CreateProposal(context, _activeHpCount, nextWord)
+            : _active.ToadpoleHp is { } toadpoles
+                ? toadpoles.CreateProposal(context, _activeHpCount, nextWord)
             : _active.Hp!.CreateProposal(context, _activeHpIds, nextWord);
         _activeHpIds.Add(id); _activeHpCount++; _hp.Add(plan);
         return forceStateWords([plan.RawWord], "public combat " + _combatIndex + " HP");

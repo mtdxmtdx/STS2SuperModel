@@ -30,7 +30,7 @@ public sealed class NativePublicOpeningEncounterIntegrationTests
         var source = new NativeTapeReplaySource(observed, prior);
         Assert.True(source.UsesConditionalPublicOpeningEncounter);
         Assert.False(source.UsesConditionalFirstEncounter); // Never overlap slot-zero cells.
-        Assert.Contains("conditional-v5", source.PosteriorProfile);
+        Assert.Contains("conditional-v6", source.PosteriorProfile);
         Assert.True(NativePublicOpeningEncounterCondition.TryCreate(observed, prior, out var opening, out var reason), reason);
         // This fixture reuses a chosen hypothetical recipe only to isolate the
         // production hook and exact replay law. It is not source-posterior evidence.

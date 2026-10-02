@@ -8,9 +8,10 @@ namespace Nosl.Worker;
 internal sealed record NativePublicCombatPrefixInput(int CombatIndex, long OwnerOrdinal,
     long? DecisionEventOrdinal, string? EntryJson, NativeInitialShuffleCondition? Shuffle,
     NativeInitialHpCondition? Hp, string? ShuffleReason, string? HpReason,
-    NativeCorpseSlugHpCondition? SlugHp = null, NativePublicDrawPrefixAudit? DrawPrefix = null)
+    NativeCorpseSlugHpCondition? SlugHp = null, NativePublicDrawPrefixAudit? DrawPrefix = null,
+    NativeToadpoleHpCondition? ToadpoleHp = null)
 {
-    internal int HpCount => Hp?.EnemyCount ?? SlugHp?.EnemyCount ?? 0;
+    internal int HpCount => Hp?.EnemyCount ?? SlugHp?.EnemyCount ?? ToadpoleHp?.EnemyCount ?? 0;
 }
 
 /// <summary>
@@ -74,6 +75,7 @@ internal sealed class NativePublicCombatPrefixCondition
             NativeInitialShuffleCondition? shuffle = null;
             NativeInitialHpCondition? hp = null;
             NativeCorpseSlugHpCondition? slugHp = null;
+            NativeToadpoleHpCondition? toadpoleHp = null;
             string? shuffleReason = reason, hpReason = reason;
             string? entryJson = packet?.Observation!.History[1].Detail;
             if (packet is not null)
@@ -82,12 +84,15 @@ internal sealed class NativePublicCombatPrefixCondition
                 NativeInitialHpCondition.TryCreatePublicCombatV3(packet, out hp, out hpReason);
                 if (hp is null && shuffle is not null && packet.Observation!.Enemies.Any(enemy => enemy.Id == "CorpseSlug"))
                     NativeCorpseSlugHpCondition.TryCreate(packet, out slugHp, out hpReason);
+                if (hp is null && slugHp is null && shuffle is not null
+                    && packet.Observation!.Enemies.Any(enemy => enemy.Id == "Toadpole"))
+                    NativeToadpoleHpCondition.TryCreate(packet, out toadpoleHp, out hpReason);
             }
             NativePublicDrawPrefixAudit? drawPrefix = null;
             if (shuffle is not null)
                 shuffle = NativePublicDrawPrefixCondition.Extend(shuffle, events, first!, globalGap, out drawPrefix);
             inputs.Add(index, new(index, owner.OwnerOrdinal.Value, first?.EventOrdinal,
-                entryJson, shuffle, hp, shuffleReason, hpReason, slugHp, drawPrefix));
+                entryJson, shuffle, hp, shuffleReason, hpReason, slugHp, drawPrefix, toadpoleHp));
         }
         return new(inputs, inputs.Count == 0 ? "no_observed_combat_owner" : null);
     }

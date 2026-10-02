@@ -59,7 +59,9 @@ public abstract class MonsterModel : AbstractModel, ICombatStateDescriptionContr
         Rng moveRng = Creature.CombatState is CombatState combatState
             ? combatState.MonsterAiRng(Creature)
             : RunRng.MonsterAi;
+        using IDisposable? labelScope = LabelMonsterMoveScope.BeginRoll(this, moveRng);
         NextMove = MoveStateMachine!.RollMove(targets, Creature, moveRng);
+        LabelMonsterMoveScope.CompleteRoll(NextMove);
     }
 
     public void SetMoveImmediate(MoveState state, bool forceTransition = false)

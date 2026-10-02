@@ -50,6 +50,12 @@ and HP streams, the actual native draw pile/player references, and per-combat
 HP identity. Completed HP and shuffle plans are retained when the next combat
 begins; only the active combat's IDs reset.
 
+Duplicate IDs retain separate, source-pinned helpers rather than weakening the
+legacy unique-model certificate. Complete two/three-CorpseSlug startups use their
+reviewed self-power slot order. The complete two-Toadpole startup uses the exact
+registered unslotted front/rear factory and ordinary CombatStarted slot order;
+see `NATIVE_TOADPOLE_STARTUP.md`. All other duplicate rosters retain fallback.
+
 The helper multiplies each existing exact `NativeToProposalRatio` and public
 root-constant `Envelope`, and applies every retained plan's actual native
 bucket correction. Product composition is valid only when the tape callback

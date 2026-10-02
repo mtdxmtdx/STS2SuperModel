@@ -21,24 +21,38 @@ internal sealed record NativePublicDrawPrefixAudit(string CertificateVersion, in
 /// </summary>
 internal static class NativePublicDrawPrefixCondition
 {
-    internal const string Version = "nosl.public-first-draw-cycle.v1";
+    internal const string Version = "nosl.public-first-draw-cycle.v3";
 
     // Read the complete sealed OnPlay implementations, including both upgrade branches and
     // inherited result locations. Strike/Defend's GeneratedCardSpec has no GeneratedPowerEffect.
     // Effects are damage/block, Weak, hand-only discard (Survivor), and ordinary Draw (Backflip).
+    // NeowsFury's bounded retrieval calls plain Add(Discard -> Hand, Bottom), which does
+    // not dispatch draw/entry/discard hooks, select randomly, or autoplay Sly. Finisher's
+    // hit count reads the completed-Attack counter; SuckerPunch only adds reviewed Weak.
+    // Strangle adds the separately reviewed StranglePower below. Both upgrade branches
+    // and the inherited result paths were checked for all four v2 additions.
     // Mirage's Poison lookup is read-only. These plays never generate, transform, insert into,
     // reorder, or select from Draw. CardModel's result path goes only to Discard/Exhaust.
     private static readonly HashSet<string> PlayedCards =
     [nameof(StrikeSilent), nameof(DefendSilent), nameof(Neutralize), nameof(Survivor),
-        nameof(Backflip), nameof(Deflect), nameof(Mirage)];
+        nameof(Backflip), nameof(Deflect), nameof(Mirage), nameof(NeowsFury), nameof(Strangle),
+        nameof(Finisher), nameof(SuckerPunch)];
     // All callbacks and branch selection reviewed, not merely the published numeric intent.
-    // CorpseSlug: damage/Frail/stun; SludgeSpinner: damage/Weak/Strength. Neither summons.
-    private static readonly HashSet<string> EnemyTurns = [nameof(CorpseSlug), nameof(SludgeSpinner)];
+    // CorpseSlug: damage/Frail/stun; SludgeSpinner: damage/Weak/Strength; Toadpole:
+    // fixed front/rear cyclic attacks and Thorns +/-2. None summons or touches piles.
+    private static readonly HashSet<string> EnemyTurns = [nameof(CorpseSlug), nameof(SludgeSpinner), nameof(Toadpole)];
     // Exact PowerModel implementations, including BeforeApplied/AfterApplied/AfterRemoved.
     // Weak/Frail only scale values/tick duration, Strength scales damage, Ravenous changes
-    // CorpseSlug AI and applies Strength on a death. No closure member produces an unreviewed power.
+    // CorpseSlug AI and applies Strength on a death. StranglePower only snapshots its
+    // amount BeforeCardPlayed, removes that snapshot and deals direct damage AfterCardPlayed,
+    // and removes itself at its owner's side end. Application/removal inherit no-ops;
+    // its cloning/description methods never change live piles. All resulting damage,
+    // power and death callbacks remain inside this same listener closure.
+    // ThornsPower only retaliates through unpowered direct damage. Its powered-hit
+    // guard prevents retaliation recursion; all application/removal hooks are base no-ops.
+    // No closure member produces an unreviewed power.
     private static readonly HashSet<string> Powers =
-        [nameof(WeakPower), nameof(FrailPower), nameof(StrengthPower), nameof(RavenousPower)];
+        [nameof(WeakPower), nameof(FrailPower), nameof(StrengthPower), nameof(RavenousPower), nameof(StranglePower), nameof(ThornsPower)];
     // OnUse is reviewed separately from AbstractModel hooks; PotionUsed occurs AFTER effects.
     private static readonly HashSet<string> UsedPotions =
         [nameof(FirePotion), nameof(BlockPotion), nameof(EnergyPotion), nameof(StrengthPotion), nameof(SwiftPotion)];
@@ -50,8 +64,39 @@ internal static class NativePublicDrawPrefixCondition
         PublicRunEvidenceEvent[] ownerEvents, PublicRunEvidenceEvent first, long? globalGap,
         out NativePublicDrawPrefixAudit audit)
     {
+        var result = Scan(initial, initial.DrawPrefixIds.Length, ownerEvents, first, globalGap, false);
+        audit = result.Audit;
+        return result.InitialPrefix.Length == initial.DrawPrefixIds.Length ? initial
+            : initial.ExtendDrawPrefix(result.InitialPrefix);
+    }
+
+    internal static IReadOnlyList<NativePublicReshuffleInput> FindReshuffles(
+        NativeInitialShuffleCondition initial, int initialDrawCount, PublicRunEvidenceEvent[] ownerEvents,
+        PublicRunEvidenceEvent first, long? globalGap, out NativePublicDrawPrefixAudit audit)
+    {
+        var result = Scan(initial, initialDrawCount, ownerEvents, first, globalGap, true);
+        audit = result.Audit;
+        return result.Reshuffles;
+    }
+
+    private sealed record ScanResult(string[] InitialPrefix, NativePublicDrawPrefixAudit Audit,
+        IReadOnlyList<NativePublicReshuffleInput> Reshuffles);
+    private sealed class Cycle(int ordinal, long shuffleEvent)
+    {
+        internal int Ordinal { get; } = ordinal;
+        internal long ShuffleEvent { get; } = shuffleEvent;
+        internal long? WitnessEvent { get; set; }
+        internal string[]? Pool { get; set; }
+        internal List<string> Prefix { get; } = [];
+    }
+
+    private static ScanResult Scan(NativeInitialShuffleCondition initial, int initialDrawCount,
+        PublicRunEvidenceEvent[] ownerEvents, PublicRunEvidenceEvent first, long? globalGap, bool allowReshuffles)
+    {
         var entry = PublicJson.Read<NativeEntryAssets>(initial.EntryJson);
-        var prefix = initial.DrawPrefixIds.ToList();
+        var prefix = initial.DrawPrefixIds.Take(initialDrawCount).ToList();
+        var cycles = new List<Cycle>();
+        Cycle? cycle = null;
         int initialCount = prefix.Count;
         long through = ownerEvents.Where(item => item.EventOrdinal < first.EventOrdinal
             && item.Payload is PublicCombatFact { FactKind: PublicCombatFactKind.CardDrawn })
@@ -59,10 +104,10 @@ internal static class NativePublicDrawPrefixCondition
         var decision = (PublicCombatDecision)first.Payload;
         long decisionOrdinal = first.EventOrdinal;
         var roster = decision.Observation.Enemies.ToDictionary(enemy => enemy.Slot, enemy => enemy.Id);
-        var remaining = entry.Deck.GroupBy(card => card.Id, StringComparer.Ordinal)
+        Dictionary<string, int>? remaining = entry.Deck.GroupBy(card => card.Id, StringComparer.Ordinal)
             .ToDictionary(group => group.Key, group => group.Count(), StringComparer.Ordinal);
         foreach (string id in prefix) remaining[id]--;
-        string? stop = CheckSnapshot(decision);
+        string? stop = CheckSnapshot(decision, first.EventOrdinal);
         string? activeKind = null, activeModel = null, pendingCard = null;
         bool decisionAvailable = true;
         if (stop is null)
@@ -77,10 +122,12 @@ internal static class NativePublicDrawPrefixCondition
                 through = observed.EventOrdinal;
             }
         }
-        audit = new(Version, initialCount, prefix.Count, through, stop ?? "observed_prefix_complete");
-        return prefix.Count == initialCount ? initial : initial.ExtendDrawPrefix(prefix);
+        return new(prefix.ToArray(), new(Version, initialCount, prefix.Count, through, stop ?? "observed_prefix_complete"),
+            cycles.Where(item => item.Pool is not null && item.WitnessEvent is not null && item.Prefix.Count > 0)
+                .Select(item => new NativePublicReshuffleInput(item.Ordinal, item.ShuffleEvent,
+                    item.WitnessEvent!.Value, item.Pool!, item.Prefix)).ToArray());
 
-        string? CheckSnapshot(PublicCombatDecision snapshot)
+        string? CheckSnapshot(PublicCombatDecision snapshot, long eventOrdinal)
         {
             var observation = snapshot.Observation;
             if (!snapshot.HistoryCompleteFromCombatStart) return "complete_combat_history_required";
@@ -92,16 +139,33 @@ internal static class NativePublicDrawPrefixCondition
             if (observation.Powers.Concat(observation.Enemies.SelectMany(enemy => enemy.Powers)).Any(power => !Powers.Contains(power.Id)))
                 return "draw_cycle_power_not_certified";
             if (observation.UnidentifiedDrawCount != 0 || observation.KnownDraw.Length != 0
-                || observation.DrawCount != remaining.Values.Sum()) return "draw_cycle_snapshot_pool_mismatch";
+                || observation.UnknownDraw.Any(item => item.Count <= 0)
+                || observation.DrawCount != observation.UnknownDraw.Sum(item => item.Count))
+                return "draw_cycle_snapshot_pool_mismatch";
             var actual = observation.UnknownDraw.GroupBy(item => item.Card.Id, StringComparer.Ordinal)
                 .ToDictionary(group => group.Key, group => group.Sum(item => item.Count), StringComparer.Ordinal);
-            if (actual.Any(pair => !remaining.TryGetValue(pair.Key, out int count) || count != pair.Value)
-                || remaining.Any(pair => pair.Value > 0 && !actual.ContainsKey(pair.Key)))
+            if (remaining is not null && (observation.DrawCount != remaining.Values.Sum()
+                || actual.Any(pair => !remaining.TryGetValue(pair.Key, out int count) || count != pair.Value)
+                || remaining.Any(pair => pair.Value > 0 && !actual.ContainsKey(pair.Key))))
                 return "draw_cycle_snapshot_pool_mismatch";
             if (observation.Hand.Concat(observation.Discard).Concat(observation.Exhaust)
                 .Concat(observation.UnknownDraw.Select(item => item.Card)).Any(card => !SafeCardMetadata(card)))
                 return "draw_cycle_card_modifier_not_certified";
             if (observation.Choice is { Source: not nameof(Survivor) }) return "draw_cycle_choice_not_certified";
+            if (remaining is null)
+            {
+                // Joint public witness: closure permits only Draw between this native
+                // reshuffle and the snapshot. No hidden order or physical membership is read.
+                var pool = actual.SelectMany(pair => Enumerable.Repeat(pair.Key, pair.Value))
+                    .Concat(cycle!.Prefix).ToArray();
+                var entryCounts = entry.Deck.GroupBy(card => card.Id, StringComparer.Ordinal)
+                    .ToDictionary(group => group.Key, group => group.Count(), StringComparer.Ordinal);
+                if (pool.Length == 0 || pool.GroupBy(id => id, StringComparer.Ordinal)
+                    .Any(group => !entryCounts.TryGetValue(group.Key, out int count) || group.Count() > count))
+                    return "reshuffle_snapshot_pool_mismatch";
+                cycle.Pool = pool; cycle.WitnessEvent = eventOrdinal;
+                remaining = new(actual, StringComparer.Ordinal);
+            }
             return null;
         }
 
@@ -112,7 +176,7 @@ internal static class NativePublicDrawPrefixCondition
                 case PublicEvidenceGap: return "owner_evidence_gap";
                 case PublicOwnerEnded: return "combat_owner_ended";
                 case PublicCombatDecision next:
-                    if (CheckSnapshot(next) is { } snapshotReason) return snapshotReason;
+                    if (CheckSnapshot(next, observed.EventOrdinal) is { } snapshotReason) return snapshotReason;
                     decision = next; decisionOrdinal = observed.EventOrdinal; decisionAvailable = true;
                     activeKind = activeModel = null;
                     if (next.Status != "card_choice") pendingCard = null;
@@ -158,7 +222,17 @@ internal static class NativePublicDrawPrefixCondition
                         default: return "draw_cycle_action_not_certified";
                     }
                 case PublicCombatFact fact:
-                    if (fact.FactKind == PublicCombatFactKind.Shuffled) return "first_reshuffle";
+                    if (fact.FactKind == PublicCombatFactKind.Shuffled)
+                    {
+                        if (!allowReshuffles) return "first_reshuffle";
+                        if (activeKind != "end_turn" && activeModel is not (nameof(Backflip) or nameof(SwiftPotion)))
+                            return "reshuffle_source_not_certified";
+                        if (remaining is null) return "reshuffle_public_witness_missing";
+                        if (remaining.Values.Sum() != 0) return "reshuffle_before_draw_pool_exhausted";
+                        cycle = new(cycles.Count, observed.EventOrdinal); cycles.Add(cycle);
+                        remaining = null;
+                        return null;
+                    }
                     if (fact.FactKind is PublicCombatFactKind.CardGenerated or PublicCombatFactKind.HiddenCardGenerated)
                         return "draw_cycle_generation_not_certified";
                     if (fact.FactKind == PublicCombatFactKind.PreSettlement) return "combat_pre_settlement";
@@ -169,9 +243,14 @@ internal static class NativePublicDrawPrefixCondition
                             if (activeKind != "end_turn" && activeModel is not (nameof(Backflip) or nameof(SwiftPotion)))
                                 return "draw_cycle_draw_source_not_certified";
                             var drawn = fact.Cards.Single();
-                            if (!SafeCardMetadata(drawn) || !remaining.TryGetValue(drawn.Id, out int count) || count == 0)
-                                return "draw_cycle_draw_pool_mismatch";
-                            prefix.Add(drawn.Id); remaining[drawn.Id]--;
+                            if (!SafeCardMetadata(drawn)) return "draw_cycle_draw_pool_mismatch";
+                            if (remaining is not null)
+                            {
+                                if (!remaining.TryGetValue(drawn.Id, out int count) || count == 0)
+                                    return "draw_cycle_draw_pool_mismatch";
+                                remaining[drawn.Id]--;
+                            }
+                            if (cycle is null) prefix.Add(drawn.Id); else cycle.Prefix.Add(drawn.Id);
                             return null;
                         case PublicCombatFactKind.CardStarted:
                         case PublicCombatFactKind.CardPlayed:
