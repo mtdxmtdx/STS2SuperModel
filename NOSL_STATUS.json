@@ -165,13 +165,23 @@
   "public_run_context_verification": "docs/PUBLIC_RUN_CONTEXT.md",
   "public_run_evidence_verification": "configs/public_run_evidence_verification.json",
   "native_rewards_hybrid_v5": {
-    "status": "VERIFIED_COMPOSITION_BOUNDED_DIAGNOSTIC_RUNNING",
+    "status": "VERIFIED_COMPOSITION_REUSED_GATE_NOT_MET",
     "native_tests_passed": 1547,
     "core_tests_passed": 4493,
     "core_tests_opt_in_skipped": 3,
     "new_production_rows": 0,
     "new_optimizer_steps": 0,
     "full_readiness": false,
-    "report": "configs/native_rewards_hybrid_v5_verification.json"
+    "report": "configs/native_rewards_hybrid_v5_verification.json",
+    "diagnostic_roots_executed": 8,
+    "accepted_worlds": 9,
+    "settled_candidate_worlds": 59,
+    "allocated_candidate_worlds": 96,
+    "fully_completed_sources": 4,
+    "multi_action_completed": 2,
+    "multi_action_denominator": 6,
+    "combat_index2_completed": false,
+    "gate_passed": false,
+    "seconds": 336.0722794
   }
 }

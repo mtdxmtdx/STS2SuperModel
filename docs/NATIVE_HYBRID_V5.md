@@ -59,7 +59,7 @@ settlement. They deliberately reuse fixed native recipes to isolate integration;
 they are not independent posterior acceptance evidence. Helper finite-word tests,
 legacy identity checks and independent composition review remain separate evidence.
 
-The next bounded comparison uses the same eight already inspected source roots,
+The completed bounded comparison used the same eight already inspected source roots,
 two evaluation seeds, 64 outer attempts per world, 64 complete prefix trials,
 200 continuation decisions and 360-second total budget as v4. Failed proposals,
 unknown mass, cancellation and unexecuted roots must all remain in the output.
@@ -67,3 +67,19 @@ This comparison cannot establish fresh breadth or an unbiased population of root
 selected by completion before a clock deadline. Any production-scale admission
 requires a further predeclared fresh development cohort and the existing data
 quality gates. The frozen test split and experimental weights remain untouched.
+
+The run finished all eight sources in 336.07 seconds without the clock cutoff.
+It accepted 9 worlds and settled 59 of 96 allocated candidate-world copies;
+37 remain ComputeTruncated, with zero engine errors. Four roots completed fully,
+one partially and three had no accepted world. All source public packets and
+the prior identity match the original cohort. Two of the six predeclared
+multi-action roots completed fully, and neither combat-index-two root completed,
+so the gate failed. V4 had accepted 2 worlds and settled 16 copies before its
+clock limit, leaving four sources unexecuted. Its initial timing overlapped a
+test run; this v5 run was isolated, so it is not a controlled CPU speed ratio.
+
+The complete v5 attempts include 225 prefix budget exhaustions, 252 public
+mismatches, 7 density correction rejections and 9 accepted worlds. Specific
+remaining mismatches identify native reshuffle draws, weighted monster intents
+and weak-slime formation draws. Those are the next bounded implementation targets.
+See [the exact result and hashes](../configs/native_rewards_hybrid_v5_verification.json).

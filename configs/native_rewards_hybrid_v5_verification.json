@@ -1,7 +1,7 @@
 {
   "schema": "nosl.native-rewards-hybrid-verification.v5",
   "source_commit": "b7ebae0e4979fd1196c2225267caf91e2dc77b4b",
-  "status": "VERIFIED_V5_COMPOSITION_BOUNDED_DIAGNOSTIC_RUNNING",
+  "status": "VERIFIED_V5_COMPOSITION_REUSED_DIAGNOSTIC_IMPROVED_GATE_NOT_MET",
   "full_m3_m6_complete": false,
   "formal_training": false,
   "new_optimizer_steps": 0,
@@ -166,7 +166,552 @@
     }
   },
   "reused_eight_probe": {
-    "status": "running",
+    "sourceDrawsRequested": 8,
+    "existingRoots": 8,
+    "recordedRoots": 8,
+    "acceptedPosteriorDraws": 9,
+    "allocatedCandidateWorlds": 96,
+    "settledCandidateWorlds": 59,
+    "elapsedSeconds": 336.0722794,
+    "peakWorkerMemoryBytes": 221319168,
+    "budgetExpired": false,
+    "prior_identity": "d61db05514950173d55dd38593253f23c9b93c910767f8d12c742e830b767ff7",
+    "prior_unchanged": true,
+    "source_breakdown": [
+      {
+        "sourceDrawSeed": 11001,
+        "recipe": {
+          "runSeed": 6784017684338474864,
+          "tapeSeed": 7073298359657263651,
+          "proposalSeed": 8565562895986878890,
+          "combatIndex": 0,
+          "decisionIndex": 0
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "certified_public_initial_draw_prefix",
+        "acceptedPosteriorDraws": 2,
+        "proposalAttempts": 4,
+        "allocatedWorlds": 16,
+        "settledWorlds": 16,
+        "seconds": 15.0471871,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "exact_proposal_density_correction_rejected": 2,
+          "accepted": 2
+        },
+        "rejection_causes": {
+          "exact_proposal_density_correction_rejected": 2,
+          "accepted": 2
+        },
+        "public_combat_conditioning": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": true,
+            "hpTargets": 1,
+            "shuffleReason": null,
+            "hpReason": null,
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 7,
+              "throughEventOrdinal": 21,
+              "stopReason": "observed_prefix_complete"
+            }
+          }
+        ],
+        "slug_intent_targets": 0,
+        "n_error": 0,
+        "n_unresolved": 0
+      },
+      {
+        "sourceDrawSeed": 11002,
+        "recipe": {
+          "runSeed": 359042659159769668,
+          "tapeSeed": 8236859120578255591,
+          "proposalSeed": 12826995029369825269,
+          "combatIndex": 0,
+          "decisionIndex": 7
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "uninterrupted_initial_draw_history_required",
+        "acceptedPosteriorDraws": 1,
+        "proposalAttempts": 67,
+        "allocatedWorlds": 10,
+        "settledWorlds": 5,
+        "seconds": 54.3036341,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "component_budget_exhausted": 43,
+          "public_constraint_mismatch": 19,
+          "accepted": 1,
+          "exact_proposal_density_correction_rejected": 4
+        },
+        "rejection_causes": {
+          "Native initial_prefix component exhausted its complete-trial budget": 43,
+          "Published run evidence differs at event 77 (combat_fact:CardDrawn)": 19,
+          "accepted": 1,
+          "exact_proposal_density_correction_rejected": 4
+        },
+        "public_combat_conditioning": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": true,
+            "hpTargets": 2,
+            "shuffleReason": null,
+            "hpReason": null,
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 16,
+              "throughEventOrdinal": 75,
+              "stopReason": "first_reshuffle"
+            }
+          }
+        ],
+        "slug_intent_targets": 1,
+        "n_error": 0,
+        "n_unresolved": 5
+      },
+      {
+        "sourceDrawSeed": 11003,
+        "recipe": {
+          "runSeed": 13669140442968424232,
+          "tapeSeed": 2107739589254101537,
+          "proposalSeed": 5171803456263415760,
+          "combatIndex": 0,
+          "decisionIndex": 4
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "uninterrupted_initial_draw_history_required",
+        "acceptedPosteriorDraws": 2,
+        "proposalAttempts": 6,
+        "allocatedWorlds": 16,
+        "settledWorlds": 16,
+        "seconds": 12.6835703,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "component_budget_exhausted": 3,
+          "accepted": 2,
+          "exact_proposal_density_correction_rejected": 1
+        },
+        "rejection_causes": {
+          "Native initial_prefix component exhausted its complete-trial budget": 3,
+          "accepted": 2,
+          "exact_proposal_density_correction_rejected": 1
+        },
+        "public_combat_conditioning": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": true,
+            "hpTargets": 2,
+            "shuffleReason": null,
+            "hpReason": null,
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 12,
+              "throughEventOrdinal": 53,
+              "stopReason": "observed_prefix_complete"
+            }
+          }
+        ],
+        "slug_intent_targets": 1,
+        "n_error": 0,
+        "n_unresolved": 0
+      },
+      {
+        "sourceDrawSeed": 11004,
+        "recipe": {
+          "runSeed": 8076967941473750961,
+          "tapeSeed": 13310377264619595299,
+          "proposalSeed": 11221649035463315405,
+          "combatIndex": 2,
+          "decisionIndex": 6
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "initial_shuffle_card_reordering_not_certified",
+        "acceptedPosteriorDraws": 0,
+        "proposalAttempts": 128,
+        "allocatedWorlds": 14,
+        "settledWorlds": 0,
+        "seconds": 90.8034509,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "component_budget_exhausted": 79,
+          "public_constraint_mismatch": 49
+        },
+        "rejection_causes": {
+          "Native initial_prefix component exhausted its complete-trial budget": 79,
+          "Published run evidence differs at event 54 (combat_fact:IntentPublished)": 21,
+          "Published run evidence differs at event 77 (combat_fact:CardDrawn)": 3,
+          "Published run evidence differs at event 76 (combat_fact:CardDrawn)": 19,
+          "Published run evidence differs at event 78 (combat_fact:CardDrawn)": 3,
+          "Published run evidence differs at event 79 (combat_fact:CardDrawn)": 3
+        },
+        "public_combat_conditioning": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": true,
+            "hpTargets": 1,
+            "shuffleReason": null,
+            "hpReason": null,
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 13,
+              "throughEventOrdinal": 74,
+              "stopReason": "first_reshuffle"
+            }
+          },
+          {
+            "combatIndex": 1,
+            "shuffleEligible": true,
+            "hpTargets": 2,
+            "shuffleReason": null,
+            "hpReason": null,
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 7,
+              "throughEventOrdinal": 163,
+              "stopReason": "draw_cycle_play_not_certified:Strangle"
+            }
+          },
+          {
+            "combatIndex": 2,
+            "shuffleEligible": true,
+            "hpTargets": 0,
+            "shuffleReason": null,
+            "hpReason": "initial_hp_unique_startup_roster_required",
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 7,
+              "throughEventOrdinal": 276,
+              "stopReason": "draw_cycle_play_not_certified:Finisher"
+            }
+          }
+        ],
+        "slug_intent_targets": 1,
+        "n_error": 0,
+        "n_unresolved": 14
+      },
+      {
+        "sourceDrawSeed": 11005,
+        "recipe": {
+          "runSeed": 8828569053132642135,
+          "tapeSeed": 11742149149862170653,
+          "proposalSeed": 17957384049193286860,
+          "combatIndex": 0,
+          "decisionIndex": 2
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "certified_public_initial_draw_prefix",
+        "acceptedPosteriorDraws": 2,
+        "proposalAttempts": 30,
+        "allocatedWorlds": 8,
+        "settledWorlds": 8,
+        "seconds": 28.2704808,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "component_budget_exhausted": 25,
+          "public_constraint_mismatch": 3,
+          "accepted": 2
+        },
+        "rejection_causes": {
+          "Native initial_prefix component exhausted its complete-trial budget": 25,
+          "Published run evidence differs at event 22 (PublicCombatDecision)": 3,
+          "accepted": 2
+        },
+        "public_combat_conditioning": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": true,
+            "hpTargets": 0,
+            "shuffleReason": null,
+            "hpReason": "initial_hp_unique_startup_roster_required",
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 7,
+              "throughEventOrdinal": 32,
+              "stopReason": "observed_prefix_complete"
+            }
+          }
+        ],
+        "slug_intent_targets": 0,
+        "n_error": 0,
+        "n_unresolved": 0
+      },
+      {
+        "sourceDrawSeed": 11006,
+        "recipe": {
+          "runSeed": 16384621433409447625,
+          "tapeSeed": 6734181621440024958,
+          "proposalSeed": 13855802291457293684,
+          "combatIndex": 1,
+          "decisionIndex": 6
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "certified_public_initial_draw_prefix",
+        "acceptedPosteriorDraws": 0,
+        "proposalAttempts": 128,
+        "allocatedWorlds": 8,
+        "settledWorlds": 0,
+        "seconds": 74.3878395,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "component_budget_exhausted": 59,
+          "public_constraint_mismatch": 69
+        },
+        "rejection_causes": {
+          "Native initial_prefix component exhausted its complete-trial budget": 59,
+          "Published run evidence differs at event 31 (combat_fact:IntentPublished)": 9,
+          "Published run evidence differs at event 29 (combat_fact:IntentPublished)": 18,
+          "Native initial monster roster differs from the public opening": 34,
+          "Published run evidence differs at event 53 (combat_fact:CardDrawn)": 8
+        },
+        "public_combat_conditioning": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": true,
+            "hpTargets": 3,
+            "shuffleReason": null,
+            "hpReason": null,
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 7,
+              "throughEventOrdinal": 47,
+              "stopReason": "draw_cycle_enemy_turn_not_certified"
+            }
+          },
+          {
+            "combatIndex": 1,
+            "shuffleEligible": true,
+            "hpTargets": 1,
+            "shuffleReason": null,
+            "hpReason": null,
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 7,
+              "throughEventOrdinal": 213,
+              "stopReason": "draw_cycle_enemy_turn_not_certified"
+            }
+          }
+        ],
+        "slug_intent_targets": 0,
+        "n_error": 0,
+        "n_unresolved": 8
+      },
+      {
+        "sourceDrawSeed": 11007,
+        "recipe": {
+          "runSeed": 10222183416343435034,
+          "tapeSeed": 12727597898765872253,
+          "proposalSeed": 10651958784376862030,
+          "combatIndex": 2,
+          "decisionIndex": 3
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "certified_public_initial_draw_prefix",
+        "acceptedPosteriorDraws": 0,
+        "proposalAttempts": 128,
+        "allocatedWorlds": 10,
+        "settledWorlds": 0,
+        "seconds": 51.8116988,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 112,
+          "component_budget_exhausted": 16
+        },
+        "rejection_causes": {
+          "Published run evidence differs at event 45 (combat_fact:CardDrawn)": 15,
+          "Published run evidence differs at event 48 (combat_fact:CardDrawn)": 1,
+          "Published run evidence differs at event 20 (combat_fact:IntentPublished)": 46,
+          "Native initial monster roster differs from the public opening": 50,
+          "Native initial_prefix component exhausted its complete-trial budget": 16
+        },
+        "public_combat_conditioning": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": true,
+            "hpTargets": 3,
+            "shuffleReason": null,
+            "hpReason": null,
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 7,
+              "throughEventOrdinal": 23,
+              "stopReason": "draw_cycle_play_not_certified:NeowsFury"
+            }
+          },
+          {
+            "combatIndex": 1,
+            "shuffleEligible": true,
+            "hpTargets": 1,
+            "shuffleReason": null,
+            "hpReason": null,
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 7,
+              "throughEventOrdinal": 182,
+              "stopReason": "draw_cycle_enemy_turn_not_certified"
+            }
+          },
+          {
+            "combatIndex": 2,
+            "shuffleEligible": true,
+            "hpTargets": 1,
+            "shuffleReason": null,
+            "hpReason": null,
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 7,
+              "throughEventOrdinal": 261,
+              "stopReason": "draw_cycle_play_not_certified:SuckerPunch"
+            }
+          }
+        ],
+        "slug_intent_targets": 0,
+        "n_error": 0,
+        "n_unresolved": 10
+      },
+      {
+        "sourceDrawSeed": 11008,
+        "recipe": {
+          "runSeed": 9876807377608938154,
+          "tapeSeed": 11688964905070267849,
+          "proposalSeed": 7130715396133987344,
+          "combatIndex": 0,
+          "decisionIndex": 0
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "certified_public_initial_draw_prefix",
+        "acceptedPosteriorDraws": 2,
+        "proposalAttempts": 2,
+        "allocatedWorlds": 14,
+        "settledWorlds": 14,
+        "seconds": 8.7621247,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "accepted": 2
+        },
+        "rejection_causes": {
+          "accepted": 2
+        },
+        "public_combat_conditioning": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": true,
+            "hpTargets": 1,
+            "shuffleReason": null,
+            "hpReason": null,
+            "drawPrefix": {
+              "certificateVersion": "nosl.public-first-draw-cycle.v1",
+              "initialDrawCount": 7,
+              "drawPrefixCount": 7,
+              "throughEventOrdinal": 25,
+              "stopReason": "observed_prefix_complete"
+            }
+          }
+        ],
+        "slug_intent_targets": 0,
+        "n_error": 0,
+        "n_unresolved": 0
+      }
+    ],
+    "proposal_statuses": {
+      "exact_proposal_density_correction_rejected": 7,
+      "accepted": 9,
+      "component_budget_exhausted": 225,
+      "public_constraint_mismatch": 252
+    },
+    "rejection_causes": {
+      "exact_proposal_density_correction_rejected": 7,
+      "accepted": 9,
+      "Native initial_prefix component exhausted its complete-trial budget": 225,
+      "Published run evidence differs at event 77 (combat_fact:CardDrawn)": 22,
+      "Published run evidence differs at event 54 (combat_fact:IntentPublished)": 21,
+      "Published run evidence differs at event 76 (combat_fact:CardDrawn)": 19,
+      "Published run evidence differs at event 78 (combat_fact:CardDrawn)": 3,
+      "Published run evidence differs at event 79 (combat_fact:CardDrawn)": 3,
+      "Published run evidence differs at event 22 (PublicCombatDecision)": 3,
+      "Published run evidence differs at event 31 (combat_fact:IntentPublished)": 9,
+      "Published run evidence differs at event 29 (combat_fact:IntentPublished)": 18,
+      "Native initial monster roster differs from the public opening": 84,
+      "Published run evidence differs at event 53 (combat_fact:CardDrawn)": 8,
+      "Published run evidence differs at event 45 (combat_fact:CardDrawn)": 15,
+      "Published run evidence differs at event 48 (combat_fact:CardDrawn)": 1,
+      "Published run evidence differs at event 20 (combat_fact:IntentPublished)": 46
+    },
+    "prefix_completed_trials": 21088,
+    "prefix_callback_word_draws": 2956510,
+    "all_public_inputs_unchanged": true,
+    "engine_errors": 0,
+    "fully_completed_sources": [
+      11001,
+      11003,
+      11005,
+      11008
+    ],
+    "gate_multi_action_completed": 2,
+    "gate_multi_action_denominator": 6,
+    "gate_index2_completed": false,
+    "gate_passed": false,
+    "status": "completed",
     "predeclaration": {
       "path": "artifacts/reports/hybrid-v5/reused-eight-predeclaration.json",
       "bytes": 2202,
@@ -177,8 +722,25 @@
       "bytes": 836,
       "sha256": "fc08d4e7d18d282ac7e6a982f393ba67563a97bc3c6cbe3793fcbf95bab0922d"
     },
+    "response": {
+      "path": "artifacts/reports/hybrid-v5/reused-eight-response.jsonl",
+      "bytes": 4508724,
+      "sha256": "ad248079604e0b72cb1330d11686908e064bb10ee214d849aff37835b43af505"
+    },
+    "resources": {
+      "path": "artifacts/reports/hybrid-v5/reused-eight-resources.json",
+      "bytes": 150,
+      "sha256": "80e5b255dd6d45d9744e21352b0e7189e8b81bd718bfe323c5c42a33c13f3340"
+    },
+    "analysis": {
+      "path": "artifacts/reports/hybrid-v5/reused-eight-analysis.json",
+      "bytes": 18689,
+      "sha256": "7889471512531ef0b3e7dbf2b952a8921ac664e6db851e94350ffae163fae9c0"
+    },
     "not_a_fresh_breadth_validation": true,
-    "production_admission_allowed": false
+    "production_admission_allowed": false,
+    "worker_source_commit": "b7ebae0e4979fd1196c2225267caf91e2dc77b4b",
+    "runtime_note": "No builds, tests or other benchmark processes overlapped this worker run; earlier v4 measurement overlapped aggregate tests at its beginning, so elapsed comparison is qualified."
   },
   "boundaries": [
     "New records remain quarantined; no production enlargement or fit",
@@ -186,5 +748,12 @@
     "Full public packet/history equality and unresolved failure mass retained",
     "Original corpus, sealed494test and experimental weights untouched",
     "All simulator edits remain local to vendored project; simulator remotes read-only"
+  ],
+  "remaining_measured_work": [
+    "Certify public witnessed pools and draw prefixes at native reshuffles;11002 fails event77 and11004 events76–79",
+    "Condition exact weighted native monster branch draws from detached intent history;SludgeSpinner later roll andLeafSlimeS startup dominate specific rejections",
+    "Condition native weak-slime formation from public complete roster;11006/11007 still reject84 sampled formations",
+    "Keep reused cohort distinct from fresh development breadth; no scale/fit until full-history throughput and quality gates pass",
+    "M3 resource calibration and partial supervision remain separate"
   ]
 }
