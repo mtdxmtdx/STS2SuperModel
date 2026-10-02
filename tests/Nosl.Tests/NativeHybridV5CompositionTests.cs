@@ -37,8 +37,8 @@ public sealed class NativeHybridV5CompositionTests
         var source = new NativeTapeReplaySource(root, prior);
         Assert.True(source.UsesConditionalSlugIntents);
         Assert.Equal(drawCount, source.PublicCombatDiagnostics[0].DrawPrefix!.DrawPrefixCount);
-        Assert.Equal("owned-native-rewards-state-tape-conditional-v6-public-evidence-v1", source.PosteriorProfile);
-        Assert.Equal("nosl-native-rewards-state-tape-conditional-v6-public-evidence-v1", NativeTapeReplayDataset.ImplementationFor(prior));
+        Assert.Equal("owned-native-rewards-state-tape-conditional-v7-public-evidence-v1", source.PosteriorProfile);
+        Assert.Equal("nosl-native-rewards-state-tape-conditional-v7-public-evidence-v1", NativeTapeReplayDataset.ImplementationFor(prior));
         NativeNeowCardCondition.TryCreate(root, prior, out var cards, out _);
         // This fixed native recipe isolates owning-scope composition. It is not
         // an independent posterior draw or a throughput/production admission.

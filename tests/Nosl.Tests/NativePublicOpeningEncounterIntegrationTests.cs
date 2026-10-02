@@ -28,9 +28,9 @@ public sealed class NativePublicOpeningEncounterIntegrationTests
             NativeLabelTape.ForDeclaredPrior(prior, recipe)))
         { Assert.NotNull(original); observed = PublicJson.Read<DecisionPacket>(PublicJson.Serialize(original.Observe())); }
         var source = new NativeTapeReplaySource(observed, prior);
-        Assert.True(source.UsesConditionalPublicOpeningEncounter);
+        Assert.True(source.UsesConditionalPublicOpeningEncounter || source.UsesConditionalWeakEncounterSequence);
         Assert.False(source.UsesConditionalFirstEncounter); // Never overlap slot-zero cells.
-        Assert.Contains("conditional-v6", source.PosteriorProfile);
+        Assert.Contains("conditional-v7", source.PosteriorProfile);
         Assert.True(NativePublicOpeningEncounterCondition.TryCreate(observed, prior, out var opening, out var reason), reason);
         // This fixture reuses a chosen hypothetical recipe only to isolate the
         // production hook and exact replay law. It is not source-posterior evidence.

@@ -1,0 +1,32 @@
+# Exact public weak-encounter sequence proposal
+
+This optional helper conditions one to three native normal-encounter words from detached public owner, route and startup-roster history. It does not accept a source recipe, source encounter ID, held seed, saved private state or source runtime object. Missing certificates disable the optional proposal or retain only an already proved earlier prefix; the original full native replay remains the fallback and final public-packet equality is still required.
+
+## Reviewed native law
+
+The pinned `ActDefinition.PickMonsterEncounter` uses the weak pool for its first three normal selections. `PickWithoutRepeating` fills the fresh bag in candidate order with literal weight 1.0, and `GrabBag.GrabAndRemove` preserves order with `RemoveAt`. Both reviewed act-zero pools have four distinct entries with pairwise disjoint non-None tags. Consequently every remaining entry satisfies the no-repeat/tag predicate for all three weak pulls. There is no rejection loop on those pulls: the draw bounds are exactly 4, 3, 2. The existing `NativeFirstEncounterCondition.ValidatePool` pins candidate order, IDs, tags, weak count and act metadata; boundary tests execute all 24 ordered outcomes and all eight lower/upper endpoint combinations in both native acts.
+
+For precision Q = 2^53, a length-k ordered outcome has native high-word mass equal to the product of its k bucket sizes, divided by Q^k. The proposal enumerates at most 24 ordered outcomes compatible with all public targets. It selects an outcome by its exact BigInteger bucket product, then uniformly selects each complete raw-word preimage, including every unused low bit. If M is the sum of compatible bucket products, every retained high-word prefix has proposal mass 1/M, so p/q = M/Q^k. That public-root constant is the envelope, and correction accepts without a random draw. Slot-one's native three-way rounding asymmetry is retained rather than replaced by a uniform permutation law.
+
+## Public certificate and runtime ownership
+
+`NativePublicWeakEncounterSequenceCondition.TryCreate` requires the declared fresh native prior, reviewed source policy/script, available combat history and typed public evidence beginning with Silent A10. It follows complete act-zero map owners from the observed starting Ancient row, requiring contiguous map publication/choice/completion, linked offers, consecutive floors and observed route continuity. Direct parentless combat immediately following Monster or Unknown map selection counts as a normal pull. The pinned fresh-run Unknown resolution has Monster/Treasure/Shop/Event outcomes; a direct combat therefore proves Monster. Elite/Boss map pulls do not increment the normal count. Event-parented combats use `EventRoom`'s own explicit batches, do not pull the normal queue and are excluded.
+
+The Unknown certificate depends on the pinned native implementation, not on an assumption that all Unknown rooms are normal fights. [`UnknownMapPointOdds`](../vendor/sts2-sim/src/Sts2Sim.Core/Odds/UnknownMapPointOdds.cs) starts Elite odds at -1, skips negative odds, and adds the Elite base value (-1) after an unrolled eligible room type. No native model overrides `ModifyOddsIncreaseForUnrolledRoomType`; its default in [`AbstractModel`](../vendor/sts2-sim/src/Sts2Sim.Core/Models/AbstractModel.cs) returns the increment unchanged. The current room-type overrides only remove Monster ([`JuzuBracelet`](../vendor/sts2-sim/src/Sts2Sim.Core/Models/Relics/JuzuBracelet.cs)) or restrict the set to Event ([`GoldenCompass`](../vendor/sts2-sim/src/Sts2Sim.Core/Models/Relics/GoldenCompass.cs) and the act-three-only [`LanternKey`](../vendor/sts2-sim/src/Sts2Sim.Core/Models/Cards/LanternKey.cs)). None enables Elite or removes Event while preserving an eligible Elite fallback. Save/transplant odds restoration is outside the declared fresh native prior. Changes to these odds or hooks require re-reviewing this certificate.
+
+Each target comes from the first published turn-one ordered roster. The finite native factory catalog supplies all compatible weak identities. Matching identities within the inferred act are retained as a set, without arbitrarily resolving public ambiguity; unidentified slots remain wildcards. Cross-act ambiguous or contradictory evidence conservatively falls back. Any incomplete boundary or gap stops further certification without invalidating targets already proved before it.
+
+At runtime the adapter requires one attached hypothetical run, its original act-zero normal-generation boundary, the owned UpFront stream, fresh room/map coordinates, Silent A10 and reviewed act/pool shape. It rejects a different publicly inferred act before sampling. The tape's existing `ForcePrefixWords` checks every primitive pre-state, denies previously observed cell aliases and enforces prefix completion. Failed conditioned-word callbacks retain the tape's permanent failure marker and must propagate through the owning tape's validation. Later native draws and all unconstrained generation remain unchanged. The lead integration must make this mutually exclusive with the older opening/slot-one encounter proposal because they share the same native cells.
+
+## Verification
+
+The new focused suite has 12 passing tests:
+
+- Exhaustive three-bit enumeration of all native prefixes for lengths 1–3, compared against every combination of nonempty public identity sets (15 + 225 + 3,375 cases), including unconstrained slots and ambiguous identities
+- Exact branch-ticket multiplicities, correction ratios, low-bit endpoints and impossible/duplicate identity constraints
+- All 24 native three-pull outcomes × eight bucket endpoint combinations × two acts, with exact three-word counts
+- Detached route certificates, Unknown normal rooms, event-parented fights, gaps, missing signatures and conservative fallback
+- Foreign-run/stream, repeated ownership, prior cell alias, incomplete-prefix, wrong-act and pool-drift failures
+- Existing roots 11004 and 11007 reused with two-word and three-word constraints: actual native generation reproduces the full original detached public packet; a second independently reconstructed native world reuses the hypothetical tape overrides and both continuations settle identically
+
+The root-coordinate reuse is a controlled routing/replay test, not a posterior acceptance or throughput measurement. No new data population, fitting, remote publication or simulator edit is part of this helper change.

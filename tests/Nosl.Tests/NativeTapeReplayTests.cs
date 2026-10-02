@@ -122,6 +122,12 @@ public sealed class NativeTapeReplayTests
             catch (PosteriorSamplingException) { }
         }
         await Sample(a); await Sample(b);
+        foreach (var proposal in a.ProposalAudit)
+        {
+            using var legacyAudit = System.Text.Json.JsonDocument.Parse(PublicJson.Serialize(proposal));
+            Assert.False(legacyAudit.RootElement.TryGetProperty("conditionedWeakEncounters", out _));
+            Assert.False(legacyAudit.RootElement.TryGetProperty("weakEncounterEnvelope", out _));
+        }
         Assert.Equal(a.ProposalAudit.Select(x => (x.Recipe, x.Status, x.ConditionedTapeCells)),
             b.ProposalAudit.Select(x => (x.Recipe, x.Status, x.ConditionedTapeCells)));
         using var cancelled = new CancellationTokenSource(); cancelled.Cancel();

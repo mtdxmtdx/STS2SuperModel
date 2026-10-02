@@ -115,16 +115,29 @@
     "conditional_tape_fresh_complete_carry_in_roots": 0,
     "public_run_evidence_native_tests": 1305,
     "public_run_evidence_student_tests": 26,
-    "public_rewards_hybrid_report": "configs/native_rewards_hybrid_v5_verification.json",
-    "public_rewards_hybrid_new_development_roots": 8,
-    "public_rewards_hybrid_proposals": 277,
-    "public_rewards_hybrid_accepted_worlds": 2,
+    "public_rewards_hybrid_report": "configs/native_rewards_hybrid_v6_verification.json",
+    "public_rewards_hybrid_new_development_roots": 0,
+    "public_rewards_hybrid_proposals": 422,
+    "public_rewards_hybrid_accepted_worlds": 10,
     "public_rewards_hybrid_throughput_gate_passed": false,
     "public_rewards_hybrid_reused_sources_requested": 8,
-    "public_rewards_hybrid_reused_sources_executed": 4,
-    "public_rewards_hybrid_reused_sources_unexecuted": 4,
-    "public_rewards_hybrid_settled_candidate_worlds": 16,
-    "public_rewards_hybrid_compute_cap_seconds": 360
+    "public_rewards_hybrid_reused_sources_executed": 8,
+    "public_rewards_hybrid_reused_sources_unexecuted": 0,
+    "public_rewards_hybrid_settled_candidate_worlds": 64,
+    "public_rewards_hybrid_compute_cap_seconds": 360,
+    "public_rewards_hybrid_summary_source_commit": "4134427f08f72f89727f261554725ccd561ca282",
+    "public_rewards_hybrid_summary_role": "latest completed reused-eight diagnostic; later component fixes are not benchmarked as a new broad cohort",
+    "public_rewards_hybrid_original_development_roots": 8,
+    "public_rewards_hybrid_allocated_candidate_worlds": 96,
+    "public_rewards_hybrid_compute_truncated_candidate_worlds": 32,
+    "public_rewards_hybrid_engine_errors": 0,
+    "public_rewards_hybrid_elapsed_seconds": 292.5594886,
+    "public_rewards_hybrid_fully_completed_sources": 5,
+    "public_rewards_hybrid_multi_action_completed": 3,
+    "public_rewards_hybrid_multi_action_denominator": 6,
+    "public_rewards_hybrid_combat_index2_completed": false,
+    "current_full_suite_source_commit": "4134427f08f72f89727f261554725ccd561ca282",
+    "current_full_suite_scope": "Last completed aggregate; later public-history components have separate focused validation, no new aggregate claim"
   },
   "full_silent_content_ready": false,
   "ready_for_training": false,
@@ -135,7 +148,7 @@
   "training": "BOUNDED_EXPERIMENTAL_497_STEPS_COMPLETED_UNPROMOTED",
   "next_milestone": "IMPROVE_MEASURED_NATIVE_COVERAGE_AND_RESOURCE_LABEL_QUALITY_BEFORE_SCALE",
   "remaining_full_scope_gaps": [
-    "V7 joint native initial-prefix conditioning passes the reused two-carry-in diagnostic gate:18/22branches settle,4ComputeTruncated,0EngineError. A separately predeclared16root development probe fails the breadth gate:0/12multi-action carry-in roots complete,20/226branches settle,206ComputeTruncated,0EngineError. Opt-in public run-evidence recording and the v4 engineering student are verified. General compositional likelihood proposals remain in progress; production scale and new fits remain paused.",
+    "The latest complete public-history diagnostic is hybrid v6 on the same8 previously inspected roots:10 accepted worlds,64/96 candidate copies settled,32 ComputeTruncated,0EngineError;5 roots complete, including3/6 multi-action roots, but no combat-index2 root completes. The gate remains closed. Earlier opening/carry-in reports retain their own pinned historical evidence. Followup public slime and early-mismatch fixes are verified components; all-map, later-encounter and event-permutation integration remains in progress.",
     "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
     "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
     "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3–M6 prerequisites"
@@ -203,5 +216,6 @@
     "combat_index2_completed": false,
     "gate_passed": false,
     "seconds": 292.5594886
-  }
+  },
+  "public_history_followup_verification": "configs/native_public_history_followup_verification.json"
 }

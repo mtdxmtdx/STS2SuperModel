@@ -29,7 +29,7 @@ internal static class NativeTapeReplayDataset
         ? ImplementationVersion + "-public-evidence-v1" : ImplementationVersion;
 
     internal static string ImplementationFor(NativeTapePrior prior) => prior.UsesRewardsProvenance
-        ? "nosl-native-rewards-state-tape-conditional-v6-public-evidence-v1" : ImplementationFor(prior.Execution);
+        ? "nosl-native-rewards-state-tape-conditional-v7-public-evidence-v1" : ImplementationFor(prior.Execution);
     internal static string DatasetFor(NativeTapePrior prior) => prior.UsesRewardsProvenance
         ? "nosl.native-rewards-tape-replay-development.v1" : DatasetVersion;
 
@@ -115,6 +115,9 @@ internal static class NativeTapeReplayDataset
                 {
                     audit["neow_card_conditioning_eligible"] = source.UsesConditionalNeowCards;
                     audit["public_opening_encounter_conditioning_eligible"] = source.UsesConditionalPublicOpeningEncounter;
+                    audit["public_weak_encounter_sequence_eligible"] = source.UsesConditionalWeakEncounterSequence;
+                    audit["public_weak_encounter_targets"] = source.WeakEncounterTargets;
+                    audit["public_weak_encounter_prefix_length"] = source.WeakEncounterPrefixLength;
                     audit["public_resource_conditioning_eligible"] = source.UsesConditionalPublicResources;
                     audit["public_reward_conditioning_eligible"] = source.UsesConditionalPublicRewards;
                     audit["public_reward_targets"] = source.PublicRewardTargetCount;

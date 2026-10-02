@@ -43,6 +43,8 @@ internal sealed class NativeLabelTape
     private readonly NativeFirstRewardCondition? _firstRewardCondition;
     private readonly NativeFirstEncounterCondition? _firstEncounterCondition;
     private NativeFirstEncounterProposal? _firstEncounterPlan;
+    private readonly NativePublicWeakEncounterSequenceCondition? _weakEncounterCondition;
+    private readonly NativePublicWeakEncounterSequenceProposal? _weakEncounterProposal;
     private readonly NativePublicOpeningEncounterCondition? _publicOpeningEncounterCondition;
     private readonly NativePublicOpeningEncounterProposal? _publicOpeningEncounterProposal;
     private readonly NativeInitialPrefixProposal? _initialPrefixPlan;
@@ -100,8 +102,10 @@ internal sealed class NativeLabelTape
     internal int ConditionedHpCount => _hpPlans.Count;
     internal bool NeowConditionApplied => _neowPlan is not null;
     internal bool FirstRewardConditionApplied => _firstRewardPlan is not null;
-    internal bool FirstEncounterConditionApplied => _firstEncounterPlan is not null || _publicOpeningEncounterProposal?.Applied == true;
-    internal int? ProposedFirstEncounterIndex => _firstEncounterPlan?.FirstEncounterIndex ?? _publicOpeningEncounterProposal?.FirstEncounterIndex;
+    internal int ConditionedWeakEncounters => _weakEncounterProposal?.ConditionedEncounterCount ?? 0;
+    internal ShuffleRational? WeakEncounterEnvelope => _weakEncounterProposal?.Envelope;
+    internal bool FirstEncounterConditionApplied => _firstEncounterPlan is not null || _publicOpeningEncounterProposal?.Applied == true || _weakEncounterProposal?.Applied == true;
+    internal int? ProposedFirstEncounterIndex => _firstEncounterPlan?.FirstEncounterIndex ?? _publicOpeningEncounterProposal?.FirstEncounterIndex ?? _weakEncounterProposal?.FirstEncounterIndex;
 
     internal NativeLabelTape(NativeTapeRecipe recipe, NativeInitialShuffleCondition? condition = null,
         IReadOnlyDictionary<LabelRandomState, ulong>? overrides = null, string? expectedEntryJson = null,
@@ -114,7 +118,8 @@ internal sealed class NativeLabelTape
         NativePublicCorpseSlugIntentCondition? slugIntentCondition = null,
         NativePublicWeakSlimeFormationCondition? weakFormationCondition = null,
         NativePublicReshuffleCondition? publicReshuffleCondition = null,
-        NativePublicMonsterBranchIntentCondition? monsterBranchCondition = null)
+        NativePublicMonsterBranchIntentCondition? monsterBranchCondition = null,
+        NativePublicWeakEncounterSequenceCondition? weakEncounterCondition = null)
     {
         _recipe = recipe; _condition = condition; _expectedEntryJson = expectedEntryJson ?? condition?.EntryJson;
         _rewardsOracle = rewardsOracle;
@@ -202,6 +207,14 @@ internal sealed class NativeLabelTape
             var random = new Rng(recipe.ProposalSeed, "nosl-public-opening-encounter-v1");
             _publicOpeningEncounterProposal = new(publicOpeningEncounterCondition, random.NextUnsignedLong, ForcePrefixWords);
         }
+        _weakEncounterCondition = weakEncounterCondition;
+        if (weakEncounterCondition is not null)
+        {
+            if (rewardsOracle is null || firstEncounterCondition is not null || publicOpeningEncounterCondition is not null)
+                throw new ArgumentException("Public weak encounter sequence requires hybrid law and exclusive ownership of encounter cells");
+            var random = new Rng(recipe.ProposalSeed, "nosl-public-weak-encounter-sequence-v1");
+            _weakEncounterProposal = new(weakEncounterCondition, random.NextUnsignedLong, ForcePrefixWords);
+        }
         _initialPrefixPlan = initialPrefixPlan;
         if (initialPrefixPlan is not null && initialPrefixPlan.SelectedRecipe != recipe)
             throw new ArgumentException("Initial prefix and native replay recipe differ", nameof(initialPrefixPlan));
@@ -226,12 +239,13 @@ internal sealed class NativeLabelTape
         NativePublicCorpseSlugIntentCondition? slugIntentCondition = null,
         NativePublicWeakSlimeFormationCondition? weakFormationCondition = null,
         NativePublicReshuffleCondition? publicReshuffleCondition = null,
-        NativePublicMonsterBranchIntentCondition? monsterBranchCondition = null) =>
+        NativePublicMonsterBranchIntentCondition? monsterBranchCondition = null,
+        NativePublicWeakEncounterSequenceCondition? weakEncounterCondition = null) =>
         new(recipe, condition, expectedEntryJson: expectedEntryJson, hpCondition: hpCondition, neowCondition: neowCondition,
             firstRewardCondition: firstRewardCondition, firstEncounterCondition: firstEncounterCondition, initialPrefixPlan: initialPrefixPlan,
             rewardsOracle: prior.Freeze().UsesRewardsProvenance ? new(recipe.TapeSeed) : null,
             publicRewardCondition: publicRewardCondition, publicCombatCondition: publicCombatCondition,
-            expectedPublicEvidence: expectedPublicEvidence, publicOpeningEncounterCondition: publicOpeningEncounterCondition, neowCardCondition: neowCardCondition, publicResourceCondition: publicResourceCondition, slugIntentCondition: slugIntentCondition, weakFormationCondition: weakFormationCondition, publicReshuffleCondition: publicReshuffleCondition, monsterBranchCondition: monsterBranchCondition);
+            expectedPublicEvidence: expectedPublicEvidence, publicOpeningEncounterCondition: publicOpeningEncounterCondition, neowCardCondition: neowCardCondition, publicResourceCondition: publicResourceCondition, slugIntentCondition: slugIntentCondition, weakFormationCondition: weakFormationCondition, publicReshuffleCondition: publicReshuffleCondition, monsterBranchCondition: monsterBranchCondition, weakEncounterCondition: weakEncounterCondition);
 
     internal IDisposable EnterScope()
     {
@@ -270,7 +284,7 @@ internal sealed class NativeLabelTape
     {
         RequireSuccessfulConditionedWords();
         return new(_recipe, _condition, _overrides, _expectedEntryJson, _hpCondition, _neowCondition,
-            _firstRewardCondition, _firstEncounterCondition, _initialPrefixPlan, _rewardsOracle?.ReplayCopy(), _publicRewardCondition, _publicCombatCondition, _expectedPublicEvidence, _publicOpeningEncounterCondition, _neowCardCondition, _publicResourceCondition, _slugIntentCondition, _weakFormationCondition, _publicReshuffleCondition, _monsterBranchCondition);
+            _firstRewardCondition, _firstEncounterCondition, _initialPrefixPlan, _rewardsOracle?.ReplayCopy(), _publicRewardCondition, _publicCombatCondition, _expectedPublicEvidence, _publicOpeningEncounterCondition, _neowCardCondition, _publicResourceCondition, _slugIntentCondition, _weakFormationCondition, _publicReshuffleCondition, _monsterBranchCondition, _weakEncounterCondition);
     }
     internal bool HasConditionedWordFailure => _conditionedWordFailure is not null;
     internal InvalidOperationException? ConditionedWordError => _conditionedWordFailure is { } original
@@ -306,6 +320,7 @@ internal sealed class NativeLabelTape
         _publicReshuffleProposal?.AttachHypotheticalRun(run);
         _monsterBranchProposal?.AttachHypotheticalRun(run);
         _publicOpeningEncounterProposal?.AttachHypotheticalRun(run);
+        _weakEncounterProposal?.AttachHypotheticalRun(run);
         _neowCardProposal?.AttachHypotheticalRun(run);
     }
 
@@ -398,6 +413,7 @@ internal sealed class NativeLabelTape
         RequireSuccessfulConditionedWords();
         _neowCardProposal?.ValidateCompletion();
         _publicOpeningEncounterProposal?.ValidateCompletion();
+        _weakEncounterProposal?.ValidateCompletion();
         _publicRewardProposal?.ValidateCompletion();
         _publicResourceProposal?.ValidateCompletion();
         _publicCombatProposal?.ValidateCompletion();
@@ -428,6 +444,7 @@ internal sealed class NativeLabelTape
         if (_initialPrefixPlan is not null && !_initialPrefixPlan.AcceptCorrection(nextWord)) return false;
         if (_firstEncounterPlan is not null && !_firstEncounterPlan.AcceptCorrection(nextWord)) return false;
         if (_publicOpeningEncounterProposal is not null && !_publicOpeningEncounterProposal.AcceptCorrection(nextWord)) return false;
+        if (_weakEncounterProposal is not null && !_weakEncounterProposal.AcceptCorrection(nextWord)) return false;
         if (_neowPlan is not null && !_neowPlan.AcceptCorrection(nextWord)) return false;
         if (_neowCardProposal is not null && !_neowCardProposal.AcceptCorrection(nextWord)) return false;
         if (_firstRewardPlan is not null && !_firstRewardPlan.AcceptCorrection(nextWord)) return false;
@@ -588,6 +605,7 @@ internal sealed class NativeLabelTape
 
     private IDisposable? BeginNormalEncounterGeneration(LabelNormalEncounterContext context)
     {
+        if (_weakEncounterProposal is not null) return _weakEncounterProposal.BeginGeneration(context);
         if (_publicOpeningEncounterProposal is not null) return _publicOpeningEncounterProposal.BeginGeneration(context);
         if (_firstEncounterCondition is null) return null;
         if (_firstEncounterPlan is not null)

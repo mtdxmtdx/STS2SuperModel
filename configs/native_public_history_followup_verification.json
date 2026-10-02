@@ -4,7 +4,7 @@
   "source_commit": "be97e50",
   "prior_unchanged": true,
   "public_observation_bytes_unchanged": true,
-  "sampler_probe_not_rerun": true,
+  "sampler_probe_not_rerun": false,
   "formal_training": false,
   "new_optimizer_steps": 0,
   "new_production_rows": 0,
@@ -49,5 +49,147 @@
     "Previous v6 1689/Core4493+3 and reused-eight results remain pinned to their documented historical sources",
     "No new full aggregate or throughput/breadth assertion for this followup",
     "Finite later-encounter, all-public-map-slice and whole-event-permutation accelerators remain separate work in progress"
-  ]
+  ],
+  "bounded_localization": {
+    "role": "single previously inspected root, earliest mismatch localization only",
+    "source_commit": "be97e50c7ba6293164e30b46b2dd40b83219a3bd",
+    "source_draw_seed": 11004,
+    "public_input_equals_v6": true,
+    "prior_unchanged": true,
+    "attempts": 8,
+    "proposal_statuses": {
+      "component_budget_exhausted": 5,
+      "public_constraint_mismatch": 3
+    },
+    "first_mismatch_or_exhaustion": {
+      "Native initial_prefix component exhausted its complete-trial budget": 5,
+      "Published run evidence differs at event 129 (PublicOptionsObserved)": 1,
+      "Published run evidence differs at event 125 (PublicMapObserved)": 2
+    },
+    "accepted_worlds": 0,
+    "settled_worlds": 0,
+    "allocated_worlds": 7,
+    "engine_errors": 0,
+    "elapsed_seconds": 11.6665715,
+    "budget_expired": false,
+    "new_production_rows": 0,
+    "new_optimizer_steps": 0,
+    "new_unique_roots": 0,
+    "interpretation": "Two nonexhausted candidates first differ at the second visible map; one matches that map and first differs at event options. These observations localize two factors but estimate no population rate. Native earlier history matched until each stated event.",
+    "artifacts": [
+      {
+        "path": "artifacts/reports/hybrid-v7/first-mismatch-predeclaration.json",
+        "bytes": 694,
+        "sha256": "07a81440cae27675468aaf8db57e7c663ab94c0420ee75fa35be3b3eb647798e"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/first-mismatch-request.jsonl",
+        "bytes": 773,
+        "sha256": "557da2a6cb2b5ad464b661c8b76edb4e1f07ba5d6677de9c5160c8b1fc97c340"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/first-mismatch-response.jsonl",
+        "bytes": 604284,
+        "sha256": "f1646e26dd034ebb6bae13c814440cd66d53768b03118e01b51a836b0e98989d"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/first-mismatch-resources.json",
+        "bytes": 91,
+        "sha256": "09f6aa3dddca437c8d6f36abfb6165073375b6d97a23fcae7450407c836ad691"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/first-mismatch-analysis.json",
+        "bytes": 1141,
+        "sha256": "7f16a411e7fd3900421c897668c4fca399797e8de76128810aa8dbcd53318780"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/first-mismatch-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/run_first_mismatch.py",
+        "bytes": 1950,
+        "sha256": "5bbd8c84728fc72eae1d2c094113ed381bda639ccd9440ae2176b1de07fbc467"
+      }
+    ]
+  },
+  "new_broad_or_eight_root_probe": false,
+  "weak_encounter_sequence": {
+    "status": "FOCUSED_OWNING_INTEGRATION_VERIFIED",
+    "source_commit": "f2024cc4427ce55c8a9199b19d37b99fb29963cc",
+    "sampler_version": "nosl-native-rewards-state-tape-conditional-v7-public-evidence-v1",
+    "prior_unchanged": true,
+    "helper_commit": "f8e836081b370bf9413cc917129e546a93b48ac4",
+    "helper_doc_correction": "e8a348f06537227815b9d0d0458f859352580151",
+    "helper_audit_passed": 12,
+    "adjacent_audit_passed": 35,
+    "initial_owning_run": {
+      "passed": 42,
+      "failed": 2,
+      "failure_reason": "Two stale version assertions still expected v6; no runtime failure"
+    },
+    "corrected_opening_suite_passed": 3,
+    "final_constructor_metadata_and_lifecycle_passed": 6,
+    "independent_reviews": [
+      "Exact sequence law and public normal-slot certificate: no functional blocker; Unknown Treasure wording corrected",
+      "Owning tape/source/dataset integration: no production bug found; stale version assertion fixed; constructor overlap, disabled conditioning, hybrid metadata and legacy proposal omission checks pass"
+    ],
+    "artifacts": [
+      {
+        "path": "artifacts/reports/hybrid-v7/weak-sequence-audit.trx",
+        "bytes": 18961,
+        "sha256": "f36db36d0d2df199e0ed7d5f5c85c6eb808a91f6b9c399518b7a5eaffbb482bf"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/weak-sequence-adjacent-audit.trx",
+        "bytes": 52316,
+        "sha256": "9fd1810a253d19b0d8893eac884ddf32545a6a3e0fe0836d237c895c9eb1684d"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/weak-sequence-adjacent-audit.log",
+        "bytes": 495,
+        "sha256": "ec0f2acb06908533d7d500226d53c2bee6adcb1fdd6f4725affca3da90fd83df"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/weak-sequence-integration.trx",
+        "bytes": 70014,
+        "sha256": "c85cdf4f40b6a311bc7db187ec8dcdf00b43efcb6384349dc943e6fef4634a57"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/weak-sequence-version-final.trx",
+        "bytes": 6050,
+        "sha256": "f05fcf765d7601513811b37c4334fd796b2cfd222d7daf9e61dbe4e76e9c0288"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/weak-sequence-contract-final.trx",
+        "bytes": 10278,
+        "sha256": "e27b1951c8acf22ae38e1113ef120b9aa5bc882f1b5c9f611020b2a6b1ecdad6"
+      },
+      {
+        "path": "artifacts/hybrid-v7-sequence-build.log",
+        "bytes": 1737,
+        "sha256": "3ed714347631395af07f5a0e863e20b0b2cc7904e5a51a7e165989c2a32cb3c5"
+      },
+      {
+        "path": "artifacts/hybrid-v7-sequence-test.log",
+        "bytes": 3157,
+        "sha256": "57acc0213a902d7deb17b826d2d79e535ada22b25e23f6db51b38537faad3d8c"
+      },
+      {
+        "path": "artifacts/hybrid-v7-sequence-version-final.log",
+        "bytes": 1501,
+        "sha256": "020434f770fb3807b4eed18d0495f986dae8d8b6b711c73465f72954e29e4036"
+      },
+      {
+        "path": "artifacts/hybrid-v7-sequence-contract-final.log",
+        "bytes": 1503,
+        "sha256": "ca5522d4c47696161cb8e07ad4fff6fd89dea3ae6abb25421cd4b8eb222b5427"
+      }
+    ],
+    "new_production_rows": 0,
+    "new_optimizer_steps": 0,
+    "new_full_aggregate_completed": false,
+    "new_breadth_probe_completed": false
+  }
 }

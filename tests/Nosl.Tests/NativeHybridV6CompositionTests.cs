@@ -34,8 +34,25 @@ public sealed class NativeHybridV6CompositionTests
         var reshuffles = NativePublicReshuffleCondition.Create(root);
         var branches = NativePublicMonsterBranchIntentCondition.Create(root);
         NativePublicWeakSlimeFormationCondition.TryCreate(root, prior, out var formation, out _);
+        Assert.True(NativePublicWeakEncounterSequenceCondition.TryCreate(root, prior, out var encounters, out var encounterReason), encounterReason);
         var source = new NativeTapeReplaySource(root, prior);
-        Assert.Equal("owned-native-rewards-state-tape-conditional-v6-public-evidence-v1", source.PosteriorProfile);
+        Assert.True(source.UsesConditionalWeakEncounterSequence);
+        Assert.False(source.UsesConditionalPublicOpeningEncounter);
+        Assert.False(source.UsesConditionalFirstEncounter);
+        Assert.Equal(encounters!.Targets.Count, source.WeakEncounterTargets);
+        Assert.Equal(encounters.PrefixLength, source.WeakEncounterPrefixLength);
+        if (seed == 11002)
+        {
+            Assert.True(NativePublicOpeningEncounterCondition.TryCreate(root, prior, out var opening, out _));
+            Assert.Throws<ArgumentException>(() => NativeLabelTape.ForDeclaredPrior(prior, recipe,
+                weakEncounterCondition: encounters, publicOpeningEncounterCondition: opening));
+            Assert.Throws<ArgumentException>(() => NativeLabelTape.ForDeclaredPrior(
+                prior with { SchemaVersion = NativeTapePrior.Version }, recipe, weakEncounterCondition: encounters));
+            var reference = new NativeTapeReplaySource(root, prior, enableConditioning: false);
+            Assert.False(reference.UsesConditionalWeakEncounterSequence);
+            Assert.False(reference.UsesPrimitiveConditioning);
+        }
+        Assert.Equal("owned-native-rewards-state-tape-conditional-v7-public-evidence-v1", source.PosteriorProfile);
         Assert.Equal(reshuffles.EligibleShuffleCount, source.PublicReshuffleTargets);
         Assert.Equal(branches.EligibleBranchCount, source.PublicMonsterBranchTargets);
         Assert.Equal(formation is not null, source.UsesConditionalWeakFormation);
@@ -52,10 +69,12 @@ public sealed class NativeHybridV6CompositionTests
             weakFormationCondition: formation,
             publicReshuffleCondition: reshuffles.EligibleShuffleCount > 0 ? reshuffles : null,
             monsterBranchCondition: branches.EligibleBranchCount > 0 ? branches : null,
-            expectedPublicEvidence: root.PublicEvidence);
+            expectedPublicEvidence: root.PublicEvidence, weakEncounterCondition: encounters);
         await using var world = await NativeRunWorld.OpenLabelTapeAsync(prior.Execution, hypothetical, tape);
         Assert.NotNull(world);
         tape.ValidateProposalCompletion();
+        Assert.Equal(encounters.Targets.Count, tape.ConditionedWeakEncounters);
+        Assert.Equal(encounters.Envelope, tape.WeakEncounterEnvelope);
         Assert.Equal(reshuffles.EligibleShuffleCount, tape.ConditionedReshuffles);
         Assert.Equal(branches.EligibleBranchCount, tape.ConditionedMonsterBranches);
         Assert.Equal(formation is not null ? 1 : 0, tape.ConditionedWeakFormations);

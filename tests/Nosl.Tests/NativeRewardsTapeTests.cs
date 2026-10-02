@@ -218,6 +218,14 @@ public sealed class NativeRewardsTapeTests
         Assert.False(audit.GetProperty("source_seed_conditioning").GetBoolean());
         Assert.False(audit.GetProperty("trainable").GetBoolean());
         Assert.Single(audit.GetProperty("posterior_proposals").EnumerateArray());
+        Assert.True(audit.GetProperty("public_weak_encounter_sequence_eligible").GetBoolean());
+        Assert.InRange(audit.GetProperty("public_weak_encounter_targets").GetInt32(), 1, 3);
+        Assert.InRange(audit.GetProperty("public_weak_encounter_prefix_length").GetInt32(), 1, 3);
+        Assert.All(audit.GetProperty("posterior_proposals").EnumerateArray(), proposal =>
+        {
+            Assert.InRange(proposal.GetProperty("conditionedWeakEncounters").GetInt32(), 0, 3);
+            Assert.False(string.IsNullOrWhiteSpace(proposal.GetProperty("weakEncounterEnvelope").GetString()));
+        });
         foreach (var action in record.GetProperty("targets").GetProperty("actions").EnumerateArray())
         {
             Assert.Equal(1, action.GetProperty("allocated_worlds").GetInt32());
