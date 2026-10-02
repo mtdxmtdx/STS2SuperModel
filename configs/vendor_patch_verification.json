@@ -1,12 +1,13 @@
 {
   "schema": "nosl.vendor-patch-reconstruction.v1",
   "upstream_commit": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
-  "main_patch_sha256": "e0096df84742be6ff167696863f28ba1aa195547d7c84219de860da06fd8b985",
+  "main_patch_sha256": "9f39580ad9001d284a11212f851a2e0328647edb77a6973b97c02e90a2aaa396",
   "map_patch_sha256": "fad7d6a7e85ea44901da2b01227f972926a116af5398686a2628326002bcdc08",
   "tracked_source_and_test_files_verified": 2227,
   "main_patch_files": [
     "src/Sts2Sim.Core/Combat/CombatEngine.cs",
     "src/Sts2Sim.Core/Combat/CombatState.Clone.cs",
+    "src/Sts2Sim.Core/Combat/CombatState.cs",
     "src/Sts2Sim.Core/Combat/ICombatObserver.cs",
     "src/Sts2Sim.Core/Commands/CardCmd.cs",
     "src/Sts2Sim.Core/Commands/CardPileCmd.cs",
@@ -21,6 +22,7 @@
     "src/Sts2Sim.Core/Models/Cards/Fetch.cs",
     "src/Sts2Sim.Core/Models/Cards/Guilty.cs",
     "src/Sts2Sim.Core/Models/Cards/ThrummingHatchet.cs",
+    "src/Sts2Sim.Core/Models/Monsters/TwoTailedRat.cs",
     "src/Sts2Sim.Core/Models/Powers/NightmarePower.cs",
     "src/Sts2Sim.Core/Rooms/CombatRoom.cs",
     "src/Sts2Sim.Core/Runs/RunDriver.cs",
@@ -29,6 +31,24 @@
   ],
   "map_patch_file": "src/Sts2Sim.Core/Map/MapPathPruning.cs",
   "all_bytes_match": true,
+  "reconstructed_file_set_matches": true,
+  "source_file_manifest_sha256": "0c3374b1105951fca12c70360446a5b31f380bd2e1adbbbaf9c8060e95fa92b9",
   "remote_writes": false,
-  "note": "Reconstructed fresh local copy from pinned git archive, applied both documented patches, compared every tracked vendored Core/Core.Tests file byte-for-byte."
+  "note": "Reconstructed a fresh local copy from the pinned read-only git archive, applied both documented patches, and compared the complete tracked vendored Core/Core.Tests file set byte-for-byte, including both native encounter read-only accessors.",
+  "source_file_manifest_path": "artifacts/native-encounter-proof-200-v7/vendor-reconstructed-manifest.json",
+  "vendor_core_suite": {
+    "passed": 4480,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4483,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants",
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10"
+    ],
+    "build_artifacts": "artifacts/native-encounter-extension-build",
+    "log_sha256": "fb88ccf496b5a5fbcd7245a7b082d8c16cf555634f28194ea5984984f3927dca",
+    "trx_sha256": "6ea86b27efae4859c27de71dabfbff5d16547b3ce9513a9ac320896d3455bf44"
+  },
+  "independent_packaging_audit": "passed_file_set_bytes_manifest_patch_hashes_and_accessor_only_diff"
 }

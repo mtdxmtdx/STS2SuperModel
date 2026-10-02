@@ -1,0 +1,219 @@
+{
+  "schema_version": "nosl.native-belief-prototype-report.v4",
+  "status": "bounded_native_development_evidence_not_formal_labels",
+  "posteriorProfiles": [
+    "native-public-entry-reviewed-memory-exchangeable-v2",
+    "native-public-entry-reviewed-memory-conditional-choice-v1",
+    "native-public-entry-generation-potions-exchangeable-v1",
+    "native-public-entry-reviewed-encounters-exchangeable-v1",
+    "native-public-entry-reviewed-encounters-conditional-choice-v1"
+  ],
+  "posteriorImplementation": "nosl-belief-dispatch-v7",
+  "sourceOptions": {
+    "runs": 100,
+    "maxFloors": 12,
+    "maxRoots": 200,
+    "maxRootsPerCombat": 8,
+    "decisionStride": 1,
+    "maxDecisionsPerRun": 10000,
+    "seedPrefix": "nosl-m5-natural-proof-20261001",
+    "sourceRunPrefix": "natural-proof20261001",
+    "continuationPolicyId": "nosl-public-rules-v1"
+  },
+  "teacherOptions": {
+    "mode": "T0",
+    "continuationPolicyId": "nosl-public-rules-v1",
+    "explorationSeeds": [],
+    "evaluationSeeds": [
+      101,
+      102
+    ],
+    "maxDecisions": 200,
+    "treeDepth": 4,
+    "maxPosteriorAttempts": 256,
+    "uctExploration": 10,
+    "formalLabels": false
+  },
+  "naturalSourceRoots": 200,
+  "naturalLabeledRoots": 200,
+  "rawUnlabeledRoots": 0,
+  "worldsAllocated": 2692,
+  "worldsCompleted": 2692,
+  "sourceDistribution": {
+    "natural": 200,
+    "constructed": 0
+  },
+  "encounterDistribution": {
+    "ToadpolesWeak": 16,
+    "SeapunkWeak": 16,
+    "SludgeSpinnerWeak": 24,
+    "HauntedShipNormal": 16,
+    "ShrinkerBeetle": 24,
+    "SlimesWeak": 16,
+    "FuzzyWurmCrawler": 24,
+    "CubexConstruct": 8,
+    "ShrinkerBeetleAndFuzzyWurmCrawler": 8,
+    "LoneNibbit": 8,
+    "VineShambler": 8,
+    "CorpseSlugsWeak": 16,
+    "TwoTailedRatsNormal": 8,
+    "SkulkingColonyElite": 6,
+    "RubyRaiders": 2
+  },
+  "unsupportedPosteriorReasons": {},
+  "comparison": {
+    "baseline_dispatcher": "nosl-belief-dispatch-v6",
+    "baseline_supported_roots": 174,
+    "baseline_worlds_completed": 2222,
+    "unchanged_public_inputs": 200,
+    "unchanged_source_traces": 200,
+    "unchanged_previously_supported_target_payloads": 174,
+    "new_roots": 26,
+    "new_candidates": 235,
+    "new_worlds_completed": 470,
+    "request_identical_to_baseline": true,
+    "baseline_response_sha256": "d213030e33d4c4ee69a26eda182b4612de45ebb9be45aa5694d19bb5ec97088e"
+  },
+  "new_encounters": {
+    "CorpseSlugsWeak": 16,
+    "TwoTailedRatsNormal": 8,
+    "RubyRaiders": 2
+  },
+  "new_profiles": {
+    "native-public-entry-reviewed-encounters-exchangeable-v1": 24,
+    "native-public-entry-reviewed-encounters-conditional-choice-v1": 2
+  },
+  "terminal_kinds": {
+    "Win": 2096,
+    "Loss": 596
+  },
+  "diagnostics": {
+    "hpEventDiagnosticsComplete": 2692,
+    "inventorySnapshotsComplete": 2692,
+    "resourceProvenanceComplete": 2692,
+    "permanentChangesComplete": 2692,
+    "settlementComplete": 2692
+  },
+  "target_quality": {
+    "complete": 632,
+    "objective_value_unresolved": 714
+  },
+  "limits": {
+    "formal_labels": false,
+    "trainable": false,
+    "fit_or_training_executed": false,
+    "new_source_seed_search": false,
+    "rat_import": "turn1, three initial rats only",
+    "slug_import": "complete normal move history, plus current-player-turn allied death; earlier-turn or enemy-phase allied deaths remain unsupported",
+    "ruby_formation": "one each Brute, Axe, Assassin; other archetypes rejected",
+    "new_encounter_generation_potions": "held AttackPotion/PowerPotion priors rejected pending separate joint closure evidence",
+    "owned_continuation": "native deaths/stuns/summons and settlement execute normally, including unsupported future re-import boundaries"
+  },
+  "verification": {
+    "targeted_new_family_cases": 11,
+    "targeted_new_and_historical_choice_suite": {
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    "full_nosl_suite": {
+      "passed": 1059,
+      "failed": 0,
+      "skipped": 0
+    },
+    "independent_implementation_audit": "passed_source_inspection_and_complete_retained_artifact_comparison",
+    "protocol_smoke": "PROTOCOL PASS reset=real_silent_a10 sample=public_invariant stale=rejected decisions=2 result=win final_hp=70 reward_choices=0 policy=separate_process",
+    "frozen_default_worker_binaries_modified": false,
+    "full_vendor_core_suite": {
+      "passed": 4480,
+      "failed": 0,
+      "skipped": 3,
+      "total": 4483,
+      "skipped_opt_in_cases": [
+        "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants",
+        "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+        "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10"
+      ],
+      "build_artifacts": "artifacts/native-encounter-extension-build",
+      "log_sha256": "fb88ccf496b5a5fbcd7245a7b082d8c16cf555634f28194ea5984984f3927dca",
+      "trx_sha256": "6ea86b27efae4859c27de71dabfbff5d16547b3ce9513a9ac320896d3455bf44"
+    },
+    "vendor_packaging": "2227 tracked Core/Core.Tests files and exact file set reconstruct byte-for-byte from pinned upstream plus both patches; independently audited"
+  },
+  "artifacts": {
+    "request.jsonl": {
+      "path": "artifacts/native-encounter-proof-200-v7/request.jsonl",
+      "sha256": "5746dd48e470b03376c91d6b9f834e77c0227f3daa8c0ac9fddbffbeaac7136f"
+    },
+    "response.jsonl": {
+      "path": "artifacts/native-encounter-proof-200-v7/response.jsonl",
+      "sha256": "078038b6fc362fa299a4532457c7bdff42fc7068e15fa2ad41a16eb934956004"
+    },
+    "targeted-tests.log": {
+      "path": "artifacts/native-encounter-proof-200-v7/targeted-tests.log",
+      "sha256": "9124d041b8eec278d3664762c0e5d5cd2f8dd808c25ea1cb7b64662d78e09972"
+    },
+    "build.log": {
+      "path": "artifacts/native-encounter-proof-200-v7/build.log",
+      "sha256": "01add50845b27c082a113485127d2b65226f22558d07d47d3af399bbb05692e9"
+    },
+    "full-tests.log": {
+      "path": "artifacts/native-encounter-proof-200-v7/full-tests.log",
+      "sha256": "7c8b506174c94f5b3a8667cd18673ad2e7b981eac2fa3e900d7579a06b2bc8c8"
+    },
+    "protocol-smoke.log": {
+      "path": "artifacts/native-encounter-proof-200-v7/protocol-smoke.log",
+      "sha256": "9ce1d668196198c294b8e085e0f94d851ddfc79b25b75112be8521ec92410344"
+    },
+    "protocol-smoke.py": {
+      "path": "artifacts/native-encounter-proof-200-v7/protocol-smoke.py",
+      "sha256": "9f5a828d9b4c73208ec2408d6d9cb3f09cd3410f10fb044b90f0f6c48f34332f"
+    },
+    "protocol-trace.json": {
+      "path": "artifacts/native-encounter-proof-200-v7/protocol-trace.json",
+      "sha256": "da0c9122dde196c88daf2579cac42392c3f4e485a483c2ee85d2fafd3f3c924f"
+    },
+    "verify-evidence.py": {
+      "path": "artifacts/native-encounter-proof-200-v7/verify-evidence.py",
+      "sha256": "b14dd953e4419a1bc24dfa504afc22ae9238580362c78b21541b8006a0788991"
+    },
+    "verification.json": {
+      "path": "artifacts/native-encounter-proof-200-v7/verification.json",
+      "sha256": "d0c11974294df71b42d6e9e3081bd62b18359dcce1979c53980a4a7d89192dfa"
+    },
+    "independent-audit.json": {
+      "path": "artifacts/native-encounter-proof-200-v7/independent-audit.json",
+      "sha256": "74869ae8eb7282c27d21e6c79a7c43fbf0012d9c43f1e31fe261be0c7e902ba8"
+    },
+    "vendor-core-tests.log": {
+      "path": "artifacts/native-encounter-proof-200-v7/vendor-core-tests.log",
+      "sha256": "fb88ccf496b5a5fbcd7245a7b082d8c16cf555634f28194ea5984984f3927dca"
+    },
+    "vendor-core-tests.trx": {
+      "path": "artifacts/native-encounter-proof-200-v7/vendor-core-tests.trx",
+      "sha256": "6ea86b27efae4859c27de71dabfbff5d16547b3ce9513a9ac320896d3455bf44"
+    },
+    "vendor-reconstructed-manifest.json": {
+      "path": "artifacts/native-encounter-proof-200-v7/vendor-reconstructed-manifest.json",
+      "sha256": "0c3374b1105951fca12c70360446a5b31f380bd2e1adbbbaf9c8060e95fa92b9"
+    },
+    "vendor-patch-reconstruction.json": {
+      "path": "artifacts/native-encounter-proof-200-v7/vendor-patch-reconstruction.json",
+      "sha256": "c8b98bc77b7fe10eaf28564f477f6b9efe898ac95d2462f3cc7b7e69e5c30563"
+    },
+    "verify-vendor-packaging.py": {
+      "path": "artifacts/native-encounter-proof-200-v7/verify-vendor-packaging.py",
+      "sha256": "fa78848fd262ccee858b6d60a36818864de001b9ce8634c889c3063b79393d8c"
+    },
+    "vendor-packaging-verification.json": {
+      "path": "artifacts/native-encounter-proof-200-v7/vendor-packaging-verification.json",
+      "sha256": "cd6a2c6d4c7505764e3297fcf4374160584c901a76866b0ff13e48d152763c12"
+    }
+  },
+  "ranking": {
+    "masked_roots": 200,
+    "method": "MASKED_NO_CERTIFIED_UTILITY_SUPPORT",
+    "pairwise_labels": 0
+  },
+  "implementation_commit": "6586b46"
+}

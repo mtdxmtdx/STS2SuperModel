@@ -29,7 +29,7 @@ public sealed class NativeCarryInExtensionTests
             await using (imported)
             {
                 // Preserve the frozen v2 family regression; the potion increment has its own cohort proof.
-                if (imported.NativeCertificate!.HasGenerationPotionPrior) return;
+                if (imported.NativeCertificate!.HasGenerationPotionPrior || imported.NativeCertificate.HasEncounterExtension) return;
                 accepted++; encounters.Add(root.Encounter);
                 var entry = root.PublicRoot.Observation!.History[1];
                 Assert.Equal(NativeEntryAssets.EventKind, entry.Kind);

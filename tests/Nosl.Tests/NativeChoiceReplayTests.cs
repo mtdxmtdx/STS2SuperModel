@@ -15,11 +15,14 @@ public sealed class NativeChoiceReplayTests
     public async Task ActualPendingCohortConditionsOwnedOriginsAndPreservesSourceAcrossAllCandidateSettlements()
     {
         var baseline = await NaturalSourceCollector.CollectAsync(Cohort);
-        int stable = 0, pending = 0, blocked = 0, candidates = 0, settled = 0;
+        int stable = 0, pending = 0, deferredToEncounterSuite = 0, candidates = 0, settled = 0;
         bool sly = false, exactShuffle = false;
         var detached = new List<CombatSession>();
         var report = await NaturalSourceCollector.CollectWithNativeBoundaryAsync(Cohort, async (root, boundary) =>
         {
+            // The later encounter extension retains separate fixed-cohort evidence.
+            if (NativeEncounterMemory.Encounters.Contains(root.Encounter))
+            { if (!boundary.IsStable) deferredToEncounterSuite++; return; }
             if (boundary.IsStable)
             {
                 try { await using var old = CombatSession.ImportNative(root, boundary);
@@ -31,9 +34,8 @@ public sealed class NativeChoiceReplayTests
             try { imported = await CombatSession.ImportNativeAsync(root, boundary); }
             catch (NotSupportedException e)
             {
-                Assert.Equal("native_certificate:unreviewed_encounter", e.Message);
-                Assert.Contains(root.Encounter, new[] { "CorpseSlugsWeak", "TwoTailedRatsNormal" });
-                blocked++; return;
+                Assert.Fail("Previously supported native choice regressed: " + e.Message);
+                return;
             }
             await using (imported)
             {
@@ -122,7 +124,7 @@ public sealed class NativeChoiceReplayTests
         {
             Assert.All(report.Runs, r => Assert.Null(r.Error));
             Assert.Equal(PublicJson.Serialize(baseline), PublicJson.Serialize(report));
-            Assert.Equal(145, stable); Assert.Equal(5, pending); Assert.Equal(2, blocked);
+            Assert.Equal(145, stable); Assert.Equal(5, pending); Assert.Equal(2, deferredToEncounterSuite);
             Assert.Equal(19, candidates); Assert.Equal(38, settled);
             Assert.True(sly); Assert.True(exactShuffle);
             foreach (var session in detached)

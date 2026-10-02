@@ -62,6 +62,12 @@
 +
 +        public void SetNoslRoom(CombatRoom room) { CurrentRoom = room; BaseRoom = room; }
 +        public void SetNoslRng(RunRngSet rng) => Rng = rng;
+--- a/src/Sts2Sim.Core/Combat/CombatState.cs
++++ b/src/Sts2Sim.Core/Combat/CombatState.cs
+@@ -44,0 +45,3 @@
++    // Read-only public-history certificate check for future native summon sorting.
++    internal bool NoslEncounterSlotsMatch(params string[] slots) => _encounterSlots.SequenceEqual(slots);
++
 --- a/src/Sts2Sim.Core/Combat/ICombatObserver.cs
 +++ b/src/Sts2Sim.Core/Combat/ICombatObserver.cs
 @@ -17,0 +18,5 @@
@@ -190,6 +196,12 @@
 +    // Public-origin effect history, exposed without identity or private future state.
 +    internal int? NoslPlayedOnTurnNumber => _playedOnTurnNumber;
 +
+--- a/src/Sts2Sim.Core/Models/Monsters/TwoTailedRat.cs
++++ b/src/Sts2Sim.Core/Models/Monsters/TwoTailedRat.cs
+@@ -15,0 +16,3 @@
++
++    // Read-only bridge for NOSL's public-history certificate; no rule mutation.
++    internal int NoslTurnsUntilSummonable => _turnsUntilSummonable;
 --- a/src/Sts2Sim.Core/Models/Powers/NightmarePower.cs
 +++ b/src/Sts2Sim.Core/Models/Powers/NightmarePower.cs
 @@ -13,0 +14,4 @@

@@ -17,7 +17,11 @@ namespace Nosl.Worker;
 internal sealed record NativeBeliefCertificate(string Encounter, string[] EntryRelics, bool HasGenerationPotionPrior)
 {
     internal const string Profile = "native-public-entry-reviewed-memory-exchangeable-v2";
-    internal string StableProfile => HasGenerationPotionPrior ? NativeGenerationPotionMemory.Profile : Profile;
+    internal bool HasEncounterExtension => NativeEncounterMemory.Encounters.Contains(Encounter);
+    internal string StableProfile => HasEncounterExtension ? NativeEncounterMemory.Profile
+        : HasGenerationPotionPrior ? NativeGenerationPotionMemory.Profile : Profile;
+    internal string ChoiceProfile => HasEncounterExtension ? NativeEncounterMemory.ChoiceProfile
+        : BeliefSampler.NativeConditionalChoiceProfile;
     internal static readonly string[] Cards = ["StrikeSilent","DefendSilent","Neutralize","Survivor","AscendersBane","Acrobatics","Backflip","Prepared","ThinkingAhead","DeadlyPoison","Slimed","CloakAndDagger","DaggerThrow","Dash","LegSweep","Blur","DodgeAndRoll","BladeDance","PoisonedStab","Slice","NoxiousFumes","DaggerSpray","Footwork","Shiv",
         "SuckerPunch","Untouchable","Reflex","Tactician","Snakebite","Expose","LeadingStrike","Speedster","Skewer","Dazed"];
     private static readonly string[] Relics = ["RingOfTheSnake","BoomingConch","LavaRock","FishingRod","LeadPaperweight","WingedBoots","Pomander","BoneTea","RegalPillow","WarPaint"];
@@ -33,7 +37,7 @@ internal sealed record NativeBeliefCertificate(string Encounter, string[] EntryR
         { if (!condition) throw new NotSupportedException("native_certificate:" + reason); }
         Require(boundary.State.RunState is RunState && !boundary.State.IsProjection, "not_actual_native_run");
         Require(boundary.IsStable && boundary.HistoryComplete && root.PublicRoot.Status == "player_decision", "stable_complete_history_required");
-        Require(NativeMonsterMemory.Encounters.Contains(root.Encounter), "unreviewed_encounter");
+        Require(NativeMonsterMemory.Encounters.Contains(root.Encounter) || NativeEncounterMemory.Encounters.Contains(root.Encounter), "unreviewed_encounter");
         Require(boundary.Room.EncounterName == root.Encounter && boundary.Room.RoomType == NativeMonsterMemory.RoomTypeFor(root.Encounter)
             && root.RoomType == boundary.Room.RoomType.ToString(), "room_mismatch");
         Require(boundary.State.Players.Count == 1 && boundary.State.CurrentSide == CombatSide.Player && !boundary.State.IsPlayerExtraTurn,
@@ -66,12 +70,16 @@ internal sealed record NativeBeliefCertificate(string Encounter, string[] EntryR
         Require(boundary.StartPotions.All(AllowedPotion), "unreviewed_entry_potion");
         Require(NativeGenerationPotionMemory.Untouched(publicNow), "generation_potion_already_used");
         bool generationPrior = boundary.StartPotions.Any(NativeGenerationPotionMemory.IsGenerationPotion);
+        // Generation descendants interacting with stun/summon families need their
+        // own joint closure review. Ordinary held potions remain fully available.
+        Require(!NativeEncounterMemory.Encounters.Contains(root.Encounter) || !generationPrior,
+            "encounter_generation_potion_closure_unreviewed");
         Require(generationPrior || !publicNow.Potions.Any(NativeGenerationPotionMemory.IsGenerationPotion), "generation_potion_entry_required");
         Require(!generationPrior || NativeGenerationPotionMemory.PoolsMatch(player), "generation_potion_pool_changed");
         var entryRelics = boundary.InitialAssets.Relics.Select(PublicJson.Read<PublicRelic>).ToArray();
         Require(entryRelics.All(AllowedRelic), "unreviewed_entry_relic");
         Require(entryRelics.Select(r => r.Id).SequenceEqual(publicNow.Relics), "entry_relic_mismatch");
-        Require(AllCurrentPublicStateAllowed(publicNow), "unreviewed_current_state");
+        Require(AllCurrentPublicStateAllowed(publicNow, root.Encounter), "unreviewed_current_state");
         Require(NativeMonsterMemory.Matches(boundary.State, boundary.Knowledge, root.Encounter, publicNow), "monster_history_mismatch");
         Require(NativePowerMemory.Matches(boundary.State, boundary.Knowledge, publicNow), "power_history_mismatch");
         return new(root.Encounter, publicNow.Relics.ToArray(), generationPrior);
@@ -82,7 +90,7 @@ internal sealed record NativeBeliefCertificate(string Encounter, string[] EntryR
         var packet = session.Observe();
         return packet.Status == "player_decision" && packet.Observation is { } o
             && ActualPriorMatches(session.State.Players.Single())
-            && AllCurrentPublicStateAllowed(o) && o.Relics.SequenceEqual(EntryRelics)
+            && AllCurrentPublicStateAllowed(o, Encounter) && o.Relics.SequenceEqual(EntryRelics)
             && NativeGenerationPotionMemory.Untouched(o)
             && (HasGenerationPotionPrior || !o.Potions.Any(NativeGenerationPotionMemory.IsGenerationPotion))
             && (!HasGenerationPotionPrior || NativeGenerationPotionMemory.PoolsMatch(session.State.Players.Single()))
@@ -115,12 +123,13 @@ internal sealed record NativeBeliefCertificate(string Encounter, string[] EntryR
     private static bool AllowedRelic(PublicRelic r) => Relics.Contains(r.Id)
         && r.Details["isWax"] == 0 && r.Details["isMelted"] == 0 && r.Details["stackCount"] == 1
         && (r.Cards?.Length ?? 0) == 0 && r.SelectedModel is null;
-    private static bool AllCurrentPublicStateAllowed(PublicObservation o) =>
+    private static bool AllCurrentPublicStateAllowed(PublicObservation o, string encounter) =>
         o.UnidentifiedDrawCount == 0 && o.Turn >= 1 && o.Ascension == 10
         && o.Relics.Length > 0 && o.Relics[0] == "RingOfTheSnake" && o.Relics.Distinct().Count() == o.Relics.Length
         && o.Potions.All(AllowedPotion)
         && o.Hand.Concat(o.Discard).Concat(o.Exhaust).Concat(o.UnknownDraw.Select(x => x.Card)).Concat(o.KnownDraw.Select(x => x.Card)).All(AllowedCard)
-        && o.Powers.Concat(o.Enemies.SelectMany(x => x.Powers)).All(x => Powers.Contains(x.Id))
+        && o.Powers.Concat(o.Enemies.SelectMany(x => x.Powers)).All(x => Powers.Contains(x.Id)
+            || NativeEncounterMemory.AllowsPower(encounter, x.Id))
         && (o.Pets?.Length ?? 0) == 0 && (o.Orbs?.Length ?? 0) == 0
         && o.RelicStates is { } relicStates && relicStates.Select(r => r.Id).SequenceEqual(o.Relics)
         && relicStates.All(AllowedRelic);

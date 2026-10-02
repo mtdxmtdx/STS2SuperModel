@@ -1,0 +1,49 @@
+{
+  "schema": "nosl.native-v7-admission-verification.v1",
+  "dispatcher": "nosl-belief-dispatch-v7",
+  "old_v6_prepared_rows_verified": {
+    "train": 1,
+    "validation": 1
+  },
+  "same_native_fixture_roots": 12,
+  "certified_roots": 2,
+  "settled_worlds": 18,
+  "live_and_metadata_tests_passed": 12,
+  "new_encounter_live_admission_positive_rows_in_fixture": 0,
+  "new_encounter_profile_checks": "synthetic audit-validator branch probes plus separately reviewed native26 mechanics/certificate/teacher roots; no promotion of prototype records",
+  "independent_python_audit": "cleared after bidirectional encounter/profile mismatch rejection",
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "old_prototype_quarantine_preserved": true,
+  "limitations": [
+    "The known12 fixture still rejects10 roots. The version replay is inspected engineering data, not fresh independent examples.",
+    "An initial artifact-reuse test harness substituted the real protection registry into assertions expecting a synthetic historical alias; two harness assertions failed. The unchanged proper live test setup then passed all12 metadata/live tests. No runtime correction was needed for that harness mismatch."
+  ],
+  "artifacts": {
+    "build.log": {
+      "sha256": "1661357d9f63609aa894c62013d05b90c6f31e38888d4417e3bcaaabe40a626e",
+      "bytes": 1183
+    },
+    "python-no-learning.log": {
+      "sha256": "5ed844244afa9babb219c6ea79b734add59117832486aaa8acbba220fa294fb8",
+      "bytes": 34348
+    },
+    "data.log": {
+      "sha256": "32f2e1637bee3ad3dc991f580fc372fd7c5b27759cbb7ace059ca0f3804331fc",
+      "bytes": 264
+    },
+    "native-admission-live.log": {
+      "sha256": "e22dff97363f3d8c37098640587a1cd4264cc4fefb1f6b876a0e4e8e52009128",
+      "bytes": 111
+    },
+    "fresh-native-response.jsonl": {
+      "sha256": "b448194ef87e9bd89d9020987ce03df99e5ece352c2e7709b869d3b4185fccbb",
+      "bytes": 1621826
+    },
+    "fresh-native-live-test-report.json": {
+      "sha256": "6d71fae761256bb3f9d4811413aa033822a17f75c5a91d105bddb441ae5a40cf",
+      "bytes": 1352087
+    }
+  },
+  "source_head": "9ef76e61680d7ff22b748a786214f0c8aa66e8b9"
+}

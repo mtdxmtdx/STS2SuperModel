@@ -17,7 +17,7 @@
     "evidence_tool_mutation_tests": 16,
     "archived_record_checks": 21180,
     "bounded_hunt_real_integrations": 12,
-    "calibration_evidence_tests_current": 45,
+    "calibration_evidence_tests_current": 46,
     "native_potion_paired_cases": 4,
     "native_potion_independent_root_world_draws": 128,
     "native_potion_selected_endpoints": 256
@@ -39,7 +39,7 @@
       "id": "whole_anchored_five_no_reset",
       "status": "BOUNDED_THE_HUNT_TEMPLATE_INTEGRATED",
       "evidence": "12 real Hunt integrations: paired full baseline/plan outcomes; immutable next-turn deadline; exact observed5HP delay; anchor after prior HP loss; irreversible failure exit; independent hidden replacement",
-      "remaining": "Only the reviewed finite Hunt/no-healing family; arbitrary plans and deployed active student control remain unsupported"
+      "remaining": "Reviewed Hunt and separate finite Regen public controllers have native evidence; arbitrary finite plans and learned active control remain outside the verified templates."
     },
     {
       "id": "exact_eighty_vs_sampling_uncertainty",
@@ -49,9 +49,9 @@
     },
     {
       "id": "settlement_resource_accounting",
-      "status": "ARCHIVED_ACCOUNTING_PASS_EVENT_LEDGER_OPEN",
-      "evidence": "977 targets reproduced,64 unpriced actions masked, prior3 physical integration cases",
-      "remaining": "Healing/resource event provenance; broad permanent-effect integration; updated public boundary"
+      "status": "CURRENT_COMMITTED_LEDGER_AND_NATIVE_EVENTS_VERIFIED",
+      "evidence": "Committed HP/healing/direct adjustments/max-cap, potion use/discard/generation, immutable branch prefixes, complete terminal asset snapshots and all five native forced-event owner lifecycles are verified; see configs/m3_m6_continued_engineering_report.json.",
+      "remaining": "Unreviewed native carry-in content still rejects explicitly; item-specific future resource/permanent/reward values remain uncalibrated rather than missing event instrumentation."
     },
     {
       "id": "formal_profile_admission",
@@ -61,10 +61,10 @@
     }
   ],
   "distinct_nonpreference_blockers": [
-    "Archived engineering corpus has old public-boundary fingerprint; corrected runtime verified separately and pilot corpus must remain re-versioned",
-    "complete HP-event/provenance instrumentation absent",
-    "Bounded opt-in Hunt template now has real success/deadline evidence; general bonus-context student training remains unsupported",
-    "Archived engineering-200 corpus lacks maxHP-change/root-after-HP-loss cases; current v4 post-loss support is reported separately"
+    "Archived engineering-200 corpus has an old public-boundary fingerprint; corrected runtime and later versioned pilot archives are separate evidence",
+    "General native carry-in, generated pending-choice and unreviewed content remain bounded software/evidence coverage limits",
+    "Hunt and finite Regen public context/controller engineering is verified; learned bonus-aware policy quality is later evaluation",
+    "Prior selected-coverage and resource-supervision failures keep enlarged generation and another fit paused"
   ],
   "preference_and_valuation_blockers": [
     "General risk calibration beyond the exact confirmed comparisons remains partial; no unique coefficient or universal 1% budget is claimed",
@@ -74,5 +74,6 @@
   "native_potion_evidence": "docs/POTION_PAIRED_EVIDENCE.md",
   "confirmed_preference_feedback": "configs/preference_feedback_2026_10_02.json",
   "confirmed_hard_preference_cases": 2,
-  "numerically_evaluated_hard_cases": 1
+  "numerically_evaluated_hard_cases": 1,
+  "current_engineering_report": "configs/m3_m6_continued_engineering_report.json"
 }

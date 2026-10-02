@@ -9,6 +9,7 @@
 修改文件：
 - `src/Sts2Sim.Core/Combat/CombatEngine.cs`
 - `src/Sts2Sim.Core/Combat/CombatState.Clone.cs`
+- `src/Sts2Sim.Core/Combat/CombatState.cs`
 - `src/Sts2Sim.Core/Combat/ICombatObserver.cs`
 - `src/Sts2Sim.Core/Commands/CardCmd.cs`
 - `src/Sts2Sim.Core/Commands/CardPileCmd.cs`
@@ -23,6 +24,7 @@
 - `src/Sts2Sim.Core/Models/Cards/Fetch.cs`
 - `src/Sts2Sim.Core/Models/Cards/Guilty.cs`
 - `src/Sts2Sim.Core/Models/Cards/ThrummingHatchet.cs`
+- `src/Sts2Sim.Core/Models/Monsters/TwoTailedRat.cs`
 - `src/Sts2Sim.Core/Models/Powers/NightmarePower.cs`
 - `src/Sts2Sim.Core/Rooms/CombatRoom.cs`
 - `src/Sts2Sim.Core/Runs/RunDriver.cs`
@@ -30,6 +32,8 @@
 - `tests/Sts2Sim.Core.Tests/Combat/PlayerOutcomeObserverTests.cs`
 
 补丁为零上下文 unified diff；从固定上游复现时使用 `git apply --unidiff-zero`。
+
+原生敌人扩展另加两个只读证书检查：TwoTailedRat 的召唤倒计时 getter，以及 CombatState 的遭遇槽位顺序比较。二者仅用于核对公开历史可以确定的状态，不修改游戏规则、随机数或克隆行为。
 
 2026-10-02 已从该固定提交的全新本地归档依次应用两个补丁，对比全部 2,227 个已跟踪 Core／Core.Tests 文件，字节完全一致。验证摘要见 [vendor_patch_verification.json](../../configs/vendor_patch_verification.json)。玩家观察器不会被 clone 复制；结算统计只记录已经发生的数值变化，不进入策略输入，也不重复加入终局代价。详见 [结算事件记录](../../docs/OUTCOME_EVENT_ACCOUNTING.md)。
 

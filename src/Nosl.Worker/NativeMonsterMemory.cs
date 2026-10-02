@@ -27,6 +27,8 @@ internal static class NativeMonsterMemory
 
     internal static bool Matches(CombatState state, PublicKnowledge knowledge, string encounter, PublicObservation observation)
     {
+        if (NativeEncounterMemory.Encounters.Contains(encounter))
+            return NativeEncounterMemory.Matches(state, knowledge, encounter, observation);
         var publications = new Dictionary<int, List<(int Turn, Published Intent)>>();
         int turn = 0;
         foreach (var item in observation.History)

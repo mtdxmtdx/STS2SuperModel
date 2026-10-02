@@ -10,11 +10,25 @@ DATASET_VERSION = "nosl.dataset.native-pilot.v1"
 COLLECTION_VERSION = "nosl.native-pilot-collection.v1"
 ADMISSION_VERSION = "fresh-certified-v1"
 SOURCE_PREFIX = "nosl-native-pilot/"
-PROFILES = {
+LEGACY_PROFILES = {
     "native-public-entry-reviewed-memory-exchangeable-v2",
     "native-public-entry-reviewed-memory-conditional-choice-v1",
     "native-public-entry-generation-potions-exchangeable-v1",
 }
+ENCOUNTER_PROFILES = {
+    "native-public-entry-reviewed-encounters-exchangeable-v1",
+    "native-public-entry-reviewed-encounters-conditional-choice-v1",
+}
+PROFILES = LEGACY_PROFILES | ENCOUNTER_PROFILES
+PROFILES_BY_IMPLEMENTATION = {
+    "nosl-belief-dispatch-v6": LEGACY_PROFILES,
+    "nosl-belief-dispatch-v7": PROFILES,
+}
+CHOICE_PROFILES = {
+    "native-public-entry-reviewed-memory-conditional-choice-v1",
+    "native-public-entry-reviewed-encounters-conditional-choice-v1",
+}
+REVIEWED_ENCOUNTERS = {"CorpseSlugsWeak", "TwoTailedRatsNormal", "RubyRaiders"}
 
 
 def _digest(*parts):
@@ -55,6 +69,8 @@ def validate_native_pilot(record):
     audit, public, targets = record["audit_only"], record["public_input"], record["targets"]
     if audit.get("source_kind") != "natural": reject("native_pilot_source_kind_invalid")
     if not isinstance(audit.get("versions"), dict): reject("versions_missing")
+    if not isinstance(audit.get("posterior_implementation"), str) or not isinstance(audit.get("posterior_profile"), str):
+        reject("native_pilot_certificate_metadata_invalid")
     if record.get("record_kind") != "fresh_native_pilot_teacher_candidate": reject("native_pilot_record_kind_invalid")
     collection = object_keys(audit.get("native_collection"), ["schema_version", "collection_id", "purpose",
         "protection_registry_sha256", "seed_namespace", "export_origin", "distribution_accepted", "formal_training_authorized"], "native collection")
@@ -85,11 +101,13 @@ def validate_native_pilot(record):
             or audit.get("natural_reachability_evidence") != "live_native_collector:" + identifier
             or audit.get("dataset_version") != DATASET_VERSION
             or audit.get("versions", {}).get("native_collection") != COLLECTION_VERSION
-            or audit.get("posterior_profile") not in PROFILES
+            or audit.get("posterior_profile") not in PROFILES_BY_IMPLEMENTATION.get(audit.get("posterior_implementation"), set())
             or audit.get("posterior_implementation") != audit.get("sampler_version")):
         reject("native_pilot_certificate_metadata_invalid")
     # Choice profile, not an inferred public-field spelling, determines import path.
-    choice = audit["posterior_profile"] == "native-public-entry-reviewed-memory-conditional-choice-v1"
+    if (audit["posterior_profile"] in ENCOUNTER_PROFILES) != (audit["encounter"] in REVIEWED_ENCOUNTERS):
+        reject("native_pilot_encounter_profile_mismatch")
+    choice = audit["posterior_profile"] in CHOICE_PROFILES
     if choice != (public["observation"]["choice"] is not None): reject("native_pilot_choice_profile_mismatch")
     if choice and public["observation"]["choice"]["source"] not in ("Survivor", "Prepared", "Acrobatics", "ThinkingAhead", "DaggerThrow"):
         reject("native_pilot_choice_source_unreviewed")
@@ -97,8 +115,8 @@ def validate_native_pilot(record):
     if audit.get("native_import") != expected_import: reject("native_pilot_import_profile_mismatch")
     pinned = {"simulator": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0", "rules": "0.111.0",
         "endpoint": "AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION",
-        "controller": "nosl.controller.inactive.v1", "sampler": "nosl-belief-dispatch-v6",
-        "posterior_implementation": "nosl-belief-dispatch-v6", "teacher": "nosl-full-combat-teacher-v1:T0",
+        "controller": "nosl.controller.inactive.v1", "sampler": audit["posterior_implementation"],
+        "posterior_implementation": audit["posterior_implementation"], "teacher": "nosl-full-combat-teacher-v1:T0",
         "objective": "nosl_silent_a10_terminal_v4_candidate"}
     if (any(audit.get("versions", {}).get(k) != value for k, value in pinned.items())
             or audit.get("outside_combat_script") != "nosl-natural-public-script-v2"

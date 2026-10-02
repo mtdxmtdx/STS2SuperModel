@@ -217,6 +217,57 @@ class NativePilotLiveTests(unittest.TestCase):
         for split in ("train", "validation"):
             with self.assertRaises(ValueError): PreparedDatasetV2(output, split, self.student)
 
+    def test_posterior_versions_keep_old_profiles_and_reject_cross_version_or_encounter_claims(self):
+        from nosl.native_pilot import LEGACY_PROFILES, ENCOUNTER_PROFILES, REVIEWED_ENCOUNTERS
+        original = next(row for row in self.rows if row["audit_only"]["posterior_profile"] in LEGACY_PROFILES)
+        for implementation in ("nosl-belief-dispatch-v6", "nosl-belief-dispatch-v7"):
+            row = deepcopy(original)
+            row["audit_only"].update(posterior_implementation=implementation, sampler_version=implementation)
+            row["audit_only"]["versions"].update(sampler=implementation, posterior_implementation=implementation)
+            validate_production_record(row, self.student, require_usable=False)
+            for profile in ENCOUNTER_PROFILES:
+                invalid = deepcopy(row); invalid["audit_only"]["posterior_profile"] = profile
+                with self.assertRaisesRegex(ValueError, "certificate_metadata_invalid|encounter_profile_mismatch"):
+                    validate_production_record(invalid, self.student, require_usable=False)
+        for encounter in REVIEWED_ENCOUNTERS:
+            row = deepcopy(original)
+            audit = row["audit_only"]
+            audit["encounter"] = encounter
+            audit["native_source_battle_identity"] = source_battle_identity(audit["actual_seed"], audit["act"], audit["floor"], encounter)
+            with self.assertRaisesRegex(ValueError, "encounter_profile_mismatch"):
+                validate_production_record(row, self.student, require_usable=False)
+        for original in self.rows:
+            if original["audit_only"]["posterior_profile"] not in ENCOUNTER_PROFILES:
+                continue
+            validate_production_record(original, self.student, require_usable=False)
+            invalid = deepcopy(original)
+            invalid["audit_only"].update(posterior_implementation="nosl-belief-dispatch-v6", sampler_version="nosl-belief-dispatch-v6")
+            invalid["audit_only"]["versions"].update(sampler="nosl-belief-dispatch-v6", posterior_implementation="nosl-belief-dispatch-v6")
+            with self.assertRaisesRegex(ValueError, "certificate_metadata_invalid"):
+                validate_production_record(invalid, self.student, require_usable=False)
+        # Metadata-only branch probes. These do not certify a synthetic encounter,
+        # validate a public choice envelope, persist rows, or create pilot data.
+        from nosl.native_pilot import PROFILES_BY_IMPLEMENTATION, CHOICE_PROFILES, validate_native_pilot
+        for implementation, profiles in PROFILES_BY_IMPLEMENTATION.items():
+            for profile in profiles:
+                row = deepcopy(self.row); audit = row["audit_only"]
+                audit.update(posterior_implementation=implementation, sampler_version=implementation, posterior_profile=profile)
+                audit["versions"].update(sampler=implementation, posterior_implementation=implementation)
+                if profile in ENCOUNTER_PROFILES: audit["encounter"] = "CorpseSlugsWeak"
+                audit["native_source_battle_identity"] = source_battle_identity(audit["actual_seed"], audit["act"], audit["floor"], audit["encounter"])
+                choice = profile in CHOICE_PROFILES
+                row["public_input"]["observation"]["choice"] = {"source": "Survivor"} if choice else None
+                audit["native_import"] = "certified_owned_stable_origin_choice_replay_v1" if choice else "certified_detached_boundary_clone_v2"
+                validate_native_pilot(row)
+                audit["native_import"] = "certified_detached_boundary_clone_v2" if choice else "certified_owned_stable_origin_choice_replay_v1"
+                with self.assertRaisesRegex(ValueError, "import_profile_mismatch"):
+                    validate_native_pilot(row)
+        for invalid_version in ("nosl-belief-dispatch-v8", [], None):
+            row = deepcopy(original)
+            row["audit_only"].update(posterior_implementation=invalid_version, sampler_version=invalid_version)
+            with self.assertRaisesRegex(ValueError, "certificate_metadata_invalid"):
+                validate_production_record(row, self.student, require_usable=False)
+
     def test_incomplete_candidate_mass_is_retained_without_point_targets(self):
         row = deepcopy(self.row)
         target = row["targets"]["actions"][0]

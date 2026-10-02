@@ -6,7 +6,7 @@ namespace Nosl.Worker;
 
 public static class BeliefSampler
 {
-    public const string ImplementationVersion = "nosl-belief-dispatch-v6";
+    public const string ImplementationVersion = "nosl-belief-dispatch-v7";
     public const string NativeConditionalChoiceProfile = "native-public-entry-reviewed-memory-conditional-choice-v1";
     public const string ExchangeableProfile = "reviewed-stable-exchangeable-v1";
     public const string ConditionalChoiceProfile = "reviewed-stable-origin-conditional-choice-v1";
@@ -21,7 +21,7 @@ public static class BeliefSampler
         try
         {
             if(UsesExchangeablePosterior(source)) return source.HasNativeProvenance ? source.NativeCertificate!.StableProfile : HasSlyInitialPrior(source) ? SlyExchangeableProfile : ExchangeableProfile;
-            if(UsesConditionalChoicePosterior(source)) return source.HasNativeProvenance ? NativeConditionalChoiceProfile : HasSlyInitialPrior(source) ? SlyConditionalChoiceProfile : ConditionalChoiceProfile;
+            if(UsesConditionalChoicePosterior(source)) return source.HasNativeProvenance ? source.NativeCertificate!.ChoiceProfile : HasSlyInitialPrior(source) ? SlyConditionalChoiceProfile : ConditionalChoiceProfile;
         }
         catch(NotSupportedException) { return UnsupportedProfile; }
         return source.HasNativeProvenance || source.HasInPlaceSampledProvenance ? UnsupportedProfile : WholeSetupReplayProfile;

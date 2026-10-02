@@ -58,7 +58,8 @@ public static class NativeBeliefPrototype
         {
             schema_version = "nosl.native-belief-prototype-report.v4",
             status = "bounded_native_development_evidence_not_formal_labels",
-            posteriorProfiles = new[] { NativeBeliefCertificate.Profile, BeliefSampler.NativeConditionalChoiceProfile, NativeGenerationPotionMemory.Profile },
+            posteriorProfiles = new[] { NativeBeliefCertificate.Profile, BeliefSampler.NativeConditionalChoiceProfile,
+                NativeGenerationPotionMemory.Profile, NativeEncounterMemory.Profile, NativeEncounterMemory.ChoiceProfile },
             posteriorImplementation = BeliefSampler.ImplementationVersion,
             sourceOptions = options, teacherOptions,
             naturalSourceRoots = source.Roots.Length, naturalLabeledRoots = labeled,

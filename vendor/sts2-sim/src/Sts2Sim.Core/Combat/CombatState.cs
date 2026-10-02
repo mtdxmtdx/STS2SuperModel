@@ -42,6 +42,9 @@ public sealed partial class CombatState : ICombatState
 
     private readonly string[] _encounterSlots;
 
+    // Read-only public-history certificate check for future native summon sorting.
+    internal bool NoslEncounterSlotsMatch(params string[] slots) => _encounterSlots.SequenceEqual(slots);
+
     /// <summary>Sorts encounter slots without changing registration IDs or spawn history.</summary>
     internal void SortEnemiesBySlotName()
     {

@@ -28,7 +28,7 @@
     "data_pipeline_passed": 145,
     "generator_archive_passed": 63,
     "integrated_v2_teacher_to_backward": true,
-    "full_current_integration_passed": 1048,
+    "full_current_integration_passed": 1059,
     "natural_source_tests_passed": 5,
     "native_recorder_tests_passed": 7,
     "natural_raw_roots": 200,
@@ -36,8 +36,8 @@
     "engineering_effective_roots": 200,
     "engineering_full_utility_roots": 177,
     "engineering_auxiliary_only_roots": 6,
-    "natural_development_labeled_roots": 174,
-    "natural_development_candidate_branches": 2222,
+    "natural_development_labeled_roots": 200,
+    "natural_development_candidate_branches": 2692,
     "natural_training_admitted_roots": 0,
     "pilot_policy_baseline_smoke_sources": 1,
     "current_upstream_core_passed": 4480,
@@ -98,7 +98,7 @@
     "confirmed_hard_preference_cases": 2,
     "confirmed_numerically_evaluated_preference_cases": 1,
     "cross_version_protection_cases": 24,
-    "current_full_suite": "PASS_1048_OF_1048",
+    "current_full_suite": "PASS_1059_OF_1059",
     "v2_trainer_no_fit_tests_passed": 21,
     "v2_student_no_backward_tests_passed": 19,
     "student_regression": 185,
@@ -107,16 +107,18 @@
     "private_complete_outcome_ledger_verified": true,
     "python_no_learning_aggregate_passed": 205,
     "python_backward_related_tests_excluded": 11,
-    "data_pipeline_opt_in_skipped": 6,
+    "data_pipeline_opt_in_skipped": 7,
     "finite_regen_native_passed": 8,
     "finite_regen_python_forward_passed": 8,
     "fresh_native_engineering_roots": 12,
     "fresh_native_engineering_certified_roots": 2,
     "fresh_native_engineering_settled_candidate_worlds": 18,
-    "delayed_potion_paired_worlds": 32
+    "delayed_potion_paired_worlds": 32,
+    "native_admission_live_and_metadata_passed": 12,
+    "native_posterior_dispatcher": "nosl-belief-dispatch-v7"
   },
   "remaining": [
-    "Broader natural carry-in/encounter and generated pending-choice posterior coverage remains engineering/evidence work;26 of fixed200 native roots are still explicit encounter rejections",
+    "Broader natural carry-in/content and generated pending-choice posterior coverage remains engineering/evidence work. The inspected fixed200 cohort is fully supported; a separate unchanged12-root fixture still rejects10 entries (six unreviewed cards, one relic, three encounters).",
     "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
     "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
     "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3–M6 prerequisites"
@@ -139,5 +141,6 @@
   "continued_engineering_report": "configs/m3_m6_continued_engineering_report.json",
   "full_m3_m6_complete": false,
   "declared_scope_engineering_complete": true,
-  "new_fitting_or_scale_allowed_by_quality": false
+  "new_fitting_or_scale_allowed_by_quality": false,
+  "native_encounter_extension": "NATIVE_ENCOUNTER_EXTENSION_SUMMARY.json"
 }
