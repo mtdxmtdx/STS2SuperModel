@@ -7,6 +7,13 @@ The existing `owned_native_replay` operation and all frozen data keep their old
 distribution. New tape records are development-only and rejected by the existing
 production loader.
 
+The second iteration passes the same eight-opening diagnostic gate: 16 independent
+worlds accepted and 160 candidate branches settled from 249 proposals in 24.47 seconds.
+The later-combat probe instead exposes an outside-combat event-controller loop,
+which remains explicit engine-error mass while a versioned policy fix is prepared.
+This is not broad production admission. Current evidence is in the
+[v2 report](../configs/conditional_native_tape_v2_verification.json).
+
 ## Distribution and reproducibility
 
 `nosl.native-state-tape-prior.v1` draws an independent native run seed and a
@@ -60,6 +67,38 @@ run histories, physical card input orders and root indices. Cells already used
 before the forced shuffle cannot be overwritten: alias conflicts are unresolved
 computation errors. They are never retried as observed nonmatches.
 
+## Additional v2 conditioning
+
+The local decision coordinate is already public: every native action revision
+equals the number of logged combat actions, including pending choices. After
+validating that relationship and the declared range, inference conditions this
+coordinate directly. Its prior factor is constant for the root and cancels; the
+global combat index is never inferred from audit fields.
+
+For an unmodified opening roster with unique monster types, HP proposals use the
+native unique-HP draw itself. The public target values fix a conservative maximum
+bucket size for each monster across all possible earlier creation orders. The
+proposal forces one word in the desired available-value bucket, then corrects by
+its actual bucket size divided by that public-root maximum. Earlier HP values of
+all monster types count, and exhausted-range fallback retains native semantics.
+The 54 audited A10 range entries are checked against native metadata; the table
+certifies acceleration and never assigns gameplay HP outside the original method.
+
+Only the explicit first-combat/one-floor prior also admits Neow conditioning.
+Fresh Silent starts with RingOfTheSnake, the public source script takes the first
+unlocked positive option, and the first map row is a monster. An exact two-relic
+entry identifies the selected Neow positive. The proposal conditions Neow's own
+native Type shuffle, checks its 52 valid pool shapes, and retains the varying pool
+sizes 14–16 in one exact rational envelope. Cancelling each pool's own prefix
+probability would bias the hidden curse/coin contexts; the finite tests detect it.
+Other priors retain normal Neow generation.
+
+Neow, HP and combat-shuffle corrections multiply because each envelope is constant
+for the same public root. Every required native interception must be complete
+before packet rejection or any random correction draw. Missing hooks, duplicate
+interceptions, changed replay words and shared-cell conflicts are computation
+errors, not rejection opportunities.
+
 ## Privacy, accounting and validation
 
 Inference receives only a detached public packet and prior settings. The actual
@@ -82,7 +121,7 @@ Core reference vectors also pass. The bounded native benchmark is separately
 predeclared in `artifacts/reports/conditional-tape/opening-benchmark-predeclaration.json`.
 Its opening scope does not establish later carry-in throughput or production quality.
 
-The first predeclared eight-root probe completed all eight attempts in274.10 seconds
+The first v1 predeclared eight-root probe completed all eight attempts in 274.10 seconds
 with about133 MiB peak worker memory. Two roots qualified for the first certificate;
 one of them accepted both assigned independent worlds, and all14 of its candidate
 branches settled. The other146 allocated branches remained explicitly truncated.
@@ -95,8 +134,23 @@ All eight records were independently checked against the production loader and
 rejected. The full native suite passes1132 cases; Core passes4489 with3 existing
 opt-in skips. The [verification report](../configs/conditional_native_tape_verification.json)
 retains exact requests, artifact hashes, per-source exclusions and unresolved mass.
-Next engineering work addresses startup hooks that are irrelevant to the draw
-prefix and public initial HP/intent constraints, with fresh distribution checks.
+The v2 iteration keeps those same public roots, adds safe startup coverage and the
+corrections above, and settles all 160 branches. Replaying after the completion
+guard fix preserves every public packet, target and outcome. The final replay took
+24.81 seconds; it is a repeatability check, not new independent data or a speedup
+estimate. All 12 records from the opening and later probes fail production admission.
+
+The separately predeclared later probe drew four roots from three combats and eight
+local decision positions. All four existed. Each of its eight posterior calls
+terminated on a proposed run that exceeded the native event-choice limit, retaining
+22 `EngineError` branches and all 128 proposal attempts. This is a recoverable
+outside-combat policy problem, not an estimate of posterior acceptance probability.
+The existing script and its artifacts remain versioned while the fix is developed.
+
+The final native suite passes 1191 cases. The current Core suite reports 4493 passed
+and 3 existing opt-in skips; original log/TRX were not saved for that run, and the
+vendor evidence explicitly records this limitation alongside verified source and
+assembly equivalence. No new training, production corpus or model promotion occurs.
 
 ## Reproduction
 

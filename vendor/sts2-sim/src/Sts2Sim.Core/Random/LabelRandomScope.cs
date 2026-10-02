@@ -1,7 +1,13 @@
+using Sts2Sim.Core.Entities.Creatures;
+
 namespace Sts2Sim.Core.Random;
 
 /// <summary>The native generator state immediately before one primitive draw.</summary>
 public readonly record struct LabelRandomState(ulong State0, ulong State1, ulong State2, ulong State3);
+
+/// <summary>Native HP draw context; UsedHp is a sorted, distinct snapshot within the native range.</summary>
+public sealed record LabelMonsterHpContext(Creature Creature, Rng Rng, int MinHp, int MaxHp,
+    IReadOnlyList<int> UsedHp);
 
 /// <summary>
 /// Explicit label-only distribution departure: substitutes hypothetical random-tape words
@@ -30,12 +36,18 @@ public static class LabelRandomScope
     /// the native Fisher-Yates loop still performs every draw and swap. This callback also
     /// runs without interception. Its returned scope is disposed after the native loop.
     /// </param>
+    /// <param name="beginMonsterHp">
+    /// Optional label-only callback immediately before the native unique monster HP draw.
+    /// The callback runs without interception and may supply a nested word scope; native
+    /// range selection, conversion, generator advancement and HP assignment stay unchanged.
+    /// </param>
     public static IDisposable Enter(
         Func<LabelRandomState, ulong> nextWord,
-        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null)
+        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null,
+        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp = null)
     {
         ArgumentNullException.ThrowIfNull(nextWord);
-        var scope = new Scope(Current.Value, nextWord, beginShuffle);
+        var scope = new Scope(Current.Value, nextWord, beginShuffle, beginMonsterHp);
         Current.Value = scope;
         return scope;
     }
@@ -74,14 +86,28 @@ public static class LabelRandomScope
         }
     }
 
+    internal static IDisposable? BeginMonsterHp(Creature creature, Rng rng, int min, int max,
+        IReadOnlyCollection<int> usedHp)
+    {
+        Scope? scope = Current.Value;
+        if (scope?.BeginMonsterHp is null || InsideCallback.Value) return null;
+        var context = new LabelMonsterHpContext(creature, rng, min, max,
+            Array.AsReadOnly(usedHp.ToArray()));
+        InsideCallback.Value = true;
+        try { return scope.BeginMonsterHp(context); }
+        finally { InsideCallback.Value = false; }
+    }
+
     private sealed class Scope(
         Scope? previous,
         Func<LabelRandomState, ulong> nextWord,
-        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle) : IDisposable
+        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle,
+        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp) : IDisposable
     {
         public Scope? Previous { get; } = previous;
         public Func<LabelRandomState, ulong> NextWord { get; } = nextWord;
         public Func<Rng, IReadOnlyList<object?>, IDisposable?>? BeginShuffle { get; } = beginShuffle;
+        public Func<LabelMonsterHpContext, IDisposable?>? BeginMonsterHp { get; } = beginMonsterHp;
 
         public void Dispose()
         {

@@ -32,6 +32,12 @@ public sealed class NativeTapeReplayTests
                 await using var direct = await NativeRunWorld.OpenLabelTapeAsync(Prior.Execution, later, new(later));
                 Assert.NotNull(direct);
                 Assert.Equal(PublicJson.Serialize(world.Observe()), PublicJson.Serialize(direct.Observe()));
+                var publicCoordinates = new NativeTapeReplaySource(direct.Observe(),
+                    Prior with { EligibleDecisionsPerCombat = 4 }, enableConditioning: false);
+                Assert.Equal(2, publicCoordinates.ConditionedPublicDecisionIndex);
+                try { await using var sample = await publicCoordinates.SampleWorldAsync(101, 1); }
+                catch (PosteriorSamplingException) { }
+                Assert.All(publicCoordinates.ProposalAudit, audit => Assert.Equal(2, audit.Recipe.DecisionIndex));
             }
         }
         Assert.Equal("terminal_settled", world.Observe().Status);
@@ -52,16 +58,28 @@ public sealed class NativeTapeReplayTests
         await using (var source = await NativeRunWorld.OpenLabelTapeAsync(Prior.Execution, recipe, new(recipe)))
         { Assert.NotNull(source); packet = source.Observe(); }
         Assert.True(NativeInitialShuffleCondition.TryCreate(packet, out var condition, out var reason), reason);
+        Assert.True(NativeInitialHpCondition.TryCreate(packet, out var hpCondition, out var hpReason), hpReason);
+        Assert.True(NativeNeowCondition.TryCreate(packet, Prior, out var neowCondition, out var neowReason), neowReason);
+        var incomplete = new NativeLabelTape(recipe, condition, hpCondition: hpCondition, neowCondition: neowCondition);
+        Assert.Null(await NativeRunWorld.OpenLabelTapeAsync(Prior.Execution with { SourceDecisionHorizon = 1 }, recipe, incomplete));
+        Assert.True(incomplete.NeowConditionApplied);
+        Assert.Equal(0, incomplete.ConditionedHpCount);
+        int correctionWords = 0;
+        Assert.Throws<InvalidOperationException>(() => incomplete.AcceptCorrection(() => { correctionWords++; return 0; }));
+        Assert.Equal(0, correctionWords);
         // A controlled same-prefix execution fixture, not an independent-posterior
         // sample: actual inference separately draws every recipe without source input.
         var proposal = recipe with { ProposalSeed = 778899 };
-        var tape = new NativeLabelTape(proposal, condition);
+        var tape = new NativeLabelTape(proposal, condition, hpCondition: hpCondition, neowCondition: neowCondition);
         await using var world = await NativeRunWorld.OpenLabelTapeAsync(Prior.Execution, proposal, tape);
         Assert.NotNull(world); Assert.True(tape.ConditionApplied);
-        Assert.Equal(condition!.DeckCount - 1, tape.ConditionedCells);
+        Assert.InRange(tape.ConditionedCells, condition!.DeckCount - 1 + hpCondition!.EnemyCount + 13,
+            condition.DeckCount - 1 + hpCondition.EnemyCount + 15);
+        Assert.Equal(hpCondition.EnemyCount, tape.ConditionedHpCount);
+        Assert.True(tape.NeowConditionApplied);
         Assert.Equal(PublicJson.Serialize(packet), PublicJson.Serialize(world.Observe()));
         var correction = new Rng(990011);
-        Assert.True(tape.AcceptCorrection(correction.NextUnsignedLong));
+        _ = tape.AcceptCorrection(correction.NextUnsignedLong); // Density test lives in the finite exact suites.
         await using var fork = await world.ForkForContinuationAsync();
         var policy = PublicContinuationPolicies.Create(PublicContinuationPolicies.ReviewedId);
         for (int i = 0; i < 200 && world.Observe().Status != "terminal_settled"; i++)
@@ -76,7 +94,7 @@ public sealed class NativeTapeReplayTests
 
         // An already revealed equal-state cell cannot be overwritten to force
         // the draw prefix. This is computation failure, never a retryable mismatch.
-        var aliasedTape = new NativeLabelTape(proposal, condition);
+        var aliasedTape = new NativeLabelTape(proposal, condition, hpCondition: hpCondition, neowCondition: neowCondition);
         using (aliasedTape.EnterScope())
             new RunRngSet(proposal.IndependentRunSeed).Shuffle.NextInt(5);
         var failure = await Assert.ThrowsAsync<InvalidOperationException>(() =>

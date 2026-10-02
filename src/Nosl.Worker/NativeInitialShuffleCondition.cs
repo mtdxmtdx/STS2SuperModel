@@ -26,10 +26,12 @@ internal sealed class NativeInitialShuffleCondition
     internal int DeckCount => _deckIds.Length;
     internal double PrefixProbability { get; }
 
-    // Fixed-source startup closure, reviewed in Models/Monsters/<Type>.cs for all 47 types:
-    // GenerateMoveStateMachine constructs MoveState/intent/branch objects and returns a fixed
-    // ordinary MoveState as its initial state. MonsterMoveStateMachine.FindNextMoveState returns
-    // immediately before its first move; constructors/registration never execute move callbacks.
+    // Fixed-source startup closure, reviewed in Models/Monsters/<Type>.cs:
+    // The first 47 types construct graphs with an ordinary MoveState as initial state. The final
+    // seven use only sealed ConditionalBranchState/RandomBranchState before a MoveState: predicates
+    // read spawn flags/slots or enemy counts, and weights are constants/read-only CanSummon queries.
+    // Their OnEnterState/OnExitState are no-ops. Selection changes only AI state/log/RNG; it never
+    // invokes a move callback. Constructors/registration likewise never execute callbacks.
     // Numeric intent values are constants or read-only ascension calculations. None of these
     // types overrides AfterAddedToRoom or any AbstractModel hook (also guarded at runtime below).
     // Native pre-first-turn startup preserves monster identity/roster: the other startup hooks
@@ -54,7 +56,28 @@ internal sealed class NativeInitialShuffleCondition
         typeof(TheInsatiable), typeof(TheObscura), typeof(TrackerRubyRaider),
         typeof(Tunneler), typeof(TurretOperator), typeof(TwigSlimeM),
         typeof(TwigSlimeS), typeof(VineShambler),
+        // Pure initial branch closures: see their GenerateMoveStateMachine methods plus
+        // ConditionalBranchState.GetNextState and RandomBranchState.GetStateWeight/GetNextState.
+        typeof(Fabricator), typeof(Flyconid), typeof(LeafSlimeS), typeof(Nibbit),
+        typeof(Toadpole), typeof(TwoTailedRat), typeof(Wriggler),
     ];
+
+    // Complete sealed implementations reviewed in Models/Relics/<Type>.cs. These hooks only
+    // change a requested hand-draw count, energy, or their own counters, never physical card order.
+    private static readonly Dictionary<Type, HashSet<string>> ReviewedEntryHooks = new()
+    {
+        [typeof(RingOfTheSnake)] = [nameof(AbstractModel.ModifyHandDraw)],
+        [typeof(WingedBoots)] = [nameof(AbstractModel.AfterRoomEntered), nameof(AbstractModel.ShouldAllowFreeTravel)],
+        [typeof(BoomingConch)] = [nameof(AbstractModel.ModifyHandDraw), nameof(AbstractModel.AfterSideTurnStart)],
+        [typeof(BagOfPreparation)] = [nameof(AbstractModel.ModifyHandDraw)],
+        [typeof(PaelsBlood)] = [nameof(AbstractModel.ModifyHandDraw)],
+        [typeof(BigMushroom)] = [nameof(AbstractModel.ModifyHandDraw), nameof(AbstractModel.AfterRoomEntered)],
+        [typeof(Fiddle)] = [nameof(AbstractModel.ModifyHandDraw), nameof(AbstractModel.ShouldDraw)],
+        [typeof(PollinousCore)] = [nameof(AbstractModel.ModifyHandDraw), nameof(AbstractModel.BeforeHandDraw),
+            nameof(AbstractModel.AfterModifyingHandDraw)],
+        [typeof(Pocketwatch)] = [nameof(AbstractModel.ModifyHandDraw), nameof(AbstractModel.BeforeSideTurnStart),
+            nameof(AbstractModel.AfterSideTurnStart), nameof(AbstractModel.AfterCardPlayed)],
+    };
 
     private static readonly Dictionary<string, Type[]> Models = ContentRegistry.AllTypes
         .GroupBy(type => type.Name, StringComparer.Ordinal)
@@ -167,12 +190,10 @@ internal sealed class NativeInitialShuffleCondition
             Require(type.GetMethod(nameof(MonsterModel.AfterAddedToRoom))!.DeclaringType == typeof(MonsterModel),
                 "startup_monster_hook_not_certified:" + enemy.Id);
         }
-        int activeRings = entry.Relics.Count(relic => relic.Id == nameof(RingOfTheSnake)
-            && relic.Details.TryGetValue("isMelted", out int melted) && melted == 0);
-        Require(entry.Relics.Where(relic => relic.Id == nameof(RingOfTheSnake))
-            .All(relic => relic.Details.ContainsKey("isMelted")), "ring_state_required");
-        int expectedDraws = Math.Min(10, Math.Min(entry.Deck.Length, 5 + 2 * activeRings));
-        Require(prefix.Count == expectedDraws, "initial_draw_pool_mismatch");
+        // The requested draw count may depend on an unpublished room type or a safe relic
+        // counter. Any nonempty observed prefix has the same permutation likelihood conditional
+        // on this entry multiset; full native packet verification checks the actual draw count.
+        Require(prefix.Count <= entry.Deck.Length, "initial_draw_pool_mismatch");
         var remaining = Counts(entry.Deck.Select(card => card.Id));
         foreach (string id in prefix)
         {
@@ -193,13 +214,13 @@ internal sealed class NativeInitialShuffleCondition
             MethodInfo implementation = type!.GetMethod(hook.Name,
                 hook.GetParameters().Select(parameter => parameter.ParameterType).ToArray())!;
             if (implementation.DeclaringType == typeof(AbstractModel)) continue;
-            // RingOfTheSnake only adds two to the first hand draw count. WingedBoots only
-            // changes its travel counter on room entry. Their complete sealed implementations
-            // are in Models/Relics/{RingOfTheSnake,WingedBoots}.cs; neither touches card order.
-            bool reviewed = implementation.DeclaringType == typeof(RingOfTheSnake)
-                    && hook.Name == nameof(AbstractModel.ModifyHandDraw)
-                || implementation.DeclaringType == typeof(WingedBoots)
-                    && hook.Name is nameof(AbstractModel.AfterRoomEntered) or nameof(AbstractModel.ShouldAllowFreeTravel);
+            // CombatRoom.CompleteCombatOnceAsync/ResolveVictoryOnceAsync dispatch these only
+            // after combat ends, so their earlier-run effects are already in the entry anchor.
+            // In particular FishingRod.AfterCombatEnd cannot run before this initial draw prefix.
+            if (hook.Name is nameof(AbstractModel.AfterCombatEnd) or nameof(AbstractModel.AfterCombatVictoryEarly)
+                or nameof(AbstractModel.AfterCombatVictory)) continue;
+            bool reviewed = ReviewedEntryHooks.TryGetValue(implementation.DeclaringType!, out var safeHooks)
+                && safeHooks.Contains(hook.Name);
             Require(reviewed, "entry_hook_not_certified:" + id + "." + hook.Name);
         }
     }

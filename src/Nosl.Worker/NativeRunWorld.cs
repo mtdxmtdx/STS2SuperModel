@@ -84,6 +84,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         NaturalSourceCollector.InitializeNativeModels();
         NativeRun = new RunState(seed, ascensionLevel: 10);
         NativeRun.AddPlayer(Player.CreateForNewRun(ModelDb.Character<Silent>(), NativeRun));
+        _labelTape?.AttachHypotheticalRun(NativeRun);
     }
 
     /// <summary>

@@ -140,6 +140,7 @@ public sealed class Creature
             }
         }
 
+        using IDisposable? labelScope = LabelRandomScope.BeginMonsterHp(this, rng, min, max, usedHp);
         long availableCount = checked(rangeSize - usedHp.Count);
         int rolledHp;
         if (availableCount > 0)

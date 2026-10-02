@@ -108,19 +108,21 @@
 +            player.RemovePotionInternal(potion, PotionMutationKind.Consumed);
 --- a/src/Sts2Sim.Core/Entities/Creatures/Creature.cs
 +++ b/src/Sts2Sim.Core/Entities/Creatures/Creature.cs
-@@ -225,0 +226 @@
+@@ -142,0 +143 @@
++        using IDisposable? labelScope = LabelRandomScope.BeginMonsterHp(this, rng, min, max, usedHp);
+@@ -225,0 +227 @@
 +        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.Loss, hpBefore, CurrentHp, MaxHp, MaxHp);
-@@ -245,0 +247 @@
+@@ -245,0 +248 @@
 +        int hpBefore = CurrentHp;
-@@ -246,0 +249 @@
+@@ -246,0 +250 @@
 +        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.Heal, hpBefore, CurrentHp, MaxHp, MaxHp);
-@@ -250,0 +254 @@
+@@ -250,0 +255 @@
 +        int hpBefore = CurrentHp;
-@@ -251,0 +256 @@
+@@ -251,0 +257 @@
 +        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.Set, hpBefore, CurrentHp, MaxHp, MaxHp);
-@@ -255,0 +261 @@
+@@ -255,0 +262 @@
 +        int hpBefore = CurrentHp, maxBefore = MaxHp;
-@@ -257,0 +264 @@
+@@ -257,0 +265 @@
 +        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.MaxCap, hpBefore, CurrentHp, maxBefore, MaxHp);
 --- /dev/null
 +++ b/src/Sts2Sim.Core/Entities/Players/IPlayerOutcomeObserver.cs
@@ -211,11 +213,17 @@
 +    internal int? NoslSelectedUpgrade => _hasSelectedCard ? _selectedCardUpgradeLevel : null;
 --- /dev/null
 +++ b/src/Sts2Sim.Core/Random/LabelRandomScope.cs
-@@ -0,0 +1,103 @@
+@@ -0,0 +1,129 @@
++using Sts2Sim.Core.Entities.Creatures;
++
 +namespace Sts2Sim.Core.Random;
 +
 +/// <summary>The native generator state immediately before one primitive draw.</summary>
 +public readonly record struct LabelRandomState(ulong State0, ulong State1, ulong State2, ulong State3);
++
++/// <summary>Native HP draw context; UsedHp is a sorted, distinct snapshot within the native range.</summary>
++public sealed record LabelMonsterHpContext(Creature Creature, Rng Rng, int MinHp, int MaxHp,
++    IReadOnlyList<int> UsedHp);
 +
 +/// <summary>
 +/// Explicit label-only distribution departure: substitutes hypothetical random-tape words
@@ -244,12 +252,18 @@
 +    /// the native Fisher-Yates loop still performs every draw and swap. This callback also
 +    /// runs without interception. Its returned scope is disposed after the native loop.
 +    /// </param>
++    /// <param name="beginMonsterHp">
++    /// Optional label-only callback immediately before the native unique monster HP draw.
++    /// The callback runs without interception and may supply a nested word scope; native
++    /// range selection, conversion, generator advancement and HP assignment stay unchanged.
++    /// </param>
 +    public static IDisposable Enter(
 +        Func<LabelRandomState, ulong> nextWord,
-+        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null)
++        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null,
++        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp = null)
 +    {
 +        ArgumentNullException.ThrowIfNull(nextWord);
-+        var scope = new Scope(Current.Value, nextWord, beginShuffle);
++        var scope = new Scope(Current.Value, nextWord, beginShuffle, beginMonsterHp);
 +        Current.Value = scope;
 +        return scope;
 +    }
@@ -288,14 +302,28 @@
 +        }
 +    }
 +
++    internal static IDisposable? BeginMonsterHp(Creature creature, Rng rng, int min, int max,
++        IReadOnlyCollection<int> usedHp)
++    {
++        Scope? scope = Current.Value;
++        if (scope?.BeginMonsterHp is null || InsideCallback.Value) return null;
++        var context = new LabelMonsterHpContext(creature, rng, min, max,
++            Array.AsReadOnly(usedHp.ToArray()));
++        InsideCallback.Value = true;
++        try { return scope.BeginMonsterHp(context); }
++        finally { InsideCallback.Value = false; }
++    }
++
 +    private sealed class Scope(
 +        Scope? previous,
 +        Func<LabelRandomState, ulong> nextWord,
-+        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle) : IDisposable
++        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle,
++        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp) : IDisposable
 +    {
 +        public Scope? Previous { get; } = previous;
 +        public Func<LabelRandomState, ulong> NextWord { get; } = nextWord;
 +        public Func<Rng, IReadOnlyList<object?>, IDisposable?>? BeginShuffle { get; } = beginShuffle;
++        public Func<LabelMonsterHpContext, IDisposable?>? BeginMonsterHp { get; } = beginMonsterHp;
 +
 +        public void Dispose()
 +        {
@@ -456,6 +484,58 @@
 +        public void PotionChanged(Player player, string potionId, PotionMutationKind kind) => Movements.Add(kind);
 +    }
 +}
+--- a/tests/Sts2Sim.Core.Tests/Entities/Creatures/MonsterHpRollingTests.cs
++++ b/tests/Sts2Sim.Core.Tests/Entities/Creatures/MonsterHpRollingTests.cs
+@@ -12,0 +13 @@
++using Sts2Sim.Core.Random;
+@@ -60,0 +62,47 @@
++    [Theory]
++    [InlineData(false, 0UL, 10)]
++    [InlineData(false, ulong.MaxValue, 14)]
++    [InlineData(true, 0UL, 10)]
++    [InlineData(true, ulong.MaxValue, 14)]
++    public void LabelHpScope_PreservesNativeUniqueSelectionFallbackAndGeneratorAdvancement(
++        bool exhausted, ulong word, int expectedHp)
++    {
++        int[] used = exhausted ? [10, 11, 12, 13, 14] : [11, 13];
++        var earlier = used.Select(hp =>
++        {
++            var creature = new Creature(Clone<WideRangeMonster>(), CombatSide.Enemy);
++            creature.SetMaxHpInternal(hp);
++            return creature;
++        }).ToArray();
++        var target = new Creature(Clone<WideRangeMonster>(), CombatSide.Enemy);
++        var observed = new List<string>();
++        var rng = Rng.CreateObserved(73, (_, operation, _) => observed.Add(operation));
++        var native = new Rng(73);
++        var proposalRng = new Rng(84);
++        var nativeProposal = new Rng(84);
++        int outerCalls = 0, hpCalls = 0, primitiveCalls = 0;
++        using (LabelRandomScope.Enter(_ => { outerCalls++; return 0; }, beginMonsterHp: context =>
++        {
++            hpCalls++;
++            Assert.Same(target, context.Creature);
++            Assert.Same(rng, context.Rng);
++            Assert.Equal(10, context.MinHp);
++            Assert.Equal(14, context.MaxHp);
++            Assert.Equal(used, context.UsedHp);
++            Assert.Equal(nativeProposal.NextUnsignedLong(), proposalRng.NextUnsignedLong());
++            return LabelRandomScope.Enter(_ => { primitiveCalls++; return word; });
++        }))
++            target.SetUniqueMonsterHpValue(earlier, rng);
++
++        Assert.Equal(expectedHp, target.MaxHp);
++        Assert.Equal(expectedHp, target.CurrentHp);
++        Assert.Equal(1, hpCalls);
++        Assert.Equal(1, primitiveCalls);
++        Assert.Equal(0, outerCalls);
++        Assert.Equal(1, rng.Counter);
++        Assert.Equal(exhausted ? "NextInt(minInclusive=10,maxExclusive=15)"
++            : "NextInt(minInclusive=0,maxExclusive=3)", Assert.Single(observed));
++        native.NextUnsignedLong();
++        Assert.Equal(native.NextUnsignedLong(), rng.NextUnsignedLong());
++    }
++
 --- /dev/null
 +++ b/tests/Sts2Sim.Core.Tests/Random/LabelRandomScopeTests.cs
 @@ -0,0 +1,216 @@

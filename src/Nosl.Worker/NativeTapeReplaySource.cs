@@ -7,19 +7,22 @@ namespace Nosl.Worker;
 
 internal sealed record NativeTapeProposalAudit(int SampleCall, int Attempt, NativeTapeRecipe Recipe,
     string Status, string Proposal, int DistinctTapeCells, int ConditionedTapeCells,
-    double ElapsedSeconds, string? Detail = null);
+    double ElapsedSeconds, string? Detail = null, int ConditionedHpCount = 0, bool NeowConditionApplied = false);
 
 /// <summary>Public-only conditional sampling under the explicit ideal tape prior.</summary>
 internal sealed class NativeTapeReplaySource : ITeacherSource
 {
-    internal const string Profile = "owned-native-state-tape-conditional-shuffle-v1";
+    internal const string Profile = "owned-native-state-tape-structured-conditional-v2";
     private readonly string _serializedRoot;
     private readonly string _entryJson;
     private readonly NativeTapePrior _prior;
     private readonly NativeInitialShuffleCondition? _condition;
+    private readonly NativeInitialHpCondition? _hpCondition;
+    private readonly NativeNeowCondition? _neowCondition;
     private readonly CancellationToken _cancellation;
     private readonly List<NativeTapeProposalAudit> _attempts = [];
     private readonly string?[] _potions;
+    private readonly int _publicDecisionIndex;
     private int _sampleCalls;
 
     internal NativeTapeReplaySource(DecisionPacket publicRoot, NativeTapePrior prior,
@@ -30,6 +33,11 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
         var root = PublicJson.Read<DecisionPacket>(_serializedRoot);
         if (root.Status is not ("player_decision" or "card_choice") || root.Observation is null || root.Actions.Length == 0)
             throw new ArgumentException("An active public native decision is required");
+        _publicDecisionIndex = root.Actions[0].Revision;
+        if (_publicDecisionIndex < 0 || _publicDecisionIndex >= _prior.EligibleDecisionsPerCombat
+            || root.Actions.Any(action => action.Revision != _publicDecisionIndex)
+            || root.Observation.History.Count(item => item.Kind == "action") != _publicDecisionIndex)
+            throw new ArgumentException("Public native revision/history is outside the declared local decision prior");
         var entries = root.Observation.History.Where(e => e.Kind == NativeEntryAssets.EventKind).ToArray();
         if (entries.Length != 1) throw new ArgumentException("One complete published native entry anchor is required");
         _entryJson = entries[0].Detail;
@@ -46,6 +54,10 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
             ConditioningReason = enableConditioning
                 ? EligibilityReason(root) : "conditioning_disabled_for_reference";
         }
+        if (enableConditioning && NativeInitialHpCondition.TryCreate(root, out var hpCondition, out _))
+            _hpCondition = hpCondition;
+        if (enableConditioning && NativeNeowCondition.TryCreate(root, _prior, out var neowCondition, out _))
+            _neowCondition = neowCondition;
     }
 
     private static string EligibilityReason(DecisionPacket root)
@@ -55,9 +67,16 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
     public string?[] StartPotions => _potions.ToArray();
     public DecisionPacket Observe() => PublicJson.Read<DecisionPacket>(_serializedRoot);
     public string PosteriorProfile => Profile;
-    public string PriorWarning => "Separate ideal state-addressed random-tape law; SHA256 pseudorandom implementation, not the sequential run-seed posterior. Equal-state aliases and native primitive conversions are retained. Exact shuffle correction is relative to the declared ideal law. Uncertified roots retain plain native tape rejection, with errors and budget exhaustion unresolved.";
+    public string PriorWarning => "Separate ideal state-addressed random-tape law; SHA256 pseudorandom implementation, not the sequential run-seed posterior. Equal-state aliases and native primitive conversions are retained. Public local decision coordinates and certified primitive proposals use exact root-constant density corrections relative to the ideal law. Uncertified mechanisms retain native tape rejection; errors and budget exhaustion remain unresolved.";
     public (double Lower, double Upper)? RankingSupport(ObjectiveProfile profile) => null;
     internal bool UsesConditionalShuffle => _condition is not null;
+    internal bool UsesConditionalHp => _hpCondition is not null;
+    internal bool UsesConditionalNeow => _neowCondition is not null;
+    internal bool UsesPrimitiveConditioning => UsesConditionalShuffle || UsesConditionalHp || UsesConditionalNeow;
+    internal int ConditionedPublicDecisionIndex => _publicDecisionIndex;
+    private string ProposalDescription => !UsesPrimitiveConditioning ? "plain_tape_rejection"
+        : "conditional:" + string.Join("+", new[] { UsesConditionalNeow ? "neow" : null,
+            UsesConditionalHp ? "initial_hp" : null, UsesConditionalShuffle ? "initial_shuffle" : null }.OfType<string>());
     internal string ConditioningReason { get; }
     internal NativeTapeProposalAudit[] ProposalAudit => _attempts.ToArray();
 
@@ -69,23 +88,32 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
         for (int attempt = 1; attempt <= maxAttempts; attempt++)
         {
             _cancellation.ThrowIfCancellationRequested();
-            var recipe = _prior.Draw(random);
-            var tape = new NativeLabelTape(recipe, _condition, expectedEntryJson: _entryJson);
+            // Native public revision equals this source bridge's local decision
+            // count, including pending choices. Conditioning its uniform coordinate
+            // removes only the root-constant factor 1/EligibleDecisionsPerCombat.
+            // Consume the old draw first to keep the declared stream progression.
+            var recipe = _prior.Draw(random) with { DecisionIndex = _publicDecisionIndex };
+            var tape = new NativeLabelTape(recipe, _condition, expectedEntryJson: _entryJson,
+                hpCondition: _hpCondition, neowCondition: _neowCondition);
             var timer = Stopwatch.StartNew();
             NativeRunWorld? world = null; bool accepted = false; Exception? operationFailure = null;
             void Audit(string status, string? detail = null) => _attempts.Add(new(call, attempt, recipe, status,
-                UsesConditionalShuffle ? "conditional_initial_shuffle" : "plain_tape_rejection",
-                tape.DistinctCells, tape.ConditionedCells, timer.Elapsed.TotalSeconds, detail));
+                ProposalDescription, tape.DistinctCells, tape.ConditionedCells, timer.Elapsed.TotalSeconds, detail,
+                tape.ConditionedHpCount, tape.NeowConditionApplied));
             try
             {
                 world = await NativeRunWorld.OpenLabelTapeAsync(_prior.Execution, recipe, tape, _cancellation);
                 if (world is null) Audit("absent_under_declared_source_horizon");
-                else if (PublicJson.Serialize(world.Observe()) != _serializedRoot) Audit("public_packet_mismatch");
-                else if (!tape.AcceptCorrection(random.NextUnsignedLong)) Audit("exact_native_bucket_correction_rejected");
-                else { Audit("accepted"); accepted = true; return world; }
+                else
+                {
+                    tape.ValidateProposalCompletion();
+                    if (PublicJson.Serialize(world.Observe()) != _serializedRoot) Audit("public_packet_mismatch");
+                    else if (!tape.AcceptCorrection(random.NextUnsignedLong)) Audit("exact_proposal_density_correction_rejected");
+                    else { Audit("accepted"); accepted = true; return world; }
+                }
             }
             catch (NativePublicConstraintMismatchException exception)
-            { Audit("public_entry_or_draw_prefix_mismatch", exception.Message); }
+            { Audit("public_constraint_mismatch", exception.Message); }
             catch (Exception exception)
             {
                 operationFailure = exception;
@@ -102,9 +130,9 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
                     {
                         int index = _attempts.FindLastIndex(a => a.SampleCall == call && a.Attempt == attempt);
                         var failed = new NativeTapeProposalAudit(call, attempt, recipe, "proposal_cleanup_error",
-                            UsesConditionalShuffle ? "conditional_initial_shuffle" : "plain_tape_rejection",
+                            ProposalDescription,
                             tape.DistinctCells, tape.ConditionedCells, timer.Elapsed.TotalSeconds,
-                            exception.GetType().Name + ": " + exception.Message);
+                            exception.GetType().Name + ": " + exception.Message, tape.ConditionedHpCount, tape.NeowConditionApplied);
                         if (index < 0) _attempts.Add(failed); else _attempts[index] = failed;
                         if (operationFailure is not null)
                             throw new AggregateException("Tape proposal and cleanup failed", operationFailure, exception);

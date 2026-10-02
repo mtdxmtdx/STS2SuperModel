@@ -147,9 +147,90 @@ public sealed class NativeInitialShuffleConditionTests
     }
 
     [Theory]
+    [InlineData("Nibbit")]
+    [InlineData("LeafSlimeS")]
+    [InlineData("Fabricator")]
+    [InlineData("Flyconid")]
+    [InlineData("Toadpole")]
+    [InlineData("TwoTailedRat")]
+    [InlineData("Wriggler")]
+    public void AuditedInitialBranchesOnlyChooseAnUnperformedMove(string monster)
+    {
+        var root = Root("FishingRod");
+        root.Observation!.History[^1] = new("intent_published", PublicJson.Serialize(new { slot = 0, id = monster }));
+        Assert.True(NativeInitialShuffleCondition.TryCreate(root, out _, out string? reason), reason);
+    }
+
+    [Theory]
+    [InlineData("BoomingConch", 8)]
+    [InlineData("BagOfPreparation", 8)]
+    [InlineData("BigMushroom", 5)]
+    [InlineData("PaelsBlood", 8)]
+    [InlineData("Fiddle", 8)]
+    [InlineData("PollinousCore", 8)]
+    [InlineData("Pocketwatch", 7)]
+    public void SafeCountModifiersUseObservedPrefixWithoutInferringPrivateRoomOrCounters(string relic, int draws)
+    {
+        var root = Root(relic);
+        var entry = PublicJson.Read<NativeEntryAssets>(root.Observation!.History[1].Detail);
+        PublicEvent[] history = [root.Observation.History[0], root.Observation.History[1],
+            .. entry.Deck.Take(draws).Select(card => new PublicEvent("draw", PublicJson.Serialize(card))),
+            new("player_turn", "1"), root.Observation.History[^1]];
+        root = root with { Observation = root.Observation with { History = history } };
+        Assert.True(NativeInitialShuffleCondition.TryCreate(root, out var condition, out string? reason), reason);
+        Assert.Equal(draws, condition!.DrawPrefixIds.Length);
+        double expected = 1;
+        var remaining = entry.Deck.GroupBy(card => card.Id).ToDictionary(group => group.Key, group => group.Count());
+        for (int i = 0; i < draws; i++) expected *= remaining[entry.Deck[i].Id]-- / (double)(entry.Deck.Length - i);
+        Assert.Equal(expected, condition.PrefixProbability);
+    }
+
+    [Theory]
+    [InlineData("Nibbit", 0)]
+    [InlineData("Nibbit", 1)]
+    [InlineData("Nibbit", 2)]
+    [InlineData("LeafSlimeS", 0)]
+    [InlineData("Fabricator", 0)]
+    [InlineData("Flyconid", 0)]
+    [InlineData("Toadpole", 0)]
+    [InlineData("Toadpole", 1)]
+    [InlineData("TwoTailedRat", 0)]
+    [InlineData("TwoTailedRat", 1)]
+    [InlineData("Wriggler", 0)]
+    [InlineData("Wriggler", 1)]
+    [InlineData("Wriggler", 2)]
+    public void NativeInitialBranchSelectionLeavesPhysicalCardOrderAndPlayerAssetsUntouched(string name, int variant)
+    {
+        NaturalSourceCollector.InitializeNativeModels();
+        var run = new Sts2Sim.Core.Runs.RunState("initial-branch-proof:" + name + variant, ascensionLevel: 10);
+        var player = Sts2Sim.Core.Entities.Players.Player.CreateForNewRun(
+            Sts2Sim.Core.Models.ModelDb.Character<Sts2Sim.Core.Models.Characters.Silent>(), run);
+        run.AddPlayer(player);
+        var state = new Sts2Sim.Core.Combat.CombatState(run);
+        state.AddPlayerCreature(player.Creature);
+        player.ResetCombatState();
+        player.PopulateCombatState(run.Rng.Shuffle);
+        Type type = Sts2Sim.Core.Content.ContentRegistry.AllTypes.Single(candidate => candidate.Name == name
+            && typeof(Sts2Sim.Core.Models.MonsterModel).IsAssignableFrom(candidate));
+        var monster = (Sts2Sim.Core.Models.MonsterModel)Sts2Sim.Core.Models.ModelDb.Get(type).MutableClone();
+        if (monster is Sts2Sim.Core.Models.Monsters.Nibbit nibbit) { nibbit.IsFront = variant == 1; nibbit.IsAlone = variant == 2; }
+        if (monster is Sts2Sim.Core.Models.Monsters.Toadpole toadpole) toadpole.IsFront = variant == 1;
+        if (monster is Sts2Sim.Core.Models.Monsters.TwoTailedRat rat) rat.StarterMoveIndex = variant == 1 ? 0 : -1;
+        if (monster is Sts2Sim.Core.Models.Monsters.Wriggler wriggler) wriggler.StartStunned = variant == 2;
+        state.AddMonster(monster, Sts2Sim.Core.Combat.CombatSide.Enemy, variant == 1 ? "wriggler2" : "wriggler1");
+        var order = player.PlayerCombatState!.DrawPile.Cards.ToArray();
+        int hp = player.Creature.CurrentHp;
+        monster.SetUpForCombat();
+        monster.RollMove(state.PlayerCreatures);
+        Assert.NotNull(monster.NextMove);
+        Assert.Equal(order, player.PlayerCombatState.DrawPile.Cards);
+        Assert.Empty(player.PlayerCombatState.Hand.Cards);
+        Assert.Empty(player.Creature.Powers);
+        Assert.Equal(hp, player.Creature.CurrentHp);
+    }
+
+    [Theory]
     [InlineData("ToughEgg", "startup_monster_not_certified")]
-    [InlineData("Wriggler", "startup_monster_not_certified")]
-    [InlineData("Fabricator", "startup_monster_not_certified")]
     [InlineData("missing-model", "startup_monster_not_certified")]
     public void UnknownOrUnreviewedStartupCreatureFallsBack(string monster, string expectedReason)
     {

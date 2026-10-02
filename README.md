@@ -53,4 +53,4 @@ tools/                 两进程协议烟测
 
 旧源码、数据和提交历史保留在 [codex/history-2026-10-01](https://github.com/mtdxmtdx/STS2SuperModel/tree/codex/history-2026-10-01)，固定归档提交为 [b0bb07b](https://github.com/mtdxmtdx/STS2SuperModel/tree/b0bb07bdd09f8ae7833724126b18738c93d09eb4)。本次工作发布为 STS2SuperModel 的独立分支与草稿PR，未合并main；实验权重与数据单独保存，不混入源码提交。
 
-通用原生回放与原先验预算门槛见 [NATIVE_OWNED_REPLAY.md](docs/NATIVE_OWNED_REPLAY.md)。最新[条件随机带采样](docs/NATIVE_CONDITIONAL_TAPE.md)已实现公开抽牌条件及精确校正，固定8开局探测接受2个世界、完成14条分支；吞吐门槛仍未通过，正在继续处理启动条件和公开敌人HP／意图约束。不能据此宣布全范围训练准备完成。
+通用原生回放与原先验预算门槛见 [NATIVE_OWNED_REPLAY.md](docs/NATIVE_OWNED_REPLAY.md)。最新[条件随机带采样](docs/NATIVE_CONDITIONAL_TAPE.md)结合公开抽牌、初始敌人HP、Neow选项及决策序号的精确条件校正，在固定8开局接受16个世界、完成160条分支，耗时24.47秒。后续战斗探测发现独立的事件控制器循环，正在按新版本修复；尚未扩大生产数据或宣布全范围训练准备完成。

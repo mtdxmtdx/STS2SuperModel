@@ -22,7 +22,7 @@ internal sealed record NativeTapeCollectionOptions
 internal static class NativeTapeReplayDataset
 {
     internal const string DatasetVersion = "nosl.native-tape-replay-development.v1";
-    internal const string ImplementationVersion = "nosl-native-tape-conditional-shuffle-v1";
+    internal const string ImplementationVersion = "nosl-native-tape-structured-conditional-v2";
 
     internal static async Task<object> CollectAsync(NativeTapeCollectionOptions options, TeacherOptions teacherOptions,
         CancellationToken cancellationToken = default)
@@ -69,7 +69,7 @@ internal static class NativeTapeReplayDataset
                 existing++;
                 // No original world, seed, tape, or source trace enters inference.
                 var source = new NativeTapeReplaySource(publicRoot, prior, options.EnableConditioning, budget.Token);
-                if (source.UsesConditionalShuffle) acceleratedRoots++;
+                if (source.UsesPrimitiveConditioning) acceleratedRoots++;
                 var result = await CombatTeacher.EvaluateAsync(source, teacherOptions);
                 string runIdentity = NativePilotDataset.SourceIdentity(recipe.SourceIdentity);
                 string sourceRun = "native-tape-source-v1:" + runIdentity;
@@ -92,10 +92,14 @@ internal static class NativeTapeReplayDataset
                 audit["selected_combat_index"] = recipe.CombatIndex;
                 audit["selected_decision_index"] = recipe.DecisionIndex;
                 audit["source_seed_conditioning"] = false;
-                audit["conditioning"] = source.UsesConditionalShuffle
-                    ? "exact_published_packet_with_certified_shuffle_proposal_and_integer_correction"
-                    : "exact_published_packet_plain_tape_rejection_with_entry_prefilter";
-                audit["conditioning_eligible"] = source.UsesConditionalShuffle;
+                audit["conditioning"] = source.UsesPrimitiveConditioning
+                    ? "exact_published_packet_with_certified_primitive_proposals_and_root_constant_corrections"
+                    : "exact_published_packet_plain_tape_rejection_with_entry_and_public_coordinate_filters";
+                audit["conditioning_eligible"] = source.UsesPrimitiveConditioning;
+                audit["initial_shuffle_conditioning_eligible"] = source.UsesConditionalShuffle;
+                audit["initial_hp_conditioning_eligible"] = source.UsesConditionalHp;
+                audit["neow_conditioning_eligible"] = source.UsesConditionalNeow;
+                audit["public_local_decision_conditioning"] = source.ConditionedPublicDecisionIndex;
                 audit["conditioning_reason"] = source.ConditioningReason;
                 audit["formal_labels"] = false; audit["trainable"] = false; audit["engineering_smoke"] = true;
                 audit["posterior_implementation"] = ImplementationVersion;
@@ -111,6 +115,7 @@ internal static class NativeTapeReplayDataset
                 accepted += acceptedHere; allocated += result.Costs.WorldsAllocated; settled += result.Costs.WorldsCompleted;
                 publicRoots.Add(Hash(PublicJson.Serialize(publicRoot))); sourceRuns.Add(runIdentity);
                 attempts.Add(new { sourceDrawSeed, recipe, status = "existing_root_evaluated", source.UsesConditionalShuffle,
+                    source.UsesConditionalHp, source.UsesConditionalNeow,
                     source.ConditioningReason, acceptedPosteriorDraws = acceptedHere, proposalAttempts = source.ProposalAudit.Length,
                     allocatedWorlds = result.Costs.WorldsAllocated, settledWorlds = result.Costs.WorldsCompleted,
                     seconds = attemptTimer.Elapsed.TotalSeconds });
