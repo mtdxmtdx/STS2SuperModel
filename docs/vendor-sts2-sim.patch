@@ -209,6 +209,124 @@
 +    // This payload originates in an explicit public card choice, not hidden draw order.
 +    internal CardModel? NoslSelectedCard => _hasSelectedCard ? ModelDb.GetById<CardModel>(_selectedCardId) : null;
 +    internal int? NoslSelectedUpgrade => _hasSelectedCard ? _selectedCardUpgradeLevel : null;
+--- /dev/null
++++ b/src/Sts2Sim.Core/Random/LabelRandomScope.cs
+@@ -0,0 +1,103 @@
++namespace Sts2Sim.Core.Random;
++
++/// <summary>The native generator state immediately before one primitive draw.</summary>
++public readonly record struct LabelRandomState(ulong State0, ulong State1, ulong State2, ulong State3);
++
++/// <summary>
++/// Explicit label-only distribution departure: substitutes hypothetical random-tape words
++/// while preserving native draw conversion, generator advancement, counters, and game order.
++/// Ordinary sequential execution never enters this scope. Tape ownership, state-addressed
++/// lookup, and replay belong to the caller; no hypothetical trace is stored globally here.
++/// </summary>
++public static class LabelRandomScope
++{
++    private static readonly AsyncLocal<Scope?> Current = new();
++    private static readonly AsyncLocal<bool> InsideCallback = new();
++
++    /// <summary>
++    /// Enter a temporary scope flowing across awaits. Dispose in nesting order within the
++    /// entering execution context. Concurrent worlds must enter their own scopes and own
++    /// their callback state; inherited child work shares the enclosing hypothetical tape.
++    /// </summary>
++    /// <param name="nextWord">
++    /// Supplies a word for the full native pre-draw state. Equal states, including exact
++    /// clones and recreated seeds, should address the same tape cell. The callback runs
++    /// without interception so its own sampling RNG does not recursively consume the tape.
++    /// </param>
++    /// <param name="beginShuffle">
++    /// Optional callback receiving the algorithm RNG and a pre-shuffle snapshot of the
++    /// original object references. It may return a nested scope supplying forced words;
++    /// the native Fisher-Yates loop still performs every draw and swap. This callback also
++    /// runs without interception. Its returned scope is disposed after the native loop.
++    /// </param>
++    public static IDisposable Enter(
++        Func<LabelRandomState, ulong> nextWord,
++        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null)
++    {
++        ArgumentNullException.ThrowIfNull(nextWord);
++        var scope = new Scope(Current.Value, nextWord, beginShuffle);
++        Current.Value = scope;
++        return scope;
++    }
++
++    internal static ulong NextWordOrOriginal(LabelRandomState state, ulong original)
++    {
++        Scope? scope = Current.Value;
++        if (scope is null || InsideCallback.Value) return original;
++
++        InsideCallback.Value = true;
++        try
++        {
++            return scope.NextWord(state);
++        }
++        finally
++        {
++            InsideCallback.Value = false;
++        }
++    }
++
++    internal static IDisposable? BeginShuffle<T>(Rng rng, IList<T> list)
++    {
++        Scope? scope = Current.Value;
++        if (scope?.BeginShuffle is null || InsideCallback.Value) return null;
++
++        var originalItems = new object?[list.Count];
++        for (int i = 0; i < originalItems.Length; i++) originalItems[i] = list[i];
++        InsideCallback.Value = true;
++        try
++        {
++            return scope.BeginShuffle(rng, originalItems);
++        }
++        finally
++        {
++            InsideCallback.Value = false;
++        }
++    }
++
++    private sealed class Scope(
++        Scope? previous,
++        Func<LabelRandomState, ulong> nextWord,
++        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle) : IDisposable
++    {
++        public Scope? Previous { get; } = previous;
++        public Func<LabelRandomState, ulong> NextWord { get; } = nextWord;
++        public Func<Rng, IReadOnlyList<object?>, IDisposable?>? BeginShuffle { get; } = beginShuffle;
++
++        public void Dispose()
++        {
++            if (ReferenceEquals(Current.Value, this))
++            {
++                Current.Value = Previous;
++                return;
++            }
++
++            // Keep restoration local to this execution context, even when a scope has
++            // flowed to a child task. Repeated disposal after removal is harmless.
++            for (Scope? scope = Current.Value; scope is not null; scope = scope.Previous)
++            {
++                if (ReferenceEquals(scope, this))
++                    throw new InvalidOperationException("Label random scopes must be disposed in nesting order.");
++            }
++        }
++    }
++}
+--- a/src/Sts2Sim.Core/Random/MegaRandom.cs
++++ b/src/Sts2Sim.Core/Random/MegaRandom.cs
+@@ -77,0 +78 @@
++        var labelState = new LabelRandomState(s, s2, s3, s4);
+@@ -90 +91,2 @@
+-        return result;
++        // Explicit label scopes replace only the word, after native state advancement.
++        return LabelRandomScope.NextWordOrOriginal(labelState, result);
+--- a/src/Sts2Sim.Core/Random/Rng.cs
++++ b/src/Sts2Sim.Core/Random/Rng.cs
+@@ -494,0 +495 @@
++        using IDisposable? labelScope = LabelRandomScope.BeginShuffle(this, list);
 --- a/src/Sts2Sim.Core/Rooms/CombatRoom.cs
 +++ b/src/Sts2Sim.Core/Rooms/CombatRoom.cs
 @@ -311,0 +312,17 @@
@@ -336,5 +454,224 @@
 +        internal readonly List<PotionMutationKind> Movements = [];
 +        public void HpChanged(Player player, HpMutationKind kind, int before, int after, int maxBefore, int maxAfter) { }
 +        public void PotionChanged(Player player, string potionId, PotionMutationKind kind) => Movements.Add(kind);
++    }
++}
+--- /dev/null
++++ b/tests/Sts2Sim.Core.Tests/Random/LabelRandomScopeTests.cs
+@@ -0,0 +1,216 @@
++namespace Sts2Sim.Core.Tests.Random;
++
++using Sts2Sim.Core.Random;
++using Sts2Sim.Core.Saves;
++
++public class LabelRandomScopeTests
++{
++    [Theory]
++    [InlineData(0uL, 0, -10, int.MinValue, 0)]
++    [InlineData(0x8000000000000000uL, 5, 0, -1, 1073741823)]
++    [InlineData(ulong.MaxValue, 9, 9, int.MaxValue - 1, int.MaxValue - 1)]
++    public void IntegerConversions_ConsumeOneProvidedWord_AndAdvanceNativeState(
++        ulong word, int bounded, int range, int wideRange, int defaultBound)
++    {
++        var rng = new Rng(42);
++        var mega = new MegaRandom(42);
++        int supplied = 0;
++        using (LabelRandomScope.Enter(_ => { supplied++; return word; }))
++        {
++            Check(() => rng.NextInt(10), bounded);
++            Check(() => rng.NextInt(-10, 10), range);
++            Check(() => rng.NextInt(int.MinValue, int.MaxValue), wideRange);
++            Check(() => rng.NextInt(), defaultBound);
++            Check(() => mega.Next(10), bounded);
++            Check(() => mega.Next(-10, 10), range);
++            Check(() => mega.Next(int.MinValue, int.MaxValue), wideRange);
++        }
++
++        var expected = new Rng(42);
++        for (int i = 0; i < 4; i++) expected.NextUnsignedLong();
++        AssertSameState(expected.ToSerializable(), rng.ToSerializable());
++        var expectedMega = new MegaRandom(42);
++        for (int i = 0; i < 3; i++) expectedMega.NextULong();
++        Assert.Equal(expectedMega.NextULong(), mega.NextULong());
++
++        void Check(Func<int> draw, int value)
++        {
++            int before = supplied;
++            Assert.Equal(value, draw());
++            Assert.Equal(before + 1, supplied);
++        }
++    }
++
++    [Fact]
++    public void AllPrimitiveConversions_UseProvidedWord()
++    {
++        var rng = new Rng(1);
++        var mega = new MegaRandom(1);
++        int supplied = 0;
++        using (LabelRandomScope.Enter(_ => { supplied++; return 0x8000000000000000uL; }))
++        {
++            Check(mega.NextDouble, 0.5);
++            Check(mega.NextFloat, 0.5f);
++            Check(mega.NextInt, 1073741824);
++            Check(mega.NextUInt, 0u);
++            Check(mega.NextULong, 0x8000000000000000uL);
++            Check(mega.NextBool, true);
++            Check(rng.NextBool, false);
++            Check(rng.NextDouble, 0.5);
++            Check(() => rng.NextDouble(-1, 1), 0.0);
++            Check(() => rng.NextFloat(), 0.5f);
++            Check(() => rng.NextFloat(-1, 1), 0.0f);
++            Check(() => rng.NextUnsignedInt(10), 5u);
++            Check(() => rng.NextUnsignedInt(10, 20), 15u);
++            Check(rng.NextUnsignedLong, 0x8000000000000000uL);
++            Check(() => rng.NextUnsignedLong(10), 5uL);
++            Check(() => rng.NextUnsignedLong(10, 20), 15uL);
++        }
++        Assert.Equal(10, rng.Counter);
++
++        void Check<T>(Func<T> draw, T value)
++        {
++            int before = supplied;
++            Assert.Equal(value, draw());
++            Assert.Equal(before + 1, supplied);
++        }
++    }
++
++    [Fact]
++    public void PreDrawKeys_PreserveClonesAndRecreatedSeeds_WithoutSamplerRecursion()
++    {
++        var sampler = new MegaRandom(123);
++        var expectedSampler = new MegaRandom(123);
++        var original = new Rng(42);
++        var cells = new Dictionary<LabelRandomState, ulong>();
++        var keys = new List<LabelRandomState>();
++        SerializableRng initial = original.ToSerializable();
++
++        using (LabelRandomScope.Enter(state =>
++        {
++            keys.Add(state);
++            if (!cells.TryGetValue(state, out ulong word))
++                cells.Add(state, word = sampler.NextULong());
++            return word;
++        }))
++        {
++            ulong first = original.NextUnsignedLong();
++            Assert.Equal(first, new Rng(42).NextUnsignedLong());
++            Rng clone = original.CloneExact();
++            Assert.Equal(original.NextUnsignedLong(), clone.NextUnsignedLong());
++        }
++
++        Assert.Equal(new LabelRandomState(initial.state0, initial.state1, initial.state2, initial.state3), keys[0]);
++        Assert.Equal(keys[0], keys[1]);
++        Assert.Equal(keys[2], keys[3]);
++        Assert.NotEqual(keys[0], keys[2]);
++        Assert.Equal(2, cells.Count);
++        Assert.Equal(expectedSampler.NextULong(), cells[keys[0]]);
++        Assert.Equal(expectedSampler.NextULong(), cells[keys[2]]);
++        Assert.Equal(expectedSampler.NextULong(), sampler.NextULong());
++    }
++
++    [Fact]
++    public async Task NestedAndConcurrentScopes_RestoreAcrossAwaitAndExceptions()
++    {
++        var parent = new MegaRandom(5);
++        var native = new MegaRandom(5);
++        var firstEntered = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
++        var secondEntered = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
++        using (LabelRandomScope.Enter(_ => 11))
++        {
++            Task first = DrawInChild(22, firstEntered, secondEntered);
++            Task second = DrawInChild(33, secondEntered, firstEntered);
++            await Task.WhenAll(first, second);
++            Assert.Equal(11uL, parent.NextULong());
++
++            Assert.Throws<InvalidOperationException>(() =>
++            {
++                using var nested = LabelRandomScope.Enter(_ => throw new InvalidOperationException("sample failed"));
++                parent.NextULong();
++            });
++            Assert.Equal(11uL, parent.NextULong());
++        }
++
++        // Failed callback substitution still advances the native generator once.
++        for (int i = 0; i < 3; i++) native.NextULong();
++        Assert.Equal(native.NextULong(), parent.NextULong());
++
++        async Task DrawInChild(ulong word, TaskCompletionSource entered, TaskCompletionSource other)
++        {
++            var child = new MegaRandom(word);
++            using (LabelRandomScope.Enter(_ => word))
++            {
++                entered.SetResult();
++                await other.Task;
++                Assert.Equal(word, child.NextULong());
++                using (LabelRandomScope.Enter(_ => word + 1))
++                {
++                    await Task.Yield();
++                    Assert.Equal(word + 1, child.NextULong());
++                }
++                Assert.Equal(word, child.NextULong());
++            }
++            Assert.Equal(11uL, child.NextULong());
++        }
++    }
++
++    [Theory]
++    [InlineData(0)]
++    [InlineData(1)]
++    [InlineData(4)]
++    public void ForcedShuffle_KeepsNativeSwapsCountersObserversAndState(int count)
++    {
++        object[] items = Enumerable.Range(0, count).Select(_ => new object()).ToArray();
++        var list = items.ToList();
++        var observed = new List<(int Counter, string Operation, string Value)>();
++        var rng = Rng.CreateObserved(7, (counter, operation, value) => observed.Add((counter, operation, value)));
++        var native = new Rng(7);
++        var words = new Queue<ulong>(count == 4 ? [0, ulong.MaxValue, 0] : []);
++        int shuffles = 0;
++        int outerDraws = 0;
++
++        using (LabelRandomScope.Enter(_ => { outerDraws++; return 17; }, (algorithmRng, originalItems) =>
++        {
++            shuffles++;
++            Assert.Same(rng, algorithmRng);
++            AssertSameState(native.ToSerializable(), algorithmRng.ToSerializable());
++            Assert.Equal(items.Length, originalItems.Count);
++            for (int i = 0; i < items.Length; i++) Assert.Same(items[i], originalItems[i]);
++            return LabelRandomScope.Enter(_ => words.Dequeue());
++        }))
++        {
++            rng.Shuffle(list);
++            Assert.Equal(0, outerDraws);
++            Assert.Equal(17uL, new MegaRandom(0).NextULong());
++        }
++
++        Assert.Equal(1, shuffles);
++        Assert.Empty(words);
++        int draws = Math.Max(0, count - 1);
++        Assert.Equal(draws, rng.Counter);
++        Assert.Equal(draws, observed.Count);
++        for (int i = 0; i < draws; i++) native.NextUnsignedLong();
++        AssertSameState(native.ToSerializable(), rng.ToSerializable());
++        if (count == 4)
++        {
++            Assert.Equal(new[] { items[1], items[3], items[2], items[0] }, list);
++            Assert.Equal(new[]
++            {
++                (1, "NextInt(maxExclusive=4)", "0"),
++                (2, "NextInt(maxExclusive=3)", "2"),
++                (3, "NextInt(maxExclusive=2)", "0")
++            }, observed);
++        }
++        else Assert.Equal(items, list);
++    }
++
++    private static void AssertSameState(SerializableRng expected, SerializableRng actual)
++    {
++        Assert.Equal(expected.counter, actual.counter);
++        Assert.Equal(expected.state0, actual.state0);
++        Assert.Equal(expected.state1, actual.state1);
++        Assert.Equal(expected.state2, actual.state2);
++        Assert.Equal(expected.state3, actual.state3);
 +    }
 +}

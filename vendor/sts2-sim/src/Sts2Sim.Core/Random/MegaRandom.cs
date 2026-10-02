@@ -75,6 +75,7 @@ public sealed class MegaRandom
         ulong s2 = _s1;
         ulong s3 = _s2;
         ulong s4 = _s3;
+        var labelState = new LabelRandomState(s, s2, s3, s4);
         ulong result = BitOperations.RotateLeft(s2 * 5, 7) * 9;
         ulong num = s2 << 17;
         s3 ^= s;
@@ -87,7 +88,8 @@ public sealed class MegaRandom
         _s1 = s2;
         _s2 = s3;
         _s3 = s4;
-        return result;
+        // Explicit label scopes replace only the word, after native state advancement.
+        return LabelRandomScope.NextWordOrOriginal(labelState, result);
     }
 
     public int Next(int maxValue)

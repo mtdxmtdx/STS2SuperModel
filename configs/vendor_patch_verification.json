@@ -1,9 +1,9 @@
 {
   "schema": "nosl.vendor-patch-reconstruction.v1",
   "upstream_commit": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
-  "main_patch_sha256": "6b767d35702da669c3badc36c029e67b893c0e9bd1cf43ca87b68346be2521b6",
+  "main_patch_sha256": "cb2d01f46d08d80b51d46f84917bf4d27e29cc7c98865532b972c677f788c265",
   "map_patch_sha256": "fad7d6a7e85ea44901da2b01227f972926a116af5398686a2628326002bcdc08",
-  "tracked_source_and_test_files_verified": 2227,
+  "tracked_source_and_test_files_verified": 2229,
   "main_patch_files": [
     "src/Sts2Sim.Core/Combat/CombatEngine.cs",
     "src/Sts2Sim.Core/Combat/CombatState.Clone.cs",
@@ -24,53 +24,96 @@
     "src/Sts2Sim.Core/Models/Cards/ThrummingHatchet.cs",
     "src/Sts2Sim.Core/Models/Monsters/TwoTailedRat.cs",
     "src/Sts2Sim.Core/Models/Powers/NightmarePower.cs",
+    "src/Sts2Sim.Core/Random/LabelRandomScope.cs",
+    "src/Sts2Sim.Core/Random/MegaRandom.cs",
+    "src/Sts2Sim.Core/Random/Rng.cs",
     "src/Sts2Sim.Core/Rooms/CombatRoom.cs",
     "src/Sts2Sim.Core/Runs/RunDriver.cs",
     "src/Sts2Sim.Core/Sts2Sim.Core.csproj",
-    "tests/Sts2Sim.Core.Tests/Combat/PlayerOutcomeObserverTests.cs"
+    "tests/Sts2Sim.Core.Tests/Combat/PlayerOutcomeObserverTests.cs",
+    "tests/Sts2Sim.Core.Tests/Random/LabelRandomScopeTests.cs"
   ],
   "map_patch_file": "src/Sts2Sim.Core/Map/MapPathPruning.cs",
   "all_bytes_match": true,
   "reconstructed_file_set_matches": true,
-  "source_file_manifest_sha256": "4194c4db37b70ac8e2701a79f2f6cd5993da821f6f57b48aab51a61fa9b4f476",
+  "source_file_manifest_sha256": "2123ae2d27120ca9ac206cb01ad74a0791869d7bda1cfa6e80ab3ded2db2edf4",
   "remote_writes": false,
-  "note": "Reconstructed a fresh local copy from the pinned read-only git archive, applied both documented patches, and compared the complete tracked vendored Core/Core.Tests file set byte-for-byte. Only the existing main patch's RunDriver section changed, exactly matching source commit 15dc051: completion uses actual unresolved rewards and follows automatic owner return when no offer remains. All other main-patch sections and the separate map patch remain byte-identical.",
-  "source_file_manifest_path": "artifacts/owned-run-vendor-verification/vendor-reconstructed-manifest.json",
+  "note": "Reconstructed a fresh local copy from the pinned read-only git archive, applied both documented patches, and compared the complete tracked vendored Core/Core.Tests file set byte-for-byte. The main patch adds only the four conditional-label random bridge sections relative to the previous package: LabelRandomScope, the primitive MegaRandom substitution seam, the Rng.Shuffle scope seam, and their focused tests. All prior main-patch sections and the separate map patch remain byte-identical. The explicitly entered label scope deliberately substitutes ideal tape words while advancing the native generator; ordinary unscoped engine execution remains native. Both test runs use the same isolated build. Source hashes were rechecked after the full suite.",
+  "source_file_manifest_path": "artifacts/conditional-vendor-verification/vendor-reconstructed-manifest.json",
   "vendor_core_suite": {
-    "passed": 4480,
+    "passed": 4489,
     "failed": 0,
     "skipped": 3,
-    "total": 4483,
+    "total": 4492,
     "skipped_opt_in_cases": [
       "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
       "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
       "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
     ],
-    "build_artifacts": "artifacts/owned-run-core-build",
-    "command": "source ../.dotnet-nosl-env.sh && dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/owned-run-core-build -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core-tests.trx' --results-directory artifacts/owned-run-vendor-verification",
+    "build_artifacts": "artifacts/conditional-vendor-verification/build",
+    "command": "source ../.dotnet-nosl-env.sh && dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/conditional-vendor-verification/build --no-build --no-restore -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core-tests.trx' --results-directory artifacts/conditional-vendor-verification",
     "run_times": {
-      "creation": "2026-10-02T18:17:45.2533782+09:00",
-      "queuing": "2026-10-02T18:17:45.2533782+09:00",
-      "start": "2026-10-02T18:17:43.4336746+09:00",
-      "finish": "2026-10-02T18:21:52.4612393+09:00"
+      "creation": "2026-10-02T19:23:08.3850716+09:00",
+      "queuing": "2026-10-02T19:23:08.3850717+09:00",
+      "start": "2026-10-02T19:23:07.1242430+09:00",
+      "finish": "2026-10-02T19:27:37.2125477+09:00"
     },
-    "log_path": "artifacts/owned-run-vendor-verification/vendor-core-tests.log",
-    "log_sha256": "ab7f25cd0827f79b88f270149e844d81798591f3774291865115247fd1cda2a9",
-    "trx_path": "artifacts/owned-run-vendor-verification/vendor-core-tests.trx",
-    "trx_sha256": "04203b70b2fc7091da8b4e82d78dfc9aaa18885c3beb75d83776caaf0646d647",
-    "test_assembly_path": "artifacts/owned-run-core-build/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
-    "test_assembly_sha256": "3aa15ae6198dacbadb45861fcb44e031f97929663ea7f3d5923c34aab9d8781a",
-    "core_assembly_path": "artifacts/owned-run-core-build/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
-    "core_assembly_sha256": "415e658a50505590a03785f8d331f15e3f34d0ea9bfc49a6bf8edaf2959f98af"
+    "log_path": "artifacts/conditional-vendor-verification/vendor-core-tests.log",
+    "log_sha256": "6bd5e1fc523aadb039a0438d06c21e9db9defdfc48051be4207a2324c5a0626f",
+    "trx_path": "artifacts/conditional-vendor-verification/vendor-core-tests.trx",
+    "trx_sha256": "fba08296e2c449ab65744425f60dcfd7cb729c8c2a2a2519f44ae8d1707f1095",
+    "test_assembly_path": "artifacts/conditional-vendor-verification/build/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "70c542241150128bdeaf6eccaada5a2d8e2cb24ec5387ec0b5936b2e455e2297",
+    "core_assembly_path": "artifacts/conditional-vendor-verification/build/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "6e0fafca0462cc789e67014c0573fc2f03f9ee3ff7dfc5fdf48a5e38da8f3312",
+    "verified_source_manifest_sha256": "2123ae2d27120ca9ac206cb01ad74a0791869d7bda1cfa6e80ab3ded2db2edf4"
   },
-  "independent_packaging_audit": "passed_file_set_bytes_manifest_patch_hashes_and_RunDriver_only_diff",
-  "verified_source_commit": "15dc05167acdf059c69dc6bc0dd20d80a0f323a1",
+  "independent_packaging_audit": "passed_file_set_bytes_manifest_patch_hashes_and_four_random_file_only_delta",
+  "verified_source_commit": "78c28fd0a10f14c79d64de32db9dd95b92bae860",
   "packaging_delta_audit": {
+    "previous_packaged_source_commit": "8879899fa254ea91226687ecfef23f46b8237470",
     "previous_patch_source_delta_files": [
-      "src/Sts2Sim.Core/Runs/RunDriver.cs"
+      "src/Sts2Sim.Core/Random/LabelRandomScope.cs",
+      "src/Sts2Sim.Core/Random/MegaRandom.cs",
+      "src/Sts2Sim.Core/Random/Rng.cs",
+      "tests/Sts2Sim.Core.Tests/Random/LabelRandomScopeTests.cs"
     ],
-    "previous_patch_source_delta_matches_commit": "15dc05167acdf059c69dc6bc0dd20d80a0f323a1",
+    "previous_patch_source_delta_matches_commit_range": [
+      "8879899fa254ea91226687ecfef23f46b8237470",
+      "78c28fd0a10f14c79d64de32db9dd95b92bae860"
+    ],
     "unchanged_patch_sections_byte_identical": true,
-    "intended_run_driver_delta_sha256": "8983d15a0a3630e26229796e1a18d595c3b5fa4aa8e2d06c1929ad1aba987e92"
+    "map_patch_byte_identical": true,
+    "intended_conditional_random_delta_sha256": "0426b0278af4d0405d95e1d8f950fd38f3d4d41ef5ef4624c0df7c561a9d8809",
+    "new_source_file_sha256": {
+      "src/Sts2Sim.Core/Random/LabelRandomScope.cs": "4094b1f3f309eb6b6fb2703fe3484a18cc4655b139277c12f07be4d951cacd42",
+      "src/Sts2Sim.Core/Random/MegaRandom.cs": "f0c80ae9f1ebb195c2c96f890459e04c17c8299572cf3be250733eeba08e41d7",
+      "src/Sts2Sim.Core/Random/Rng.cs": "0c4a6448348a320d5a3b5a29a8652cbb98e7f0876abc52d32fa8ae7f4c5a3e64",
+      "tests/Sts2Sim.Core.Tests/Random/LabelRandomScopeTests.cs": "e102b661d834ab2e9fed34fb7fdbeaf8363df2e2c82a93d504522b9666b1c1b3"
+    }
+  },
+  "vendor_random_suite": {
+    "passed": 37,
+    "failed": 0,
+    "skipped": 0,
+    "total": 37,
+    "skipped_opt_in_cases": [],
+    "build_artifacts": "artifacts/conditional-vendor-verification/build",
+    "command": "source ../.dotnet-nosl-env.sh && dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/conditional-vendor-verification/build -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --filter 'FullyQualifiedName~Sts2Sim.Core.Tests.Random' --logger 'trx;LogFileName=vendor-random-tests.trx' --results-directory artifacts/conditional-vendor-verification",
+    "run_times": {
+      "creation": "2026-10-02T19:21:37.2826556+09:00",
+      "queuing": "2026-10-02T19:21:37.2826557+09:00",
+      "start": "2026-10-02T19:21:36.0376325+09:00",
+      "finish": "2026-10-02T19:21:37.3132166+09:00"
+    },
+    "log_path": "artifacts/conditional-vendor-verification/vendor-random-tests.log",
+    "log_sha256": "d43ca867152875936d1cd92cd120213cab1fffa4f49ff33a58972f8bbbe88022",
+    "trx_path": "artifacts/conditional-vendor-verification/vendor-random-tests.trx",
+    "trx_sha256": "a99706a12474a278d199a8e263f6bf270b3e778c19e9302f3b9ade7418edc6fa",
+    "test_assembly_path": "artifacts/conditional-vendor-verification/build/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "70c542241150128bdeaf6eccaada5a2d8e2cb24ec5387ec0b5936b2e455e2297",
+    "core_assembly_path": "artifacts/conditional-vendor-verification/build/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "6e0fafca0462cc789e67014c0573fc2f03f9ee3ff7dfc5fdf48a5e38da8f3312",
+    "verified_source_manifest_sha256": "2123ae2d27120ca9ac206cb01ad74a0791869d7bda1cfa6e80ab3ded2db2edf4"
   }
 }

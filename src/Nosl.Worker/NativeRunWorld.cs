@@ -14,6 +14,7 @@ namespace Nosl.Worker;
 // Optional ownership seam; ordinary collection retains its original behavior.
 internal interface INativeRunControl
 {
+    void CombatEntering(NativeEntryAssets entry) { }
     void BeforeDecision();
     Task<PublicAction?> DecideAsync(DecisionPacket packet, NaturalSourceBoundary boundary);
     void Settled(PublicKnowledge knowledge);
@@ -32,6 +33,9 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
     private readonly CancellationToken _callerToken;
     private readonly CancellationTokenSource _lifetime;
     private readonly Func<RunState, RunDriver, Task>? _constructedLifecycle;
+    private readonly NativeLabelTape? _labelTape;
+    private readonly int? _selectedCombat;
+    private int _combatIndex = -1, _localDecision;
     private readonly List<PublicAction> _actions = [];
     private readonly List<string> _packets = [];
     private TaskCompletionSource<DecisionPacket?> _next = NewSignal();
@@ -66,7 +70,8 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
     private static T Copy<T>(T value) => PublicJson.Read<T>(PublicJson.Serialize(value));
 
     private NativeRunWorld(NativeRunExecutionOptions options, string seed, int slot, CancellationToken cancellationToken,
-        Func<RunState, RunDriver, Task>? constructedLifecycle = null)
+        Func<RunState, RunDriver, Task>? constructedLifecycle = null,
+        NativeLabelTape? labelTape = null, int? selectedCombat = null)
     {
         if (options.MaxFloors <= 0 || options.SourceDecisionHorizon <= 0 || slot < 0)
             throw new ArgumentOutOfRangeException(nameof(options), "Native source horizons must be positive and the slot nonnegative");
@@ -74,6 +79,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         _ = PublicContinuationPolicies.Create(options.SourcePolicyId);
         _options = options; _proposalSeed = seed; _selectedSlot = slot; _callerToken = cancellationToken;
         _constructedLifecycle = constructedLifecycle;
+        _labelTape = labelTape; _selectedCombat = selectedCombat;
         _lifetime = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         NaturalSourceCollector.InitializeNativeModels();
         NativeRun = new RunState(seed, ascensionLevel: 10);
@@ -89,6 +95,13 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         string independentRunSeed, int selectedSlot, CancellationToken cancellationToken = default)
         => await OpenCoreAsync(options, independentRunSeed, selectedSlot, cancellationToken);
 
+    // Explicitly separate law: ideal state-addressed primitive tape, not the
+    // sequential whole-run seed posterior or the simulator's keyed RNG mode.
+    internal static Task<NativeRunWorld?> OpenLabelTapeAsync(NativeRunExecutionOptions options,
+        NativeTapeRecipe recipe, NativeLabelTape tape, CancellationToken cancellationToken = default)
+        => OpenCoreAsync(options, recipe.IndependentRunSeed, recipe.DecisionIndex, cancellationToken,
+            labelTape: tape, selectedCombat: recipe.CombatIndex);
+
     // Deliberately separate from the declared natural prior: explicit test-only
     // lifecycle setup can inject cards/rooms while retaining native driver rules.
     internal static Task<NativeRunWorld?> OpenConstructedLifecycleFixtureAsync(NativeRunExecutionOptions options,
@@ -98,10 +111,14 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
 
     private static async Task<NativeRunWorld?> OpenCoreAsync(NativeRunExecutionOptions options,
         string seed, int selectedSlot, CancellationToken cancellationToken,
-        Func<RunState, RunDriver, Task>? constructedLifecycle = null)
+        Func<RunState, RunDriver, Task>? constructedLifecycle = null,
+        NativeLabelTape? labelTape = null, int? selectedCombat = null)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var world = new NativeRunWorld(options, seed, selectedSlot, cancellationToken, constructedLifecycle);
+        NativeRunWorld world;
+        using (labelTape?.EnterScope())
+            world = new NativeRunWorld(options, seed, selectedSlot, cancellationToken, constructedLifecycle,
+                labelTape, selectedCombat);
         try
         {
             world._execution = world.ExecuteAsync();
@@ -113,6 +130,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
 
     private async Task ExecuteAsync()
     {
+        using var labelScope = _labelTape?.EnterScope();
         var sourceOptions = new NaturalSourceOptions(MaxFloors: _options.MaxFloors,
             ContinuationPolicyId: _options.SourcePolicyId);
         _bridge = new(NativeRun, sourceOptions, PublicContinuationPolicies.Create(_options.SourcePolicyId), [],
@@ -132,6 +150,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
             _next.TrySetResult(null);
         }
         catch (NativeSettlementReached) { }
+        catch (NativeSelectedCombatHasNoRoot) { _next.TrySetResult(null); }
         catch (NativeSourceHorizonReached) when (_selectedBoundary is null) { _next.TrySetResult(null); }
         catch (OperationCanceledException e) when (_lifetime.IsCancellationRequested)
         { _fault = e; _next.TrySetCanceled(_lifetime.Token); }
@@ -141,6 +160,12 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
             _bridge.DetachOutcome();
             await _bridge.ReleaseChoiceOriginAsync();
         }
+    }
+
+    void INativeRunControl.CombatEntering(NativeEntryAssets entry)
+    {
+        _combatIndex++; _localDecision = 0;
+        _labelTape?.CombatEntering(_combatIndex, entry, NativeRun.Rng.Shuffle);
     }
 
     void INativeRunControl.BeforeDecision()
@@ -153,7 +178,13 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
 
     async Task<PublicAction?> INativeRunControl.DecideAsync(DecisionPacket packet, NaturalSourceBoundary boundary)
     {
-        if (_selectedBoundary is null && _eligibleSlots++ != _selectedSlot) return null;
+        if (_selectedBoundary is null)
+        {
+            int globalSlot = _eligibleSlots++, localSlot = _localDecision++;
+            if (_selectedCombat is int combat
+                ? _combatIndex != combat || localSlot != _selectedSlot
+                : globalSlot != _selectedSlot) return null;
+        }
         if (_selectedBoundary is null)
         {
             _selectedBoundary = boundary;
@@ -169,7 +200,11 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
 
     void INativeRunControl.Settled(PublicKnowledge knowledge)
     {
-        if (_selectedBoundary is null) return;
+        if (_selectedBoundary is null)
+        {
+            if (_selectedCombat == _combatIndex) throw new NativeSelectedCombatHasNoRoot();
+            return;
+        }
         var timer = Stopwatch.StartNew();
         var player = NativeRun.Players.Single();
         var finalAssets = CombatAssetSnapshot.Capture(player);
@@ -279,7 +314,8 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
     public async Task<ITeacherWorld> ForkForContinuationAsync()
     {
         _ = Observe();
-        var fork = await OpenCoreAsync(_options, _proposalSeed, _selectedSlot, _callerToken, _constructedLifecycle)
+        var fork = await OpenCoreAsync(_options, _proposalSeed, _selectedSlot, _callerToken, _constructedLifecycle,
+            _labelTape?.ReplayCopy(), _selectedCombat)
             ?? throw new InvalidOperationException("Native replay lost its previously reached proposal slot");
         try
         {
@@ -311,5 +347,6 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
     }
 
     private sealed class NativeSourceHorizonReached : Exception;
+    private sealed class NativeSelectedCombatHasNoRoot : Exception;
     private sealed class NativeSettlementReached : Exception;
 }

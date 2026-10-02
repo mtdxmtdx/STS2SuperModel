@@ -4,7 +4,7 @@
 
 保留完整公开 Core/Core.Tests 源码、AGENTS、CONTRIBUTING、LICENSE；上游原 README 保存在 [UPSTREAM_README.md](UPSTREAM_README.md)。没有加入游戏程序集、资源或反编译文件。构建入口为根目录 `Nosl.M012.sln`。
 
-相对当前上游的最小 NOSL 连接补丁见 [vendor-sts2-sim.patch](../../docs/vendor-sts2-sim.patch)：独立房间终局上下文、A10 clone 上下文赋值顺序、只读公共抽牌/移动/生成/移除观察、原生运行观察器转发、玩家 HP／药水已提交变化与自动结算边界通知、明确公开状态的只读 getter，以及 friend assembly。没有重写卡牌/药水/遗物/敌人效果或随机规则。旧投影 API 保持原语义；奖励/具体 RunState 敏感内容使用独立原生 replay。
+相对当前上游的最小 NOSL 连接补丁见 [vendor-sts2-sim.patch](../../docs/vendor-sts2-sim.patch)：独立房间终局上下文、A10 clone 上下文赋值顺序、只读公共抽牌/移动/生成/移除观察、原生运行观察器转发、玩家 HP／药水已提交变化与自动结算边界通知、明确公开状态的只读 getter，以及 friend assembly。没有重写卡牌/药水/遗物/敌人效果。普通顺序随机模式保持原语义；另增显式启用的 `LabelRandomScope`，仅供有独立版本声明的假想随机带标签先验，详见下文。旧投影 API 保持原语义；奖励/具体 RunState 敏感内容使用独立原生 replay。
 
 修改文件：
 - `src/Sts2Sim.Core/Combat/CombatEngine.cs`
@@ -26,15 +26,21 @@
 - `src/Sts2Sim.Core/Models/Cards/ThrummingHatchet.cs`
 - `src/Sts2Sim.Core/Models/Monsters/TwoTailedRat.cs`
 - `src/Sts2Sim.Core/Models/Powers/NightmarePower.cs`
+- `src/Sts2Sim.Core/Random/LabelRandomScope.cs`
+- `src/Sts2Sim.Core/Random/MegaRandom.cs`
+- `src/Sts2Sim.Core/Random/Rng.cs`
 - `src/Sts2Sim.Core/Rooms/CombatRoom.cs`
 - `src/Sts2Sim.Core/Runs/RunDriver.cs`
 - `src/Sts2Sim.Core/Sts2Sim.Core.csproj`
 - `tests/Sts2Sim.Core.Tests/Combat/PlayerOutcomeObserverTests.cs`
+- `tests/Sts2Sim.Core.Tests/Random/LabelRandomScopeTests.cs`
 
 补丁为零上下文 unified diff；从固定上游复现时使用 `git apply --unidiff-zero`。
 
 原生敌人扩展另加两个只读证书检查：TwoTailedRat 的召唤倒计时 getter，以及 CombatState 的遭遇槽位顺序比较。二者仅用于核对公开历史可以确定的状态，不修改游戏规则、随机数或克隆行为。
 
-2026-10-02 已从该固定提交的全新本地归档依次应用两个补丁，对比全部 2,227 个已跟踪 Core／Core.Tests 文件，字节完全一致。验证摘要见 [vendor_patch_verification.json](../../configs/vendor_patch_verification.json)。玩家观察器不会被 clone 复制；结算统计只记录已经发生的数值变化，不进入策略输入，也不重复加入终局代价。详见 [结算事件记录](../../docs/OUTCOME_EVENT_ACCOUNTING.md)。
+2026-10-02 已从该固定提交的全新本地归档依次应用两个补丁，对比全部 2,229 个已跟踪 Core／Core.Tests 文件，字节完全一致。验证摘要见 [vendor_patch_verification.json](../../configs/vendor_patch_verification.json)。玩家观察器不会被 clone 复制；结算统计只记录已经发生的数值变化，不进入策略输入，也不重复加入终局代价。详见 [结算事件记录](../../docs/OUTCOME_EVENT_ACCOUNTING.md)。
+
+`LabelRandomScope` 是明确的标签分布扩展：仍按原生顺序推进每次随机生成器状态、计数器和数值转换，只在显式异步作用域内用假想随机带替换原始 64 位随机字。完整抽取前状态作为地址，相同状态（包括精确 clone）共享值；不同状态的共同种子相关性在新理想先验中被独立随机字替代。默认顺序模式、现有 keyed 模式及旧数据的先验不会因此改变。洗牌提议只通过原来的 Fisher–Yates 循环消费随机字，并保留精确桶概率校正。该扩展不是客户端顺序 seed 回放的替代品，也没有写入任一远端模拟器仓库。详见 [条件随机带采样](../../docs/NATIVE_CONDITIONAL_TAPE.md)。
 
 本地可选性能补丁：[vendor-map-pruning-optimization.patch](../../docs/vendor-map-pruning-optimization.patch)。在上述连接补丁后应用，同样使用 `git apply --unidiff-zero`。仅修改 `src/Sts2Sim.Core/Map/MapPathPruning.cs`，省略同一次剪枝扫描中完全相同节点片段的重复计算；不改变地图、候选顺序或 RNG 消耗。证明、前后测量和精确对照见 [sampling/cloning profile](../../docs/CLONE_PROFILING.md)。未向任一上游仓库写入。

@@ -1,0 +1,294 @@
+{
+  "schema": "nosl.conditional-native-tape-verification.v1",
+  "source_commit": "e624a0746e2709fdff86a35e73d1109e92ee4446",
+  "status": "EXACT_IDEAL_TAPE_CONDITIONING_ENGINEERED_OPENING_THROUGHPUT_GATE_FAILED",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "new_production_dataset_rows": 0,
+  "prior": {
+    "schemaVersion": "nosl.native-state-tape-prior.v1",
+    "execution": {
+      "maxFloors": 1,
+      "sourceDecisionHorizon": 64,
+      "sourcePolicyId": "nosl-public-rules-v2"
+    },
+    "eligibleCombats": 1,
+    "eligibleDecisionsPerCombat": 1,
+    "primitiveLaw": "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1",
+    "primitiveImplementation": "sha256-address-expansion-with-explicit-conditioned-overrides-v1",
+    "rootLaw": "independent-uniform-fixed-combat-and-local-decision-indices-v1",
+    "outsideCombatScript": "nosl-natural-public-script-v2"
+  },
+  "prior_identity": "741c8af9d875fafb3fe565ac6ae535ffdbbba589823ba9609de4860f493fea78",
+  "ideal_vs_implementation": "Exact proposal correction is relative to the independent state-addressed primitive-word law. SHA256 expansion is its reproducible pseudorandom implementation, not a claim of exact independent finite-seed outputs or the old native seed posterior.",
+  "native_suite": {
+    "passed": 1132,
+    "failed": 0,
+    "skipped": 0,
+    "path": "artifacts/reports/conditional-tape/conditional-tape-aggregate.trx",
+    "bytes": 1687386,
+    "sha256": "352fdd22fafd2ce31403765b7effc5274d0ad2582130f666e34634ba505cae45"
+  },
+  "targeted_suite": {
+    "passed": 36,
+    "failed": 0,
+    "path": "artifacts/reports/conditional-tape/conditional-tape-targeted.trx",
+    "bytes": 56206,
+    "sha256": "7356f5f946c1290c4e69d377e9ea0b211572bc13a2fbad8ba543434578a5e66a"
+  },
+  "core_suite": {
+    "passed": 4489,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4492,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "build_artifacts": "artifacts/conditional-vendor-verification/build",
+    "command": "source ../.dotnet-nosl-env.sh && dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/conditional-vendor-verification/build --no-build --no-restore -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core-tests.trx' --results-directory artifacts/conditional-vendor-verification",
+    "run_times": {
+      "creation": "2026-10-02T19:23:08.3850716+09:00",
+      "queuing": "2026-10-02T19:23:08.3850717+09:00",
+      "start": "2026-10-02T19:23:07.1242430+09:00",
+      "finish": "2026-10-02T19:27:37.2125477+09:00"
+    },
+    "log_path": "artifacts/conditional-vendor-verification/vendor-core-tests.log",
+    "log_sha256": "6bd5e1fc523aadb039a0438d06c21e9db9defdfc48051be4207a2324c5a0626f",
+    "trx_path": "artifacts/conditional-vendor-verification/vendor-core-tests.trx",
+    "trx_sha256": "fba08296e2c449ab65744425f60dcfd7cb729c8c2a2a2519f44ae8d1707f1095",
+    "test_assembly_path": "artifacts/conditional-vendor-verification/build/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "70c542241150128bdeaf6eccaada5a2d8e2cb24ec5387ec0b5936b2e455e2297",
+    "core_assembly_path": "artifacts/conditional-vendor-verification/build/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "6e0fafca0462cc789e67014c0573fc2f03f9ee3ff7dfc5fdf48a5e38da8f3312",
+    "verified_source_manifest_sha256": "2123ae2d27120ca9ac206cb01ad74a0791869d7bda1cfa6e80ab3ded2db2edf4"
+  },
+  "finite_probability_check": {
+    "native_primitive_tapes_enumerated": 32768,
+    "cards": 6,
+    "word_precision_bits": 3,
+    "purpose": "exact corrected law including duplicate cards and unequal bucket masses"
+  },
+  "probe": {
+    "sourceDrawsRequested": 8,
+    "existingRoots": 8,
+    "recordedRoots": 8,
+    "distinctRecordedPublicRoots": 8,
+    "distinctRecordedSourceRuns": 8,
+    "acceleratedRoots": 2,
+    "acceptedPosteriorDraws": 2,
+    "allocatedCandidateWorlds": 160,
+    "settledCandidateWorlds": 14,
+    "elapsedSeconds": 274.0962715,
+    "peakWorkerMemoryBytes": 139374592,
+    "budgetExpired": false
+  },
+  "predeclaration": {
+    "path": "artifacts/reports/conditional-tape/opening-benchmark-predeclaration.json",
+    "bytes": 985,
+    "sha256": "a88fd408c3a7ca502f12e5390b496b360245cb55770eaf4987efb82c2e9e9dfe"
+  },
+  "request": {
+    "path": "artifacts/reports/conditional-tape/opening-benchmark-request.jsonl",
+    "bytes": 583,
+    "sha256": "72a5a0e1d6e9802670a15a153a9023aaa302bb04e8d0e378ead04b44166041da"
+  },
+  "response": {
+    "path": "artifacts/reports/conditional-tape/opening-benchmark-response.jsonl",
+    "bytes": 3814371,
+    "sha256": "bd9559769605bf090fe1205a9480ec3f501a342af6d5f6d40651687e693ed3a9"
+  },
+  "proposal_statuses": {
+    "public_entry_or_draw_prefix_mismatch": 7145,
+    "public_packet_mismatch": 467,
+    "accepted": 2
+  },
+  "outcomes": {
+    "Win": 14,
+    "ComputeTruncated": 146
+  },
+  "distinct_accepted_recipes": 2,
+  "source_breakdown": [
+    {
+      "source_draw_seed": 8001,
+      "relics": [
+        "RingOfTheSnake",
+        "NutritiousOyster"
+      ],
+      "enemies": [
+        "Seapunk"
+      ],
+      "accelerated": true,
+      "reason": "certified_public_initial_draw_prefix",
+      "proposals": 446,
+      "accepted_worlds": 2,
+      "proposal_statuses": {
+        "public_entry_or_draw_prefix_mismatch": 428,
+        "public_packet_mismatch": 16,
+        "accepted": 2
+      }
+    },
+    {
+      "source_draw_seed": 8002,
+      "relics": [
+        "RingOfTheSnake",
+        "FishingRod"
+      ],
+      "enemies": [
+        "Nibbit"
+      ],
+      "accelerated": false,
+      "reason": "entry_hook_not_certified:FishingRod.AfterCombatEnd",
+      "proposals": 1024,
+      "accepted_worlds": 0,
+      "proposal_statuses": {
+        "public_entry_or_draw_prefix_mismatch": 963,
+        "public_packet_mismatch": 61
+      }
+    },
+    {
+      "source_draw_seed": 8003,
+      "relics": [
+        "RingOfTheSnake",
+        "BoomingConch"
+      ],
+      "enemies": [
+        "LeafSlimeS",
+        "LeafSlimeM",
+        "TwigSlimeS"
+      ],
+      "accelerated": false,
+      "reason": "entry_hook_not_certified:BoomingConch.AfterSideTurnStart",
+      "proposals": 1024,
+      "accepted_worlds": 0,
+      "proposal_statuses": {
+        "public_entry_or_draw_prefix_mismatch": 948,
+        "public_packet_mismatch": 76
+      }
+    },
+    {
+      "source_draw_seed": 8004,
+      "relics": [
+        "RingOfTheSnake",
+        "WingedBoots"
+      ],
+      "enemies": [
+        "Nibbit"
+      ],
+      "accelerated": false,
+      "reason": "startup_monster_not_certified",
+      "proposals": 1024,
+      "accepted_worlds": 0,
+      "proposal_statuses": {
+        "public_entry_or_draw_prefix_mismatch": 944,
+        "public_packet_mismatch": 80
+      }
+    },
+    {
+      "source_draw_seed": 8005,
+      "relics": [
+        "RingOfTheSnake",
+        "Pomander"
+      ],
+      "enemies": [
+        "ShrinkerBeetle"
+      ],
+      "accelerated": true,
+      "reason": "certified_public_initial_draw_prefix",
+      "proposals": 1024,
+      "accepted_worlds": 0,
+      "proposal_statuses": {
+        "public_entry_or_draw_prefix_mismatch": 987,
+        "public_packet_mismatch": 37
+      }
+    },
+    {
+      "source_draw_seed": 8006,
+      "relics": [
+        "RingOfTheSnake",
+        "PreciseScissors"
+      ],
+      "enemies": [
+        "LeafSlimeS",
+        "LeafSlimeM",
+        "TwigSlimeS"
+      ],
+      "accelerated": false,
+      "reason": "startup_monster_not_certified",
+      "proposals": 1024,
+      "accepted_worlds": 0,
+      "proposal_statuses": {
+        "public_entry_or_draw_prefix_mismatch": 968,
+        "public_packet_mismatch": 56
+      }
+    },
+    {
+      "source_draw_seed": 8007,
+      "relics": [
+        "RingOfTheSnake",
+        "WingedBoots"
+      ],
+      "enemies": [
+        "LeafSlimeS",
+        "LeafSlimeM",
+        "TwigSlimeS"
+      ],
+      "accelerated": false,
+      "reason": "startup_monster_not_certified",
+      "proposals": 1024,
+      "accepted_worlds": 0,
+      "proposal_statuses": {
+        "public_entry_or_draw_prefix_mismatch": 944,
+        "public_packet_mismatch": 80
+      }
+    },
+    {
+      "source_draw_seed": 8008,
+      "relics": [
+        "RingOfTheSnake",
+        "FishingRod"
+      ],
+      "enemies": [
+        "ShrinkerBeetle"
+      ],
+      "accelerated": false,
+      "reason": "entry_hook_not_certified:FishingRod.AfterCombatEnd",
+      "proposals": 1024,
+      "accepted_worlds": 0,
+      "proposal_statuses": {
+        "public_entry_or_draw_prefix_mismatch": 963,
+        "public_packet_mismatch": 61
+      }
+    }
+  ],
+  "reference": {
+    "same_new_prior": true,
+    "accepted_worlds": 0,
+    "proposals": 512,
+    "maximum_proposals_per_evaluation": 32
+  },
+  "gate": {
+    "required_fully_settled_roots": 4,
+    "observed_fully_settled_roots": 1,
+    "passed": false,
+    "engine_errors": 0,
+    "all_source_attempts_and_action_worlds_accounted": true
+  },
+  "production_quarantine": {
+    "checked": 8,
+    "rejected": 8,
+    "reasons": [
+      "only explicitly non-trainable native development teacher records are supported"
+    ]
+  },
+  "remaining_work": [
+    "Certificate currently sends6/8fixedopeningroots throughplainfallback; some hooks are irrelevant to initialdraws and can be safely reviewed",
+    "Entry-compatible proposals still reject encounter/HP/intent evidence; structured initialHP proposal is implementable and requires its own exact weight correction",
+    "Later naturalcarry-in throughput is unmeasured; this firstopeningfixture does not justifyproduction batches",
+    "Resourcevaluation and existing datasetquality gates remain separate"
+  ],
+  "review": "Independent public-privacy, density/envelope, startup closure, alias and lifecycle audit cleared scoped engineering correctness; no broad readiness claim"
+}

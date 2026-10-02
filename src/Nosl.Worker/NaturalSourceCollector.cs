@@ -188,6 +188,7 @@ public static class NaturalSourceCollector
             _knowledge.BeginCombat();
             _knowledge.Events.Add(new(NativeEntryAssets.EventKind,
                 PublicJson.Serialize(NativeEntryAssets.Capture(_initialAssets, _startHp, _startPotions))));
+            ownedControl?.CombatEntering(NativeEntryAssets.Capture(_initialAssets, _startHp, _startPotions));
             _permanentDeck = player.Deck.Cards.Select(PublicViews.Card).OrderBy(PublicJson.Serialize, StringComparer.Ordinal).ToArray();
             Log("combat_entry", new { combat = CombatsEntered, act = run.CurrentActIndex, floor = run.TotalFloor,
                 hp = _startHp, maxHp = _startMaxHp, gold = _startGold, deck = _permanentDeck,

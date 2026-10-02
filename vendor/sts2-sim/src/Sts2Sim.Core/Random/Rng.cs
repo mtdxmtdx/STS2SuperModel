@@ -492,6 +492,7 @@ public class Rng
     /// <typeparam name="T">Type of items in the list.</typeparam>
     public void Shuffle<T>(IList<T> list)
     {
+        using IDisposable? labelScope = LabelRandomScope.BeginShuffle(this, list);
         for (int num = list.Count - 1; num > 0; num--)
         {
             int num2 = NextInt(num + 1);
