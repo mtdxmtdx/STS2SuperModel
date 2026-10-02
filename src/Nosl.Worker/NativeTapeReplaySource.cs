@@ -7,12 +7,12 @@ namespace Nosl.Worker;
 
 internal sealed record NativeTapeProposalAudit(int SampleCall, int Attempt, NativeTapeRecipe Recipe,
     string Status, string Proposal, int DistinctTapeCells, int ConditionedTapeCells,
-    double ElapsedSeconds, string? Detail = null, int ConditionedHpCount = 0, bool NeowConditionApplied = false, bool FirstRewardConditionApplied = false);
+    double ElapsedSeconds, string? Detail = null, int ConditionedHpCount = 0, bool NeowConditionApplied = false, bool FirstRewardConditionApplied = false, int? ProposedFirstEncounterIndex = null);
 
 /// <summary>Public-only conditional sampling under the explicit ideal tape prior.</summary>
 internal sealed class NativeTapeReplaySource : ITeacherSource
 {
-    internal const string Profile = "owned-native-state-tape-structured-conditional-v5";
+    internal const string Profile = "owned-native-state-tape-structured-conditional-v6";
     private readonly string _serializedRoot;
     private readonly string _entryJson;
     private readonly NativeTapePrior _prior;
@@ -20,6 +20,7 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
     private readonly NativeInitialHpCondition? _hpCondition;
     private readonly NativeNeowCondition? _neowCondition;
     private readonly NativeFirstRewardCondition? _firstRewardCondition;
+    private readonly NativeFirstEncounterCondition? _firstEncounterCondition;
     private readonly CancellationToken _cancellation;
     private readonly List<NativeTapeProposalAudit> _attempts = [];
     private readonly string?[] _potions;
@@ -76,6 +77,8 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
             _neowCondition = neowCondition;
         if (enableConditioning && NativeFirstRewardCondition.TryCreate(root, _prior, out var firstRewardCondition, out _))
             _firstRewardCondition = firstRewardCondition;
+        if (enableConditioning && NativeFirstEncounterCondition.TryCreate(root, _prior, out var firstEncounterCondition, out _))
+            _firstEncounterCondition = firstEncounterCondition;
     }
 
     private static string EligibilityReason(DecisionPacket root)
@@ -91,7 +94,8 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
     internal bool UsesConditionalHp => _hpCondition is not null;
     internal bool UsesConditionalNeow => _neowCondition is not null;
     internal bool UsesConditionalFirstReward => _firstRewardCondition is not null;
-    internal bool UsesPrimitiveConditioning => UsesConditionalShuffle || UsesConditionalHp || UsesConditionalNeow || UsesConditionalFirstReward;
+    internal bool UsesConditionalFirstEncounter => _firstEncounterCondition is not null;
+    internal bool UsesPrimitiveConditioning => UsesConditionalShuffle || UsesConditionalHp || UsesConditionalNeow || UsesConditionalFirstReward || UsesConditionalFirstEncounter;
     internal int ConditionedPublicDecisionIndex => _publicDecisionIndex;
     internal int? ConditionedPublicCombatIndex => _publicCombatIndex;
     internal NativeTapeRecipe DrawConditionedRecipe(Rng random)
@@ -105,7 +109,7 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
             CombatIndex = _publicCombatIndex ?? recipe.CombatIndex };
     }
     private string ProposalDescription => !UsesPrimitiveConditioning ? "plain_tape_rejection"
-        : "conditional:" + string.Join("+", new[] { UsesConditionalNeow ? "neow" : null, UsesConditionalFirstReward ? "first_reward" : null,
+        : "conditional:" + string.Join("+", new[] { UsesConditionalNeow ? "neow" : null, UsesConditionalFirstReward ? "first_reward" : null, UsesConditionalFirstEncounter ? "first_encounters" : null,
             UsesConditionalHp ? "initial_hp" : null, UsesConditionalShuffle ? "initial_shuffle" : null }.OfType<string>());
     internal string ConditioningReason { get; }
     internal NativeTapeProposalAudit[] ProposalAudit => _attempts.ToArray();
@@ -124,12 +128,12 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
             // Consume the old draw first to keep the declared stream progression.
             var recipe = DrawConditionedRecipe(random);
             var tape = new NativeLabelTape(recipe, _condition, expectedEntryJson: _entryJson,
-                hpCondition: _hpCondition, neowCondition: _neowCondition, firstRewardCondition: _firstRewardCondition);
+                hpCondition: _hpCondition, neowCondition: _neowCondition, firstRewardCondition: _firstRewardCondition, firstEncounterCondition: _firstEncounterCondition);
             var timer = Stopwatch.StartNew();
             NativeRunWorld? world = null; bool accepted = false; Exception? operationFailure = null;
             void Audit(string status, string? detail = null) => _attempts.Add(new(call, attempt, recipe, status,
                 ProposalDescription, tape.DistinctCells, tape.ConditionedCells, timer.Elapsed.TotalSeconds, detail,
-                tape.ConditionedHpCount, tape.NeowConditionApplied, tape.FirstRewardConditionApplied));
+                tape.ConditionedHpCount, tape.NeowConditionApplied, tape.FirstRewardConditionApplied, tape.ProposedFirstEncounterIndex));
             try
             {
                 world = await NativeRunWorld.OpenLabelTapeAsync(_prior.Execution, recipe, tape, _cancellation);
@@ -162,7 +166,7 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
                         var failed = new NativeTapeProposalAudit(call, attempt, recipe, "proposal_cleanup_error",
                             ProposalDescription,
                             tape.DistinctCells, tape.ConditionedCells, timer.Elapsed.TotalSeconds,
-                            exception.GetType().Name + ": " + exception.Message, tape.ConditionedHpCount, tape.NeowConditionApplied, tape.FirstRewardConditionApplied);
+                            exception.GetType().Name + ": " + exception.Message, tape.ConditionedHpCount, tape.NeowConditionApplied, tape.FirstRewardConditionApplied, tape.ProposedFirstEncounterIndex);
                         if (index < 0) _attempts.Add(failed); else _attempts[index] = failed;
                         if (operationFailure is not null)
                             throw new AggregateException("Tape proposal and cleanup failed", operationFailure, exception);

@@ -174,7 +174,7 @@ internal sealed class NativeFirstRewardCondition
         if (!candidates.SequenceEqual(_candidateIds, StringComparer.Ordinal))
             throw new InvalidOperationException("Reviewed first reward candidate ordering changed");
         if (player.Creature.CurrentHp != TargetEntryHp)
-            throw new NativePublicConstraintMismatchException("First native combat HP differs from the public next entry");
+            throw new NativePublicConstraintMismatchException($"First native combat HP differs from the public next entry: proposed={player.Creature.CurrentHp}, required={TargetEntryHp}");
         return NativeFirstRewardProposal.Create(_buckets, nextWord);
     }
 

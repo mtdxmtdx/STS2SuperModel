@@ -22,7 +22,7 @@ internal sealed record NativeTapeCollectionOptions
 internal static class NativeTapeReplayDataset
 {
     internal const string DatasetVersion = "nosl.native-tape-replay-development.v1";
-    internal const string ImplementationVersion = "nosl-native-tape-structured-conditional-v5";
+    internal const string ImplementationVersion = "nosl-native-tape-structured-conditional-v6";
 
     internal static async Task<object> CollectAsync(NativeTapeCollectionOptions options, TeacherOptions teacherOptions,
         CancellationToken cancellationToken = default)
@@ -100,6 +100,7 @@ internal static class NativeTapeReplayDataset
                 audit["initial_hp_conditioning_eligible"] = source.UsesConditionalHp;
                 audit["neow_conditioning_eligible"] = source.UsesConditionalNeow;
                 audit["first_reward_conditioning_eligible"] = source.UsesConditionalFirstReward;
+                audit["first_encounter_conditioning_eligible"] = source.UsesConditionalFirstEncounter;
                 audit["public_local_decision_conditioning"] = source.ConditionedPublicDecisionIndex;
                 audit["public_combat_coordinate_conditioning"] = source.ConditionedPublicCombatIndex;
                 audit["conditioning_reason"] = source.ConditioningReason;
@@ -117,7 +118,7 @@ internal static class NativeTapeReplayDataset
                 accepted += acceptedHere; allocated += result.Costs.WorldsAllocated; settled += result.Costs.WorldsCompleted;
                 publicRoots.Add(Hash(PublicJson.Serialize(publicRoot))); sourceRuns.Add(runIdentity);
                 attempts.Add(new { sourceDrawSeed, recipe, status = "existing_root_evaluated", source.UsesConditionalShuffle,
-                    source.UsesConditionalHp, source.UsesConditionalNeow, source.UsesConditionalFirstReward,
+                    source.UsesConditionalHp, source.UsesConditionalNeow, source.UsesConditionalFirstReward, source.UsesConditionalFirstEncounter,
                     source.ConditioningReason, acceptedPosteriorDraws = acceptedHere, proposalAttempts = source.ProposalAudit.Length,
                     allocatedWorlds = result.Costs.WorldsAllocated, settledWorlds = result.Costs.WorldsCompleted,
                     seconds = attemptTimer.Elapsed.TotalSeconds });

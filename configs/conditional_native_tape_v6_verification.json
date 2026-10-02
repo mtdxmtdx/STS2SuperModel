@@ -1,0 +1,289 @@
+{
+  "schema": "nosl.conditional-native-tape-verification.v6",
+  "source_commit": "7db8decb764efd326425f8ac295ab7ac1fcf5741",
+  "status": "EXACT_ENCOUNTER_PROPOSAL_VERIFIED_CARRY_IN_GATE_STILL_FAILED",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes_since_v4": 0,
+  "new_production_dataset_rows": 0,
+  "sampler_version": "nosl-native-tape-structured-conditional-v6",
+  "prior_and_all_four_public_inputs_unchanged_from_v5": true,
+  "reused_roots_are_not_new_unique_data": true,
+  "proposal_scope": "The first-reward public origin certificate fixes the second normal encounter and act. Both weak pools have4equal-weight entries with disjoint non-None tags. Act choice stays native; wrong act is a public nonmatch.",
+  "exact_joint_law": "For nativeQ=2^53, three-entry bucket masses are[3002399751580331,3002399751580330,3002399751580331]. Slot0 is sampled with weights equal to the slot1 target bucket, then both native word preimages are sampled. Root-constant p/q=(Q+1)/(4Q) for Fuzzy and(Q-1)/(4Q) for Sludge; correction1. A uniform slot0 choice would bias the Sludge law.",
+  "runtime_guards": "Owned native run, exact act/pool/order/tags, first-two expected RNG states, fresh or matching replay cells, and completion. All later words/room generation and prior-combat HP stay native.",
+  "native_suite": {
+    "passed": 1242,
+    "failed": 0,
+    "skipped": 0,
+    "path": "artifacts/reports/conditional-tape/first-encounter-v6-aggregate.trx",
+    "bytes": 1837751,
+    "sha256": "b585c8177dd62d270073078bcac1bbfe9029115ebd378df7fbbe7f393f5db6f5"
+  },
+  "core_suite": {
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "duration_reported": "4 m 26 s",
+    "trx_duration_seconds": 267.907069,
+    "trx_counters": {
+      "total": 4496,
+      "executed": 4493,
+      "passed": 4493,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "skipped_count_source": "Three per-test NotExecuted outcomes, matching stdout and total minus executed. The test adapter leaves aggregate notExecuted at zero.",
+    "build_and_test_wall_seconds": 285.07715518199984,
+    "evidence_kind": "fresh_single_full_core_run_with_redirected_stdout_stderr_and_trx",
+    "exit_code": 0,
+    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 26 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "raw_log_available": true,
+    "trx_available": true,
+    "log_path": "artifacts/first-encounter-core-verification/full-core.log",
+    "log_sha256": "9ddca8ffd3d418bc6da550d2e9661d0048b9fdb534b61d1a5d271cf30889fbbf",
+    "trx_path": "artifacts/first-encounter-core-verification/test-results/vendor-core.trx",
+    "trx_sha256": "e0e045127ee564b10468812dbcdb0ed1c16c95ff68eca6924182720126e534ae",
+    "run_record_path": "artifacts/first-encounter-core-verification/run-record.json",
+    "run_record_sha256": "3a5d8b563b4645f6f47846c71b7a149d4853fe01ecb158700446457767efb879",
+    "invocations": 1,
+    "rerun_for_packaging": true,
+    "source_worktree": "STS2SuperModel-coverage",
+    "verified_source_commit": "7db8decb764efd326425f8ac295ab7ac1fcf5741",
+    "build_artifacts": "artifacts/first-encounter-core-verification",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/first-encounter-core-verification --nologo -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core.trx' --results-directory artifacts/first-encounter-core-verification/test-results",
+    "command_note": "Portable replay command; the results directory is shown relative to the repository. The exact process argv is preserved in run-record.json. Run after sourcing the existing shared .NET 9 environment. Build and tests used the isolated artifacts path with one MSBuild worker, node reuse and shared compilation disabled, and NuGet auditing disabled. The process stdout and stderr were redirected directly to the preserved log.",
+    "started_at_utc": "2026-10-02T13:16:44.292496+00:00",
+    "finished_at_utc": "2026-10-02T13:21:29.369985+00:00",
+    "src_git_tree": "b5e6920885bba31138626f859e5895c6fbac9265",
+    "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+    "test_assembly_path": "artifacts/first-encounter-core-verification/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "ddb5bacfbad6ad63d44f84998c7a2cc880717816785a85ba0dbaed53a5cf57f7",
+    "core_assembly_path": "artifacts/first-encounter-core-verification/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "261df1d7a12ab8645043e5e3d51d32f404fc0da8d0dd4b7e9400a1624d1ebb2a",
+    "assembly_hash_capture": "Captured from the isolated artifacts immediately after the fresh full suite; no later build or test was run there.",
+    "verified_source_manifest_sha256": "7c5d1b8d321afa1bc36b39be9c791131c92ccf54397a5859cfcca9273755c231"
+  },
+  "vendor_reconstruction": {
+    "path": "configs/vendor_patch_verification.json",
+    "bytes": 8375,
+    "sha256": "5743a04c661cf6f1540a163d33eab5bc6460a6a0df9fc28c5f90e602079f93c2"
+  },
+  "probe": {
+    "priorIdentity": "56b2f605f9b4fa82a9c5ce8d7ce0513310c552d2bc41e08eee88a2d9eddb25c4",
+    "prior": {
+      "schemaVersion": "nosl.native-state-tape-prior.v1",
+      "execution": {
+        "maxFloors": 8,
+        "sourceDecisionHorizon": 1024,
+        "sourcePolicyId": "nosl-public-rules-v2",
+        "outsideCombatScript": "nosl-natural-public-script-v3",
+        "publicContextProfile": "nosl.public-run-context.v1"
+      },
+      "eligibleCombats": 3,
+      "eligibleDecisionsPerCombat": 8,
+      "primitiveLaw": "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1",
+      "primitiveImplementation": "sha256-address-expansion-with-explicit-conditioned-overrides-v1",
+      "rootLaw": "independent-uniform-fixed-combat-and-local-decision-indices-v1",
+      "outsideCombatScript": "nosl-natural-public-script-v3"
+    },
+    "sourceDrawsRequested": 4,
+    "existingRoots": 4,
+    "recordedRoots": 4,
+    "acceptedPosteriorDraws": 4,
+    "allocatedCandidateWorlds": 22,
+    "settledCandidateWorlds": 4,
+    "elapsedSeconds": 57.7595075,
+    "peakWorkerMemoryBytes": 126091264,
+    "budgetExpired": false,
+    "proposal_statuses": {
+      "public_constraint_mismatch": 1086,
+      "public_packet_mismatch": 2,
+      "exact_proposal_density_correction_rejected": 1,
+      "absent_under_declared_source_horizon": 3,
+      "accepted": 4
+    },
+    "source_breakdown": [
+      {
+        "source_draw_seed": 9001,
+        "combat_index": 1,
+        "accepted_worlds": 0,
+        "proposals": 512,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 509,
+          "public_packet_mismatch": 2,
+          "exact_proposal_density_correction_rejected": 1
+        },
+        "nonmatch_reasons": {
+          "First native combat HP differs from the public next entry: proposed=43, required=49": 27,
+          "First native combat HP differs from the public next entry: proposed=50, required=49": 12,
+          "Native act differs from the public second encounter origin": 245,
+          "First native combat HP differs from the public next entry: proposed=47, required=49": 23,
+          "First native combat HP differs from the public next entry: proposed=42, required=49": 16,
+          "First native combat HP differs from the public next entry: proposed=46, required=49": 10,
+          "First native combat HP differs from the public next entry: proposed=45, required=49": 31,
+          "First native combat HP differs from the public next entry: proposed=41, required=49": 12,
+          "First native combat HP differs from the public next entry: proposed=51, required=49": 17,
+          "First native combat HP differs from the public next entry: proposed=56, required=49": 6,
+          "First native combat HP differs from the public next entry: proposed=36, required=49": 3,
+          "First native combat HP differs from the public next entry: proposed=52, required=49": 6,
+          "First native combat HP differs from the public next entry: proposed=54, required=49": 3,
+          "First native combat HP differs from the public next entry: proposed=48, required=49": 27,
+          "First native combat HP differs from the public next entry: proposed=53, required=49": 11,
+          "First native combat HP differs from the public next entry: proposed=44, required=49": 9,
+          "First native combat HP differs from the public next entry: proposed=37, required=49": 5,
+          "First native combat HP differs from the public next entry: proposed=39, required=49": 12,
+          "First native combat HP differs from the public next entry: proposed=31, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=55, required=49": 6,
+          "First native combat HP differs from the public next entry: proposed=35, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=32, required=49": 3,
+          "First native combat HP differs from the public next entry: proposed=34, required=49": 10,
+          "First native combat HP differs from the public next entry: proposed=40, required=49": 4,
+          "absent_or_full_packet_difference": 2,
+          "First native combat HP differs from the public next entry: proposed=27, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=38, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=33, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=30, required=49": 1
+        }
+      },
+      {
+        "source_draw_seed": 9002,
+        "combat_index": 2,
+        "accepted_worlds": 0,
+        "proposals": 512,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 509,
+          "absent_under_declared_source_horizon": 3
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 509,
+          "absent_or_full_packet_difference": 3
+        }
+      },
+      {
+        "source_draw_seed": 9003,
+        "combat_index": 0,
+        "accepted_worlds": 2,
+        "proposals": 13,
+        "accepted_positions": [
+          {
+            "sample_call": 1,
+            "attempt": 1
+          },
+          {
+            "sample_call": 2,
+            "attempt": 12
+          }
+        ],
+        "statuses": {
+          "accepted": 2,
+          "public_constraint_mismatch": 11
+        },
+        "nonmatch_reasons": {
+          "Native initial monster roster differs from the public opening": 11
+        }
+      },
+      {
+        "source_draw_seed": 9004,
+        "combat_index": 1,
+        "accepted_worlds": 2,
+        "proposals": 59,
+        "accepted_positions": [
+          {
+            "sample_call": 1,
+            "attempt": 41
+          },
+          {
+            "sample_call": 2,
+            "attempt": 18
+          }
+        ],
+        "statuses": {
+          "public_constraint_mismatch": 57,
+          "accepted": 2
+        },
+        "nonmatch_reasons": {
+          "Native act differs from the public second encounter origin": 25,
+          "First native combat HP differs from the public next entry: proposed=42, required=43": 4,
+          "First native combat HP differs from the public next entry: proposed=44, required=43": 3,
+          "First native combat HP differs from the public next entry: proposed=49, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=41, required=43": 2,
+          "First native combat HP differs from the public next entry: proposed=36, required=43": 3,
+          "First native combat HP differs from the public next entry: proposed=29, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=28, required=43": 4,
+          "First native combat HP differs from the public next entry: proposed=32, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=26, required=43": 1,
+          "Published target combat entry differs": 1,
+          "First native combat HP differs from the public next entry: proposed=48, required=43": 3,
+          "First native combat HP differs from the public next entry: proposed=45, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=39, required=43": 3,
+          "First native combat HP differs from the public next entry: proposed=35, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=34, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=46, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=33, required=43": 1
+        }
+      }
+    ]
+  },
+  "probe_request": {
+    "path": "artifacts/reports/conditional-tape/later-first-encounter-v6-request.jsonl",
+    "bytes": 650,
+    "sha256": "ff12c02ecd2c024aed19e9ff74f2dddf2f5155e91e6b7259bd93ad8a7181812e"
+  },
+  "probe_predeclaration": {
+    "path": "artifacts/reports/conditional-tape/later-first-encounter-v6-predeclaration.json",
+    "bytes": 868,
+    "sha256": "684e3946ef4ecb6a4d4309aadeddfa236a9c5db95249a6ba6d16b8f0f4ed8515"
+  },
+  "probe_response": {
+    "path": "artifacts/reports/conditional-tape/later-first-encounter-v6-response.jsonl",
+    "bytes": 875038,
+    "sha256": "16c67e739cb196c9a84fe758618d3d7a50a2f5c105afac83923ffe5568a6d842"
+  },
+  "gate": {
+    "required_complete_genuine_carry_in_roots": 2,
+    "actual_complete_genuine_carry_in_roots": 1,
+    "passed": false,
+    "assigned_candidate_worlds": 22,
+    "settled": 4,
+    "compute_truncated": 18,
+    "engine_errors": 0
+  },
+  "public_packet_diagnosis": {
+    "method": "Replayed only the two already-recorded independent hypothetical proposals; no original source recipe or source graph supplied",
+    "only_difference": "observation.relicStates[1].details.timesUsed: expected1, hypothetical0",
+    "cause": "Native WingedBoots.AfterRoomEntered consumes an off-edge travel charge after the immutable entry snapshot. Full packet equality correctly rejects otherwise matching proposals.",
+    "evidence": {
+      "path": "artifacts/reports/conditional-tape/first-encounter-v6-public-diffs.jsonl",
+      "bytes": 107755,
+      "sha256": "3c15bd7e7aaeab41c761ace402c0c3ee93f5a43b757539f1c586a9cb12c22be8"
+    }
+  },
+  "policy_label_limit": "Both completed roots currently have only end_turn available. The seven-action and two-action roots remain unresolved; this is not informative preference data or production-readiness evidence.",
+  "independent_review": "Cleared exact weighted joint law, origin and act inference, callback timing/ownership, aliases, finite tests and native replay",
+  "next_work": [
+    "Assess a native map-component conditional proposal for the publicly observed WingedBoots route/charge event, including independence and alias correction",
+    "Assess a broader public-transcript/sufficient-state approach to avoid indefinitely adding narrow asset-origin cases",
+    "Keep production scaling and new fits paused until measured posterior/resource-quality gates pass"
+  ]
+}

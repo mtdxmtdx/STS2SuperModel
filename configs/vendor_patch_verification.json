@@ -1,7 +1,7 @@
 {
   "schema": "nosl.vendor-patch-reconstruction.v1",
   "upstream_commit": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
-  "main_patch_sha256": "d3484000173b94846018ffd441e21a0d7fc18430f90733ca4c9d8cc23f50f179",
+  "main_patch_sha256": "b8667a9e334b2a16982e24843d9cfded47862513e6125307c54e304ef7fb29bc",
   "map_patch_sha256": "fad7d6a7e85ea44901da2b01227f972926a116af5398686a2628326002bcdc08",
   "tracked_source_and_test_files_verified": 2229,
   "main_patch_files": [
@@ -30,6 +30,7 @@
     "src/Sts2Sim.Core/Rewards/RewardsSet.cs",
     "src/Sts2Sim.Core/Rooms/CombatRoom.cs",
     "src/Sts2Sim.Core/Runs/RunDriver.cs",
+    "src/Sts2Sim.Core/Runs/RunState.cs",
     "src/Sts2Sim.Core/Sts2Sim.Core.csproj",
     "tests/Sts2Sim.Core.Tests/Combat/PlayerOutcomeObserverTests.cs",
     "tests/Sts2Sim.Core.Tests/Entities/Creatures/MonsterHpRollingTests.cs",
@@ -38,10 +39,10 @@
   "map_patch_file": "src/Sts2Sim.Core/Map/MapPathPruning.cs",
   "all_bytes_match": true,
   "reconstructed_file_set_matches": true,
-  "source_file_manifest_sha256": "fd46c24cea2776a7c6f2ae4ad95acdf03216253c2510f3e359a726176ae14460",
+  "source_file_manifest_sha256": "7c5d1b8d321afa1bc36b39be9c791131c92ccf54397a5859cfcca9273755c231",
   "remote_writes": false,
-  "note": "Reconstructed a fresh local copy from the pinned read-only git archive, applied both documented patches, and compared all 2,229 tracked vendored Core/Core.Tests files byte-for-byte. Relative to published 57ebe64, only LabelRandomScope and RewardsSet change: an optional label-only callback scopes existing native combat reward generation before the potion-presence draw, without changing native draws, generation logic or order. Every unrelated main-patch section and the separate map patch remains byte-identical. Ran the full Core suite once against current source, preserving actual redirected stdout/stderr and TRX; no previous run evidence was reused. Rechecked every tracked source hash after completion. Source fallback support, frozen bins, corpus and checkpoints were not modified.",
-  "source_file_manifest_path": "artifacts/first-reward-vendor-verification/vendor-reconstructed-manifest.json",
+  "note": "Reconstructed a fresh local copy from the pinned read-only git archive, applied both documented patches, and compared all 2,229 tracked vendored Core/Core.Tests files byte-for-byte. Relative to previous packaged source eb0b712, only LabelRandomScope and RunState change: an optional label-only callback begins at the act-zero native normal-encounter generation boundary, without changing native draws, bag selection, generation logic or order. Every unrelated main-patch section and the separate map patch remains byte-identical. Ran the full Core suite once against current source, preserving actual redirected stdout/stderr and TRX; no previous run evidence was reused. Rechecked every tracked source hash after completion. Source fallback support, frozen bins, corpus and checkpoints were not modified.",
+  "source_file_manifest_path": "artifacts/first-encounter-vendor-verification/vendor-reconstructed-manifest.json",
   "vendor_core_suite": {
     "passed": 4493,
     "failed": 0,
@@ -52,8 +53,8 @@
       "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
       "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
     ],
-    "duration_reported": "4 m 14 s",
-    "trx_duration_seconds": 255.594817,
+    "duration_reported": "4 m 26 s",
+    "trx_duration_seconds": 267.907069,
     "trx_counters": {
       "total": 4496,
       "executed": 4493,
@@ -73,56 +74,56 @@
       "pending": 0
     },
     "skipped_count_source": "Three per-test NotExecuted outcomes, matching stdout and total minus executed. The test adapter leaves aggregate notExecuted at zero.",
-    "build_and_test_wall_seconds": 273.38604428500184,
+    "build_and_test_wall_seconds": 285.07715518199984,
     "evidence_kind": "fresh_single_full_core_run_with_redirected_stdout_stderr_and_trx",
     "exit_code": 0,
-    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 14 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 26 s - Sts2Sim.Core.Tests.dll (net9.0)",
     "raw_log_available": true,
     "trx_available": true,
-    "log_path": "artifacts/first-reward-core-verification/full-core.log",
-    "log_sha256": "bc25cb67c882fb698de92208be92c794a439e56b85c598eb305a0d0e14dfd832",
-    "trx_path": "artifacts/first-reward-core-verification/test-results/vendor-core.trx",
-    "trx_sha256": "c9c2e3e15dcbd78776777b17bb3efbcb2ecad791fe920e7bc5e4084e2826cf10",
-    "run_record_path": "artifacts/first-reward-core-verification/run-record.json",
-    "run_record_sha256": "cf03b9312d45dd12adac066db71fd3daa52c70c26a96b6d50859ac433163c386",
+    "log_path": "artifacts/first-encounter-core-verification/full-core.log",
+    "log_sha256": "9ddca8ffd3d418bc6da550d2e9661d0048b9fdb534b61d1a5d271cf30889fbbf",
+    "trx_path": "artifacts/first-encounter-core-verification/test-results/vendor-core.trx",
+    "trx_sha256": "e0e045127ee564b10468812dbcdb0ed1c16c95ff68eca6924182720126e534ae",
+    "run_record_path": "artifacts/first-encounter-core-verification/run-record.json",
+    "run_record_sha256": "3a5d8b563b4645f6f47846c71b7a149d4853fe01ecb158700446457767efb879",
     "invocations": 1,
     "rerun_for_packaging": true,
     "source_worktree": "STS2SuperModel-coverage",
-    "verified_source_commit": "3a8a0a69ee6eacc72e87652c0804c8e1e5966083",
-    "build_artifacts": "artifacts/first-reward-core-verification",
-    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/first-reward-core-verification --nologo -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core.trx' --results-directory artifacts/first-reward-core-verification/test-results",
+    "verified_source_commit": "7db8decb764efd326425f8ac295ab7ac1fcf5741",
+    "build_artifacts": "artifacts/first-encounter-core-verification",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/first-encounter-core-verification --nologo -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core.trx' --results-directory artifacts/first-encounter-core-verification/test-results",
     "command_note": "Portable replay command; the results directory is shown relative to the repository. The exact process argv is preserved in run-record.json. Run after sourcing the existing shared .NET 9 environment. Build and tests used the isolated artifacts path with one MSBuild worker, node reuse and shared compilation disabled, and NuGet auditing disabled. The process stdout and stderr were redirected directly to the preserved log.",
-    "started_at_utc": "2026-10-02T12:46:46.132645+00:00",
-    "finished_at_utc": "2026-10-02T12:51:19.518896+00:00",
-    "src_git_tree": "2220294c79d06fe485b02e9702787d58e2947df0",
+    "started_at_utc": "2026-10-02T13:16:44.292496+00:00",
+    "finished_at_utc": "2026-10-02T13:21:29.369985+00:00",
+    "src_git_tree": "b5e6920885bba31138626f859e5895c6fbac9265",
     "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
-    "test_assembly_path": "artifacts/first-reward-core-verification/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
-    "test_assembly_sha256": "7e467c71c3cc8ad44b79547fccafb53d5eb824e8f17a52576e8133e0673f2383",
-    "core_assembly_path": "artifacts/first-reward-core-verification/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
-    "core_assembly_sha256": "c085d67ef116f8e0f65ff29dbf224c7b8fa4d3db6ac4b054860e27f38c6e2b2d",
+    "test_assembly_path": "artifacts/first-encounter-core-verification/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "ddb5bacfbad6ad63d44f84998c7a2cc880717816785a85ba0dbaed53a5cf57f7",
+    "core_assembly_path": "artifacts/first-encounter-core-verification/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "261df1d7a12ab8645043e5e3d51d32f404fc0da8d0dd4b7e9400a1624d1ebb2a",
     "assembly_hash_capture": "Captured from the isolated artifacts immediately after the fresh full suite; no later build or test was run there.",
-    "verified_source_manifest_sha256": "fd46c24cea2776a7c6f2ae4ad95acdf03216253c2510f3e359a726176ae14460"
+    "verified_source_manifest_sha256": "7c5d1b8d321afa1bc36b39be9c791131c92ccf54397a5859cfcca9273755c231"
   },
-  "independent_packaging_audit": "passed_file_set_bytes_manifest_patch_hashes_two_reward_file_delta",
-  "independent_packaging_audit_path": "artifacts/first-reward-vendor-verification/independent-vendor-packaging-verification.json",
-  "independent_packaging_audit_sha256": "5d1effaad639a18ef35aba3023977e17172f98bc7a7b49e23ebf1ad40934febf",
-  "verified_source_commit": "3a8a0a69ee6eacc72e87652c0804c8e1e5966083",
+  "independent_packaging_audit": "passed_file_set_bytes_manifest_patch_hashes_two_encounter_file_delta",
+  "independent_packaging_audit_path": "artifacts/first-encounter-vendor-verification/independent-vendor-packaging-verification.json",
+  "independent_packaging_audit_sha256": "3d1bebdf60b0442e82921157f657d1ffe7ec960eb600da675c7cdd0c7a596bbf",
+  "verified_source_commit": "7db8decb764efd326425f8ac295ab7ac1fcf5741",
   "packaging_delta_audit": {
-    "previous_packaged_source_commit": "57ebe64fafc5b18c87753fcf98179776c5cd9ca7",
+    "previous_packaged_source_commit": "eb0b712c2c3d817c1a3025744c5beb4152a1bf14",
     "previous_patch_source_delta_files": [
       "src/Sts2Sim.Core/Random/LabelRandomScope.cs",
-      "src/Sts2Sim.Core/Rewards/RewardsSet.cs"
+      "src/Sts2Sim.Core/Runs/RunState.cs"
     ],
     "previous_patch_source_delta_matches_commit_range": [
-      "57ebe64fafc5b18c87753fcf98179776c5cd9ca7",
-      "3a8a0a69ee6eacc72e87652c0804c8e1e5966083"
+      "eb0b712c2c3d817c1a3025744c5beb4152a1bf14",
+      "7db8decb764efd326425f8ac295ab7ac1fcf5741"
     ],
     "unchanged_patch_sections_byte_identical": true,
     "map_patch_byte_identical": true,
-    "intended_first_reward_delta_sha256": "acc286bc6005bab6bdb96ad21598026817367190ee1b1991687f7852c0910a78",
+    "intended_first_encounter_delta_sha256": "179802bf222382bd816d469eaa0f30a3001a693fda68d636cc8cd1235bc39ad7",
     "new_source_file_sha256": {
-      "src/Sts2Sim.Core/Random/LabelRandomScope.cs": "ae816cb35872cbcfdec64b94c3862511c81846d4ab7daabe4dc1d6feff04f48e",
-      "src/Sts2Sim.Core/Rewards/RewardsSet.cs": "1fc22608424f4f852db1ef946b7f7936366bdbba4d62a21f7a5c3761f6f4bb89"
+      "src/Sts2Sim.Core/Random/LabelRandomScope.cs": "4367dd0a6e5df0d4f7a75b34a485a2cc3e824b9ef8f85226e65c215787a30ee9",
+      "src/Sts2Sim.Core/Runs/RunState.cs": "c9856a21e116b45745e4af76a102060e8500c4364112378c7c27a807a7299deb"
     }
   }
 }

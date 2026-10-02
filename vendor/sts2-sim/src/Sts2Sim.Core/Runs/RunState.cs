@@ -302,6 +302,8 @@ public sealed partial class RunState : IRunState
         // 遭遇战一次性抽完，按顺序存起来，房间真正被访问时只是按序取用，不再消耗随机数。
         // 偏离 #46/#179 之前遗留的实现（已修复）曾经用错了 RNG 流（CombatCardGeneration）且延迟到
         // 房间实际被访问时才抽——两个问题叠加导致抽到的遭遇战和真实游戏对不上。
+        using IDisposable? labelEncounterScope = actIndex == 0
+            ? LabelRandomScope.BeginNormalEncounter(this, act) : null;
         var normalEncounters = new List<EncounterDefinition>(act.BaseNumberOfRooms);
         for (int i = 0; i < act.BaseNumberOfRooms; i++)
         {

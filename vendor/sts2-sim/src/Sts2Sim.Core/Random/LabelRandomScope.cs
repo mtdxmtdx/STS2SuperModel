@@ -2,6 +2,7 @@ using Sts2Sim.Core.Entities.Creatures;
 using Sts2Sim.Core.Entities.Players;
 using Sts2Sim.Core.Content;
 using Sts2Sim.Core.Rooms;
+using Sts2Sim.Core.Runs;
 
 namespace Sts2Sim.Core.Random;
 
@@ -15,6 +16,9 @@ public sealed record LabelMonsterHpContext(Creature Creature, Rng Rng, int MinHp
 /// <summary>The native combat reward boundary before potion, gold, and card generation.</summary>
 public sealed record LabelCombatRewardContext(Player Player, Rng Rng, RoomType RoomType,
     EncounterDefinition? Encounter, int? FixedGoldAmount, float GoldProportion);
+
+/// <summary>The fresh act-zero normal encounter generation boundary.</summary>
+public sealed record LabelNormalEncounterContext(RunState Run, ActDefinition Act, Rng Rng);
 
 /// <summary>
 /// Explicit label-only distribution departure: substitutes hypothetical random-tape words
@@ -52,14 +56,19 @@ public static class LabelRandomScope
     /// Optional label-only scope around native combat reward generation. The callback
     /// runs without interception; native generation and draw order remain unchanged.
     /// </param>
+    /// <param name="beginNormalEncounter">
+    /// Optional label-only scope before the first act's native normal encounter loop.
+    /// The callback runs without interception; native bag selection remains unchanged.
+    /// </param>
     public static IDisposable Enter(
         Func<LabelRandomState, ulong> nextWord,
         Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null,
         Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp = null,
-        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null)
+        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null,
+        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null)
     {
         ArgumentNullException.ThrowIfNull(nextWord);
-        var scope = new Scope(Current.Value, nextWord, beginShuffle, beginMonsterHp, beginCombatReward);
+        var scope = new Scope(Current.Value, nextWord, beginShuffle, beginMonsterHp, beginCombatReward, beginNormalEncounter);
         Current.Value = scope;
         return scope;
     }
@@ -121,18 +130,31 @@ public static class LabelRandomScope
         finally { InsideCallback.Value = false; }
     }
 
+    internal static IDisposable? BeginNormalEncounter(RunState run, ActDefinition act)
+    {
+        Scope? scope = Current.Value;
+        if (scope?.BeginNormalEncounter is null || InsideCallback.Value) return null;
+        // Resolve the existing native stream only for an active label callback.
+        var context = new LabelNormalEncounterContext(run, act, run.Rng.UpFront);
+        InsideCallback.Value = true;
+        try { return scope.BeginNormalEncounter(context); }
+        finally { InsideCallback.Value = false; }
+    }
+
     private sealed class Scope(
         Scope? previous,
         Func<LabelRandomState, ulong> nextWord,
         Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle,
         Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp,
-        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward) : IDisposable
+        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward,
+        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter) : IDisposable
     {
         public Scope? Previous { get; } = previous;
         public Func<LabelRandomState, ulong> NextWord { get; } = nextWord;
         public Func<Rng, IReadOnlyList<object?>, IDisposable?>? BeginShuffle { get; } = beginShuffle;
         public Func<LabelMonsterHpContext, IDisposable?>? BeginMonsterHp { get; } = beginMonsterHp;
         public Func<LabelCombatRewardContext, IDisposable?>? BeginCombatReward { get; } = beginCombatReward;
+        public Func<LabelNormalEncounterContext, IDisposable?>? BeginNormalEncounter { get; } = beginNormalEncounter;
 
         public void Dispose()
         {

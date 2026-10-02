@@ -7,13 +7,12 @@ The existing `owned_native_replay` operation and all frozen data keep their old
 distribution. New tape records are development-only and rejected by the existing
 production loader.
 
-The v2 opening gate remains passed. The event controller and public run-context
-channel are repaired/verified. V5 adds an exact first-native-reward proposal and
-obtains both independent posterior draws for one genuine carry-in root. The fixed
-four-root probe settles4/22branches with18explicitly truncated and0engine errors
-in67.12seconds. The predeclared gate requires two complete carry-in roots and
-still fails with one; production and new fits remain paused. Current evidence is
-in the [v5 report](../configs/conditional_native_tape_v5_verification.json).
+The v2 opening gate remains passed. V6 adds exact joint conditioning of the
+first two weak encounters, reducing the completed carry-in root from147to59
+proposals. The same fixed four-root probe still settles4/22branches with18
+explicitly truncated and0engine errors, now in57.76seconds. The predeclared
+two-carry-in-root gate fails with one; completed roots have only end_turn, so this
+does not establish useful preference data. See the [v6 report](../configs/conditional_native_tape_v6_verification.json).
 
 ## Distribution and reproducibility
 
@@ -210,6 +209,35 @@ at attempts52and95, while root9001 still fails all512proposals:500prior-HP
 nonmatches and12different target rosters. The latter is the next measured
 constraint. The two-world gate is not weakened, and the larger256proposal budget
 is explicitly separated from the old64proposal budget.
+
+## Exact encounter pair and remaining public difference
+
+The same source-certified second combat fixes the act and second normal
+encounter. Native act selection remains unchanged; an incompatible act is an
+early public nonmatch. Each reviewed weak bag has four equal-weight entries with
+disjoint non-None tags. Its first two native draws use4then3entries without
+rejection, preserving remaining order. At Q=2^53, the three-entry bucket masses
+are[3002399751580331,3002399751580330,3002399751580331]. The first encounter is
+therefore selected with exact integer weights from the second target bucket,
+then both native word preimages are sampled. The root-constant density ratio is
+(Q+1)/(4Q) for Fuzzy and(Q-1)/(4Q) for Sludge; uniform first-choice sampling would
+introduce a real bias. Every later draw and prior-combat HP stays native.
+
+Finite joint-law checks include a latent-HP statistic that detects the wrong
+uniform first distribution. Native tests verify all4×3bucket boundaries,
+pre-generation and RNG advancement, whole owned replay/settlement, and correct
+wrong-act rejection. Full integration passes1242cases; fresh Core4493passes
+with3existingopt-inskips and preserved raw evidence.
+
+The seven-action root still accepts0/512proposals. Its two recorded packet
+mismatches were replayed directly from the independent hypothetical recipes.
+Every field matches except public WingedBoots.timesUsed (expected1 versus0).
+The native AfterRoomEntered hook consumes an off-edge map charge after the entry
+asset snapshot. Full equality correctly retains this condition. Another complete
+packet failed the existing exact density correction. This diagnosis uses no
+original source recipe or private source graph. Native map-component conditioning
+and a broader public-transcript approach are the next investigated mechanisms;
+no budget-only production enlargement or new fit follows.
 
 ## Reproduction
 
