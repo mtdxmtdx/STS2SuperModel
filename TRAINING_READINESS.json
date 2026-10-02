@@ -1,11 +1,11 @@
 {
   "schema_version": "nosl.readiness.v1",
-  "status": "READY_FOR_BOUNDED_PILOT_FULL_SCOPE_BLOCKED",
+  "status": "READY_FOR_PILOT_WITH_DECLARED_ENGINEERING_AND_CALIBRATION_GAPS",
   "milestones": {
-    "M3": "ENGINEERING_VERIFIED_CALIBRATION_PARTIAL_RELATIVE_PROOF_BOUNDED",
-    "M4": "T0_T1_VERIFIED_OPT_IN_CYCLE_FIX_PARTIAL_SCOPE",
-    "M5": "5000_AUDITED_PILOT_AND_160_ATTEMPT_BLOCK_COMPLETE_SCALE_GATED",
-    "M6": "SMALL_TRIAL_VERIFIED_APPLICABILITY_GUARDED"
+    "M3": "COMPLETE_OUTCOME_LEDGER_AND_PREFERENCE_ENGINEERING_CALIBRATION_PARTIAL",
+    "M4": "T0_T1_AND_NATIVE_CONTINUATIONS_VERIFIED_FINITE_HEALING_STALL_IN_PROGRESS",
+    "M5": "CONSTRUCTED_PILOT_DATA_READY_NATIVE_PRODUCTION_ADMISSION_IN_PROGRESS_SCALE_GATED",
+    "M6": "VERSIONED_PUBLIC_CONTEXT_PRODUCTION_PIPELINE_READY_FOR_PILOT"
   },
   "ready_for_formal_training": false,
   "full_target_content_and_posterior_ready": false,
@@ -24,11 +24,11 @@
     "frozen_upstream_core_passed": 4479,
     "frozen_upstream_core_opt_in_skipped": 3,
     "objective_teacher_passed": 44,
-    "python_student_passed": 165,
-    "data_pipeline_passed": 129,
+    "python_student_passed": 185,
+    "data_pipeline_passed": 140,
     "generator_archive_passed": 63,
     "integrated_v2_teacher_to_backward": true,
-    "full_current_integration_passed": 944,
+    "full_current_integration_passed": 1037,
     "natural_source_tests_passed": 5,
     "native_recorder_tests_passed": 7,
     "natural_raw_roots": 200,
@@ -36,11 +36,11 @@
     "engineering_effective_roots": 200,
     "engineering_full_utility_roots": 177,
     "engineering_auxiliary_only_roots": 6,
-    "natural_development_labeled_roots": 16,
-    "natural_development_candidate_branches": 174,
+    "natural_development_labeled_roots": 174,
+    "natural_development_candidate_branches": 2222,
     "natural_training_admitted_roots": 0,
     "pilot_policy_baseline_smoke_sources": 1,
-    "current_upstream_core_passed": 4479,
+    "current_upstream_core_passed": 4480,
     "current_upstream_core_opt_in_skipped": 3,
     "bounded_hunt_integration_cases": 12,
     "conditional_choice_integration_cases": 6,
@@ -65,7 +65,7 @@
     "native_potion_paired_cases": 4,
     "native_potion_independent_root_world_draws": 128,
     "native_potion_selected_endpoints": 256,
-    "calibration_evidence_tests_current": 45,
+    "calibration_evidence_tests_current": 46,
     "pilot_effective_roots": 5000,
     "pilot_accepted_source_battles": 2513,
     "pilot_full_utility_roots": 4585,
@@ -97,18 +97,22 @@
     "sly_targeted_native_candidate_copies": 480,
     "confirmed_hard_preference_cases": 2,
     "confirmed_numerically_evaluated_preference_cases": 1,
-    "cross_version_protection_cases": 24
+    "cross_version_protection_cases": 24,
+    "current_full_suite": "PASS_1037_OF_1037",
+    "v2_trainer_no_fit_tests_passed": 21,
+    "v2_student_no_backward_tests_passed": 19,
+    "student_regression": 185,
+    "student_regression_scope": "185-case earlier aggregate plus current 19 v2 and 21 trainer focused checks; overlapping suites are not additive",
+    "five_forced_event_owners_verified": true,
+    "private_complete_outcome_ledger_verified": true
   },
   "remaining": [
-    "Balanced 160-attempt block completed with 73 effective roots; broader scale remains gated by posterior censoring and missing complete resource supervision",
-    "All use/discard potion validation actions lack utility; resource decision applicability is unestablished",
-    "Pilot value MSE improves while common no-death MAE and some choice strata worsen; small closed-loop wins are tied and HP gains use extra potions",
-    "Native carry-in posterior is not generally supported",
-    "Sparse public-history rejection sampling may exhaust computation",
-    "Changed resources and earned extra reward opportunities need calibrated values",
-    "Five forced-event contexts and general bonus-plan student control remain unsupported",
-    "No trained policy strength or calibrated confidence has been established",
-    "Generic frozen continuation can over-cycle defensive/draw-only loops; correct budget masks exist but C02 and macro acceptance remain open"
+    "Broader native carry-in posterior coverage, including 26 explicitly rejected roots in the fixed200 diagnostic cohort",
+    "Fresh certified native-pilot admission and safe finite healing stall are being completed",
+    "Unpriced changed resources and permanent/reward benefits; candidate risk calibration remains partial",
+    "Expanded generation and new fitting remain stopped at the completed data-quality gate",
+    "No all-combinations or same-process concurrency claim",
+    "The first experimental policy has no demonstrated resource-aware improvement; no additional fitting or promotion is claimed"
   ],
   "pilot_training_completed": true,
   "first_pilot_report": "configs/m5_first_pilot_report.json",
@@ -124,5 +128,7 @@
     "development_test": 6,
     "fresh_benchmark": false
   },
-  "acceptance_map": "configs/m3_m6_acceptance_progress.json"
+  "acceptance_map": "configs/m3_m6_acceptance_progress.json",
+  "continued_engineering_report": "configs/m3_m6_continued_engineering_report.json",
+  "full_m3_m6_complete": false
 }

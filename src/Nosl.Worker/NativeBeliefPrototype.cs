@@ -3,7 +3,7 @@ using Nosl.Contracts;
 
 namespace Nosl.Worker;
 
-/// <summary>Bounded development evidence; never silently promote the rest of the native registry.</summary>
+/// <summary>Bounded native development evidence; never silently promote the rest of the registry.</summary>
 public static class NativeBeliefPrototype
 {
     public static async Task<object> CollectAsync(NaturalSourceOptions options, TeacherOptions teacherOptions)
@@ -18,12 +18,13 @@ public static class NativeBeliefPrototype
         var source = await NaturalSourceCollector.CollectWithNativeBoundaryAsync(options, async (root, boundary) =>
         {
             CombatSession session;
-            try { session = CombatSession.ImportNative(root, boundary); }
+            try { session = await CombatSession.ImportNativeAsync(root, boundary); }
             catch (NotSupportedException e)
             {
                 blocked[e.Message] = blocked.GetValueOrDefault(e.Message) + 1;
                 var raw = JsonNode.Parse(PublicJson.Serialize(root.ToSourceRecord()))!.AsObject();
                 raw["audit_only"]!["posterior_reason"] = e.Message;
+                raw["audit_only"]!["posterior_evaluation"] = "unsupported";
                 records.Add(raw); return;
             }
             await using (session)
@@ -35,15 +36,19 @@ public static class NativeBeliefPrototype
                 var sourceAudit = JsonNode.Parse(PublicJson.Serialize(root.ToSourceRecord()))!["audit_only"]!.AsObject();
                 foreach (var (key, value) in sourceAudit) audit[key] = value?.DeepClone();
                 audit["posterior_supported"] = true;
+                audit["posterior_evaluation"] = "supported";
                 audit["posterior_reason"] = null;
-                audit["posterior_profile"] = NativeBeliefCertificate.Profile;
-                audit["native_import"] = "certified_detached_boundary_clone";
+                audit["posterior_profile"] = BeliefSampler.PosteriorProfileFor(session);
+                audit["native_import"] = session.HasPendingChoice ? "certified_owned_stable_origin_choice_replay_v1" : "certified_detached_boundary_clone_v2";
                 audit["source_seed_conditioning"] = false;
                 audit["formal_labels"] = false;
                 audit["trainable"] = false;
                 audit["label_status"] = "development_teacher_prototype";
                 audit["teacher_label_count"] = result.Candidates.Length;
-                record["schema_version"] = "nosl.native-belief-prototype.v1";
+                record["public_input"]!["schema_version"] = "nosl.student.public.v2";
+                audit["public_schema"] = "nosl.student.public.v2";
+                audit["versions"]!["public_schema"] = "nosl.student.public.v2";
+                record["schema_version"] = "nosl.native-belief-prototype.v4";
                 record["record_kind"] = "natural_development_teacher_candidate";
                 records.Add(record); labeled++;
                 allocated += result.Costs.WorldsAllocated; completed += result.Costs.WorldsCompleted;
@@ -51,9 +56,10 @@ public static class NativeBeliefPrototype
         });
         return new
         {
-            schema_version = "nosl.native-belief-prototype-report.v1",
+            schema_version = "nosl.native-belief-prototype-report.v4",
             status = "bounded_native_development_evidence_not_formal_labels",
-            posteriorProfile = NativeBeliefCertificate.Profile,
+            posteriorProfiles = new[] { NativeBeliefCertificate.Profile, BeliefSampler.NativeConditionalChoiceProfile, NativeGenerationPotionMemory.Profile },
+            posteriorImplementation = BeliefSampler.ImplementationVersion,
             sourceOptions = options, teacherOptions,
             naturalSourceRoots = source.Roots.Length, naturalLabeledRoots = labeled,
             rawUnlabeledRoots = source.Roots.Length - labeled,

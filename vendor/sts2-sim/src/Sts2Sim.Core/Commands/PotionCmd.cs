@@ -23,7 +23,7 @@ public static class PotionCmd
     {
         if (!potion.Owner.PotionSlots.Contains(potion))
             throw new InvalidOperationException("Potion is no longer in its owner's slots.");
-        potion.Owner.RemovePotionInternal(potion);
+        potion.Owner.RemovePotionInternal(potion, PotionMutationKind.Discarded);
         await Hook.AfterPotionDiscarded(potion.Owner.RunState, potion.Owner.Creature.CombatState, potion);
     }
 
@@ -150,7 +150,7 @@ public static class PotionCmd
         try
         {
             observer?.PotionUseStarted(potion, target);
-            player.RemovePotionInternal(potion);
+            player.RemovePotionInternal(potion, PotionMutationKind.Consumed);
             await Hook.BeforePotionUsed(player.RunState, combatState, potion, target);
             PlayerCombatState? effectState = player.PlayerCombatState;
             if (effectState is not null) effectState.CardOrPotionEffectDepth++;

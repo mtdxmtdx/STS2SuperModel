@@ -1,38 +1,36 @@
 # M3–M6 acceptance checkpoint
 
-The reusable engineering pipeline is ready for bounded pilots in its declared
-scope. **Full-scope readiness is blocked.** The completed 5,000-root corpus and
-497-step experimental fit do not close subjective resource calibration, general
-natural posterior coverage, or policy-quality acceptance.
+The reusable pipeline is ready for pilots within its declared scope. Full M3–M6
+acceptance remains open: objective calibration and broad coverage are incomplete,
+and fresh native admission plus a safe finite healing-stall path are being finished.
+The 5,000-root corpus and 497-step experimental fit remain historical evidence.
 
-The [50-case evidence map](M3_M6_ACCEPTANCE_MAP.md) separates bounded passes,
-remaining M3–M6 work and later M7/M8 evaluation/export requirements.
-
-| Milestone | Verified deliverable | Remaining gate |
+| Milestone | Current engineering deliverable | Remaining gate |
 |---|---|---|
-| M3 | Fixed-start terminal objective, raw outcome/accounting, native 9-HP consideration and bounded 5/80 plan evidence, unknown-value masks, separate common-inventory relative proof | Candidate risk profile is not uniquely calibrated; potion/permanent future values unresolved; general event provenance and bonus-plan scope incomplete |
-| M4 | All-legal-candidate T0, public-history T1 with disjoint final evaluation, incomplete-mass retention, versioned continuation and genuine terminal settlement | General sparse posterior and loop handling remain bounded; T0/T1 values are continuation-dependent, not optimal values |
-| M5 | Resumable real generation, raw archives, source-group isolation, sealed test, 5,000 audited effective roots, balanced allocation and immutable attempted blocks | Natural carry-in labels and broad hard interactions remain sparse; missing resource labels and computational censoring prohibit a full-readiness claim |
-| M6 | 976,838-parameter public-only model, strict loader, masked losses, real forward/backward and bounded learned checkpoint/resume, standalone inference and resource abstention | Full calibrated policy applicability and broad learned strength are unestablished; weights remain experimental and unpromoted |
+| M3 | Fixed-start objective, complete private committed HP/potion ledger, native five-owner settlement, 9-HP consideration, fixed 5/80 plan, unknown-value masks | Broader risk/resource/permanent valuation; exact native calibration comparisons remain bounded |
+| M4 | All-candidate T0/T1, independent final evaluation, reviewed native stable/choice/potion sampling, public cycle exit and Hunt controller | Separate finite beneficial healing stall in progress; broader posterior/continuation coverage |
+| M5 | Immutable raw/protected preparation, source-group isolation, 5,000 constructed roots, complete attempted-block accounting, v2 production dataset path | Fresh certified native admission in progress; full source coverage and resource-label quality remain gated |
+| M6 | Public-context v2 model/loader, masked bounded trainer, exact resume/bundle identity, standalone inference and actual-supervision applicability | Finite-stall context in progress; calibrated learned quality is a later gate |
 
-Formal training has not run. No automatic 10k/30k/100k expansion, model promotion,
-client connection or deployment follows from this checkpoint.
+## Current verification
 
-## Final verification
+Integrated native **1,037/1,037**, Core **4,480 passes / three existing opt-in
+skips**, data **140**, guarded v2 trainer **21**, and v2 forward-only checks **19**
+pass. These suites overlap earlier aggregates. Zero new optimizer steps ran;
+only the original 497-step experimental fit exists. Current sources and report
+hashes are in [continued engineering evidence](M3_M6_ENGINEERING_CONTINUATION.md).
+The [50-case map](M3_M6_ACCEPTANCE_MAP.md) preserves exact scope and later M7/M8
+requirements without turning test counts into completion percentages.
 
-The final combined source build passed **944/944 C# integration cases**, zero
-skips/failures. All **165 Python student tests**, **63 generator tests**, **129 data
-tests** and **45 calibration evidence tests** pass. The unchanged vendored Core has
-its earlier 4,479 passes and three existing opt-in skips. Builds used isolated
-output; the original data worker and first-pilot bundle remain reproducible.
+The fixed native diagnostic cohort now has 174 supported roots and 2,222 settled
+candidate/world continuations. All older public inputs and 150 earlier target
+payloads are unchanged. Every inspected native record remains development data;
+26 explicit encounter rejections remain. All five formerly blocked forced-event
+owners now have native owner/return/reward lifecycle tests.
 
-The corrected v2 generation CLI was exercised on two engineering-only roots at
-source steps zero and one. Both source and teacher identities are v2, all 26
-candidate/world copies settle, preparation succeeds, and a real two-record
-forward/backward passes with zero new optimizer steps. Engineering probes are not
-added to the 5,000 production-pilot count. An earlier one-root probe with incorrect
-source-version metadata is retained explicitly quarantined; the bug was corrected
-before this verified probe or any new cohort.
+Formal training, promotion, deployment and remote simulator writes have not run.
+The remaining sections describe the historical fit and data-quality decision;
+later engineering fixes do not retroactively change those artifacts.
 
 ## Fixes driven by the first trial
 

@@ -125,5 +125,7 @@
     "test": 6,
     "already_inspected": true
   },
-  "acceptance_map": "configs/m3_m6_acceptance_progress.json"
+  "acceptance_map": "configs/m3_m6_acceptance_progress.json",
+  "historical_snapshot": true,
+  "superseded_by": "configs/m3_m6_continued_engineering_report.json"
 }

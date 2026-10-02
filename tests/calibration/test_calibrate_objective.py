@@ -100,6 +100,17 @@ class CalibrationToolTests(unittest.TestCase):
         o["resourceEvents"] = [{"kind": "consumed", "resourceId": "X", "quantity": 1}, {"kind": "generated", "resourceId": "X", "quantity": 1}]
         self.assertAlmostEqual(m.outcome_facts(o)["cost"], 3.03)
 
+    def test_complete_hp_diagnostics_require_adjustment_and_reconciliation_without_changing_cost(self):
+        o = outcome()
+        o.update(hpEventDiagnosticsComplete=True, cumulativeHpDamage=5, healingReceived=4, otherHpAdjustment=-2)
+        self.assertAlmostEqual(m.outcome_facts(o)["cost"], 3.03)
+        del o["otherHpAdjustment"]
+        with self.assertRaisesRegex(ValueError, "missing or invalid complete HP diagnostics"):
+            m.outcome_facts(o)
+        o["otherHpAdjustment"] = 0
+        with self.assertRaisesRegex(ValueError, "do not reconcile"):
+            m.outcome_facts(o)
+
     def test_permanent_reward_opportunity_has_no_invented_price(self):
         o = outcome(); o["permanentChanges"] = [{"kind": "earned_extra_reward_opportunity:GoldReward", "amount": 1}]
         self.assertIsNone(m.outcome_facts(o)["cost"])

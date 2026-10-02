@@ -155,3 +155,40 @@ The October 2 completed 40-battle cohort was already inspected. Its protected
 development copy is not a fresh unseen benchmark, including its new test split.
 It preserves the actual continuation-v2 / posterior-dispatch-v2 labels; it must
 not be presented as newly generated dispatcher-v3 evidence.
+
+## Explicit student/public v2 pipeline
+
+Use `--config configs/data_pipeline.v2.json` with the same durable preparation
+entry point. It locks `nosl.dataset.prepare.v4` and the distinct
+`nosl.public-identity.student-v2.v1` semantic identity. Legacy defaults remain
+unchanged. V2 registries can protect either verified v1 or v2 source corpora;
+the source identity is retained, not rewritten. Incoming roots add conservative
+legacy aliases for context-free current observations and embedded anchors before
+filtering, so changing/removing new context cannot bypass old test protection.
+
+V2 journals may include public_input and legacy_public_input_digests in addition
+to source aliases and a versioned public_input_digest. Their data is used only
+for provenance. Supply every attempt journal, including failed attempts. Plan-only
+roots keep null ordinary candidate labels and zero candidate rollout allocations;
+paired-policy accounting is reported separately. Native development remains
+quarantined until a separate admission contract exists.
+
+`test_prepare_v2.py` uses declared synthetic independent contract groups and tiny
+real bounded finite-Hunt audit fixtures. It covers protected old aliases,
+invalid bridges, frozen append, mixed-version refusal, malformed provenance,
+recursive identity and shard tampering. `PreparedDatasetV2` loads only training
+and validation, verifying frozen test bytes without parsing their targets.
+
+The v2 throughput population includes structurally valid diagnostic-only roots,
+including incomplete plan attempts. Unusable labels remain excluded. Paired-policy
+completion/error/truncation accounting is separate from candidate-action counters;
+missing cost timings remain null. A v2 cross-split bridge commits a permanent
+isolation blocker even without an imported registry and even when an unrelated
+incoming row has incompatible label versions.
+
+No-fit verification also covers positive batch size and learning rate, finite
+nonnegative loss weights, zero-step optimizer/RNG restore, lifetime budget
+expansion refusal and bundle action-policy abstention when only plan or auxiliary
+supervision has actually been consumed. The dedicated pipeline acceptance test
+performs exactly one backward on a two-root engineering batch and verifies every
+weight is unchanged; it never calls optimizer.step or produces trained weights.

@@ -109,6 +109,7 @@ public sealed class RunDriver
     // Read-only NOSL observation adapter, installed before native room entry. The
     // decorator must forward the original observer; it may not mutate state or RNG.
     internal Func<ICombatObserver, ICombatObserver>? CombatObserverDecorator { get; set; }
+    internal Action? AutomaticCombatSettlementCompleted { get; set; }
 
     public async Task<Result> RunAsync(int maxFloors)
     {
@@ -488,7 +489,8 @@ public sealed class RunDriver
         CombatRoom combatRoom,
         bool generateRewards = true,
         bool resolveRewards = true,
-        CombatRecordingObserver? combatObserver = null)
+        CombatRecordingObserver? combatObserver = null,
+        bool deferOutcomeNotification = false)
     {
         CombatEngine engine = combatRoom.Engine;
         Player player = engine.State.Players[0];
@@ -538,6 +540,7 @@ public sealed class RunDriver
         }
 
         await combatRoom.ResolveOutcomeAsync(generateRewards);
+        if (!deferOutcomeNotification) AutomaticCombatSettlementCompleted?.Invoke();
         combatObserver?.CaptureFinalState();
         if (resolveRewards)
         {
@@ -619,6 +622,7 @@ public sealed class RunDriver
             {
                 ForcedCombatOutcome outcome = await DrivePendingForcedCombatAsync(eventRoom);
                 eventRoom.Event.ResumeAfterForcedCombat(outcome);
+                if (!eventRoom.Event.GenerateForcedCombatRewards) AutomaticCombatSettlementCompleted?.Invoke();
                 await DrainEventRewardOffersAsync(eventRoom);
                 continue;
             }
@@ -701,7 +705,8 @@ public sealed class RunDriver
                 combatRoom,
                 generateRewards: eventRoom.Event.GenerateForcedCombatRewards,
                 resolveRewards: eventRoom.Event.GenerateForcedCombatRewards,
-                combatObserver: combatObserver);
+                combatObserver: combatObserver,
+                deferOutcomeNotification: !eventRoom.Event.GenerateForcedCombatRewards);
             bool timedOut = combatRoom.Engine.State.EscapedCreatures.Any(forcedEnemies.Contains)
                 || forcedTimeoutPowers.Any(power => power.HasExpired);
             outcome = new ForcedCombatOutcome(Victory: combatRoom.Won, TimedOut: timedOut);

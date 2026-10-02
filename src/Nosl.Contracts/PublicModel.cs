@@ -39,7 +39,12 @@ public sealed record PublicObservation(string Schema, int StartHp, int Ascension
 public sealed record PublicAction(int Revision, string Kind, int Slot = -1, int Target = -1, int[]? Selection = null);
 public sealed record DecisionPacket(string Status, PublicObservation? Observation, PublicAction[] Actions);
 public sealed record TerminalFacts(string Result, int StartHp, int FinalHp, int StartMaxHp, int FinalMaxHp,
-    string?[] Potions, PublicEvent[] Events, string Boundary, int RewardSelectionsMade);
+    string?[] Potions, PublicEvent[] Events, string Boundary, int RewardSelectionsMade,
+    ForcedEventSettlementFacts? ForcedEvent = null);
+// Terminal audit facts only: no offered card, relic or potion identities enter a decision packet.
+public sealed record RewardOpportunity(string Kind, int Count, string Source, int? GoldAmount = null);
+public sealed record ForcedEventSettlementFacts(string Owner, bool TimedOut, bool ReturnedToEvent,
+    bool EventFinished, bool ReturnPendingRewardDecisions, RewardOpportunity[] RewardOpportunities);
 
 public static class PublicJson
 {

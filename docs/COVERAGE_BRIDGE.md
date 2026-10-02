@@ -37,7 +37,7 @@ A proposal budget failure is `posterior_budget_exhausted`: computationally incon
 
 - Scenario describes a declared constructed starting inventory. Fresh relic acquisition is not a substitute for arbitrary pre-existing counters/permanent card state/floor context
 - Startup combat choices are exposed; unresolved choices during out-of-combat acquisition require a resolved public setup
-- Five forced-event owners need their native event return/reward contexts: BattlewornDummy, DenseVegetation, PunchOff, FakeMerchant and TheLanternKey. Ordinary standalone rooms cannot silently replace them
+- Five forced-event owners now have [native event lifecycle fixtures](FORCED_EVENT_LIFECYCLE.md): BattlewornDummy, DenseVegetation, PunchOff, FakeMerchant and TheLanternKey. Ordinary standalone rooms remain forbidden; constructed-event support does not certify a natural-run posterior
 - Full natural-run import/public history, exhaustive interaction coverage and same-process parallel simulation are not certified
 - Current game-client compatibility is not independently checked; upstream rule trust is explicit
 

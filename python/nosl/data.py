@@ -186,7 +186,7 @@ def validate_registry(registry):
     require(isinstance(registry, dict) and set(registry) == {
         "schema_version", "public_identity_scheme", "source", "components"}, "fields_invalid")
     require(registry["schema_version"] == REGISTRY_VERSION, "version_unknown")
-    require(registry["public_identity_scheme"] == PUBLIC_IDENTITY_SCHEME, "identity_unknown")
+    require(registry["public_identity_scheme"] in (PUBLIC_IDENTITY_SCHEME, "nosl.public-identity.student-v2.v1"), "identity_unknown")
     source = registry["source"]
     require(isinstance(source, dict) and set(source) == {
         "manifest_sha256", "split_state_sha256", "versions", "frozen_test_shards"}, "source_invalid")
@@ -247,7 +247,9 @@ def validate_state_protection(state, registry, *, enforce_exclusion=True):
         group = owners.get("prepared_public_input_digest:" + digest)
         require(group is not None and state["components"][group]["split"] == "test", "frozen_test_alias_missing")
 
-def prepared_paths(root: Path, split: str, expected_config_sha256: str | None = None) -> tuple[list[Path], str]:
+def prepared_paths(root: Path, split: str, expected_config_sha256: str | None = None, *,
+                   expected_identity: str = PUBLIC_IDENTITY_SCHEME,
+                   expected_pipeline: str = "nosl.dataset.prepare.v3") -> tuple[list[Path], str]:
     """Read the immutable M5 manifest contract without importing pipeline/teacher."""
     if split not in ("train", "validation", "test"):
         reject("unknown dataset split")
@@ -256,9 +258,10 @@ def prepared_paths(root: Path, split: str, expected_config_sha256: str | None = 
     manifest = json.loads(manifest_path.read_text())
     if manifest.get("schema_version") != "nosl.dataset.manifest.v2" or manifest.get("isolation_passed") is not True:
         reject("dataset manifest unsupported or isolation blocked")
-    if (manifest.get("pipeline_version") != "nosl.dataset.prepare.v3"
-            or manifest.get("public_identity_scheme") != PUBLIC_IDENTITY_SCHEME
-            or manifest.get("lock", {}).get("public_identity_scheme") != PUBLIC_IDENTITY_SCHEME):
+    if (manifest.get("pipeline_version") != expected_pipeline
+            or manifest.get("public_identity_scheme") != expected_identity
+            or manifest.get("lock", {}).get("pipeline_version") != expected_pipeline
+            or manifest.get("lock", {}).get("public_identity_scheme") != expected_identity):
         reject("prepared public identity scheme unsupported; rebuild grouping from raw provenance")
     if expected_config_sha256 and manifest["lock"]["student_config_sha256"] != expected_config_sha256:
         reject("prepared dataset student config checksum mismatch")

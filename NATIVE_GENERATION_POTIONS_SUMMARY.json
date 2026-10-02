@@ -1,0 +1,358 @@
+{
+  "schema_version": "nosl.native-belief-prototype-report.v4",
+  "status": "bounded_native_development_evidence_not_formal_labels",
+  "posteriorProfiles": [
+    "native-public-entry-reviewed-memory-exchangeable-v2",
+    "native-public-entry-reviewed-memory-conditional-choice-v1",
+    "native-public-entry-generation-potions-exchangeable-v1"
+  ],
+  "posteriorImplementation": "nosl-belief-dispatch-v6",
+  "sourceOptions": {
+    "runs": 100,
+    "maxFloors": 12,
+    "maxRoots": 200,
+    "maxRootsPerCombat": 8,
+    "decisionStride": 1,
+    "maxDecisionsPerRun": 10000,
+    "seedPrefix": "nosl-m5-natural-proof-20261001",
+    "sourceRunPrefix": "natural-proof20261001",
+    "continuationPolicyId": "nosl-public-rules-v1"
+  },
+  "teacherOptions": {
+    "mode": "T0",
+    "continuationPolicyId": "nosl-public-rules-v1",
+    "explorationSeeds": [],
+    "evaluationSeeds": [
+      101,
+      102
+    ],
+    "maxDecisions": 200,
+    "treeDepth": 4,
+    "maxPosteriorAttempts": 256,
+    "uctExploration": 10,
+    "formalLabels": false
+  },
+  "naturalSourceRoots": 200,
+  "naturalLabeledRoots": 174,
+  "rawUnlabeledRoots": 26,
+  "worldsAllocated": 2222,
+  "worldsCompleted": 2222,
+  "sourceDistribution": {
+    "natural": 200,
+    "constructed": 0
+  },
+  "encounterDistribution": {
+    "ToadpolesWeak": 16,
+    "SeapunkWeak": 16,
+    "SludgeSpinnerWeak": 24,
+    "HauntedShipNormal": 16,
+    "ShrinkerBeetle": 24,
+    "SlimesWeak": 16,
+    "FuzzyWurmCrawler": 24,
+    "CubexConstruct": 8,
+    "ShrinkerBeetleAndFuzzyWurmCrawler": 8,
+    "LoneNibbit": 8,
+    "VineShambler": 8,
+    "CorpseSlugsWeak": 16,
+    "TwoTailedRatsNormal": 8,
+    "SkulkingColonyElite": 6,
+    "RubyRaiders": 2
+  },
+  "unsupportedPosteriorReasons": {
+    "native_certificate:unreviewed_encounter": 26
+  },
+  "comparison": {
+    "baseline_dispatcher": "nosl-belief-dispatch-v5",
+    "baseline_supported_roots": 150,
+    "current_supported_roots": 174,
+    "baseline_worlds_completed": 1844,
+    "current_worlds_completed": 2222,
+    "unchanged_public_inputs": 200,
+    "unchanged_source_traces": 200,
+    "unchanged_previously_supported_target_payloads": 150,
+    "new_stable_roots": 24,
+    "new_candidates": 189,
+    "new_worlds_completed": 378,
+    "baseline_records_sha256": "b21943f2988d4a5e9e57a62d3b9ce8ec42620e2311dd383db3007f6502a50238",
+    "request_identical_to_baseline": true
+  },
+  "accepted_generation_potion_families": [
+    {
+      "encounter": "HauntedShipNormal",
+      "roots": 8,
+      "entry_generation_potions": [
+        "PowerPotion"
+      ],
+      "candidates": 56,
+      "worlds_completed": 112,
+      "posterior_profile": "native-public-entry-generation-potions-exchangeable-v1"
+    },
+    {
+      "encounter": "ShrinkerBeetleAndFuzzyWurmCrawler",
+      "roots": 8,
+      "entry_generation_potions": [
+        "AttackPotion"
+      ],
+      "candidates": 80,
+      "worlds_completed": 160,
+      "posterior_profile": "native-public-entry-generation-potions-exchangeable-v1"
+    },
+    {
+      "encounter": "SludgeSpinnerWeak",
+      "roots": 8,
+      "entry_generation_potions": [
+        "PowerPotion"
+      ],
+      "candidates": 53,
+      "worlds_completed": 106,
+      "posterior_profile": "native-public-entry-generation-potions-exchangeable-v1"
+    }
+  ],
+  "unsupported_encounters": {
+    "CorpseSlugsWeak": 16,
+    "TwoTailedRatsNormal": 8,
+    "RubyRaiders": 2
+  },
+  "unsupported_roots": [
+    {
+      "source_combat_id": "natural-proof20261001-000003/combat-0002",
+      "decision_index": 0,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000003/combat-0002",
+      "decision_index": 1,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000003/combat-0002",
+      "decision_index": 2,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000003/combat-0002",
+      "decision_index": 3,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000003/combat-0002",
+      "decision_index": 4,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000003/combat-0002",
+      "decision_index": 5,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000003/combat-0002",
+      "decision_index": 6,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000003/combat-0002",
+      "decision_index": 7,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0003",
+      "decision_index": 0,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0003",
+      "decision_index": 1,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0003",
+      "decision_index": 2,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0003",
+      "decision_index": 3,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0003",
+      "decision_index": 4,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0003",
+      "decision_index": 5,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0003",
+      "decision_index": 6,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0003",
+      "decision_index": 7,
+      "encounter": "CorpseSlugsWeak",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0004",
+      "decision_index": 0,
+      "encounter": "TwoTailedRatsNormal",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0004",
+      "decision_index": 1,
+      "encounter": "TwoTailedRatsNormal",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0004",
+      "decision_index": 2,
+      "encounter": "TwoTailedRatsNormal",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0004",
+      "decision_index": 3,
+      "encounter": "TwoTailedRatsNormal",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0004",
+      "decision_index": 4,
+      "encounter": "TwoTailedRatsNormal",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0004",
+      "decision_index": 5,
+      "encounter": "TwoTailedRatsNormal",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0004",
+      "decision_index": 6,
+      "encounter": "TwoTailedRatsNormal",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0004",
+      "decision_index": 7,
+      "encounter": "TwoTailedRatsNormal",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000005/combat-0004",
+      "decision_index": 0,
+      "encounter": "RubyRaiders",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000005/combat-0004",
+      "decision_index": 1,
+      "encounter": "RubyRaiders",
+      "posterior_reason": "native_certificate:unreviewed_encounter"
+    }
+  ],
+  "action_target_quality": {
+    "complete": 494,
+    "objective_value_unresolved": 617
+  },
+  "terminal_kinds": {
+    "Win": 1710,
+    "Loss": 512
+  },
+  "source_errors": [],
+  "engineering_tests": {
+    "full_nosl_suite": {
+      "passed": 1032,
+      "failed": 0,
+      "skipped": 0
+    },
+    "new_generation_potion_cases": 47,
+    "protocol_smoke": "PROTOCOL PASS reset=real_silent_a10 sample=public_invariant stale=rejected decisions=2 result=win final_hp=70 reward_choices=0 policy=separate_process",
+    "pinned_upstream_pool_sizes": {
+      "attack": 23,
+      "power": 16
+    },
+    "generated_descendant_source_projection_settlements": 39,
+    "potion_action_source_projection_cases": {
+      "nonempty": 2,
+      "cancelled": 2,
+      "automatic_settlement": 4
+    },
+    "native_cohort_nonempty_and_hidden_replacement": {
+      "families": 3,
+      "checks": "public packets and automatic terminal assets match after replacing draw/permanent deck order, all future streams, reward pity; source remains unchanged"
+    },
+    "delayed_tools_master_planner": "Tools discard selects Sly Survivor, resolves nested Survivor discard, then automatic settlement with actual/projection parity",
+    "fail_closed": "actual non-Silent and A9/A11, used Attack/Power including cancellation, pending potion imports, generation-prior card-choice imports",
+    "outcome_event_diagnostics": {
+      "hp_complete": 2222,
+      "resource_provenance_complete": 2222,
+      "settlement_complete": 2222
+    }
+  },
+  "scope_limits": {
+    "formal_labels": false,
+    "trainable": false,
+    "fit_or_training_executed": false,
+    "new_source_seed_search": false,
+    "root_card_and_power_allowlists": "unchanged",
+    "new_family_conditional_import": "unsupported in this increment",
+    "teacher_default_optional_generation": "nosl-public-rules-v1 selects the first legal choice, an empty selection; nonempty behavior is established separately by mechanism/native-family tests",
+    "generated_state_resampling": "unsupported; continuation remains in the initial sampled world and its owned coroutine"
+  },
+  "implementation_base_commit": "121a057",
+  "artifacts": {
+    "request.jsonl": {
+      "path": "artifacts/native-potion-proof-200-v6/request.jsonl",
+      "sha256": "f819ef713a1ae6a1d094302841eea6d45fdd9ebf7e306ac5622d4101a9191758"
+    },
+    "response.jsonl": {
+      "path": "artifacts/native-potion-proof-200-v6/response.jsonl",
+      "sha256": "38bdf7d12445863b071248d76f964592e29856fc73896f68336066220c0c98cc"
+    },
+    "natural-source-records.jsonl": {
+      "path": "artifacts/native-potion-proof-200-v6/natural-source-records.jsonl",
+      "sha256": "42523893120c4bd654aebe650bf33886e371c8e075712e4121090d5bace0f880"
+    },
+    "report.json": {
+      "path": "artifacts/native-potion-proof-200-v6/report.json",
+      "sha256": "5fa9f4f665662ba789e0aeba7846661fe828a7903c270ad2437747f91d538a1d"
+    },
+    "full-tests.log": {
+      "path": "artifacts/native-potion-proof-200-v6/full-tests.log",
+      "sha256": "70e08698aa4ad53c21b634eaff31163cfd58c3d5de3e03632acd00364fbe6b72"
+    },
+    "guard-tests.log": {
+      "path": "artifacts/native-potion-proof-200-v6/guard-tests.log",
+      "sha256": "7b5934dd022dfb52cda839e81bd1fb245c3f15047cb1e42998ec2849ce3c488f"
+    },
+    "protocol-smoke.log": {
+      "path": "artifacts/native-potion-proof-200-v6/protocol-smoke.log",
+      "sha256": "9ce1d668196198c294b8e085e0f94d851ddfc79b25b75112be8521ec92410344"
+    },
+    "verify-evidence.py": {
+      "path": "artifacts/native-potion-proof-200-v6/verify-evidence.py",
+      "sha256": "92eb9253b4447bb26a200c14562fd528f8bc3610a1f515db19e3d90c077abab4"
+    }
+  }
+}

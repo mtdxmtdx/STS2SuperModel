@@ -17,6 +17,7 @@ public sealed class NativeBeliefTests
             SeedPrefix: SourceSeed, SourceRunPrefix: "native-bridge-regression");
         var baseline = await NaturalSourceCollector.CollectAsync(options);
         var accepted = new List<string>(); var rejected = new List<string>();
+        int generationPotionRoots = 0;
         var labeled = new HashSet<string>();
         var observed = await NaturalSourceCollector.CollectWithNativeBoundaryAsync(options, async (root, boundary) =>
         {
@@ -25,6 +26,7 @@ public sealed class NativeBeliefTests
             catch (NotSupportedException e) { rejected.Add(e.Message); return; }
             await using (imported)
             {
+                if (imported.NativeCertificate!.HasGenerationPotionPrior) { generationPotionRoots++; return; }
                 accepted.Add(root.Encounter);
                 var sourceOrder = boundary.State.Players[0].PlayerCombatState!.DrawPile.Cards.ToArray();
                 string sourceRng = JsonSerializer.Serialize(boundary.State.RunState.Rng.ToSerializable(), new JsonSerializerOptions { IncludeFields = true });
@@ -45,6 +47,8 @@ public sealed class NativeBeliefTests
                     var result = await CombatTeacher.EvaluateAsync(imported, new() { EvaluationSeeds = [101, 102], MaxDecisions = 200 });
                     Assert.Equal(NativeBeliefCertificate.Profile, result.Scope);
                     Assert.All(result.Candidates, c => Assert.All(c.Outcomes, o => Assert.True(o.IsTrueTerminal, o.Detail)));
+                    Assert.All(result.Candidates, c => Assert.All(c.Outcomes, o =>
+                    { Assert.True(o.HpEventDiagnosticsComplete); Assert.True(o.ResourceProvenanceComplete); }));
                     Assert.True(result.Costs.WorldsCompleted > 0);
                     Assert.Equal("MASKED_NO_CERTIFIED_UTILITY_SUPPORT", result.Ranking.Method);
                 }
@@ -53,10 +57,12 @@ public sealed class NativeBeliefTests
             }
         });
         Assert.Equal(PublicJson.Serialize(baseline), PublicJson.Serialize(observed));
-        Assert.Equal(16, accepted.Count);
+        Assert.Equal(24, accepted.Count);
         Assert.Equal(8, accepted.Count(x => x == "ToadpolesWeak"));
         Assert.Equal(8, accepted.Count(x => x == "SeapunkWeak"));
-        Assert.Equal(24, rejected.Count);
+        Assert.Equal(8, accepted.Count(x => x == "ShrinkerBeetle"));
+        Assert.Equal(16, generationPotionRoots);
+        Assert.Empty(rejected);
     }
 
     [Fact]
@@ -127,8 +133,12 @@ public sealed class NativeBeliefTests
             var packet = native.Observe();
             var survivor = packet.Actions.First(a => a.Kind == "play" && packet.Observation!.Hand[a.Slot].Id == "Survivor");
             Assert.Equal("card_choice", (await native.StepAsync(survivor)).Status);
-            await Assert.ThrowsAsync<NotSupportedException>(() => native.ReplayToChoiceAsync());
-            await Assert.ThrowsAsync<NotSupportedException>(() => BeliefSampler.SampleWorldAsync(native, 4));
+            Assert.Equal(BeliefSampler.NativeConditionalChoiceProfile, BeliefSampler.PosteriorProfileFor(native));
+            await using var replay = await native.ReplayToChoiceAsync();
+            await using var sampled = await BeliefSampler.SampleWorldAsync(native, 4);
+            Assert.Equal(PublicJson.Serialize(native.Observe()), PublicJson.Serialize(replay.Observe()));
+            Assert.Equal(PublicJson.Serialize(native.Observe()), PublicJson.Serialize(sampled.Observe()));
+            Assert.Throws<InvalidOperationException>(() => native.ForkExact());
             await native.StepAsync(native.Observe().Actions.First());
             Assert.Equal("player_decision", native.Observe().Status);
             callbackCompleted = true;
@@ -157,7 +167,23 @@ public sealed class NativeBeliefTests
         Assert.False(audit.GetProperty("formal_labels").GetBoolean());
         Assert.False(audit.GetProperty("trainable").GetBoolean());
         Assert.False(audit.GetProperty("source_seed_conditioning").GetBoolean());
+        Assert.Equal("nosl.student.public.v2", record.GetProperty("public_input").GetProperty("schema_version").GetString());
+        Assert.Equal("nosl.student.public.v2", audit.GetProperty("versions").GetProperty("public_schema").GetString());
         Assert.Empty(record.GetProperty("targets").GetProperty("pairwise").EnumerateArray());
+    }
+
+    [Theory]
+    [InlineData(null, false)]
+    [InlineData("CeremonialBeast", true)]
+    public async Task LavaRockProjectionGuardMatchesItsUpstreamBossOnlyRewardHook(string? encounter, bool requiresNative)
+    {
+        await using var session = await CombatSession.CreateAsync(new(Encounter: encounter, Relics: ["LavaRock"]));
+        if (requiresNative) Assert.Throws<NotSupportedException>(() => session.ForkExact());
+        else
+        {
+            await using var fork = session.ForkExact();
+            Assert.Equal(PublicJson.Serialize(session.Observe()), PublicJson.Serialize(fork.Observe()));
+        }
     }
 
     private static string Draw(CombatSession s) => string.Join("|", s.State.Players[0].PlayerCombatState!.DrawPile.Cards.Select(c => PublicJson.Serialize(PublicViews.Card(c))));

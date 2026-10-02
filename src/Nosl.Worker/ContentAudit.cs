@@ -35,7 +35,7 @@ public static class ContentAudit
             adapterCapabilities=new[]{"Native rules/legality/generation/upgrades, no per-card rule reimplementation", "Native natural multi-enemy/elite/boss encounter factories", "Revisioned play/use/discard-potion/end-turn/selection tokens", "Public hand/generated/discard/exhaust choices and canonically unordered draw/deck reveals", "Public mutable card/relic/counter/gold/orb/pet snapshots", "Independent concrete native replay for projection-sensitive automatic rewards", "Bounded whole-setup rejection posterior conditioned on every public decision; explicit inconclusive exhaustion"},
             remaining=new[]{
                 "Registered execution is distinct from passing adapter tests; see actual verification report for tested fixtures",
-                "Forced-event combat return/rewards require the owning event's native context and are explicit unsupported capabilities",
+                "Forced-event fixtures execute their legal native option path and retain owning event context; natural-run event posterior certification remains separate",
                 "Fresh constructed Scenario is not arbitrary carried natural-run state; relic counters, act/floor context and permanent card state need a complete public setup/import contract",
                 "General replay posterior may exhaust its declared proposal budget; never reinterpret that as a game loss or drop it from an outcome denominator",
                 "In-place exchangeable sampling has a bounded proven mechanism set; mixed prior provenance is rejected",

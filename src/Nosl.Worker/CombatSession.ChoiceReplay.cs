@@ -13,15 +13,20 @@ public sealed partial class CombatSession
 
     internal bool HasConditionalChoiceOrigin => _request is not null && _choiceReplayOrigin is not null;
 
+    internal static bool IsReviewedChoiceAction(PublicAction action, DecisionPacket packet) =>
+        action.Kind == "play" && packet.Status == "player_decision"
+        && ReviewedChoiceCards.Contains(packet.Observation!.Hand[action.Slot].Id);
+
     private async ValueTask CaptureChoiceOriginAsync(PublicAction action)
     {
         if (_request is not null) return; // A suffix can contain another choice response.
         await ReleaseChoiceOriginAsync();
-        // This optimization is intentionally only the reviewed constructed card
-        // families. Native import and arbitrary setup/generation choices remain blocked
-        // or use their existing conservative whole-setup posterior.
-        if (HasNativeProvenance || action.Kind != "play"
-            || !ReviewedChoiceCards.Contains(State.Players[0].PlayerCombatState!.Hand.Cards[action.Slot].GetType().Name)
+        // A native origin must already have its reviewed public-entry certificate.
+        // Arbitrary setup/generation choices cannot acquire one through this path.
+        // Generation-potion entry priors are stable-only in this increment, even
+        // when the immediate choice is produced by a reviewed card.
+        if (!IsReviewedChoiceAction(action, Observe())
+            || NativeCertificate is { HasGenerationPotionPrior: true }
             || !BeliefSampler.UsesExchangeablePosterior(this)) return;
         _choiceReplayOrigin = ForkExact();
         _choiceReplayPackets.Add(PublicJson.Serialize(_choiceReplayOrigin.Observe()));
@@ -47,7 +52,7 @@ public sealed partial class CombatSession
         out PublicAction[] actions, out string[] packets)
     {
         origin = null!; actions = []; packets = [];
-        if (!HasConditionalChoiceOrigin || HasNativeProvenance
+        if (!HasConditionalChoiceOrigin
             || !BeliefSampler.UsesExchangeablePosterior(_choiceReplayOrigin!)) return false;
         if (_choiceReplayPackets.Count != _choiceReplayActions.Count + 1
             || _choiceReplayPackets[0] != PublicJson.Serialize(_choiceReplayOrigin!.Observe())
@@ -78,6 +83,8 @@ public sealed partial class CombatSession
     internal static async Task<bool> ReplayChoiceSuffixAsync(CombatSession proposed,
         IReadOnlyList<PublicAction> actions, IReadOnlyList<string> packets)
     {
+        if (actions.Count == 0 || packets.Count != actions.Count + 1)
+            throw new NotSupportedException("public_history_incomplete: conditional choice replay requires every public packet");
         for (int index = 0; index <= actions.Count; index++)
         {
             if (PublicJson.Serialize(proposed.Observe()) != packets[index]) return false;

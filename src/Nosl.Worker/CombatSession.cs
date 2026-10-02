@@ -15,7 +15,8 @@ using Sts2Sim.Core.Runs;
 namespace Nosl.Worker;
 
 public sealed record Scenario(string Seed="NOSL-M012", string Enemy="TwigSlimeS", string[]? Deck=null,
-    string[]? Potions=null, string[]? Relics=null, int? Hp=null, int? MaxHp=null, int? EnemyHp=null, string? Encounter=null, string[]? Enemies=null, int? Gold=null);
+    string[]? Potions=null, string[]? Relics=null, int? Hp=null, int? MaxHp=null, int? EnemyHp=null, string? Encounter=null, string[]? Enemies=null, int? Gold=null,
+    ForcedEventScenario? ForcedEvent=null);
 
 public sealed partial class CombatSession : IAsyncDisposable, ICardSelectionDecisionSource, IAutomaticCardSelectionObserver
 {
@@ -62,7 +63,7 @@ public sealed partial class CombatSession : IAsyncDisposable, ICardSelectionDeci
     private CombatSession(Scenario? scenario, PublicKnowledge knowledge)
     {
         _scenario=scenario is null ? null : scenario with { Deck=scenario.Deck?.ToArray(),Potions=scenario.Potions?.ToArray(),
-            Relics=scenario.Relics?.ToArray(),Enemies=scenario.Enemies?.ToArray() }; _knowledge=knowledge;
+            Relics=scenario.Relics?.ToArray(),Enemies=scenario.Enemies?.ToArray(),ForcedEvent=scenario.ForcedEvent?.Copy() }; _knowledge=knowledge;
     }
 
     // The only native import path checks the reviewed certificate before making a
@@ -78,12 +79,44 @@ public sealed partial class CombatSession : IAsyncDisposable, ICardSelectionDeci
         };
         session.State = boundary.State.CloneForNosl(out var map, session._knowledge);
         session._knowledge.Rebind(map);
+        session._knowledge.OutcomeLedger.Bind(session.State.Players.Single());
         session.Room = (CombatRoom)session.State.RunState.CurrentRoom!;
         session.State.CardSelectionSource = session;
         if (PublicJson.Serialize(session.Observe()) != PublicJson.Serialize(root.PublicRoot))
+        {
+            session._knowledge.OutcomeLedger.Detach();
             throw new InvalidOperationException("Native detached import changed the public root");
+        }
         session._publicTrace.Add(PublicJson.Serialize(root.PublicRoot));
         return session;
+    }
+
+    internal static async Task<CombatSession> ImportNativeAsync(NaturalSourceRoot root, NaturalSourceBoundary boundary)
+    {
+        if (boundary.IsStable) return ImportNative(root, boundary);
+        if (!boundary.HistoryComplete || root.PublicRoot.Status != "card_choice")
+            throw new NotSupportedException("native_choice:complete_pending_history_required");
+        var replay = boundary.ChoiceReplay ?? throw new NotSupportedException(
+            boundary.ChoiceReplayRejection ?? "native_choice:reviewed_stable_origin_required");
+        var origin = replay.Origin;
+        if (!origin.HasNativeProvenance || origin.NativeCertificate!.HasGenerationPotionPrior
+            || !BeliefSampler.UsesExchangeablePosterior(origin)
+            || origin.NativeCertificate!.Encounter != root.Encounter
+            || root.StartHp != origin.StartHp || root.StartMaxHp != origin.StartMaxHp || root.StartGold != origin.StartGold)
+            throw new NotSupportedException("native_choice:reviewed_stable_origin_required");
+        if (replay.Packets.Length != replay.Actions.Length + 1 || replay.Actions.Length == 0
+            || replay.Packets[^1] != PublicJson.Serialize(root.PublicRoot))
+            throw new NotSupportedException("public_history_incomplete: native choice replay requires its exact public suffix");
+        // Clone only the detached stable origin. The source coroutine and current
+        // native state are never copied; this session owns its new execution chain.
+        var session = origin.ForkExact();
+        try
+        {
+            if (!await ReplayChoiceSuffixAsync(session, replay.Actions, replay.Packets))
+                throw new NotSupportedException("public_history_incomplete: native choice replay diverged from its public suffix");
+            return session;
+        }
+        catch { await session.DisposeAsync(); throw; }
     }
 
     private static T Model<T>(string name, string[] allowed) where T:AbstractModel
@@ -95,6 +128,8 @@ public sealed partial class CombatSession : IAsyncDisposable, ICardSelectionDeci
     {
         scenario??=new();
         lock(InitLock) { if(!ModelDb.Contains(typeof(Silent))) ModelDb.Init(ContentRegistry.AllTypes); }
+        if(scenario.ForcedEvent is not null && (scenario.Encounter is not null || scenario.Enemies is not null || scenario.EnemyHp is not null))
+            throw new ArgumentException("A native forced-event fixture cannot replace its encounter, monster batch or HP.");
         // Validate every requested model before mutating the new state.
         if(scenario.Encounter is not null && scenario.Enemies is not null) throw new ArgumentException("Choose a named encounter or a declared monster batch");
         var enemies=scenario.Encounter is null?(scenario.Enemies??[scenario.Enemy]).Select(id=>Model<MonsterModel>(id,SupportedEnemies)).ToArray():[];
@@ -104,7 +139,8 @@ public sealed partial class CombatSession : IAsyncDisposable, ICardSelectionDeci
         var cards=scenario.Deck?.Select(x=>Model<CardModel>(x.TrimEnd('+'),SupportedCards)).ToArray();
         var potions=(scenario.Potions??[]).Select(x=>Model<PotionModel>(x,SupportedPotions)).ToArray();
         var relics=(scenario.Relics??[]).Select(x=>Model<RelicModel>(x,SupportedRelics)).ToArray();
-        var run=EncounterCoverage.CreateRun(scenario.Seed,scenario.Encounter,10);
+        var run=scenario.ForcedEvent is { } forcedEvent ? CreateForcedEventRun(scenario.Seed,forcedEvent) :
+            EncounterCoverage.CreateRun(scenario.Seed,scenario.Encounter,10);
         var player=run.Players.Single();
         var session=new CombatSession(scenario,new());
         run.ConfigureCardSelectionSource(session);
@@ -128,10 +164,12 @@ public sealed partial class CombatSession : IAsyncDisposable, ICardSelectionDeci
         if(potions.Length>player.PotionSlots.Count) throw new ArgumentException("Potions exceed available slots");
         foreach(var potion in potions) { potion.AssignOwner(player); player.AddPotionInternal(potion); }
         foreach(var relic in relics) await RelicCmd.Obtain(relic,player);
+        if(scenario.ForcedEvent is { } eventScenario) return await session.EnterForcedEventAsync(run,eventScenario);
         session.StartGold=player.Gold;
         session.StartHp=player.Creature.CurrentHp; session.StartMaxHp=player.Creature.MaxHp;
         session.StartPotions=player.PotionSlots.Select(x=>x?.GetType().Name).ToArray();
         session.InitialAssets=CombatAssetSnapshot.Capture(player);
+        session._knowledge.OutcomeLedger.Begin(player);
         session._knowledge.BeginCombat();
         var room=scenario.Encounter is { } encounter?EncounterCoverage.CreateRoom(encounter,run):
             new CombatRoom(()=>(IReadOnlyList<MonsterModel>)enemies,RoomType.Monster,CombatRoom.ForcedEncounterName);
@@ -143,12 +181,16 @@ public sealed partial class CombatSession : IAsyncDisposable, ICardSelectionDeci
             { foreach(var enemy in state.Enemies) { enemy.SetMaxHpInternal(enemyHp); enemy.SetCurrentHpInternal(enemyHp); } });
         }
         run.PushRoom(room); session.Room=room;
-        session._operation=room.Enter(run);
-        session.State=room.Engine.State;
-        await session.AwaitBoundaryAsync();
-        if(session._request is null)
-        { room.Engine.CheckWinCondition(); if(!room.Engine.IsInProgress) await session.SettleAsync(); }
-        session.AssertScope(); session._publicTrace.Add(PublicJson.Serialize(session.Observe())); return session;
+        try
+        {
+            session._operation=room.Enter(run);
+            session.State=room.Engine.State;
+            await session.AwaitBoundaryAsync();
+            if(session._request is null)
+            { room.Engine.CheckWinCondition(); if(!room.Engine.IsInProgress) await session.SettleAsync(); }
+            session.AssertScope(); session._publicTrace.Add(PublicJson.Serialize(session.Observe())); return session;
+        }
+        catch { session._knowledge.OutcomeLedger.Detach(); throw; }
     }
     private void AssertScope()
     {
@@ -250,7 +292,7 @@ public sealed partial class CombatSession : IAsyncDisposable, ICardSelectionDeci
             };
         }
         try { await AwaitBoundaryAsync(); }
-        catch(Exception e) { _fault=e; _operation=null; await ReleaseChoiceOriginAsync(); throw; }
+        catch(Exception e) { _fault=e; _operation=null; _knowledge.OutcomeLedger.Detach(); await ReleaseChoiceOriginAsync(); throw; }
         if(_request is null)
         {
             Room.Engine.CheckWinCondition();
@@ -302,13 +344,17 @@ public sealed partial class CombatSession : IAsyncDisposable, ICardSelectionDeci
     {
         var p=State.Players[0];
         _knowledge.Events.Add(new("pre_settlement",PublicJson.Serialize(new { hp=p.Creature.CurrentHp,maxHp=p.Creature.MaxHp,hand=p.PlayerCombatState!.Hand.Cards.Select(PublicViews.Card).ToArray(),exhaust=p.PlayerCombatState.ExhaustPile.Cards.Select(PublicViews.Card).ToArray() })));
-        // Generate offers and execute BeforeCombatRewardOffered. Never choose/claim rewards or Exit before this boundary.
+        // Run automatic settlement through the first postcombat decision, including a
+        // no-reward forced event's native exit/return. Never choose or claim an offer.
         var settlementTimer=Stopwatch.StartNew();
-        await Room.ResolveOutcomeAsync(generateRewards:true);
+        if(_forcedEventRoom is null) await Room.ResolveOutcomeAsync(generateRewards:true);
+        else await ResolveForcedEventOutcomeAsync();
+        _knowledge.OutcomeLedger.Seal(p);
         SettlementSeconds=settlementTimer.Elapsed.TotalSeconds;
         FinalAssets=CombatAssetSnapshot.Capture(p);
         _terminal=new(Room.Engine.Won?"win":"loss",StartHp,p.Creature.CurrentHp,StartMaxHp,p.Creature.MaxHp,
-            p.PotionSlots.Select(x=>x?.GetType().Name).ToArray(),_knowledge.Events.ToArray(),"AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION",0);
+            p.PotionSlots.Select(x=>x?.GetType().Name).ToArray(),_knowledge.Events.ToArray(),"AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION",0,
+            ForcedEventSettlement);
         return _terminal;
     }
     public CombatSession ForkExact()
@@ -318,13 +364,17 @@ public sealed partial class CombatSession : IAsyncDisposable, ICardSelectionDeci
         foreach(var relic in State.Players[0].Relics) PublicRelicDetails.AssertStable(relic);
         var branch=new CombatSession(_scenario,_knowledge.Copy()) {StartHp=StartHp,StartMaxHp=StartMaxHp,StartGold=StartGold,StartPotions=StartPotions.ToArray(),InitialAssets=InitialAssets,_revision=_revision,_sampledInPlace=_sampledInPlace,NativeCertificate=NativeCertificate};
         branch.State=State.CloneForNosl(out var map,branch._knowledge); branch._knowledge.Rebind(map); branch.Room=(CombatRoom)branch.State.RunState.CurrentRoom!;
+        branch._knowledge.OutcomeLedger.Bind(branch.State.Players.Single());
         branch.State.CardSelectionSource=branch; branch._replay.AddRange(_replay); branch._publicTrace.AddRange(_publicTrace); return branch;
     }
     internal void ReseedFuture(ulong samplerSeed) { State.ReseedNoslFuture(samplerSeed); _sampledInPlace=true; }
     private bool RequiresConcreteReplay()
     {
         var player=State.Players[0];
-        return player.Relics.Any(r=>r.GetType().Name is "FurCoat" or "LavaRock" or "Planisphere" or "GoldenCompass")
+        // LavaRock.ModifyRewards returns before the concrete RunState check in every
+        // non-Boss room; only its Boss reward hook needs native run identity.
+        return _forcedEventRoom is not null || player.Relics.Any(r=>r.GetType().Name is "FurCoat" or "Planisphere" or "GoldenCompass"
+                || r.GetType().Name == "LavaRock" && Room.RoomType == RoomType.Boss)
             || player.PlayerCombatState!.AllPiles.SelectMany(p=>p.Cards).Any(c=>c.GetType().Name=="TheHunt")
             || State.Allies.Concat(State.Enemies).SelectMany(c=>c.Powers).Any(p=>p.GetType().Name is "SwipePower" or "HeistPower" or "ForbiddenGrimoirePower");
     }
@@ -368,6 +418,10 @@ public sealed partial class CombatSession : IAsyncDisposable, ICardSelectionDeci
         {
             if(_operation is not null) { try { await _operation; } catch(OperationCanceledException) { } }
         }
-        finally { await ReleaseChoiceOriginAsync(); }
+        finally
+        {
+            try { await ReleaseChoiceOriginAsync(); }
+            finally { _knowledge.OutcomeLedger.Detach(); }
+        }
     }
 }

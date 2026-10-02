@@ -1,8 +1,8 @@
 {
   "schema": "nosl.m3-m6.acceptance-progress.v1",
   "date_utc": "2026-10-02",
-  "source_head": "a7863c53e438c0fcd90ade2867f0adad64de68e6",
-  "snapshot_kind": "Integrated protection source plus concurrent final documentation/report updates; current checked evidence, not a fresh test execution by this mapping task.",
+  "source_head": "65bdfb302686b6407938698f6ab03a491a28b412",
+  "snapshot_kind": "Current integrated continuation checkpoint; original catalog and M0–M2 tracker preserved",
   "authority": [
     {
       "path": "docs/spec/v4/PLAN_NOSL_FULL_COMBAT_V4.md",
@@ -22,7 +22,7 @@
     }
   ],
   "historical_tracker_policy": "configs/acceptance_progress.json is historical M0–M2 evidence and is unchanged; original catalog statuses are preserved as v4_original_status.",
-  "overall_status": "READY_FOR_BOUNDED_PILOT_FULL_SCOPE_BLOCKED",
+  "overall_status": "READY_FOR_PILOT_WITH_DECLARED_ENGINEERING_AND_CALIBRATION_GAPS",
   "full_catalog_complete": false,
   "formal_training_run": false,
   "formal_labels_allowed": false,
@@ -35,8 +35,8 @@
   },
   "case_count": 50,
   "status_counts": {
-    "PASS_SUPPORTED_SCOPE": 33,
-    "PARTIAL": 14,
+    "PASS_SUPPORTED_SCOPE": 34,
+    "PARTIAL": 13,
     "NOT_RUN": 2,
     "BLOCKED": 1
   },
@@ -44,45 +44,63 @@
   "verified_regressions": [
     {
       "suite": "native",
-      "passed": 944,
-      "path": "artifacts/reports/m3-m6/full-integrated-sly.trx",
-      "sha256": "c8e7e895b48929562ed12e142e67de8f81bd5fb4663394a10e9b98655952f6ea",
-      "verification": "Existing report/hash and terminal result inspected; suite not rerun by this mapping task."
+      "passed": 1037,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/m3-m6/continued-native-v6-full.trx",
+      "bytes": 1518310,
+      "sha256": "fcf5df64f6c4428596737ea9aed146c708cef95c2e01edbcb645b225a3ac617b"
     },
     {
-      "suite": "python_student",
-      "passed": 165,
-      "path": "artifacts/reports/m3-m6/final-protection-student-tests.log",
-      "sha256": "b7aaba8d1924c8629f45f86fe10efae1087b5740db0c892882094daf93857d81",
-      "verification": "Existing report/hash and terminal result inspected; suite not rerun by this mapping task."
+      "suite": "core",
+      "passed": 4480,
+      "failed": 0,
+      "skipped": 3,
+      "path": "artifacts/reports/m3-m6/continued-core-full.trx",
+      "bytes": 6964889,
+      "sha256": "1aa80dfa8ef12553e1f0d963e560372c95f5bfe06fa052f31f0d16e0cf4011fb"
     },
     {
-      "suite": "generator",
-      "passed": 63,
-      "path": "artifacts/reports/m3-m6/final-generator-tests.log",
-      "sha256": "03e2598e15fdf7bcbef6b6d44db70d743d93a2c64289167c85f492d613b6a0ce",
-      "verification": "Existing report/hash and terminal result inspected; suite not rerun by this mapping task."
+      "suite": "python_data",
+      "passed": 140,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/m3-m6/continued-v2-data-final.log",
+      "bytes": 240,
+      "sha256": "17c46146fabefaf798472bd149bfeb5118edb24c6d02628031cfa3797ea67a07"
     },
     {
-      "suite": "data",
-      "passed": 129,
-      "path": "artifacts/reports/m3-m6/final-protection-data-tests.log",
-      "sha256": "e3ad0a4086054c68267c5730c32e05894f82b97f6ee54bc5101221ab203aa103",
-      "verification": "Existing report/hash and terminal result inspected; suite not rerun by this mapping task."
+      "suite": "python_v2_trainer_no_fit",
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/m3-m6/continued-v2-trainer-final.log",
+      "bytes": 438,
+      "sha256": "2df8d201cba5deafe37e8ae76c40191b48a6641b696a4fe9ed99451cc183ea9c"
     },
     {
-      "suite": "calibration_evidence",
-      "passed": 45,
-      "path": "artifacts/reports/m3-m6/confirmed-preferences-tests.log",
-      "sha256": "364019ed6df57808023ad01f3bd5feb445b34f0bfe0ff594eb7e1f6700bdbc97",
-      "verification": "Existing report/hash and terminal result inspected; suite not rerun by this mapping task."
+      "suite": "python_v2_student_no_backward",
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/m3-m6/continued-v2-student-noopt.log",
+      "bytes": 3377,
+      "sha256": "be3c64e7c3dc0317ca6d58b490071fd68667f91bc5e715ca4ce55229dac32c0e"
+    },
+    {
+      "suite": "choice_and_provenance",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/m3-m6/continued-choice-v2-provenance.trx",
+      "bytes": 16096,
+      "sha256": "43c38c29689eac349d6f3dde4aa0fa195c72e728559c7ce0e1d108a27074cde5"
     }
   ],
   "regression_limits": [
-    "944 native passes bind to full-integrated-sly.trx. final-m3-m6.trx is an earlier 929-case run, not the 944 result.",
-    "The independently reviewed cross-version split protection is now integrated; the verified final main data suite passes 129 cases and the compatible student suite passes 165, with zero optimizer steps.",
-    "Suite counts support the referenced component tests, not automatic promotion of all 50 acceptance cases.",
-    "Original synthetic contract report is separate from native integration and calibration evidence tests."
+    "Suite counts describe their named source/component snapshots; no count is a completion percentage",
+    "Current v2 data/trainer/student checks execute no optimizer steps; the declared single integration backward is not repeated",
+    "Core4480/3 binds the current vendor sources, which are unchanged since that complete run"
   ],
   "data_and_fit_snapshot": {
     "first_corpus": {
@@ -170,7 +188,7 @@
         "L04",
         "D05"
       ],
-      "gap": "General natural carry-in posterior, current-state sufficiency, owned choice replay and sparse-conditioning coverage. The native proof cohort has 200 raw roots/6 runs/26 combats/15 encounters; only 16 roots from one run certify 87 actions/174 branches, with 184 roots still raw. Sly v3 repairs one constructed family, not this gap.",
+      "gap": "Fixed native200 now supports174 roots and2222 settled candidate/world continuations with independent stable/choice/generation-potion profiles. Remaining26 roots are explicit encounter rejections; general natural state coverage remains bounded. Fresh production admission is in progress.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
     },
     {
@@ -183,8 +201,9 @@
         "L07",
         "D05"
       ],
-      "gap": "Native event ownership/return/reward lifecycle for BattlewornDummy, DenseVegetation, PunchOff, FakeMerchant and TheLanternKey; do not substitute ordinary rooms.",
-      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
+      "gap": "CLOSED for all five declared native owner/return/reward paths with native lifecycle differential tests; broad combination evidence remains bounded.",
+      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence",
+      "closed": true
     },
     {
       "id": "ENGINEERING_LOOPS_AND_STALLS",
@@ -197,7 +216,7 @@
         "C04",
         "C05"
       ],
-      "gap": "Broader loop/progress families, safe profitable finite stalling and any accelerated macro need native evidence and expansion/exit equivalence. v2 fixes only its public certificate.",
+      "gap": "Public v2 useful-action exit and native profitable attack loops are verified. Safe finite Regen stall is the remaining concrete controller implementation. No macro is used, so macro equivalence is conditional future work.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
     },
     {
@@ -210,8 +229,9 @@
         "B05",
         "B06"
       ],
-      "gap": "General active-plan public memory, student schema/encoding/labels/inference updates and broader reward attribution; ordinary records remain inactive.",
-      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
+      "gap": "CLOSED for reviewed finite Hunt public context, masks, encoding and standalone inference guards; safe finite Regen context is in progress. No learned plan execution is claimed.",
+      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence",
+      "closed_for_finite_hunt": true
     },
     {
       "id": "ENGINEERING_RESOURCE_PROVENANCE_AND_LABELS",
@@ -225,7 +245,7 @@
         "E01",
         "E05"
       ],
-      "gap": "General resource/permanent-event provenance, loss-aware relative supervision integration and useful resource-decision targets. The separate common-inventory API cannot silently replace ordinary targets.",
+      "gap": "Committed private HP/potion event ledger, independent clone prefixes and real forced settlement provenance are implemented. Unknown permanent/item/reward valuations remain masked; useful full resource-action supervision still needs calibrated values.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
     },
     {
@@ -238,7 +258,7 @@
         "D05",
         "E03"
       ],
-      "gap": "Continuation-wide certificate activation, phase/source/policy coverage, targeted posterior runtime evidence, and source-group evaluation intervals. The 160-attempt block has no certified v2 root; no activation attribution is justified.",
+      "gap": "All finite-plan execution costs and unresolved masses, native attempts and source profiles, and consumed supervised heads are recorded. Broader distribution/phase coverage and policy evaluation remain evidence work; historical balanced block activation was not instrumented.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
     },
     {
@@ -321,6 +341,18 @@
             "SamePublicSourceErasesPrivateOrderFutureRngAndIndistinguishableInstances"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_CHOICE_REPLAY.md",
+          "methods": [],
+          "detail": "Owned native stable-origin conditional replay"
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_GENERATION_POTIONS.md",
+          "methods": [],
+          "detail": "174-root fixed diagnostic cohort with untouched generation-potion closure"
         }
       ],
       "unresolved_scope": "Demonstrated constructed/native certificate families only; no blanket posterior sufficiency proof for all legal natural carry-in states.",
@@ -365,6 +397,18 @@
             "SamePublicAnchorDifferentPrivateSourceSeedsGivesSameEvaluation"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_CHOICE_REPLAY.md",
+          "methods": [],
+          "detail": "Owned native stable-origin conditional replay"
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_GENERATION_POTIONS.md",
+          "methods": [],
+          "detail": "174-root fixed diagnostic cohort with untouched generation-potion closure"
         }
       ],
       "unresolved_scope": "Additional natural-state families still require their own prior/sufficiency evidence.",
@@ -572,7 +616,7 @@
         "M4",
         "M6"
       ],
-      "verified_scope": "Public history participates in frozen-tree information keys and ordered student encoding; distinct necessary histories are not intentionally merged.",
+      "verified_scope": "Public history and v2 active public anchor/controller context participate in validation and encoding; semantic identity includes necessary controller memory.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -590,9 +634,15 @@
             "test_v2_counters_change_encoding"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/STUDENT_V2_ENGINEERING.md",
+          "methods": [],
+          "detail": "Strict public v2 context and protected production preparation/training/inference"
         }
       ],
-      "unresolved_scope": "Active bonus-controller memory is not yet admitted by the ordinary student schema; general history sufficiency needs content-specific evidence.",
+      "unresolved_scope": "General public-state sufficiency still requires mechanism-specific evidence.",
       "remaining_work_kinds": [
         "engineering"
       ]
@@ -725,6 +775,12 @@
             "test_ordered_multi_selection_is_not_pooled_away"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_CHOICE_REPLAY.md",
+          "methods": [],
+          "detail": "Owned native stable-origin conditional replay"
         }
       ],
       "unresolved_scope": "Reflex/Tactician extension excludes other Sly, temporary Sly, unreviewed initial content and native carry-in choice replay.",
@@ -794,7 +850,7 @@
         "M4",
         "M5"
       ],
-      "verified_scope": "Supported adapter actions use native playability/targets, reject stale tokens and keep engine-legal potion and choice actions.",
+      "verified_scope": "Supported adapter actions use native playability/targets, reject stale tokens and keep engine-legal potion and choice actions. All five forced-event owner paths now execute through their native event lifecycle.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -820,9 +876,15 @@
             "LargeDrawChoiceEnumeratesEverySingleSelectionWithoutBitOverflow"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/FORCED_EVENT_LIFECYCLE.md",
+          "methods": [],
+          "detail": "All five native owners and native original-driver comparison"
         }
       ],
-      "unresolved_scope": "Five forced-event owner contexts and broad interactions remain unsupported or unverified; catalog registration is not full-scope acceptance.",
+      "unresolved_scope": "Broad interactions remain bounded; catalog registration is not full-scope acceptance.",
       "remaining_work_kinds": [
         "engineering"
       ]
@@ -920,7 +982,7 @@
         "M4",
         "M5"
       ],
-      "verified_scope": "Real pending choices complete through independently owned stable-origin/native replay; a suspended coroutine is not treated as cloneable state.",
+      "verified_scope": "Real pending choices complete through independently owned stable-origin/native replay; a suspended coroutine is not treated as cloneable state. Five actual native pending roots condition every observed suffix packet from independently sampled owned stable origins.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -945,9 +1007,15 @@
             "PendingSurvivorErasesHiddenOrderAndRngAndForksOnlyItsAcceptedSampledOrigin"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_CHOICE_REPLAY.md",
+          "methods": [],
+          "detail": "Owned native stable-origin conditional replay"
         }
       ],
-      "unresolved_scope": "General native carry-in choice replay and unreviewed in-place pending choices still fail closed or exhaust compute.",
+      "unresolved_scope": "Unreviewed encounters, generation-potion pending origins and other unsupported coroutine histories still fail closed.",
       "remaining_work_kinds": [
         "engineering"
       ]
@@ -964,7 +1032,7 @@
         "M4",
         "M5"
       ],
-      "verified_scope": "Supported victory/automatic settlement hooks run once; MeatOnTheBone/ChosenCheese HP/max-HP match the native original-room path.",
+      "verified_scope": "Supported victory/automatic settlement hooks run once; MeatOnTheBone/ChosenCheese HP/max-HP match the native original-room path. Five native forced owners and committed HP/potion ledgers include automatic return effects exactly once.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -989,9 +1057,15 @@
             "RealSimulator_AutomaticHealingAndMaxHpRemainSeparateFromFutureValue"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/FORCED_EVENT_LIFECYCLE.md",
+          "methods": [],
+          "detail": "All five native owners and native original-driver comparison"
         }
       ],
-      "unresolved_scope": "Pinned simulator lifecycle agreement is not original game-client differential evidence; forced-event return/reward owners remain open.",
+      "unresolved_scope": "Pinned simulator lifecycle agreement is not an original-client differential; full combination evidence remains bounded.",
       "remaining_work_kinds": [
         "engineering",
         "external_evidence"
@@ -1054,7 +1128,7 @@
         "M4",
         "M5"
       ],
-      "verified_scope": "Supported original and branch entry paths stop after required automatic settlement, before reward selection; TheHunt records the offered CardReward without selecting it.",
+      "verified_scope": "Supported original and branch entry paths stop after required automatic settlement, before reward selection; TheHunt records the offered CardReward without selecting it. The five forced owner contexts preserve ordinary reward resolution before owner return and stop before actual next player offers.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -1079,9 +1153,15 @@
             "test_wrong_settlement_boundary_is_not_a_game_result"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/FORCED_EVENT_LIFECYCLE.md",
+          "methods": [],
+          "detail": "All five native owners and native original-driver comparison"
         }
       ],
-      "unresolved_scope": "Five native forced-event owner/return contexts remain outside this scoped endpoint result.",
+      "unresolved_scope": "Explicitly tested native owner paths only; offered future choices are not current acquired assets.",
       "remaining_work_kinds": [
         "engineering"
       ]
@@ -1365,6 +1445,12 @@
             "test_inventory_is_priced_once_and_not_implicitly_zero"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/OUTCOME_EVENT_ACCOUNTING.md",
+          "methods": [],
+          "detail": "Committed mutation ledger and immutable branch prefixes"
         }
       ],
       "unresolved_scope": "Test-only prices do not calibrate inventory values. Relative cancellation has strict closure/provenance requirements and does not populate ordinary absolute labels.",
@@ -1383,7 +1469,7 @@
       "milestones": [
         "M3"
       ],
-      "verified_scope": "Settled HP includes actual healing exactly once; permanent max-HP future value is a separate nullable component and cumulative damage is diagnostic.",
+      "verified_scope": "Settled HP includes actual healing exactly once; permanent max-HP future value is a separate nullable component and cumulative damage is diagnostic. Private committed mutation callbacks distinguish healing, loss, direct set and max-cap changes after cleanup without repeating costs.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -1394,9 +1480,15 @@
             "RealSimulator_AutomaticHealingAndMaxHpRemainSeparateFromFutureValue"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/OUTCOME_EVENT_ACCOUNTING.md",
+          "methods": [],
+          "detail": "Committed mutation ledger and immutable branch prefixes"
         }
       ],
-      "unresolved_scope": "Future permanent values and general permanent-event provenance remain unresolved; unknown components remain masked.",
+      "unresolved_scope": "Permanent future values remain unresolved; unknown components stay masked.",
       "remaining_work_kinds": [
         "preference_valuation",
         "engineering"
@@ -1532,7 +1624,7 @@
         "M4",
         "M6"
       ],
-      "verified_scope": "The opt-in finite Hunt controller preserves a fixed public anchor and next-turn deadline, irreversibly exits on expiry/failure, and never renews the five-HP plan budget.",
+      "verified_scope": "The opt-in finite Hunt controller preserves a fixed public anchor and next-turn deadline, irreversibly exits on expiry/failure, and never renews the five-HP plan budget. Student v2 validates the same immutable public anchor, deadline and one-way exit.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -1551,9 +1643,15 @@
             "MidCombatAnchorKeepsOriginalCombatHpReference"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/STUDENT_V2_ENGINEERING.md",
+          "methods": [],
+          "detail": "Strict public v2 context and protected production preparation/training/inference"
         }
       ],
-      "unresolved_scope": "No general budget allocation across repeated controller invocations or active student-plan schema; a fresh call cannot be represented as continuation of an old budget.",
+      "unresolved_scope": "Whole-plan labels apply only at the exact anchor; conditional action budget estimates and learned execution are not invented.",
       "remaining_work_kinds": [
         "engineering"
       ]
@@ -1607,13 +1705,13 @@
       "title": "部署记忆非教师数值",
       "expected": "学生仅公共自身记忆，不要求现场教师反事实值。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M3",
         "M4",
         "M6"
       ],
-      "verified_scope": "FiniteHuntPolicy stores public anchor/deadline/controller state without teacher values; ordinary standalone student input is public-only.",
+      "verified_scope": "Student v2 validates and encodes active public Hunt anchor/deadline/status/history, native entry assets and forced-event context without requiring teacher values. Masked whole-plan targets and standalone inference guards are implemented.",
       "evidence": [
         {
           "kind": "implementation",
@@ -1638,9 +1736,15 @@
           "path": "docs/M3_ANCHORED_HUNT.md",
           "methods": [],
           "detail": "Opt-in evaluator does not modify ordinary teacher/student schema or deploy a policy."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/STUDENT_V2_ENGINEERING.md",
+          "methods": [],
+          "detail": "Strict public v2 context and protected production preparation/training/inference"
         }
       ],
-      "unresolved_scope": "Active bonus-plan memory, labels, encoding, inference updates and deployment regressions are not integrated into the student. This is an engineering gap independent of preference answers.",
+      "unresolved_scope": "Finite Hunt scope only; untrained or unvalidated active-plan execution abstains explicitly. Regen finite-stall context is in progress.",
       "remaining_work_kinds": [
         "engineering"
       ]
@@ -2026,6 +2130,12 @@
           "path": "tests/data/README.md",
           "methods": [],
           "detail": "Documents metadata-only cross-version protection and the reviewed 57/10/6 development copy."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/STUDENT_V2_ENGINEERING.md",
+          "methods": [],
+          "detail": "Strict public v2 context and protected production preparation/training/inference"
         }
       ],
       "unresolved_scope": "The protected 57 train / 10 validation / 6 development-test rows were already inspected; their assigned test partition is not a fresh benchmark. The old 494 test targets remain unread; full coverage and policy-quality evidence are separate gates.",
@@ -2045,7 +2155,7 @@
         "M5",
         "M6"
       ],
-      "verified_scope": "Coverage, source provenance and explicit unsupported statuses distinguish registered content, constructed pilots, raw natural traces and certified labels; no full-scope readiness claim is made.",
+      "verified_scope": "Registry coverage, execution provenance and explicit statuses distinguish broad constructed support, raw native sources and174 certified native development roots. All five forced-event owner contexts now have native lifecycle tests.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -2075,9 +2185,15 @@
           "path": "docs/M3_M6_ACCEPTANCE_CHECKPOINT.md",
           "methods": [],
           "detail": "Full scope remains blocked after bounded data and fit."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_GENERATION_POTIONS.md",
+          "methods": [],
+          "detail": "174-root fixed diagnostic cohort with untouched generation-potion closure"
         }
       ],
-      "unresolved_scope": "General natural carry-in, five forced-event lifecycles, broad hard interactions and resource labels remain absent. This pass is for honest accounting of those gaps, not full content completion.",
+      "unresolved_scope": "General natural state coverage, hard interactions and calibrated resource labels remain incomplete; existing inspected native records are not production data.",
       "remaining_work_kinds": [
         "engineering",
         "preference_valuation"
@@ -2263,7 +2379,7 @@
         "M6 standalone inference engineering",
         "M8 final qualified model delivery"
       ],
-      "verified_scope": "Standalone public inference loads the bounded experimental package with deterministic preprocessing and no simulator, teacher, searcher, trainer or dataset dependency.",
+      "verified_scope": "Standalone public inference loads the bounded experimental package with deterministic preprocessing and no simulator, teacher, searcher, trainer or dataset dependency. Versioned v2 bundles add public context and actual-consumed-supervision applicability guards without online teacher/search dependencies.",
       "evidence": [
         {
           "kind": "python_test",
@@ -2288,9 +2404,15 @@
           "path": "docs/M3_M6_ACCEPTANCE_CHECKPOINT.md",
           "methods": [],
           "detail": "976838-parameter public-only model; bounded fit remains experimental/unpromoted."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/STUDENT_V2_ENGINEERING.md",
+          "methods": [],
+          "detail": "Strict public v2 context and protected production preparation/training/inference"
         }
       ],
-      "unresolved_scope": "Engineering inference pass only. No calibrated/promoted final model, general active bonus context or complete resource-aware policy applicability has been delivered.",
+      "unresolved_scope": "No promoted final policy, learned finite-plan execution or full resource-aware applicability is claimed.",
       "remaining_work_kinds": [
         "engineering",
         "preference_valuation",
@@ -2332,6 +2454,12 @@
             "test_observed_gold_gain_or_spend_conservatively_abstains"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/STUDENT_V2_ENGINEERING.md",
+          "methods": [],
+          "detail": "Strict public v2 context and protected production preparation/training/inference"
         }
       ],
       "unresolved_scope": "Known resource abstention is deliberately conservative and does not constitute calibrated applicability detection for every supported registered mechanic.",
@@ -2378,11 +2506,19 @@
   ],
   "mapping_validation": "All 50 original IDs/title/expected texts retained once in original order; referenced paths and named methods checked; original catalog and historical tracker hashes unchanged. No runtime, corpus, weights or existing tracker modified by this mapping task.",
   "phase_relevance": {
-    "M3": "Production objective/gates and bounded native accounting are implemented; native acceptance gaps and unresolved risk/resource valuation keep full calibration open.",
-    "M4": "T0/T1 and bounded Hunt/loop/posterior engineering are implemented and tested; general posterior/loop/active-control scope remains open.",
-    "M5": "PILOT_DATA_READY for declared constructed scope; general natural carry-in, forced-event/hard-interaction coverage, missing resource supervision and censoring block full-scope readiness.",
-    "M6": "READY_FOR_BOUNDED_PILOT engineering: strict public model/loader, masked losses, forward/backward, independent inference and bounded training machinery. Broader play strength is not a prerequisite of the authorized M6 engineering checkpoint; upstream M3/M5 full-scope gaps still prevent READY_FOR_TRAINING for the complete target.",
+    "M3": "Outcome and preference engineering now includes complete private committed HP/potion accounting and five event owners; calibration remains partial.",
+    "M4": "All-candidate T0/T1, public v2 useful-action exits and reviewed native continuation families are implemented. A separate safe finite healing-stall controller remains active engineering work.",
+    "M5": "Constructed PILOT_DATA_READY; fresh certified native collection/admission is active engineering work. Broader source coverage and resource-value quality still block full scope.",
+    "M6": "Public v2 context, protected dataset preparation/load, masked bounded trainer/checkpoint and standalone inference are implemented and independently reviewed for declared pilot scope. Safe-stall context is being added. Stronger play and final export are later-stage requirements.",
     "M7": "A separately bounded 497-step experimental fit and 16-source diagnostic were completed. Formal training and promotion have not occurred.",
     "M8": "Original-client differential, source-group full quality acceptance and final deployment export parity remain later-stage requirements. Their catalog presence does not invent new prerequisites for this M3–M6 checkpoint."
-  }
+  },
+  "continued_engineering_report": "configs/m3_m6_continued_engineering_report.json",
+  "closed_engineering_gates": [
+    "Private committed HP/healing/set/max-cap and potion generation/consumption/discard ledger with immutable branch prefixes and explicit incompleteness",
+    "All five native forced-event owner/return/reward lifecycles through the first actual reward decision",
+    "Reviewed natural carry-in, native stable-origin pending choices and untouched generation-potion closure",
+    "Public student v2 active Hunt context, native entry assets and forced-event context validation/encoding",
+    "Versioned production v2 preparation, source-group protection, bounded trainer, checkpoint/resume and standalone bundle with actual-supervision applicability guards"
+  ]
 }

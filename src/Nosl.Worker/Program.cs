@@ -47,6 +47,13 @@ while(Console.ReadLine() is { } line)
                 var sampled=await BeliefSampler.SampleWorldAsync(session,root.GetProperty("samplerSeed").GetUInt64(),root.TryGetProperty("maxAttempts",out var budget)?budget.GetInt32():256);
                 await session.DisposeAsync(); session=sampled; result=session.Observe();
             }
+            else if(op=="finite_hunt_record")
+            {
+                var options=root.TryGetProperty("options",out var huntOpt)?PublicJson.Read<HuntEvaluationOptions>(huntOpt.GetRawText()):new HuntEvaluationOptions();
+                var evaluation=await AnchoredHuntEvaluator.EvaluateAsync(session,options);
+                result=TeacherDataset.RecordFiniteHunt(evaluation,root.GetProperty("sourceRun").GetString()!,
+                    root.GetProperty("sourceCombat").GetString()!,root.GetProperty("branchFamily").GetString()!);
+            }
             else if(op=="teacher" || op=="teacher_record")
             {
                 var options=root.TryGetProperty("options",out var opt)?PublicJson.Read<TeacherOptions>(opt.GetRawText()):new TeacherOptions();

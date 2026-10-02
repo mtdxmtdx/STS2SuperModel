@@ -34,9 +34,12 @@ public sealed class ObjectiveTests
     [Fact]
     public void DamageAndHealingDiagnosticsDoNotDoubleCountTerminalHp()
     {
-        var x = Win(65) with { CumulativeHpDamage = 25, HealingReceived = 30, HpEventDiagnosticsComplete = true };
+        var x = Win(65) with { CumulativeHpDamage = 25, HealingReceived = 30, OtherHpAdjustment = 0, HpEventDiagnosticsComplete = true };
         Assert.Equal(-5, Cost(x));
         Assert.Equal(Cost(x), Cost(x with { CumulativeHpDamage = 0, HealingReceived = 5 }));
+        Assert.Equal(Cost(x), Cost(x with { CumulativeHpDamage = 0, HealingReceived = 7, OtherHpAdjustment = -2 }));
+        Assert.Equal(EvaluationStatus.InvalidOutcome, ObjectiveEvaluator.Evaluate(x with { OtherHpAdjustment = null }).Status);
+        Assert.Equal(EvaluationStatus.InvalidOutcome, ObjectiveEvaluator.Evaluate(x with { OtherHpAdjustment = 1 }).Status);
     }
     [Fact]
     public void TrueLossOnlyGetsFailurePenaltyAndLosesFutureResources()

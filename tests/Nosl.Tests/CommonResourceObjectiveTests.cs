@@ -184,7 +184,18 @@ public sealed class CommonResourceObjectiveTests
             var closure = EmptyPotionContinuationProof.Certify(source);
             for (int i = 0; i < result.Candidates.Length; i++) for (int w = 0; w < seeds.Length; w++)
             {
-                Assert.Equal(PublicJson.Serialize(expected[i][w].Outcome), PublicJson.Serialize(result.Candidates[i].Outcomes[w]));
+                var recorded = result.Candidates[i].Outcomes[w];
+                Assert.True(recorded.HpEventDiagnosticsComplete);
+                Assert.True(recorded.ResourceProvenanceComplete);
+                Assert.Equal(0, recorded.HealingReceived);
+                Assert.Equal(0, recorded.OtherHpAdjustment);
+                // The archived execution did not observe these diagnostics. Compare
+                // its exact facts without retroactively filling unknown old fields.
+                var legacyView = recorded with { HealingReceived = null, OtherHpAdjustment = null,
+                    HpEventDiagnosticsComplete = false, ResourceProvenanceComplete = false,
+                    ResourceEvents = recorded.ResourceEvents.Select(e => e.Kind == "consumed"
+                        ? e with { PublicSource = "public_potion_used" } : e).ToArray() };
+                Assert.Equal(PublicJson.Serialize(expected[i][w].Outcome), PublicJson.Serialize(legacyView));
                 Assert.Null(result.Candidates[i].Evaluation.ExpectedCost);
                 var actual = new AuditedOutcome(result.Candidates[i].Outcomes[w], expected[i][w].Audit);
                 Assert.True(CommonResourceObjective.Evaluate(actual, expected[0][w], closure: closure).RelativeValueMask);

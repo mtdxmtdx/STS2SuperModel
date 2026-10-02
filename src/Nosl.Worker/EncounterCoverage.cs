@@ -50,7 +50,9 @@ public static class EncounterCoverage
     });
 
     private static ForcedEventCoverageEntry Forced(string id, string? encounter, string[] monsters, string requirement) =>
-        new(id, encounter, monsters, "Blocked", requirement,
+        new(id, encounter, monsters, "NativeEventFixtureImplemented", requirement +
+            " Use Scenario.ForcedEvent with a legal native option path; independent concrete replay retains the event owner. " +
+            "Constructed-event execution does not certify a natural-run posterior.",
             $"vendor/sts2-sim/src/Sts2Sim.Core/Models/Events/{id}.cs");
 
     public static string[] PublicMemoryEnemies => AllMonsters.Where(x => x.PosteriorMode == PublicMemory).Select(x => x.Id).ToArray();

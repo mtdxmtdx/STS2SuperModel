@@ -1,5 +1,9 @@
 # Narrow native carry-in belief prototype
 
+This document preserves the historical v1 profile and 16/200 result. The current
+public-entry v2 implementation and 145/200 bounded result are documented in
+[Native carry-in extension v2](NATIVE_BELIEF_EXTENSION_V2.md).
+
 This is development-only evidence, not broad native posterior coverage, finite-seed inference,
 formal labels, or permission to train. The raw natural-source collector shares the corrected explicit combat boundary.
 The prototype imports an actual paused RunDriver root; it never restarts a Scenario using

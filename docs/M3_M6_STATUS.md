@@ -1,3 +1,9 @@
+> Historical chronological evidence follows. For the current implemented scope,
+> tests and remaining work, use [continued engineering verification](M3_M6_ENGINEERING_CONTINUATION.md)
+> and [the current checkpoint](M3_M6_ACCEPTANCE_CHECKPOINT.md). Earlier counts and
+> descriptions of missing forced-event/student-context support below are retained
+> as historical observations, not current capability statements.
+
 Current final engineering disposition: [milestone acceptance checkpoint](M3_M6_ACCEPTANCE_CHECKPOINT.md).
 
 # M3–M6 implementation checkpoint

@@ -6,7 +6,8 @@ namespace Nosl.Worker;
 
 public static class BeliefSampler
 {
-    public const string ImplementationVersion = "nosl-belief-dispatch-v3";
+    public const string ImplementationVersion = "nosl-belief-dispatch-v6";
+    public const string NativeConditionalChoiceProfile = "native-public-entry-reviewed-memory-conditional-choice-v1";
     public const string ExchangeableProfile = "reviewed-stable-exchangeable-v1";
     public const string ConditionalChoiceProfile = "reviewed-stable-origin-conditional-choice-v1";
     public const string SlyExchangeableProfile = "reviewed-constructed-reflex-tactician-exchangeable-v1";
@@ -19,8 +20,8 @@ public static class BeliefSampler
     {
         try
         {
-            if(UsesExchangeablePosterior(source)) return source.HasNativeProvenance ? NativeBeliefCertificate.Profile : HasSlyInitialPrior(source) ? SlyExchangeableProfile : ExchangeableProfile;
-            if(UsesConditionalChoicePosterior(source)) return HasSlyInitialPrior(source) ? SlyConditionalChoiceProfile : ConditionalChoiceProfile;
+            if(UsesExchangeablePosterior(source)) return source.HasNativeProvenance ? source.NativeCertificate!.StableProfile : HasSlyInitialPrior(source) ? SlyExchangeableProfile : ExchangeableProfile;
+            if(UsesConditionalChoicePosterior(source)) return source.HasNativeProvenance ? NativeConditionalChoiceProfile : HasSlyInitialPrior(source) ? SlyConditionalChoiceProfile : ConditionalChoiceProfile;
         }
         catch(NotSupportedException) { return UnsupportedProfile; }
         return source.HasNativeProvenance || source.HasInPlaceSampledProvenance ? UnsupportedProfile : WholeSetupReplayProfile;
@@ -45,6 +46,7 @@ public static class BeliefSampler
         string[] potions=["FirePotion","BlockPotion","EnergyPotion","SwiftPotion","FruitJuice"];
         string[] enemies=["TwigSlimeS","LeafSlimeS","Nibbit","TwigSlimeM"];
         var setup=source.InitialScenario;
+        if(setup.ForcedEvent is not null) return false;
         var declaredEnemies=setup.Enemies??[setup.Enemy];
         if(setup.Encounter is not null || declaredEnemies.Length!=1 || !enemies.Contains(declaredEnemies[0])) return false;
         // Eligibility is pinned to the declared source prior, not whatever remains after
@@ -102,7 +104,9 @@ public static class BeliefSampler
         for(int attempt=0;attempt<maxAttempts;attempt++)
         {
             var setup=source.InitialScenario with {Seed=$"NOSL-REPLAY:{proposalRng.NextUnsignedLong():X16}"};
-            var proposed=await CombatSession.CreateAsync(setup);
+            CombatSession proposed;
+            try { proposed=await CombatSession.CreateAsync(setup); }
+            catch(ConstructedSetupRejectedException) { continue; }
             bool accepted=true;
             try
             {
@@ -125,6 +129,7 @@ public static class BeliefSampler
         var world=source.ForkExact();
         try
         {
+            world.NativeCertificate?.PrepareSample(world);
             world.ReseedFuture(samplerSeed);
             var pile=world.State.Players[0].PlayerCombatState!.DrawPile;
             var bySignature=pile.Cards.GroupBy(c=>PublicJson.Serialize(PublicViews.Card(c)))

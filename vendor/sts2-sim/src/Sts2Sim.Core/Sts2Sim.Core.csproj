@@ -14,6 +14,7 @@
     <InternalsVisibleTo Include="Sts2Sim.Core.Tests" />
     <InternalsVisibleTo Include="SimFuzz" />
     <InternalsVisibleTo Include="Nosl.Worker" />
+    <InternalsVisibleTo Include="Nosl.Tests" />
     <InternalsVisibleTo Include="Sts2Sim.Solver.Tests" />
     <InternalsVisibleTo Include="SolverDiff" />
   </ItemGroup>

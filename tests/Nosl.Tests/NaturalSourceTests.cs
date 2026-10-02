@@ -47,7 +47,7 @@ public sealed class NaturalSourceTests
             var input = exported.RootElement.GetProperty("public_input").GetRawText();
             Assert.DoesNotContain(seedPrefix, input);
             Assert.DoesNotContain("POLICY_MUTATION_SENTINEL", input);
-            Assert.Equal("nosl.natural-source.v1", exported.RootElement.GetProperty("schema_version").GetString());
+            Assert.Equal("nosl.natural-source.v2", exported.RootElement.GetProperty("schema_version").GetString());
             Assert.DoesNotContain("sourceRun", input);
             Assert.DoesNotContain("posterior", input);
             var audit = exported.RootElement.GetProperty("audit_only");
@@ -55,6 +55,8 @@ public sealed class NaturalSourceTests
             Assert.Equal(root.ActualSeed, audit.GetProperty("actual_seed").GetString());
             Assert.Equal(root.SourceCombatId + "/native-root-family", audit.GetProperty("branch_family").GetString());
             Assert.False(audit.GetProperty("posterior_supported").GetBoolean());
+            Assert.Equal("not_evaluated", audit.GetProperty("posterior_evaluation").GetString());
+            Assert.Equal("native_posterior_not_evaluated_by_raw_collector", audit.GetProperty("posterior_reason").GetString());
             Assert.False(audit.GetProperty("trainable").GetBoolean());
             Assert.Equal("raw_unlabeled", audit.GetProperty("label_status").GetString());
             Assert.Empty(exported.RootElement.GetProperty("targets").GetProperty("actions").EnumerateArray());
@@ -65,23 +67,26 @@ public sealed class NaturalSourceTests
     public async Task ReadOnlyObserverPreservesNativeResultRecorderAndRandomStreams()
     {
         if (!ModelDb.Contains(typeof(Silent))) ModelDb.Init(ContentRegistry.AllTypes);
-        async Task<(string Manifest, string Logs, string Random, int PublicEvents)> Run(bool decorate)
+        async Task<(string Manifest, string Logs, string Random, int PublicEvents, int HpEvents, bool HpComplete)> Run(bool decorate)
         {
             var state = new RunState("natural-native-observer-invariance", ascensionLevel: 10);
             state.AddPlayer(Player.CreateForNewRun(ModelDb.Character<Silent>(), state));
             var recorder = new RunRecorder(() => DateTimeOffset.UnixEpoch);
             var driver = new RunDriver(state, new EndTurnSource(), recorder: recorder);
             PublicKnowledge? knowledge = null;
-            if (decorate) ForwardingPublicObserver.Install(driver, () => knowledge = new PublicKnowledge());
+            if (decorate) ForwardingPublicObserver.Install(driver, state.Players.Single(), () => knowledge = new PublicKnowledge());
             await driver.RunAsync(4);
             return (PublicJson.Serialize(recorder.BuildManifest()), PublicJson.Serialize(recorder.CombatLogs),
-                JsonSerializer.Serialize(state.Rng.ToSerializable(), new JsonSerializerOptions { IncludeFields = true }), knowledge?.Events.Count ?? 0);
+                JsonSerializer.Serialize(state.Rng.ToSerializable(), new JsonSerializerOptions { IncludeFields = true }),
+                knowledge?.Events.Count ?? 0, knowledge?.OutcomeLedger.HpEvents.Count ?? 0, knowledge?.OutcomeLedger.HpComplete ?? false);
         }
         var plain = await Run(false); var observed = await Run(true);
         Assert.Equal(plain.Manifest, observed.Manifest);
         Assert.Equal(plain.Logs, observed.Logs);
         Assert.Equal(plain.Random, observed.Random);
         Assert.True(observed.PublicEvents > 0);
+        Assert.True(observed.HpEvents > 0);
+        Assert.True(observed.HpComplete);
     }
 
     [Fact]

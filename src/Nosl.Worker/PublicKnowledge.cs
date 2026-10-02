@@ -11,6 +11,7 @@ namespace Nosl.Worker;
 internal sealed class PublicKnowledge : ICombatObserver
 {
     internal readonly List<PublicEvent> Events = [];
+    internal OutcomeEventLedger OutcomeLedger { get; private set; } = new();
     // Called after inventory acquisition and fixed start snapshots, before room
     // setup hooks. Upstream CombatStarted arrives after some legal setup effects.
     internal void BeginCombat()
@@ -41,7 +42,7 @@ internal sealed class PublicKnowledge : ICombatObserver
     }
     internal PublicKnowledge Copy()
     {
-        var k = new PublicKnowledge(); k.Events.AddRange(Events);
+        var k = new PublicKnowledge { OutcomeLedger = OutcomeLedger.Copy() }; k.Events.AddRange(Events);
         foreach (var (p,c) in Known) k.Known[p]=c;
         foreach (var (id,slot) in _slots) k._slots[id]=slot; k._nextSlot=_nextSlot;
         foreach(var card in _unrevealedGenerated) k._unrevealedGenerated.Add(card);

@@ -23,8 +23,11 @@ public static class ObjectiveEvaluator
         if (outcome.InventoryStart is null || outcome.InventoryEnd is null || outcome.ResourceEvents is null || outcome.PermanentChanges is null)
             return Invalid("missing_resource_ledger");
         if (outcome.PlayerTurnsElapsed < 0 || outcome.AtomicActionsExecuted < 0
-            || outcome.HpEventDiagnosticsComplete && (outcome.CumulativeHpDamage is null || outcome.HealingReceived is null)
+            || outcome.HpEventDiagnosticsComplete && (outcome.CumulativeHpDamage is null || outcome.HealingReceived is null
+                || outcome.OtherHpAdjustment is null
+                || outcome.HpAtCombatStart - outcome.CumulativeHpDamage + outcome.HealingReceived + outcome.OtherHpAdjustment != finalHp)
             || InvalidNonnegative(outcome.CumulativeHpDamage) || InvalidNonnegative(outcome.HealingReceived)
+            || outcome.OtherHpAdjustment is double adjustment && !double.IsFinite(adjustment)
             || outcome.InventoryStart.Concat(outcome.InventoryEnd).Any(x => x is null || string.IsNullOrWhiteSpace(x.ResourceId) || x.Count < 0)
             || outcome.ResourceEvents.Any(x => x is null || x.Quantity < 0 || string.IsNullOrWhiteSpace(x.ResourceId))
             || outcome.PermanentChanges.Any(x => x is null || string.IsNullOrWhiteSpace(x.Kind) || !double.IsFinite(x.Amount)))

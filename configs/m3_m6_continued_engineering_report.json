@@ -1,0 +1,133 @@
+{
+  "schema": "nosl.m3-m6.continued-engineering.v1",
+  "date_utc": "2026-10-02",
+  "source_head": "65bdfb302686b6407938698f6ab03a491a28b412",
+  "status": "READY_FOR_PILOT_WITH_DECLARED_ENGINEERING_AND_CALIBRATION_GAPS",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "lifetime_experimental_optimizer_steps": 497,
+  "model_promoted": false,
+  "verified_regressions": [
+    {
+      "suite": "native",
+      "passed": 1037,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/m3-m6/continued-native-v6-full.trx",
+      "bytes": 1518310,
+      "sha256": "fcf5df64f6c4428596737ea9aed146c708cef95c2e01edbcb645b225a3ac617b"
+    },
+    {
+      "suite": "core",
+      "passed": 4480,
+      "failed": 0,
+      "skipped": 3,
+      "path": "artifacts/reports/m3-m6/continued-core-full.trx",
+      "bytes": 6964889,
+      "sha256": "1aa80dfa8ef12553e1f0d963e560372c95f5bfe06fa052f31f0d16e0cf4011fb"
+    },
+    {
+      "suite": "python_data",
+      "passed": 140,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/m3-m6/continued-v2-data-final.log",
+      "bytes": 240,
+      "sha256": "17c46146fabefaf798472bd149bfeb5118edb24c6d02628031cfa3797ea67a07"
+    },
+    {
+      "suite": "python_v2_trainer_no_fit",
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/m3-m6/continued-v2-trainer-final.log",
+      "bytes": 438,
+      "sha256": "2df8d201cba5deafe37e8ae76c40191b48a6641b696a4fe9ed99451cc183ea9c"
+    },
+    {
+      "suite": "python_v2_student_no_backward",
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/m3-m6/continued-v2-student-noopt.log",
+      "bytes": 3377,
+      "sha256": "be3c64e7c3dc0317ca6d58b490071fd68667f91bc5e715ca4ce55229dac32c0e"
+    },
+    {
+      "suite": "choice_and_provenance",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/m3-m6/continued-choice-v2-provenance.trx",
+      "bytes": 16096,
+      "sha256": "43c38c29689eac349d6f3dde4aa0fa195c72e728559c7ce0e1d108a27074cde5"
+    }
+  ],
+  "historical_python_regression": {
+    "passed": 185,
+    "scope": "Before the versioned production preparation/trainer delta; do not add to current suite counts",
+    "path": "artifacts/reports/m3-m6/continued-python-full.log",
+    "bytes": 29343,
+    "sha256": "96d028cf4e1ef2b657cc9f28b06d5d52552cbcfe6eb31d6a2fe713d8b133da5b"
+  },
+  "closed_engineering_gaps": [
+    "Private committed HP/healing/set/max-cap and potion generation/consumption/discard ledger with immutable branch prefixes and explicit incompleteness",
+    "All five native forced-event owner/return/reward lifecycles through the first actual reward decision",
+    "Reviewed natural carry-in, native stable-origin pending choices and untouched generation-potion closure",
+    "Public student v2 active Hunt context, native entry assets and forced-event context validation/encoding",
+    "Versioned production v2 preparation, source-group protection, bounded trainer, checkpoint/resume and standalone bundle with actual-supervision applicability guards"
+  ],
+  "native_fixed_diagnostic_cohort": {
+    "raw_roots": 200,
+    "runs": 6,
+    "combats": 26,
+    "encounter_types": 15,
+    "supported_roots": 174,
+    "unsupported_roots": 26,
+    "settled_candidate_worlds": 2222,
+    "allocated_candidate_worlds": 2222,
+    "profiles": [
+      "native-public-entry-reviewed-memory-exchangeable-v2",
+      "native-public-entry-reviewed-memory-conditional-choice-v1",
+      "native-public-entry-generation-potions-exchangeable-v1"
+    ],
+    "dispatcher": "nosl-belief-dispatch-v6",
+    "historical_150_targets_unchanged": true,
+    "all_200_public_inputs_and_source_traces_unchanged": true,
+    "empirical_action_utility_targets": 494,
+    "masked_action_utility_targets": 617,
+    "complete_ranking_roots": 0,
+    "training_admitted_roots": 0,
+    "all_records_inspected_development": true,
+    "remaining_encounters": {
+      "CorpseSlugsWeak": 16,
+      "TwoTailedRatsNormal": 8,
+      "RubyRaiders": 2
+    },
+    "generation_potion_teacher_limit": "Frozen T0 cancels optional card generation. Nonempty closure is verified separately for all 39 eligible generated cards, including actual settlement."
+  },
+  "active_remaining_engineering": [
+    "A distinct safe finite Regen healing-stall controller/public context is under implementation; Hunt next-turn semantics do not substitute for it",
+    "A fresh certified native-pilot collection/export/admission path is under implementation; existing inspected prototype rows remain quarantined",
+    "A real safe better-later potion-use comparison is being added as bounded timing evidence"
+  ],
+  "remaining_full_scope_gates": [
+    "Broader natural entry/encounter and generated pending-choice posterior coverage remains explicit",
+    "No calibrated permanent/reward/item value table or uniquely identified risk objective; unsupported utility components remain masked",
+    "The failed balanced data-quality gate still blocks expanded generation and new fitting",
+    "General policy strength, original-client differential and final deployment export are later M7/M8 evidence, not invented prerequisites for these engineering fixes"
+  ],
+  "frozen_assets_preserved": [
+    "Original pilot-5000-v4 corpus and its 494 sealed test targets",
+    "One-epoch 497-step experimental checkpoint and standalone legacy inference",
+    "Default worker binaries and all earlier versioned diagnostic cohorts"
+  ],
+  "vendor_packaging": "configs/vendor_patch_verification.json",
+  "independent_reviews": [
+    "Outcome/event ledger: no remaining material findings",
+    "Five forced-event lifecycle: no remaining material findings after narrow setup-proposal rejection fix",
+    "Native carry-in, pending choice and generation-potion increments: no remaining material findings",
+    "Versioned v2 production pipeline: six review findings fixed; no remaining blocking engineering issue"
+  ]
+}

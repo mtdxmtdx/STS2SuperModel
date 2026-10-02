@@ -8,13 +8,20 @@ namespace Nosl.Worker;
 
 public static class TeacherDataset
 {
+    public static object RecordFiniteHunt(HuntEvaluationResult result, string sourceRun, string sourceCombat,
+        string branchFamily, DecisionPacket? current = null, HuntPublicController? controller = null) =>
+        FiniteHuntDataset.Record(result, sourceRun, sourceCombat, branchFamily, current, controller);
+
     public static object Record(TeacherResult result, string sourceRun, string sourceCombat, string branchFamily,
         ulong[] evaluationSeeds, ulong[] explorationSeeds)
     {
         if (new[] { sourceRun, sourceCombat, branchFamily }.Any(string.IsNullOrWhiteSpace)) throw new ArgumentException("Source grouping identifiers required");
+        bool forcedEvent = result.PublicRoot.Observation!.History.Any(e => e.Kind == "forced_event_context");
+        string publicSchema = forcedEvent || result.PublicRoot.Observation.History.Any(e => e.Kind == "native_entry_assets")
+            ? HuntStudentContext.PublicSchema : "nosl.student.public.v1";
         var publicInput = new
         {
-            schema_version = "nosl.student.public.v1", observation = result.PublicRoot.Observation,
+            schema_version = publicSchema, observation = result.PublicRoot.Observation,
             history_complete = true, controller_context = new { status = "inactive" },
             candidate_actions = result.PublicRoot.Actions, legal_mask = result.PublicRoot.Actions.Select(_ => true).ToArray(),
         };
@@ -58,7 +65,7 @@ public static class TeacherDataset
                 posterior_profile = result.Scope, posterior_implementation = BeliefSampler.ImplementationVersion,
                 teacher_warnings = result.Warnings,
                 objective_version = result.ObjectiveVersion, objective_calibrated = false,
-                versions = new { posterior_implementation = BeliefSampler.ImplementationVersion, teacher = result.TeacherVersion, continuation = result.ContinuationVersion.Split(':')[0], objective = result.ObjectiveVersion, public_schema = "nosl.student.public.v1", observation_schema = result.PublicRoot.Observation!.Schema, simulator = "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0" },
+                versions = new { posterior_implementation = BeliefSampler.ImplementationVersion, teacher = result.TeacherVersion, continuation = result.ContinuationVersion.Split(':')[0], objective = result.ObjectiveVersion, public_schema = publicSchema, observation_schema = result.PublicRoot.Observation!.Schema, simulator = "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0" },
                 independent_final_evaluation = true,
                 n_exploration = result.ExplorationWorlds, n_exploration_sampling_failures=result.Costs.ExplorationSamplingFailures, n_independent_eval = result.EvaluationWorlds,
                 n_unresolved = actions.Sum(a => a.truncated_worlds + a.other_worlds), n_error = actions.Sum(a => a.error_worlds),
@@ -73,11 +80,27 @@ public static class TeacherDataset
         };
         // Preserve the legacy record shape; a new continuation gets a new
         // dataset lock, so prepare_dataset refuses to append it to a v1 corpus.
-        if (PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion) != PublicContinuationPolicies.ReviewedDatasetVersion)
+        if (publicSchema != HuntStudentContext.PublicSchema
+            && PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion) != PublicContinuationPolicies.ReviewedDatasetVersion)
             return record;
         var versioned = JsonNode.Parse(PublicJson.Serialize(record))!.AsObject();
-        versioned["audit_only"]!["dataset_version"] = PublicContinuationPolicies.ReviewedDatasetVersion;
-        versioned["audit_only"]!["versions"]!["dataset"] = PublicContinuationPolicies.ReviewedDatasetVersion;
+        string datasetVersion = forcedEvent ? "nosl.dataset.forced-events.v2" : PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion);
+        versioned["audit_only"]!["dataset_version"] = datasetVersion;
+        versioned["audit_only"]!["versions"]!["dataset"] = datasetVersion;
+        if (forcedEvent) versioned["audit_only"]!["constructed_event_fixture"] = true;
+        if (publicSchema == HuntStudentContext.PublicSchema)
+        {
+            // The ordinary v2 contract carries an inactive controller, not a
+            // running finite Hunt policy. Leave every public-v1 audit unchanged.
+            var audit = versioned["audit_only"]!.AsObject();
+            var versions = audit["versions"]!.AsObject();
+            audit["controller_version"] = "nosl.controller.inactive.v1";
+            audit["sampler_version"] = BeliefSampler.ImplementationVersion;
+            versions["rules"] = audit["rules_version"]!.DeepClone();
+            versions["endpoint"] = audit["label_endpoint"]!.DeepClone();
+            versions["controller"] = audit["controller_version"]!.DeepClone();
+            versions["sampler"] = audit["sampler_version"]!.DeepClone();
+        }
         return versioned;
     }
 }

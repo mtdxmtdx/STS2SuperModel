@@ -127,6 +127,8 @@ public sealed class ConditionalChoiceBeliefTests
         Assert.False(record.RootElement.GetProperty("public_input").TryGetProperty("posterior_profile", out _));
         Assert.Equal(source.Observe().Actions.Length, result.Candidates.Length);
         Assert.All(result.Candidates, c => Assert.All(c.Outcomes, o => Assert.True(o.IsTrueTerminal, o.Detail)));
+        Assert.All(result.Candidates, c => Assert.All(c.Outcomes, o =>
+        { Assert.True(o.HpEventDiagnosticsComplete); Assert.True(o.ResourceProvenanceComplete); }));
         Assert.Equal("MASKED_NO_CERTIFIED_UTILITY_SUPPORT", result.Ranking.Method);
         await using var broad = await CombatSession.CreateAsync(new(Deck: ["Survivor", "StrikeSilent", "Adrenaline"], Potions: ["PowerPotion"]));
         await broad.StepAsync(broad.Observe().Actions.First(a => a.Kind == "discard_potion"));

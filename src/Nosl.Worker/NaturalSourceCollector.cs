@@ -34,24 +34,24 @@ public sealed record NaturalSourceRoot(DecisionPacket PublicRoot, string SourceR
     int StartHp, int StartMaxHp, int StartGold, PublicCard[] PermanentDeck,
     NaturalSourceTrace[] SourceTrace, string CombatPolicy)
 {
-    public const string PosteriorReason = "native_run_carry_in_posterior_not_implemented";
+    public const string PosteriorReason = "native_posterior_not_evaluated_by_raw_collector";
     public object ToSourceRecord()
     {
         var input = new
         {
-            schema_version = "nosl.student.public.v1", observation = PublicRoot.Observation,
+            schema_version = "nosl.student.public.v2", observation = PublicRoot.Observation,
             history_complete = true, controller_context = new { status = "inactive" },
             candidate_actions = PublicRoot.Actions, legal_mask = PublicRoot.Actions.Select(_ => true).ToArray(),
         };
         return new
         {
-            schema_version = "nosl.natural-source.v1", record_kind = "natural_raw_source_candidate",
+            schema_version = "nosl.natural-source.v2", record_kind = "natural_raw_source_candidate",
             public_input = input,
             targets = new { actions = Array.Empty<object>(), pairwise = Array.Empty<object>(), equivalent_action_set = Array.Empty<int>() },
             audit_only = new
             {
                 source_kind = "natural", source_run_group = SourceRunGroup, source_combat_id = SourceCombatId,
-                branch_family = SourceCombatId + "/native-root-family", source_prior = "native_sequential_run_silent_a10_default_start_v1",
+                branch_family = SourceCombatId + "/native-root-family", source_prior = "native_sequential_run_silent_a10_public_entry_v2",
                 outside_combat_script = NaturalSourceCollector.ScriptVersion, combat_policy = CombatPolicy,
                 actual_seed = ActualSeed, decision_index = DecisionIndex, act = Act, floor = Floor,
                 room_type = RoomType, encounter = Encounter, start_hp = StartHp, start_max_hp = StartMaxHp,
@@ -59,7 +59,7 @@ public sealed record NaturalSourceRoot(DecisionPacket PublicRoot, string SourceR
                 public_state_digest = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(PublicJson.Serialize(input)))).ToLowerInvariant(),
                 native_run = true, native_default_start = true, history_from_room_entry = true,
                 constructed_hp_override = false, constructed_deck_override = false,
-                posterior_supported = false, posterior_reason = PosteriorReason,
+                posterior_supported = false, posterior_evaluation = "not_evaluated", posterior_reason = PosteriorReason,
                 label_status = "raw_unlabeled", trainable = false, teacher_label_count = 0,
                 simulator_commit = "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0", rules_version = "0.111.0",
             },
@@ -70,7 +70,12 @@ public sealed record NaturalSourceRoot(DecisionPacket PublicRoot, string SourceR
 // driver is paused at this boundary; consumers must clone, never mutate it.
 internal sealed record NaturalSourceBoundary(CombatState State, CombatRoom Room, PublicKnowledge Knowledge,
     int StartHp, int StartMaxHp, int StartGold, string?[] StartPotions, CombatAssetSnapshot InitialAssets,
-    int Revision, bool IsStable, bool HistoryComplete);
+    int Revision, bool IsStable, bool HistoryComplete,
+    NativeChoiceReplay? ChoiceReplay = null, string? ChoiceReplayRejection = null);
+// Borrowed only for the duration of the boundary callback. Imports fork the owned
+// stable origin and re-execute; no suspended source objects enter their graph.
+internal sealed record NativeChoiceReplay(CombatSession Origin, PublicAction[] Actions, string[] Packets);
+internal sealed record NaturalSourceSettlement(string SourceCombatId, int Hp, CombatAssetSnapshot Assets);
 
 public sealed record NaturalSourceReport(NaturalSourceRoot[] Roots, NaturalRunAudit[] Runs,
     IReadOnlyDictionary<string, int> SourceDistribution, IReadOnlyDictionary<string, int> EncounterDistribution,
@@ -84,20 +89,21 @@ public sealed record NaturalSourceReport(NaturalSourceRoot[] Roots, NaturalRunAu
 /// </summary>
 public static class NaturalSourceCollector
 {
-    public const string ScriptVersion = "nosl-natural-public-script-v1";
+    public const string ScriptVersion = "nosl-natural-public-script-v2";
     private static readonly object InitLock = new();
 
     public static Task<NaturalSourceReport> CollectAsync(NaturalSourceOptions? options = null,
         IPublicContinuationPolicy? policy = null, CancellationToken cancellationToken = default) =>
-        CollectCoreAsync(options, policy, null, cancellationToken);
+        CollectCoreAsync(options, policy, null, null, cancellationToken);
 
     internal static Task<NaturalSourceReport> CollectWithNativeBoundaryAsync(NaturalSourceOptions options,
         Func<NaturalSourceRoot, NaturalSourceBoundary, Task> onRoot, IPublicContinuationPolicy? policy = null,
-        CancellationToken cancellationToken = default) => CollectCoreAsync(options, policy, onRoot, cancellationToken);
+        CancellationToken cancellationToken = default, Action<NaturalSourceSettlement>? onSettlement = null) =>
+        CollectCoreAsync(options, policy, onRoot, onSettlement, cancellationToken);
 
     private static async Task<NaturalSourceReport> CollectCoreAsync(NaturalSourceOptions? options,
         IPublicContinuationPolicy? policy, Func<NaturalSourceRoot, NaturalSourceBoundary, Task>? onRoot,
-        CancellationToken cancellationToken)
+        Action<NaturalSourceSettlement>? onSettlement, CancellationToken cancellationToken)
     {
         options ??= new();
         var configuredPolicy = PublicContinuationPolicies.Create(options.ContinuationPolicyId);
@@ -119,15 +125,16 @@ public static class NaturalSourceCollector
             var run = new RunState(seed, ascensionLevel: 10);
             var player = Player.CreateForNewRun(ModelDb.Character<Silent>(), run);
             run.AddPlayer(player);
-            var bridge = new SourceBridge(run, options, policy, roots, group, seed, onRoot, cancellationToken);
+            var bridge = new SourceBridge(run, options, policy, roots, group, seed, onRoot, onSettlement, cancellationToken);
             var driver = new RunDriver(run, bridge, recorder: bridge, useAvailablePotions: false)
-                { CombatObserverDecorator = bridge.Decorate };
+                { CombatObserverDecorator = bridge.Decorate, AutomaticCombatSettlementCompleted = bridge.CompleteOutcome };
             driver.OnRoomResolved += (_, _) => bridge.FloorsResolved++;
             string outcome; string? error = null;
             try { outcome = (await driver.RunAsync(options.MaxFloors)).Outcome.ToString(); }
             catch (CollectionBoundReached e) { outcome = e.Message; }
             catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) { throw; }
             catch (Exception e) { outcome = "source_error"; error = $"{e.GetType().Name}: {e.Message}"; }
+            finally { bridge.DetachOutcome(); await bridge.ReleaseChoiceOriginAsync(); }
             audits.Add(new(group, seed, outcome, bridge.FloorsResolved, bridge.CombatsEntered,
                 bridge.Decisions, bridge.RootsCollected, player.Creature.CurrentHp, error, bridge.Trace.ToArray()));
         }
@@ -141,7 +148,8 @@ public static class NaturalSourceCollector
 
     private sealed class SourceBridge(RunState run, NaturalSourceOptions options, IPublicContinuationPolicy policy,
         List<NaturalSourceRoot> roots, string sourceRun, string actualSeed,
-        Func<NaturalSourceRoot, NaturalSourceBoundary, Task>? onRoot, CancellationToken cancellationToken)
+        Func<NaturalSourceRoot, NaturalSourceBoundary, Task>? onRoot,
+        Action<NaturalSourceSettlement>? onSettlement, CancellationToken cancellationToken)
         : IRunDecisionSource, IAutomaticCardSelectionObserver, IRunRecorder
     {
         internal readonly List<NaturalSourceTrace> Trace = [];
@@ -151,21 +159,49 @@ public static class NaturalSourceCollector
         private PublicCard[] _permanentDeck = [];
         private string?[] _startPotions = [];
         private CombatAssetSnapshot _initialAssets = null!;
+        private bool _settlementReported;
+        private CombatSession? _choiceOrigin;
+        private readonly List<PublicAction> _choiceActions = [];
+        private readonly List<string> _choicePackets = [];
+        private string? _choiceRejection;
+        internal async ValueTask ReleaseChoiceOriginAsync()
+        {
+            var origin = _choiceOrigin; _choiceOrigin = null;
+            _choiceActions.Clear(); _choicePackets.Clear(); _choiceRejection = null;
+            if (origin is not null) await origin.DisposeAsync();
+        }
         private void Log(string kind, object detail) => Trace.Add(new(Trace.Count, kind, PublicJson.Serialize(detail)));
         internal ICombatObserver Decorate(ICombatObserver original)
         {
             var player = run.Players.Single();
+            _knowledge.OutcomeLedger.Detach();
             _knowledge = new(); _revision = _combatDecision = _combatRoots = 0; CombatsEntered++;
+            _settlementReported = false;
             _startHp = player.Creature.CurrentHp; _startMaxHp = player.Creature.MaxHp; _startGold = player.Gold;
             _startPotions = player.PotionSlots.Select(p => p?.GetType().Name).ToArray();
             _initialAssets = CombatAssetSnapshot.Capture(player);
+            _knowledge.OutcomeLedger.Begin(player);
             _knowledge.BeginCombat();
+            _knowledge.Events.Add(new(NativeEntryAssets.EventKind,
+                PublicJson.Serialize(NativeEntryAssets.Capture(_initialAssets, _startHp, _startPotions))));
             _permanentDeck = player.Deck.Cards.Select(PublicViews.Card).OrderBy(PublicJson.Serialize, StringComparer.Ordinal).ToArray();
             Log("combat_entry", new { combat = CombatsEntered, act = run.CurrentActIndex, floor = run.TotalFloor,
                 hp = _startHp, maxHp = _startMaxHp, gold = _startGold, deck = _permanentDeck,
                 relics = player.Relics.Select(r => r.GetType().Name).ToArray(), potions = player.PotionSlots.Select(p => p?.GetType().Name).ToArray() });
             return new ForwardingPublicObserver(original, _knowledge);
         }
+        internal void CompleteOutcome()
+        {
+            var player = run.Players.Single();
+            _knowledge.OutcomeLedger.Seal(player);
+            // The native driver invokes this after automatic settlement and before
+            // reward decisions, including owner return for no-reward forced fights.
+            if (_settlementReported) return;
+            _settlementReported = true;
+            onSettlement?.Invoke(new($"{sourceRun}/combat-{CombatsEntered:D4}",
+                player.Creature.CurrentHp, CombatAssetSnapshot.Capture(player)));
+        }
+        internal void DetachOutcome() => _knowledge.OutcomeLedger.Detach();
         private void CheckBound()
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -178,24 +214,41 @@ public static class NaturalSourceCollector
             CheckBound();
             var packet = new DecisionPacket(choice is null ? "player_decision" : "card_choice",
                 PublicViews.Observe(state, _knowledge, _startHp, choice, _startGold), actions);
+            if (choice is null) await ReleaseChoiceOriginAsync();
+            else if (_choiceOrigin is not null) _choicePackets.Add(PublicJson.Serialize(packet));
+            var room = (CombatRoom)run.CurrentRoom!;
+            NaturalSourceRoot SnapshotRoot() => new(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)),
+                sourceRun, $"{sourceRun}/combat-{CombatsEntered:D4}", _combatDecision,
+                run.CurrentActIndex, run.TotalFloor, room.RoomType.ToString(), room.EncounterName, actualSeed,
+                _startHp, _startMaxHp, _startGold, _permanentDeck.ToArray(), Trace.ToArray(), policy.Id);
+            NaturalSourceBoundary Boundary() => new(state, room, _knowledge.Copy(), _startHp, _startMaxHp, _startGold,
+                _startPotions.ToArray(), _initialAssets, _revision, choice is null, true,
+                _choiceOrigin is null ? null : new(_choiceOrigin,
+                    _choiceActions.Select(a => a with { Selection = a.Selection?.ToArray() }).ToArray(), _choicePackets.ToArray()),
+                _choiceRejection);
             if (_combatDecision % options.DecisionStride == 0 && _combatRoots < options.MaxRootsPerCombat)
             {
-                var room = (CombatRoom)run.CurrentRoom!;
                 // Detach all policy DTOs, including mutable event lists, from native state.
-                var snapshot = PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet));
-                var root = new NaturalSourceRoot(snapshot, sourceRun, $"{sourceRun}/combat-{CombatsEntered:D4}", _combatDecision,
-                    run.CurrentActIndex, run.TotalFloor, room.RoomType.ToString(), room.EncounterName, actualSeed,
-                    _startHp, _startMaxHp, _startGold, _permanentDeck.ToArray(), Trace.ToArray(), policy.Id);
+                var root = SnapshotRoot();
                 roots.Add(root); _combatRoots++; RootsCollected++;
                 if (onRoot is not null)
-                    await onRoot(root, new(state, room, _knowledge.Copy(), _startHp, _startMaxHp, _startGold,
-                        _startPotions.ToArray(), _initialAssets, _revision, choice is null, true));
+                    await onRoot(root, Boundary());
             }
             // JSON boundary prevents a policy from receiving or mutating native objects.
             var selected = policy.Choose(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)));
             string token = PublicJson.Serialize(selected);
             var valid = actions.SingleOrDefault(a => PublicJson.Serialize(a) == token)
                 ?? throw new InvalidOperationException("Natural policy returned an illegal public action");
+            if (onRoot is not null && choice is null && CombatSession.IsReviewedChoiceAction(valid, packet))
+            {
+                try
+                {
+                    _choiceOrigin = CombatSession.ImportNative(SnapshotRoot(), Boundary());
+                    _choicePackets.Add(PublicJson.Serialize(packet));
+                }
+                catch (NotSupportedException e) { _choiceRejection = e.Message; }
+            }
+            if (_choiceOrigin is not null) _choiceActions.Add(valid with { Selection = valid.Selection?.ToArray() });
             _knowledge.Events.Add(new("action", token));
             Log("combat_action", new { combat = CombatsEntered, decision = _combatDecision, action = valid });
             _revision++; _combatDecision++;
@@ -379,12 +432,18 @@ public static class NaturalSourceCollector
 /// <summary>Forwards every native notification, including default interface methods.</summary>
 internal sealed class ForwardingPublicObserver(ICombatObserver original, ICombatObserver observer) : ICombatObserver
 {
-    internal static void Install(RunDriver driver, Func<PublicKnowledge> createKnowledge) =>
+    internal static void Install(RunDriver driver, Player player, Func<PublicKnowledge> createKnowledge)
+    {
+        PublicKnowledge? current = null;
+        driver.AutomaticCombatSettlementCompleted = () => current?.OutcomeLedger.Seal(player);
         driver.CombatObserverDecorator = original =>
         {
-            var knowledge = createKnowledge(); knowledge.BeginCombat();
+            current?.OutcomeLedger.Detach();
+            var knowledge = current = createKnowledge();
+            knowledge.OutcomeLedger.Begin(player); knowledge.BeginCombat();
             return new ForwardingPublicObserver(original, knowledge);
         };
+    }
     public void CombatStarted(CombatState s) { original.CombatStarted(s); observer.CombatStarted(s); }
     public void PlayerTurnPrepared(CombatState s) { original.PlayerTurnPrepared(s); observer.PlayerTurnPrepared(s); }
     public void PlayerTurnStarted(CombatState s) { original.PlayerTurnStarted(s); observer.PlayerTurnStarted(s); }

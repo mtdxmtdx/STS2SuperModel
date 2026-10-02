@@ -237,7 +237,6 @@ public sealed class SlyBeliefTests
         Assert.NotNull(await CardCmd.Afflict<Bound>(afflicted.State.Players[0].PlayerCombatState!.Hand.Cards.Single(c => c.GetType().Name == "StrikeSilent"), 1));
         CardCmd.ApplySingleTurnSly(temporary.State.Players[0].PlayerCombatState!.Hand.Cards.Single(c => c.GetType().Name == "Survivor"));
         Assert.False(BeliefSampler.UsesExchangeablePosterior(enchanted)); Assert.False(BeliefSampler.UsesExchangeablePosterior(afflicted)); Assert.False(BeliefSampler.UsesExchangeablePosterior(temporary));
-        Assert.DoesNotContain("Reflex", NativeBeliefCertificate.Cards); Assert.DoesNotContain("Tactician", NativeBeliefCertificate.Cards);
         await using var old = await CombatSession.CreateAsync(new(Deck: ["Prepared", "Survivor", "StrikeSilent"]));
         Assert.Equal("reviewed-stable-exchangeable-v1", BeliefSampler.PosteriorProfileFor(old));
         Assert.NotNull(TeacherRanking.RestrictedSupport(old, ObjectiveProfile.Candidate));
@@ -246,7 +245,7 @@ public sealed class SlyBeliefTests
     }
 
     [Fact]
-    public async Task NativeCarryInCannotAcquireConstructedSlyPriorOrChoiceReplay()
+    public async Task NativeCarryInKeepsPublicEntryProofAndDistinctNativeChoicePrior()
     {
         await using var constructed = await CombatSession.CreateAsync(new(Deck: ["Reflex", "Tactician", "Survivor"]));
         var sly = constructed.Observe().Observation!.Hand.Single(c => c.Id == "Reflex");
@@ -256,14 +255,18 @@ public sealed class SlyBeliefTests
             var deck = root.PermanentDeck.Append(sly).ToArray();
             var error = Assert.Throws<NotSupportedException>(() => CombatSession.ImportNative(root with { PermanentDeck = deck },
                 boundary with { InitialAssets = boundary.InitialAssets with { Deck = deck.Select(PublicJson.Serialize).Order(StringComparer.Ordinal).ToArray() } }));
-            Assert.Contains("unreviewed_entry_card", error.Message);
+            // Stable native v2 now reviews Sly cards, but altering audit-only entry
+            // assets cannot manufacture the required matching public entry history.
+            Assert.Contains("public_entry_assets_missing_or_mismatched", error.Message);
             await using var native = CombatSession.ImportNative(root, boundary);
             Assert.Equal(NativeBeliefCertificate.Profile, BeliefSampler.PosteriorProfileFor(native));
             await native.StepAsync(Play(native, "Survivor"));
             Assert.Equal("card_choice", native.Observe().Status);
-            Assert.False(native.HasConditionalChoiceOrigin);
-            Assert.Equal(BeliefSampler.UnsupportedProfile, BeliefSampler.PosteriorProfileFor(native));
-            await Assert.ThrowsAsync<NotSupportedException>(() => BeliefSampler.SampleWorldAsync(native, 42));
+            Assert.True(native.HasConditionalChoiceOrigin);
+            Assert.Equal(BeliefSampler.NativeConditionalChoiceProfile, BeliefSampler.PosteriorProfileFor(native));
+            await using var sampled = await BeliefSampler.SampleWorldAsync(native, 42);
+            Assert.Equal(PublicJson.Serialize(native.Observe()), PublicJson.Serialize(sampled.Observe()));
+            await Assert.ThrowsAsync<NotSupportedException>(() => BeliefSampler.SampleByReplayAsync(native, 42));
             callbackCompleted = true;
         });
         // The source collector records callback exceptions; assert outside its catch.

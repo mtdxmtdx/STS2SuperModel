@@ -22,6 +22,9 @@ public sealed record RolloutOutcome
     public int? MaxHpAfterSettlement { get; init; }
     public double? CumulativeHpDamage { get; init; }
     public double? HealingReceived { get; init; }
+    // Signed committed HP changes outside damage/healing (direct sets and max-HP caps).
+    // Diagnostic only; legacy incomplete records intentionally leave this unknown.
+    public double? OtherHpAdjustment { get; init; }
     public bool HpEventDiagnosticsComplete { get; init; }
     public bool InventorySnapshotsComplete { get; init; }
     public InventoryQuantity[] InventoryStart { get; init; } = [];

@@ -159,6 +159,13 @@ def outcome_facts(outcome):
         raise ValueError("inconsistent terminal HP/alive facts")
     if outcome.get("settlementComplete") is not True or not outcome.get("settlementProfileId") or not outcome.get("continuationPolicyId"):
         raise ValueError("missing verified settlement/continuation")
+    if outcome.get("hpEventDiagnosticsComplete") is True:
+        damage, healing, adjustment = (outcome.get(k) for k in
+            ("cumulativeHpDamage", "healingReceived", "otherHpAdjustment"))
+        if not all(finite_number(x) for x in (damage, healing, adjustment)) or damage < 0 or healing < 0:
+            raise ValueError("missing or invalid complete HP diagnostics")
+        if start - damage + healing + adjustment != end:
+            raise ValueError("complete HP diagnostics do not reconcile")
     initial, final = inventory_counts(outcome.get("inventoryStart")), inventory_counts(outcome.get("inventoryEnd"))
     unresolved = []
     if outcome.get("inventorySnapshotsComplete") is not True:

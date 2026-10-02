@@ -92,6 +92,60 @@
 +        (card.Owner.Creature.CombatState as CombatState)?.Observer?.CardMoved(card,previous,PileType.None,CardPilePosition.None);
 @@ -405,0 +413 @@
 +        (combatState as CombatState)?.Observer?.CardsShuffled(player);
+--- a/src/Sts2Sim.Core/Commands/PotionCmd.cs
++++ b/src/Sts2Sim.Core/Commands/PotionCmd.cs
+@@ -26 +26 @@
+-        potion.Owner.RemovePotionInternal(potion);
++        potion.Owner.RemovePotionInternal(potion, PotionMutationKind.Discarded);
+@@ -153 +153 @@
+-            player.RemovePotionInternal(potion);
++            player.RemovePotionInternal(potion, PotionMutationKind.Consumed);
+--- a/src/Sts2Sim.Core/Entities/Creatures/Creature.cs
++++ b/src/Sts2Sim.Core/Entities/Creatures/Creature.cs
+@@ -225,0 +226 @@
++        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.Loss, hpBefore, CurrentHp, MaxHp, MaxHp);
+@@ -245,0 +247 @@
++        int hpBefore = CurrentHp;
+@@ -246,0 +249 @@
++        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.Heal, hpBefore, CurrentHp, MaxHp, MaxHp);
+@@ -250,0 +254 @@
++        int hpBefore = CurrentHp;
+@@ -251,0 +256 @@
++        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.Set, hpBefore, CurrentHp, MaxHp, MaxHp);
+@@ -255,0 +261 @@
++        int hpBefore = CurrentHp, maxBefore = MaxHp;
+@@ -257,0 +264 @@
++        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.MaxCap, hpBefore, CurrentHp, maxBefore, MaxHp);
+--- /dev/null
++++ b/src/Sts2Sim.Core/Entities/Players/IPlayerOutcomeObserver.cs
+@@ -0,0 +1,13 @@
++namespace Sts2Sim.Core.Entities.Players;
++
++// Optional committed-value diagnostics. This binding belongs to a player lifetime,
++// not Creature.CombatState, so automatic settlement remains observable after detach.
++// It is deliberately absent from Player.CloneForCombat and restored only by its owner.
++internal interface IPlayerOutcomeObserver
++{
++    void HpChanged(Player player, HpMutationKind kind, int before, int after, int maxBefore, int maxAfter);
++    void PotionChanged(Player player, string potionId, PotionMutationKind kind);
++}
++
++internal enum HpMutationKind { Loss, Heal, Set, MaxCap }
++internal enum PotionMutationKind { Acquired, Consumed, Discarded, Removed }
+--- a/src/Sts2Sim.Core/Entities/Players/Player.cs
++++ b/src/Sts2Sim.Core/Entities/Players/Player.cs
+@@ -67,0 +68,2 @@
++    internal IPlayerOutcomeObserver? OutcomeObserver { get; set; }
++
+@@ -233,0 +236 @@
++        OutcomeObserver?.PotionChanged(this, ownedPotion.GetType().Name, PotionMutationKind.Acquired);
+@@ -237 +240,3 @@
+-    public void RemovePotionInternal(PotionModel potion)
++    public void RemovePotionInternal(PotionModel potion) => RemovePotionInternal(potion, PotionMutationKind.Removed);
++
++    internal void RemovePotionInternal(PotionModel potion, PotionMutationKind kind)
+@@ -242,0 +248 @@
++            OutcomeObserver?.PotionChanged(this, potion.GetType().Name, kind);
 --- a/src/Sts2Sim.Core/Models/CardModel.cs
 +++ b/src/Sts2Sim.Core/Models/CardModel.cs
 @@ -58,0 +59,5 @@
@@ -166,7 +220,96 @@
 @@ -372 +389 @@
 -        RoomType == RoomType.Boss &&
 +        _noslFinalActBoss || RoomType == RoomType.Boss &&
+--- a/src/Sts2Sim.Core/Runs/RunDriver.cs
++++ b/src/Sts2Sim.Core/Runs/RunDriver.cs
+@@ -107,0 +108,5 @@
++
++    // Read-only NOSL observation adapter, installed before native room entry. The
++    // decorator must forward the original observer; it may not mutate state or RNG.
++    internal Func<ICombatObserver, ICombatObserver>? CombatObserverDecorator { get; set; }
++    internal Action? AutomaticCombatSettlementCompleted { get; set; }
+@@ -479 +484 @@
+-        combatRoom.ConfigureObserver(observer);
++        combatRoom.ConfigureObserver(CombatObserverDecorator?.Invoke(observer) ?? observer);
+@@ -487 +492,2 @@
+-        CombatRecordingObserver? combatObserver = null)
++        CombatRecordingObserver? combatObserver = null,
++        bool deferOutcomeNotification = false)
+@@ -536,0 +543 @@
++        if (!deferOutcomeNotification) AutomaticCombatSettlementCompleted?.Invoke();
+@@ -617,0 +625 @@
++                if (!eventRoom.Event.GenerateForcedCombatRewards) AutomaticCombatSettlementCompleted?.Invoke();
+@@ -700 +708,2 @@
+-                combatObserver: combatObserver);
++                combatObserver: combatObserver,
++                deferOutcomeNotification: !eventRoom.Event.GenerateForcedCombatRewards);
 --- a/src/Sts2Sim.Core/Sts2Sim.Core.csproj
 +++ b/src/Sts2Sim.Core/Sts2Sim.Core.csproj
-@@ -15,0 +16 @@
+@@ -15,0 +16,2 @@
 +    <InternalsVisibleTo Include="Nosl.Worker" />
++    <InternalsVisibleTo Include="Nosl.Tests" />
+--- /dev/null
++++ b/tests/Sts2Sim.Core.Tests/Combat/PlayerOutcomeObserverTests.cs
+@@ -0,0 +1,62 @@
++using Sts2Sim.Core.Commands;
++using Sts2Sim.Core.Content;
++using Sts2Sim.Core.Entities.Cards;
++using Sts2Sim.Core.Entities.Creatures;
++using Sts2Sim.Core.Entities.Players;
++using Sts2Sim.Core.Entities.Potions;
++using Sts2Sim.Core.Models;
++using Sts2Sim.Core.Models.Characters;
++using Sts2Sim.Core.Models.Potions;
++using Sts2Sim.Core.Runs;
++
++namespace Sts2Sim.Core.Tests.Combat;
++
++file sealed class FailingOutcomePotion : PotionModel
++{
++    public override PotionRarity Rarity => PotionRarity.Common;
++    public override PotionUsage Usage => PotionUsage.AnyTime;
++    public override TargetType TargetType => TargetType.Self;
++    protected override Task OnUse(Creature? target) => throw new InvalidOperationException("native effect failed");
++}
++
++[Collection("ModelDb")]
++public sealed class PlayerOutcomeObserverTests : IDisposable
++{
++    public PlayerOutcomeObserverTests()
++    {
++        ModelDb.ResetForTests();
++        ModelDb.Init(ContentRegistry.AllTypes.Append(typeof(FailingOutcomePotion)));
++    }
++    public void Dispose() => ModelDb.ResetForTests();
++
++    [Fact]
++    public async Task PotionCommitNotificationsSurviveEffectFailureAndIgnoreRejectedAttempts()
++    {
++        var run = new RunState("potion-commit-observer", ascensionLevel: 10);
++        var player = Player.CreateForNewRun(ModelDb.Character<Silent>(), run);
++        run.AddPlayer(player);
++        var observer = new OutcomeObserver();
++        player.OutcomeObserver = observer;
++        var potion = (FailingOutcomePotion)ModelDb.Potion<FailingOutcomePotion>().MutableClone();
++        Assert.True(await PotionCmd.TryToProcure(potion, player));
++        await Assert.ThrowsAsync<InvalidOperationException>(() => PotionCmd.Use(potion, player, null));
++        Assert.Equal(new[] { PotionMutationKind.Acquired }, observer.Movements);
++        var failure = await Assert.ThrowsAsync<InvalidOperationException>(() => PotionCmd.Use(potion, player, player.Creature));
++        Assert.Equal("native effect failed", failure.Message);
++        Assert.DoesNotContain(potion, player.PotionSlots);
++        Assert.Equal(new[] { PotionMutationKind.Acquired, PotionMutationKind.Consumed }, observer.Movements);
++        var fire = (FirePotion)ModelDb.Potion<FirePotion>().MutableClone();
++        Assert.True(await PotionCmd.TryToProcure(fire, player));
++        await PotionCmd.Discard(fire);
++        player.RemovePotionInternal(fire); // Removing an absent item does not invent another event.
++        Assert.Equal(new[] { PotionMutationKind.Acquired, PotionMutationKind.Consumed,
++            PotionMutationKind.Acquired, PotionMutationKind.Discarded }, observer.Movements);
++    }
++
++    private sealed class OutcomeObserver : IPlayerOutcomeObserver
++    {
++        internal readonly List<PotionMutationKind> Movements = [];
++        public void HpChanged(Player player, HpMutationKind kind, int before, int after, int maxBefore, int maxAfter) { }
++        public void PotionChanged(Player player, string potionId, PotionMutationKind kind) => Movements.Add(kind);
++    }
++}

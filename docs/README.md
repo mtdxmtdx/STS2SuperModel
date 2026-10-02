@@ -2,6 +2,8 @@
 
 ## 当前工程
 
+- [原生生成药水入口](NATIVE_GENERATION_POTIONS.md)：固定200根中174根可导入，2,222次完整结算；仅开发证据
+
 - [M3–M6实施检查点](M3_M6_STATUS.md)：教师、数据、学生工程及未闭合门槛
 - [首轮受限试点](FIRST_BOUNDED_PILOT.md)：5,000有效根、497步试训、闭环结果与资源错误诊断
 - [实验策略拒绝机制](EXPERIMENTAL_POLICY_GUARD.md)：未定价资源决策整体拒绝，保留诊断预测

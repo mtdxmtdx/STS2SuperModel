@@ -28,6 +28,9 @@ REPO = Path(__file__).resolve().parents[1]
 PIPELINE_VERSION = "nosl.dataset.prepare.v3"
 sys.path.insert(0, str(REPO / "python"))
 from nosl.public_identity import PUBLIC_IDENTITY_SCHEME, public_input_digest
+from nosl.public_identity_v2 import (PUBLIC_IDENTITY_SCHEME as V2_IDENTITY,
+    public_input_digest as v2_public_digest, legacy_alias_digests)
+V2_PIPELINE_VERSION = "nosl.dataset.prepare.v4"
 from nosl.data import (REGISTRY_VERSION, is_sha256, registry_bytes, registry_hash,
                                   validate_binding, validate_components, validate_registry,
                                   validate_state_protection)
@@ -60,8 +63,8 @@ def canonical_json(value: Any) -> str:
                       ensure_ascii=False, allow_nan=False)
 
 
-def public_digest(public_input: dict) -> str:
-    return public_input_digest(public_input)
+def public_digest(public_input: dict, identity_scheme: str = PUBLIC_IDENTITY_SCHEME) -> str:
+    return v2_public_digest(public_input) if identity_scheme == V2_IDENTITY else public_input_digest(public_input)
 
 
 def finite_number(value: Any) -> bool:
@@ -121,8 +124,10 @@ def action_counts(record: dict, action: dict, index: int) -> dict:
 
 def has_usable_targets(record: dict) -> bool:
     """Whether an already validated whole root supplies positive-weight targets."""
-    return any(action.get("sample_weight", 1) > 0 and any(action["masks"].values())
+    return (any(action.get("sample_weight", 1) > 0 and any(action["masks"].values())
                for action in record["targets"]["actions"])
+            or record["public_input"].get("schema_version") == "nosl.student.public.v2"
+            and any(record["targets"].get("plan", {}).get("masks", {}).values()))
 
 
 def validate_record(record: Any, config: dict, mode: str, student_config: dict | None = None,
@@ -133,6 +138,10 @@ def validate_record(record: Any, config: dict, mode: str, student_config: dict |
     only that final requirement, never schema, provenance or outcome accounting.
     """
     require(type(require_usable) is bool, "require_usable_must_be_boolean")
+    if config.get("schema_version") == "nosl.dataset.config.v2":
+        from nosl.data_v2 import validate_production_record
+        validate_production_record(record, student_config or load_student_config(config), require_usable=require_usable)
+        return
     require(isinstance(record, dict) and set(record) == {"public_input", "targets", "audit_only"},
             "decision_record_fields_invalid")
     validate_public(record["public_input"], student_config)
@@ -268,7 +277,7 @@ class UnionFind:
             self.parent[max(a, b)] = min(a, b)
 
 
-def record_tokens(record: Any) -> set[str]:
+def record_tokens(record: Any, identity_scheme: str = PUBLIC_IDENTITY_SCHEME) -> set[str]:
     """Recover even partial provenance before filtering, preserving bridge roots."""
     if not isinstance(record, dict):
         return set()
@@ -281,20 +290,27 @@ def record_tokens(record: Any) -> set[str]:
                 tokens.add(key + ":" + value)
     if isinstance(record.get("public_input"), dict):
         try:
-            tokens.add("prepared_public_input_digest:" + public_digest(record["public_input"]))
+            tokens.add("prepared_public_input_digest:" + public_digest(record["public_input"], identity_scheme))
         except (ValueError, TypeError):
             pass
+        # A malformed current observation must not hide a valid embedded anchor
+        # or a legacy-compatible projection from the pre-filter union.
+        if identity_scheme == V2_IDENTITY:
+            tokens.update("prepared_public_input_digest:" + value for value in legacy_alias_digests(record["public_input"]))
     # Metadata-only journals carry semantic identity without fabricating a
     # public input. This token is conservative provenance, never a target.
-    if (record.get("public_digest_scheme") == PUBLIC_IDENTITY_SCHEME
+    if (record.get("public_digest_scheme") in ((PUBLIC_IDENTITY_SCHEME, V2_IDENTITY) if identity_scheme == V2_IDENTITY else (PUBLIC_IDENTITY_SCHEME,))
             and is_sha256(record.get("public_input_digest"))):
         tokens.add("prepared_public_input_digest:" + record["public_input_digest"])
+    if identity_scheme == V2_IDENTITY and isinstance(record.get("legacy_public_input_digests"), list):
+        for digest in record.get("legacy_public_input_digests", []):
+            if is_sha256(digest): tokens.add("prepared_public_input_digest:" + digest)
     return tokens
 
 
-def provenance_components(records: list[Any], state: dict | None = None) -> tuple[list[str], dict[str, set[str]], dict[str, set[str]]]:
+def provenance_components(records: list[Any], state: dict | None = None, identity_scheme: str = PUBLIC_IDENTITY_SCHEME) -> tuple[list[str], dict[str, set[str]], dict[str, set[str]]]:
     uf, first = UnionFind(len(records)), {}
-    tokens_by_row = [record_tokens(row) for row in records]
+    tokens_by_row = [record_tokens(row, identity_scheme) for row in records]
     previous = (state or {}).get("components", {})
     old_token_component = {token: group for group, info in previous.items() for token in info["tokens"]}
     historic_links = []
@@ -323,7 +339,9 @@ def provenance_components(records: list[Any], state: dict | None = None) -> tupl
 
 
 def validate_config(config: dict) -> None:
-    require(config.get("schema_version") == "nosl.dataset.config.v1", "dataset_config_schema_unknown")
+    require(config.get("schema_version") in ("nosl.dataset.config.v1", "nosl.dataset.config.v2"), "dataset_config_schema_unknown")
+    if config["schema_version"] == "nosl.dataset.config.v2":
+        require(config.get("public_schema") == "nosl.student.public.v2" and config.get("native_development_admission") == "quarantine", "v2_admission_config_invalid")
     ratios = config.get("split_ratios", {})
     require(set(ratios) == set(SPLITS) and all(finite_number(x) and x > 0 for x in ratios.values())
             and math.isclose(sum(ratios.values()), 1.0, abs_tol=1e-9), "split_ratios_invalid")
@@ -359,6 +377,9 @@ def summarize_throughput(records: list[dict]) -> dict:
             per_action.append({"validated_attempt_row": row_index, "action_index": index, **counts,
                                "effective_sample_rate": (counts["completed_worlds"] / counts["allocated_worlds"]
                                                          if counts["allocated_worlds"] else None)})
+        if record["public_input"].get("schema_version") == "nosl.student.public.v2":
+            for counts in record["audit_only"].get("plan_counts", {}).values():
+                for key, value in counts.items(): totals["policy_" + key] += value
         costs = record["audit_only"].get("costs", {})
         for key in ("rollout_decisions", "elapsed_seconds", "clone_seconds", "settlement_seconds"):
             value = costs.get(key)
@@ -375,6 +396,9 @@ def summarize_throughput(records: list[dict]) -> dict:
         "independent_eval_world_draws": sum(r["audit_only"]["n_independent_eval"] for r in records),
         "exploration_world_draws": sum(r["audit_only"]["n_exploration"] for r in records),
         "allocated_action_worlds": allocated, "completed_action_worlds": completed,
+        "paired_policy_worlds": {key: totals["policy_" + key] for key in COUNT_FIELDS},
+        "paired_policy_effective_sample_rate": (totals["policy_completed_worlds"] / totals["policy_allocated_worlds"]
+                                               if totals["policy_allocated_worlds"] else None),
         "truncated_action_worlds": totals["truncated_worlds"], "error_action_worlds": totals["error_worlds"],
         "other_action_worlds": totals["other_worlds"],
         "effective_sample_rate": completed / allocated if allocated else None,
@@ -395,10 +419,13 @@ def summarize_throughput(records: list[dict]) -> dict:
     }
 
 
-def load_student_config() -> dict:
+def load_student_config(dataset_config: dict | None = None) -> dict:
     python_root = str(REPO / "python")
     if python_root not in sys.path:
         sys.path.insert(0, python_root)
+    if (dataset_config or {}).get("schema_version") == "nosl.dataset.config.v2":
+        from nosl.schema_v2 import load_config
+        return load_config(REPO / "configs/student.v2.engineering.json")
     from nosl.schema import load_config
     return load_config(REPO / "configs/student.pilot.json")
 
@@ -419,8 +446,11 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
     validate_config(config)
     require(mode in ("engineering-smoke", "pilot", "formal"), "dataset_mode_unknown")
     require(mode != "formal", "formal_data_blocked: formal production is not implemented or authorized")
-    student_config = student_config or load_student_config()
-    lock = {"pipeline_version": PIPELINE_VERSION, "public_identity_scheme": PUBLIC_IDENTITY_SCHEME,
+    student_config = student_config or load_student_config(config)
+    v2 = config["schema_version"] == "nosl.dataset.config.v2"
+    require((student_config.get("schema_version") == "nosl.student.public.v2") == v2, "dataset_student_schema_mismatch")
+    identity_scheme = V2_IDENTITY if v2 else PUBLIC_IDENTITY_SCHEME
+    lock = {"pipeline_version": V2_PIPELINE_VERSION if v2 else PIPELINE_VERSION, "public_identity_scheme": identity_scheme,
             "config_sha256": object_digest(config),
             "student_config_sha256": object_digest(student_config), "mode": mode}
     previous = deepcopy(state) if state else None
@@ -430,19 +460,24 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
     if previous:
         require(previous.get("schema_version") == "nosl.dataset.split-state.v2", "split_state_version_unknown")
         require(previous.get("lock") == lock, "append_configuration_or_mode_mismatch")
+        if v2:
+            require(not previous["cross_split_conflicts"], "v2_corpus_cross_split_conflict_resume_blocked")
         if protection is not None:
             validate_state_protection(previous, protection)
             require(not previous["cross_split_conflicts"], "protected_corpus_cross_split_conflict_resume_blocked")
     prior_components = previous or ({"components": protection["components"]} if protection else None)
     provenance_records = provenance_records or []
-    group_ids, tokens, history = provenance_components(records + provenance_records, prior_components)
+    group_ids, tokens, history = provenance_components(records + provenance_records, prior_components, identity_scheme)
     versions = previous.get("versions") if previous else None
     observation_schema = previous.get("observation_schema") if previous else None
     # Validate every row before choosing corpus versions; invalid rows never set the version lock.
-    valid, errors = {}, {}
+    valid, errors, structurally_valid = {}, {}, []
     for index, record in enumerate(records):
         try:
-            validate_record(record, config, mode, student_config)
+            validate_record(record, config, mode, student_config, require_usable=not v2)
+            if v2:
+                structurally_valid.append(record)
+                require(has_usable_targets(record), "root_has_no_usable_targets")
             valid[index] = True
             candidate_versions = record["audit_only"]["versions"]
             if versions is None:
@@ -490,7 +525,7 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
         next_state["components"][group] = {"split": split, "tokens": sorted(tokens[group])}
     if conflicts:
         next_state["cross_split_conflicts"].extend({"component": k, "historical_splits": v,
-                                                   **({"tokens": sorted(tokens[k]), "reason": conflict_reasons[k]} if protection else {})}
+                                                   **({"tokens": sorted(tokens[k]), "reason": conflict_reasons[k]} if protection or v2 else {})}
                                                   for k, v in sorted(conflicts.items()))
     protected_test_groups = {group for group, aliases in tokens.items() if aliases & protected_test_tokens}
     unique_valid_new = 0
@@ -507,7 +542,7 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
         split = group_splits.get(group)
         digest = None
         if reason is None:
-            digest = public_digest(record["public_input"])
+            digest = public_digest(record["public_input"], identity_scheme)
             if digest in seen:
                 reason = "exact_public_input_duplicate"
                 duplicates += 1
@@ -551,18 +586,18 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
     next_state["observation_schema"] = observation_schema
     overlap = bool(next_state["cross_split_conflicts"])
     component_counts = Counter(info["split"] for info in next_state["components"].values())
-    unique_inputs = {public_digest(r["public_input"]) for r in records if isinstance(r, dict)
-                     and isinstance(r.get("public_input"), dict) and _digestible(r["public_input"])}
-    throughput_records = [records[i] for i in valid]
+    unique_inputs = {public_digest(r["public_input"], identity_scheme) for r in records if isinstance(r, dict)
+                     and isinstance(r.get("public_input"), dict) and _digestible(r["public_input"], identity_scheme)}
+    throughput_records = structurally_valid if v2 else [records[i] for i in valid]
     throughput = summarize_throughput(throughput_records)
     cumulative_accepted = [info for info in next_state["seen_public_digests"].values() if not info["held_out_excluded"]]
     cumulative_splits = Counter(info["split"] for info in cumulative_accepted)
     report = {
-        "schema_version": "nosl.dataset.report.v2", "mode": mode, "public_identity_scheme": PUBLIC_IDENTITY_SCHEME,
+        "schema_version": "nosl.dataset.report.v2", "mode": mode, "public_identity_scheme": identity_scheme,
         "status": "ENGINEERING_SMOKE_ONLY" if mode == "engineering-smoke" else "PILOT_PREPARATION_ONLY",
         "formal_data_ready": False, "m7_training_started": False,
         "input_attempts": len(records), "input_unique_public_roots": len(unique_inputs),
-        "valid_attempts": len(valid), "usable_new_roots_before_holdout_exclusion": unique_valid_new,
+        "valid_attempts": len(structurally_valid) if v2 else len(valid), "usable_new_roots_before_holdout_exclusion": unique_valid_new,
         "cumulative": {"input_attempts": next_state["cumulative_attempts"],
                        "unique_usable_roots_before_holdout_exclusion": len(next_state["seen_public_digests"]),
                        "effective_dataset_roots": len(cumulative_accepted),
@@ -620,6 +655,8 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
             "old_targets_read_or_copied": False, "old_seen_digests_imported": False,
             "provenance_only_rows": len(provenance_records),
             "version_mismatch_roots": sum("versions_mismatch" in error for error in errors.values()),
+            "source_public_identity_scheme": protection["public_identity_scheme"],
+            "corpus_public_identity_scheme": identity_scheme,
             "protected_test_excluded_roots": protected_excluded,
             "protected_alias_closure": closure,
             "new_component_aliases": {group: {"tokens": sorted(tokens[group]),
@@ -630,9 +667,9 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
     return splits, report, rejected
 
 
-def _digestible(value: Any) -> bool:
+def _digestible(value: Any, identity_scheme: str = PUBLIC_IDENTITY_SCHEME) -> bool:
     try:
-        public_digest(value)
+        public_digest(value, identity_scheme)
         return True
     except (ValueError, TypeError, OverflowError):
         return False
@@ -680,9 +717,9 @@ def verify_manifest(output_dir: Path | str) -> dict:
     root = Path(output_dir)
     manifest = read_json(root / "manifest.json")
     require(manifest.get("schema_version") == "nosl.dataset.manifest.v2"
-            and manifest.get("pipeline_version") == PIPELINE_VERSION
-            and manifest.get("public_identity_scheme") == PUBLIC_IDENTITY_SCHEME
-            and manifest.get("lock", {}).get("public_identity_scheme") == PUBLIC_IDENTITY_SCHEME, "manifest_version_or_public_identity_unknown")
+            and (manifest.get("pipeline_version"), manifest.get("public_identity_scheme")) in ((PIPELINE_VERSION, PUBLIC_IDENTITY_SCHEME), (V2_PIPELINE_VERSION, V2_IDENTITY))
+            and manifest.get("lock", {}).get("public_identity_scheme") == manifest.get("public_identity_scheme")
+            and manifest.get("lock", {}).get("pipeline_version") == manifest.get("pipeline_version"), "manifest_version_or_public_identity_unknown")
     seen_paths = set()
     descriptors = []
     parent_hash = None
@@ -735,7 +772,7 @@ def export_split_protection(source_dir: Path | str) -> dict:
     state = read_json(state_path)
     require(state.get("schema_version") == "nosl.dataset.split-state.v2", "protection_source_state_version_unknown")
     require(state.get("observation_schema") in ("nosl.public.v1", "nosl.public.v2"), "protection_source_observation_schema_unknown")
-    registry = {"schema_version": REGISTRY_VERSION, "public_identity_scheme": PUBLIC_IDENTITY_SCHEME,
+    registry = {"schema_version": REGISTRY_VERSION, "public_identity_scheme": manifest["public_identity_scheme"],
                 "source": {"manifest_sha256": manifest_hash,
                            "split_state_sha256": manifest["latest_state"]["sha256"],
                            "versions": deepcopy(manifest["versions"]),
@@ -775,7 +812,7 @@ def recover_initial_protection(output_dir: Path, protection: dict | None) -> dic
     return protection
 
 
-def journal_provenance(rows: list, generation_config: dict | None = None) -> list[dict]:
+def journal_provenance(rows: list, generation_config: dict | None = None, *, identity_scheme: str = PUBLIC_IDENTITY_SCHEME) -> list[dict]:
     """Project generation journals to aliases, failing closed on bad metadata."""
     if generation_config is not None:
         # The pinned generator defines these aliases even for failed attempts
@@ -803,10 +840,17 @@ def journal_provenance(rows: list, generation_config: dict | None = None) -> lis
         require(bool(audit) and all(isinstance(value, str) and value.strip() for value in audit.values()),
                 "journal_provenance_missing_or_invalid")
         record = {"audit_only": audit}
+        if identity_scheme == V2_IDENTITY:
+            if "public_input" in row:
+                require(isinstance(row["public_input"], dict), "journal_public_input_invalid")
+                record["public_input"] = deepcopy(row["public_input"])
+            if "legacy_public_input_digests" in row:
+                require(isinstance(row["legacy_public_input_digests"], list) and all(is_sha256(x) for x in row["legacy_public_input_digests"]), "journal_legacy_alias_invalid")
+                record["legacy_public_input_digests"] = row["legacy_public_input_digests"][:]
         if row.get("public_input_digest") is not None:
-            require(row.get("public_digest_scheme") == PUBLIC_IDENTITY_SCHEME
+            require(row.get("public_digest_scheme") in ((PUBLIC_IDENTITY_SCHEME, V2_IDENTITY) if identity_scheme == V2_IDENTITY else (PUBLIC_IDENTITY_SCHEME,))
                     and is_sha256(row["public_input_digest"]), "journal_public_digest_invalid")
-            record.update(public_input_digest=row["public_input_digest"], public_digest_scheme=PUBLIC_IDENTITY_SCHEME)
+            record.update(public_input_digest=row["public_input_digest"], public_digest_scheme=row["public_digest_scheme"])
         result.append(record)
     return result
 
@@ -848,7 +892,7 @@ def _persist_batch(output_dir: Path, records: list, origins: list, config: dict,
         protection = recover_initial_protection(output_dir, protection)
     if protection is not None:
         validate_registry(protection)
-    student_config = load_student_config()
+    student_config = load_student_config(config)
     request = {"inputs": inputs, "config_sha256": object_digest(config),
                "student_config_sha256": object_digest(student_config), "mode": mode,
                "shard_size": shard_size}
@@ -869,7 +913,7 @@ def _persist_batch(output_dir: Path, records: list, origins: list, config: dict,
     # protected isolation failure must durably block existing targets even if
     # an unrelated row also has bad versions. Incompatible labels remain
     # quarantined; a blocked first stage may have no label-version population.
-    protected_conflict = protection is not None and not report["split"]["audit_passed"]
+    protected_conflict = (protection is not None or config.get("schema_version") == "nosl.dataset.config.v2") and not report["split"]["audit_passed"]
     require(report["versions"] is not None or protected_conflict, "no_valid_versioned_records")
     if any("versions_mismatch" in reason for reason in report["filter_reasons"]) and not protected_conflict:
         raise ValidationError("record_versions_mismatch_no_stage_committed")
@@ -922,8 +966,8 @@ def _persist_batch(output_dir: Path, records: list, origins: list, config: dict,
         os.replace(staging, destination)
     stage_manifest_path = destination / "stage_manifest.json"
     state_descriptor = next(d for d in stage["files"] if d["kind"] == "split_state")
-    new = deepcopy(old) if old else {"schema_version": "nosl.dataset.manifest.v2", "pipeline_version": PIPELINE_VERSION,
-                                     "public_identity_scheme": PUBLIC_IDENTITY_SCHEME,
+    new = deepcopy(old) if old else {"schema_version": "nosl.dataset.manifest.v2", "pipeline_version": stage["lock"]["pipeline_version"],
+                                     "public_identity_scheme": stage["lock"]["public_identity_scheme"],
                                      "lock": stage["lock"], "versions": stage["versions"], "observation_schema": stage["observation_schema"], "stages": [],
                                      "frozen_test_shards": [d for d in stage["files"] if d["kind"] == "test"]}
     new["stages"].append({"id": stage_id, "manifest": str(relative_dir / "stage_manifest.json"), "sha256": file_hash(stage_manifest_path)})
@@ -1018,7 +1062,7 @@ def main(argv: list[str] | None = None) -> int:
                     generation_config = read_json(sidecar)
                     require(file_hash(sidecar) == descriptor["sha256"], "journal_config_changed_during_read")
                     journal_inputs.append(descriptor)
-                provenance.extend(journal_provenance(journal_rows, generation_config))
+                provenance.extend(journal_provenance(journal_rows, generation_config, identity_scheme=V2_IDENTITY if config.get("schema_version") == "nosl.dataset.config.v2" else PUBLIC_IDENTITY_SCHEME))
             require(all(file_hash(p) == d["sha256"] for p, d in zip(args.provenance_journals, journal_inputs)),
                     "journal_changed_during_read")
             inputs.extend(journal_inputs)
