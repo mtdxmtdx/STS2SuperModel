@@ -15,6 +15,7 @@ internal sealed record NativeTapeCollectionOptions
     public bool EnableConditioning { get; init; } = true;
     public bool CompareUnconditioned { get; init; }
     public int ReferenceMaxAttempts { get; init; } = 16;
+    public int InitialPrefixMaxTrials { get; init; } = 64;
     public int WallBudgetSeconds { get; init; } = 300;
 }
 
@@ -22,7 +23,7 @@ internal sealed record NativeTapeCollectionOptions
 internal static class NativeTapeReplayDataset
 {
     internal const string DatasetVersion = "nosl.native-tape-replay-development.v1";
-    internal const string ImplementationVersion = "nosl-native-tape-structured-conditional-v6";
+    internal const string ImplementationVersion = "nosl-native-tape-structured-conditional-v7";
 
     internal static async Task<object> CollectAsync(NativeTapeCollectionOptions options, TeacherOptions teacherOptions,
         CancellationToken cancellationToken = default)
@@ -41,7 +42,7 @@ internal static class NativeTapeReplayDataset
             || teacherOptions.FormalLabels || teacherOptions.EvaluationSeeds.Length > 16
             || teacherOptions.ExplorationSeeds.Length > 16 || teacherOptions.MaxPosteriorAttempts > 4096
             || teacherOptions.MaxDecisions > 300 || options.ReferenceMaxAttempts is < 1 or > 256
-            || options.WallBudgetSeconds is < 1 or > 900)
+            || options.WallBudgetSeconds is < 1 or > 900 || options.InitialPrefixMaxTrials is < 1 or > 256)
             throw new ArgumentException("Tape engineering bounds:16 source draws,16 worlds,4096 proposals,300 decisions,900 seconds; no formal labels");
         using var budget = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         budget.CancelAfter(TimeSpan.FromSeconds(options.WallBudgetSeconds));
@@ -68,7 +69,7 @@ internal static class NativeTapeReplayDataset
                 finally { await sourceWorld.DisposeAsync(); }
                 existing++;
                 // No original world, seed, tape, or source trace enters inference.
-                var source = new NativeTapeReplaySource(publicRoot, prior, options.EnableConditioning, budget.Token);
+                var source = new NativeTapeReplaySource(publicRoot, prior, options.EnableConditioning, budget.Token, options.InitialPrefixMaxTrials);
                 if (source.UsesPrimitiveConditioning) acceleratedRoots++;
                 var result = await CombatTeacher.EvaluateAsync(source, teacherOptions);
                 string runIdentity = NativePilotDataset.SourceIdentity(recipe.SourceIdentity);
@@ -101,6 +102,7 @@ internal static class NativeTapeReplayDataset
                 audit["neow_conditioning_eligible"] = source.UsesConditionalNeow;
                 audit["first_reward_conditioning_eligible"] = source.UsesConditionalFirstReward;
                 audit["first_encounter_conditioning_eligible"] = source.UsesConditionalFirstEncounter;
+                audit["initial_prefix_conditioning_eligible"] = source.UsesConditionalInitialPrefix;
                 audit["public_local_decision_conditioning"] = source.ConditionedPublicDecisionIndex;
                 audit["public_combat_coordinate_conditioning"] = source.ConditionedPublicCombatIndex;
                 audit["conditioning_reason"] = source.ConditioningReason;
@@ -118,7 +120,7 @@ internal static class NativeTapeReplayDataset
                 accepted += acceptedHere; allocated += result.Costs.WorldsAllocated; settled += result.Costs.WorldsCompleted;
                 publicRoots.Add(Hash(PublicJson.Serialize(publicRoot))); sourceRuns.Add(runIdentity);
                 attempts.Add(new { sourceDrawSeed, recipe, status = "existing_root_evaluated", source.UsesConditionalShuffle,
-                    source.UsesConditionalHp, source.UsesConditionalNeow, source.UsesConditionalFirstReward, source.UsesConditionalFirstEncounter,
+                    source.UsesConditionalHp, source.UsesConditionalNeow, source.UsesConditionalFirstReward, source.UsesConditionalFirstEncounter, source.UsesConditionalInitialPrefix,
                     source.ConditioningReason, acceptedPosteriorDraws = acceptedHere, proposalAttempts = source.ProposalAudit.Length,
                     allocatedWorlds = result.Costs.WorldsAllocated, settledWorlds = result.Costs.WorldsCompleted,
                     seconds = attemptTimer.Elapsed.TotalSeconds });

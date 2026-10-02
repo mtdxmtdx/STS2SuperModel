@@ -53,4 +53,4 @@ tools/                 两进程协议烟测
 
 旧源码、数据和提交历史保留在 [codex/history-2026-10-01](https://github.com/mtdxmtdx/STS2SuperModel/tree/codex/history-2026-10-01)，固定归档提交为 [b0bb07b](https://github.com/mtdxmtdx/STS2SuperModel/tree/b0bb07bdd09f8ae7833724126b18738c93d09eb4)。本次工作发布为 STS2SuperModel 的独立分支与草稿PR，未合并main；实验权重与数据单独保存，不混入源码提交。
 
-通用原生回放与原先验预算门槛见 [NATIVE_OWNED_REPLAY.md](docs/NATIVE_OWNED_REPLAY.md)。最新[条件随机带采样](docs/NATIVE_CONDITIONAL_TAPE.md)在固定8开局接受16个世界、完成160条分支。后续事件控制器循环已修复，公开v3章节/楼层/战斗记忆通道及独立学生边界已验证。完整原生回归1,242项通过；精确遭遇提议使一个带入早期资产的根局面取得2个独立后验世界的提议数降至59。其他HP/飞靴消耗历史仍形成瓶颈，预定门槛未通过，当前继续改进采样算法，未扩大生产数据。
+通用原生回放与原先验预算门槛见 [NATIVE_OWNED_REPLAY.md](docs/NATIVE_OWNED_REPLAY.md)。最新[条件随机带采样](docs/NATIVE_CONDITIONAL_TAPE.md)保留固定8开局的16个世界、160条结算分支；v7联合抽取原生章节/地图前缀，通过两个既有带入资产根局面的诊断门槛，22条分支结算18条。完整原生回归1,259项通过。另行预声明的16个新开发根局面中，12个多动作带入资产根局面均未完成，总计226条分支结算20条、计算截断206条、引擎错误0；广度门槛仍未通过。当前继续完善真实公开历史记录及组合条件提议，未扩大生产数据或再次拟合。

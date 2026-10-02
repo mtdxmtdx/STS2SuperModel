@@ -24,6 +24,10 @@ internal sealed class NativeLabelTape
     private readonly NativeFirstRewardCondition? _firstRewardCondition;
     private readonly NativeFirstEncounterCondition? _firstEncounterCondition;
     private NativeFirstEncounterProposal? _firstEncounterPlan;
+    private readonly NativeInitialPrefixProposal? _initialPrefixPlan;
+    private RunState? _constructingRun;
+    private int _prefixWordsReplayed;
+    private bool _prefixComplete, _prefixFailed;
     private NativeFirstRewardProposal? _firstRewardPlan;
     private int _currentCombatIndex = -1;
     private readonly string? _expectedEntryJson;
@@ -49,21 +53,33 @@ internal sealed class NativeLabelTape
     internal NativeLabelTape(NativeTapeRecipe recipe, NativeInitialShuffleCondition? condition = null,
         IReadOnlyDictionary<LabelRandomState, ulong>? overrides = null, string? expectedEntryJson = null,
         NativeInitialHpCondition? hpCondition = null, NativeNeowCondition? neowCondition = null,
-        NativeFirstRewardCondition? firstRewardCondition = null, NativeFirstEncounterCondition? firstEncounterCondition = null)
+        NativeFirstRewardCondition? firstRewardCondition = null, NativeFirstEncounterCondition? firstEncounterCondition = null, NativeInitialPrefixProposal? initialPrefixPlan = null)
     {
         _recipe = recipe; _condition = condition; _expectedEntryJson = expectedEntryJson ?? condition?.EntryJson;
         _hpCondition = hpCondition;
         _neowCondition = neowCondition;
         _firstRewardCondition = firstRewardCondition;
         _firstEncounterCondition = firstEncounterCondition;
+        _initialPrefixPlan = initialPrefixPlan;
+        if (initialPrefixPlan is not null && initialPrefixPlan.SelectedRecipe != recipe)
+            throw new ArgumentException("Initial prefix and native replay recipe differ", nameof(initialPrefixPlan));
         _overrides = overrides is null ? [] : new(overrides);
+        if (initialPrefixPlan is not null)
+            foreach (var word in initialPrefixPlan.Trace)
+            {
+                if (_overrides.TryGetValue(word.State, out var previous) && previous != word.Word)
+                    throw new InvalidOperationException("Prepared initial prefix conflicts with a replayed oracle cell");
+                _overrides[word.State] = word.Word;
+            }
     }
 
-    internal IDisposable EnterScope() => LabelRandomScope.Enter(Word, BeginShuffle, BeginMonsterHp, BeginCombatRewardGeneration, BeginNormalEncounterGeneration);
-    internal NativeLabelTape ReplayCopy() => new(_recipe, _condition, _overrides, _expectedEntryJson, _hpCondition, _neowCondition, _firstRewardCondition, _firstEncounterCondition);
+    internal IDisposable EnterScope() => LabelRandomScope.Enter(Word, BeginShuffle, BeginMonsterHp, BeginCombatRewardGeneration, BeginNormalEncounterGeneration, BeginMapGeneration);
+    internal NativeLabelTape ReplayCopy() => new(_recipe, _condition, _overrides, _expectedEntryJson, _hpCondition, _neowCondition, _firstRewardCondition, _firstEncounterCondition, _initialPrefixPlan);
     internal void AttachHypotheticalRun(RunState run)
     {
         if (_run is not null) throw new InvalidOperationException("A hypothetical tape already owns a native run");
+        if (_initialPrefixPlan is not null && (!_prefixComplete || !ReferenceEquals(_constructingRun, run)))
+            throw new InvalidOperationException("Initial prefix did not finish in this native construction");
         _run = run;
     }
 
@@ -81,6 +97,21 @@ internal sealed class NativeLabelTape
 
     private ulong Word(LabelRandomState state)
     {
+        if (_initialPrefixPlan is not null && !_prefixComplete)
+        {
+            try
+            {
+                if (_prefixWordsReplayed >= _initialPrefixPlan.Trace.Count
+                    || _initialPrefixPlan.Trace[_prefixWordsReplayed].State != state)
+                    throw new InvalidOperationException("Native initial prefix changed its complete ordered RNG trace");
+                var expected = _initialPrefixPlan.Trace[_prefixWordsReplayed++];
+                if (!_overrides.TryGetValue(state, out var value) || value != expected.Word)
+                    throw new InvalidOperationException("Native initial prefix changed an aliased oracle word");
+                // Internal act/map aliases were jointly sampled. Reuse is required.
+                _visited.Add(state); return value;
+            }
+            catch { _prefixFailed = true; throw; }
+        }
         _visited.Add(state);
         if (_overrides.TryGetValue(state, out ulong forced)) return forced;
         Span<byte> bytes = stackalloc byte[48];
@@ -128,6 +159,8 @@ internal sealed class NativeLabelTape
 
     internal void ValidateProposalCompletion()
     {
+        if (_initialPrefixPlan is not null && !_prefixComplete)
+            throw new InvalidOperationException("Native initial prefix is incomplete");
         if (_firstEncounterCondition is not null && _firstEncounterPlan is null)
             throw new InvalidOperationException("An encounter-conditioned root was reached without its native normal encounter generation");
         if (_firstRewardCondition is not null && _firstRewardPlan is null)
@@ -144,6 +177,7 @@ internal sealed class NativeLabelTape
     {
         // No random rejection may hide a missing required hook or a partial plan.
         ValidateProposalCompletion();
+        if (_initialPrefixPlan is not null && !_initialPrefixPlan.AcceptCorrection(nextWord)) return false;
         if (_firstEncounterPlan is not null && !_firstEncounterPlan.AcceptCorrection(nextWord)) return false;
         if (_neowPlan is not null && !_neowPlan.AcceptCorrection(nextWord)) return false;
         if (_firstRewardPlan is not null && !_firstRewardPlan.AcceptCorrection(nextWord)) return false;
@@ -172,6 +206,28 @@ internal sealed class NativeLabelTape
         var random = new Rng(_recipe.ProposalSeed, "nosl-native-tape-conditional-first-reward-v1");
         _firstRewardPlan = _firstRewardCondition.CreateProposal(context, random.NextUnsignedLong);
         return ForcePrefixWords(_firstRewardPlan.RawWords, context.Rng, "first reward");
+    }
+
+    private IDisposable? BeginMapGeneration(LabelMapGenerationContext context)
+    {
+        if (_initialPrefixPlan is null) return null;
+        if (_constructingRun is not null || _run is not null || _prefixComplete)
+            throw new InvalidOperationException("Initial map prefix was entered again outside native construction");
+        _initialPrefixPlan.ValidateMapBoundary(context, _prefixWordsReplayed);
+        _constructingRun = context.Run;
+        return new PrefixCompletionScope(() =>
+        {
+            if (_prefixFailed) return;
+            if (_prefixWordsReplayed != _initialPrefixPlan.Trace.Count)
+                throw new InvalidOperationException("Native map did not replay its complete selected prefix");
+            _prefixComplete = true;
+        });
+    }
+
+    private sealed class PrefixCompletionScope(Action finish) : IDisposable
+    {
+        private bool _disposed;
+        public void Dispose() { if (_disposed) return; _disposed = true; finish(); }
     }
 
     private IDisposable? BeginNormalEncounterGeneration(LabelNormalEncounterContext context)

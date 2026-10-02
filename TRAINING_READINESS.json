@@ -28,7 +28,7 @@
     "data_pipeline_passed": 145,
     "generator_archive_passed": 63,
     "integrated_v2_teacher_to_backward": true,
-    "full_current_integration_passed": 1242,
+    "full_current_integration_passed": 1259,
     "natural_source_tests_passed": 5,
     "native_recorder_tests_passed": 7,
     "natural_raw_roots": 200,
@@ -98,7 +98,7 @@
     "confirmed_hard_preference_cases": 2,
     "confirmed_numerically_evaluated_preference_cases": 1,
     "cross_version_protection_cases": 24,
-    "current_full_suite": "PASS_1242_OF_1242",
+    "current_full_suite": "PASS_1259_OF_1259",
     "v2_trainer_no_fit_tests_passed": 21,
     "v2_student_no_backward_tests_passed": 19,
     "student_regression": 185,
@@ -128,15 +128,17 @@
     "conditional_tape_broad_production_admitted": false,
     "conditional_tape_opening_throughput_gate_passed": true,
     "conditional_tape_public_context_verified": true,
-    "conditional_tape_carry_in_accepted_worlds": 2,
-    "conditional_tape_carry_in_proposals": 1083,
+    "conditional_tape_carry_in_accepted_worlds": 4,
+    "conditional_tape_carry_in_proposals": 583,
     "public_v3_backward_passes": 1,
     "public_v3_optimizer_steps": 0,
-    "conditional_tape_complete_carry_in_roots": 1,
-    "conditional_tape_carry_in_gate_passed": false
+    "conditional_tape_complete_carry_in_roots": 2,
+    "conditional_tape_carry_in_gate_passed": false,
+    "conditional_tape_fresh_carry_in_roots": 12,
+    "conditional_tape_fresh_complete_carry_in_roots": 0
   },
   "remaining": [
-    "Exact encounter conditioning reduces the complete carry-in root to2worlds/59proposals, but the two-root gate still fails. Across4fixedroots:4settled/22assignedbranches,18ComputeTruncated,0EngineError. The multi-action root is limited by priorHP and a public WingedBoots charge difference; completed roots have only end_turn. Map-component conditioning and broader public-transcript sampling are under analysis; scale/fit remain paused.",
+    "V7 joint native initial-prefix conditioning passes the reused two-carry-in diagnostic gate:18/22branches settle,4ComputeTruncated,0EngineError. A separately predeclared16root development probe fails the breadth gate:0/12multi-action carry-in roots complete,20/226branches settle,206ComputeTruncated,0EngineError. Full public run-evidence recording and compositional likelihood proposals are being implemented; production scale and new fits remain paused.",
     "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
     "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
     "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3–M6 prerequisites"
@@ -163,6 +165,6 @@
   "native_encounter_extension": "NATIVE_ENCOUNTER_EXTENSION_SUMMARY.json",
   "owned_native_replay_verification": "configs/owned_native_replay_verification.json",
   "owned_native_runtime": "nosl-owned-native-run-replay-v1",
-  "conditional_native_tape_verification": "configs/conditional_native_tape_v6_verification.json",
+  "conditional_native_tape_verification": "configs/conditional_native_tape_v7_verification.json",
   "public_run_context_verification": "docs/PUBLIC_RUN_CONTEXT.md"
 }

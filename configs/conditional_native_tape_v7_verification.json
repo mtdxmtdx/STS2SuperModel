@@ -1,0 +1,796 @@
+{
+  "schema": "nosl.conditional-native-tape-verification.v7",
+  "source_commit": "863f5e45658be14f041055a1839979101615d9a7",
+  "status": "JOINT_PREFIX_CORRECTNESS_AND_DIAGNOSTIC_GATE_PASSED_FRESH_BREADTH_GATE_FAILED",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes_since_v4": 0,
+  "new_production_dataset_rows": 0,
+  "sampler_version": "nosl-native-tape-structured-conditional-v7",
+  "prior_and_all_four_diagnostic_public_inputs_unchanged_from_v6": true,
+  "diagnostic_roots_are_reused_not_new_unique_data": true,
+  "proposal_scope": "Jointly draw a fresh hypothetical RunSeed and complete independent native act/map oracle prefix; retain only a prefix satisfying the public act, necessary second-route type and observed WingedBoots charge certificate. No source seed, source graph or trial map object is supplied to native replay.",
+  "alias_and_stopping_law": "All repeated full pre-draw states within a trial reuse one word. Every clean nonmatch is a completed native trial; native errors and cancellation stop with partial accounting. With clean-miss probability b and fixed K, successful subdensity is p(prefix) 1[event] sum(b^j,j=0..K-1). This multiplier depends only on the fixed public root, so its reciprocal cancels with the same global envelope. If every trial completes, b=1-Z and p/q=Z/(1-(1-Z)^K). No numeric estimate of Z or claim that p/q equals one is used. Holding a latent RunSeed/history while retrying maps was explicitly rejected because its normalization may vary.",
+  "replay_guards": "Ordered act/map trace and full aliases replay during ordinary native construction. The selected RunSeed, construction phase, map RNG address and RunState owner are checked. Later proposals cannot overwrite visited cells. Exact public packet equality remains the acceptance gate.",
+  "failure_accounting": "Completed scratch trials, total words/distinct cells, selected trace, auxiliary and selected recipes, and RunSeed draws are distinct. Component budget exhaustion is computationally inconclusive, preserving all requested candidate mass and masks.",
+  "native_suite": {
+    "passed": 1259,
+    "failed": 0,
+    "skipped": 0,
+    "path": "artifacts/reports/conditional-tape/initial-prefix-v7-aggregate.trx",
+    "bytes": 1860624,
+    "sha256": "f40d4d6580b1cb1ebafc9c071602e3e1e34b3504044debc1f74e95f56ab920f4"
+  },
+  "core_suite": {
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "duration_reported": "4 m 18 s",
+    "trx_duration_seconds": 259.202555,
+    "trx_counters": {
+      "total": 4496,
+      "executed": 4493,
+      "passed": 4493,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "skipped_count_source": "Three per-test NotExecuted outcomes, matching stdout and total minus executed. The test adapter leaves aggregate notExecuted at zero.",
+    "build_and_test_wall_seconds": 277.13205314399966,
+    "evidence_kind": "fresh_single_full_core_run_with_redirected_stdout_stderr_and_trx",
+    "exit_code": 0,
+    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 18 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "raw_log_available": true,
+    "trx_available": true,
+    "log_path": "artifacts/initial-prefix-core-verification/full-core.log",
+    "log_sha256": "8f87fa132fbd02313ee703f63f572c074b73601767e992fc5cc2f6dcf8c4be09",
+    "trx_path": "artifacts/initial-prefix-core-verification/test-results/vendor-core.trx",
+    "trx_sha256": "79e7b710da1f321c7004d8e60b6c81619d1e220891d650e5fec493f9f9c771a4",
+    "run_record_path": "artifacts/initial-prefix-core-verification/run-record.json",
+    "run_record_sha256": "0e052fc1717af0896cb07e0f02278816d3064d2027bceb66be2c2d54333f714a",
+    "invocations": 1,
+    "rerun_for_packaging": true,
+    "source_worktree": "STS2SuperModel-coverage",
+    "verified_source_commit": "863f5e45658be14f041055a1839979101615d9a7",
+    "build_artifacts": "artifacts/initial-prefix-core-verification",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/initial-prefix-core-verification --nologo -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core.trx' --results-directory artifacts/initial-prefix-core-verification/test-results",
+    "command_note": "Portable replay command; the results directory is shown relative to the repository. The exact process argv is preserved in run-record.json. Run after sourcing the existing shared .NET 9 environment. Build and tests used the isolated artifacts path with one MSBuild worker, node reuse and shared compilation disabled, and NuGet auditing disabled. The process stdout and stderr were redirected directly to the preserved log.",
+    "started_at_utc": "2026-10-02T14:42:39.610262+00:00",
+    "finished_at_utc": "2026-10-02T14:47:16.742523+00:00",
+    "src_git_tree": "fba3fba57cf2d985b886db0f57a4128ebd30750b",
+    "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+    "test_assembly_path": "artifacts/initial-prefix-core-verification/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "de4c36d118f108320a1c7646c099eb6ad4d494facc9f3891fb63bc35040df14d",
+    "core_assembly_path": "artifacts/initial-prefix-core-verification/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "e30d0da9045ef15eeff7c8d525494680fbec400b9ebfd5efe5644542978ec93a",
+    "assembly_hash_capture": "Captured from the isolated artifacts immediately after the fresh full suite; no later build or test was run there.",
+    "verified_source_manifest_sha256": "f608f059050956a605c88c262d3d6bed86deb5cb7ca4d3c561ff36437c9ad592"
+  },
+  "vendor_reconstruction": {
+    "path": "configs/vendor_patch_verification.json",
+    "bytes": 8695,
+    "sha256": "648b9f7065d96567bab429dca5f9af06bf5b6b5918ee4a7f9719c1145564a497"
+  },
+  "independent_review": "Scoped clearance of joint law, optional-stopping treatment, alias trace, selected recipe replay, constructor cleanup, correction composition and teacher failure masks.",
+  "fixed_diagnostic_probe": {
+    "priorIdentity": "56b2f605f9b4fa82a9c5ce8d7ce0513310c552d2bc41e08eee88a2d9eddb25c4",
+    "prior": {
+      "schemaVersion": "nosl.native-state-tape-prior.v1",
+      "execution": {
+        "maxFloors": 8,
+        "sourceDecisionHorizon": 1024,
+        "sourcePolicyId": "nosl-public-rules-v2",
+        "outsideCombatScript": "nosl-natural-public-script-v3",
+        "publicContextProfile": "nosl.public-run-context.v1"
+      },
+      "eligibleCombats": 3,
+      "eligibleDecisionsPerCombat": 8,
+      "primitiveLaw": "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1",
+      "primitiveImplementation": "sha256-address-expansion-with-explicit-conditioned-overrides-v1",
+      "rootLaw": "independent-uniform-fixed-combat-and-local-decision-indices-v1",
+      "outsideCombatScript": "nosl-natural-public-script-v3"
+    },
+    "sourceDrawsRequested": 4,
+    "existingRoots": 4,
+    "recordedRoots": 4,
+    "distinctRecordedPublicRoots": 4,
+    "distinctRecordedSourceRuns": 4,
+    "acceptedPosteriorDraws": 6,
+    "allocatedCandidateWorlds": 22,
+    "settledCandidateWorlds": 18,
+    "elapsedSeconds": 46.3547291,
+    "peakWorkerMemoryBytes": 140382208,
+    "budgetExpired": false,
+    "proposal_statuses": {
+      "public_constraint_mismatch": 587,
+      "accepted": 6,
+      "absent_under_declared_source_horizon": 3
+    },
+    "terminal_statuses": {
+      "Win": 18,
+      "ComputeTruncated": 4
+    },
+    "source_breakdown": [
+      {
+        "source_draw_seed": 9001,
+        "combat_index": 1,
+        "decision_index": 1,
+        "candidate_actions": 7,
+        "allocated": 14,
+        "completed": 14,
+        "complete": true,
+        "accepted_worlds": 2,
+        "proposals": 55,
+        "accepted_positions": [
+          {
+            "sample_call": 1,
+            "attempt": 29
+          },
+          {
+            "sample_call": 2,
+            "attempt": 26
+          }
+        ],
+        "statuses": {
+          "public_constraint_mismatch": 53,
+          "accepted": 2
+        },
+        "nonmatch_reasons": {
+          "First native combat HP differs from the public next entry: proposed=45, required=49": 6,
+          "First native combat HP differs from the public next entry: proposed=48, required=49": 5,
+          "First native combat HP differs from the public next entry: proposed=43, required=49": 5,
+          "First native combat HP differs from the public next entry: proposed=47, required=49": 6,
+          "First native combat HP differs from the public next entry: proposed=32, required=49": 1,
+          "First native combat HP differs from the public next entry: proposed=50, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=39, required=49": 5,
+          "First native combat HP differs from the public next entry: proposed=51, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=42, required=49": 4,
+          "First native combat HP differs from the public next entry: proposed=36, required=49": 1,
+          "First native combat HP differs from the public next entry: proposed=46, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=53, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=35, required=49": 1,
+          "First native combat HP differs from the public next entry: proposed=52, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=38, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=30, required=49": 1,
+          "First native combat HP differs from the public next entry: proposed=40, required=49": 1,
+          "First native combat HP differs from the public next entry: proposed=44, required=49": 1,
+          "First native combat HP differs from the public next entry: proposed=55, required=49": 2,
+          "First native combat HP differs from the public next entry: proposed=34, required=49": 2
+        },
+        "initial_prefix_eligible": true,
+        "complete_prefix_trials": 287,
+        "usable_action_rows": 7,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 9002,
+        "combat_index": 2,
+        "decision_index": 6,
+        "candidate_actions": 2,
+        "allocated": 4,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 512,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 509,
+          "absent_under_declared_source_horizon": 3
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 509,
+          "absent_or_full_packet_difference": 3
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 9003,
+        "combat_index": 0,
+        "decision_index": 4,
+        "candidate_actions": 1,
+        "allocated": 2,
+        "completed": 2,
+        "complete": true,
+        "accepted_worlds": 2,
+        "proposals": 13,
+        "accepted_positions": [
+          {
+            "sample_call": 1,
+            "attempt": 1
+          },
+          {
+            "sample_call": 2,
+            "attempt": 12
+          }
+        ],
+        "statuses": {
+          "accepted": 2,
+          "public_constraint_mismatch": 11
+        },
+        "nonmatch_reasons": {
+          "Native initial monster roster differs from the public opening": 11
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 1,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 9004,
+        "combat_index": 1,
+        "decision_index": 4,
+        "candidate_actions": 1,
+        "allocated": 2,
+        "completed": 2,
+        "complete": true,
+        "accepted_worlds": 2,
+        "proposals": 16,
+        "accepted_positions": [
+          {
+            "sample_call": 1,
+            "attempt": 4
+          },
+          {
+            "sample_call": 2,
+            "attempt": 12
+          }
+        ],
+        "statuses": {
+          "public_constraint_mismatch": 14,
+          "accepted": 2
+        },
+        "nonmatch_reasons": {
+          "First native combat HP differs from the public next entry: proposed=26, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=44, required=43": 4,
+          "First native combat HP differs from the public next entry: proposed=40, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=48, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=31, required=43": 1,
+          "Published target combat entry differs": 1,
+          "First native combat HP differs from the public next entry: proposed=47, required=43": 2,
+          "First native combat HP differs from the public next entry: proposed=41, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=45, required=43": 1,
+          "First native combat HP differs from the public next entry: proposed=33, required=43": 1
+        },
+        "initial_prefix_eligible": true,
+        "complete_prefix_trials": 37,
+        "usable_action_rows": 1,
+        "pairwise_targets": 0
+      }
+    ]
+  },
+  "fixed_gate": {
+    "required_complete_genuine_carry_in_roots": 2,
+    "actual": 2,
+    "passed": true,
+    "interpretation": "A reused diagnostic gate, not general throughput or independent test evidence."
+  },
+  "fresh_development_probe": {
+    "priorIdentity": "56b2f605f9b4fa82a9c5ce8d7ce0513310c552d2bc41e08eee88a2d9eddb25c4",
+    "prior": {
+      "schemaVersion": "nosl.native-state-tape-prior.v1",
+      "execution": {
+        "maxFloors": 8,
+        "sourceDecisionHorizon": 1024,
+        "sourcePolicyId": "nosl-public-rules-v2",
+        "outsideCombatScript": "nosl-natural-public-script-v3",
+        "publicContextProfile": "nosl.public-run-context.v1"
+      },
+      "eligibleCombats": 3,
+      "eligibleDecisionsPerCombat": 8,
+      "primitiveLaw": "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1",
+      "primitiveImplementation": "sha256-address-expansion-with-explicit-conditioned-overrides-v1",
+      "rootLaw": "independent-uniform-fixed-combat-and-local-decision-indices-v1",
+      "outsideCombatScript": "nosl-natural-public-script-v3"
+    },
+    "sourceDrawsRequested": 16,
+    "existingRoots": 16,
+    "recordedRoots": 16,
+    "distinctRecordedPublicRoots": 16,
+    "distinctRecordedSourceRuns": 16,
+    "acceptedPosteriorDraws": 4,
+    "allocatedCandidateWorlds": 226,
+    "settledCandidateWorlds": 20,
+    "elapsedSeconds": 95.3343854,
+    "peakWorkerMemoryBytes": 141680640,
+    "budgetExpired": false,
+    "proposal_statuses": {
+      "public_constraint_mismatch": 1733,
+      "absent_under_declared_source_horizon": 1,
+      "accepted": 4,
+      "public_packet_mismatch": 68
+    },
+    "terminal_statuses": {
+      "ComputeTruncated": 206,
+      "Win": 20
+    },
+    "source_breakdown": [
+      {
+        "source_draw_seed": 10001,
+        "combat_index": 1,
+        "decision_index": 5,
+        "candidate_actions": 6,
+        "allocated": 12,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 128
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10002,
+        "combat_index": 1,
+        "decision_index": 7,
+        "candidate_actions": 4,
+        "allocated": 8,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 127,
+          "absent_under_declared_source_horizon": 1
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 127,
+          "absent_or_full_packet_difference": 1
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10003,
+        "combat_index": 0,
+        "decision_index": 2,
+        "candidate_actions": 6,
+        "allocated": 12,
+        "completed": 12,
+        "complete": true,
+        "accepted_worlds": 2,
+        "proposals": 11,
+        "accepted_positions": [
+          {
+            "sample_call": 1,
+            "attempt": 3
+          },
+          {
+            "sample_call": 2,
+            "attempt": 8
+          }
+        ],
+        "statuses": {
+          "public_constraint_mismatch": 9,
+          "accepted": 2
+        },
+        "nonmatch_reasons": {
+          "Native initial monster roster differs from the public opening": 9
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 6,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10004,
+        "combat_index": 1,
+        "decision_index": 6,
+        "candidate_actions": 6,
+        "allocated": 12,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 119,
+          "Published Neow positive is absent from this native pool": 9
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10005,
+        "combat_index": 2,
+        "decision_index": 2,
+        "candidate_actions": 7,
+        "allocated": 14,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 128
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10006,
+        "combat_index": 2,
+        "decision_index": 3,
+        "candidate_actions": 6,
+        "allocated": 12,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 114,
+          "Published Neow positive is absent from this native pool": 14
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10007,
+        "combat_index": 2,
+        "decision_index": 3,
+        "candidate_actions": 5,
+        "allocated": 10,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 128
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10008,
+        "combat_index": 2,
+        "decision_index": 0,
+        "candidate_actions": 10,
+        "allocated": 20,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 128
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10009,
+        "combat_index": 0,
+        "decision_index": 6,
+        "candidate_actions": 7,
+        "allocated": 14,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 116,
+          "Published Neow positive is absent from this native pool": 12
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10010,
+        "combat_index": 1,
+        "decision_index": 5,
+        "candidate_actions": 9,
+        "allocated": 18,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 116,
+          "Published Neow positive is absent from this native pool": 12
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10011,
+        "combat_index": 2,
+        "decision_index": 1,
+        "candidate_actions": 9,
+        "allocated": 18,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 116,
+          "Published Neow positive is absent from this native pool": 12
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10012,
+        "combat_index": 0,
+        "decision_index": 3,
+        "candidate_actions": 4,
+        "allocated": 8,
+        "completed": 8,
+        "complete": true,
+        "accepted_worlds": 2,
+        "proposals": 3,
+        "accepted_positions": [
+          {
+            "sample_call": 1,
+            "attempt": 2
+          },
+          {
+            "sample_call": 2,
+            "attempt": 1
+          }
+        ],
+        "statuses": {
+          "public_constraint_mismatch": 1,
+          "accepted": 2
+        },
+        "nonmatch_reasons": {
+          "Native initial monster roster differs from the public opening": 1
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 4,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10013,
+        "combat_index": 0,
+        "decision_index": 3,
+        "candidate_actions": 1,
+        "allocated": 2,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 60,
+          "public_packet_mismatch": 68
+        },
+        "nonmatch_reasons": {
+          "Published Neow positive is absent from this native pool": 60,
+          "absent_or_full_packet_difference": 68
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10014,
+        "combat_index": 2,
+        "decision_index": 0,
+        "candidate_actions": 9,
+        "allocated": 18,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 119,
+          "Published Neow positive is absent from this native pool": 9
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10015,
+        "combat_index": 1,
+        "decision_index": 0,
+        "candidate_actions": 16,
+        "allocated": 32,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 128
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      },
+      {
+        "source_draw_seed": 10016,
+        "combat_index": 1,
+        "decision_index": 0,
+        "candidate_actions": 8,
+        "allocated": 16,
+        "completed": 0,
+        "complete": false,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "accepted_positions": [],
+        "statuses": {
+          "public_constraint_mismatch": 128
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 119,
+          "Published Neow positive is absent from this native pool": 9
+        },
+        "initial_prefix_eligible": false,
+        "complete_prefix_trials": 0,
+        "usable_action_rows": 0,
+        "pairwise_targets": 0
+      }
+    ]
+  },
+  "fresh_gate": {
+    "predeclared_sources": [
+      10001,
+      10002,
+      10003,
+      10004,
+      10005,
+      10006,
+      10007,
+      10008,
+      10009,
+      10010,
+      10011,
+      10012,
+      10013,
+      10014,
+      10015,
+      10016
+    ],
+    "existing_multi_action_carry_in_roots": 12,
+    "complete_multi_action_carry_in_roots": 0,
+    "required_fraction_at_least": 0.5,
+    "actual_fraction": 0,
+    "required_one_combat_index_2_multi_action_root": true,
+    "actual_complete_combat_index_2_multi_action_roots": 0,
+    "all_requested_sources_and_candidate_worlds_accounted": true,
+    "engine_errors": 0,
+    "passed": false,
+    "exposure": "First evaluated only after v7 correctness review and aggregate tests passed. These roots are now seen development cases, not a reusable blind test. Original494sealed test inputs were not decoded.",
+    "diagnosis": "None of the12carry-in roots meets the narrow first-reward origin certificate, so the joint prefix accelerator is not applied. General public acquisition/choice history and compositional likelihood correction remain required."
+  },
+  "policy_label_limit": "The seven-action diagnostic root now has complete HP/outcome heads: play mean HP41 to41.5 versus end-turn32, with only two worlds. Absolute resource utility remains masked and pairwise targets empty. This is engineering signal, not strong ranking or learning evidence.",
+  "validation": {
+    "path": "artifacts/reports/conditional-tape/initial-prefix-v7-public-target-validation.json",
+    "bytes": 4838,
+    "sha256": "f662d4141c4e68cc19a2b69c54dc0d8c8566270c3349116a3eaa87beab867621"
+  },
+  "artifacts": {
+    "later-initial-prefix-v7-request.jsonl": {
+      "path": "artifacts/reports/conditional-tape/later-initial-prefix-v7-request.jsonl",
+      "bytes": 677,
+      "sha256": "67d3301d455bc60442518563359dfedaed92ad61c2a16b6c8027bd6b21744a33"
+    },
+    "later-initial-prefix-v7-predeclaration.json": {
+      "path": "artifacts/reports/conditional-tape/later-initial-prefix-v7-predeclaration.json",
+      "bytes": 982,
+      "sha256": "3d93b7a9be3b62f49f722b68337732fced169f534273e572cb93f42fc57aaac9"
+    },
+    "later-initial-prefix-v7-response.jsonl": {
+      "path": "artifacts/reports/conditional-tape/later-initial-prefix-v7-response.jsonl",
+      "bytes": 1031053,
+      "sha256": "94dd97e4fe3a9748d083c0e824e87999f9c2aa5fcd74914d9ffc5ade8b79ada8"
+    },
+    "later-initial-prefix-v7-resources.json": {
+      "path": "artifacts/reports/conditional-tape/later-initial-prefix-v7-resources.json",
+      "bytes": 149,
+      "sha256": "cefb95d4c10d6814b79fb2468bfb81bea5641f7d9362dad63d36f78906eb9b94"
+    },
+    "fresh-development-cohort-10001-10016-plan.json": {
+      "path": "artifacts/reports/conditional-tape/fresh-development-cohort-10001-10016-plan.json",
+      "bytes": 1569,
+      "sha256": "e6fc6876b0f89629679ecab6ac4ff159cfbd099cc7010c2e189abcd610b97b82"
+    },
+    "fresh-development-v7-request.jsonl": {
+      "path": "artifacts/reports/conditional-tape/fresh-development-v7-request.jsonl",
+      "bytes": 774,
+      "sha256": "bdca5e387deace05b824ce6f0791542e8591103c9621eedb7dae22f4e80c6e01"
+    },
+    "fresh-development-v7-response.jsonl": {
+      "path": "artifacts/reports/conditional-tape/fresh-development-v7-response.jsonl",
+      "bytes": 2594302,
+      "sha256": "91a4b2a8035c9a7d1ef72577a5f9d798fa600fd0cd58266764853d95696f27c6"
+    },
+    "fresh-development-v7-resources.json": {
+      "path": "artifacts/reports/conditional-tape/fresh-development-v7-resources.json",
+      "bytes": 149,
+      "sha256": "4f8993faaf7708dcf47eb2ed8d706c108fe8dd8dec956f4149a4ec09b77effda"
+    }
+  },
+  "next_work": [
+    "Wire opt-in typed public run-evidence producer, replay equality and independent v4 student boundary, retaining strict gaps and old schemas",
+    "Implement compositional native reward/choice proposals with explicit likelihood and alias correction, rather than inferring unknown origins from current assets",
+    "Keep production enlargement and new fitting paused until the predeclared breadth and resource-label quality gates pass"
+  ]
+}

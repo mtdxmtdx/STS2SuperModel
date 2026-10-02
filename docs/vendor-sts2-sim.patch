@@ -154,6 +154,23 @@
 +    internal void RemovePotionInternal(PotionModel potion, PotionMutationKind kind)
 @@ -242,0 +248 @@
 +            OutcomeObserver?.PotionChanged(this, potion.GetType().Name, kind);
+--- a/src/Sts2Sim.Core/Map/StandardActMap.cs
++++ b/src/Sts2Sim.Core/Map/StandardActMap.cs
+@@ -3,0 +4,2 @@
++using Sts2Sim.Core.Content;
++using Sts2Sim.Core.Entities.Ascension;
+@@ -15,0 +18,11 @@
++    /// <summary>The native per-act map RNG, including its original stream name.</summary>
++    public static Rng CreateRng(ulong runSeed, int actIndex) => new(runSeed, $"act_{actIndex + 1}_map");
++
++    /// <summary>Pure native generation, including randomized point counts and every map pass.</summary>
++    public static StandardActMap CreateFor(ActDefinition act, Rng mapRng, AscensionManager ascension,
++        bool hasSecondBoss = false)
++    {
++        MapPointTypeCounts counts = act.GetMapPointTypes(mapRng, ascension);
++        return new StandardActMap(mapRng, act.BaseNumberOfRooms, counts, hasSecondBoss);
++    }
++
 --- a/src/Sts2Sim.Core/Models/CardModel.cs
 +++ b/src/Sts2Sim.Core/Models/CardModel.cs
 @@ -58,0 +59,5 @@
@@ -213,7 +230,7 @@
 +    internal int? NoslSelectedUpgrade => _hasSelectedCard ? _selectedCardUpgradeLevel : null;
 --- /dev/null
 +++ b/src/Sts2Sim.Core/Random/LabelRandomScope.cs
-@@ -0,0 +1,176 @@
+@@ -0,0 +1,196 @@
 +using Sts2Sim.Core.Entities.Creatures;
 +using Sts2Sim.Core.Entities.Players;
 +using Sts2Sim.Core.Content;
@@ -235,6 +252,9 @@
 +
 +/// <summary>The fresh act-zero normal encounter generation boundary.</summary>
 +public sealed record LabelNormalEncounterContext(RunState Run, ActDefinition Act, Rng Rng);
++
++/// <summary>The native map boundary before randomized point counts are generated.</summary>
++public sealed record LabelMapGenerationContext(RunState Run, ActDefinition Act, Rng Rng);
 +
 +/// <summary>
 +/// Explicit label-only distribution departure: substitutes hypothetical random-tape words
@@ -276,15 +296,20 @@
 +    /// Optional label-only scope before the first act's native normal encounter loop.
 +    /// The callback runs without interception; native bag selection remains unchanged.
 +    /// </param>
++    /// <param name="beginMapGeneration">
++    /// Optional label-only scope around native map generation, starting before
++    /// randomized point counts. Initial construction runs before players are added.
++    /// </param>
 +    public static IDisposable Enter(
 +        Func<LabelRandomState, ulong> nextWord,
 +        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null,
 +        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp = null,
 +        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null,
-+        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null)
++        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null,
++        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null)
 +    {
 +        ArgumentNullException.ThrowIfNull(nextWord);
-+        var scope = new Scope(Current.Value, nextWord, beginShuffle, beginMonsterHp, beginCombatReward, beginNormalEncounter);
++        var scope = new Scope(Current.Value, nextWord, beginShuffle, beginMonsterHp, beginCombatReward, beginNormalEncounter, beginMapGeneration);
 +        Current.Value = scope;
 +        return scope;
 +    }
@@ -357,13 +382,24 @@
 +        finally { InsideCallback.Value = false; }
 +    }
 +
++    internal static IDisposable? BeginMapGeneration(RunState run, ActDefinition act, Rng rng)
++    {
++        Scope? scope = Current.Value;
++        if (scope?.BeginMapGeneration is null || InsideCallback.Value) return null;
++        var context = new LabelMapGenerationContext(run, act, rng);
++        InsideCallback.Value = true;
++        try { return scope.BeginMapGeneration(context); }
++        finally { InsideCallback.Value = false; }
++    }
++
 +    private sealed class Scope(
 +        Scope? previous,
 +        Func<LabelRandomState, ulong> nextWord,
 +        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle,
 +        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp,
 +        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward,
-+        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter) : IDisposable
++        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter,
++        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration) : IDisposable
 +    {
 +        public Scope? Previous { get; } = previous;
 +        public Func<LabelRandomState, ulong> NextWord { get; } = nextWord;
@@ -371,6 +407,7 @@
 +        public Func<LabelMonsterHpContext, IDisposable?>? BeginMonsterHp { get; } = beginMonsterHp;
 +        public Func<LabelCombatRewardContext, IDisposable?>? BeginCombatReward { get; } = beginCombatReward;
 +        public Func<LabelNormalEncounterContext, IDisposable?>? BeginNormalEncounter { get; } = beginNormalEncounter;
++        public Func<LabelMapGenerationContext, IDisposable?>? BeginMapGeneration { get; } = beginMapGeneration;
 +
 +        public void Dispose()
 +        {
@@ -471,6 +508,17 @@
 @@ -304,0 +305,2 @@
 +        using IDisposable? labelEncounterScope = actIndex == 0
 +            ? LabelRandomScope.BeginNormalEncounter(this, act) : null;
+@@ -370,6 +372,4 @@
+-        var mapRng = new Rng(Rng.Seed, $"act_{CurrentActIndex + 1}_map");
+-        MapPointTypeCounts pointTypeCounts = act.GetMapPointTypes(mapRng, Ascension);
+-        Map = new StandardActMap(
+-            mapRng,
+-            act.BaseNumberOfRooms,
+-            pointTypeCounts,
++        var mapRng = StandardActMap.CreateRng(Rng.Seed, CurrentActIndex);
++        using IDisposable? labelMapScope = LabelRandomScope.BeginMapGeneration(this, act, mapRng);
++        Map = StandardActMap.CreateFor(
++            act, mapRng, Ascension,
 --- a/src/Sts2Sim.Core/Sts2Sim.Core.csproj
 +++ b/src/Sts2Sim.Core/Sts2Sim.Core.csproj
 @@ -15,0 +16,2 @@

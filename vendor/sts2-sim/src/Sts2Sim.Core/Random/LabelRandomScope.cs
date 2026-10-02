@@ -20,6 +20,9 @@ public sealed record LabelCombatRewardContext(Player Player, Rng Rng, RoomType R
 /// <summary>The fresh act-zero normal encounter generation boundary.</summary>
 public sealed record LabelNormalEncounterContext(RunState Run, ActDefinition Act, Rng Rng);
 
+/// <summary>The native map boundary before randomized point counts are generated.</summary>
+public sealed record LabelMapGenerationContext(RunState Run, ActDefinition Act, Rng Rng);
+
 /// <summary>
 /// Explicit label-only distribution departure: substitutes hypothetical random-tape words
 /// while preserving native draw conversion, generator advancement, counters, and game order.
@@ -60,15 +63,20 @@ public static class LabelRandomScope
     /// Optional label-only scope before the first act's native normal encounter loop.
     /// The callback runs without interception; native bag selection remains unchanged.
     /// </param>
+    /// <param name="beginMapGeneration">
+    /// Optional label-only scope around native map generation, starting before
+    /// randomized point counts. Initial construction runs before players are added.
+    /// </param>
     public static IDisposable Enter(
         Func<LabelRandomState, ulong> nextWord,
         Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null,
         Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp = null,
         Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null,
-        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null)
+        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null,
+        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null)
     {
         ArgumentNullException.ThrowIfNull(nextWord);
-        var scope = new Scope(Current.Value, nextWord, beginShuffle, beginMonsterHp, beginCombatReward, beginNormalEncounter);
+        var scope = new Scope(Current.Value, nextWord, beginShuffle, beginMonsterHp, beginCombatReward, beginNormalEncounter, beginMapGeneration);
         Current.Value = scope;
         return scope;
     }
@@ -141,13 +149,24 @@ public static class LabelRandomScope
         finally { InsideCallback.Value = false; }
     }
 
+    internal static IDisposable? BeginMapGeneration(RunState run, ActDefinition act, Rng rng)
+    {
+        Scope? scope = Current.Value;
+        if (scope?.BeginMapGeneration is null || InsideCallback.Value) return null;
+        var context = new LabelMapGenerationContext(run, act, rng);
+        InsideCallback.Value = true;
+        try { return scope.BeginMapGeneration(context); }
+        finally { InsideCallback.Value = false; }
+    }
+
     private sealed class Scope(
         Scope? previous,
         Func<LabelRandomState, ulong> nextWord,
         Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle,
         Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp,
         Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward,
-        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter) : IDisposable
+        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter,
+        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration) : IDisposable
     {
         public Scope? Previous { get; } = previous;
         public Func<LabelRandomState, ulong> NextWord { get; } = nextWord;
@@ -155,6 +174,7 @@ public static class LabelRandomScope
         public Func<LabelMonsterHpContext, IDisposable?>? BeginMonsterHp { get; } = beginMonsterHp;
         public Func<LabelCombatRewardContext, IDisposable?>? BeginCombatReward { get; } = beginCombatReward;
         public Func<LabelNormalEncounterContext, IDisposable?>? BeginNormalEncounter { get; } = beginNormalEncounter;
+        public Func<LabelMapGenerationContext, IDisposable?>? BeginMapGeneration { get; } = beginMapGeneration;
 
         public void Dispose()
         {

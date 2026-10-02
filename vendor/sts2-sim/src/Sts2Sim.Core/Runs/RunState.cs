@@ -369,12 +369,10 @@ public sealed partial class RunState : IRunState
     private void GenerateCurrentMap()
     {
         ActDefinition act = Act;
-        var mapRng = new Rng(Rng.Seed, $"act_{CurrentActIndex + 1}_map");
-        MapPointTypeCounts pointTypeCounts = act.GetMapPointTypes(mapRng, Ascension);
-        Map = new StandardActMap(
-            mapRng,
-            act.BaseNumberOfRooms,
-            pointTypeCounts,
+        var mapRng = StandardActMap.CreateRng(Rng.Seed, CurrentActIndex);
+        using IDisposable? labelMapScope = LabelRandomScope.BeginMapGeneration(this, act, mapRng);
+        Map = StandardActMap.CreateFor(
+            act, mapRng, Ascension,
             hasSecondBoss: Ascension.HasLevel(AscensionLevel.DoubleBoss) && CurrentActIndex == _acts.Length - 1);
         Map = Hooks.Hook.ModifyGeneratedMap(this, Map, CurrentActIndex);
         // Run setup is synchronous; map-generated listeners contain no player-choice suspension.

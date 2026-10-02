@@ -7,12 +7,14 @@ The existing `owned_native_replay` operation and all frozen data keep their old
 distribution. New tape records are development-only and rejected by the existing
 production loader.
 
-The v2 opening gate remains passed. V6 adds exact joint conditioning of the
-first two weak encounters, reducing the completed carry-in root from147to59
-proposals. The same fixed four-root probe still settles4/22branches with18
-explicitly truncated and0engine errors, now in57.76seconds. The predeclared
-two-carry-in-root gate fails with one; completed roots have only end_turn, so this
-does not establish useful preference data. See the [v6 report](../configs/conditional_native_tape_v6_verification.json).
+The v2 opening gate remains passed. V7 jointly conditions the complete native
+initial act/map prefix and passes the reused two-carry-in-root diagnostic gate:
+18/22 branches settle, with 4 computational truncations and no engine errors.
+The separately predeclared 16 new development roots expose the remaining breadth
+gap: 0/12 multi-action carry-in roots complete, and 20/226 branches settle. These
+failures remain unresolved mass. Production enlargement and new fitting remain
+paused while public history recording and broader proposals are implemented.
+See the [v7 report](../configs/conditional_native_tape_v7_verification.json).
 
 ## Distribution and reproducibility
 
@@ -210,7 +212,7 @@ nonmatches and12different target rosters. The latter is the next measured
 constraint. The two-world gate is not weakened, and the larger256proposal budget
 is explicitly separated from the old64proposal budget.
 
-## Exact encounter pair and remaining public difference
+## V6 exact encounter pair and public-difference diagnosis
 
 The same source-certified second combat fixes the act and second normal
 encounter. Native act selection remains unchanged; an incompatible act is an
@@ -238,6 +240,51 @@ packet failed the existing exact density correction. This diagnosis uses no
 original source recipe or private source graph. Native map-component conditioning
 and a broader public-transcript approach are the next investigated mechanisms;
 no budget-only production enlargement or new fit follows.
+
+## V7 joint initial prefix and fresh development gate
+
+The observed WingedBoots charge requires a particular public route event. A local
+map retry with a held RunSeed or earlier tape history is not generally valid:
+equal-state aliases can change its success/abort normalizer. V7 instead draws a
+fresh hypothetical RunSeed and the entire native act/map oracle prefix in each
+complete trial. Native topology, point counts, pruning and repair remain native.
+Wrong acts and completed maps that violate the public necessary route predicate
+are clean nonmatches. Unknown map icons are retained; their later room rolls are
+not forced. Only the selected word trace is retained, and ordinary native
+construction replays it with ordered address, owner and completion guards.
+
+For a fixed complete-trial budget K and clean-miss probability b, the successful
+subdensity is p(prefix) times the public-event indicator times
+sum(b^j, j=0..K-1). This multiplier is constant for the fixed public root because
+the whole independent prefix is redrawn. Its reciprocal cancels against the same
+global correction envelope. No estimated success probability or numeric p/q of
+one is substituted. Native errors/cancellation stop the attempt with partial
+work accounting; component exhaustion remains computationally inconclusive.
+
+The four diagnostic packets and prior identity are byte-equivalent to v6. The
+seven-action carry-in root now accepts two worlds in 55 proposals and settles
+all 14 branches; the other accelerated carry-in root needs 16 proposals. The
+whole diagnostic uses 46.35 seconds and about 134 MiB peak worker memory. Its
+two-world HP heads distinguish plays (41–41.5 mean final HP) from ending the turn
+(32), but absolute resource utility remains masked and pairwise targets empty.
+This is a useful engineering result with a small sample, not learning evidence.
+
+Before inspecting more roots, source draw seeds 10001–10016 and evaluation seeds
+401/402 were declared with 64 outer attempts per draw and unchanged C=3, D=8,
+floor/source horizons, policy and prior. Correctness review and full tests passed
+before this probe ran. All 16 roots existed. Two opening roots completed; all 12
+multi-action carry-in roots remained unresolved, including every third-combat
+root. Total work was 1,806 proposals, 20 settled and 206 truncated branches,
+zero engine errors, 95.33 seconds and about 135 MiB peak worker memory. None of
+those carry-in roots qualified for the narrow early-reward accelerator. The
+predeclared breadth gate failed; no source or failure was replaced to satisfy it.
+These are now seen development cases, separate from the original sealed test.
+
+All 20 diagnostic/development public inputs and nullable target masks pass the v3
+boundary checks. Their native development envelopes remain rejected by the
+production and independent v3 engineering loaders. Current verification is
+1,259/1,259 native tests and a fresh Core run with 4,493 passed, 3 existing opt-in
+skips and no failures; all 2,229 vendored Core/test files reconstruct exactly.
 
 ## Reproduction
 

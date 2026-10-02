@@ -83,10 +83,21 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         _constructedLifecycle = constructedLifecycle;
         _labelTape = labelTape; _selectedCombat = selectedCombat;
         _lifetime = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-        NaturalSourceCollector.InitializeNativeModels();
-        NativeRun = new RunState(seed, ascensionLevel: 10);
-        NativeRun.AddPlayer(Player.CreateForNewRun(ModelDb.Character<Silent>(), NativeRun));
-        _labelTape?.AttachHypotheticalRun(NativeRun);
+        try
+        {
+            NaturalSourceCollector.InitializeNativeModels();
+            NativeRun = new RunState(seed, ascensionLevel: 10);
+            NativeRun.AddPlayer(Player.CreateForNewRun(ModelDb.Character<Silent>(), NativeRun));
+            _labelTape?.AttachHypotheticalRun(NativeRun);
+        }
+        catch
+        {
+            // OpenCoreAsync cannot dispose an object whose constructor failed.
+            // Release the caller-token registration even when an early label hook
+            // rejects or detects drift during native act/map construction.
+            _lifetime.Dispose();
+            throw;
+        }
     }
 
     /// <summary>

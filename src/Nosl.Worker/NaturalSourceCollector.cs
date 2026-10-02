@@ -393,12 +393,8 @@ public static class NaturalSourceCollector
         public Task<MapPoint> ChooseMapPointAsync(IReadOnlyList<MapPoint> choices)
         {
             CheckBound();
-            bool hurt = run.Players[0].Creature.CurrentHp * 2 < run.Players[0].Creature.MaxHp;
-            int Priority(MapPoint p) => p.PointType switch {
-                MapPointType.RestSite when hurt => -1, MapPointType.Monster => 0,
-                MapPointType.Treasure => 1, MapPointType.RestSite => 2, MapPointType.Unknown => 3,
-                MapPointType.Shop => 4, MapPointType.Elite => 5, _ => 6 };
-            var choice = choices.OrderBy(Priority).ThenBy(p => p.coord.col).ThenBy(p => p.coord.row).First();
+            var choice = NativeSourceMapChoice.Choose(choices,
+                run.Players[0].Creature.CurrentHp, run.Players[0].Creature.MaxHp);
             Log("map_choice", new { options = choices.Select(p => new { col = p.coord.col, row = p.coord.row, type = p.PointType.ToString() }).ToArray(),
                 chosen = new { col = choice.coord.col, row = choice.coord.row, type = choice.PointType.ToString() } });
             return Task.FromResult(choice);
