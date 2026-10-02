@@ -1,3 +1,5 @@
+Current final engineering disposition: [milestone acceptance checkpoint](M3_M6_ACCEPTANCE_CHECKPOINT.md).
+
 # M3–M6 implementation checkpoint
 
 This is a reviewable implementation checkpoint. The first 5,000-root data stage and a one-epoch, 497-step bounded pilot are complete. It is **not** a claim that full-scope M3–M6 acceptance or formal training readiness has been achieved.
@@ -13,14 +15,14 @@ The new v2 real simulator record passes the actual preparation CLI and forward/b
 
 ## Verification evidence
 
-Final integrated checkpoint: **902/902 C# cases passed, zero skips/failures** in isolated build output after integrating the new native observer hook. This is separate from the earlier frozen upstream regression.
+Final integrated checkpoint: **929/929 C# cases passed, zero skips/failures** in isolated build output after integrating the new native observer hook. This is separate from the earlier frozen upstream regression.
 
 - Trusted upstream bridge checkpoint: 803 integration cases, plus 4,479 upstream tests passed and 3 opt-in skips. The later observer-decorator hook has separate native invariance and recorder tests; the older full-Core result is not attributed to it.
 - M3/objective and teacher regression: 44 cases passed; with the 10 bridge-safety cases, 54 passed.
 - Python student/integrity regression: 165 cases passed, including Quest and resource-policy guard regressions.
 - Calibration evidence-tool mutation regressions: 24 passed, plus 21,180 archived outcome arithmetic checks; these are not simulator cases.
-- Data engineering/report/identity regression: 104 cases passed.
-- Generator persistence/archive/phase/recovery checks: 51 cases passed, including reviewed balanced allocation and attempted-block accounting.
+- Data engineering/report/identity regression: 105 cases passed.
+- Generator persistence/archive/phase/recovery checks: 63 cases passed, including reviewed balanced allocation and attempted-block accounting.
 - Natural-source collector: 5 cases passed, plus 7 original RunDriver recorder cases. Native startup/map/combat/reward progression and observer/RNG invariance are separate evidence. Actual proof cohort: 200 raw roots, 6 runs, 26 combats, 15 encounters; zero source errors. The independently reviewed native carry-in prototype certifies 16 of 200 roots for 87 action targets / 174 settled branches; 184 remain raw. Only one of six runs contributes the eligible subset. These development records are not admitted as training data.
 
 Reports are generated beneath the ignored `artifacts/` directory. Current pilot results and remaining gates are in [FIRST_BOUNDED_PILOT.md](FIRST_BOUNDED_PILOT.md). Earlier numerical gates below are historical evidence.

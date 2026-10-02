@@ -433,6 +433,8 @@ class RecoveryTests(unittest.TestCase):
                     type(self).teacher_calls += 1
                     row = fixture(0 if duplicate_first and number == 1 else number)
                     row["audit_only"].update(source_run_group=command["sourceRun"], source_combat_id=command["sourceCombat"], branch_family=command["branchFamily"])
+                    row["audit_only"]["continuation_version"] = m.LEGACY_CONTINUATION
+                    row["audit_only"]["versions"]["continuation"] = m.LEGACY_CONTINUATION
                     row["audit_only"]["outcome_samples"] = outcomes(row)
                     return row
                 raise AssertionError(command)

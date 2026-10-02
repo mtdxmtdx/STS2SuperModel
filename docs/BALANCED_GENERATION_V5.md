@@ -113,3 +113,35 @@ duplicates and provenance. Preserve the frozen holdout. Four-enemy constructed
 coverage, selective phase availability, bounded posterior support and uncalibrated
 resource objectives still limit claims; this patch does not establish formal
 training readiness or resolve those limits.
+
+## Explicit continuation selection
+
+Generator version `nosl-real-pilot-generation-v7` adds
+`--continuation-policy nosl-public-rules-v2`. The default remains
+`nosl-public-rules-v1`. The chosen identity controls both the public source
+continuation and the frozen teacher continuation, and is part of the immutable
+configuration. Changing it requires a new output corpus; v2 also carries its own
+teacher dataset identity. Recipe balancing and continuation selection are separate
+versioned choices.
+
+The generator requires a positive `continuation_policies` response before any v2
+source reset, because old workers can silently ignore unfamiliar JSON fields.
+It also verifies the returned T0/T1 continuation family and v2 dataset version
+before accepting a record. Capability or identity mismatch stops the stage after
+one durable failed attempt, with no game-loss label or accepted data. Legacy
+source commands remain unchanged. Use a worker built from the reviewed v2 source;
+do not rebuild binaries beneath active generators or rewrite old cohort manifests.
+
+The reviewed v2 policy only changes its documented simple cycle family; it falls
+back to v1 elsewhere. See [native policy evidence](PUBLIC_CONTINUATION_V2_EVIDENCE.md).
+This selector does not justify broader generation or certify resource values.
+
+The timeout now covers the entire source attempt: worker startup, capability check,
+reset, all public source-continuation requests and final teacher response share one
+deadline. Each request is additionally bounded, and partial JSON lines are read
+nonblockingly so they cannot evade the deadline. Oversized responses fail explicitly.
+Worker time/RSS limits are frozen for both recipe modes. Durable storage and shutdown
+add overhead; a separate declared job-level process guard is still appropriate.
+Short real subprocess tests cover stalled partial lines, cumulative fast requests,
+expired attempts and complete large responses. A timeout stays computationally
+inconclusive and retains its requested-world accounting.

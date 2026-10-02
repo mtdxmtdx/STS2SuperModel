@@ -401,6 +401,8 @@ def classify_failure(reason):
         if status in ("engine_error", "error"):
             return "reset_engine_error", "reset:" + status
         return "reset_unclassified", "reset:other_status"
+    if "source_attempt_deadline" in reason:
+        return "timeout", "source_attempt_deadline"
     if "worker_response_deadline" in reason or "Timeout" in reason:
         return "timeout", "worker_response_deadline"
     if "worker_memory_budget_exceeded" in reason:

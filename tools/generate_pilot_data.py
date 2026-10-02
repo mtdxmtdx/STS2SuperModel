@@ -25,9 +25,12 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "nosl-real-pilot-generation-v5"
+VERSION = "nosl-real-pilot-generation-v7"
 LEGACY_RECIPE = "legacy-index-v4"
 BALANCED_RECIPE = "balanced-category-v5"
+LEGACY_CONTINUATION = "nosl-public-rules-v1"
+REVIEWED_CONTINUATION = "nosl-public-rules-v2"
+REVIEWED_DATASET = "nosl.teacher-data.public-rules-v2.v1"
 ENEMIES = ("TwigSlimeS", "LeafSlimeS", "Nibbit", "TwigSlimeM")
 INFLIGHT_SCHEMA = "nosl.generator.inflight.v1"
 sys.path.insert(0, str(ROOT / "python"))
@@ -146,20 +149,29 @@ def existing_rows(path, repairs=None):
 class Worker:
     def __init__(self, repo, output, timeout, max_worker_mib=768):
         self.timeout = timeout
+        self.attempt_deadline = None
         self.max_worker_mib = max_worker_mib
+        self.buffer = bytearray()
         self.stderr = (output / "worker-stderr.log").open("a", encoding="utf-8")
         self.process = subprocess.Popen(["dotnet", str(repo / "src/Nosl.Worker/bin/Release/net9.0/Nosl.Worker.dll")],
-            stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=self.stderr, text=True, bufsize=1, cwd=repo)
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=self.stderr, cwd=repo)
+        os.set_blocking(self.process.stdout.fileno(), False)
 
     def request(self, command):
-        self.process.stdin.write(canonical(command) + "\n"); self.process.stdin.flush()
+        deadline = time.monotonic() + self.timeout
+        if self.attempt_deadline is not None:
+            deadline = min(deadline, self.attempt_deadline)
+        if time.monotonic() >= deadline:
+            raise TimeoutError("source_attempt_deadline")
+        self.process.stdin.write((canonical(command) + "\n").encode()); self.process.stdin.flush()
         with selectors.DefaultSelector() as selector:
             selector.register(self.process.stdout, selectors.EVENT_READ)
-            deadline = time.monotonic() + self.timeout
-            while True:
+            while b"\n" not in self.buffer:
                 remaining = deadline - time.monotonic()
-                if remaining <= 0: raise TimeoutError("worker_response_deadline")
-                if selector.select(min(1.0, remaining)): break
+                if remaining <= 0:
+                    raise TimeoutError("source_attempt_deadline" if self.attempt_deadline is not None and deadline == self.attempt_deadline
+                                       else "worker_response_deadline")
+                ready = selector.select(min(1.0, remaining))
                 try:
                     status = Path(f"/proc/{self.process.pid}/status").read_text()
                     match = re.search(r"^VmRSS:\s+(\d+) kB", status, re.MULTILINE)
@@ -167,8 +179,15 @@ class Worker:
                         raise RuntimeError("worker_memory_budget_exceeded")
                 except FileNotFoundError:
                     raise RuntimeError("worker_exited:" + str(self.process.poll()))
-            line = self.process.stdout.readline()
-        if not line: raise RuntimeError("worker_exited:" + str(self.process.poll()))
+                if ready:
+                    chunk = os.read(self.process.stdout.fileno(), 65536)
+                    if not chunk:
+                        raise RuntimeError("worker_exited:" + str(self.process.poll()))
+                    self.buffer.extend(chunk)
+                    if len(self.buffer) > 64 * 1024 ** 2:
+                        raise RuntimeError("worker_response_size_limit")
+        line, _, remaining = self.buffer.partition(b"\n")
+        self.buffer = bytearray(remaining)
         return json.loads(line)
 
     def close(self):
@@ -176,6 +195,8 @@ class Worker:
             self.process.terminate()
             try: self.process.wait(timeout=5)
             except subprocess.TimeoutExpired: self.process.kill(); self.process.wait()
+        self.process.stdin.close()
+        self.process.stdout.close()
         self.stderr.close()
 
 
@@ -306,12 +327,15 @@ def requested_phase(root_policy, source_slot):
     return ("opening", "first_player_turn_2", "first_player_turn_3", "first_pending_choice")[source_slot]
 
 
-def collect_source_snapshot(worker, setup, root_policy, source_slot, max_decisions):
+def collect_source_snapshot(worker, setup, root_policy, source_slot, max_decisions,
+                            continuation_policy=LEGACY_CONTINUATION):
     """A predeclared PUBLIC stopping time, never selected using future outcomes.
 
     No teacher call, hidden fact, terminal result or later trajectory length chooses
     a favorable root. An unavailable phase remains an explicit missing source.
     """
+    if continuation_policy not in (LEGACY_CONTINUATION, REVIEWED_CONTINUATION):
+        raise ValueError("unsupported_continuation_policy")
     phase = requested_phase(root_policy, source_slot)
     packet = worker.request({"op": "reset", "scenario": setup})
     executed = 0
@@ -330,8 +354,48 @@ def collect_source_snapshot(worker, setup, root_policy, source_slot, max_decisio
         if executed >= max_decisions:
             raise ValueError("source_snapshot_unavailable:" + canonical({"reason": "source_decision_budget_exhausted",
                 "phase": phase, "decision_index": executed, "status": status}))
-        packet = worker.request({"op": "continue"})
+        command = {"op": "continue"}
+        if continuation_policy != LEGACY_CONTINUATION:
+            command["continuationPolicyId"] = continuation_policy
+        packet = worker.request(command)
         executed += 1
+
+
+def require_worker_continuation(worker, continuation_policy):
+    """Old workers ignore unknown JSON fields; require positive opt-in support."""
+    if continuation_policy == LEGACY_CONTINUATION:
+        return
+    if continuation_policy != REVIEWED_CONTINUATION:
+        raise ValueError("unsupported_continuation_policy")
+    try:
+        reply = worker.request({"op": "continuation_policies"})
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        raise ValueError("worker_continuation_policy_unavailable:invalid_capability_encoding") from exc
+    if (not isinstance(reply, dict) or reply.get("status") != "available"
+            or reply.get("version") != "nosl.continuation-policies.v1"
+            or not isinstance(reply.get("supportedPolicyIds"), list)
+            or continuation_policy not in reply["supportedPolicyIds"]):
+        raise ValueError("worker_continuation_policy_unavailable:" + continuation_policy)
+
+
+def validate_continuation_record(record, continuation_policy, teacher_mode):
+    audit = record.get("audit_only")
+    if (not isinstance(audit, dict) or not isinstance(audit.get("versions"), dict)
+            or continuation_policy not in (LEGACY_CONTINUATION, REVIEWED_CONTINUATION)
+            or teacher_mode not in ("T0", "T1")):
+        raise ValueError("teacher_continuation_mismatch:" + str(continuation_policy))
+    versions = audit["versions"]
+    actual = audit.get("continuation_version")
+    family = ("nosl-public-uct-frozen-v1" if continuation_policy == LEGACY_CONTINUATION
+              else "nosl-public-uct-frozen-v2-rules-v2") if teacher_mode == "T1" else continuation_policy
+    if (not isinstance(actual, str) or (actual != family if teacher_mode == "T0"
+            else re.fullmatch(re.escape(family) + ":[0-9a-f]{16}", actual) is None)
+            or versions.get("continuation") != family):
+        raise ValueError("teacher_continuation_mismatch:" + continuation_policy)
+    if continuation_policy == REVIEWED_CONTINUATION and (
+            audit.get("dataset_version") != REVIEWED_DATASET
+            or versions.get("dataset") != REVIEWED_DATASET):
+        raise ValueError("teacher_dataset_version_mismatch:" + continuation_policy)
 
 def usable_counts(record):
     actions = record.get("targets", {}).get("actions", [])
@@ -458,9 +522,15 @@ def finish_attempt(output, config, attempt, started, record=None):
 def validate_durable_record(output, row, config, validate, verify_raw=False):
     validate(row)
     audit = row["audit_only"]
+    if "source_continuation_policy" in config:
+        policy = config["source_continuation_policy"]
+        validate_continuation_record(row, policy, config["teacher_options"]["mode"])
+        if audit.get("source_policy_version") != policy:
+            raise ValueError("durable_source_continuation_mismatch")
     index = checked_source_index(audit["generation_source_index"], config)
     label_hash = sha(generation_identity_config(config))
-    if audit.get("generation_config_sha256") != label_hash or audit.get("versions", {}).get("generation_config") != label_hash:
+    if (audit.get("generation_config_sha256") != label_hash or not isinstance(audit.get("versions"), dict)
+            or audit["versions"].get("generation_config") != label_hash):
         raise ValueError("durable_record_generation_config_mismatch")
     for field in ("source_run_group", "source_combat_id", "branch_family"):
         if not isinstance(audit.get(field), str) or not audit[field]: raise ValueError("durable_record_provenance_missing")
@@ -690,15 +760,22 @@ def runtime_fingerprints(repo):
 
 def run_locked(args):
     repo, output = args.repo.resolve(), args.output.resolve()
+    if not math.isfinite(args.timeout) or args.timeout <= 0:
+        raise ValueError("attempt_timeout_must_be_finite_positive")
     output.mkdir(parents=True, exist_ok=True)
     catalog = source_catalog(repo)
     sys.path.insert(0, str(repo / "python"))
     from nosl.data import validate_record
     from nosl.schema import load_config
     student_config = load_config(repo / "configs/student.pilot.json")
+    continuation_policy = getattr(args, "continuation_policy", LEGACY_CONTINUATION)
+    if continuation_policy not in (LEGACY_CONTINUATION, REVIEWED_CONTINUATION):
+        raise ValueError("unsupported_continuation_policy")
     options = {"mode": args.teacher, "evaluationSeeds": list(range(100001, 100001 + args.worlds)),
                "explorationSeeds": list(range(200001, 200001 + args.exploration_worlds)) if args.teacher == "T1" else [],
                "maxDecisions": args.max_decisions, "treeDepth": args.tree_depth, "formalLabels": False}
+    if continuation_policy != LEGACY_CONTINUATION:
+        options["continuationPolicyId"] = continuation_policy
     recipe_version = getattr(args, "recipe_version", LEGACY_RECIPE)
     block_start = getattr(args, "attempted_battle_start", None)
     block_count = getattr(args, "attempted_battle_count", None)
@@ -711,6 +788,9 @@ def run_locked(args):
               "recipe_version": recipe_version,
               "seed_prefix": args.seed_prefix, "source_kind": "constructed", "data_mode": args.mode, "roots_per_battle": args.roots_per_battle,
               "root_policy": args.root_policy, "max_source_decisions": args.max_source_decisions,
+              "source_continuation_policy": continuation_policy,
+              "timeout_scope": "whole_source_attempt_including_protocol_requests",
+              "worker_budgets": {"timeout_seconds": args.timeout, "max_worker_mib": args.max_worker_mib},
               "public_identity_scheme": PUBLIC_IDENTITY_SCHEME,
               "formal_labels": False, "training_started": False,
               "execution_partition": {"shard_id": args.shard_id, "shard_count": args.shard_count},
@@ -721,7 +801,6 @@ def run_locked(args):
     planned = None
     if recipe:
         config.update(recipe_metadata=recipe,
-            worker_budgets={"timeout_seconds": args.timeout, "max_worker_mib": args.max_worker_mib},
             attempted_battle_block={"start": block_start, "count": block_count})
         planned = planned_source_indices(config)
         if args.max_attempts is not None and args.max_attempts < len(planned):
@@ -797,10 +876,12 @@ def run_locked(args):
             begin_attempt(output, config, attempt)
             if worker is None:
                 worker = Worker(repo, output, args.timeout, args.max_worker_mib)
+            worker.attempt_deadline = t + args.timeout
             failure = None
             try:
+                require_worker_continuation(worker, continuation_policy)
                 packet, source_decisions, phase = collect_source_snapshot(worker, sc, args.root_policy,
-                    source_step, args.max_source_decisions)
+                    source_step, args.max_source_decisions, continuation_policy)
                 attempt["generation_decision_index"] = source_decisions
                 root_options = dict(options)
                 def seeds(label, count):
@@ -815,8 +896,10 @@ def run_locked(args):
                 attempt["teacher_request_may_have_started"] = True
                 checkpoint_attempt(output, config, attempt, "teacher_requested", started=t)
                 record = worker.request(command)
-                if "public_input" not in record: raise ValueError("teacher:" + canonical(record))
+                if not isinstance(record, dict) or "public_input" not in record:
+                    raise ValueError("teacher:" + canonical(record))
                 validate_record(record, student_config)
+                validate_continuation_record(record, continuation_policy, args.teacher)
             except (TimeoutError, BrokenPipeError, RuntimeError, ValueError, OSError) as exc:
                 failure = str(exc)
             if failure is not None:
@@ -826,6 +909,12 @@ def run_locked(args):
                 finish_attempt(output, config, attempt, t)
                 errors[failure.split(":", 1)[0]] += 1
                 worker.close(); worker = None
+                if failure.startswith(("worker_continuation_policy_unavailable:", "teacher_continuation_mismatch:", "teacher_dataset_version_mismatch:")):
+                    progress.update(status="blocked_continuation_identity", reason=failure,
+                                    attempts=attempt_count + 1, source_battles_attempted=len(battles_seen),
+                                    errors=dict(errors), current_process_seconds=time.monotonic() - started)
+                    atomic_json(output / "progress.json", progress)
+                    raise RuntimeError(failure)
             else:
                 # Storage failures deliberately propagate with inflight intent intact;
                 # they must never relabel a durable successful row as an engine failure.
@@ -834,7 +923,7 @@ def run_locked(args):
                 record["audit_only"].update(generation_source_index=source_index, source_category=category,
                     generation_version=VERSION, scenario_recipe=sc, generation_source_step=source_step,
                     generation_decision_index=source_decisions, generation_source_phase=phase,
-                    source_policy_version="nosl-public-rules-v1", generation_config_sha256=sha(label_config), generation_shard_id=args.shard_id,
+                    source_policy_version=continuation_policy, generation_config_sha256=sha(label_config), generation_shard_id=args.shard_id,
                     duplicate_public_input=duplicate, normalized_public_input_digest=digest,
                     public_identity_scheme=PUBLIC_IDENTITY_SCHEME,
                     first_public_input_source_index=seen.get(digest, source_index))
@@ -883,6 +972,8 @@ def main():
     p.add_argument("--attempted-battle-start", type=int, help="Predeclared global battle interval start (balanced recipe only)")
     p.add_argument("--attempted-battle-count", type=int, help="Complete all four phase requests for every battle in this interval")
     p.add_argument("--worlds", type=int, default=4); p.add_argument("--teacher", choices=["T0", "T1"], default="T0")
+    p.add_argument("--continuation-policy", choices=[LEGACY_CONTINUATION, REVIEWED_CONTINUATION], default=LEGACY_CONTINUATION,
+                   help="Explicit source and teacher continuation; changing it requires a new corpus")
     p.add_argument("--exploration-worlds", type=int, default=8); p.add_argument("--max-decisions", type=int, default=200)
     p.add_argument("--max-worker-mib", type=int, default=768)
     p.add_argument("--shard-id", type=int, default=0); p.add_argument("--shard-count", type=int, default=1)

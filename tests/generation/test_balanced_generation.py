@@ -134,6 +134,8 @@ class BalancedRunTests(unittest.TestCase):
                 audit.update(source_run_group=command["sourceRun"], source_combat_id=command["sourceCombat"],
                              branch_family=command["branchFamily"], n_independent_eval=4, n_exploration=0)
                 audit["versions"]["observation_schema"] = row["public_input"]["observation"]["schema"]
+                audit["continuation_version"] = m.LEGACY_CONTINUATION
+                audit["versions"]["continuation"] = m.LEGACY_CONTINUATION
                 audit["costs"].update(worlds_allocated=8, worlds_completed=8)
                 audit["outcome_samples"] = outcomes(row)
                 return row

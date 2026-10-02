@@ -21,7 +21,8 @@ namespace Nosl.Worker;
 
 public sealed record NaturalSourceOptions(int Runs = 1, int MaxFloors = 20, int MaxRoots = 200,
     int MaxRootsPerCombat = 8, int DecisionStride = 1, int MaxDecisionsPerRun = 10000,
-    string SeedPrefix = "nosl-natural-v1", string SourceRunPrefix = "natural");
+    string SeedPrefix = "nosl-natural-v1", string SourceRunPrefix = "natural",
+    string ContinuationPolicyId = PublicContinuationPolicies.LegacyId);
 public sealed record NaturalSourceTrace(int Index, string Kind, string PublicDetail);
 public sealed record NaturalRunAudit(string SourceRunGroup, string ActualSeed, string Outcome,
     int FloorsResolved, int CombatsEntered, int Decisions, int RootsCollected,
@@ -98,7 +99,9 @@ public static class NaturalSourceCollector
         IPublicContinuationPolicy? policy, Func<NaturalSourceRoot, NaturalSourceBoundary, Task>? onRoot,
         CancellationToken cancellationToken)
     {
-        options ??= new(); policy ??= new PublicRulePolicy();
+        options ??= new();
+        var configuredPolicy = PublicContinuationPolicies.Create(options.ContinuationPolicyId);
+        policy ??= configuredPolicy;
         if (options.Runs <= 0 || options.MaxFloors <= 0 || options.MaxRoots <= 0 ||
             options.MaxRootsPerCombat <= 0 || options.DecisionStride <= 0 || options.MaxDecisionsPerRun <= 0)
             throw new ArgumentOutOfRangeException(nameof(options), "Collection limits must be positive");

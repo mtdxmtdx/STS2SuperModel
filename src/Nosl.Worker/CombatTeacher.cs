@@ -9,6 +9,7 @@ namespace Nosl.Worker;
 public sealed record TeacherOptions
 {
     public string Mode { get; init; } = "T0";
+    public string ContinuationPolicyId { get; init; } = PublicContinuationPolicies.LegacyId;
     public ulong[] ExplorationSeeds { get; init; } = [];
     public ulong[] EvaluationSeeds { get; init; } = [101, 102, 103, 104];
     public int MaxDecisions { get; init; } = 200;
@@ -18,6 +19,7 @@ public sealed record TeacherOptions
     public bool FormalLabels { get; init; }
     public void Validate()
     {
+        _ = PublicContinuationPolicies.Create(ContinuationPolicyId);
         if (Mode is not ("T0" or "T1") || EvaluationSeeds.Length == 0 || MaxDecisions <= 0 || TreeDepth < 0 || MaxPosteriorAttempts <= 0
             || !double.IsFinite(UctExploration) || UctExploration < 0) throw new ArgumentException("Invalid teacher options");
         if (EvaluationSeeds.Distinct().Count() != EvaluationSeeds.Length || ExplorationSeeds.Distinct().Count() != ExplorationSeeds.Length
@@ -45,11 +47,11 @@ public static class CombatTeacher
         var root = source.Observe();
         if (root.Status is not ("player_decision" or "card_choice")) throw new NotSupportedException("An active public decision is required");
         var timer = Stopwatch.StartNew(); var costs = new CostAccumulator();
-        IPublicContinuationPolicy policy = new PublicRulePolicy();
+        IPublicContinuationPolicy policy = PublicContinuationPolicies.Create(options.ContinuationPolicyId);
         int frozenNodes = 0;
         if (options.Mode == "T1")
         {
-            var tree = new PublicTreeSearch(options.UctExploration, options.TreeDepth);
+            var tree = new PublicTreeSearch(options.UctExploration, options.TreeDepth, policy);
             foreach (var seed in options.ExplorationSeeds)
             {
                 try
@@ -144,13 +146,14 @@ public static class CombatTeacher
     { TerminalKind = kind, HpAtCombatStart = s.StartHp, MaxHpStart = s.StartMaxHp, InventoryStart = Inventory(s.StartPotions),
         PlayerTurnsElapsed = turn, AtomicActionsExecuted = actions, ContinuationPolicyId = policy, Detail = detail, PermanentChangesComplete = false };
 
-    private sealed class PublicTreeSearch(double exploration, int depth) : IPublicContinuationPolicy
+    private sealed class PublicTreeSearch(double exploration, int depth, IPublicContinuationPolicy fallback) : IPublicContinuationPolicy
     {
         private sealed class Node(PublicAction[] actions)
         { public PublicAction[] Actions = actions; public int[] Visits = new int[actions.Length]; public double[] Values = new double[actions.Length]; }
         private readonly Dictionary<string, Node> _nodes = new(StringComparer.Ordinal);
-        private readonly PublicRulePolicy _fallback = new();
-        public string Id => "nosl-public-uct-exploration-v1";
+        private readonly IPublicContinuationPolicy _fallback = fallback;
+        public string Id => _fallback.Id == PublicContinuationPolicies.LegacyId
+            ? "nosl-public-uct-exploration-v1" : "nosl-public-uct-exploration-v2-rules-v2";
         public PublicAction Choose(DecisionPacket packet) => throw new InvalidOperationException("Exploration requires public depth and trace");
         public PublicAction Select(DecisionPacket packet, int decisionDepth, List<(string Key, int Action)> trace)
         {
@@ -174,7 +177,9 @@ public static class CombatTeacher
             var choices = _nodes.Where(x => x.Value.Visits.Any(v => v > 0)).ToDictionary(x => x.Key, x =>
             { var n = x.Value; int i = Enumerable.Range(0, n.Actions.Length).Where(i => n.Visits[i] > 0).OrderByDescending(i => n.Values[i] / n.Visits[i]).First(); return n.Actions[i]; }, StringComparer.Ordinal);
             string digest = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(string.Join("\n", choices.OrderBy(x => x.Key).Select(x => x.Key + PublicJson.Serialize(x.Value)))))).ToLowerInvariant()[..16];
-            return new("nosl-public-uct-frozen-v1:" + digest, choices, _fallback);
+            string family = _fallback.Id == PublicContinuationPolicies.LegacyId
+                ? "nosl-public-uct-frozen-v1" : PublicContinuationPolicies.ReviewedTreeId;
+            return new(family + ":" + digest, choices, _fallback);
         }
     }
 }

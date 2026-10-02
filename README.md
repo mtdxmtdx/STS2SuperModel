@@ -1,11 +1,12 @@
 # STS2SuperModel — NOSL V4
 
-Silent A10 单场战斗 NOSL 独立工程。当前接入 **最新上游规则＋最小 NOSL 连接层**：真实 C# 规则引擎适配、独立分支终局、公共知识和后验采样。M3–M6 的终局评价、公共信息教师、数据管线与独立学生工程已进入可审查检查点；200点工程数据质量/吞吐检查已完成，后续试点数据与受限试训尚待推进。不是游戏 Mod；不连接客户端；尚未正式训练或晋升模型。
+Silent A10 单场战斗 NOSL 独立工程。当前接入 **最新上游规则＋最小 NOSL 连接层**：真实 C# 规则引擎适配、独立分支终局、公共知识和后验采样。M3–M6 的终局评价、公共信息教师、数据管线与独立学生工程已进入可审查检查点；已完成5,000个去重有效决策点和1轮、497步的受限试训。16场独立构造测试中双方均全胜，学生多消耗4瓶药水，尚不能声称策略更强；资源标定、后验覆盖和后续数据质量门槛仍未闭合。不是游戏 Mod；不连接客户端；尚未正式训练或晋升模型。
 
 ## 从这里开始
 
 | 入口 | 内容 |
 |---|---|
+| [首轮试点结果](docs/FIRST_BOUNDED_PILOT.md) | 数据、实际试训、闭环结果、错误诊断和未闭合门槛 |
 | [M3–M6检查点](docs/M3_M6_STATUS.md) | 新实现、实测证据、数据阶段及尚未闭合的门槛 |
 | [当前状态](docs/STATUS.md) | 已实现范围、阶段状态和剩余缺口 |
 | [开发与协议](docs/DEVELOPMENT.md) | 构建、测试、JSONL worker 和 API |
@@ -46,4 +47,4 @@ tools/                 两进程协议烟测
 
 **目录接入不等于所有组合验证完成。** 最新连接契约、采样限制、强制事件上下文和实测范围见 [覆盖与连接说明](docs/COVERAGE_BRIDGE.md)。`READY_FOR_TRAINING=false`；M3–M6 的后续状态由独立交付报告更新。
 
-旧源码、数据和提交历史保留在 [codex/history-2026-10-01](https://github.com/mtdxmtdx/STS2SuperModel/tree/codex/history-2026-10-01)，固定归档提交为 [b0bb07b](https://github.com/mtdxmtdx/STS2SuperModel/tree/b0bb07bdd09f8ae7833724126b18738c93d09eb4)。当前 main 没有混入旧模型或未完成的 B/C/D 任务；本次使用普通快进提交，不改写历史。
+旧源码、数据和提交历史保留在 [codex/history-2026-10-01](https://github.com/mtdxmtdx/STS2SuperModel/tree/codex/history-2026-10-01)，固定归档提交为 [b0bb07b](https://github.com/mtdxmtdx/STS2SuperModel/tree/b0bb07bdd09f8ae7833724126b18738c93d09eb4)。本次工作发布为 STS2SuperModel 的独立分支与草稿PR，未合并main；实验权重与数据单独保存，不混入源码提交。

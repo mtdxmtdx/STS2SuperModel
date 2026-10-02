@@ -91,6 +91,9 @@ def archive(path, row):
 
 
 class ReportingTests(unittest.TestCase):
+    def test_attempt_deadline_is_reported_as_timeout_not_game_loss(self):
+        self.assertEqual(("timeout", "source_attempt_deadline"), reporting.classify_failure("source_attempt_deadline"))
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

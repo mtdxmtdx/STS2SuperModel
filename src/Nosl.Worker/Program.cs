@@ -13,7 +13,12 @@ while(Console.ReadLine() is { } line)
         using var doc=JsonDocument.Parse(line); var root=doc.RootElement;
         string op=root.GetProperty("op").GetString()!;
         object result;
-        if(op=="native_belief_prototype")
+        if(op=="continuation_policies")
+        {
+            result=new {status="available",version="nosl.continuation-policies.v1",
+                supportedPolicyIds=new[] {PublicContinuationPolicies.LegacyId,PublicContinuationPolicies.ReviewedId}};
+        }
+        else if(op=="native_belief_prototype")
         {
             var options=root.TryGetProperty("options",out var opt)?PublicJson.Read<NaturalSourceOptions>(opt.GetRawText()):new NaturalSourceOptions();
             var teacherOptions=root.TryGetProperty("teacherOptions",out var teacherOpt)?PublicJson.Read<TeacherOptions>(teacherOpt.GetRawText()):new TeacherOptions { EvaluationSeeds=[101,102] };
@@ -53,7 +58,8 @@ while(Console.ReadLine() is { } line)
             else result=op switch
             {
                 "observe"=>session.Observe(),
-                "continue"=>await session.StepAsync(new PublicRulePolicy().Choose(session.Observe())),
+                "continue"=>await session.StepAsync(PublicContinuationPolicies.Create(root.TryGetProperty("continuationPolicyId",out var policyId)
+                    ? policyId.GetString()! : PublicContinuationPolicies.LegacyId).Choose(session.Observe())),
                 "actions"=>session.Observe().Actions,
                 "step"=>await session.StepAsync(PublicJson.Read<PublicAction>(root.GetProperty("action").GetRawText())),
                 "settle"=>await session.SettleAsync(),

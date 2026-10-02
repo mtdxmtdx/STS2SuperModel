@@ -1,3 +1,4 @@
+using System.Text.Json.Nodes;
 using System.Security.Cryptography;
 using System.Text;
 using Nosl.Contracts;
@@ -42,7 +43,7 @@ public static class TeacherDataset
                 other_worlds = o.Count(x => x.TerminalKind == TerminalKind.PolicyNonterminating),
             };
         }).ToArray();
-        return new
+        var record = new
         {
             public_input = publicInput,
             targets = new { actions, pairwise = result.Ranking.Pairs.Select(p => new { preferred = p.Preferred, other = p.Other, weight = p.Weight }).ToArray(), equivalent_action_set = Array.Empty<int>() },
@@ -70,5 +71,13 @@ public static class TeacherDataset
                     settlement_seconds = result.Costs.SettlementSeconds, peak_worker_memory_bytes = result.Costs.PeakWorkerMemoryBytes },
             },
         };
+        // Preserve the legacy record shape; a new continuation gets a new
+        // dataset lock, so prepare_dataset refuses to append it to a v1 corpus.
+        if (PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion) != PublicContinuationPolicies.ReviewedDatasetVersion)
+            return record;
+        var versioned = JsonNode.Parse(PublicJson.Serialize(record))!.AsObject();
+        versioned["audit_only"]!["dataset_version"] = PublicContinuationPolicies.ReviewedDatasetVersion;
+        versioned["audit_only"]!["versions"]!["dataset"] = PublicContinuationPolicies.ReviewedDatasetVersion;
+        return versioned;
     }
 }

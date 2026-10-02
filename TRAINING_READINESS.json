@@ -1,11 +1,11 @@
 {
   "schema_version": "nosl.readiness.v1",
-  "status": "BOUNDED_PILOT_COMPLETED_QUALITY_GATES_OPEN",
+  "status": "READY_FOR_BOUNDED_PILOT_FULL_SCOPE_BLOCKED",
   "milestones": {
-    "M3": "ENGINEERING_VERIFIED_CALIBRATION_PARTIAL",
-    "M4": "T0_T1_ENGINEERING_VERIFIED_DECLARED_SETUP_SCOPE",
-    "M5": "5000_EFFECTIVE_CONSTRUCTED_ROOTS_AUDITED_DISTRIBUTION_AND_LABEL_GATES_OPEN",
-    "M6": "ENGINEERING_AND_BOUNDED_FIT_VERIFIED_POLICY_APPLICABILITY_LIMITED"
+    "M3": "ENGINEERING_VERIFIED_CALIBRATION_PARTIAL_RELATIVE_PROOF_BOUNDED",
+    "M4": "T0_T1_VERIFIED_OPT_IN_CYCLE_FIX_PARTIAL_SCOPE",
+    "M5": "5000_AUDITED_PILOT_BALANCED_VALIDATION_BLOCK_PREDECLARED",
+    "M6": "SMALL_TRIAL_VERIFIED_APPLICABILITY_GUARDED"
   },
   "ready_for_formal_training": false,
   "full_target_content_and_posterior_ready": false,
@@ -25,10 +25,10 @@
     "frozen_upstream_core_opt_in_skipped": 3,
     "objective_teacher_passed": 44,
     "python_student_passed": 165,
-    "data_pipeline_passed": 104,
-    "generator_archive_passed": 51,
+    "data_pipeline_passed": 105,
+    "generator_archive_passed": 63,
     "integrated_v2_teacher_to_backward": true,
-    "full_current_integration_passed": 902,
+    "full_current_integration_passed": 929,
     "natural_source_tests_passed": 5,
     "native_recorder_tests_passed": 7,
     "natural_raw_roots": 200,
@@ -79,7 +79,12 @@
     "pilot_closed_loop_baseline_wins": 16,
     "pilot_closed_loop_student_wins": 16,
     "prefit_engineering_forward_backward_optimizer_steps": 0,
-    "experimental_resource_guard_cases": 17
+    "experimental_resource_guard_cases": 17,
+    "reviewed_continuation_v2": true,
+    "common_inventory_relative_native_outcomes": 80,
+    "v2_cli_engineering_roots": 2,
+    "v2_cli_engineering_candidate_copies": 26,
+    "v2_backward_optimizer_steps": 0
   },
   "remaining": [
     "First bounded pilot completed; broader scale is gated by allocation/censoring, complete action labels and demonstrated learning usefulness",
@@ -93,5 +98,7 @@
     "Generic frozen continuation can over-cycle defensive/draw-only loops; correct budget masks exist but C02 and macro acceptance remain open"
   ],
   "pilot_training_completed": true,
-  "first_pilot_report": "configs/m5_first_pilot_report.json"
+  "first_pilot_report": "configs/m5_first_pilot_report.json",
+  "engineering_acceptance": "docs/M3_M6_ACCEPTANCE_CHECKPOINT.md",
+  "balanced_validation_plan": "configs/m5_balanced_validation_plan.json"
 }

@@ -1,10 +1,15 @@
 # NOSL public student engineering (M6)
 
-This directory is a runnable **engineering implementation**, not a trained model.
-No pilot/formal fitting, learned checkpoint, promotion, or win-rate claim was made
-while implementing M6. The included forward/backward tests take **zero optimizer
-steps**. Temporary serialization tests contain untrained initialization only and
-remove their temporary files.
+This directory contains the public-only student implementation. The first bounded
+experimental pilot now completed one epoch and 497 optimizer steps on the audited
+5,000-root constructed corpus. Weights are retained separately from Git, remain
+unpromoted, and do not establish broad policy strength. See
+[the full results and limits](../docs/FIRST_BOUNDED_PILOT.md).
+
+Engineering forward/backward tests still take zero optimizer steps. Formal
+training remains disabled. Experimental selection should use the new
+[resource abstention wrapper](../docs/EXPERIMENTAL_POLICY_GUARD.md); raw frozen
+inference remains available for reproducible diagnostic evaluation.
 
 ## Environment and reproducible commands
 
@@ -68,7 +73,7 @@ potion, enemy, choice slots and meaningful multi-selection order remain encoded.
 Versioned signed hashing compresses **validated public** detail/history fields;
 it is lossy and may collide, not a sufficiency proof for all mechanics.
 
-The current snapshot has 976,710 trainable parameters. Output heads:
+The current snapshot has 976,838 trainable parameters, including native Quest cards. Output heads:
 
 - one expected-utility/value head used directly as the action ranking score
 - independent win and death logits
@@ -134,7 +139,7 @@ return `INVALID_INPUT`. Active envelopes with empty candidates are invalid;
 plain legacy public input retains its existing `NO_DECISION` response. The
 control envelope is never a model feature or a replacement for dataset schema.
 
-A future bundle consists of `config.json`, `manifest.json`, `weights.pt`.
+A retained experimental bundle consists of `config.json`, `manifest.json`, `weights.pt`.
 Configuration/weight checksums and strict state-dict loading are required;
 `torch.load(..., weights_only=True)` avoids general pickle loading. Untrained and
 unpromoted bundles are rejected by default. A separately authorized offline
@@ -142,11 +147,12 @@ pilot may explicitly request `--bundle DIR --allow-experimental`, returning
 `EXPERIMENTAL_UNCALIBRATED`, never a promoted/confidence claim. No such trained
 bundle is shipped here. No code auto-promotes a model.
 
-## Bounded pilot trainer, not executed during M6
+## Bounded pilot trainer
 
-The latest user authorization permits a small, bounded trial after the audited
-5k–10k data stage and cost review. **Do not run the example until the experiment
-and limits are approved.** Formal training is disabled, including if a config
+The first authorized trial used 3,976 training roots from the audited 5,000-root
+corpus, a maximum of 700 steps and one epoch, and stopped after 497 steps. Its
+lifetime budget is exhausted. Further trials require their own declared bounded
+plan and data-quality gates; the command below is a separate illustrative example. Formal training is disabled, including if a config
 flag is changed. Pilot must specify all lifetime caps; current safety ceilings
 are 10,000 roots, five epochs, 50,000 optimizer steps.
 
@@ -159,8 +165,10 @@ PYTHONPATH=python python -m nosl.train --config configs/student.pilot.json \
 ```
 
 Alternatively supply `--data train.jsonl --validation validation.jsonl --test
-test.jsonl`. Engineering-smoke corpora cannot be used for pilot fitting. Complete
-value labels are required; objective calibration may remain false, clearly
+test.jsonl`. Engineering-smoke corpora cannot be used for pilot fitting. At least some
+positive-weight value supervision is required; partial-value and auxiliary-only
+roots retain their explicit masks. Complete-action value support is reported
+separately for ranking diagnostics. Objective calibration may remain false, clearly
 marked provisional/experimental. Pilot checkpoints are never production-ready.
 
 Each atomic checkpoint stores model/optimizer state, torch/Python RNG, epoch,
@@ -171,13 +179,14 @@ include masked Brier, HP MAE, pairwise/equivalent-set agreement, counts and
 unresolved actions. Empty metric sets return null. The frozen test is not
 scored during fitting; later independent evaluation is a separate stage.
 
-M6 verifies checkpoint serialization/RNG/identity guards with an untrained
-optimizer; actual interrupted learned-trajectory equivalence remains to be
-verified only when the bounded trial is authorized. No formal training is run.
+The first real fit resumed its step-1 checkpoint through the same epoch/step
+budget. Uninterrupted-versus-resumed parameter bit-equivalence was not tested.
+No formal training has run.
 
 ## Measured engineering checks
 
-CPU, one torch thread, 976,710 parameters; timings are one local engineering
+Historical pre-Quest measurements: CPU, one torch thread, 976,710 parameters;
+timings are one local engineering
 measurement, not a promised full-dataset throughput:
 
 - Real C# teacher root, 7 candidates/10 public events: forward+backward0.104s,
@@ -185,5 +194,5 @@ measurement, not a promised full-dataset throughput:
 - Eight repeats of that same root (not independent examples):56candidate rows/
   80events, forward+backward0.527s, peak RSS about258MiB
 
-Actual throughput must be remeasured on the staged data's history/candidate-size
-mix before a bounded trial. Teacher generation and training costs are distinct.
+The actual one-epoch pilot took 274.91 seconds active wall time and peaked at
+872.16 MiB RSS. Teacher generation and training costs remain distinct.

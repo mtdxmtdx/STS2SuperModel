@@ -184,8 +184,8 @@ public sealed class M012Tests
     public async Task M2_StandalonePolicyProcessReceivesOnlyWhitelistedJson()
     {
         await using var s=await CombatSession.CreateAsync(); var packet=s.Observe();
-        string? path=FindRoot(); Assert.NotNull(path);
-        var start=new ProcessStartInfo("dotnet",$"\"{path}/src/Nosl.PublicPolicy/bin/Release/net9.0/Nosl.PublicPolicy.dll\"") {RedirectStandardInput=true,RedirectStandardOutput=true,RedirectStandardError=true,UseShellExecute=false,CreateNoWindow=true};
+        string path=Assembly.Load("Nosl.PublicPolicy").Location;
+        var start=new ProcessStartInfo("dotnet",$"\"{path}\"") {RedirectStandardInput=true,RedirectStandardOutput=true,RedirectStandardError=true,UseShellExecute=false,CreateNoWindow=true};
         using var process=Process.Start(start)!;
         await process.StandardInput.WriteLineAsync(PublicJson.Serialize(packet)); process.StandardInput.Close();
         string json=await process.StandardOutput.ReadLineAsync() ?? ""; await process.WaitForExitAsync();
@@ -266,11 +266,5 @@ public sealed class M012Tests
         await using var s=await CombatSession.CreateAsync(new(EnemyHp:1000));
         var rows=await BranchDiagnostics.EvaluateAsync(s,[1,2],1);
         Assert.All(rows,r=>{Assert.Equal(2,r.Truncated);Assert.Equal(0,r.Completed);Assert.Equal(0,r.Errors);Assert.All(r.Outcomes,x=>Assert.Null(x.FinalHp));});
-    }
-    private static string? FindRoot()
-    {
-        for(var dir=new DirectoryInfo(AppContext.BaseDirectory);dir is not null;dir=dir.Parent)
-            if(File.Exists(Path.Combine(dir.FullName,"Nosl.M012.sln"))) return dir.FullName;
-        return null;
     }
 }

@@ -1,0 +1,69 @@
+{
+  "schema": "nosl.m3-m6.final-engineering-checkpoint.v1",
+  "date_utc": "2026-10-02",
+  "status": "READY_FOR_BOUNDED_PILOT_FULL_SCOPE_BLOCKED",
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "lifetime_first_trial_steps": 497,
+  "native_tests": {
+    "passed": 929,
+    "failed": 0,
+    "skipped": 0
+  },
+  "python_tests_passed": 165,
+  "generator_tests_passed": 63,
+  "data_tests_passed": 105,
+  "calibration_tests_passed": 24,
+  "inference_sources_and_original_worker_preserved": true,
+  "default_continuation": "nosl-public-rules-v1",
+  "opt_in_continuation": "nosl-public-rules-v2",
+  "relative_profile": "nosl-common-inventory-relative-development-v1",
+  "next_plan": "configs/m5_balanced_validation_plan.json",
+  "evidence_files": [
+    {
+      "path": "artifacts/reports/m3-m6/final-m3-m6.trx",
+      "bytes": 1357634,
+      "sha256": "24160f26bae7cf2f7f4a6182b3e739dc9d339f8f22451d72b2a9d9a7848c872e"
+    },
+    {
+      "path": "artifacts/reports/m3-m6/final-m3-m6-dotnet.log",
+      "bytes": 2170,
+      "sha256": "5948b6917dd46faa0d739d8ce7638dde7c83c56e8a19aaacda4fe6928f0a96c8"
+    },
+    {
+      "path": "artifacts/reports/m3-m6/final-generator-tests.log",
+      "bytes": 10982,
+      "sha256": "03e2598e15fdf7bcbef6b6d44db70d743d93a2c64289167c85f492d613b6a0ce"
+    },
+    {
+      "path": "artifacts/reports/m3-m6/final-data-tests.log",
+      "bytes": 16506,
+      "sha256": "25a7cfaff00f380ae4854e66d67087577817fc2a9651334f54c4bf6dba0553cc"
+    },
+    {
+      "path": "artifacts/reports/m3-m6/experimental-policy-tests.log",
+      "bytes": 26213,
+      "sha256": "ac3c4cf53d4c45485ec4e8f848a32e3427039e5dca8069b37feb53550d30fa54"
+    },
+    {
+      "path": "artifacts/reports/m3-m6/v2-cli-engineering-smoke-fixed.log",
+      "bytes": 412,
+      "sha256": "d05bde0caf58bda6dd55b6d7b261e99b2651b678a6ec888c913029c74234767a"
+    },
+    {
+      "path": "artifacts/reports/m3-m6/v2-cli-deadline-engineering-smoke.log",
+      "bytes": 411,
+      "sha256": "ece889d6119bb5d7af3595abadca7b72c365230989ca05093f577bf1fcb954a8"
+    },
+    {
+      "path": "artifacts/reports/m3-m6/v2-cli-preparation.log",
+      "bytes": 410,
+      "sha256": "2894522ef3a8dbb444176132fedd37e2ac2df44c0fddf27a1a4eacd6001ffe38"
+    },
+    {
+      "path": "artifacts/reports/m3-m6/v2-cli-backward.log",
+      "bytes": 1211,
+      "sha256": "66b5bb0c71805b579dd5fcb5761c47228eeed8e88758874e1cbeb1ca137b15d4"
+    }
+  ]
+}

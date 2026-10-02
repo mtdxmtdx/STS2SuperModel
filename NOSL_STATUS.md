@@ -17,8 +17,8 @@ blocked by resource calibration, posterior coverage and policy quality gates.
 - Constructed closed-loop check: student and baseline both won all 16 battles.
   Student ended 2.81 HP higher on average but spent four extra potions. This does
   not establish better overall utility; two Swift Potions drew zero cards
-- Verification: 902 integration tests, 4,479 updated Core tests with three existing
-  opt-in skips, 165 Python student tests, 104 data tests, 51 generator tests and
+- Verification: 929 integration tests, 4,479 updated Core tests with three existing
+  opt-in skips, 165 Python student tests, 105 data tests, 63 generator tests and
   24 calibration evidence tests passed
 
 The optional [experimental policy guard](docs/EXPERIMENTAL_POLICY_GUARD.md)
@@ -27,7 +27,8 @@ All pilot weights remain experimental and unpromoted. No formal training has run
 More data is gated on correcting allocation bias and missing action supervision,
 not merely reaching a larger count. Remote simulator repositories remain read-only.
 
-See [first pilot results](docs/FIRST_BOUNDED_PILOT.md),
+See [milestone acceptance and next gates](docs/M3_M6_ACCEPTANCE_CHECKPOINT.md),
+[first pilot results](docs/FIRST_BOUNDED_PILOT.md),
 [machine-readable evidence](configs/m5_first_pilot_report.json),
 [readiness](TRAINING_READINESS.json), and
 [M3–M6 evidence and limits](docs/M3_M6_STATUS.md).

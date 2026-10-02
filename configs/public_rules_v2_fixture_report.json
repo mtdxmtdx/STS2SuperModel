@@ -1,0 +1,192 @@
+{
+  "schema_version": "nosl.public-rules-v2-fixture-report.v1",
+  "scope": "one constructed enough-block mixed root; no natural-frequency or general C02 claim",
+  "formal_labels": false,
+  "trainable": false,
+  "teacher": "T0",
+  "max_decisions": 32,
+  "paired_final_world_seeds": [
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216
+  ],
+  "independent_root_worlds_per_policy": 16,
+  "candidate_copies_per_policy": 48,
+  "block": 8,
+  "published_incoming": 5,
+  "source_unchanged": true,
+  "public_input_equal": true,
+  "all_legal_candidates_retained": true,
+  "dataset_record_validation": "both_records_pass_engineering_smoke_validator",
+  "mixed_version_preparation": "append_record_versions_mismatch",
+  "preference_signal": "all_v2_candidate_values_tied_at_0; completion_evidence_only",
+  "policies": [
+    {
+      "continuation_version": "nosl-public-rules-v1",
+      "dataset_version": null,
+      "file": "nosl-public-rules-v1.jsonl",
+      "sha256": "c2c246cee155cdffcef17a8a145a205239148ef270d29f0cbf4d145a9614b9a1",
+      "worlds_allocated": 48,
+      "worlds_completed": 16,
+      "candidates": [
+        {
+          "action": {
+            "revision": 2,
+            "kind": "play",
+            "slot": 0,
+            "target": -2,
+            "selection": null
+          },
+          "card": "BladeDance",
+          "outcomes": {
+            "Win": 16
+          },
+          "completed_worlds": 16,
+          "value": 0,
+          "win_probability": 1,
+          "value_mask": true,
+          "atomic_actions": [
+            6
+          ],
+          "settled_hp": [
+            70
+          ]
+        },
+        {
+          "action": {
+            "revision": 2,
+            "kind": "play",
+            "slot": 1,
+            "target": -2,
+            "selection": null
+          },
+          "card": "Finesse",
+          "outcomes": {
+            "ComputeTruncated": 16
+          },
+          "completed_worlds": 0,
+          "value": null,
+          "win_probability": null,
+          "value_mask": false,
+          "atomic_actions": [
+            32
+          ],
+          "settled_hp": []
+        },
+        {
+          "action": {
+            "revision": 2,
+            "kind": "end_turn",
+            "slot": -1,
+            "target": -1,
+            "selection": null
+          },
+          "card": null,
+          "outcomes": {
+            "ComputeTruncated": 16
+          },
+          "completed_worlds": 0,
+          "value": null,
+          "win_probability": null,
+          "value_mask": false,
+          "atomic_actions": [
+            32
+          ],
+          "settled_hp": []
+        }
+      ]
+    },
+    {
+      "continuation_version": "nosl-public-rules-v2",
+      "dataset_version": "nosl.teacher-data.public-rules-v2.v1",
+      "file": "nosl-public-rules-v2.jsonl",
+      "sha256": "ff3fa04ae17249d7cbe9afbb02735bbbfd69b6fd98083badac9c6f65093409d7",
+      "worlds_allocated": 48,
+      "worlds_completed": 48,
+      "candidates": [
+        {
+          "action": {
+            "revision": 2,
+            "kind": "play",
+            "slot": 0,
+            "target": -2,
+            "selection": null
+          },
+          "card": "BladeDance",
+          "outcomes": {
+            "Win": 16
+          },
+          "completed_worlds": 16,
+          "value": 0,
+          "win_probability": 1,
+          "value_mask": true,
+          "atomic_actions": [
+            6
+          ],
+          "settled_hp": [
+            70
+          ]
+        },
+        {
+          "action": {
+            "revision": 2,
+            "kind": "play",
+            "slot": 1,
+            "target": -2,
+            "selection": null
+          },
+          "card": "Finesse",
+          "outcomes": {
+            "Win": 16
+          },
+          "completed_worlds": 16,
+          "value": 0,
+          "win_probability": 1,
+          "value_mask": true,
+          "atomic_actions": [
+            7
+          ],
+          "settled_hp": [
+            70
+          ]
+        },
+        {
+          "action": {
+            "revision": 2,
+            "kind": "end_turn",
+            "slot": -1,
+            "target": -1,
+            "selection": null
+          },
+          "card": null,
+          "outcomes": {
+            "Win": 16
+          },
+          "completed_worlds": 16,
+          "value": 0,
+          "win_probability": 1,
+          "value_mask": true,
+          "atomic_actions": [
+            9
+          ],
+          "settled_hp": [
+            70
+          ]
+        }
+      ]
+    }
+  ]
+}
