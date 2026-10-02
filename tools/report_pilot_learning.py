@@ -25,6 +25,7 @@ from nosl.train import check_split_isolation, config_hash, evaluate
 
 SCHEMA = "nosl.pilot-learning-report.v1"
 AVAILABILITY = ("full_utility", "partial_utility", "auxiliary_only", "missing_utility_and_auxiliary")
+RANKING_TOLERANCE = 1e-9
 
 
 def require(condition, message):
@@ -131,6 +132,8 @@ def summary(records, supports, predictions=None, constant=None):
     counts = Counter({key + "_roots": 0 for key in AVAILABILITY})
     learned, baseline, weighted_learned, weighted_baseline = [], [], [], []
     regrets, agreements, ranks = [], [], []
+    spreads, nonzero_spread_regrets, nonzero_spread_agreements = [], [], []
+    candidate_counts, best_mean_counts = Counter(), Counter()
     for index, (record, support) in enumerate(zip(records, supports)):
         rows = value_rows(record)
         counts[support["utility_availability"] + "_roots"] += 1
@@ -145,6 +148,13 @@ def summary(records, supports, predictions=None, constant=None):
         # Count incomplete roots independently of single-action exclusions.
         counts["incomplete_value_roots"] += support["utility_availability"] != "full_utility"
         counts["incomplete_value_roots_skipped"] += len(support["legal_candidate_indices"]) >= 2 and not support["empirical_ranking_eligible"]
+        if support["empirical_ranking_eligible"]:
+            means = {row["action_index"]: row["value"] for row in rows}
+            best = max(means.values())
+            spread = best - min(means.values())
+            spreads.append(spread)
+            candidate_counts[len(means)] += 1
+            best_mean_counts[sum(abs(best - value) <= RANKING_TOLERANCE for value in means.values())] += 1
         if predictions is None:
             continue
         prediction = predictions[index]
@@ -157,15 +167,28 @@ def summary(records, supports, predictions=None, constant=None):
             weighted_learned.append((error, coefficient))
             weighted_baseline.append((constant - row["value"], coefficient))
         if support["empirical_ranking_eligible"]:
-            means = {row["action_index"]: row["value"] for row in rows}
             selected = means[prediction["selected_index"]]
-            best = max(means.values())
-            regrets.append(max(0.0, best - selected))
-            agreements.append(float(abs(best - selected) <= 1e-9))
-            ranks.append(1 + sum(value > selected + 1e-9 for value in means.values()))
+            regret = max(0.0, best - selected)
+            agreement = float(abs(best - selected) <= RANKING_TOLERANCE)
+            regrets.append(regret)
+            agreements.append(agreement)
+            ranks.append(1 + sum(value > selected + RANKING_TOLERANCE for value in means.values()))
+            if spread > RANKING_TOLERANCE:
+                nonzero_spread_regrets.append(regret)
+                nonzero_spread_agreements.append(agreement)
     result = {"roots": len(records), "distinct_source_battles": len({s["source_battle"] for s in supports}),
               "distinct_source_run_groups": len({s["source_run_group"] for s in supports}),
               "distinct_branch_families": len({s["branch_family"] for s in supports}), **dict(counts)}
+    result["empirical_ranking_label_support"] = {
+        "eligible_roots": len(spreads),
+        "all_equal_mean_roots": sum(spread <= RANKING_TOLERANCE for spread in spreads),
+        "nonzero_spread_roots": sum(spread > RANKING_TOLERANCE for spread in spreads),
+        "roots_with_best_mean_ties": sum(count for best_count, count in best_mean_counts.items() if best_count > 1),
+        "utility_spread": {"min": min(spreads) if spreads else None,
+                           "mean": metric(spreads)["value"], "max": max(spreads) if spreads else None,
+                           "count": len(spreads)},
+        "legal_candidate_count_distribution": {str(size): count for size, count in sorted(candidate_counts.items())},
+        "best_mean_candidate_count_distribution": {str(size): count for size, count in sorted(best_mean_counts.items())}}
     if predictions is not None:
         def regression(errors, weighted):
             weight = sum(w for _, w in weighted)
@@ -178,7 +201,9 @@ def summary(records, supports, predictions=None, constant=None):
                       train_constant=regression(baseline, weighted_baseline),
                       empirical_teacher_mean_regret=metric(regrets),
                       empirical_teacher_best_action_agreement=metric(agreements),
-                      selected_action_empirical_mean_rank=metric(ranks))
+                      selected_action_empirical_mean_rank=metric(ranks),
+                      nonzero_spread_empirical_teacher_mean_regret=metric(nonzero_spread_regrets),
+                      nonzero_spread_empirical_teacher_best_action_agreement=metric(nonzero_spread_agreements))
     return result
 
 
@@ -188,13 +213,20 @@ def metric(values):
 
 def stratified(records, supports, predictions=None, constant=None):
     result = {"overall": summary(records, supports, predictions, constant), "strata": {}}
-    for key in ("source_category", "declared_phase", "actual_turn", "posterior_profile", "source_battle", "source_category_and_phase"):
+    for key in ("source_category", "declared_phase", "actual_turn", "posterior_profile", "source_battle",
+                "source_category_and_phase", "source_category_and_observed_enemy_ids"):
         groups = defaultdict(list)
         for index, support in enumerate(supports):
             # Joint support prevents common starter phases from hiding sparse
             # later-turn nonstarter failures in either marginal histogram.
-            name = (json.dumps([support["source_category"], support["declared_phase"]], separators=(",", ":"))
-                    if key == "source_category_and_phase" else support[key])
+            if key == "source_category_and_observed_enemy_ids":
+                # Current public composition, preserving multiplicity; not the initial encounter.
+                enemy_ids = sorted(enemy["id"] for enemy in records[index]["public_input"]["observation"]["enemies"])
+                name = json.dumps([support["source_category"], enemy_ids], separators=(",", ":"))
+            elif key == "source_category_and_phase":
+                name = json.dumps([support["source_category"], support["declared_phase"]], separators=(",", ":"))
+            else:
+                name = support[key]
             groups[name].append(index)
         result["strata"][key] = {name: summary([records[i] for i in indices], [supports[i] for i in indices],
                                                [predictions[i] for i in indices] if predictions is not None else None, constant)
@@ -297,8 +329,10 @@ def build_report(prepared, bundle, *, max_records=10000, max_loaded_bytes=512 * 
             "exact_support": supports,
             "ranking_semantics": {**final["empirical_teacher_ranking_semantics"],
                                   "selection": "actual inference selected_index from highest predicted legal utility",
-                                  "rank": "1 + number of legal empirical teacher means exceeding the selected mean by >1e-9; ties share rank"},
+                                  "rank": "1 + number of legal empirical teacher means exceeding the selected mean by >1e-9; ties share rank",
+                                  "label_support": "complete legal sets with at least two candidates; spread = maximum minus minimum empirical teacher mean; all-equal means spread <=1e-9, nonzero spread >1e-9; best-mean candidates are within 1e-9 of maximum"},
             "warnings": ["Teacher continuation targets are finite small-N estimates; mean regret/agreement/rank are empirical and not certified labels.",
+                         "All-equal empirical means yield agreement for every legal choice; nonzero-spread metrics expose action-dependent empirical support but do not establish learning or true action equivalence.",
                          "Missing utility excludes the entire root from ranking metrics and stays visible in every applicable stratum.",
                          "Source-battle IDs count distinct provenance groups, not independent roots; groups can share source runs. No confidence intervals are claimed.",
                          "Regression reports raw utility units (MSE squared); unweighted candidate metrics match stored validation, weighted metrics expose the training head support.",

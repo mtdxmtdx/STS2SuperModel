@@ -58,7 +58,8 @@ better. There are no before-fit strata unless those were separately recorded.
 
 Validation is additionally broken down by source category, declared source phase,
 actual observed turn, posterior profile, source battle, and the joint category ×
-phase population. Joint group keys are JSON `[category, phase]` pairs so sparse
+phase and category × observed enemy-ID composition populations. Phase joint group
+keys are JSON `[category, phase]` pairs so sparse
 later nonstarter populations cannot disappear inside marginal totals. Declared phase and
 actual turn are distinct fields. Every stratum includes its total roots, distinct
 source battles, source-run groups, branch families, candidate counts, pair-label
@@ -75,6 +76,22 @@ roots. Train support is shown separately with the same strata and counts.
 Distinct battle IDs expose the number of source groups; multiple roots from a
 battle are correlated and battles may share source-run groups. These counts are
 not a claim of statistical independence or a basis for invented confidence bounds.
+
+`source_category_and_observed_enemy_ids` uses JSON `[category, sorted_enemy_ids]`
+keys derived only from `public_input.observation.enemies`. Sorting removes list
+order but preserves repeated IDs, so two copies of an enemy remain distinct from
+one. This is the **current observed composition**, not an inferred initial or
+naturally encountered battle; dead, spawned, or transformed enemies can make
+those differ. The slice includes all the existing support and metric fields.
+
+The first pilot's constructed source recipe uses `index % 10` for category and
+`index % 4` for enemy allocation. Potion sources therefore use only `TwigSlimeS`
+or `Nibbit`, and relic sources only `LeafSlimeS` or `TwigSlimeM`. Category or phase
+marginals alone hide this construction constraint. Before scale-up, a separately
+versioned generator needs independent enemy allocation and explicit checks of
+item/category × enemy coverage. This diagnostic does not change the frozen
+generator, repair missing coverage, or treat this first pilot as representative
+of natural encounters.
 
 The first 203-root generation snapshot reported during development had 187 full,
 14 partial, 2 auxiliary-only roots, zero strong pair labels, and all 15 potion
@@ -130,6 +147,35 @@ pairwise label, or student rollout result is implied. Pair-label counts stay
 separate. Incomplete-root and single-action exclusions are reported in every
 stratum, along with all incomplete roots even when a root has only one action.
 
+Every train and validation summary also includes `empirical_ranking_label_support`
+on that same complete, multi-action population:
+
+- `eligible_roots` and `legal_candidate_count_distribution`: the population size
+  and histogram of legal candidates per eligible root
+- `utility_spread`: minimum, mean, maximum, and count of per-root maximum minus
+  minimum empirical utility; absent support gives null values and count zero
+- `all_equal_mean_roots` and `nonzero_spread_roots`: spread at most `1e-9`, or
+  greater than `1e-9`, respectively
+- `roots_with_best_mean_ties` and `best_mean_candidate_count_distribution`: roots
+  with multiple means within `1e-9` of the maximum, and a histogram of the number
+  of such candidates (including one for a unique best mean)
+
+Histogram keys are string candidate counts and values are root counts. These
+descriptive fields are present overall and in every existing stratum, even when
+there are no eligible roots. Incomplete roots contribute neither spread nor tie
+counts, even if their available subset is flat or has a large spread.
+
+All-equal empirical means make every legal choice agree with the sampled best
+and yield zero regret (or at most `1e-9` under the tolerance). High agreement on
+these roots does not show action-dependent learning. The original ranking metrics
+and their denominators are preserved. Additional validation fields
+`nonzero_spread_empirical_teacher_mean_regret` and
+`nonzero_spread_empirical_teacher_best_action_agreement` use only eligible roots
+whose spread exceeds `1e-9`; they report their own counts and null values for no
+support. Tied best actions still count as agreement in this view when other legal
+actions have lower means. Neither flat nor nonzero spread establishes true action
+equivalence, certified preferences, or learning; no label or target is changed.
+
 ## Bounds and tests
 
 The report holds at most 10,000 train-plus-validation records. Defaults are 512
@@ -147,7 +193,9 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=python ../.venv-nosl/bin/python \
 
 Tests cover masks, weights and constant means; exact same-support errors; all
 availability classes and missing potion ranking support; declared/actual phases;
-source battles; ties, illegal/single candidates; split leakage; hard bounds;
+source battles; flat/distinct means, best-mean ties and tolerance boundaries;
+candidate-count distributions; current enemy composition, order and multiplicity;
+incomplete-root exclusions, illegal/single candidates; split leakage; hard bounds;
 test-byte integrity without test-outcome parsing; read-only execution; and
 provenance/source/weight tampering. Temporary synthetic bundles contain random
 initialization for loader tests only: no fitting or optimizer step is performed.

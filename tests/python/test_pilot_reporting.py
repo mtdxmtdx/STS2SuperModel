@@ -187,9 +187,98 @@ class PilotReportingTests(unittest.TestCase):
         self.assertEqual(result["selected_action_empirical_mean_rank"]["value"], 3.)
         result = report.summary([item], [support], [prediction([3., 2., 1.], 1)], 0.)
         self.assertEqual(result["selected_action_empirical_mean_rank"]["value"], 1.)
+        self.assertEqual(result["nonzero_spread_empirical_teacher_best_action_agreement"], {"value": 1., "count": 1})
         mask_value(item, 0)
         result = report.summary([item], [report.support_row(item)], [prediction([3., 2., 1.], 2)], 0.)
         self.assertEqual(result["empirical_teacher_mean_regret"], {"value": None, "count": 0})
+
+    def test_label_support_separates_flat_tied_and_distinct_complete_roots(self):
+        items = [record("flat", 1, (5., 5., 5.)), record("tied", 2, (10., 10., 0.)),
+                 record("distinct", 3, (3., 1., 0.)), record("two-candidates", 4, (1., 0., 999.)),
+                 record("partial", 5, (1000., 0., -1000.)), record("single", 6)]
+        mask_all(items[3], 2)
+        items[3]["public_input"]["legal_mask"][2] = False
+        mask_value(items[4], 2)
+        for index in (1, 2):
+            mask_all(items[5], index)
+            items[5]["public_input"]["legal_mask"][index] = False
+        predictions = [prediction([0., 0., 0.], 2), prediction([0., 0., 0.], 2),
+                       prediction([0., 0., 0.], 0), prediction([0., 0., None], 1),
+                       prediction([0., 0., 0.], 2), prediction([0., None, None], 0)]
+        supports = [report.support_row(item) for item in items]
+        result = report.summary(items, supports, predictions, 0.)
+        expected = {"eligible_roots": 4, "all_equal_mean_roots": 1, "nonzero_spread_roots": 3,
+                    "roots_with_best_mean_ties": 2,
+                    "utility_spread": {"min": 0., "mean": 3.5, "max": 10., "count": 4},
+                    "legal_candidate_count_distribution": {"2": 1, "3": 3},
+                    "best_mean_candidate_count_distribution": {"1": 2, "2": 1, "3": 1}}
+        self.assertEqual(result["empirical_ranking_label_support"], expected)
+        self.assertEqual(report.summary(items, supports)["empirical_ranking_label_support"], expected)
+        # Original complete-root denominators retain flat roots; the new view does not.
+        self.assertEqual(result["empirical_teacher_mean_regret"], {"value": 11. / 4, "count": 4})
+        self.assertEqual(result["empirical_teacher_best_action_agreement"], {"value": .5, "count": 4})
+        self.assertEqual(result["nonzero_spread_empirical_teacher_mean_regret"], {"value": 11. / 3, "count": 3})
+        self.assertEqual(result["nonzero_spread_empirical_teacher_best_action_agreement"], {"value": 1. / 3, "count": 3})
+        self.assertEqual(result["incomplete_value_roots_skipped"], 1)
+        self.assertEqual(result["single_action_roots_skipped"], 1)
+
+    def test_flat_means_and_best_ties_use_existing_tolerance_in_every_stratum(self):
+        # An exactly-at-tolerance spread is flat; a spread just above it is not.
+        items = [record("near-flat", 1, (0., .5e-9, 1e-9)),
+                 record("near-tie", 2, (0., 1.5e-9, 2e-9))]
+        supports = [report.support_row(item) for item in items]
+        predictions = [prediction([0., 0., 0.], 0)] * 2
+        result = report.stratified(items, supports, predictions, 0.)
+        support = result["overall"]["empirical_ranking_label_support"]
+        self.assertEqual(support["all_equal_mean_roots"], 1)
+        self.assertEqual(support["nonzero_spread_roots"], 1)
+        self.assertEqual(support["best_mean_candidate_count_distribution"], {"2": 1, "3": 1})
+        self.assertEqual(result["overall"]["empirical_teacher_best_action_agreement"], {"value": .5, "count": 2})
+        for groups in result["strata"].values():
+            self.assertEqual(sum(group["empirical_ranking_label_support"]["eligible_roots"] for group in groups.values()), 2)
+            self.assertEqual(sum(group["empirical_ranking_label_support"]["all_equal_mean_roots"] for group in groups.values()), 1)
+            self.assertEqual(sum(group["nonzero_spread_empirical_teacher_best_action_agreement"]["count"] for group in groups.values()), 1)
+        flat = result["strata"]["source_battle"]["battle-near-flat"]
+        self.assertEqual(flat["nonzero_spread_empirical_teacher_mean_regret"], {"value": None, "count": 0})
+        self.assertEqual(flat["nonzero_spread_empirical_teacher_best_action_agreement"], {"value": None, "count": 0})
+
+    def test_incomplete_roots_have_no_empirical_spread_or_tie_support(self):
+        item = record(means=(10., 10., 0.))
+        mask_value(item, 2)
+        result = report.summary([item], [report.support_row(item)], [prediction([0., 0., 0.], 0)], 0.)
+        self.assertEqual(result["empirical_ranking_label_support"], {
+            "eligible_roots": 0, "all_equal_mean_roots": 0, "nonzero_spread_roots": 0,
+            "roots_with_best_mean_ties": 0,
+            "utility_spread": {"min": None, "mean": None, "max": None, "count": 0},
+            "legal_candidate_count_distribution": {}, "best_mean_candidate_count_distribution": {}})
+        self.assertEqual(result["nonzero_spread_empirical_teacher_mean_regret"], {"value": None, "count": 0})
+        self.assertEqual(result["nonzero_spread_empirical_teacher_best_action_agreement"], {"value": None, "count": 0})
+
+    def test_category_enemy_slice_uses_current_public_composition_and_multiplicity(self):
+        items = [record(str(index), index) for index in range(4)]
+        for item, ids in zip(items, (("TwigSlimeS", "Nibbit"), ("Nibbit", "TwigSlimeS"),
+                                    ("TwigSlimeS", "TwigSlimeS"), ("TwigSlimeS", "Nibbit"))):
+            observation = item["public_input"]["observation"]
+            template = observation["enemies"][0]
+            observation["enemies"] = [{**deepcopy(template), "slot": slot, "id": enemy_id}
+                                      for slot, enemy_id in enumerate(ids)]
+            item["audit_only"]["initial_enemy"] = "not-an-observed-enemy"
+        items[3]["audit_only"]["source_category"] = "relic"
+        mask_value(items[1], 2)
+        supports = [report.support_row(item) for item in items]
+        result = report.stratified(items, supports, [prediction([0., 0., 0.], 0)] * 4, 0.)
+        groups = result["strata"]["source_category_and_observed_enemy_ids"]
+        self.assertEqual(set(groups), {'["potion",["Nibbit","TwigSlimeS"]]',
+                                      '["potion",["TwigSlimeS","TwigSlimeS"]]',
+                                      '["relic",["Nibbit","TwigSlimeS"]]'})
+        mixed = groups['["potion",["Nibbit","TwigSlimeS"]]']
+        self.assertEqual(mixed["roots"], 2)
+        self.assertEqual(mixed["incomplete_value_roots_skipped"], 1)
+        self.assertEqual(mixed["empirical_ranking_label_support"]["eligible_roots"], 1)
+        self.assertEqual(mixed["nonzero_spread_empirical_teacher_best_action_agreement"]["count"], 1)
+        train_groups = report.stratified(items, supports)["strata"]["source_category_and_observed_enemy_ids"]
+        self.assertEqual(train_groups.keys(), groups.keys())
+        self.assertEqual(train_groups['["potion",["Nibbit","TwigSlimeS"]]']["roots"], 2)
 
     def test_illegal_and_single_action_candidates_do_not_inflate_ranking(self):
         item = record()
