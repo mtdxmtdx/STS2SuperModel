@@ -185,13 +185,23 @@
     "seconds": 336.0722794
   },
   "native_rewards_hybrid_v6": {
-    "status": "VERIFIED_COMPOSITION_BOUNDED_DIAGNOSTIC_RUNNING",
+    "status": "VERIFIED_COMPOSITION_REUSED_GATE_NOT_MET",
     "native_tests_passed": 1689,
     "core_tests_passed": 4493,
     "core_tests_opt_in_skipped": 3,
     "new_production_rows": 0,
     "new_optimizer_steps": 0,
     "full_readiness": false,
-    "report": "configs/native_rewards_hybrid_v6_verification.json"
+    "report": "configs/native_rewards_hybrid_v6_verification.json",
+    "diagnostic_roots_executed": 8,
+    "accepted_worlds": 10,
+    "settled_candidate_worlds": 64,
+    "allocated_candidate_worlds": 96,
+    "fully_completed_sources": 5,
+    "multi_action_completed": 3,
+    "multi_action_denominator": 6,
+    "combat_index2_completed": false,
+    "gate_passed": false,
+    "seconds": 292.5594886
   }
 }

@@ -72,3 +72,24 @@ counts every failed or unexecuted source in the original denominator. Results
 remain engineering-only; fixed-root corrections do not prove unbiased sampling
 of roots selected by a wall-clock completion limit. A fresh predeclared development
 cohort is still required before production enlargement or new fitting.
+
+
+The isolated v6 probe completed all eight sources in 292.56 seconds (292.71
+seconds including process overhead). It accepted 10 worlds and settled 64 of
+96 candidate-world copies; the remaining 32 are ComputeTruncated, with zero
+engine errors. Sources 11001, 11002, 11003, 11005 and 11008 completed. The
+predeclared multi-action subset reached 3/6 complete, but neither required
+combat-index-2 source completed, so the overall gate failed. All public inputs
+and the prior identity equal v1. The 422 attempts include 175 component budget
+exhaustions, 230 public mismatches, 7 density-correction rejections and 10
+acceptances. They consumed 17,307 complete prefix trials and 2,419,818 callback
+words; peak worker memory was 234,749,952 bytes.
+
+For 11006 and 11007, the recorded first mismatches remain first-combat draws
+after slime turns. For 11004, 49 nonexhausted proposals failed the entry check
+before combat 1. That guard runs before the next stable-decision full-prefix
+comparison, so this result does not identify which intervening reward, map or
+event observation first differed. Early outside-combat comparison and further
+source-reviewed conditional proposals are the next diagnosis. No source roots
+were omitted or replaced, and no production rows or optimizer steps were added.
+The v4 run overlapped other tests; its timing is not a controlled CPU comparison.

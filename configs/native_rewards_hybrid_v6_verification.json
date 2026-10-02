@@ -1,7 +1,7 @@
 {
   "schema": "nosl.native-rewards-hybrid-verification.v6",
   "source_commit": "4134427f08f72f89727f261554725ccd561ca282",
-  "status": "VERIFIED_V6_COMPOSITION_BOUNDED_DIAGNOSTIC_RUNNING",
+  "status": "VERIFIED_V6_COMPOSITION_REUSED_GATE_NOT_MET",
   "full_m3_m6_complete": false,
   "formal_training": false,
   "new_optimizer_steps": 0,
@@ -149,7 +149,7 @@
     "Owning v6 integration: guard-classification finding fixed and independently rechecked; no remaining blocker"
   ],
   "reused_eight_probe": {
-    "status": "running",
+    "status": "completed_gate_not_met",
     "worker_source_commit": "4134427f08f72f89727f261554725ccd561ca282",
     "predeclaration": {
       "path": "artifacts/reports/hybrid-v6/reused-eight-predeclaration.json",
@@ -162,7 +162,78 @@
       "sha256": "d7b471cafce74827489860d27ee022056d87259766ebc2f63e7c8dc4bd82f82b"
     },
     "not_a_fresh_breadth_validation": true,
-    "production_admission_allowed": false
+    "production_admission_allowed": false,
+    "source_roots_requested": 8,
+    "source_roots_executed": 8,
+    "accepted_worlds": 10,
+    "settled_candidate_worlds": 64,
+    "allocated_candidate_worlds": 96,
+    "compute_truncated_candidate_worlds": 32,
+    "engine_errors": 0,
+    "proposal_attempts": 422,
+    "proposal_statuses": {
+      "exact_proposal_density_correction_rejected": 7,
+      "accepted": 10,
+      "component_budget_exhausted": 175,
+      "public_constraint_mismatch": 230
+    },
+    "completed_initial_prefix_trials": 17307,
+    "callback_words": 2419818,
+    "elapsed_seconds": 292.5594886,
+    "wall_seconds": 292.7056858510041,
+    "peak_worker_memory_bytes": 234749952,
+    "budget_expired": false,
+    "public_inputs_equal_v1": true,
+    "prior_identity_equal_v1": true,
+    "fully_completed_sources": [
+      11001,
+      11002,
+      11003,
+      11005,
+      11008
+    ],
+    "multi_action_completed": 3,
+    "multi_action_denominator": 6,
+    "multi_action_half_threshold_met": true,
+    "combat_index2_completed": false,
+    "gate_passed": false,
+    "worker_sha256": "e39e367cbedc3ad6d9ddbbea50ece999072edf31e7a6f195d4791b756e37acdf",
+    "response": {
+      "path": "artifacts/reports/hybrid-v6/reused-eight-response.jsonl",
+      "bytes": 4718099,
+      "sha256": "599e331603211f235ac1eb8d126161783e5dc62e3bd95a8bd3f64cf4fa646eca"
+    },
+    "analysis": {
+      "path": "artifacts/reports/hybrid-v6/reused-eight-analysis.json",
+      "bytes": 17616,
+      "sha256": "1dc2054b9c24333fb25aeb4268450fc6cc00adad490e54b39bc672be99607f39"
+    },
+    "resources": {
+      "path": "artifacts/reports/hybrid-v6/reused-eight-resources.json",
+      "bytes": 149,
+      "sha256": "b48f474fa2f0ebab8e432b62ca0315cf5c2a1ff5b399fc8862e42659883f04e2"
+    },
+    "stderr": {
+      "path": "artifacts/reports/hybrid-v6/reused-eight-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "runner": {
+      "path": "artifacts/reports/hybrid-v6/run_reused_eight.py",
+      "bytes": 3051,
+      "sha256": "19747acbdb498cdf2bfa38ea451fc8caab2275807a8ba867157669d63f732465"
+    },
+    "analyzer": {
+      "path": "artifacts/reports/hybrid-v6/analyze_reused_eight.py",
+      "bytes": 3154,
+      "sha256": "473f3578a3a36cecbf3ffd56db099cee903b9769f346bcb0ca06e6b119a39f93"
+    },
+    "remaining_rejection_evidence": [
+      "11004: 79 initial-prefix budget exhaustions and 49 public combat-entry mismatches before combat1; the current stable-decision check cannot localize intervening reward/map/event differences.",
+      "11006: 59 initial-prefix budget exhaustions and69 mismatches at first-combat CardDrawn events53-55.",
+      "11007:16 initial-prefix budget exhaustions and112 first-combat CardDrawn mismatches, mostly events45-48."
+    ],
+    "comparison_limit": "All inputs are previously inspected development roots. V6 ran without requested concurrent builds/tests; v4 timings overlapped tests, so those timings are not a controlled speed comparison."
   },
   "boundaries": [
     "No source support/catalog filtering when optional certificates fail",
