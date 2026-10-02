@@ -1,17 +1,17 @@
 {
   "milestone": "M6",
   "status": "ENGINEERING_TESTED_LIMITED_APPLICABILITY",
-  "date_utc": "2026-10-01",
+  "date_utc": "2026-10-02",
   "python": "3.12.14",
   "torch": "2.6.0+cpu",
-  "tests_passed": 55,
+  "tests_passed": 165,
   "tests_failed": 0,
   "test_command": "PYTHONPATH=python python -m unittest discover -s tests/python -v",
-  "parameters": 976710,
-  "optimizer_steps_executed": 0,
-  "pilot_training_run": false,
+  "parameters": 976838,
+  "optimizer_steps_executed": 497,
+  "pilot_training_run": true,
   "formal_training_run": false,
-  "learned_weights_written": false,
+  "learned_weights_written": true,
   "model_promoted": false,
   "config_sha256": "4ae365791770d22917f3ce87298c76baecafb2b4a5e2cd2b57d8716bd50f974f",
   "cross_language_evidence": [
@@ -38,20 +38,22 @@
     }
   ],
   "not_yet_verified": [
-    "actual learned optimizer trajectory/resume equivalence",
-    "trained student closed-loop outcomes or calibration"
+    "Uninterrupted-versus-resumed learned parameter bit-equivalence (actual bounded resume completed)",
+    "Broad policy strength, calibrated probabilities and complete resource-decision applicability"
   ],
   "limits": [
     "inactive public controller only; bonus plan heads disabled",
     "explicit entity/history/candidate/HP bounds reject excess",
     "registry admission is not complete interaction/NOSL validation",
     "public detail/history hashing is lossy",
-    "formal training CLI disabled; bounded pilot requires later audited corpus and explicit limits"
+    "Formal training CLI disabled; the completed bounded one-epoch pilot is experimental and unpromoted"
   ],
   "audit_fixes": [
     "canonical configuration checksum",
     "T1 continuation family versus per-root digest separation",
     "canonical public-input cross-split duplicate rejection",
     "immutable split-state conflict consistency"
-  ]
+  ],
+  "first_pilot_report": "configs/m5_first_pilot_report.json",
+  "experimental_policy_guard": "docs/EXPERIMENTAL_POLICY_GUARD.md"
 }

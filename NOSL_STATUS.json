@@ -1,13 +1,13 @@
 {
-  "status": "M3_M6_ENGINEERING_CHECKPOINT_PILOT_STAGE_PENDING",
+  "status": "M3_M6_ENGINEERING_AND_BOUNDED_PILOT_QUALITY_GATES_OPEN",
   "milestones": {
     "M0": "CURRENT_UPSTREAM_PINNED",
     "M1": "BROAD_EXECUTION_VALIDATION_IN_PROGRESS",
     "M2": "FINITE_OPTIMIZED_POSTERIOR_PLUS_BOUNDED_NATIVE_REPLAY",
     "M3": "ENGINEERING_VERIFIED_CALIBRATION_PARTIAL",
-    "M4": "T0_T1_ENGINEERING_VERIFIED",
-    "M5": "ENGINEERING_200_DATA_GATE_PASSED_NATIVE_LABEL_GAP_REMAINS",
-    "M6": "ENGINEERING_VERIFIED_PILOT_DATA_PENDING"
+    "M4": "T0_T1_ENGINEERING_VERIFIED_DECLARED_SETUP_SCOPE",
+    "M5": "5000_EFFECTIVE_CONSTRUCTED_ROOTS_AUDITED_DISTRIBUTION_AND_LABEL_GATES_OPEN",
+    "M6": "ENGINEERING_AND_BOUNDED_FIT_VERIFIED_POLICY_APPLICABILITY_LIMITED"
   },
   "scope": {
     "character": "Silent",
@@ -29,11 +29,11 @@
     "protocol_two_process": "PASS",
     "natural_raw_roots": 200,
     "natural_labeled_roots": 0,
-    "student_regression": 102,
+    "student_regression": 165,
     "full_upstream_frozen_core": "PASS_4479_WITH_3_OPT_IN_SKIPS",
     "engineering_effective_roots": 200,
     "engineering_full_utility_roots": 177,
-    "engineering_auxiliary_only_roots": 23,
+    "engineering_auxiliary_only_roots": 6,
     "natural_development_labeled_roots": 16,
     "natural_development_candidate_branches": 174,
     "natural_training_admitted_roots": 0,
@@ -43,25 +43,35 @@
     "bounded_hunt_integration_cases": 12,
     "conditional_choice_integration_cases": 6,
     "public_numeric_cases": 11,
-    "data_pipeline_passed": 97,
+    "data_pipeline_passed": 104,
     "phase_gate_effective_roots": 204,
     "phase_gate_diagnostic_roots": 11,
     "phase_gate_later_turn_roots": 121,
     "phase_gate_hp_loss_roots": 50,
-    "phase_gate_choice_roots": 3
+    "phase_gate_choice_roots": 3,
+    "engineering_partial_utility_roots": 17,
+    "pilot_effective_roots": 5000,
+    "pilot_accepted_source_battles": 2513,
+    "pilot_optimizer_steps": 497,
+    "pilot_closed_loop_source_battles": 16,
+    "generator_archive_passed": 51,
+    "experimental_resource_guard_cases": 17
   },
   "full_silent_content_ready": false,
   "ready_for_training": false,
-  "ready_for_pilot": false,
+  "ready_for_pilot": true,
   "client_version": "client_version_unverified",
   "client_fidelity": "NOT_RUN",
   "formal_teacher": "T0_T1_IMPLEMENTED_CANDIDATE_OBJECTIVE_NOT_FORMAL",
-  "training": "NO_OPTIMIZER_STEPS_YET",
-  "next_milestone": "M5_QUALITY_THROUGHPUT_GATE_THEN_BOUNDED_PILOT",
+  "training": "BOUNDED_EXPERIMENTAL_497_STEPS_COMPLETED_UNPROMOTED",
+  "next_milestone": "REPAIR_APPLICABILITY_AND_TARGET_MISSING_LABEL_CONTRASTS_BEFORE_SCALE",
   "remaining_full_scope_gaps": [
     "Forced-event native owner/return settlement contexts",
     "Arbitrary carried natural-run public setup, permanent card and relic state",
     "General rejection posterior computational exhaustion must remain explicit",
     "Exhaustive combinations and same-process concurrency unverified"
-  ]
+  ],
+  "first_pilot_report": "configs/m5_first_pilot_report.json",
+  "first_bounded_pilot_completed": true,
+  "ready_for_additional_pilot": false
 }

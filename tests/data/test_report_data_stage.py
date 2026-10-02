@@ -608,5 +608,110 @@ class ReportingTests(unittest.TestCase):
         self.assertTrue(problems.counts)
 
 
+class AttemptedPlanCompletionTests(unittest.TestCase):
+    """Immutable-plan diagnostics use saved synthetic journals, never a worker."""
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+
+    def balanced(self, name, *, start=5, count=1, shard_id=0, shard_count=1, indices=()):
+        path = self.root / name
+        config = shard(path, shard_id, shard_count, roots_per_battle=4, root_policy="public-phase-v1",
+            recipe_version=reporting.BALANCED_RECIPE, attempted_battle_block={"start": start, "count": count})
+        write_rows(path / "attempts.jsonl", [attempt(index, "failed_attempt", source_battle_index=index // 4,
+            reason="worker_response_deadline", uncommitted_requested_action_worlds=8) for index in indices])
+        return path, config
+
+    def test_partial_valid_snapshot_is_incomplete_without_failing_integrity(self):
+        path, _ = self.balanced("partial", indices=(20, 22))
+        (path / "progress.json").write_text(json.dumps({"status": "attempted_block_complete", "attempts": 4}))
+        before = {file.name: file.read_bytes() for file in path.iterdir()}
+        result = reporting.report_stage([path])
+        self.assertTrue(result["integrity"]["passed"])
+        self.assertEqual(0, result["counts"]["invalid_attempt_rows"])
+        self.assertEqual(0, result["counts"]["unique_effective_public_roots"])
+        plan = result["attempted_plan_completion"]
+        self.assertEqual("INCOMPLETE", plan["status"])
+        block, = plan["blocks"]
+        self.assertTrue(block["all_declared_partitions_supplied"])
+        self.assertEqual((4, 2, 2), (block["expected_global_indices"], block["validated_unique_journal_indices"], block["missing_indices"]))
+        part, = block["partitions"]
+        self.assertEqual((4, 2, 2, "INCOMPLETE"), (part["expected_assigned_indices"], part["validated_unique_journal_indices"], part["missing_indices"], part["status"]))
+        self.assertEqual(before, {file.name: file.read_bytes() for file in path.iterdir()})
+
+    def test_failed_and_interrupted_journals_complete_requests_without_usable_roots(self):
+        path, _ = self.balanced("complete", indices=(20, 21, 23))
+        with (path / "attempts.jsonl").open("a") as stream:
+            stream.write(json.dumps(attempt(22, "interrupted_attempt", elapsed=None, source_battle_index=5,
+                recovered=True, timing_status="recovered_unknown", elapsed_seconds_observed=None,
+                uncommitted_requested_action_worlds=8)) + "\n")
+        result = reporting.report_stage([path])
+        self.assertTrue(result["integrity"]["passed"])
+        self.assertEqual((3, 1, 0), (result["counts"]["journal_failed_attempt"],
+            result["counts"]["journal_interrupted_attempt"], result["counts"]["unique_effective_public_roots"]))
+        plan = result["attempted_plan_completion"]
+        self.assertEqual("COMPLETE", plan["status"])
+        self.assertEqual((4, 0), (plan["blocks"][0]["validated_unique_journal_indices"], plan["blocks"][0]["missing_indices"]))
+
+    def test_full_seven_way_block_includes_empty_partitions_and_detects_omissions(self):
+        paths = [self.balanced(f"shard-{i}", start=0, shard_id=i, shard_count=7,
+                              indices=[i] if i < 4 else [])[0] for i in range(7)]
+        full = reporting.report_stage(paths)["attempted_plan_completion"]
+        self.assertEqual("COMPLETE", full["status"])
+        block, = full["blocks"]
+        self.assertEqual([1, 1, 1, 1, 0, 0, 0], [part["expected_assigned_indices"] for part in block["partitions"]])
+        self.assertTrue(all(part["status"] == "COMPLETE" for part in block["partitions"]))
+        for omitted, missing in ((6, 0), (2, 1)):
+            result = reporting.report_stage([path for i, path in enumerate(paths) if i != omitted])
+            self.assertTrue(result["integrity"]["passed"])
+            plan = result["attempted_plan_completion"]
+            self.assertEqual("INCOMPLETE", plan["status"])
+            block, = plan["blocks"]
+            self.assertFalse(block["all_declared_partitions_supplied"])
+            self.assertEqual((1, missing), (block["missing_partition_count"], block["missing_indices"]))
+
+    def test_duplicate_and_outside_indices_cannot_fill_missing_plan_positions(self):
+        path, _ = self.balanced("invalid", indices=(20, 21, 20, 24))
+        result = reporting.report_stage([path])
+        self.assertFalse(result["integrity"]["passed"])
+        self.assertEqual(2, result["counts"]["invalid_attempt_rows"])
+        plan = result["attempted_plan_completion"]
+        self.assertEqual("INCOMPLETE", plan["status"])
+        self.assertEqual((2, 2), (plan["blocks"][0]["validated_unique_journal_indices"], plan["blocks"][0]["missing_indices"]))
+
+    def test_disjoint_blocks_with_different_partition_counts_complete_separately(self):
+        first, _ = self.balanced("first", start=0, indices=range(4))
+        second = [self.balanced(f"second-{i}", start=1, shard_id=i, shard_count=2,
+                               indices=range(4 + i, 8, 2))[0] for i in range(2)]
+        result = reporting.report_stage([first, *second])
+        self.assertTrue(result["integrity"]["passed"])
+        plan = result["attempted_plan_completion"]
+        self.assertEqual("COMPLETE", plan["status"])
+        self.assertEqual([4, 4], [block["validated_unique_journal_indices"] for block in plan["blocks"]])
+        self.assertEqual([1, 2], [block["shard_count"] for block in plan["blocks"]])
+
+    def test_large_empty_plan_uses_arithmetic_counts(self):
+        start, count, shards = 10**9, 10**12, 7
+        path, _ = self.balanced("huge", start=start, count=count, shard_id=3, shard_count=shards)
+        result = reporting.report_stage([path])
+        self.assertTrue(result["integrity"]["passed"])
+        block, = result["attempted_plan_completion"]["blocks"]
+        first_index = start * 4 + (3 - start * 4) % shards
+        expected = ((start + count) * 4 - first_index + shards - 1) // shards
+        self.assertEqual(expected, block["partitions"][0]["expected_assigned_indices"])
+        self.assertEqual(count * 4, block["missing_indices"])
+        self.assertEqual(6, block["missing_partition_count"])
+
+    def test_legacy_success_quota_has_no_attempted_block_completion_claim(self):
+        path = self.root / "legacy"
+        shard(path)
+        result = reporting.report_stage([path])
+        self.assertTrue(result["integrity"]["passed"])
+        plan = result["attempted_plan_completion"]
+        self.assertFalse(plan["applicable"])
+        self.assertEqual(("NOT_APPLICABLE", []), (plan["status"], plan["blocks"]))
+
+
 if __name__ == "__main__":
     unittest.main()

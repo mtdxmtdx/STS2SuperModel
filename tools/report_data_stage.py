@@ -22,6 +22,7 @@ import zlib
 from prepare_dataset import (COUNT_FIELDS, HEADS, canonical_json, has_usable_targets, load_student_config,
                              public_digest, validate_record)
 from nosl.public_identity import PUBLIC_IDENTITY_SCHEME
+from generate_pilot_data import BALANCED_RECIPE, generation_identity_config, planned_source_indices
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = "nosl.data-stage-report.v1"
@@ -54,7 +55,7 @@ def load_json(raw):
 
 
 def stable_config(config):
-    return {key: value for key, value in config.items() if key != "execution_partition"}
+    return generation_identity_config(config)
 
 
 def discover_shards(paths):
@@ -367,6 +368,8 @@ def source_index(audit, config):
     require(type(index) is int and index >= 0, "generation_source_index_invalid")
     partition = config.get("execution_partition", {"shard_id": 0, "shard_count": 1})
     require(index % partition["shard_count"] == partition["shard_id"], "record_wrong_execution_partition")
+    if config.get("recipe_version") == BALANCED_RECIPE:
+        require(index in planned_source_indices(config), "record_outside_attempted_battle_block")
     return index
 
 
@@ -405,13 +408,45 @@ def classify_failure(reason):
     return "other_failure", reason.split(":", 1)[0][:160]
 
 
+def attempted_plan_completion(configs, validated_attempts):
+    """Count immutable assignments, not successful roots or mutable progress files.
+
+    The caller increments only after interval/modulo membership, journal validation
+    and global source-index uniqueness checks. A range's length is arithmetic;
+    no expected-index set or list of absent partitions is allocated.
+    """
+    blocks = {}
+    for path, config in configs.items():
+        if config.get("recipe_version") != BALANCED_RECIPE: continue
+        bounds, partition = config["attempted_battle_block"], config["execution_partition"]
+        key = (bounds["start"], bounds["count"], partition["shard_count"])
+        block = blocks.setdefault(key, {**bounds, "shard_count": partition["shard_count"], "partitions": []})
+        expected, observed = len(planned_source_indices(config)), validated_attempts[path]
+        block["partitions"].append({"path": str(path), "shard_id": partition["shard_id"],
+            "expected_assigned_indices": expected, "validated_unique_journal_indices": observed,
+            "missing_indices": expected - observed, "status": "COMPLETE" if observed == expected else "INCOMPLETE"})
+    for block in blocks.values():
+        block["partitions"].sort(key=lambda value: value["shard_id"])
+        expected = block["count"] * 4
+        observed = sum(partition["validated_unique_journal_indices"] for partition in block["partitions"])
+        all_supplied = len(block["partitions"]) == block["shard_count"]
+        block.update(expected_global_indices=expected, validated_unique_journal_indices=observed,
+            missing_indices=expected - observed, all_declared_partitions_supplied=all_supplied,
+            missing_partition_count=block["shard_count"] - len(block["partitions"]),
+            status="COMPLETE" if all_supplied and all(partition["status"] == "COMPLETE" for partition in block["partitions"]) else "INCOMPLETE")
+    return {"applicable": bool(blocks),
+        "status": "NOT_APPLICABLE" if not blocks else "COMPLETE" if all(block["status"] == "COMPLETE" for block in blocks.values()) else "INCOMPLETE",
+        "blocks": [blocks[key] for key in sorted(blocks)],
+        "note": "Balanced immutable attempted plans only. Validated failed and interrupted journals count as processed requests, not usable roots. Missing requests or partitions mean incomplete, not malformed data or game losses. Structural integrity and snapshot stability must be checked separately; legacy success-quota corpora have no attempted-block completion claim."}
+
+
 def report_stage(paths, *, verify_outcomes=False, max_line_bytes=64 * 1024 * 1024,
                  max_outcome_bytes=64 * 1024 * 1024, student_config=None, temporary_dir=None):
     require(type(max_line_bytes) is int and max_line_bytes > 0 and type(max_outcome_bytes) is int and max_outcome_bytes > 0,
             "positive_streaming_budgets_required")
     shards = discover_shards(paths)
     configs, fingerprints, common, common_versions = {}, [], None, None
-    partition_ids = set()
+    partition_ids, block_partitions = set(), {}
     for shard in shards:
         path = shard / "generation_config.json"
         raw = path.read_bytes()
@@ -426,8 +461,16 @@ def report_stage(paths, *, verify_outcomes=False, max_line_bytes=64 * 1024 * 102
         require(isinstance(partition, dict) and type(partition.get("shard_id")) is int and type(partition.get("shard_count")) is int
                 and 0 <= partition["shard_id"] < partition["shard_count"], "invalid_execution_partition")
         pair = (partition["shard_count"], partition["shard_id"])
-        require(pair not in partition_ids, "duplicate_execution_partition")
-        require(not partition_ids or next(iter(partition_ids))[0] == pair[0], "partition_count_mismatch")
+        if config.get("recipe_version") == BALANCED_RECIPE:
+            planned_source_indices(config)
+            block = config["attempted_battle_block"]
+            block_key = (block["start"], block["count"], pair[0])
+            parts = block_partitions.setdefault(block_key, set())
+            require(pair[1] not in parts, "duplicate_block_execution_partition")
+            parts.add(pair[1])
+        else:
+            require(pair not in partition_ids, "duplicate_execution_partition")
+            require(not partition_ids or next(iter(partition_ids))[0] == pair[0], "partition_count_mismatch")
         partition_ids.add(pair)
         recipe = shard / "generation_recipe.py"
         require(recipe.is_file() and digest_bytes(recipe.read_bytes()) == config.get("generator_sha256"), "generation_recipe_checksum_mismatch")
@@ -438,6 +481,7 @@ def report_stage(paths, *, verify_outcomes=False, max_line_bytes=64 * 1024 * 102
     problems = Problems()
     reader = StreamingReader(problems, max_line_bytes)
     counts, worlds, timings, measured, failures, raw_checks = Counter(), Counter(), Counter(), Counter(), Counter(), Counter()
+    validated_attempts_by_shard = Counter()
     outcome_accounting = {name: Counter() for name in ("valid_records", "diagnostic_only_records", "unique_valid_public_roots")}
     peak_rss = None
     with tempfile.TemporaryDirectory(prefix="nosl-stage-report-", dir=temporary_dir) as temp:
@@ -564,6 +608,7 @@ def report_stage(paths, *, verify_outcomes=False, max_line_bytes=64 * 1024 * 102
                         problems.add("attempt", shard / "attempts.jsonl", line, exc)
                         continue
                     counts["journal_" + status] += 1
+                    validated_attempts_by_shard[shard] += 1
                     counts["journal_recovered_attempts"] += attempt.get("recovered") is True
                     counts["accepted_duplicate_record_journals"] += status == "accepted" and attempt.get("duplicate_public_input") is True
                     if elapsed is None:
@@ -658,9 +703,13 @@ def report_stage(paths, *, verify_outcomes=False, max_line_bytes=64 * 1024 * 102
         "configuration": {"compatible": True, "stable_config_sha256": digest_bytes(canonical_json(common).encode()),
                           "record_generation_config_sha256": digest_bytes(generator_canonical(common).encode()),
                           "execution_partitions": [dict(shard_count=count, shard_id=part) for count, part in sorted(partition_ids)],
-                          "all_partition_files_present": len(partition_ids) == next(iter(partition_ids))[0],
+                          "all_partition_files_present": (all(len(parts) == count for (_, _, count), parts in block_partitions.items())
+                              if block_partitions else len(partition_ids) == next(iter(partition_ids))[0]),
+                          "attempted_battle_blocks": [dict(start=start, count=count, shard_count=shards, shard_ids=sorted(parts))
+                              for (start, count, shards), parts in sorted(block_partitions.items())],
                           "versions": common_versions, "files": fingerprints},
         "counts": dict(sorted(counts.items())), "source_identities": identities,
+        "attempted_plan_completion": attempted_plan_completion(configs, validated_attempts_by_shard),
         "validation_environment": validation_fingerprint,
         "source_distributions": {key: value for key, value in tallies.items() if key not in ("observed_public_content", "root_state_distribution")},
         "root_state_distribution": distribution_summary(tallies, counts),

@@ -25,7 +25,10 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "nosl-real-pilot-generation-v3"
+VERSION = "nosl-real-pilot-generation-v5"
+LEGACY_RECIPE = "legacy-index-v4"
+BALANCED_RECIPE = "balanced-category-v5"
+ENEMIES = ("TwigSlimeS", "LeafSlimeS", "Nibbit", "TwigSlimeM")
 INFLIGHT_SCHEMA = "nosl.generator.inflight.v1"
 sys.path.insert(0, str(ROOT / "python"))
 from nosl.public_identity import PUBLIC_IDENTITY_SCHEME, normalize_numeric_leaves, public_input_digest
@@ -190,8 +193,85 @@ def source_catalog(repo):
             "distribution": "constructed_curriculum_not_natural_reachability"}
 
 
-def scenario(index, catalog, seed_prefix, root_policy="opening-prefix-v1"):
+def domain_hash(seed_prefix, domain, value):
+    return sha([BALANCED_RECIPE, seed_prefix, domain, value])
+
+
+def balanced_recipe(catalog, seed_prefix):
+    """Persist the full catalog, exact permutations, domains and allocation rules."""
+    if (len(catalog["cards"]) != 86 or len(set(catalog["cards"])) != 86
+            or any(type(catalog.get("max_upgrade", {}).get(card)) is not int
+                   or catalog["max_upgrade"][card] != 1 for card in catalog["cards"])):
+        raise ValueError("balanced_recipe_requires_86_cards_with_max_upgrade_one")
+    if any(not catalog[k] or len(catalog[k]) != len(set(catalog[k])) for k in ("potions", "relics")):
+        raise ValueError("balanced_recipe_requires_nonempty_unique_item_catalogs")
+    def permutation(domain, values):
+        return sorted(values, key=lambda value: (domain_hash(seed_prefix, domain, value), value))
+    domains = {"cards": "primary-cards", "potions": "primary-potions", "relics": "primary-relics",
+               "enemies": "enemies", "potion_support": "supporting-cards:potion",
+               "relic_support": "supporting-cards:relic"}
+    catalogs = {**{key: catalog[key] for key in ("cards", "potions", "relics")}, "enemies": ENEMIES,
+                "potion_support": catalog["cards"], "relic_support": catalog["cards"]}
+    return {"version": BALANCED_RECIPE, "catalog": deepcopy(catalog),
+            "permutations": {key: permutation(domain, catalogs[key]) for key, domain in domains.items()},
+            "hash": "sha256(canonical_json([recipe_version,seed_prefix,domain,value])); hex lexical order; ID tie-break",
+            "permutation_domains": domains,
+            "draw_domains": ["card-upgrade-bit", "potion-support-upgrade-bit", "relic-support-upgrade-bit",
+                             "player-hp", "low-player-hp", "enemy-hp", "simulator-setup"],
+            "category_slots": ["starter"] * 4 + ["single_card"] * 4 + ["potion", "relic"],
+            "category_ordinal": "starter=4*(i//10)+i%10; single_card=4*(i//10)+i%10-4; potion/relic=i//10",
+            "primary": "epoch,position=divmod(category_ordinal,len(primary_catalog)); primary_catalog[position]",
+            "enemy": "permuted_enemies[(position+epoch)%4]",
+            "single_card_upgrade": "(epoch//4+epoch%2+card_hash_bit)%2",
+            "supporting_card": "cycle,position=divmod(category_ordinal,86); category_support_permutation[position]",
+            "supporting_upgrade": "(cycle+category_support_card_hash_bit)%2",
+            "hp": "12+hash(player-hp,battle_index)%59; if battle_index%7==0: 1+hash(low-player-hp,battle_index)%12",
+            "enemy_hp": "12+hash(enemy-hp,battle_index)%54",
+            "setup_seed": "seed_prefix+':balanced-source:'+hash(simulator-setup,battle_index)",
+            "source_requests": {"assignment": "global_source_index=4*battle_index+phase_slot; global_source_index%shard_count=shard_id",
+                "requested_phases": [requested_phase("public-phase-v1", i) for i in range(4)],
+                "stop_rule": "complete_all_assigned_phase_requests_in_half_open_battle_interval"},
+            "distribution": "constructed_curriculum_not_natural_reachability"}
+
+
+def balanced_scenario(index, recipe, seed_prefix):
+    if type(index) is not int or index < 0: raise ValueError("invalid_battle_index")
+    block, group = divmod(index, 10)
+    category = recipe["category_slots"][group]
+    ordinal = block * 4 + group if group < 4 else block * 4 + group - 4 if group < 8 else block
+    pools = recipe["permutations"]
+    primary_pool = ["starter"] if category == "starter" else pools[{"single_card": "cards", "potion": "potions", "relic": "relics"}[category]]
+    epoch, position = divmod(ordinal, len(primary_pool))
+    primary = primary_pool[position]
+    enemy = pools["enemies"][(position + epoch) % 4]
+    number = lambda domain, value: int(domain_hash(seed_prefix, domain, value), 16)
+    result = {"seed": seed_prefix + ":balanced-source:" + domain_hash(seed_prefix, "simulator-setup", index),
+              "enemy": enemy, "hp": 12 + number("player-hp", index) % 59,
+              "enemyHp": 12 + number("enemy-hp", index) % 54}
+    if index % 7 == 0: result["hp"] = 1 + number("low-player-hp", index) % 12
+    allocation = {"recipe_version": BALANCED_RECIPE, "category_ordinal": ordinal, "primary_id": primary,
+                  "primary_epoch": epoch, "primary_position": position, "enemy": enemy, "primary_upgrade": None}
+    if category != "starter":
+        if category == "single_card":
+            card = primary
+            upgrade = (epoch // 4 + epoch % 2 + number("card-upgrade-bit", card) % 2) % 2
+            allocation["primary_upgrade"] = upgrade
+        else:
+            cycle, support_position = divmod(ordinal, 86)
+            card = pools[category + "_support"][support_position]
+            upgrade = (cycle + number(category + "-support-upgrade-bit", card) % 2) % 2
+            allocation.update(supporting_card=card, supporting_upgrade=upgrade, supporting_cycle=cycle)
+            result[category + "s"] = [primary]
+        result["deck"] = [card + "+" * upgrade, "StrikeSilent", "StrikeSilent", "DefendSilent"]
+    return result, category + "_constructed", allocation
+
+
+def scenario(index, catalog, seed_prefix, root_policy="opening-prefix-v1", recipe_version=LEGACY_RECIPE):
     """Declared constructed sources; card rules are never duplicated here."""
+    if recipe_version == BALANCED_RECIPE:
+        if root_policy != "public-phase-v1": raise ValueError("balanced_recipe_requires_public_phases")
+        return balanced_scenario(index, balanced_recipe(catalog, seed_prefix), seed_prefix)[:2]
+    if recipe_version != LEGACY_RECIPE: raise ValueError("unsupported_scenario_recipe")
     rng = random.Random(seed_prefix + ":" + str(index))
     group = index % 10
     enemy = ("TwigSlimeS", "LeafSlimeS", "Nibbit", "TwigSlimeM")[index % 4]
@@ -271,10 +351,35 @@ def saved_config(output):
     return config
 
 
+def generation_identity_config(config):
+    # Block/partition describe execution, not the label population. All other
+    # catalog, recipe bytes, teacher, budgets, seed and runtime fields stay locked.
+    excluded = {"execution_partition"}
+    if config.get("recipe_version") == BALANCED_RECIPE: excluded.add("attempted_battle_block")
+    return {key: value for key, value in config.items() if key not in excluded}
+
+
+def planned_source_indices(config):
+    block = config["attempted_battle_block"]
+    start, count = block["start"], block["count"]
+    if type(start) is not int or start < 0 or type(count) is not int or count <= 0:
+        raise ValueError("invalid_attempted_battle_block")
+    if config.get("root_policy") != "public-phase-v1" or config["roots_per_battle"] != 4:
+        raise ValueError("attempted_block_requires_four_public_phases")
+    partition = config["execution_partition"]
+    shard, shards = partition["shard_id"], partition["shard_count"]
+    if type(shard) is not int or type(shards) is not int or shards <= 0 or not 0 <= shard < shards:
+        raise ValueError("invalid_execution_partition")
+    first, stop = start * 4, (start + count) * 4
+    return range(first + (shard - first) % shards, stop, shards)
+
+
 def checked_source_index(index, config):
     partition = config.get("execution_partition", {"shard_id": 0, "shard_count": 1})
     if type(index) is not int or index < 0 or index % partition["shard_count"] != partition["shard_id"]:
         raise ValueError("source_shard_identity_mismatch")
+    if config.get("recipe_version") == BALANCED_RECIPE and index not in planned_source_indices(config):
+        raise ValueError("source_outside_attempted_battle_block")
     return index
 
 
@@ -296,7 +401,7 @@ def validate_attempt_intent(attempt, config):
         value = attempt.get(field)
         if value is not None and (type(value) not in (int, float) or not math.isfinite(value) or value < 0):
             raise ValueError("invalid_attempt_elapsed")
-    label_hash = sha({key: value for key, value in config.items() if key != "execution_partition"})
+    label_hash = sha(generation_identity_config(config))
     if attempt.get("generation_version") not in (None, config["version"]) or attempt.get("generation_config_sha256") not in (None, label_hash):
         raise ValueError("attempt_generation_config_mismatch")
     return index
@@ -354,7 +459,7 @@ def validate_durable_record(output, row, config, validate, verify_raw=False):
     validate(row)
     audit = row["audit_only"]
     index = checked_source_index(audit["generation_source_index"], config)
-    label_hash = sha({key: value for key, value in config.items() if key != "execution_partition"})
+    label_hash = sha(generation_identity_config(config))
     if audit.get("generation_config_sha256") != label_hash or audit.get("versions", {}).get("generation_config") != label_hash:
         raise ValueError("durable_record_generation_config_mismatch")
     for field in ("source_run_group", "source_combat_id", "branch_family"):
@@ -435,7 +540,7 @@ def validate_journal(attempt, config):
         raise ValueError("attempt_battle_identity_mismatch")
     if attempt.get("status") not in ("accepted", "failed_attempt", "duplicate_public_input", "interrupted_attempt"):
         raise ValueError("incomplete_or_unknown_attempt_journal")
-    label_hash = sha({key: value for key, value in config.items() if key != "execution_partition"})
+    label_hash = sha(generation_identity_config(config))
     if attempt.get("generation_version") not in (None, config["version"]) or attempt.get("generation_config_sha256") not in (None, label_hash):
         raise ValueError("attempt_generation_config_mismatch")
     elapsed, observed = attempt.get("elapsed_seconds"), attempt.get("elapsed_seconds_observed")
@@ -547,6 +652,7 @@ def reconcile_corpus(output, config, validate):
         if attempt["status"] != "accepted":
             state["errors"][attempt.get("reason", attempt["status"]).split(":", 1)[0]] += 1
     state["attempts"] = len(journals)
+    state["journal_source_indices"] = set(journals)
     state["public_identity_scheme"] = PUBLIC_IDENTITY_SCHEME
     state["stored_generation_identity_scheme"] = config.get("public_identity_scheme")
     return state
@@ -576,6 +682,12 @@ def run(args):
         return run_locked(args)
 
 
+def runtime_fingerprints(repo):
+    return {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in sorted((repo / "src/Nosl.Worker/bin/Release/net9.0").iterdir())
+            if p.suffix in (".dll", ".json")}
+
+
 def run_locked(args):
     repo, output = args.repo.resolve(), args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -587,18 +699,35 @@ def run_locked(args):
     options = {"mode": args.teacher, "evaluationSeeds": list(range(100001, 100001 + args.worlds)),
                "explorationSeeds": list(range(200001, 200001 + args.exploration_worlds)) if args.teacher == "T1" else [],
                "maxDecisions": args.max_decisions, "treeDepth": args.tree_depth, "formalLabels": False}
+    recipe_version = getattr(args, "recipe_version", LEGACY_RECIPE)
+    block_start = getattr(args, "attempted_battle_start", None)
+    block_count = getattr(args, "attempted_battle_count", None)
+    if recipe_version not in (LEGACY_RECIPE, BALANCED_RECIPE): raise ValueError("unsupported_scenario_recipe")
+    if recipe_version == LEGACY_RECIPE and (block_start is not None or block_count is not None):
+        raise ValueError("attempted_battle_block_requires_balanced_recipe")
+    recipe = balanced_recipe(catalog, args.seed_prefix) if recipe_version == BALANCED_RECIPE else None
+    if recipe and args.teacher != "T0": raise ValueError("balanced_recipe_requires_frozen_T0")
     config = {"version": VERSION, "catalog_hash": sha(catalog), "teacher_options": options,
+              "recipe_version": recipe_version,
               "seed_prefix": args.seed_prefix, "source_kind": "constructed", "data_mode": args.mode, "roots_per_battle": args.roots_per_battle,
               "root_policy": args.root_policy, "max_source_decisions": args.max_source_decisions,
               "public_identity_scheme": PUBLIC_IDENTITY_SCHEME,
               "formal_labels": False, "training_started": False,
               "execution_partition": {"shard_id": args.shard_id, "shard_count": args.shard_count},
-              "runtime_files": {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-                  for p in sorted((repo / "src/Nosl.Worker/bin/Release/net9.0").iterdir())
-                  if p.suffix in (".dll", ".json")},
+              "runtime_files": runtime_fingerprints(repo),
               "generator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
               "student_config_sha256": sha(student_config),
               "validator_files": {name: hashlib.sha256((repo / "python/nosl" / name).read_bytes()).hexdigest() for name in ("schema.py", "data.py", "public_identity.py")}}
+    planned = None
+    if recipe:
+        config.update(recipe_metadata=recipe,
+            worker_budgets={"timeout_seconds": args.timeout, "max_worker_mib": args.max_worker_mib},
+            attempted_battle_block={"start": block_start, "count": block_count})
+        planned = planned_source_indices(config)
+        if args.max_attempts is not None and args.max_attempts < len(planned):
+            raise ValueError("max_attempts_smaller_than_predeclared_block_partition")
+    elif args.target_roots is None or args.max_attempts is None:
+        raise ValueError("legacy_recipe_requires_target_roots_and_max_attempts")
 
     config_file = output / "generation_config.json"
     if config_file.exists() and json.loads(config_file.read_text()) != config:
@@ -611,32 +740,52 @@ def run_locked(args):
         with recipe_file.open("xb") as stream:
             stream.write(Path(__file__).read_bytes()); stream.flush(); os.fsync(stream.fileno())
         fsync_directory(output)
-    label_config = {k: v for k, v in config.items() if k != "execution_partition"}
+    if recipe:
+        # A predeclared partition may be empty, or every source may fail. Its
+        # empty streams must still be reportable alongside the other partitions.
+        for name in ("decisions.jsonl", "attempts.jsonl"):
+            with (output / name).open("ab") as stream:
+                stream.flush(); os.fsync(stream.fileno())
+        fsync_directory(output)
+    label_config = generation_identity_config(config)
     state = reconcile_corpus(output, config, lambda row: validate_record(row, student_config))
     seen, battles_seen = state["seen"], state["battles"]
     unique_count, complete, scored = state["unique_roots"], state["complete_roots"], state["value_roots"]
     max_source, errors = state["max_source"], Counter(state["errors"])
     duplicate_count, decision_count = state["duplicate_records"], state["decision_records"]
-    next_index = args.shard_id if max_source < 0 else max_source + args.shard_count
-    progress = {"version": VERSION, "status": "data_stage_already_complete", "target_effective_roots": args.target_roots,
+    pending = iter(index for index in planned if index not in state["journal_source_indices"]) if planned is not None else None
+    next_index = next(pending, None) if pending is not None else args.shard_id if max_source < 0 else max_source + args.shard_count
+    attempt_count = state["attempts"]
+    def has_work():
+        return next_index is not None if planned is not None else complete < args.target_roots
+    progress = {"version": VERSION, "status": "attempted_block_complete" if planned is not None and not has_work() else "data_stage_already_complete", "target_effective_roots": args.target_roots,
                 "attempts": state["attempts"], "effective_full_candidate_roots": complete, "unique_roots": unique_count,
                 "all_candidate_value_roots": scored, "decision_records": decision_count, "duplicate_records_preserved": duplicate_count,
                 "source_battles_attempted": len(battles_seen), "shard_id": args.shard_id, "shard_count": args.shard_count,
                 "recovered_journals": state["recovered_journals"], "preserved_partial_tails": state["preserved_partial_tails"],
                 "public_identity_scheme": PUBLIC_IDENTITY_SCHEME, "errors": dict(errors), "training_started": False, "formal_labels": False}
+    block_progress = ({"attempted_battle_block": config["attempted_battle_block"],
+                       "planned_phase_requests_global": block_count * 4,
+                       "planned_phase_requests_this_shard": len(planned)} if planned is not None else {})
+    progress.update(block_progress)
     started = time.monotonic(); worker = None
     try:
-        while complete < args.target_roots:
+        while has_work():
             if (output / "PAUSE_REQUESTED").exists():
                 progress.update(status="paused_at_safe_boundary", effective_full_candidate_roots=complete, unique_roots=unique_count)
                 atomic_json(output / "progress.json", progress)
                 break
-            if (next_index - args.shard_id) // args.shard_count >= args.max_attempts:
+            if args.max_attempts is not None and attempt_count >= args.max_attempts:
                 raise RuntimeError("attempt_budget_exhausted_without_target_effective_roots")
-            source_index = next_index; next_index += args.shard_count
+            source_index = next_index
+            next_index = next(pending, None) if pending is not None else next_index + args.shard_count
             battle_index, source_step = divmod(source_index, args.roots_per_battle)
             battles_seen.add(battle_index)
-            sc, category = scenario(battle_index, catalog, args.seed_prefix, args.root_policy)
+            if recipe:
+                sc, category, allocation = balanced_scenario(battle_index, recipe, args.seed_prefix)
+            else:
+                sc, category = scenario(battle_index, catalog, args.seed_prefix, args.root_policy)
+                allocation = None
             t = time.monotonic()
             attempt = {"source_index": source_index, "source_category": category, "scenario": sc,
                        "status": "started", "generation_version": VERSION, "source_battle_index": battle_index, "source_step": source_step,
@@ -644,6 +793,7 @@ def run_locked(args):
             attempt.update(generation_config_sha256=sha(label_config), planned_evaluation_worlds=args.worlds,
                            planned_exploration_worlds=len(options["explorationSeeds"]), teacher_request_may_have_started=False,
                            requested_action_worlds=None, elapsed_seconds=None, timing_status="unknown")
+            if allocation is not None: attempt["allocation"] = allocation
             begin_attempt(output, config, attempt)
             if worker is None:
                 worker = Worker(repo, output, args.timeout, args.max_worker_mib)
@@ -689,6 +839,7 @@ def run_locked(args):
                     public_identity_scheme=PUBLIC_IDENTITY_SCHEME,
                     first_public_input_source_index=seen.get(digest, source_index))
                 record["audit_only"]["versions"]["generation_config"] = sha(label_config)
+                if allocation is not None: record["audit_only"]["generation_allocation"] = allocation
                 record["audit_only"]["engineering_smoke"] = args.mode == "engineering-smoke"
                 record["audit_only"]["experimental_pilot_data"] = args.mode == "pilot"
                 is_complete, has_value = usable_counts(record)
@@ -706,12 +857,14 @@ def run_locked(args):
                     duplicate_count += 1
                 else:
                     seen[digest] = source_index; unique_count += 1; complete += is_complete; scored += has_value
+            attempt_count += 1
             progress = {"version": VERSION, "target_effective_roots": args.target_roots,
-                "attempts": (next_index - args.shard_id) // args.shard_count, "source_battles_attempted": len(battles_seen), "shard_id": args.shard_id, "shard_count": args.shard_count, "unique_roots": unique_count, "effective_full_candidate_roots": complete,
+                "attempts": attempt_count, "source_battles_attempted": len(battles_seen), "shard_id": args.shard_id, "shard_count": args.shard_count, "unique_roots": unique_count, "effective_full_candidate_roots": complete,
                 "all_candidate_value_roots": scored, "decision_records": decision_count, "duplicate_records_preserved": duplicate_count,
                 "errors": dict(errors),
                 "current_process_seconds": time.monotonic() - started, "training_started": False,
-                "formal_labels": False, "status": "running" if complete < args.target_roots else "data_stage_complete"}
+                "formal_labels": False, "status": "running" if has_work() else "attempted_block_complete" if planned is not None else "data_stage_complete",
+                **block_progress}
             atomic_json(output / "progress.json", progress)
             if progress["attempts"] % 10 == 0: print(canonical(progress), flush=True)
     finally:
@@ -726,6 +879,9 @@ def main():
     p.add_argument("--recover-only", action="store_true", help="Reconcile saved facts/journals without starting a worker or changing corpus versions")
     p.add_argument("--mode", choices=["engineering-smoke", "pilot"])
     p.add_argument("--target-roots", type=int); p.add_argument("--max-attempts", type=int)
+    p.add_argument("--recipe-version", choices=[LEGACY_RECIPE, BALANCED_RECIPE], default=LEGACY_RECIPE)
+    p.add_argument("--attempted-battle-start", type=int, help="Predeclared global battle interval start (balanced recipe only)")
+    p.add_argument("--attempted-battle-count", type=int, help="Complete all four phase requests for every battle in this interval")
     p.add_argument("--worlds", type=int, default=4); p.add_argument("--teacher", choices=["T0", "T1"], default="T0")
     p.add_argument("--exploration-worlds", type=int, default=8); p.add_argument("--max-decisions", type=int, default=200)
     p.add_argument("--max-worker-mib", type=int, default=768)
@@ -739,12 +895,18 @@ def main():
     if args.recover_only:
         recover_only(args)
         return
-    if args.mode is None or args.target_roots is None or args.max_attempts is None:
-        p.error("generation requires --mode, --target-roots and --max-attempts")
+    if args.mode is None: p.error("generation requires --mode")
+    if args.recipe_version == BALANCED_RECIPE:
+        if args.attempted_battle_start is None or args.attempted_battle_start < 0 or args.attempted_battle_count is None or args.attempted_battle_count <= 0:
+            p.error("balanced recipe requires nonnegative --attempted-battle-start and positive --attempted-battle-count")
+        if args.root_policy != "public-phase-v1" or args.teacher != "T0":
+            p.error("balanced recipe requires public-phase-v1 and frozen T0")
+    elif args.target_roots is None or args.max_attempts is None:
+        p.error("legacy generation requires --target-roots and --max-attempts")
     if args.root_policy == "public-phase-v1" and args.roots_per_battle != 4:
         p.error("public-phase-v1 predeclares exactly four source phases per battle")
     if args.shard_count < 1 or not 0 <= args.shard_id < args.shard_count: p.error("invalid source shard")
-    if min(args.target_roots, args.max_attempts, args.worlds, args.max_decisions, args.roots_per_battle, args.max_worker_mib, args.max_source_decisions) <= 0:
+    if min(value for value in (args.target_roots, args.max_attempts, args.worlds, args.max_decisions, args.roots_per_battle, args.max_worker_mib, args.max_source_decisions, args.timeout) if value is not None) <= 0:
         p.error("positive bounded budgets required")
     run(args)
 

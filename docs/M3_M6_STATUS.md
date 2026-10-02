@@ -1,15 +1,15 @@
 # M3–M6 implementation checkpoint
 
-This is a reviewable implementation checkpoint. Data generation and bounded pilot verification are still in progress. It is **not** a claim that full-scope M3–M6 acceptance or formal training readiness has been achieved.
+This is a reviewable implementation checkpoint. The first 5,000-root data stage and a one-epoch, 497-step bounded pilot are complete. It is **not** a claim that full-scope M3–M6 acceptance or formal training readiness has been achieved.
 
 ## Implemented and verified
 
 - M3: fixed combat-start terminal utility, nullable unpriced resources, complete-outcome accounting, 9/5/80 gates, bounded anchored-plan context, sensitivity evidence. Candidate risk/resource profile remains uncalibrated.
 - M4: T0 frozen public continuation, T1 public-information tree exploration followed by independent fixed-N evaluation. Real simulation tests cover hidden replacement, actual terminal healing, all-candidate accounting and public choice roots. Offered extra reward opportunities are recorded without inspecting their option identities and remain unpriced.
 - M5: real worker record export, raw outcome facts, resumable generation and full runtime/recipe version binding, conservative masks, duplicate rejection, transitive source grouping, immutable held-out test shards, append/conflict checks and lossless outcome archives. Constructed curriculum and native raw sources are distinct.
-- M6: 976,710-parameter public-only entity/set/order model; ranking uses the expected-utility head; nullable masked losses; standalone inference; bounded experimental pilot trainer with lifetime budgets and resume state. Formal training mode and promotion are disabled.
+- M6: 976,838-parameter public-only entity/set/order model; ranking uses the expected-utility head; nullable masked losses; standalone inference; bounded experimental pilot trainer with lifetime budgets and resume state. Formal training mode and promotion are disabled.
 
-The new v2 real simulator record passes the actual preparation CLI and forward/backward CLI. No optimizer steps or learned weights have been produced at this checkpoint.
+The new v2 real simulator record passes the actual preparation CLI and forward/backward CLI. The first experimental pilot has now completed 497 optimizer steps; weights remain unpromoted. See [current results](FIRST_BOUNDED_PILOT.md).
 
 ## Verification evidence
 
@@ -17,13 +17,13 @@ Final integrated checkpoint: **902/902 C# cases passed, zero skips/failures** in
 
 - Trusted upstream bridge checkpoint: 803 integration cases, plus 4,479 upstream tests passed and 3 opt-in skips. The later observer-decorator hook has separate native invariance and recorder tests; the older full-Core result is not attributed to it.
 - M3/objective and teacher regression: 44 cases passed; with the 10 bridge-safety cases, 54 passed.
-- Python student/integrity regression: 136 cases passed after the mean-loss, implementation-identity and diagnostic-report additions.
-- Calibration evidence-tool mutation regressions: 16 passed, plus 21,180 archived outcome arithmetic checks; these are not simulator cases.
-- Data engineering/report/identity regression: 97 cases passed.
-- Generator persistence/archive/phase/recovery checks: 32 cases passed.
+- Python student/integrity regression: 165 cases passed, including Quest and resource-policy guard regressions.
+- Calibration evidence-tool mutation regressions: 24 passed, plus 21,180 archived outcome arithmetic checks; these are not simulator cases.
+- Data engineering/report/identity regression: 104 cases passed.
+- Generator persistence/archive/phase/recovery checks: 51 cases passed, including reviewed balanced allocation and attempted-block accounting.
 - Natural-source collector: 5 cases passed, plus 7 original RunDriver recorder cases. Native startup/map/combat/reward progression and observer/RNG invariance are separate evidence. Actual proof cohort: 200 raw roots, 6 runs, 26 combats, 15 encounters; zero source errors. The independently reviewed native carry-in prototype certifies 16 of 200 roots for 87 action targets / 174 settled branches; 184 remain raw. Only one of six runs contributes the eligible subset. These development records are not admitted as training data.
 
-Reports are generated beneath the ignored `artifacts/` directory. The source audit and published milestone status must distinguish completed checks from pending generation.
+Reports are generated beneath the ignored `artifacts/` directory. Current pilot results and remaining gates are in [FIRST_BOUNDED_PILOT.md](FIRST_BOUNDED_PILOT.md). Earlier numerical gates below are historical evidence.
 
 ## Data-stage boundaries
 
@@ -40,7 +40,7 @@ Raw terminal vectors and public asset signatures are kept for later valuation/re
 - Missing prices for changed potions, permanent assets and earned extra opportunities; exact risk calibration
 - General active bonus-plan student context, loop macros and closed-loop policy quality
 - Five forced-event lifecycle contexts and other explicitly documented adapter limitations
-- Bounded pilot fit/evaluation only after audited usable data; no formal training, model promotion or live game connection
+- Bounded pilot fit/evaluation is complete; broader data and policy applicability remain gated; no formal training, model promotion or live game connection
 
 User trust in the pinned upstream supplies rule authority. It is not a claim of independent client differential testing, and missing client access is not used as a new prerequisite to this authorized work.
 
@@ -64,8 +64,7 @@ These statistics are not calibrated preference confidence or observed student co
 The standalone evaluator freezes a checksummed, predeclared constructed holdout
 before learned evaluation, checks its source seeds and initial compositions against
 the immutable prepared corpus, and compares actual student/baseline combat outcomes
-on paired source seeds. Only public inputs cross the model boundary. No learned
-bundle has been evaluated yet. One baseline-only source smoke completed with a full
+on paired source seeds. Only public inputs cross the model boundary. The first learned bundle completed 32 actual paired rollouts on 16 constructed sources; both policies won all 16, with extra student potion consumption. One baseline-only source smoke completed with a full
 10-action trace and settled HP 70→67. Repeating that same source to verify logging
 does not create a second independent source. Gold and other unavailable terminal
 resource facts remain null. See PILOT_POLICY_EVALUATION.md.
@@ -99,11 +98,10 @@ Earlier opening-only cohorts remain separate diagnostics. The completed phase-aw
 v3 gate had 204 usable complete roots plus 11 explicitly all-masked diagnostic rows.
 Among the usable roots: 83 turn1, 99 turn2, 22 turn3; 50 follow net HP loss and three
 are pending choices. This is still a constructed curriculum, with sparse broad
-posteriors and absent phases explicitly recorded. The final runtime/identity cohort
-must be generated and audited before bounded pilot fitting.
+posteriors and absent phases explicitly recorded. The final runtime/identity cohort subsequently completed 5,000 audited roots and the bounded fit documented above.
 
 
-## Stable 203-root gate and continued pilot generation
+## Historical stable 203-root gate
 
 The final runtime/identity corpus (`pilot-5000-v4`) passed its first global audit:
 203 unique usable roots from 102 constructed source battles, with 187 fully valued,
@@ -123,9 +121,7 @@ four unsupported setups remain separate from completed outcomes.
 Four-world empirical regression targets exist, but strong confidence-certified
 preference pairs remain zero and the objective remains uncalibrated. This gate
 supports continuing the bounded empirical pilot, not formal training readiness.
-The same frozen configuration has resumed toward 5,000 globally unique usable
-roots on seven one-CPU processes; raw records, version hashes and attempt ledgers
-are retained. See `configs/m5_phase203_report.json`.
+That same configuration subsequently reached 5,000 globally unique usable roots. Raw records, version hashes and attempt ledgers are retained. See `configs/m5_phase203_report.json`.
 
 The gate also exposes computational selection: all 60 timeout attempts entered
 teacher labeling, 57 were turn-two/turn-three and all were nonstarter recipes
@@ -181,5 +177,4 @@ the proof, unchanged runtime and preserved execution artifacts.
 
 These cases add zero production roots and no potion prices. Consumed-potion
 utility, general resource preference calibration and formal labels remain
-masked. Calibration evidence tests are 24/24, and the current main Python suite
-is 143/143. See [native paired potion evidence](POTION_PAIRED_EVIDENCE.md).
+masked. Calibration evidence tests are 24/24, and the Python suite after Quest support is 148/148. See [native paired potion evidence](POTION_PAIRED_EVIDENCE.md).

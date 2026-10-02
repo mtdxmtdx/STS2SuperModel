@@ -13,6 +13,8 @@ from typing import Any
 PUBLIC_SCHEMA = "nosl.student.public.v1"
 HEADS = ("value", "win_probability", "death_probability", "expected_final_hp", "hp_distribution", "potion_net_change")
 CARD_KEYS = "id upgrade cost starCost type keywords".split()
+# Native CardType values for real cards; None is an engine sentinel, not a card.
+CARD_TYPES = ("Attack", "Skill", "Power", "Status", "Curse", "Quest")
 ACTION_KEYS = "revision kind slot target selection".split()
 OBS_KEYS = "schema startHp ascension turn hp maxHp block energy stars hand discard exhaust unknownDraw knownDraw drawCount potions relics powers enemies history choice".split()
 EVENT_KINDS = "combat_started player_turn intent_published draw card_played player_turn_ended potion_used damage power_changed shuffle action choice pre_settlement card_started card_generated hidden_card_generated automatic_selection".split()
@@ -85,7 +87,7 @@ def validate_card(card: Any, config: dict) -> None:
     integer(card["upgrade"], "card.upgrade", 0, 10)
     integer(card["cost"], "card.cost", -2, 100)
     integer(card["starCost"], "card.starCost", -2, 100)
-    enum(card["type"], ("Attack", "Skill", "Power", "Status", "Curse"), "card.type")
+    enum(card["type"], CARD_TYPES, "card.type")
     for keyword in sequence(card["keywords"], "keywords", 32):
         enum(keyword, config["supported_keywords"], "keyword")
 

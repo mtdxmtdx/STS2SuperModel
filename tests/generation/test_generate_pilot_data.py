@@ -140,6 +140,9 @@ class RecoveryTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
+        # These are mock-worker tests; no compiled simulator is needed or loaded.
+        runtime = patch.object(m, "runtime_fingerprints", return_value={"mock-worker": "synthetic"})
+        runtime.start(); self.addCleanup(runtime.stop)
         self.output = Path(self.temp.name)
         recipe = Path(m.__file__).read_bytes()
         self.config = {"version": m.VERSION, "generator_sha256": m.hashlib.sha256(recipe).hexdigest(),

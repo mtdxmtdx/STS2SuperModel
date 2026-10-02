@@ -15,7 +15,7 @@ import torch
 from torch import nn
 
 from .public_identity import canonical_unknown_draw
-from .schema import EVENT_KINDS, validate_public
+from .schema import CARD_TYPES, EVENT_KINDS, validate_public
 
 
 def public_history_features(event: dict, dim: int) -> list[float]:
@@ -65,7 +65,7 @@ class Student(nn.Module):
         tokens = ["empty", "self", "none"]
         for category in ("cards", "enemies", "potions", "relics", "powers", "intents", "keywords", "enchantments", "afflictions", "orbs"):
             tokens += [category + ":" + x for x in config.get("supported_" + category, [])]
-        tokens += ["type:" + x for x in ("Attack", "Skill", "Power", "Status", "Curse")]
+        tokens += ["type:" + x for x in CARD_TYPES]
         tokens += ["action:" + x for x in ("play", "potion", "discard_potion", "choose", "end_turn")]
         tokens += ["event:" + x for x in EVENT_KINDS]
         tokens += ["source:" + x for x in config.get("supported_sources", config["supported_cards"])]
