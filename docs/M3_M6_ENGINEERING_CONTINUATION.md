@@ -8,7 +8,7 @@ fresh-native admission or finite public controller code.
 | Milestone | Current deliverable | Remaining full-scope gate |
 |---|---|---|
 | M3 | Fixed-start objective; complete private HP/potion ledger; native event settlement;9/5/80 gates; separate native potion-timing comparison | Provisional risk profile; changed retained resources and permanent/reward benefits need calibrated values |
-| M4 | All-candidate T0/T1; independent final samples; public cycle exit; Hunt and distinct finite Regen controllers | Broader native posterior and continuation coverage |
+| M4 | All-candidate T0/T1; independent final samples; generic owned native lifecycle/replay; public cycle exit; Hunt and finite Regen | Broad useful posterior throughput under the new explicit prior |
 | M5 | Immutable source-group protection;5,000 constructed roots; complete attempted-block accounting; protected fresh-native collection/preparation/loading | Failed data-quality gate still pauses expanded generation and another fit |
 | M6 | Publicv2 contexts; strict loaders; masked bounded trainer/checkpoints; exact fingerprints; standalone guarded inference | No learned finite-plan or broad policy-quality acceptance; weights remain experimental |
 
@@ -19,6 +19,14 @@ All 200 public inputs/source traces and the prior 174 target payloads remain exa
 The 1,346 action targets include 632 empirical objective values and 714 masked
 values; all 200 certified ranking roots remain masked. Finishing trajectories
 has not resolved resource valuation or the failed data-quality gate.
+
+The new generic owned-run path is separate from those fast profiles. It executes
+native choice coroutines, boss phases and event owners without per-content import
+certificates. Its finite two-seed proof settles24 branches, while its separate
+full-uint64 probe yields0 accepted worlds from64 proposals across two opening roots.
+All30 assigned branches remain truncated; this is a failed gate at the declared
+budget, not proof that every larger budget or structured proposal fails. The new
+development records are quarantined. See [the generic path](NATIVE_OWNED_REPLAY.md).
 
 A separate unchanged 12-root admission fixture still has two certified roots,
 ten raw rejections and 18 settled worlds. Its v7 reasons are six unreviewed entry
@@ -35,7 +43,7 @@ and16 five-HP advantages. This is bounded timing evidence, not a general optimiz
 
 ## Final verification
 
-The current encounter runtime passes **1,059/1,059 native tests** and
+The current encounter runtime passes **1,096/1,096 native tests** and
 **4,480 Core tests with three existing opt-in skips**. Both vendor patches rebuild
 all 2,227 Core/test files exactly from pinned upstream. Python verification passes
 205 no-learning checks, 145 data checks with seven optional live skips, and all
@@ -69,10 +77,11 @@ coefficient is not required for pilot engineering. Future retained inventory,
 permanent assets and extra rewards still require a stated valuation model/evidence.
 Their unknown values must not be replaced by zero.
 
-Broader natural encounter/choice support is still software and evidence work,
-not something the user can resolve by choosing a number. Extend those measured
-coverage gaps and useful resource-label support before another predeclared quality
-cohort. Do not resume fitting or large generation just to reach a count. The earlier
+Generic native execution is now implemented; useful posterior sampling across a
+broad source distribution remains algorithm and compute work. A structured
+conditional proposal needs separate distribution validation; an explicitly limited
+prior changes scope and must stay versioned. Resource-value calibration is a
+separate gate. These are not solved by declaring the old200 fixture complete. Do not resume fitting or large generation just to reach a count. The earlier
 5,000-root fit remains one epoch/497 steps; the 160-attempt follow-up remains73 effective
 roots.100k and million-root milestones have not been reached.
 

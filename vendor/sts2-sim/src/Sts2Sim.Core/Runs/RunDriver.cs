@@ -490,7 +490,7 @@ public sealed class RunDriver
         bool generateRewards = true,
         bool resolveRewards = true,
         CombatRecordingObserver? combatObserver = null,
-        bool deferOutcomeNotification = false)
+        Func<bool>? deferOutcomeNotification = null)
     {
         CombatEngine engine = combatRoom.Engine;
         Player player = engine.State.Players[0];
@@ -540,7 +540,7 @@ public sealed class RunDriver
         }
 
         await combatRoom.ResolveOutcomeAsync(generateRewards);
-        if (!deferOutcomeNotification) AutomaticCombatSettlementCompleted?.Invoke();
+        if (deferOutcomeNotification?.Invoke() != true) AutomaticCombatSettlementCompleted?.Invoke();
         combatObserver?.CaptureFinalState();
         if (resolveRewards)
         {
@@ -620,9 +620,7 @@ public sealed class RunDriver
 
             if (eventRoom.Event.IsAwaitingForcedCombat)
             {
-                ForcedCombatOutcome outcome = await DrivePendingForcedCombatAsync(eventRoom);
-                eventRoom.Event.ResumeAfterForcedCombat(outcome);
-                if (!eventRoom.Event.GenerateForcedCombatRewards) AutomaticCombatSettlementCompleted?.Invoke();
+                await DrivePendingForcedCombatAsync(eventRoom, resumeOwner: true);
                 await DrainEventRewardOffersAsync(eventRoom);
                 continue;
             }
@@ -668,7 +666,7 @@ public sealed class RunDriver
             effectiveBefore!.DescribeChangesTo(eventRoom.Event.Owner));
     }
 
-    private async Task<ForcedCombatOutcome> DrivePendingForcedCombatAsync(EventRoom eventRoom)
+    private async Task<ForcedCombatOutcome> DrivePendingForcedCombatAsync(EventRoom eventRoom, bool resumeOwner = false)
     {
         if (!eventRoom.Event.HasPendingForcedCombat)
         {
@@ -680,6 +678,7 @@ public sealed class RunDriver
         CombatRecordingObserver? combatObserver = ConfigureCombatObserver(combatRoom);
         _runState.PushRoom(combatRoom);
         bool entered = false;
+        bool notifyAfterOwnerReturn = false;
         var outcome = new ForcedCombatOutcome(Victory: false, TimedOut: false);
         try
         {
@@ -706,7 +705,10 @@ public sealed class RunDriver
                 generateRewards: eventRoom.Event.GenerateForcedCombatRewards,
                 resolveRewards: eventRoom.Event.GenerateForcedCombatRewards,
                 combatObserver: combatObserver,
-                deferOutcomeNotification: !eventRoom.Event.GenerateForcedCombatRewards);
+                // Configuration alone does not imply a reward decision: losses
+                // and suppressed/empty offers must finish automatic owner return.
+                deferOutcomeNotification: () => notifyAfterOwnerReturn =
+                    !combatRoom.GeneratedRewards.Any(HasUnresolvedRewards));
             bool timedOut = combatRoom.Engine.State.EscapedCreatures.Any(forcedEnemies.Contains)
                 || forcedTimeoutPowers.Any(power => power.HasExpired);
             outcome = new ForcedCombatOutcome(Victory: combatRoom.Won, TimedOut: timedOut);
@@ -730,6 +732,8 @@ public sealed class RunDriver
             }
         }
 
+        if (resumeOwner) eventRoom.Event.ResumeAfterForcedCombat(outcome);
+        if (notifyAfterOwnerReturn) AutomaticCombatSettlementCompleted?.Invoke();
         return outcome;
     }
 

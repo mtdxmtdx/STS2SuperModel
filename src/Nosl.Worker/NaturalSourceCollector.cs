@@ -92,6 +92,9 @@ public static class NaturalSourceCollector
     public const string ScriptVersion = "nosl-natural-public-script-v2";
     private static readonly object InitLock = new();
 
+    internal static void InitializeNativeModels()
+    { lock (InitLock) { if (!ModelDb.Contains(typeof(Silent))) ModelDb.Init(ContentRegistry.AllTypes); } }
+
     public static Task<NaturalSourceReport> CollectAsync(NaturalSourceOptions? options = null,
         IPublicContinuationPolicy? policy = null, CancellationToken cancellationToken = default) =>
         CollectCoreAsync(options, policy, null, null, cancellationToken);
@@ -113,7 +116,7 @@ public static class NaturalSourceCollector
             throw new ArgumentOutOfRangeException(nameof(options), "Collection limits must be positive");
         if (string.IsNullOrWhiteSpace(options.SeedPrefix) || string.IsNullOrWhiteSpace(options.SourceRunPrefix))
             throw new ArgumentException("Source seed and grouping prefixes are required");
-        lock (InitLock) { if (!ModelDb.Contains(typeof(Silent))) ModelDb.Init(ContentRegistry.AllTypes); }
+        InitializeNativeModels();
         var roots = new List<NaturalSourceRoot>(); var audits = new List<NaturalRunAudit>();
         for (int index = 0; index < options.Runs && roots.Count < options.MaxRoots; index++)
         {
@@ -146,10 +149,11 @@ public static class NaturalSourceCollector
 
     private sealed class CollectionBoundReached(string reason) : Exception(reason);
 
-    private sealed class SourceBridge(RunState run, NaturalSourceOptions options, IPublicContinuationPolicy policy,
+    internal sealed class SourceBridge(RunState run, NaturalSourceOptions options, IPublicContinuationPolicy policy,
         List<NaturalSourceRoot> roots, string sourceRun, string actualSeed,
         Func<NaturalSourceRoot, NaturalSourceBoundary, Task>? onRoot,
-        Action<NaturalSourceSettlement>? onSettlement, CancellationToken cancellationToken)
+        Action<NaturalSourceSettlement>? onSettlement, CancellationToken cancellationToken,
+        INativeRunControl? ownedControl = null)
         : IRunDecisionSource, IAutomaticCardSelectionObserver, IRunRecorder
     {
         internal readonly List<NaturalSourceTrace> Trace = [];
@@ -198,6 +202,7 @@ public static class NaturalSourceCollector
             // reward decisions, including owner return for no-reward forced fights.
             if (_settlementReported) return;
             _settlementReported = true;
+            ownedControl?.Settled(_knowledge);
             onSettlement?.Invoke(new($"{sourceRun}/combat-{CombatsEntered:D4}",
                 player.Creature.CurrentHp, CombatAssetSnapshot.Capture(player)));
         }
@@ -205,6 +210,9 @@ public static class NaturalSourceCollector
         private void CheckBound()
         {
             cancellationToken.ThrowIfCancellationRequested();
+            // Owned runs use their declared source horizon until the selected slot,
+            // then their caller owns continuation. Collector root limits do not apply.
+            if (ownedControl is not null) { ownedControl.BeforeDecision(); Decisions++; return; }
             if (roots.Count >= options.MaxRoots) throw new CollectionBoundReached("root_limit_reached");
             if (Decisions >= options.MaxDecisionsPerRun) throw new CollectionBoundReached("decision_limit_reached");
             Decisions++;
@@ -226,7 +234,7 @@ public static class NaturalSourceCollector
                 _choiceOrigin is null ? null : new(_choiceOrigin,
                     _choiceActions.Select(a => a with { Selection = a.Selection?.ToArray() }).ToArray(), _choicePackets.ToArray()),
                 _choiceRejection);
-            if (_combatDecision % options.DecisionStride == 0 && _combatRoots < options.MaxRootsPerCombat)
+            if (ownedControl is null && _combatDecision % options.DecisionStride == 0 && _combatRoots < options.MaxRootsPerCombat)
             {
                 // Detach all policy DTOs, including mutable event lists, from native state.
                 var root = SnapshotRoot();
@@ -235,7 +243,9 @@ public static class NaturalSourceCollector
                     await onRoot(root, Boundary());
             }
             // JSON boundary prevents a policy from receiving or mutating native objects.
-            var selected = policy.Choose(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)));
+            var selected = ownedControl is null ? null
+                : await ownedControl.DecideAsync(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)), Boundary());
+            selected ??= policy.Choose(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)));
             string token = PublicJson.Serialize(selected);
             var valid = actions.SingleOrDefault(a => PublicJson.Serialize(a) == token)
                 ?? throw new InvalidOperationException("Natural policy returned an illegal public action");

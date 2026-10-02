@@ -1,7 +1,7 @@
 {
   "schema": "nosl.m3-m6.acceptance-progress.v1",
   "date_utc": "2026-10-02",
-  "source_head": "9ef76e61680d7ff22b748a786214f0c8aa66e8b9",
+  "source_head": "6501de5b35c45e96407432163a08152aa26ccfe3",
   "snapshot_kind": "Current integrated continuation checkpoint; original catalog and M0–M2 tracker preserved",
   "authority": [
     {
@@ -44,21 +44,21 @@
   "verified_regressions": [
     {
       "suite": "native",
-      "passed": 1059,
+      "passed": 1096,
       "failed": 0,
       "skipped": 0,
-      "path": "artifacts/native-encounter-proof-200-v7/full-tests.log",
-      "bytes": 1488,
-      "sha256": "7c8b506174c94f5b3a8667cd18673ad2e7b981eac2fa3e900d7579a06b2bc8c8"
+      "path": "artifacts/reports/owned-run/owned-run-final.trx",
+      "bytes": 1595102,
+      "sha256": "2fd39a4ec8c7ca5b3ade35318d37c42123b3987c4515a94b430309785dbc7176"
     },
     {
       "suite": "core",
       "passed": 4480,
       "failed": 0,
       "skipped": 3,
-      "path": "artifacts/native-encounter-proof-200-v7/vendor-core-tests.trx",
-      "bytes": 7090161,
-      "sha256": "6ea86b27efae4859c27de71dabfbff5d16547b3ce9513a9ac320896d3455bf44"
+      "path": "artifacts/owned-run-vendor-verification/vendor-core-tests.trx",
+      "bytes": 6964889,
+      "sha256": "04203b70b2fc7091da8b4e82d78dfc9aaa18885c3beb75d83776caaf0646d647"
     },
     {
       "suite": "python_no_learning",
@@ -421,6 +421,12 @@
           "path": "docs/NATIVE_GENERATION_POTIONS.md",
           "methods": [],
           "detail": "200-root fixed diagnostic cohort with untouched generation-potion closure; v7 adds26 reviewed encounter roots while preserving all previous174 targets"
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_OWNED_REPLAY.md",
+          "methods": [],
+          "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
       "unresolved_scope": "Additional natural-state families still require their own prior/sufficiency evidence.",
@@ -735,6 +741,12 @@
             "test_per_root_policy_digest_is_audit_only"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_OWNED_REPLAY.md",
+          "methods": [],
+          "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
       "unresolved_scope": "Future schema extensions must preserve the same whitelist; this does not validate every unknown mechanism.",
@@ -793,6 +805,12 @@
           "path": "docs/NATIVE_CHOICE_REPLAY.md",
           "methods": [],
           "detail": "Owned native stable-origin conditional replay"
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_OWNED_REPLAY.md",
+          "methods": [],
+          "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
       "unresolved_scope": "Reflex/Tactician extension excludes other Sly, temporary Sly, unreviewed initial content and native carry-in choice replay.",
@@ -843,6 +861,12 @@
           "path": "docs/CONSTRUCTED_SLY_POSTERIOR.md",
           "methods": [],
           "detail": "Dispatcher v3 is a separately versioned conditional permutation/independent-future-RNG prior."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_OWNED_REPLAY.md",
+          "methods": [],
+          "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
       "unresolved_scope": "No exact enumeration of all future RNG distributions, no equivalence to the previous finite whole-setup-seed posterior, and no general natural posterior coverage.",
@@ -1025,6 +1049,12 @@
           "path": "docs/NATIVE_CHOICE_REPLAY.md",
           "methods": [],
           "detail": "Owned native stable-origin conditional replay"
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_OWNED_REPLAY.md",
+          "methods": [],
+          "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
       "unresolved_scope": "Unreviewed encounters, generation-potion pending origins and other unsupported coroutine histories still fail closed.",
@@ -1075,6 +1105,12 @@
           "path": "docs/FORCED_EVENT_LIFECYCLE.md",
           "methods": [],
           "detail": "All five native owners and native original-driver comparison"
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_OWNED_REPLAY.md",
+          "methods": [],
+          "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
       "unresolved_scope": "Pinned simulator lifecycle agreement is not an original-client differential; full combination evidence remains bounded.",
@@ -1180,6 +1216,12 @@
           "path": "docs/FORCED_EVENT_LIFECYCLE.md",
           "methods": [],
           "detail": "All five native owners and native original-driver comparison"
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_OWNED_REPLAY.md",
+          "methods": [],
+          "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
       "unresolved_scope": "Explicitly tested native owner paths only; offered future choices are not current acquired assets.",
@@ -2007,6 +2049,12 @@
           "path": "docs/BALANCED_VALIDATION_BLOCK.md",
           "methods": [],
           "detail": "160=81 saved+26 timeouts+53 absent; 7568 saved candidate copies=7450 settled+118 truncated. Another 2432 requested copies remain timeout-unknown."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_OWNED_REPLAY.md",
+          "methods": [],
+          "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
       "unresolved_scope": "Timeout copies have no recovered terminal result and are not losses or zero labels. Accounting correctness does not remove computational censoring or certify source coverage.",
@@ -2052,6 +2100,12 @@
             "test_plan_is_bounded_and_eval_seeds_are_disjoint"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_OWNED_REPLAY.md",
+          "methods": [],
+          "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
       "unresolved_scope": "Final labels remain Q under that frozen continuation; this is not independent policy-quality validation or proof of optimal actions.",
@@ -2236,6 +2290,12 @@
           "path": "docs/FRESH_NATIVE_PILOT.md",
           "methods": [],
           "detail": "Explicit fresh collection/admission and historical protection"
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_OWNED_REPLAY.md",
+          "methods": [],
+          "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
       "unresolved_scope": "General natural state coverage, hard interactions and calibrated resource labels remain incomplete; existing inspected native records are not production data.",
@@ -2293,6 +2353,12 @@
           "path": "docs/FRESH_NATIVE_PILOT.md",
           "methods": [],
           "detail": "Explicit fresh collection/admission and historical protection"
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_OWNED_REPLAY.md",
+          "methods": [],
+          "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
       "unresolved_scope": "Continuation-dependent values are neither optimal Q nor pure-student win probabilities; any future relabel/profile integration needs new identity.",
@@ -2558,8 +2624,8 @@
   "mapping_validation": "All 50 original IDs/title/expected texts retained once in original order; referenced paths and named methods checked; original catalog and historical tracker hashes unchanged. No runtime, corpus, weights or existing tracker modified by this mapping task.",
   "phase_relevance": {
     "M3": "Objective/complete outcome engineering verified in declared scope; resource values and formal calibration profiles remain unresolved.",
-    "M4": "T0/T1, reviewed native continuations, public cycle exit, Hunt and separate finite Regen controllers implemented/reviewed; general posterior/content coverage remains bounded.",
-    "M5": "PILOT_DATA_READY including separately protected fresh-native admission. Full coverage and resource-label quality remain gated; earlier quality failure pauses scale/fitting.",
+    "M4": "Shared T0/T1 supports both existing fast profiles and generic owned native runs with exact replay ownership. Broad posterior throughput remains blocked at the tested budget; finite public controllers are unchanged.",
+    "M5": "Protected pipeline and versioned engineering collection exist. The new generic full-prior probe produces no usable labels at its fixed budget; broader source/valuation quality and production admission remain gated.",
     "M6": "READY_FOR_PILOT: publicv2 contexts, protected loaders, masked bounded trainer/checkpoints and standalone inference. Stronger learned play and final export are later stages.",
     "M7": "A separately bounded 497-step experimental fit and 16-source diagnostic were completed. Formal training and promotion have not occurred.",
     "M8": "Original-client differential, source-group full quality acceptance and final deployment export parity remain later-stage requirements. Their catalog presence does not invent new prerequisites for this M3–M6 checkpoint."
@@ -2573,8 +2639,11 @@
     "Versioned production v2 preparation, source-group protection, bounded trainer, checkpoint/resume and standalone bundle with actual-supervision applicability guards",
     "Protected fresh native collection/export/preparation/loading with exact historical alias registry and explicit runtime pins",
     "Separate finite public Regen controller/context with immutable deadline and committed-history consistency guards",
-    "Native better-later Flex comparison with same continuation and strict unknown-inventory cancellation"
+    "Native better-later Flex comparison with same continuation and strict unknown-inventory cancellation",
+    "Generic owned native execution plus separately versioned public generative prior; no claim that finite matching proves broad throughput"
   ],
   "declared_scope_engineering_complete": true,
-  "native_admission_version_verification": "configs/native_v7_admission_verification.json"
+  "native_admission_version_verification": "configs/native_v7_admission_verification.json",
+  "owned_native_replay_verification": "configs/owned_native_replay_verification.json",
+  "generic_execution_does_not_mean_posterior_throughput": true
 }

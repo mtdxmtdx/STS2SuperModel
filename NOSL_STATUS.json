@@ -5,8 +5,8 @@
     "M1": "FIVE_NATIVE_FORCED_EVENT_LIFECYCLES_VERIFIED",
     "M2": "VERSIONED_CONSTRUCTED_AND_REVIEWED_NATIVE_STABLE_CHOICE_POTION_POSTERIORS",
     "M3": "OBJECTIVE_AND_OUTCOME_ENGINEERING_VERIFIED_CALIBRATION_PARTIAL",
-    "M4": "T0_T1_AND_PUBLIC_FINITE_PLAN_ENGINEERING_VERIFIED",
-    "M5": "PILOT_DATA_READY_PROTECTED_NATIVE_PATH_VERIFIED_FULL_COVERAGE_GATED",
+    "M4": "SHARED_T0_T1_OWNED_NATIVE_AND_PUBLIC_FINITE_PLAN_ENGINEERING_VERIFIED",
+    "M5": "VERSIONED_PROTECTED_PIPELINES_IMPLEMENTED_BROAD_POSTERIOR_AND_RESOURCE_QUALITY_GATED",
     "M6": "READY_FOR_PILOT_PUBLIC_V2_TRAINING_ENGINEERING_VERIFIED"
   },
   "scope": {
@@ -23,7 +23,7 @@
   "evidence": {
     "baseline_integration_cases": 31,
     "natural_encounter_adapter_opening_cases": 80,
-    "current_full_suite": "PASS_1059_OF_1059",
+    "current_full_suite": "PASS_1096_OF_1096",
     "build": "PASS_0_WARNINGS_0_ERRORS",
     "client_fidelity": "UPSTREAM_TRUSTED_NOT_INDEPENDENTLY_VERIFIED",
     "protocol_two_process": "PASS",
@@ -56,7 +56,7 @@
     "pilot_closed_loop_source_battles": 16,
     "generator_archive_passed": 63,
     "experimental_resource_guard_cases": 17,
-    "full_current_integration_passed": 1059,
+    "full_current_integration_passed": 1096,
     "python_student_passed": 185,
     "reviewed_continuation_v2": true,
     "common_inventory_relative_native_outcomes": 80,
@@ -92,7 +92,12 @@
     "fresh_native_engineering_settled_candidate_worlds": 18,
     "delayed_potion_paired_worlds": 32,
     "native_admission_live_and_metadata_passed": 12,
-    "native_posterior_dispatcher": "nosl-belief-dispatch-v7"
+    "native_posterior_dispatcher": "nosl-belief-dispatch-v7",
+    "generic_owned_native_execution_verified": true,
+    "owned_finite_prior_settled_worlds": 24,
+    "owned_uniform_probe_source_roots": 2,
+    "owned_uniform_probe_proposals": 64,
+    "owned_uniform_probe_accepted_worlds": 0
   },
   "full_silent_content_ready": false,
   "ready_for_training": false,
@@ -103,7 +108,7 @@
   "training": "BOUNDED_EXPERIMENTAL_497_STEPS_COMPLETED_UNPROMOTED",
   "next_milestone": "IMPROVE_MEASURED_NATIVE_COVERAGE_AND_RESOURCE_LABEL_QUALITY_BEFORE_SCALE",
   "remaining_full_scope_gaps": [
-    "Broader natural carry-in/content and generated pending-choice posterior coverage remains engineering/evidence work. The inspected fixed200 cohort is fully supported; a separate unchanged12-root fixture still rejects10 entries (six unreviewed cards, one relic, three encounters).",
+    "Generic owned native execution removes the manual import whitelist for its new declared prior. Broad usable posterior throughput remains unverified: two opening roots yielded0accepted worlds in64proposals at the fixed budget. Older native fast profiles remain bounded; no prior/corpus is silently reinterpreted.",
     "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
     "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
     "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3–M6 prerequisites"
@@ -127,5 +132,6 @@
   "full_m3_m6_complete": false,
   "declared_scope_engineering_complete": true,
   "new_fitting_or_scale_allowed_by_quality": false,
-  "native_encounter_extension": "NATIVE_ENCOUNTER_EXTENSION_SUMMARY.json"
+  "native_encounter_extension": "NATIVE_ENCOUNTER_EXTENSION_SUMMARY.json",
+  "owned_native_replay_verification": "configs/owned_native_replay_verification.json"
 }

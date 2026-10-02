@@ -52,3 +52,5 @@ tools/                 两进程协议烟测
 **目录接入不等于所有组合验证完成。** 最新连接契约、采样限制、强制事件上下文和实测范围见 [覆盖与连接说明](docs/COVERAGE_BRIDGE.md)。`READY_FOR_TRAINING=false`；M3–M6 的后续状态由独立交付报告更新。
 
 旧源码、数据和提交历史保留在 [codex/history-2026-10-01](https://github.com/mtdxmtdx/STS2SuperModel/tree/codex/history-2026-10-01)，固定归档提交为 [b0bb07b](https://github.com/mtdxmtdx/STS2SuperModel/tree/b0bb07bdd09f8ae7833724126b18738c93d09eb4)。本次工作发布为 STS2SuperModel 的独立分支与草稿PR，未合并main；实验权重与数据单独保存，不混入源码提交。
+
+最新通用原生回放与预算门槛见 [NATIVE_OWNED_REPLAY.md](docs/NATIVE_OWNED_REPLAY.md)：执行路径已验证，完整先验的小探测尚未接受任何世界，不能据此宣布全范围训练准备完成。

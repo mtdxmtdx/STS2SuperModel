@@ -18,6 +18,12 @@ while(Console.ReadLine() is { } line)
             result=new {status="available",version="nosl.continuation-policies.v1",
                 supportedPolicyIds=new[] {PublicContinuationPolicies.LegacyId,PublicContinuationPolicies.ReviewedId}};
         }
+        else if(op=="owned_native_replay")
+        {
+            var options=PublicJson.Read<NativeRunCollectionOptions>(root.GetProperty("options").GetRawText());
+            var teacherOptions=PublicJson.Read<TeacherOptions>(root.GetProperty("teacherOptions").GetRawText());
+            result=await NativeRunReplayDataset.CollectAsync(options,teacherOptions);
+        }
         else if(op=="native_pilot_collect")
         {
             var options=PublicJson.Read<NaturalSourceOptions>(root.GetProperty("options").GetRawText());

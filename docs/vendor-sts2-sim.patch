@@ -246,15 +246,28 @@
 @@ -487 +492,2 @@
 -        CombatRecordingObserver? combatObserver = null)
 +        CombatRecordingObserver? combatObserver = null,
-+        bool deferOutcomeNotification = false)
++        Func<bool>? deferOutcomeNotification = null)
 @@ -536,0 +543 @@
-+        if (!deferOutcomeNotification) AutomaticCombatSettlementCompleted?.Invoke();
-@@ -617,0 +625 @@
-+                if (!eventRoom.Event.GenerateForcedCombatRewards) AutomaticCombatSettlementCompleted?.Invoke();
-@@ -700 +708,2 @@
++        if (deferOutcomeNotification?.Invoke() != true) AutomaticCombatSettlementCompleted?.Invoke();
+@@ -616,2 +623 @@
+-                ForcedCombatOutcome outcome = await DrivePendingForcedCombatAsync(eventRoom);
+-                eventRoom.Event.ResumeAfterForcedCombat(outcome);
++                await DrivePendingForcedCombatAsync(eventRoom, resumeOwner: true);
+@@ -663 +669 @@
+-    private async Task<ForcedCombatOutcome> DrivePendingForcedCombatAsync(EventRoom eventRoom)
++    private async Task<ForcedCombatOutcome> DrivePendingForcedCombatAsync(EventRoom eventRoom, bool resumeOwner = false)
+@@ -674,0 +681 @@
++        bool notifyAfterOwnerReturn = false;
+@@ -700 +707,5 @@
 -                combatObserver: combatObserver);
 +                combatObserver: combatObserver,
-+                deferOutcomeNotification: !eventRoom.Event.GenerateForcedCombatRewards);
++                // Configuration alone does not imply a reward decision: losses
++                // and suppressed/empty offers must finish automatic owner return.
++                deferOutcomeNotification: () => notifyAfterOwnerReturn =
++                    !combatRoom.GeneratedRewards.Any(HasUnresolvedRewards));
+@@ -723,0 +735,2 @@
++        if (resumeOwner) eventRoom.Event.ResumeAfterForcedCombat(outcome);
++        if (notifyAfterOwnerReturn) AutomaticCombatSettlementCompleted?.Invoke();
 --- a/src/Sts2Sim.Core/Sts2Sim.Core.csproj
 +++ b/src/Sts2Sim.Core/Sts2Sim.Core.csproj
 @@ -15,0 +16,2 @@

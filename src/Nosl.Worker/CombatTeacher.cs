@@ -39,7 +39,11 @@ public sealed record TeacherResult(DecisionPacket PublicRoot, string TeacherVers
 public static class CombatTeacher
 {
     public const string Version = "nosl-full-combat-teacher-v1";
-    public static async Task<TeacherResult> EvaluateAsync(CombatSession source, TeacherOptions? options = null,
+    public static Task<TeacherResult> EvaluateAsync(CombatSession source, TeacherOptions? options = null,
+        ObjectiveProfile? profile = null)
+        => EvaluateAsync(new CombatSessionTeacherSource(source), options, profile);
+
+    internal static async Task<TeacherResult> EvaluateAsync(ITeacherSource source, TeacherOptions? options = null,
         ObjectiveProfile? profile = null)
     {
         options ??= new(); profile ??= ObjectiveProfile.Candidate; options.Validate(); profile.Validate();
@@ -54,51 +58,84 @@ public static class CombatTeacher
             var tree = new PublicTreeSearch(options.UctExploration, options.TreeDepth, policy);
             foreach (var seed in options.ExplorationSeeds)
             {
+                var backups = new List<(string Key, int Action, int Visits, double Value)[]>();
                 try
                 {
-                await using var world = await TimedSample(source, seed, costs, options.MaxPosteriorAttempts);
-                foreach (var action in root.Actions)
+                    await using var world = await TimedSample(source, seed, costs, options.MaxPosteriorAttempts);
+                    foreach (var action in root.Actions)
+                    {
+                        var trace = new List<(string Key, int Action)>();
+                        RolloutOutcome outcome;
+                        await using (var branch = await TimedFork(world, costs))
+                            outcome = await RolloutAsync(branch, action, tree, options.MaxDecisions, costs, trace);
+                        var evaluation = ObjectiveEvaluator.Evaluate(outcome, profile);
+                        // Missing outcomes and unresolved resources never masquerade as zero returns.
+                        // Cleanup must succeed before a branch contributes to the public tree.
+                        if (evaluation.Cost is double cost) backups.Add(tree.Backup(trace, -cost));
+                    }
+                }
+                catch (Exception)
                 {
-                    await using var branch = await TimedFork(world, costs);
-                    var trace = new List<(string Key, int Action)>();
-                    var outcome = await RolloutAsync(branch, action, tree, options.MaxDecisions, costs, trace);
-                    var evaluation = ObjectiveEvaluator.Evaluate(outcome, profile);
-                    // Missing outcomes and unresolved resources never masquerade as zero returns.
-                    if (evaluation.Cost is double cost) tree.Backup(trace, -cost);
+                    // A failed sampled-world cleanup invalidates this sample's backups too.
+                    foreach (var backup in backups.AsEnumerable().Reverse()) tree.UndoBackup(backup);
+                    costs.ExplorationFailures++;
                 }
-                }
-                catch (Exception) { costs.ExplorationFailures++; }
             }
             policy = tree.Freeze(); frozenNodes = ((FrozenPublicTreePolicy)policy).NodeCount;
         }
         var outcomes = root.Actions.Select(_ => new List<RolloutOutcome>()).ToArray();
         foreach (var seed in options.EvaluationSeeds)
         {
-            CombatSession? world = null;
+            var sampleOutcomes = new RolloutOutcome[root.Actions.Length];
+            ITeacherWorld? world = null;
             try
             {
                 world = await TimedSample(source, seed, costs, options.MaxPosteriorAttempts);
                 for (int i = 0; i < root.Actions.Length; i++)
                 {
+                    ITeacherWorld? branch = null;
                     try
                     {
-                        await using var branch = await TimedFork(world, costs);
-                        outcomes[i].Add(await RolloutAsync(branch, root.Actions[i], policy, options.MaxDecisions, costs));
+                        branch = await TimedFork(world, costs);
+                        sampleOutcomes[i] = await RolloutAsync(branch, root.Actions[i], policy, options.MaxDecisions, costs);
                     }
-                    catch (Exception e) { outcomes[i].Add(Incomplete(TerminalKind.EngineError, source, policy.Id, 0, root.Observation!.Turn, "branch_setup:" + e.Message)); }
+                    catch (Exception e) { sampleOutcomes[i] = Incomplete(e is OperationCanceledException ? TerminalKind.ComputeTruncated : TerminalKind.EngineError,
+                        source, policy.Id, 0, root.Observation!.Turn, "branch_setup:" + e.Message); }
+                    finally
+                    {
+                        if (branch is not null)
+                            try { await branch.DisposeAsync(); }
+                            catch (Exception e) { sampleOutcomes[i] = Incomplete(e is OperationCanceledException ? TerminalKind.ComputeTruncated : TerminalKind.EngineError,
+                                source, policy.Id, 0, root.Observation!.Turn, "branch_cleanup:" + e.GetType().Name + ": " + e.Message); }
+                    }
                 }
             }
             catch (Exception e)
             {
-                var kind = e is PosteriorSamplingException ? TerminalKind.ComputeTruncated : TerminalKind.EngineError;
-                foreach (var rowsForAction in outcomes) rowsForAction.Add(Incomplete(kind, source, policy.Id, 0, root.Observation!.Turn, "belief_sampling:" + e.Message));
+                var kind = e is PosteriorSamplingException or OperationCanceledException ? TerminalKind.ComputeTruncated : TerminalKind.EngineError;
+                for (int i = 0; i < sampleOutcomes.Length; i++)
+                    sampleOutcomes[i] = Incomplete(kind, source, policy.Id, 0, root.Observation!.Turn, "belief_sampling:" + e.Message);
             }
-            finally { if(world is not null) await world.DisposeAsync(); }
+            finally
+            {
+                if (world is not null)
+                    try { await world.DisposeAsync(); }
+                    catch (Exception e)
+                    {
+                        for (int i = 0; i < sampleOutcomes.Length; i++)
+                            sampleOutcomes[i] = Incomplete(e is OperationCanceledException ? TerminalKind.ComputeTruncated : TerminalKind.EngineError,
+                                source, policy.Id, 0, root.Observation!.Turn,
+                                "world_cleanup:" + e.GetType().Name + ": " + e.Message);
+                    }
+            }
+            // Each requested seed contributes exactly one outcome per root action,
+            // including failures found only while releasing its owned runtime.
+            for (int i = 0; i < sampleOutcomes.Length; i++) outcomes[i].Add(sampleOutcomes[i]);
         }
         var rows = root.Actions.Select((action, i) => new TeacherCandidate(action, outcomes[i].ToArray(),
             ObjectiveEvaluator.EvaluateBatch(outcomes[i], options.EvaluationSeeds.Length, profile))).ToArray();
         timer.Stop();
-        var warnings = new List<string> { source.HasNativeProvenance ? "Certified native carry-in; conditional permutation and independent future RNG, not finite-source-seed inference; frozen public continuation" : "Declared setup prior and runtime capability limits apply; Q under a frozen public continuation, not Q-star", "Candidate objective is development-only; no formal labels or trained weights" };
+        var warnings = new List<string> { source.PriorWarning, "Candidate objective is development-only; no formal labels or trained weights" };
         if(costs.ExplorationFailures>0) warnings.Add($"Exploration sampling/branch failures: {costs.ExplorationFailures}; frozen fallback policy remains explicit");
         if (rows.Any(r => r.Outcomes.Any(o => !o.IsTrueTerminal))) warnings.Add("Incomplete probability mass retained; affected target/ranking masks are false");
         if (rows.Any(r => r.Evaluation.ExpectedCost is null)) warnings.Add("Some utility values unresolved; missing resource prices are not zero");
@@ -106,20 +143,20 @@ public static class CombatTeacher
             options.ExplorationSeeds.Length, options.EvaluationSeeds.Length, frozenNodes,
             new(root.Actions.Length, rows.Sum(x => x.Outcomes.Length), rows.Sum(x => x.Outcomes.Count(o => o.IsTrueTerminal)),
                 costs.Decisions, timer.Elapsed.TotalSeconds, costs.CloneSeconds, costs.SettlementSeconds,
-                Process.GetCurrentProcess().PeakWorkingSet64, costs.ExplorationFailures), BeliefSampler.PosteriorProfileFor(source), warnings.ToArray(), Ranking(source, rows, profile));
+                Process.GetCurrentProcess().PeakWorkingSet64, costs.ExplorationFailures), source.PosteriorProfile, warnings.ToArray(), Ranking(source, rows, profile));
     }
-    private static RankingEvidence Ranking(CombatSession source, TeacherCandidate[] candidates, ObjectiveProfile profile)
+    private static RankingEvidence Ranking(ITeacherSource source, TeacherCandidate[] candidates, ObjectiveProfile profile)
     {
-        var bound = TeacherRanking.RestrictedSupport(source, profile);
+        var bound = source.RankingSupport(profile);
         return TeacherRanking.Evaluate(candidates, profile, bound?.Lower, bound?.Upper);
     }
-    private static async Task<CombatSession> TimedSample(CombatSession source, ulong seed, CostAccumulator costs, int attempts)
-    { var t = Stopwatch.StartNew(); try { return await BeliefSampler.SampleWorldAsync(source, seed, attempts); } finally { costs.CloneSeconds += t.Elapsed.TotalSeconds; } }
-    private static async Task<CombatSession> TimedFork(CombatSession source, CostAccumulator costs)
+    private static async Task<ITeacherWorld> TimedSample(ITeacherSource source, ulong seed, CostAccumulator costs, int attempts)
+    { var t = Stopwatch.StartNew(); try { return await source.SampleWorldAsync(seed, attempts); } finally { costs.CloneSeconds += t.Elapsed.TotalSeconds; } }
+    private static async Task<ITeacherWorld> TimedFork(ITeacherWorld source, CostAccumulator costs)
     { var t = Stopwatch.StartNew(); try { return await source.ForkForContinuationAsync(); } finally { costs.CloneSeconds += t.Elapsed.TotalSeconds; } }
     private sealed class CostAccumulator { public int ExplorationFailures; public long Decisions; public double CloneSeconds; public double SettlementSeconds; }
 
-    private static async Task<RolloutOutcome> RolloutAsync(CombatSession branch, PublicAction rootAction,
+    private static async Task<RolloutOutcome> RolloutAsync(ITeacherWorld branch, PublicAction rootAction,
         IPublicContinuationPolicy policy, int cap, CostAccumulator costs, List<(string Key, int Action)>? trace = null)
     {
         int actions = 0, lastTurn = branch.Observe().Observation!.Turn;
@@ -134,15 +171,18 @@ public static class CombatTeacher
             }
             if (packet.Status != "terminal_settled") return Incomplete(packet.Status == "engine_error" ? TerminalKind.EngineError : TerminalKind.ComputeTruncated,
                 branch, policy.Id, actions, lastTurn, "Decision budget exhausted before a verified settled endpoint");
-            var facts = await branch.SettleAsync(); costs.SettlementSeconds += branch.SettlementSeconds;
-            return RolloutRecorder.Settled(branch, facts, policy.Id, lastTurn);
+            // A terminal-settled packet already certifies settlement. Keep its cost even
+            // if recording those settled facts subsequently fails.
+            try { return await branch.RecordSettledAsync(policy.Id, lastTurn); }
+            finally { costs.SettlementSeconds += branch.SettlementSeconds; }
         }
         catch (Exception e)
-        { return Incomplete(TerminalKind.EngineError, branch, policy.Id, actions, lastTurn, e.GetType().Name + ": " + e.Message); }
+        { return Incomplete(e is OperationCanceledException ? TerminalKind.ComputeTruncated : TerminalKind.EngineError,
+            branch, policy.Id, actions, lastTurn, e.GetType().Name + ": " + e.Message); }
     }
     private static InventoryQuantity[] Inventory(IEnumerable<string?> items) => items.Where(x => x is not null)
         .GroupBy(x => x!, StringComparer.Ordinal).OrderBy(g => g.Key, StringComparer.Ordinal).Select(g => new InventoryQuantity(g.Key, g.Count())).ToArray();
-    private static RolloutOutcome Incomplete(TerminalKind kind, CombatSession s, string policy, int actions, int turn, string detail) => new()
+    private static RolloutOutcome Incomplete(TerminalKind kind, ITeacherContext s, string policy, int actions, int turn, string detail) => new()
     { TerminalKind = kind, HpAtCombatStart = s.StartHp, MaxHpStart = s.StartMaxHp, InventoryStart = Inventory(s.StartPotions),
         PlayerTurnsElapsed = turn, AtomicActionsExecuted = actions, ContinuationPolicyId = policy, Detail = detail, PermanentChangesComplete = false };
 
@@ -169,8 +209,17 @@ public static class CombatTeacher
             }
             trace.Add((key, selected)); return node.Actions[selected];
         }
-        public void Backup(List<(string Key, int Action)> trace, double value)
-        { foreach (var (key, action) in trace) { _nodes[key].Visits[action]++; _nodes[key].Values[action] += value; } }
+        public (string Key, int Action, int Visits, double Value)[] Backup(List<(string Key, int Action)> trace, double value)
+        {
+            var previous = trace.Select(x => (x.Key, x.Action, _nodes[x.Key].Visits[x.Action], _nodes[x.Key].Values[x.Action])).ToArray();
+            foreach (var (key, action) in trace) { _nodes[key].Visits[action]++; _nodes[key].Values[action] += value; }
+            return previous;
+        }
+        public void UndoBackup((string Key, int Action, int Visits, double Value)[] previous)
+        {
+            // Restore exact prior values; subtracting floating returns can leave rounding residue.
+            foreach (var (key, action, visits, value) in previous) { _nodes[key].Visits[action] = visits; _nodes[key].Values[action] = value; }
+        }
         public FrozenPublicTreePolicy Freeze()
         {
             // Never freeze an unvisited action as an estimated zero or as the optimum.

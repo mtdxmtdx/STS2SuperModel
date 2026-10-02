@@ -1,7 +1,7 @@
 {
   "schema": "nosl.m3-m6.continued-engineering.v1",
   "date_utc": "2026-10-02",
-  "source_head": "9ef76e61680d7ff22b748a786214f0c8aa66e8b9",
+  "source_head": "6501de5b35c45e96407432163a08152aa26ccfe3",
   "status": "READY_FOR_PILOT_FULL_SCOPE_BLOCKED",
   "full_m3_m6_complete": false,
   "formal_training": false,
@@ -11,21 +11,21 @@
   "verified_regressions": [
     {
       "suite": "native",
-      "passed": 1059,
+      "passed": 1096,
       "failed": 0,
       "skipped": 0,
-      "path": "artifacts/native-encounter-proof-200-v7/full-tests.log",
-      "bytes": 1488,
-      "sha256": "7c8b506174c94f5b3a8667cd18673ad2e7b981eac2fa3e900d7579a06b2bc8c8"
+      "path": "artifacts/reports/owned-run/owned-run-final.trx",
+      "bytes": 1595102,
+      "sha256": "2fd39a4ec8c7ca5b3ade35318d37c42123b3987c4515a94b430309785dbc7176"
     },
     {
       "suite": "core",
       "passed": 4480,
       "failed": 0,
       "skipped": 3,
-      "path": "artifacts/native-encounter-proof-200-v7/vendor-core-tests.trx",
-      "bytes": 7090161,
-      "sha256": "6ea86b27efae4859c27de71dabfbff5d16547b3ce9513a9ac320896d3455bf44"
+      "path": "artifacts/owned-run-vendor-verification/vendor-core-tests.trx",
+      "bytes": 6964889,
+      "sha256": "04203b70b2fc7091da8b4e82d78dfc9aaa18885c3beb75d83776caaf0646d647"
     },
     {
       "suite": "python_no_learning",
@@ -88,7 +88,8 @@
     "Versioned production v2 preparation, source-group protection, bounded trainer, checkpoint/resume and standalone bundle with actual-supervision applicability guards",
     "Protected fresh native collection/export/preparation/loading with exact historical alias registry and explicit runtime pins",
     "Separate finite public Regen controller/context with immutable deadline and committed-history consistency guards",
-    "Native better-later Flex comparison with same continuation and strict unknown-inventory cancellation"
+    "Native better-later Flex comparison with same continuation and strict unknown-inventory cancellation",
+    "Generic owned native run execution, fixed-slot generative posterior, same-proposal replay forks and explicit incomplete sampling accounting; useful broad throughput remains gated"
   ],
   "native_fixed_diagnostic_cohort": {
     "raw_roots": 200,
@@ -121,7 +122,7 @@
   },
   "active_remaining_engineering": [],
   "remaining_full_scope_gates": [
-    "Broader natural carry-in/content and generated pending-choice posterior coverage remains engineering/evidence work. The inspected fixed200 cohort is fully supported; a separate unchanged12-root fixture still rejects10 entries (six unreviewed cards, one relic, three encounters).",
+    "Generic owned native execution removes the manual import whitelist for its new declared prior. Broad usable posterior throughput remains unverified: two opening roots yielded0accepted worlds in64proposals at the fixed budget. Older native fast profiles remain bounded; no prior/corpus is silently reinterpreted.",
     "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
     "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
     "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3–M6 prerequisites"
@@ -231,7 +232,10 @@
     "205 Python checks excluded11 previously executed backward-related tests and guarded backward/optimizer.step; no new optimizer steps",
     "Data suite145pass+7optional live skips; all12 native metadata/live admission tests run separately against the same inspected12-root fixture",
     "Current readonly vendor accessor additions passed a complete4480/3 Core suite and2227-file patch reconstruction",
-    "Fixed200,12-root and32-pair evidence is inspected development data; replays do not increase independent counts"
+    "Fixed200,12-root and32-pair evidence is inspected development data; replays do not increase independent counts",
+    "Owned-run evidence is separately versioned; finite fixture24settled and full-prior probe0/64accepted do not increase existing production datasets or change inspected native200 counts"
   ],
-  "native_admission_version_verification": "configs/native_v7_admission_verification.json"
+  "native_admission_version_verification": "configs/native_v7_admission_verification.json",
+  "owned_native_replay_verification": "configs/owned_native_replay_verification.json",
+  "generic_execution_does_not_mean_posterior_throughput": true
 }
