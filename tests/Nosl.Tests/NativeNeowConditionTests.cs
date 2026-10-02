@@ -3,9 +3,11 @@ using Nosl.Contracts;
 using Nosl.Worker;
 using Sts2Sim.Core.Entities.Players;
 using Sts2Sim.Core.Entities.Relics;
+using Sts2Sim.Core.Content.Acts;
 using Sts2Sim.Core.Models;
 using Sts2Sim.Core.Models.Characters;
 using Sts2Sim.Core.Models.Events;
+using Sts2Sim.Core.Models.RelicPools;
 using Sts2Sim.Core.Models.Relics;
 using Sts2Sim.Core.Random;
 using Sts2Sim.Core.Rooms;
@@ -37,13 +39,13 @@ public sealed class NativeNeowConditionTests
     [InlineData("NeowsTorment")]
     [InlineData("NutritiousOyster")]
     [InlineData("ScrollBoxes")]
-    public void PublicEntryAndDeclaredFirstCombatPriorCertifyOnlyTheRelicOrigin(string relic)
+    public void PublicEntryAndDeclaredFreshRunPriorCertifyOnlyTheRelicOrigin(string relic)
     {
         var root = Root(relic);
         Assert.True(NativeNeowCondition.TryCreate(root, Prior, out var condition, out var reason), reason);
         Assert.NotNull(condition);
         Assert.Equal(relic, condition.TargetRelicId);
-        // A later packet in that same declared first combat has the same carry-in
+        // A later packet in that same combat has the same carry-in
         // evidence. Current inventory/card hooks do not establish its origin.
         root = root with { Status = "card_choice", Observation = root.Observation! with
         { Turn = 4, Relics = ["unrelated-current-relic"], History = [.. root.Observation.History, new("action", "later")] } };
@@ -54,41 +56,115 @@ public sealed class NativeNeowConditionTests
     }
 
     [Theory]
-    [InlineData("wider_combat", "first_native_combat_prior_required")]
-    [InlineData("wider_floor", "first_native_combat_prior_required")]
-    [InlineData("other_policy", "first_native_combat_prior_required")]
+    [InlineData(NaturalSourceCollector.ScriptVersion)]
+    [InlineData(NaturalSourceCollector.BoundedEventScriptVersion)]
+    public void OtherEntryAssetsDoNotChangeTheRetainedPositiveOrigin(string script)
+    {
+        var prior = Prior with { EligibleCombats = 80,
+            Execution = Prior.Execution with { MaxFloors = 60, OutsideCombatScript = script } };
+        var root = Root();
+        var entry = PublicJson.Read<NativeEntryAssets>(root.Observation!.History[1].Detail);
+        entry = entry with
+        {
+            // Absence of the starter, extra Ancient relics and other relic states
+            // cannot create this ordinary Neow type. They are matched by full replay.
+            Relics = [Relic("WingedBoots"), Relic("GoldenCompass"),
+                new("Circlet", new Dictionary<string, int> { ["stackCount"] = 4, ["isWax"] = 1,
+                    ["isMelted"] = 1, ["isUsedUp"] = 1 })],
+            Deck = [], OrbSlots = 2,
+        };
+        root.Observation.History[1] = root.Observation.History[1] with { Detail = PublicJson.Serialize(entry) };
+        Assert.True(NativeNeowCondition.TryCreate(root, prior, out var condition, out var reason), reason);
+        Assert.Equal("WingedBoots", condition!.TargetRelicId);
+    }
+
+    [Theory]
+    [InlineData("other_policy", "fresh_native_run_prior_required")]
     [InlineData("wrong_character", "fresh_silent_entry_history_required")]
     [InlineData("duplicate_anchor", "fresh_silent_entry_history_required")]
-    [InlineData("extra_relic", "exact_neow_entry_inventory_required")]
-    [InlineData("missing_ring", "ordinary_starter_and_positive_required")]
-    [InlineData("melted", "ordinary_starter_and_positive_required")]
-    [InlineData("missing_flags", "ordinary_starter_and_positive_required")]
-    [InlineData("MassiveScroll", "neow_positive_origin_not_certified")]
-    [InlineData("NeowsBones", "neow_positive_origin_not_certified")]
-    [InlineData("GoldenCompass", "neow_positive_origin_not_certified")]
-    [InlineData("unknown", "neow_positive_origin_not_certified")]
+    [InlineData("extra_positive", "unique_retained_neow_positive_required")]
+    [InlineData("duplicate_positive", "unique_retained_neow_positive_required")]
+    [InlineData("melted", "ordinary_retained_neow_positive_required")]
+    [InlineData("wax", "ordinary_retained_neow_positive_required")]
+    [InlineData("stacked", "ordinary_retained_neow_positive_required")]
+    [InlineData("missing_flags", "ordinary_retained_neow_positive_required")]
+    [InlineData("MassiveScroll", "unique_retained_neow_positive_required")]
+    [InlineData("NeowsBones", "unique_retained_neow_positive_required")]
+    [InlineData("GoldenCompass", "unique_retained_neow_positive_required")]
+    [InlineData("unknown", "unique_retained_neow_positive_required")]
     public void UnprovedOriginsFallbackWithoutExcludingTheRoot(string change, string expected)
     {
         var root = Root(); var prior = Prior;
         var entry = PublicJson.Read<NativeEntryAssets>(root.Observation!.History[1].Detail);
         switch (change)
         {
-            case "wider_combat": prior = prior with { EligibleCombats = 2 }; break;
-            case "wider_floor": prior = prior with { Execution = prior.Execution with { MaxFloors = 2 } }; break;
             case "other_policy": prior = prior with { Execution = prior.Execution with { SourcePolicyId = "other" } }; break;
             case "wrong_character": root.Observation.History[0] = new("combat_started", "Ironclad:A10"); break;
             case "duplicate_anchor": root = root with { Observation = root.Observation with
                 { History = [.. root.Observation.History, root.Observation.History[1]] } }; break;
-            case "extra_relic": entry = entry with { Relics = [.. entry.Relics, Relic("SmallCapsule")] }; break;
-            case "missing_ring": entry = entry with { Relics = [Relic("LavaRock"), Relic("WingedBoots")] }; break;
-            case "melted": entry = entry with { Relics = [Relic("RingOfTheSnake"),
-                new("WingedBoots", new Dictionary<string, int> { ["isMelted"] = 1, ["isWax"] = 0, ["stackCount"] = 1 })] }; break;
+            case "extra_positive": entry = entry with { Relics = [.. entry.Relics, Relic("SmallCapsule")] }; break;
+            case "duplicate_positive": entry = entry with { Relics = [.. entry.Relics, Relic("WingedBoots")] }; break;
+            case "melted" or "wax" or "stacked": entry = entry with { Relics = [Relic("RingOfTheSnake"),
+                new("WingedBoots", new Dictionary<string, int> { ["isMelted"] = change == "melted" ? 1 : 0,
+                    ["isWax"] = change == "wax" ? 1 : 0, ["stackCount"] = change == "stacked" ? 2 : 1 })] }; break;
             case "missing_flags": entry = entry with { Relics = [Relic("RingOfTheSnake"), new("WingedBoots", new Dictionary<string, int>())] }; break;
             default: entry = entry with { Relics = [Relic("RingOfTheSnake"), Relic(change)] }; break;
         }
         root.Observation.History[1] = root.Observation.History[1] with { Detail = PublicJson.Serialize(entry) };
         Assert.False(NativeNeowCondition.TryCreate(root, prior, out var condition, out var reason));
         Assert.Null(condition); Assert.Equal(expected, reason);
+    }
+
+    [Theory]
+    [InlineData(NaturalSourceCollector.ScriptVersion)]
+    [InlineData(NaturalSourceCollector.BoundedEventScriptVersion)]
+    public async Task NativeGeneratedSecondCombatEntryRetainsTheCertifiedOrigin(string script)
+    {
+        var prior = Prior with { EligibleCombats = 8,
+            Execution = new(MaxFloors: 8, SourceDecisionHorizon: 1000, OutsideCombatScript: script) };
+        // Fixed natural-run fixture with a declared later target; this is a unit
+        // check of a native public entry, not a sampled dataset or posterior fit.
+        var recipe = prior.Draw(new Rng(8001, "nosl-native-tape-source-draw-v1"))
+            with { CombatIndex = 1, DecisionIndex = 0 };
+        await using var world = await NativeRunWorld.OpenLabelTapeAsync(prior.Execution, recipe, new(recipe));
+        Assert.NotNull(world);
+        Assert.True(world.NativeRun.TotalFloor >= 3);
+        var publicPacket = world.Observe();
+        Assert.True(NativeNeowCondition.TryCreate(publicPacket, prior, out var condition, out var reason), reason);
+        Assert.Contains(world.NativeRun.Players.Single().Relics,
+            relic => relic.GetType().Name == condition!.TargetRelicId && !relic.IsWax && !relic.IsMelted);
+    }
+
+    [Fact]
+    public void OfficialRelicAndLaterAncientPoolsCannotCreateANeowPositive()
+    {
+        NaturalSourceCollector.InitializeNativeModels();
+        Type[] positiveTypes = [typeof(ArcaneScroll), typeof(BoomingConch), typeof(FishingRod), typeof(GoldenPearl),
+            typeof(Kaleidoscope), typeof(LeadPaperweight), typeof(LostCoffer), typeof(NeowsTorment),
+            typeof(NewLeaf), typeof(PhialHolster), typeof(PreciseScissors), typeof(ScrollBoxes),
+            typeof(WingedBoots), typeof(LavaRock), typeof(SmallCapsule), typeof(NutritiousOyster),
+            typeof(StoneHumidifier), typeof(NeowsTalisman), typeof(Pomander)];
+        Assert.Equal(19, positiveTypes.Distinct().Count());
+        foreach (Type type in positiveTypes)
+        {
+            Assert.True(NativeNeowCondition.TryCreate(Root(type.Name), Prior, out _, out var reason), reason);
+            Assert.Equal(RelicRarity.Ancient, ((RelicModel)ModelDb.Get(type)).Rarity);
+        }
+        Type[] forbiddenOrigins = [.. positiveTypes, typeof(NeowsBones)];
+        var officialPools = ModelDb.AllCharacters.Select(character => character.RelicPool)
+            .Append(SharedRelicPool.Instance);
+        foreach (var pool in officialPools)
+            Assert.All(pool.AllRelics, relic => Assert.DoesNotContain(relic.GetType(), forbiddenOrigins));
+
+        var laterAncients = ModelDb.All<AncientEventModel>().Where(ancient => ancient is not Neow).ToArray();
+        Assert.Equal(7, laterAncients.Length);
+        foreach (var ancient in laterAncients)
+            Assert.All(ancient.AllPossibleOptions, relic => Assert.DoesNotContain(relic.GetType(), forbiddenOrigins));
+        Assert.All(new Hive().AncientPool.Concat(new Glory().AncientPool).Concat(SharedAncientPool.All),
+            type => Assert.NotEqual(typeof(Neow), type));
+        // Shared pools legitimately include OTHER Ancient relics. Exclusion of
+        // these specific types is the closure; a blanket rarity assertion is false.
+        Assert.Contains(SharedRelicPool.Instance.AllRelics, relic => relic.Rarity == RelicRarity.Ancient);
     }
 
     [Fact]

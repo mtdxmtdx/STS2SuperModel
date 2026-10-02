@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Serialization;
 using Nosl.Contracts;
 using Sts2Sim.Core.Random;
 
@@ -7,7 +8,15 @@ namespace Nosl.Worker;
 
 /// <summary>Declared source eligibility, not a hidden-state transplant recipe.</summary>
 internal sealed record NativeRunExecutionOptions(int MaxFloors = 60, int SourceDecisionHorizon = 10000,
-    string SourcePolicyId = PublicContinuationPolicies.ReviewedId);
+    string SourcePolicyId = PublicContinuationPolicies.ReviewedId,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? OutsideCombatScript = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicContextProfile = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicCombatHistoryMode = null)
+{
+    // Omitted selection preserves old serialized priors and their exact identities.
+    internal string ResolvedOutsideCombatScript => NaturalSourceCollector.ResolveScriptVersion(OutsideCombatScript);
+    internal bool EmitsPublicRunContext => PublicRunContext.ValidateChannel(PublicContextProfile, PublicCombatHistoryMode);
+}
 
 /// <summary>
 /// Draw one independent seed and one slot from a fixed range. A run with several
@@ -23,7 +32,7 @@ internal sealed record NativeRunPrior
     public ulong[]? FiniteSeedSupport { get; init; }
     public string SeedLaw => FiniteSeedSupport is null ? "uniform-uint64-hex-v1" : "uniform-declared-finite-seeds-v1";
     public string SlotLaw => "uniform-fixed-combat-decision-slot-including-choices-v1";
-    public string OutsideCombatScript => NaturalSourceCollector.ScriptVersion;
+    public string OutsideCombatScript => Execution.ResolvedOutsideCombatScript;
 
     internal NativeRunPrior Freeze()
     {
@@ -37,6 +46,8 @@ internal sealed record NativeRunPrior
             || Execution.SourceDecisionHorizon is < 1 or > 100000 || EligibleSlots is < 1 or > 100000)
             throw new ArgumentException("Invalid declared native run prior or source horizon");
         _ = PublicContinuationPolicies.Create(Execution.SourcePolicyId);
+        _ = Execution.ResolvedOutsideCombatScript;
+        _ = Execution.EmitsPublicRunContext;
         if (FiniteSeedSupport is { } support && (support.Length is < 1 or > 4096 || support.Distinct().Count() != support.Length))
             throw new ArgumentException("A finite seed prior must declare unique support before collecting roots");
     }

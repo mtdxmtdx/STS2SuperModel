@@ -10,9 +10,9 @@ internal sealed record NativeInitialHpTarget(string Id, int MinHp, int MaxHp, in
     ulong RootMaxBucketSize);
 
 /// <summary>
-/// An optional public-only opening-HP certificate. Ineligibility changes only acceleration,
+/// An optional public-only initial-HP certificate. Ineligibility changes only acceleration,
 /// never the underlying tape prior or content support. The existing shuffle certificate
-/// supplies the source-pinned startup closure; this adds the stricter initial-root boundary.
+/// supplies the source-pinned startup closure; unchanged lifetime MaxHp also permits later roots.
 /// </summary>
 internal sealed class NativeInitialHpCondition
 {
@@ -72,33 +72,39 @@ internal sealed class NativeInitialHpCondition
         out string? reason)
     {
         condition = null;
-        // A later decision can still use shuffle acceleration; it cannot infer initial HP
-        // from current visible enemies, so this additional certificate must fail separately.
+        // Source-pinned lifetime invariant: none of the 54 sealed types above changes its
+        // MaxHp after the native initial roll. The only enemy writers are TestSubject,
+        // ToughEgg, DecimillipedeSegment and WaterfallGiant, all outside this certificate.
+        // Generic max-HP commands are otherwise called on players or typed Osty; FruitJuice
+        // validates an AnyPlayer target and PaperCutsPower explicitly requires target.IsPlayer.
+        // CombatState.CloneCreature copies MaxHp unchanged. Creature's model never changes,
+        // and PublicKnowledge's lifetime slots persist across removal/summoning. Therefore
+        // an original slot/type still present at a later stable or pending-choice root has
+        // initial HP equal to its current MaxHp, regardless of damage, block or powers.
         if (!NativeInitialShuffleCondition.TryCreate(root, out _, out reason)) return false;
         var observation = root.Observation!;
-        if (root.Status != "player_decision" || observation.Turn != 1 || observation.Choice is not null)
-        { reason = "initial_hp_opening_decision_required"; return false; }
         int index = 2;
         while (index < observation.History.Length && observation.History[index].Kind == "draw") index++;
         index++; // The shuffle certificate has proved this is player_turn 1.
-        if (index >= observation.History.Length
-            || observation.History.Skip(index).Any(item => item.Kind != "intent_published"))
-        { reason = "initial_hp_uninterrupted_startup_required"; return false; }
         try
         {
             var intents = observation.History.Skip(index)
+                .TakeWhile(item => item.Kind == "intent_published")
                 .Select(item => PublicJson.Read<StartupIntent>(item.Detail)).ToArray();
             var enemies = observation.Enemies;
             if (enemies.Length != intents.Length
+                || intents.Select(enemy => enemy.Id).Distinct(StringComparer.Ordinal).Count() != intents.Length
                 || enemies.Select(enemy => enemy.Id).Distinct(StringComparer.Ordinal).Count() != enemies.Length
-                || enemies.Where((enemy, slot) => enemy.Slot != slot
-                    || intents[slot].Slot != slot || intents[slot].Id != enemy.Id).Any())
+                || enemies.Select(enemy => enemy.Slot).Distinct().Count() != enemies.Length)
+            { reason = "initial_hp_unique_startup_roster_required"; return false; }
+            var originalBySlot = intents.ToDictionary(enemy => enemy.Slot, enemy => enemy.Id);
+            if (enemies.Any(enemy => !originalBySlot.TryGetValue(enemy.Slot, out string? originalId)
+                || originalId != enemy.Id))
             { reason = "initial_hp_unique_startup_roster_required"; return false; }
             foreach (var enemy in enemies)
                 if (!A10Ranges.TryGetValue(enemy.Id, out var range)
-                    || enemy.Hp != enemy.MaxHp || enemy.MaxHp < range.Min || enemy.MaxHp > range.Max
-                    || enemy.Block != 0 || enemy.Powers is not { Length: 0 })
-                { reason = "initial_hp_unmodified_certified_range_required"; return false; }
+                    || enemy.MaxHp < range.Min || enemy.MaxHp > range.Max)
+                { reason = "initial_hp_certified_range_required"; return false; }
             condition = new(enemies);
             reason = null;
             return true;

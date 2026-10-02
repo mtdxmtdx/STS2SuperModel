@@ -77,6 +77,8 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
             throw new ArgumentOutOfRangeException(nameof(options), "Native source horizons must be positive and the slot nonnegative");
         ArgumentException.ThrowIfNullOrWhiteSpace(seed);
         _ = PublicContinuationPolicies.Create(options.SourcePolicyId);
+        _ = options.ResolvedOutsideCombatScript;
+        _ = options.EmitsPublicRunContext;
         _options = options; _proposalSeed = seed; _selectedSlot = slot; _callerToken = cancellationToken;
         _constructedLifecycle = constructedLifecycle;
         _labelTape = labelTape; _selectedCombat = selectedCombat;
@@ -133,9 +135,11 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
     {
         using var labelScope = _labelTape?.EnterScope();
         var sourceOptions = new NaturalSourceOptions(MaxFloors: _options.MaxFloors,
-            ContinuationPolicyId: _options.SourcePolicyId);
+            ContinuationPolicyId: _options.SourcePolicyId, OutsideCombatScript: _options.OutsideCombatScript,
+            PublicContextProfile: _options.PublicContextProfile, PublicCombatHistoryMode: _options.PublicCombatHistoryMode);
         _bridge = new(NativeRun, sourceOptions, PublicContinuationPolicies.Create(_options.SourcePolicyId), [],
-            "owned-independent-proposal", _proposalSeed, null, null, _lifetime.Token, this);
+            "owned-independent-proposal", _proposalSeed, null, null, _lifetime.Token, this,
+            startsAtNativeRunBeginning: _constructedLifecycle is null);
         var driver = new RunDriver(NativeRun, _bridge, recorder: _bridge, useAvailablePotions: false)
         { CombatObserverDecorator = _bridge.Decorate, AutomaticCombatSettlementCompleted = _bridge.CompleteOutcome };
         driver.OnRoomResolved += (_, _) => _bridge.FloorsResolved++;

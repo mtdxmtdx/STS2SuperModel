@@ -7,12 +7,15 @@ The existing `owned_native_replay` operation and all frozen data keep their old
 distribution. New tape records are development-only and rejected by the existing
 production loader.
 
-The second iteration passes the same eight-opening diagnostic gate: 16 independent
-worlds accepted and 160 candidate branches settled from 249 proposals in 24.47 seconds.
-The later-combat probe instead exposes an outside-combat event-controller loop,
-which remains explicit engine-error mass while a versioned policy fix is prepared.
-This is not broad production admission. Current evidence is in the
-[v2 report](../configs/conditional_native_tape_v2_verification.json).
+The v2 opening gate remains passed: 16 independent worlds and 160 settled
+branches from the same eight opening roots. The subsequent event-controller loop
+is now repaired under separately versioned public scriptv3. Broader retained-Neow
+and initial-HP certificates, plus an optional public run-context channel, pass
+1,212 native integration tests. The v4 four-root probe has zero engine errors but
+still accepts no worlds for its three genuine carry-in roots in 384 proposals.
+The next bottleneck is earlier inventory/HP/gold history, not the repaired loop.
+See the [v4 report](../configs/conditional_native_tape_v4_verification.json) and
+[public context contract](PUBLIC_RUN_CONTEXT.md). Production remains quarantined.
 
 ## Distribution and reproducibility
 
@@ -84,14 +87,18 @@ all monster types count, and exhausted-range fallback retains native semantics.
 The 54 audited A10 range entries are checked against native metadata; the table
 certifies acceleration and never assigns gameplay HP outside the original method.
 
-Only the explicit first-combat/one-floor prior also admits Neow conditioning.
-Fresh Silent starts with RingOfTheSnake, the public source script takes the first
-unlocked positive option, and the first map row is a monster. An exact two-relic
-entry identifies the selected Neow positive. The proposal conditions Neow's own
-native Type shuffle, checks its 52 valid pool shapes, and retains the varying pool
-sizes 14–16 in one exact rational envelope. Cancelling each pool's own prefix
-probability would bias the hidden curse/coin contexts; the finite tests detect it.
-Other priors retain normal Neow generation.
+The retained-Neow origin certificate now applies throughout the declared fresh
+native run for both explicit source scripts. One ordinary retained public relic
+from the reviewed positive Neow set must have an unmodified stack and no wax or
+melted state. The acquisition closure checks that no later native source can
+create that same ordinary relic. The proposal still conditions only Neow's own
+Type shuffle, checks all 52 valid pool shapes, and preserves differing pool sizes
+14–16 in one exact rational envelope. Unknown origins retain plain generation.
+
+For the 54 reviewed enemy types, a surviving original lifetime slot with unchanged
+MaxHp identifies its initial HP even after damage or later choices. No current HP
+is substituted for initial HP; unreviewed max-HP writers stay outside this optional
+accelerator. The full root and all earlier native effects remain replayed.
 
 Neow, HP and combat-shuffle corrections multiply because each envelope is constant
 for the same public root. Every required native interception must be complete
@@ -145,12 +152,33 @@ local decision positions. All four existed. Each of its eight posterior calls
 terminated on a proposed run that exceeded the native event-choice limit, retaining
 22 `EngineError` branches and all 128 proposal attempts. This is a recoverable
 outside-combat policy problem, not an estimate of posterior acceptance probability.
-The existing script and its artifacts remain versioned while the fix is developed.
+The historical script and artifacts remain versioned. Scriptv3 exits an offered repeatable event after a repeated nonterminal choice; its fixed probe accounts for512proposals without any engine error.
 
-The final native suite passes 1191 cases. The current Core suite reports 4493 passed
+The historical v2 native suite passes 1191 cases; current v4 passes1212. The current Core suite reports 4493 passed
 and 3 existing opt-in skips; original log/TRX were not saved for that run, and the
 vendor evidence explicitly records this limitation alongside verified source and
-assembly equivalence. No new training, production corpus or model promotion occurs.
+assembly equivalence. No new fit, production corpus or model promotion occurs. One authorized v3 M6 synthetic gradient-connectivity backward uses zero optimizer steps.
+
+## Public context and the carry-in gate
+
+The optional v3 observation contains current public act/floor plus either a
+run-start recorder's complete combat count or explicit unavailable memory. Its
+known combat coordinate removes only an independent, root-constant uniform
+factor. The prior declares the channel; unknown memory never becomes a guessed
+count. Source and hypothetical replay emit the same channel and compare the full
+enriched packet. Old v2 packets and identities are unchanged.
+
+On the fixed four-root v4 probe, the first-combat later-decision root accepted its
+two draws in13proposals, compared with27before this coordinate channel. This is
+one diagnostic comparison, not a general speedup measurement. The three genuine
+carry-in roots accepted0/384proposals. All22assigned candidate branches remain
+accounted:2settled,20ComputeTruncated,0EngineError; elapsed26.85seconds. The
+predeclared gate required two complete genuine carry-in roots and failed with0.
+
+These four public inputs have new information and a new prior identity; they must
+not be relabeled as independent copies of the old v2 roots or inherit old targets.
+The new Python boundary preserves full context in identity and features, abstains
+without a compatible trained v3 bundle, and rejects production admission.
 
 ## Reproduction
 

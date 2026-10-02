@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Serialization;
 using Nosl.Contracts;
 using Sts2Sim.Core.Combat;
 using Sts2Sim.Core.Commands;
@@ -22,7 +23,10 @@ namespace Nosl.Worker;
 public sealed record NaturalSourceOptions(int Runs = 1, int MaxFloors = 20, int MaxRoots = 200,
     int MaxRootsPerCombat = 8, int DecisionStride = 1, int MaxDecisionsPerRun = 10000,
     string SeedPrefix = "nosl-natural-v1", string SourceRunPrefix = "natural",
-    string ContinuationPolicyId = PublicContinuationPolicies.LegacyId);
+    string ContinuationPolicyId = PublicContinuationPolicies.LegacyId,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? OutsideCombatScript = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicContextProfile = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicCombatHistoryMode = null);
 public sealed record NaturalSourceTrace(int Index, string Kind, string PublicDetail);
 public sealed record NaturalRunAudit(string SourceRunGroup, string ActualSeed, string Outcome,
     int FloorsResolved, int CombatsEntered, int Decisions, int RootsCollected,
@@ -32,27 +36,34 @@ public sealed record NaturalRunAudit(string SourceRunGroup, string ActualSeed, s
 public sealed record NaturalSourceRoot(DecisionPacket PublicRoot, string SourceRunGroup, string SourceCombatId,
     int DecisionIndex, int Act, int Floor, string RoomType, string Encounter, string ActualSeed,
     int StartHp, int StartMaxHp, int StartGold, PublicCard[] PermanentDeck,
-    NaturalSourceTrace[] SourceTrace, string CombatPolicy)
+    NaturalSourceTrace[] SourceTrace, string CombatPolicy,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? OutsideCombatScript = null)
 {
     public const string PosteriorReason = "native_posterior_not_evaluated_by_raw_collector";
     public object ToSourceRecord()
     {
+        bool contextual = PublicRoot.Observation?.Schema == PublicRunContext.ObservationSchema;
+        if (contextual != (PublicRoot.Observation?.RunContext is not null))
+            throw new ArgumentException("Public run context requires its separately versioned observation schema");
+        PublicRoot.Observation?.RunContext?.Validate();
         var input = new
         {
-            schema_version = "nosl.student.public.v2", observation = PublicRoot.Observation,
+            schema_version = contextual
+                ? PublicRunContext.StudentSchema : "nosl.student.public.v2", observation = PublicRoot.Observation,
             history_complete = true, controller_context = new { status = "inactive" },
             candidate_actions = PublicRoot.Actions, legal_mask = PublicRoot.Actions.Select(_ => true).ToArray(),
         };
         return new
         {
-            schema_version = "nosl.natural-source.v2", record_kind = "natural_raw_source_candidate",
+            schema_version = contextual ? "nosl.natural-source.v3" : "nosl.natural-source.v2", record_kind = "natural_raw_source_candidate",
             public_input = input,
             targets = new { actions = Array.Empty<object>(), pairwise = Array.Empty<object>(), equivalent_action_set = Array.Empty<int>() },
             audit_only = new
             {
                 source_kind = "natural", source_run_group = SourceRunGroup, source_combat_id = SourceCombatId,
-                branch_family = SourceCombatId + "/native-root-family", source_prior = "native_sequential_run_silent_a10_public_entry_v2",
-                outside_combat_script = NaturalSourceCollector.ScriptVersion, combat_policy = CombatPolicy,
+                branch_family = SourceCombatId + "/native-root-family", source_prior = contextual
+                    ? "native_sequential_run_silent_a10_public_entry_context_v3" : "native_sequential_run_silent_a10_public_entry_v2",
+                outside_combat_script = NaturalSourceCollector.ResolveScriptVersion(OutsideCombatScript), combat_policy = CombatPolicy,
                 actual_seed = ActualSeed, decision_index = DecisionIndex, act = Act, floor = Floor,
                 room_type = RoomType, encounter = Encounter, start_hp = StartHp, start_max_hp = StartMaxHp,
                 start_gold = StartGold, permanent_deck = PermanentDeck, source_trace = SourceTrace,
@@ -90,6 +101,41 @@ public sealed record NaturalSourceReport(NaturalSourceRoot[] Roots, NaturalRunAu
 public static class NaturalSourceCollector
 {
     public const string ScriptVersion = "nosl-natural-public-script-v2";
+    public const string BoundedEventScriptVersion = "nosl-natural-public-script-v3";
+    internal static string ResolveScriptVersion(string? version) => version switch
+    {
+        null or ScriptVersion => ScriptVersion,
+        BoundedEventScriptVersion => BoundedEventScriptVersion,
+        _ => throw new ArgumentException("Unknown outside-combat source script version", nameof(version)),
+    };
+
+    // Policy sees only the displayed option keys/availability and its own public
+    // choice history. The bridge resets history at each native event boundary.
+    internal sealed class PublicEventChoiceController(string? scriptVersion)
+    {
+        private readonly string _version = ResolveScriptVersion(scriptVersion);
+        private readonly HashSet<string> _chosenKeys = new(StringComparer.Ordinal);
+        internal void BeginEvent() => _chosenKeys.Clear();
+        internal int Choose(IReadOnlyList<(string Key, bool IsLocked)> options)
+        {
+            int first = Enumerable.Range(0, options.Count).First(i => !options[i].IsLocked);
+            int selected = first;
+            if (_version == BoundedEventScriptVersion && _chosenKeys.Contains(options[first].Key)
+                && options[first].Key is not ("CONTINUE" or "CONTINUE_FIGHT"))
+            {
+                // Explicit exit vocabulary is part of v3's declared law. Take at
+                // most one occurrence of each first-choice key before an offered
+                // optional-event exit; never inspect callbacks or hidden state.
+                // GIVE_UP ends TabletOfTruth, not a combat or the run.
+                // Mandatory continuation stages retain first-choice behavior.
+                for (int i = 0; i < options.Count; i++)
+                    if (!options[i].IsLocked && options[i].Key is "LEAVE" or "EXIT_BATHS" or "GIVE_UP")
+                    { selected = i; break; }
+            }
+            _chosenKeys.Add(options[selected].Key);
+            return selected;
+        }
+    }
     private static readonly object InitLock = new();
 
     internal static void InitializeNativeModels()
@@ -109,6 +155,8 @@ public static class NaturalSourceCollector
         Action<NaturalSourceSettlement>? onSettlement, CancellationToken cancellationToken)
     {
         options ??= new();
+        _ = ResolveScriptVersion(options.OutsideCombatScript);
+        _ = PublicRunContext.ValidateChannel(options.PublicContextProfile, options.PublicCombatHistoryMode);
         var configuredPolicy = PublicContinuationPolicies.Create(options.ContinuationPolicyId);
         policy ??= configuredPolicy;
         if (options.Runs <= 0 || options.MaxFloors <= 0 || options.MaxRoots <= 0 ||
@@ -128,7 +176,8 @@ public static class NaturalSourceCollector
             var run = new RunState(seed, ascensionLevel: 10);
             var player = Player.CreateForNewRun(ModelDb.Character<Silent>(), run);
             run.AddPlayer(player);
-            var bridge = new SourceBridge(run, options, policy, roots, group, seed, onRoot, onSettlement, cancellationToken);
+            var bridge = new SourceBridge(run, options, policy, roots, group, seed, onRoot, onSettlement, cancellationToken,
+                startsAtNativeRunBeginning: true);
             var driver = new RunDriver(run, bridge, recorder: bridge, useAvailablePotions: false)
                 { CombatObserverDecorator = bridge.Decorate, AutomaticCombatSettlementCompleted = bridge.CompleteOutcome };
             driver.OnRoomResolved += (_, _) => bridge.FloorsResolved++;
@@ -153,10 +202,14 @@ public static class NaturalSourceCollector
         List<NaturalSourceRoot> roots, string sourceRun, string actualSeed,
         Func<NaturalSourceRoot, NaturalSourceBoundary, Task>? onRoot,
         Action<NaturalSourceSettlement>? onSettlement, CancellationToken cancellationToken,
-        INativeRunControl? ownedControl = null)
+        INativeRunControl? ownedControl = null, bool startsAtNativeRunBeginning = false)
         : IRunDecisionSource, IAutomaticCardSelectionObserver, IRunRecorder
     {
         internal readonly List<NaturalSourceTrace> Trace = [];
+        private readonly PublicEventChoiceController _eventController = new(options.OutsideCombatScript);
+        private readonly bool _emitRunContext = PublicRunContext.ValidateChannel(options.PublicContextProfile, options.PublicCombatHistoryMode);
+        private bool _beginRunObserved, _completeFromRunStart;
+        private EventModel? _eventOwner;
         internal int FloorsResolved, CombatsEntered, Decisions, RootsCollected;
         private PublicKnowledge _knowledge = new();
         private int _revision, _combatDecision, _combatRoots, _startHp, _startMaxHp, _startGold;
@@ -175,6 +228,8 @@ public static class NaturalSourceCollector
             if (origin is not null) await origin.DisposeAsync();
         }
         private void Log(string kind, object detail) => Trace.Add(new(Trace.Count, kind, PublicJson.Serialize(detail)));
+        internal PublicRunContext? CaptureRunContext() => !_emitRunContext ? null : new(PublicRunContext.Version,
+            run.CurrentActIndex, run.TotalFloor, _completeFromRunStart ? CombatsEntered - 1 : null, _completeFromRunStart);
         internal ICombatObserver Decorate(ICombatObserver original)
         {
             var player = run.Players.Single();
@@ -222,14 +277,14 @@ public static class NaturalSourceCollector
         {
             CheckBound();
             var packet = new DecisionPacket(choice is null ? "player_decision" : "card_choice",
-                PublicViews.Observe(state, _knowledge, _startHp, choice, _startGold), actions);
+                PublicViews.Observe(state, _knowledge, _startHp, choice, _startGold, CaptureRunContext()), actions);
             if (choice is null) await ReleaseChoiceOriginAsync();
             else if (_choiceOrigin is not null) _choicePackets.Add(PublicJson.Serialize(packet));
             var room = (CombatRoom)run.CurrentRoom!;
             NaturalSourceRoot SnapshotRoot() => new(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)),
                 sourceRun, $"{sourceRun}/combat-{CombatsEntered:D4}", _combatDecision,
                 run.CurrentActIndex, run.TotalFloor, room.RoomType.ToString(), room.EncounterName, actualSeed,
-                _startHp, _startMaxHp, _startGold, _permanentDeck.ToArray(), Trace.ToArray(), policy.Id);
+                _startHp, _startMaxHp, _startGold, _permanentDeck.ToArray(), Trace.ToArray(), policy.Id, options.OutsideCombatScript);
             NaturalSourceBoundary Boundary() => new(state, room, _knowledge.Copy(), _startHp, _startMaxHp, _startGold,
                 _startPotions.ToArray(), _initialAssets, _revision, choice is null, true,
                 _choiceOrigin is null ? null : new(_choiceOrigin,
@@ -350,7 +405,14 @@ public static class NaturalSourceCollector
         }
         public Task<EventOption> ChooseEventOptionAsync(IReadOnlyList<EventOption> choices)
         {
-            CheckBound(); var choice = choices.First(o => !o.IsLocked);
+            CheckBound();
+            // Event identity is used only to recognize the public lifecycle
+            // boundary. A forced-combat return to the same event must not reset it.
+            var currentEvent = (run.CurrentRoom as EventRoom)?.Event;
+            if (!ReferenceEquals(currentEvent, _eventOwner))
+            { _eventController.BeginEvent(); _eventOwner = currentEvent; }
+            var publicOptions = choices.Select(o => (o.Key, o.IsLocked)).ToArray();
+            var choice = choices[_eventController.Choose(publicOptions)];
             Log("event_choice", new { options = choices.Where(o => !o.IsLocked).Select(o => o.Key).ToArray(), chosen = choice.Key });
             return Task.FromResult(choice);
         }
@@ -377,8 +439,17 @@ public static class NaturalSourceCollector
             Log("rest_choice", new { choice = choice.OptionId, card = choice is RestSiteDecision.Smith smith ? PublicViews.Card(smith.Card) : null });
             return Task.FromResult(choice);
         }
-        public void BeginRun(RunState state) => Log("run_started", new { character = "Silent", ascension = 10,
-            startup = "native_default", acts = state.Acts.Select(a => a.GetType().Name).ToArray() });
+        public void BeginRun(RunState state)
+        {
+            // RunAsync also accepts an existing run. The call alone therefore
+            // does not prove complete recording, nor does an injected lifecycle.
+            _completeFromRunStart = !PublicRunContext.IsHistoryUnavailable(options.PublicCombatHistoryMode)
+                && startsAtNativeRunBeginning && !_beginRunObserved && ReferenceEquals(state, run)
+                && state.CurrentActIndex == 0 && state.TotalFloor == 0 && CombatsEntered == 0;
+            _beginRunObserved = true;
+            Log("run_started", new { character = "Silent", ascension = 10,
+                startup = "native_default", acts = state.Acts.Select(a => a.GetType().Name).ToArray() });
+        }
         public void EnterFloor(MapPoint point, RoomType roomType) => Log("floor_entered", new { act = run.CurrentActIndex,
             floor = run.TotalFloor, col = point.coord.col, row = point.coord.row, room = roomType.ToString() });
         public string BeginCombat(RunState state, RoomType encounterType, string encounterName, CombatState combatState)

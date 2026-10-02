@@ -29,13 +29,54 @@ public sealed record PublicEnemy(int Slot, string Id, int Hp, int MaxHp, decimal
 public sealed record PublicEvent(string Kind, string Detail);
 public sealed record PublicChoice(string Source, int Min, int Max, bool Cancelable, PublicCard[] Candidates,
     string CandidateOrder = "public", PublicCard[][]? Bundles = null);
+// Current public progress plus a count maintained only by uninterrupted public
+// recording from native run startup. An unavailable count is never reconstructed
+// from floor, map contents, run identifiers or private native history.
+public sealed record PublicRunContext(string SchemaVersion, int ActIndex, int Floor,
+    int? CombatEntryIndex, bool CompleteFromRunStart)
+{
+    public const string Version = "nosl.public-run-context.v1";
+    public const string ObservationSchema = "nosl.public.v3";
+    public const string StudentSchema = "nosl.student.public.v3";
+    public const string UnavailableHistoryMode = "unavailable";
+
+    public static bool IsRequested(string? profile) => profile switch
+    {
+        null => false,
+        Version => true,
+        _ => throw new ArgumentException("Unknown public run-context profile", nameof(profile)),
+    };
+
+    public static bool IsHistoryUnavailable(string? mode) => mode switch
+    {
+        null => false,
+        UnavailableHistoryMode => true,
+        _ => throw new ArgumentException("Unknown public combat-history mode", nameof(mode)),
+    };
+
+    public static bool ValidateChannel(string? profile, string? historyMode)
+    {
+        bool requested = IsRequested(profile);
+        if (IsHistoryUnavailable(historyMode) && !requested)
+            throw new ArgumentException("Public combat-history mode requires the run-context profile");
+        return requested;
+    }
+
+    public void Validate()
+    {
+        if (SchemaVersion != Version || ActIndex < 0 || Floor < 0
+            || (CompleteFromRunStart ? CombatEntryIndex is null or < 0 : CombatEntryIndex is not null))
+            throw new ArgumentException("Invalid public run context or incomplete combat-entry history");
+    }
+}
 // No object references, internal IDs, seed, private RNG state, move-state IDs or teacher metadata.
 public sealed record PublicObservation(string Schema, int StartHp, int Ascension, int Turn, int Hp, int MaxHp,
     decimal Block, int Energy, int Stars, PublicCard[] Hand, PublicCard[] Discard, PublicCard[] Exhaust,
     CardCount[] UnknownDraw, KnownPosition[] KnownDraw, int DrawCount, string?[] Potions,
     string[] Relics, PublicPower[] Powers, PublicEnemy[] Enemies, PublicEvent[] History, PublicChoice? Choice,
     PublicCounters? Counters = null, PublicRelic[]? RelicStates = null, int Gold = 0, int StartGold = 0,
-    int OrbCapacity = 0, PublicOrb[]? Orbs = null, PublicPet[]? Pets = null, int UnidentifiedDrawCount = 0);
+    int OrbCapacity = 0, PublicOrb[]? Orbs = null, PublicPet[]? Pets = null, int UnidentifiedDrawCount = 0,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] PublicRunContext? RunContext = null);
 public sealed record PublicAction(int Revision, string Kind, int Slot = -1, int Target = -1, int[]? Selection = null);
 public sealed record DecisionPacket(string Status, PublicObservation? Observation, PublicAction[] Actions);
 public sealed record TerminalFacts(string Result, int StartHp, int FinalHp, int StartMaxHp, int FinalMaxHp,

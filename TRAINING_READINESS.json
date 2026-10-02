@@ -28,7 +28,7 @@
     "data_pipeline_passed": 145,
     "generator_archive_passed": 63,
     "integrated_v2_teacher_to_backward": true,
-    "full_current_integration_passed": 1191,
+    "full_current_integration_passed": 1212,
     "natural_source_tests_passed": 5,
     "native_recorder_tests_passed": 7,
     "natural_raw_roots": 200,
@@ -98,7 +98,7 @@
     "confirmed_hard_preference_cases": 2,
     "confirmed_numerically_evaluated_preference_cases": 1,
     "cross_version_protection_cases": 24,
-    "current_full_suite": "PASS_1191_OF_1191",
+    "current_full_suite": "PASS_1212_OF_1212",
     "v2_trainer_no_fit_tests_passed": 21,
     "v2_student_no_backward_tests_passed": 19,
     "student_regression": 185,
@@ -126,10 +126,15 @@
     "conditional_tape_opening_accepted_worlds": 16,
     "conditional_tape_opening_settled_branches": 160,
     "conditional_tape_broad_production_admitted": false,
-    "conditional_tape_opening_throughput_gate_passed": true
+    "conditional_tape_opening_throughput_gate_passed": true,
+    "conditional_tape_public_context_verified": true,
+    "conditional_tape_carry_in_accepted_worlds": 0,
+    "conditional_tape_carry_in_proposals": 384,
+    "public_v3_backward_passes": 1,
+    "public_v3_optimizer_steps": 0
   },
   "remaining": [
-    "Structured conditional tape sampler passes the fixed8-opening throughput gate:16independent worlds and160settledbranches. Later-combat probe exposes a repeatable-event source-controller loop;8posteriorcalls/22branches remainEngineError, with no dropped mass. A versioned controller fix and a new bounded later probe are in progress. Resourcevaluation and existing productionquality gates remain.",
+    "The repeatable-event controller is repaired under scriptv3. Public-context and broader primitive certificates pass integration, but the same three genuine carry-in roots accept0/384proposals at the fixed budget;20assignedbranches retainComputeTruncated and0engineerrors. Earlier inventory/HP/gold conditioning is the next measured bottleneck. No production expansion follows.",
     "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
     "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
     "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3–M6 prerequisites"
@@ -156,5 +161,6 @@
   "native_encounter_extension": "NATIVE_ENCOUNTER_EXTENSION_SUMMARY.json",
   "owned_native_replay_verification": "configs/owned_native_replay_verification.json",
   "owned_native_runtime": "nosl-owned-native-run-replay-v1",
-  "conditional_native_tape_verification": "configs/conditional_native_tape_v2_verification.json"
+  "conditional_native_tape_verification": "configs/conditional_native_tape_v4_verification.json",
+  "public_run_context_verification": "docs/PUBLIC_RUN_CONTEXT.md"
 }

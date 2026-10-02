@@ -142,8 +142,10 @@ internal static class PublicViews
         i is Sts2Sim.Core.MonsterMoves.Intents.AttackIntent a
         ? new PublicIntent(i.IntentType.ToString(),a.GetSingleDamage(c.CombatState!.PlayerCreatures,c),a.Repeats)
         : new PublicIntent(i.IntentType.ToString(),null,null)).ToArray() ?? [];
-    internal static PublicObservation Observe(CombatState state, PublicKnowledge knowledge, int startHp, PublicChoice? choice, int startGold=0)
+    internal static PublicObservation Observe(CombatState state, PublicKnowledge knowledge, int startHp, PublicChoice? choice, int startGold=0,
+        PublicRunContext? runContext = null)
     {
+        runContext?.Validate();
         var p=state.Players[0]; var s=p.PlayerCombatState!;
         // The unordered multiset is public for this supported deck: all cards entered through public setup/draw/discard/status events.
         var multiset=s.DrawPile.Cards.Where(c=>!knowledge.IsUnrevealed(c)).Select(Card).GroupBy(PublicJson.Serialize)
@@ -154,7 +156,7 @@ internal static class PublicViews
             string key=PublicJson.Serialize(Card(card));
             if(!unknown.ContainsKey(key) || --unknown[key]<0) throw new InvalidOperationException("Public knowledge contradicts draw multiset");
         }
-        var observation = new PublicObservation("nosl.public.v2",startHp,10,s.TurnNumber,p.Creature.CurrentHp,p.Creature.MaxHp,
+        var observation = new PublicObservation(runContext is null ? "nosl.public.v2" : PublicRunContext.ObservationSchema,startHp,10,s.TurnNumber,p.Creature.CurrentHp,p.Creature.MaxHp,
             p.Creature.Block,s.Energy,s.Stars,s.Hand.Cards.Select(Card).ToArray(),s.DiscardPile.Cards.Select(Card).ToArray(),s.ExhaustPile.Cards.Select(Card).ToArray(),
             multiset.Where(x=>unknown[PublicJson.Serialize(x.Card)]>0).Select(x=>new CardCount(x.Card,unknown[PublicJson.Serialize(x.Card)])).ToArray(),
             knowledge.Known.Select(x=>new KnownPosition(x.Key,Card(x.Value))).ToArray(),s.DrawPile.Cards.Count,
@@ -167,7 +169,7 @@ internal static class PublicViews
             p.Relics.Select(r=>new PublicRelic(r.GetType().Name,PublicRelicDetails.Details(r),PublicRelicDetails.Cards(r),PublicRelicDetails.SelectedModel(r))).ToArray(),
             p.Gold,startGold,s.OrbQueue.Capacity,s.OrbQueue.Orbs.Select(o=>new PublicOrb(o.GetType().Name,o.PassiveVal,o.EvokeVal)).ToArray(),
             s.Pets.Select(c=>new PublicPet(knowledge.Slot(c),c.Monster!.GetType().Name,c.CurrentHp,c.MaxHp,c.Block,Powers(c,knowledge))).ToArray(),
-            s.DrawPile.Cards.Count(knowledge.IsUnrevealed));
+            s.DrawPile.Cards.Count(knowledge.IsUnrevealed), runContext);
         return observation;
     }
 }

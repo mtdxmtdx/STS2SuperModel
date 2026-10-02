@@ -7,8 +7,8 @@ using Sts2Sim.Core.Models.Relics;
 namespace Nosl.Worker;
 
 /// <summary>
-/// Public-only certificate for the first Neow positive under the declared fresh
-/// Silent A10, one-floor ideal-tape prior. Other priors/entries retain plain replay.
+/// Public-only certificate for a retained Neow positive under the declared fresh
+/// Silent A10 ideal-tape prior. Other priors/entries retain plain replay.
 /// This certificate says nothing about the finite common-run-seed posterior.
 /// </summary>
 internal sealed class NativeNeowCondition
@@ -54,9 +54,11 @@ internal sealed class NativeNeowCondition
 
     private static NativeNeowCondition Create(DecisionPacket root, NativeTapePrior prior)
     {
-        Require(prior is { SchemaVersion: NativeTapePrior.Version, EligibleCombats: 1,
-            Execution: { MaxFloors: 1, SourcePolicyId: PublicContinuationPolicies.ReviewedId } },
-            "first_native_combat_prior_required");
+        Require(prior is { SchemaVersion: NativeTapePrior.Version,
+            Execution: { SourcePolicyId: PublicContinuationPolicies.ReviewedId } },
+            "fresh_native_run_prior_required");
+        Require(prior.Execution.ResolvedOutsideCombatScript is NaturalSourceCollector.ScriptVersion
+            or NaturalSourceCollector.BoundedEventScriptVersion, "neow_source_script_not_certified");
         Require(root is { Status: "player_decision" or "card_choice", Observation: not null, Actions.Length: > 0 },
             "active_decision_required");
         var observation = root.Observation!;
@@ -66,37 +68,57 @@ internal sealed class NativeNeowCondition
             && observation.History.Count(item => item.Kind == NativeEntryAssets.EventKind) == 1,
             "fresh_silent_entry_history_required");
         var entry = PublicJson.Read<NativeEntryAssets>(observation.History[1].Detail);
-        Require(entry is { SchemaVersion: "nosl.native-entry-assets.v1", Deck.Length: > 0,
-                Relics.Length: 2, Potions: not null, OrbSlots: 0 }
+        Require(entry is { SchemaVersion: "nosl.native-entry-assets.v1", Deck: not null,
+                Relics: not null, Potions: not null }
             && entry.Hp == observation.StartHp && entry.Hp > 0 && entry.Hp <= entry.MaxHp,
-            "exact_neow_entry_inventory_required");
-        Require(entry.Relics.All(relic => relic is not null && relic.Details is not null
-                && relic.Details.TryGetValue("isWax", out int wax) && wax == 0
-                && relic.Details.TryGetValue("isMelted", out int melted) && melted == 0
-                && relic.Details.TryGetValue("stackCount", out int count) && count == 1)
-            && entry.Relics.Count(relic => relic.Id == nameof(RingOfTheSnake)) == 1,
-            "ordinary_starter_and_positive_required");
-        string target = entry.Relics.Single(relic => relic.Id != nameof(RingOfTheSnake)).Id;
-        Require(PositiveIds.Contains(target), "neow_positive_origin_not_certified");
+            "invalid_public_entry");
+        Require(entry.Relics.All(relic => relic is not null && !string.IsNullOrWhiteSpace(relic.Id)),
+            "invalid_public_entry");
+        PublicRelic[] retained = entry.Relics.Where(relic => PositiveIds.Contains(relic.Id)).ToArray();
+        Require(retained.Length == 1, "unique_retained_neow_positive_required");
+        var target = retained[0];
+        Require(target.Details is not null
+            && target.Details.TryGetValue("isWax", out int wax) && wax == 0
+            && target.Details.TryGetValue("isMelted", out int melted) && melted == 0
+            && target.Details.TryGetValue("stackCount", out int count) && count == 1,
+            "ordinary_retained_neow_positive_required");
 
         // Origin closure (not an inference from a sampled hidden trace): NativeRunWorld
         // constructs one fresh Silent A10 with RingOfTheSnake. ActDefinition.GetRandomList
         // chooses Overgrowth/Underdocks at index zero, both exclusively Neow, and
         // RunState.GenerateAllActRooms gives index zero no shared Ancients. RunDriver
         // resolves Neow before the first counted floor. Every positive RelicOption is
-        // unlocked, and SourceBridge.ChooseEventOptionAsync takes the first unlocked.
-        // Thus the curse (including NeowsBones/LargeCapsule) can never be chosen.
-        // RelicCmd.Obtain retains the selected positive. Its reviewed pickup effects
-        // neither remove/replace it nor start combat. Only SmallCapsule offers another
-        // relic; RelicFactory.RollRarity is Common/Uncommon/Rare, never Ancient, and
-        // no such pickup removes SmallCapsule (the sole relic Replace caller replaces
-        // SwordOfStone itself after elite wins). Card/potion pickups do not execute
-        // their combat effects. None of these positives modifies the generated map.
-        // StandardActMap fixes row one as Monster; MapTravel's WingedBoots branch also
-        // selects row one. There is no intervening event/shop/treasure acquisition.
-        // The exact two-relic public entry therefore forces this selected positive;
-        // wider horizons/inventories do not have this origin proof and are ineligible.
-        return new(target);
+        // unlocked. Both reviewed source scripts take the first unlocked initial
+        // option: v3 resets its public choice history on every event boundary. Thus
+        // the initial curse (including NeowsBones/LargeCapsule) is never selected.
+        //
+        // Whole-run acquisition closure, pinned to the native source files:
+        //  - Player inventory insertion occurs in fresh starter setup, RelicCmd.Obtain,
+        //    RelicCmd.Replace, type-preserving combat clones, or transplant restore.
+        //    NativeRunWorld uses fresh setup/replay, never transplant restore.
+        //  - No official character/shared relic pool contains a PositiveTypes member.
+        //    Player grab bags restrict rarity to Common/Uncommon/Rare/Shop. The shared
+        //    bag includes all rarities (including OTHER Ancients), but treasure draws
+        //    request only RelicFactory.RollRarity's Common/Uncommon/Rare. The same
+        //    ordinary factories cover combat rewards, shops, dig, CrystalSphere,
+        //    random event grants, SmallCapsule, CallingBell, LavaRock, BlackStar,
+        //    WongosMysteryTicket, PaelsWing, and ToyBox's wax copies.
+        //  - Every explicit ordinary-event grant (including TrashHeap's Type pool,
+        //    TeaMaster's generic grants and FakeMerchant) is disjoint from these 19
+        //    types. Cards and potions have no relic-insertion paths. The sole native
+        //    replacement is SwordOfStone replacing itself with SwordOfJade.
+        //  - The seven other Ancient option tables are disjoint. Neow cannot recur:
+        //    Hive/Glory exclude it, and SharedAncientPool contains only Darv. The sole
+        //    generic Ancient-options copier is NeowsBones, whose only acquisition
+        //    source is Neow's unchosen curse. No ordinary positive can arise there.
+        //  - ToyBox is the sole natural IsWax writer and cannot draw these types.
+        //    RelicCmd.Melt preserves type; no code turns a wax copy into an ordinary
+        //    relic. Ranwid/RelicTrader remove only IsTradable relics, excluding Ancient.
+        // Hence the retained ordinary public positive identifies the initial choice
+        // even after other acquisitions or Ancient visits. No current Ring, deck,
+        // other-relic state, floor/combat index, or hidden source trace is required.
+        // Missing/duplicate/wax/melted targets fall back without excluding that root.
+        return new(target.Id);
     }
 
     /// <summary>

@@ -22,7 +22,7 @@ internal sealed record NativeTapeCollectionOptions
 internal static class NativeTapeReplayDataset
 {
     internal const string DatasetVersion = "nosl.native-tape-replay-development.v1";
-    internal const string ImplementationVersion = "nosl-native-tape-structured-conditional-v2";
+    internal const string ImplementationVersion = "nosl-native-tape-structured-conditional-v4";
 
     internal static async Task<object> CollectAsync(NativeTapeCollectionOptions options, TeacherOptions teacherOptions,
         CancellationToken cancellationToken = default)
@@ -100,6 +100,7 @@ internal static class NativeTapeReplayDataset
                 audit["initial_hp_conditioning_eligible"] = source.UsesConditionalHp;
                 audit["neow_conditioning_eligible"] = source.UsesConditionalNeow;
                 audit["public_local_decision_conditioning"] = source.ConditionedPublicDecisionIndex;
+                audit["public_combat_coordinate_conditioning"] = source.ConditionedPublicCombatIndex;
                 audit["conditioning_reason"] = source.ConditioningReason;
                 audit["formal_labels"] = false; audit["trainable"] = false; audit["engineering_smoke"] = true;
                 audit["posterior_implementation"] = ImplementationVersion;

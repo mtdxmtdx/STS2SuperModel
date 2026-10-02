@@ -16,8 +16,13 @@ public static class TeacherDataset
         ulong[] evaluationSeeds, ulong[] explorationSeeds)
     {
         if (new[] { sourceRun, sourceCombat, branchFamily }.Any(string.IsNullOrWhiteSpace)) throw new ArgumentException("Source grouping identifiers required");
+        bool publicRunContext = result.PublicRoot.Observation!.Schema == PublicRunContext.ObservationSchema;
+        if (publicRunContext != (result.PublicRoot.Observation.RunContext is not null))
+            throw new ArgumentException("Public run context requires its separately versioned observation schema");
+        result.PublicRoot.Observation.RunContext?.Validate();
         bool forcedEvent = result.PublicRoot.Observation!.History.Any(e => e.Kind == "forced_event_context");
-        string publicSchema = forcedEvent || result.PublicRoot.Observation.History.Any(e => e.Kind == "native_entry_assets")
+        string publicSchema = publicRunContext ? PublicRunContext.StudentSchema
+            : forcedEvent || result.PublicRoot.Observation.History.Any(e => e.Kind == "native_entry_assets")
             ? HuntStudentContext.PublicSchema : "nosl.student.public.v1";
         var publicInput = new
         {
@@ -80,17 +85,18 @@ public static class TeacherDataset
         };
         // Preserve the legacy record shape; a new continuation gets a new
         // dataset lock, so prepare_dataset refuses to append it to a v1 corpus.
-        if (publicSchema != HuntStudentContext.PublicSchema
+        if (!publicRunContext && publicSchema != HuntStudentContext.PublicSchema
             && PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion) != PublicContinuationPolicies.ReviewedDatasetVersion)
             return record;
         var versioned = JsonNode.Parse(PublicJson.Serialize(record))!.AsObject();
-        string datasetVersion = forcedEvent ? "nosl.dataset.forced-events.v2" : PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion);
+        string datasetVersion = publicRunContext ? "nosl.dataset.public-run-context.v1"
+            : forcedEvent ? "nosl.dataset.forced-events.v2" : PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion);
         versioned["audit_only"]!["dataset_version"] = datasetVersion;
         versioned["audit_only"]!["versions"]!["dataset"] = datasetVersion;
         if (forcedEvent) versioned["audit_only"]!["constructed_event_fixture"] = true;
-        if (publicSchema == HuntStudentContext.PublicSchema)
+        if (publicRunContext || publicSchema == HuntStudentContext.PublicSchema)
         {
-            // The ordinary v2 contract carries an inactive controller, not a
+            // The ordinary v2/v3 contract carries an inactive controller, not a
             // running finite Hunt policy. Leave every public-v1 audit unchanged.
             var audit = versioned["audit_only"]!.AsObject();
             var versions = audit["versions"]!.AsObject();

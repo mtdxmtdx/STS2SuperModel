@@ -21,7 +21,7 @@ internal sealed record NativeTapePrior
     public string PrimitiveLaw => "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1";
     public string PrimitiveImplementation => "sha256-address-expansion-with-explicit-conditioned-overrides-v1";
     public string RootLaw => "independent-uniform-fixed-combat-and-local-decision-indices-v1";
-    public string OutsideCombatScript => NaturalSourceCollector.ScriptVersion;
+    public string OutsideCombatScript => Execution.ResolvedOutsideCombatScript;
 
     internal NativeTapePrior Freeze()
     {
@@ -30,6 +30,8 @@ internal sealed record NativeTapePrior
             || EligibleDecisionsPerCombat is < 1 or > 100000)
             throw new ArgumentException("Invalid declared native tape prior");
         _ = PublicContinuationPolicies.Create(Execution.SourcePolicyId);
+        _ = Execution.ResolvedOutsideCombatScript;
+        _ = Execution.EmitsPublicRunContext;
         return this with { Execution = Execution with { } };
     }
 

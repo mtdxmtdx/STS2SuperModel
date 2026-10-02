@@ -12,7 +12,7 @@ internal sealed record NativeTapeProposalAudit(int SampleCall, int Attempt, Nati
 /// <summary>Public-only conditional sampling under the explicit ideal tape prior.</summary>
 internal sealed class NativeTapeReplaySource : ITeacherSource
 {
-    internal const string Profile = "owned-native-state-tape-structured-conditional-v2";
+    internal const string Profile = "owned-native-state-tape-structured-conditional-v4";
     private readonly string _serializedRoot;
     private readonly string _entryJson;
     private readonly NativeTapePrior _prior;
@@ -23,6 +23,7 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
     private readonly List<NativeTapeProposalAudit> _attempts = [];
     private readonly string?[] _potions;
     private readonly int _publicDecisionIndex;
+    private readonly int? _publicCombatIndex;
     private int _sampleCalls;
 
     internal NativeTapeReplaySource(DecisionPacket publicRoot, NativeTapePrior prior,
@@ -33,6 +34,20 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
         var root = PublicJson.Read<DecisionPacket>(_serializedRoot);
         if (root.Status is not ("player_decision" or "card_choice") || root.Observation is null || root.Actions.Length == 0)
             throw new ArgumentException("An active public native decision is required");
+        if (_prior.Execution.EmitsPublicRunContext)
+        {
+            if (root.Observation.Schema != PublicRunContext.ObservationSchema || root.Observation.RunContext is not { } context)
+                throw new ArgumentException("The declared public context channel requires a complete v3 packet");
+            context.Validate();
+            bool unavailable = PublicRunContext.IsHistoryUnavailable(_prior.Execution.PublicCombatHistoryMode);
+            if (context.CompleteFromRunStart == unavailable)
+                throw new ArgumentException("Public recorder completeness differs from the declared observation channel");
+            _publicCombatIndex = context.CombatEntryIndex;
+            if (_publicCombatIndex is { } index && index >= _prior.EligibleCombats)
+                throw new ArgumentException("Recorded public combat index is outside the declared coordinate prior");
+        }
+        else if (root.Observation.Schema != "nosl.public.v2" || root.Observation.RunContext is not null)
+            throw new ArgumentException("Legacy tape prior requires the unchanged v2 public channel");
         _publicDecisionIndex = root.Actions[0].Revision;
         if (_publicDecisionIndex < 0 || _publicDecisionIndex >= _prior.EligibleDecisionsPerCombat
             || root.Actions.Any(action => action.Revision != _publicDecisionIndex)
@@ -74,6 +89,17 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
     internal bool UsesConditionalNeow => _neowCondition is not null;
     internal bool UsesPrimitiveConditioning => UsesConditionalShuffle || UsesConditionalHp || UsesConditionalNeow;
     internal int ConditionedPublicDecisionIndex => _publicDecisionIndex;
+    internal int? ConditionedPublicCombatIndex => _publicCombatIndex;
+    internal NativeTapeRecipe DrawConditionedRecipe(Rng random)
+    {
+        // Uniform coordinates are independent of all native/tape random words.
+        // Complete public run history fixes combat C, cancelling a root-constant
+        // 1/EligibleCombats. An unavailable recorder channel does not fix C.
+        // Draw every original component before replacing known coordinates.
+        var recipe = _prior.Draw(random);
+        return recipe with { DecisionIndex = _publicDecisionIndex,
+            CombatIndex = _publicCombatIndex ?? recipe.CombatIndex };
+    }
     private string ProposalDescription => !UsesPrimitiveConditioning ? "plain_tape_rejection"
         : "conditional:" + string.Join("+", new[] { UsesConditionalNeow ? "neow" : null,
             UsesConditionalHp ? "initial_hp" : null, UsesConditionalShuffle ? "initial_shuffle" : null }.OfType<string>());
@@ -92,7 +118,7 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
             // count, including pending choices. Conditioning its uniform coordinate
             // removes only the root-constant factor 1/EligibleDecisionsPerCombat.
             // Consume the old draw first to keep the declared stream progression.
-            var recipe = _prior.Draw(random) with { DecisionIndex = _publicDecisionIndex };
+            var recipe = DrawConditionedRecipe(random);
             var tape = new NativeLabelTape(recipe, _condition, expectedEntryJson: _entryJson,
                 hpCondition: _hpCondition, neowCondition: _neowCondition);
             var timer = Stopwatch.StartNew();

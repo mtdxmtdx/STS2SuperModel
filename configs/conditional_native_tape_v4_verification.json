@@ -1,0 +1,386 @@
+{
+  "schema": "nosl.conditional-native-tape-verification.v4",
+  "source_commit": "3a1b8d3e2b9c64d386322467bd951da515979577",
+  "status": "PUBLIC_CONTEXT_AND_EVENT_CONTROLLER_VERIFIED_CARRY_IN_THROUGHPUT_GATE_FAILED",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 1,
+  "backward_scope": "One authorized v3 M6 synthetic gradient-connectivity check; no target labels, optimizer or changed weights",
+  "new_production_dataset_rows": 0,
+  "prior_version": "nosl.native-state-tape-prior.v1",
+  "sampler_version": "nosl-native-tape-structured-conditional-v4",
+  "ideal_law_boundary": "Exact proposal correction is relative to the independent state-addressed primitive-word law. SHA256 expansion is its reproducible pseudorandom implementation, not a claim of exact independent finite-seed outputs or the old native seed posterior.",
+  "native_suite": {
+    "passed": 1212,
+    "failed": 0,
+    "skipped": 0,
+    "path": "artifacts/reports/conditional-tape/context-v4-aggregate.trx",
+    "bytes": 1773113,
+    "sha256": "b8ebd030a35edaa84fc6903ea2c7b1416b48f07003dab0c1240ce4eedbfd1196"
+  },
+  "core_suite": {
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "duration_reported": "4 m 24 s",
+    "evidence_kind": "reported_completed_tool_output_reused_after_source_equivalence_verification",
+    "reported_exit_code": 0,
+    "reported_terminal_summary": "Passed! - Failed: 0, Passed: 4493, Skipped: 3, Total: 4496, Duration: 4 m 24 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "raw_log_available": false,
+    "trx_available": false,
+    "log_path": null,
+    "trx_path": null,
+    "rerun_for_packaging": false,
+    "source_worktree": "STS2SuperModel-hp",
+    "verified_source_worktree_commit": "5e5eb1ca317fcfc735200ff5b1a74ca51491f93d",
+    "main_verified_source_commit": "d26a42019e47c1d8e832f11c34574c63366ae307",
+    "build_artifacts": "artifacts/hp-proposal-core-build",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/hp-proposal-core-build --no-build --no-restore --nologo -m:1",
+    "command_note": "Exact dotnet invocation reported by the HP author; run in STS2SuperModel-hp after sourcing the shared .NET 9 environment. The original environment setup command is retained in the reported-terminal evidence artifact.",
+    "src_git_tree": "b5de483e18cfcb39d8894594ae32bece8ce73b9e",
+    "tests_git_tree": "545e411a2718a57b0ea670a91bef5514fca0e8ac",
+    "test_assembly_path": "artifacts/conditional-hp-vendor-verification/reused-runtime-assemblies/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "8c3cb8c7176683dee483b034d16ea83184de02f31dbe9e6d6989c3458866dfee",
+    "core_assembly_path": "artifacts/conditional-hp-vendor-verification/reused-runtime-assemblies/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "01fa15a7cd99651042a6730f3a0d25581397f019021ea2918bdaa266f4500a13",
+    "assembly_hash_capture": "Independently captured after the reported full-suite completion; author states no subsequent build or test was run.",
+    "verified_source_manifest_sha256": "9612b9d8b70f1d92377ee1a7a1d9e47ea6cc12ac79d3a3a64859b5406e9c0eeb",
+    "source_equivalence_evidence_path": "artifacts/conditional-hp-vendor-verification/reused-hp-suite-source-equivalence.json",
+    "source_equivalence_evidence_sha256": "708c2dfab8448ba041ad0a73261ee881fea12d0bf02a414c0be42a7b50757f13",
+    "reported_terminal_evidence_path": "artifacts/conditional-hp-vendor-verification/reused-full-core-terminal-report.json",
+    "reported_terminal_evidence_sha256": "e37aeb6648bff6efefe6bfc1efe4efff224a3fa0b3155bfced612243caa132ca"
+  },
+  "core_evidence_note": "The current4493pass/3skip Core suite was completed by the HP author; original stdout log/TRX was not saved. The qualified vendor report verifies exact source/assembly identity and does not fabricate a raw test artifact.",
+  "changes": [
+    "Optional public v3 act/floor and explicitly complete or unavailable combat recorder channel; old packets/prior identities preserved",
+    "Exact root-constant combat coordinate conditioning only when the declared public memory is complete; native recipe draws are consumed before replacement",
+    "Separate v3 model, full-context semantic identity/features, standalone guarded inference and quarantine; old weights are never silently upgraded",
+    "Versioned public event controller exits repeatable events on offered public options",
+    "Retained ordinary Neow origins and unchanged initial enemy MaxHp certify later roots without restricting the fallback prior"
+  ],
+  "event_fix_probe": {
+    "priorIdentity": "e6667bdbcdef7f62cf1a8a2d996e48849b7cc8d1bc4bc3899958157f8cfd204e",
+    "prior": {
+      "schemaVersion": "nosl.native-state-tape-prior.v1",
+      "execution": {
+        "maxFloors": 8,
+        "sourceDecisionHorizon": 1024,
+        "sourcePolicyId": "nosl-public-rules-v2",
+        "outsideCombatScript": "nosl-natural-public-script-v3"
+      },
+      "eligibleCombats": 3,
+      "eligibleDecisionsPerCombat": 8,
+      "primitiveLaw": "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1",
+      "primitiveImplementation": "sha256-address-expansion-with-explicit-conditioned-overrides-v1",
+      "rootLaw": "independent-uniform-fixed-combat-and-local-decision-indices-v1",
+      "outsideCombatScript": "nosl-natural-public-script-v3"
+    },
+    "sourceDrawsRequested": 4,
+    "existingRoots": 4,
+    "recordedRoots": 4,
+    "acceptedPosteriorDraws": 0,
+    "allocatedCandidateWorlds": 22,
+    "settledCandidateWorlds": 0,
+    "elapsedSeconds": 29.4849001,
+    "peakWorkerMemoryBytes": 124039168,
+    "budgetExpired": false,
+    "proposal_statuses": {
+      "public_constraint_mismatch": 510,
+      "public_packet_mismatch": 2
+    },
+    "source_breakdown": [
+      {
+        "source_draw_seed": 9001,
+        "combat_index": 1,
+        "decision_index": 1,
+        "public_run_context": null,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 128
+        }
+      },
+      {
+        "source_draw_seed": 9002,
+        "combat_index": 2,
+        "decision_index": 6,
+        "public_run_context": null,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 128
+        }
+      },
+      {
+        "source_draw_seed": 9003,
+        "combat_index": 0,
+        "decision_index": 4,
+        "public_run_context": null,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 126,
+          "public_packet_mismatch": 2
+        }
+      },
+      {
+        "source_draw_seed": 9004,
+        "combat_index": 1,
+        "decision_index": 4,
+        "public_run_context": null,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 128
+        }
+      }
+    ],
+    "evidence": {
+      "path": "artifacts/reports/conditional-tape/later-v3-response.jsonl",
+      "bytes": 401900,
+      "sha256": "f471d74c789e10b1c524bb612ed47544d7158a0ae408f2d84596533308ccc5c8"
+    }
+  },
+  "broader_certificates_probe": {
+    "priorIdentity": "e6667bdbcdef7f62cf1a8a2d996e48849b7cc8d1bc4bc3899958157f8cfd204e",
+    "prior": {
+      "schemaVersion": "nosl.native-state-tape-prior.v1",
+      "execution": {
+        "maxFloors": 8,
+        "sourceDecisionHorizon": 1024,
+        "sourcePolicyId": "nosl-public-rules-v2",
+        "outsideCombatScript": "nosl-natural-public-script-v3"
+      },
+      "eligibleCombats": 3,
+      "eligibleDecisionsPerCombat": 8,
+      "primitiveLaw": "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1",
+      "primitiveImplementation": "sha256-address-expansion-with-explicit-conditioned-overrides-v1",
+      "rootLaw": "independent-uniform-fixed-combat-and-local-decision-indices-v1",
+      "outsideCombatScript": "nosl-natural-public-script-v3"
+    },
+    "sourceDrawsRequested": 4,
+    "existingRoots": 4,
+    "recordedRoots": 4,
+    "acceptedPosteriorDraws": 2,
+    "allocatedCandidateWorlds": 22,
+    "settledCandidateWorlds": 2,
+    "elapsedSeconds": 24.4062086,
+    "peakWorkerMemoryBytes": 125128704,
+    "budgetExpired": false,
+    "proposal_statuses": {
+      "public_constraint_mismatch": 409,
+      "accepted": 2
+    },
+    "source_breakdown": [
+      {
+        "source_draw_seed": 9001,
+        "combat_index": 1,
+        "decision_index": 1,
+        "public_run_context": null,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 128
+        }
+      },
+      {
+        "source_draw_seed": 9002,
+        "combat_index": 2,
+        "decision_index": 6,
+        "public_run_context": null,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 128
+        }
+      },
+      {
+        "source_draw_seed": 9003,
+        "combat_index": 0,
+        "decision_index": 4,
+        "public_run_context": null,
+        "accepted_worlds": 2,
+        "proposals": 27,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 25,
+          "accepted": 2
+        }
+      },
+      {
+        "source_draw_seed": 9004,
+        "combat_index": 1,
+        "decision_index": 4,
+        "public_run_context": null,
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 128
+        }
+      }
+    ],
+    "evidence": {
+      "path": "artifacts/reports/conditional-tape/later-broad-v3-response.jsonl",
+      "bytes": 408106,
+      "sha256": "3c5173062b90709e243156a2ee8b7c2aedb657a8c2084d1d4be42b2f458e015f"
+    }
+  },
+  "public_context_probe": {
+    "priorIdentity": "56b2f605f9b4fa82a9c5ce8d7ce0513310c552d2bc41e08eee88a2d9eddb25c4",
+    "prior": {
+      "schemaVersion": "nosl.native-state-tape-prior.v1",
+      "execution": {
+        "maxFloors": 8,
+        "sourceDecisionHorizon": 1024,
+        "sourcePolicyId": "nosl-public-rules-v2",
+        "outsideCombatScript": "nosl-natural-public-script-v3",
+        "publicContextProfile": "nosl.public-run-context.v1"
+      },
+      "eligibleCombats": 3,
+      "eligibleDecisionsPerCombat": 8,
+      "primitiveLaw": "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1",
+      "primitiveImplementation": "sha256-address-expansion-with-explicit-conditioned-overrides-v1",
+      "rootLaw": "independent-uniform-fixed-combat-and-local-decision-indices-v1",
+      "outsideCombatScript": "nosl-natural-public-script-v3"
+    },
+    "sourceDrawsRequested": 4,
+    "existingRoots": 4,
+    "recordedRoots": 4,
+    "acceptedPosteriorDraws": 2,
+    "allocatedCandidateWorlds": 22,
+    "settledCandidateWorlds": 2,
+    "elapsedSeconds": 26.8475664,
+    "peakWorkerMemoryBytes": 121982976,
+    "budgetExpired": false,
+    "proposal_statuses": {
+      "public_constraint_mismatch": 395,
+      "accepted": 2
+    },
+    "source_breakdown": [
+      {
+        "source_draw_seed": 9001,
+        "combat_index": 1,
+        "decision_index": 1,
+        "public_run_context": {
+          "schemaVersion": "nosl.public-run-context.v1",
+          "actIndex": 0,
+          "floor": 3,
+          "combatEntryIndex": 1,
+          "completeFromRunStart": true
+        },
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 128
+        }
+      },
+      {
+        "source_draw_seed": 9002,
+        "combat_index": 2,
+        "decision_index": 6,
+        "public_run_context": {
+          "schemaVersion": "nosl.public-run-context.v1",
+          "actIndex": 0,
+          "floor": 4,
+          "combatEntryIndex": 2,
+          "completeFromRunStart": true
+        },
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 128
+        }
+      },
+      {
+        "source_draw_seed": 9003,
+        "combat_index": 0,
+        "decision_index": 4,
+        "public_run_context": {
+          "schemaVersion": "nosl.public-run-context.v1",
+          "actIndex": 0,
+          "floor": 2,
+          "combatEntryIndex": 0,
+          "completeFromRunStart": true
+        },
+        "accepted_worlds": 2,
+        "proposals": 13,
+        "proposal_statuses": {
+          "accepted": 2,
+          "public_constraint_mismatch": 11
+        }
+      },
+      {
+        "source_draw_seed": 9004,
+        "combat_index": 1,
+        "decision_index": 4,
+        "public_run_context": {
+          "schemaVersion": "nosl.public-run-context.v1",
+          "actIndex": 0,
+          "floor": 3,
+          "combatEntryIndex": 1,
+          "completeFromRunStart": true
+        },
+        "accepted_worlds": 0,
+        "proposals": 128,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 128
+        }
+      }
+    ],
+    "evidence": {
+      "path": "artifacts/reports/conditional-tape/later-context-v4-response.jsonl",
+      "bytes": 402827,
+      "sha256": "485ff7d5c4cffed5606626268c48e7f9cca1e3798c29d261e0f5a50aa1ed43e0"
+    }
+  },
+  "public_context_predeclaration": {
+    "path": "artifacts/reports/conditional-tape/later-context-v4-predeclaration.json",
+    "bytes": 870,
+    "sha256": "549782273e40d98010368729e98936360e6f8d218a12cff4f1eb5045902fd0f9"
+  },
+  "public_context_request": {
+    "path": "artifacts/reports/conditional-tape/later-context-v4-request.jsonl",
+    "bytes": 640,
+    "sha256": "96d552446bc173312f82d0ffa5a58098023102beaabb8e6dce969577b3c88467"
+  },
+  "carry_in_gate": {
+    "required_complete_roots": 2,
+    "actual_complete_roots": 0,
+    "passed": false,
+    "genuine_carry_in_roots": 3,
+    "genuine_carry_in_proposals": 384,
+    "genuine_carry_in_accepted_worlds": 0,
+    "assigned_unresolved_action_worlds": 20,
+    "engine_errors": 0,
+    "cause": "Earlier publicly observed entry inventory, HP and gold must match jointly; no proposal reached that exact carry-in entry at the bounded budget",
+    "interpretation": "A fixed diagnostic outcome, not a general zero acceptance-rate estimate"
+  },
+  "public_observation_boundary": "Native producer and public source paths verified; no live-client recorder exists yet, and run-start completeness must not be inferred from floor or private run state",
+  "reviews": "Independent read-only review cleared public channels, coordinate correction, legacy byte preservation, v3 identity/features, quarantine and untrained abstention",
+  "next_work": [
+    "Develop a source-certified native reward proposal using public entry evidence, preserving exact primitive probabilities and all latent-history dependencies",
+    "Validate its correction on finite primitive worlds and native source cases before another bounded benchmark",
+    "Keep production scale and fits paused pending broad posterior and resource-quality gates"
+  ],
+  "public-v3-native-validation": {
+    "path": "artifacts/reports/conditional-tape/public-v3-native-validation.json",
+    "bytes": 12374,
+    "sha256": "e500df4ca5886b2c3482d638763c8ac499d259ff556a671fa2c27e6ae89731eb"
+  },
+  "python_v3_engineering_tests": {
+    "selected_forward_tests_passed": 41,
+    "backward_passes": 1,
+    "optimizer_steps": 0,
+    "evidence_kind": "verbatim copies of retained original completed tool output; not execution-time redirected stdout",
+    "receipt_path": "artifacts/reports/conditional-tape/public-context-python-original/original-test-receipt.json",
+    "receipt_sha256": "926355a294cf597ed984edc97101bc0e740da223b7cc161f9dcf10949161ac2f",
+    "no_additional_backward_on_integration": true
+  },
+  "native_v3_label_binding_bridge": "Not yet implemented: actual native tape envelopes remain quarantined and their v3 targets are not reinterpreted as the separate engineering dataset schema"
+}

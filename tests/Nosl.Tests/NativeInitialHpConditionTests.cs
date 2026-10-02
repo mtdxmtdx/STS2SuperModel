@@ -34,30 +34,89 @@ public sealed class NativeInitialHpConditionTests
     }
 
     [Theory]
-    [InlineData("turn", "initial_hp_opening_decision_required")]
-    [InlineData("action", "initial_hp_uninterrupted_startup_required")]
     [InlineData("duplicate", "initial_hp_unique_startup_roster_required")]
-    [InlineData("damaged", "initial_hp_unmodified_certified_range_required")]
-    [InlineData("range", "initial_hp_unmodified_certified_range_required")]
-    [InlineData("power", "initial_hp_unmodified_certified_range_required")]
-    public void OnlyUntouchedPublicOpeningsHaveAnHpCertificate(string change, string reason)
+    [InlineData("missing", "initial_hp_unique_startup_roster_required")]
+    [InlineData("replacement_slot", "initial_hp_unique_startup_roster_required")]
+    [InlineData("replacement_type", "initial_hp_unique_startup_roster_required")]
+    [InlineData("duplicate_slot", "initial_hp_unique_startup_roster_required")]
+    [InlineData("range", "initial_hp_certified_range_required")]
+    public void OnlyCompleteOriginalLifetimeSlotsAndCertifiedMaxHpCanConditionLaterRoots(string change, string reason)
     {
         var root = change == "duplicate" ? Root(("ShrinkerBeetle", 40), ("ShrinkerBeetle", 41))
-            : Root(("ShrinkerBeetle", 41));
+            : Root(("ShrinkerBeetle", 41), ("SludgeSpinner", 42));
         var observation = root.Observation!;
         root = root with { Observation = change switch
         {
-            "turn" => observation with { Turn = 2 },
-            "action" => observation with { History = [.. observation.History, new("action", "played")] },
-            "damaged" => observation with { Enemies = [observation.Enemies[0] with { Hp = 40 }] },
-            "range" => observation with { Enemies = [observation.Enemies[0] with { Hp = 39, MaxHp = 39 }] },
-            "power" => observation with { Enemies = [observation.Enemies[0] with { Powers = [new("StrengthPower", 1)] }] },
+            "missing" => observation with { Enemies = [observation.Enemies[0]] },
+            "replacement_slot" => observation with
+                { Enemies = [observation.Enemies[0] with { Slot = 2 }, observation.Enemies[1]] },
+            "replacement_type" => observation with
+                { Enemies = [observation.Enemies[0] with { Id = "TwigSlimeS", Hp = 9, MaxHp = 9 }, observation.Enemies[1]] },
+            "duplicate_slot" => observation with
+                { Enemies = [observation.Enemies[0], observation.Enemies[1] with { Slot = 0 }] },
+            "range" => observation with
+                { Enemies = [observation.Enemies[0] with { Hp = 39, MaxHp = 39 }, observation.Enemies[1]] },
             _ => observation,
         }};
+        root = root with { Observation = root.Observation! with
+            { Turn = 4, History = [.. root.Observation.History, new("action", "later-action")] } };
         Assert.True(NativeInitialShuffleCondition.TryCreate(root, out _, out string? shuffleReason), shuffleReason);
         Assert.False(NativeInitialHpCondition.TryCreate(root, out var condition, out string? actualReason));
         Assert.Null(condition);
         Assert.Equal(reason, actualReason);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void LaterStableAndPendingChoiceRootsRetainHpTargetsByLifetimeSlot(bool pendingChoice)
+    {
+        var opening = Root(("ShrinkerBeetle", 41), ("SludgeSpinner", 42));
+        Assert.True(NativeInitialHpCondition.TryCreate(opening, out var initial, out string? initialReason), initialReason);
+        var later = opening with
+        {
+            Status = pendingChoice ? "card_choice" : "player_decision",
+            Actions = pendingChoice ? [new(8, "choose", Selection: [0])] : [new(8, "end_turn")],
+            Observation = opening.Observation! with
+            {
+                Turn = 4,
+                Enemies = opening.Observation.Enemies.Reverse().Select(enemy => enemy with
+                    { Hp = enemy.MaxHp - 7, Block = 5, Powers = [new("StrengthPower", 2)] }).ToArray(),
+                Choice = pendingChoice ? new("Nightmare", 1, 1, false, [opening.Observation.Hand[0]]) : null,
+                History = [.. opening.Observation.History, new("action", "later-action"),
+                    new("power_changed", PublicJson.Serialize(new { targetSlot = 0, id = "PaperCutsPower", amount = 2 })),
+                    new("player_turn", "4"),
+                    new("intent_published", PublicJson.Serialize(new { slot = 1, id = "SludgeSpinner" }))],
+            },
+        };
+        Assert.True(NativeInitialHpCondition.TryCreate(later, out var condition, out string? reason), reason);
+        Assert.Equal(initial!.Envelope, condition!.Envelope);
+        Assert.Equal(initial.Targets.OrderBy(pair => pair.Key), condition.Targets.OrderBy(pair => pair.Key));
+        Assert.Equal(41, condition.Targets["ShrinkerBeetle"].TargetHp);
+        Assert.Equal(42, condition.Targets["SludgeSpinner"].TargetHp);
+    }
+
+    [Fact]
+    public async Task GenuineNativeLaterDamagedEnemyRootRetainsItsRolledInitialHp()
+    {
+        var prior = new NativeRunPrior { EligibleSlots = 1, Execution = new(MaxFloors: 1, SourceDecisionHorizon: 64) };
+        var recipe = prior.Draw(new Rng(8001, "nosl-owned-native-run-source-draw-v1"));
+        await using var world = await NativeRunWorld.OpenAsync(prior.Execution, recipe.IndependentRunSeed, recipe.Slot);
+        Assert.NotNull(world);
+        Assert.False(world.IsConstructedLifecycleFixture);
+        var opening = world.Observe();
+        Assert.True(NativeInitialHpCondition.TryCreate(opening, out var initial, out string? initialReason), initialReason);
+        var attack = opening.Actions.First(action => action.Kind == "play" && action.Target >= 0
+            && opening.Observation!.Hand[action.Slot].Type == "Attack");
+        await world.StepAsync(attack);
+        var later = await world.StepAsync(world.Observe().Actions.Single(action => action.Kind == "end_turn"));
+        Assert.Equal("player_decision", later.Status);
+        Assert.True(later.Observation!.Turn >= 2);
+        Assert.Contains(later.Observation.History, item => item.Kind == "damage");
+        Assert.Contains(later.Observation.Enemies, enemy => enemy.Hp < enemy.MaxHp);
+        Assert.True(NativeInitialHpCondition.TryCreate(later, out var condition, out string? reason), reason);
+        Assert.Equal(initial!.Targets.OrderBy(pair => pair.Key), condition!.Targets.OrderBy(pair => pair.Key));
+        Assert.Equal(initial.Envelope, condition.Envelope);
     }
 
     [Theory]
