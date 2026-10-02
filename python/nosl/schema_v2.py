@@ -175,6 +175,9 @@ def validate_public(public: dict, config: dict) -> dict:
     validate_legacy(legacy_input(public), config["base_config"])
     validate_player_turns(public["observation"]["history"], public["observation"]["turn"])
     if public["controller_context"] == {"status": "inactive"}: return public
+    from .schema_regen import CONTEXT_SCHEMA as REGEN_CONTEXT_SCHEMA, validate_context as validate_regen_context
+    if isinstance(public["controller_context"], dict) and public["controller_context"].get("schemaVersion") == REGEN_CONTEXT_SCHEMA:
+        return validate_regen_context(public, config)
     context = object_keys(public["controller_context"], ("schemaVersion", "status", "exitReason", "anchor", "target",
         "startPlayerTurn", "deadlinePlayerTurn", "hpSafetyFloor", "lastObservedPlayerTurn", "templateId",
         "baselinePolicyId", "observedEvents"), "controller_context")

@@ -83,6 +83,7 @@ class V2TrainerNoFitTests(unittest.TestCase):
         self.assertNotIn(str(ROOT), json.dumps(identity))
         self.assertIn("python/nosl/train.py", expected)
         self.assertIn("python/nosl/public_identity_v2.py", expected)
+        self.assertIn("python/nosl/schema_regen.py", expected)
         self.assertIn("tools/prepare_dataset.py", expected)
 
     def test_checkpoint_rejects_drift_in_every_bound_source(self):

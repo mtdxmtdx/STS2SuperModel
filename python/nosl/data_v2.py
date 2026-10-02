@@ -4,6 +4,7 @@ from pathlib import Path
 
 from .data import (validate_targets as validate_legacy_targets, prepared_paths,
                    canonical_object_digest, _hash_file)
+from .native_pilot import is_native_pilot, validate_native_pilot, native_source_tokens, ADMISSION_VERSION
 from .schema import boolean, integer, number, object_keys, reject
 from .schema_v2 import PLAN_HEADS, legacy_input, validate_public
 from .public_identity_v2 import PUBLIC_IDENTITY_SCHEME, public_input_digest, legacy_alias_digests
@@ -44,6 +45,10 @@ def validate_targets(targets, public, config):
             else:
                 hp = public["controller_context"]["anchor"]["observation"]["hp"]
                 number(value, head, -hp, hp)
+    if public["controller_context"].get("schemaVersion") == "nosl.controller.finite-regen.v1":
+        if (any(plan["masks"].values()) or targets["pairwise"] or targets["equivalent_action_set"]
+                or any(any(row["masks"].values()) for row in targets["actions"])):
+            reject("finite Regen evidence has no applicable learned target heads")
     return targets
 
 
@@ -52,7 +57,7 @@ def validate_record(record, config):
     native = "schema_version" in record or "record_kind" in record
     if native: keys += ["schema_version", "record_kind"]
     object_keys(record, keys, "DecisionRecord v2")
-    if native and (record["schema_version"] != "nosl.native-belief-prototype.v2"
+    if native and not is_native_pilot(record) and (record["schema_version"] != "nosl.native-belief-prototype.v2"
             or record["record_kind"] != "natural_development_teacher_candidate"
             or not isinstance(record["audit_only"], dict) or record["audit_only"].get("trainable") is not False):
         reject("only explicitly non-trainable native development teacher records are supported")
@@ -102,7 +107,9 @@ def validate_production_record(record, config, *, require_usable=True):
     validate_record(record, config)
     audit, targets, public = record["audit_only"], record["targets"], record["public_input"]
     native_context = any(event.get("kind") == "native_entry_assets" for event in public["observation"]["history"])
-    if ("record_kind" in record or audit.get("trainable") is False or native_context
+    pilot = is_native_pilot(record)
+    if pilot: validate_native_pilot(record)
+    if not pilot and ("record_kind" in record or audit.get("trainable") is False or native_context
             or audit.get("native_import") is not None
             or audit.get("label_status") in ("raw_unlabeled", "development_teacher_prototype")):
         reject("native_development_not_admitted")
@@ -197,6 +204,15 @@ class PreparedDatasetV2:
             for descriptor in stage["files"]:
                 if descriptor["kind"] == "split_state":
                     historic_components.update(json.loads((self.root / descriptor["path"]).read_text())["components"])
+        protected_tokens = set()
+        native_history_bound = False
+        for reference in self.manifest["stages"]:
+            stage = json.loads((self.root / reference["manifest"]).read_text())
+            for descriptor in stage["files"]:
+                if descriptor["kind"] == "split_protection":
+                    registry = json.loads((self.root / descriptor["path"]).read_text())
+                    protected_tokens.update(t for c in registry["components"].values() for t in c["tokens"])
+                    native_history_bound = "native_history" in registry
         self.records = []
         for path in paths:
             with path.open(encoding="utf-8") as handle:
@@ -215,6 +231,14 @@ class PreparedDatasetV2:
                             or not {key + ":" + audit[key] for key in PROVENANCE_FIELDS} <= set(component["tokens"])
                             or not {"prepared_public_input_digest:" + d for d in legacy_alias_digests(row["public_input"])} <= set(component["tokens"])):
                         reject("prepared v2 row identity/provenance mismatch")
+                    if is_native_pilot(row):
+                        collection = audit["native_collection"]
+                        if (not native_history_bound or self.manifest["lock"].get("native_pilot_admission") != ADMISSION_VERSION
+                                or collection["protection_registry_sha256"] != self.manifest["lock"].get("split_protection", {}).get("sha256")
+                                or collection["purpose"] != self.manifest["lock"]["mode"]
+                                or not native_source_tokens(audit) <= set(component["tokens"])
+                                or protected_tokens.intersection(component["tokens"])):
+                            reject("prepared_native_pilot_protection_mismatch")
                     self.records.append(row)
         if not self.records: reject("prepared split is empty; independent groups required")
         if len({public_input_digest(row["public_input"]) for row in self.records}) != len(self.records):

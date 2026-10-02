@@ -34,9 +34,9 @@ from .train import atomic_save, config_hash, distribution_target, seed_everythin
 CHECKPOINT_FORMAT = "nosl.experimental.checkpoint.v2"
 QUALITY_FORMAT = "nosl.training.quality-acceptance.v2"
 AUTHORIZATION_FORMAT = "nosl.training.authorization.v2"
-V2_TRAINING_SOURCES = tuple(dict.fromkeys((*SOURCE_FILES, "schema_v2.py", "model_v2.py",
-    "inference_v2.py", "public_identity_v2.py", "data_v2.py", "smoke_v2.py", "train_v2.py")))
-EXTRA_SOURCE_FILES = ("tools/prepare_dataset.py",)
+V2_TRAINING_SOURCES = tuple(dict.fromkeys((*SOURCE_FILES, "schema_v2.py", "schema_regen.py", "model_v2.py",
+    "inference_v2.py", "public_identity_v2.py", "data_v2.py", "native_pilot.py", "smoke_v2.py", "train_v2.py")))
+EXTRA_SOURCE_FILES = ("tools/prepare_dataset.py", "tools/native_protection.py")
 
 
 def implementation_fingerprint() -> dict:

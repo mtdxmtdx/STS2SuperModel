@@ -13,6 +13,7 @@ from torch import nn
 from .model import Student, feature_hash
 from .public_identity import canonical_public_input, normalize_numeric_leaves
 from .schema_v2 import EXTENSION_EVENTS, PLAN_HEADS, legacy_input, validate_config, validate_public
+from .schema_regen import CONTEXT_SCHEMA as REGEN_CONTEXT_SCHEMA
 
 
 def public_extension_features(public: dict, dim: int) -> list[float]:
@@ -20,8 +21,9 @@ def public_extension_features(public: dict, dim: int) -> list[float]:
     plan = {"status": context["status"]}
     if context["status"] != "inactive":
         # Template/baseline references and transport revision tokens are not learned IDs.
-        plan.update({key: context[key] for key in ("exitReason", "target", "startPlayerTurn",
-                     "deadlinePlayerTurn", "hpSafetyFloor", "lastObservedPlayerTurn")})
+        fields = ("exitReason", "target", "startPlayerTurn", "deadlinePlayerTurn", "lastObservedPlayerTurn")
+        fields += ("schemaVersion", "kind", "initialRegen") if context["schemaVersion"] == REGEN_CONTEXT_SCHEMA else ("hpSafetyFloor",)
+        plan.update({key: context[key] for key in fields})
         plan["anchor"] = canonical_public_input(context["anchor"])
         anchored = plan["anchor"]
         anchored["candidate_actions"] = [a for a, legal in zip(anchored["candidate_actions"], anchored["legal_mask"]) if legal]

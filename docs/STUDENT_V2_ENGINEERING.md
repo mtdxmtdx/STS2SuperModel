@@ -176,3 +176,9 @@ PYTHONPATH=python python -m nosl.inference_v2 --config configs/student.v2.engine
 The v2 bundle loader binds format, model/public schema, full configuration and
 weight checksums, v1-core/v2-inference source hashes and runtime identity. V1
 bundles are rejected rather than silently upgraded.
+
+A separate explicit fresh-native pilot exporter and admission configuration now
+connect certified live native roots to this prepared loader. The old native
+prototype envelopes remain quarantined. Fresh collection requires bound historical
+split/source protection; source certification does not grant distribution quality
+or fit authorization. See [Fresh native pilot admission](FRESH_NATIVE_PILOT.md).

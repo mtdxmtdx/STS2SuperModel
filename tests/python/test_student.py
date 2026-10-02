@@ -430,7 +430,7 @@ class ArtifactGuardsTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             from nosl.public_identity import PUBLIC_IDENTITY_SCHEME
-            lock, versions = {"student_config_sha256": "abc", "public_identity_scheme": PUBLIC_IDENTITY_SCHEME}, {"teacher": "test-only"}
+            lock, versions = {"pipeline_version": "nosl.dataset.prepare.v3", "student_config_sha256": "abc", "public_identity_scheme": PUBLIC_IDENTITY_SCHEME}, {"teacher": "test-only"}
             files = []
             for split in ("train", "validation", "test"):
                 path = root / (split + ".jsonl")
@@ -451,6 +451,12 @@ class ArtifactGuardsTests(unittest.TestCase):
             manifest_path.write_text(json.dumps(manifest))
             dataset = prepared_dataset(root, "test", self.config, "abc")
             self.assertEqual(len(dataset), 1)
+            manifest["lock"].pop("pipeline_version")
+            manifest_path.write_text(json.dumps(manifest))
+            with self.assertRaisesRegex(SchemaError, "identity scheme unsupported"):
+                prepared_paths(root, "train")
+            manifest["lock"]["pipeline_version"] = "nosl.dataset.prepare.v3"
+            manifest_path.write_text(json.dumps(manifest))
             with self.assertRaises(SchemaError): prepared_paths(root, "train", "wrong")
             manifest["frozen_test_shards"] = []
             manifest_path.write_text(json.dumps(manifest))

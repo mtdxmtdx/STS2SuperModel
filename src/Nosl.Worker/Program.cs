@@ -18,6 +18,13 @@ while(Console.ReadLine() is { } line)
             result=new {status="available",version="nosl.continuation-policies.v1",
                 supportedPolicyIds=new[] {PublicContinuationPolicies.LegacyId,PublicContinuationPolicies.ReviewedId}};
         }
+        else if(op=="native_pilot_collect")
+        {
+            var options=PublicJson.Read<NaturalSourceOptions>(root.GetProperty("options").GetRawText());
+            var teacherOptions=PublicJson.Read<TeacherOptions>(root.GetProperty("teacherOptions").GetRawText());
+            var collection=PublicJson.Read<NativePilotCollection>(root.GetProperty("collection").GetRawText());
+            result=await NativePilotDataset.CollectAsync(options,teacherOptions,collection);
+        }
         else if(op=="native_belief_prototype")
         {
             var options=root.TryGetProperty("options",out var opt)?PublicJson.Read<NaturalSourceOptions>(opt.GetRawText()):new NaturalSourceOptions();

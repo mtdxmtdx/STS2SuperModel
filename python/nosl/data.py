@@ -183,8 +183,15 @@ def validate_components(components):
 
 
 def validate_registry(registry):
-    require(isinstance(registry, dict) and set(registry) == {
-        "schema_version", "public_identity_scheme", "source", "components"}, "fields_invalid")
+    required = {"schema_version", "public_identity_scheme", "source", "components"}
+    require(isinstance(registry, dict) and required <= set(registry)
+            and set(registry) <= required | {"native_history"}, "fields_invalid")
+    if "native_history" in registry:
+        history = registry["native_history"]
+        require(isinstance(history, dict) and set(history) == {"schema_version", "base_registry_sha256", "base_registry", "native_tokens", "metadata_sha256", "rows"}
+                and history["schema_version"] == "nosl.native-history-protection.v1"
+                and is_sha256(history["base_registry_sha256"]) and is_sha256(history["metadata_sha256"])
+                and type(history["rows"]) is int and history["rows"] > 0, "native_history_invalid")
     require(registry["schema_version"] == REGISTRY_VERSION, "version_unknown")
     require(registry["public_identity_scheme"] in (PUBLIC_IDENTITY_SCHEME, "nosl.public-identity.student-v2.v1"), "identity_unknown")
     source = registry["source"]
@@ -199,7 +206,26 @@ def validate_registry(registry):
         require(isinstance(shard, dict) and set(shard) == {"sha256", "bytes", "rows"}
                 and is_sha256(shard["sha256"]) and type(shard["bytes"]) is int and shard["bytes"] >= 0
                 and type(shard["rows"]) is int and shard["rows"] >= 0, "source_frozen_test_invalid")
-    validate_components(registry["components"])
+    owners = validate_components(registry["components"])
+    if "native_history" in registry:
+        history = registry["native_history"]
+        base = validate_registry(history["base_registry"])
+        require(registry_hash(base) == history["base_registry_sha256"], "native_history_base_checksum_mismatch")
+        require(registry["source"] == base["source"] and registry["public_identity_scheme"] == base["public_identity_scheme"],
+                "native_history_base_identity_changed")
+        for info in base["components"].values():
+            groups = {owners.get(token) for token in info["tokens"]}
+            require(None not in groups and len(groups) == 1, "native_history_base_alias_removed")
+            require(all(registry["components"][group]["split"] == info["split"] for group in groups),
+                    "native_history_base_split_changed")
+        native_tokens = history["native_tokens"]
+        require(isinstance(native_tokens, list) and bool(native_tokens)
+                and all(isinstance(token, str) for token in native_tokens)
+                and native_tokens == sorted(set(native_tokens))
+                and any(token.startswith("source_run_group:native-source-v1:") for token in native_tokens)
+                and all(token in owners for token in native_tokens), "native_history_alias_removed")
+        require(any(t.startswith("source_run_group:native-source-v1:") for info in registry["components"].values()
+                    for t in info["tokens"]), "native_history_source_aliases_missing")
     return registry
 
 

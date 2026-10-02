@@ -33,6 +33,15 @@ public static class PreferenceGates
         return safetyAcceptable == true && extraExpectedLoss.Upper <= budget && unconditionalSuccess.Lower >= successFloor
             ? Eligibility.EligibleNotMandatory : Eligibility.Unresolved;
     }
+
+    // Healing is already measured by actual settled HP. It has neither Hunt's next-turn
+    // deadline nor its five-HP/80% thresholds. Zero real gain is not a reason to stall.
+    public static Eligibility SafeFiniteStall(EstimateInterval extraExpectedLoss, bool? safetyAcceptable)
+    {
+        if (safetyAcceptable == false || extraExpectedLoss.Lower >= 0) return Eligibility.Ineligible;
+        return safetyAcceptable == true && extraExpectedLoss.Upper < 0
+            ? Eligibility.EligibleNotMandatory : Eligibility.Unresolved;
+    }
 }
 
 /// <summary>Bounds apply only at the predeclared final independent sample count, never optional stopping.</summary>
@@ -81,6 +90,8 @@ public sealed record PublicControllerContext(string AnchorPublicSummary, string 
     IReadOnlyList<string> PublicEvents);
 public sealed record WholePlanEvidence(string AnchorPublicSummary, string FrozenBaselinePolicyId, string FrozenPlanTemplate,
     bool CoversWholePlanFromAnchor, EstimateInterval ExtraExpectedLoss, EstimateInterval UnconditionalSuccess, bool? SafetyAcceptable);
+public sealed record FiniteStallEvidence(string AnchorPublicSummary, string FrozenBaselinePolicyId, string FrozenPlanTemplate,
+    bool CoversWholePlanFromAnchor, EstimateInterval ExtraExpectedLoss, bool? SafetyAcceptable);
 
 /// <summary>Fixed finite templates only. Does not implement arbitrary conditional counterfactual budget allocation.</summary>
 public sealed class AnchoredBonusPlan
@@ -123,5 +134,15 @@ public sealed class AnchoredBonusPlan
         if (Context.Kind != BonusPlanKind.SpecifiedFinishNextPlayerTurn)
             return Eligibility.Unresolved; // Safety/value of finite multi-turn healing needs separate evidence; never impose 5/80 mechanically.
         return PreferenceGates.SpecifiedFinish(evidence.ExtraExpectedLoss, evidence.UnconditionalSuccess, evidence.SafetyAcceptable);
+    }
+
+    public Eligibility EvaluateFiniteStall(FiniteStallEvidence evidence)
+    {
+        if (Context.State != BonusPlanState.Active) return Eligibility.Ineligible;
+        if (Context.Kind != BonusPlanKind.SafeFiniteStall || !evidence.CoversWholePlanFromAnchor
+            || evidence.AnchorPublicSummary != Context.AnchorPublicSummary
+            || evidence.FrozenBaselinePolicyId != FrozenBaselinePolicyId || evidence.FrozenPlanTemplate != Context.SelectedPlanTemplate)
+            throw new ArgumentException("Finite stall evidence must cover the unchanged whole plan, anchor and baseline");
+        return PreferenceGates.SafeFiniteStall(evidence.ExtraExpectedLoss, evidence.SafetyAcceptable);
     }
 }

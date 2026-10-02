@@ -12,8 +12,9 @@ from .model_v2 import StudentV2
 from .reproducibility import INFERENCE_SOURCE_FILES, runtime_identity, source_hashes
 from .schema import HEADS, SchemaError, object_keys
 from .schema_v2 import MODEL_VERSION, PUBLIC_SCHEMA, PublicHuntController, load_config, validate_public
+from .schema_regen import CONTEXT_SCHEMA as REGEN_CONTEXT_SCHEMA, PublicRegenController
 
-V2_INFERENCE_SOURCES = (*INFERENCE_SOURCE_FILES, "schema_v2.py", "model_v2.py", "inference_v2.py")
+V2_INFERENCE_SOURCES = (*INFERENCE_SOURCE_FILES, "schema_v2.py", "schema_regen.py", "model_v2.py", "inference_v2.py")
 SUPERVISION_FORMAT = "nosl.training.supervision.v2"
 SUPERVISION_PROGRESS_FORMAT = "nosl.training.supervision-progress.v2"
 POLICY_COVERAGE_KEYS = ("eligible_roots", "value_roots", "pairwise_roots", "equivalent_roots", "pairwise_pairs")
@@ -128,7 +129,9 @@ class InferenceV2:
             validate_public(public, self.config)
             finite = public["controller_context"]["status"] != "inactive"
             if finite:
-                if self.controller is None: self.controller = PublicHuntController(public, self.config)
+                if self.controller is None:
+                    controller_type = PublicRegenController if public["controller_context"].get("schemaVersion") == REGEN_CONTEXT_SCHEMA else PublicHuntController
+                    self.controller = controller_type(public, self.config)
                 else: self.controller.advance(public)
                 public = self.controller.public
                 context = public["controller_context"]
@@ -150,8 +153,9 @@ class InferenceV2:
         with torch.no_grad(): output = self.model(public)
         tensors = [v for k, v in output.items() if k not in ("ranking_score", "plan")] + list(output["plan"].values())
         if any(not torch.isfinite(t).all() for t in tensors): return result("MODEL_ERROR", "non-finite output")
+        hunt = finite and public["controller_context"].get("schemaVersion") != REGEN_CONTEXT_SCHEMA
         plan = {"specified_success_probability": float(torch.sigmoid(output["plan"]["specified_success_probability"])),
-                "extra_net_hp_loss": float(output["plan"]["extra_net_hp_loss"]) * 100} if finite else None
+                "extra_net_hp_loss": float(output["plan"]["extra_net_hp_loss"]) * 100} if hunt else None
         # Anchor labels do not verify a learned continuation or conditional budget.
         # Until a separate closed-loop acceptance exists, finite-plan action selection abstains.
         if finite: return result("PLAN_POLICY_UNVALIDATED", "whole-plan head estimates do not establish safe learned continuation or eligibility", plan_predictions=plan)

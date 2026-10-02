@@ -31,6 +31,7 @@ from nosl.public_identity import PUBLIC_IDENTITY_SCHEME, public_input_digest
 from nosl.public_identity_v2 import (PUBLIC_IDENTITY_SCHEME as V2_IDENTITY,
     public_input_digest as v2_public_digest, legacy_alias_digests)
 V2_PIPELINE_VERSION = "nosl.dataset.prepare.v4"
+from nosl.native_pilot import native_source_tokens, is_native_pilot, ADMISSION_VERSION
 from nosl.data import (REGISTRY_VERSION, is_sha256, registry_bytes, registry_hash,
                                   validate_binding, validate_components, validate_registry,
                                   validate_state_protection)
@@ -141,6 +142,9 @@ def validate_record(record: Any, config: dict, mode: str, student_config: dict |
     if config.get("schema_version") == "nosl.dataset.config.v2":
         from nosl.data_v2 import validate_production_record
         validate_production_record(record, student_config or load_student_config(config), require_usable=require_usable)
+        if is_native_pilot(record):
+            require(config.get("native_pilot_admission") == ADMISSION_VERSION, "native_pilot_explicit_admission_required")
+            require(record["audit_only"]["native_collection"]["purpose"] == mode, "native_pilot_collection_mode_mismatch")
         return
     require(isinstance(record, dict) and set(record) == {"public_input", "targets", "audit_only"},
             "decision_record_fields_invalid")
@@ -284,6 +288,7 @@ def record_tokens(record: Any, identity_scheme: str = PUBLIC_IDENTITY_SCHEME) ->
     tokens = set()
     audit = record.get("audit_only", {})
     if isinstance(audit, dict):
+        tokens.update(native_source_tokens(audit))
         for key in PROVENANCE_FIELDS:
             value = audit.get(key)
             if isinstance(value, str) and value.strip():
@@ -342,6 +347,7 @@ def validate_config(config: dict) -> None:
     require(config.get("schema_version") in ("nosl.dataset.config.v1", "nosl.dataset.config.v2"), "dataset_config_schema_unknown")
     if config["schema_version"] == "nosl.dataset.config.v2":
         require(config.get("public_schema") == "nosl.student.public.v2" and config.get("native_development_admission") == "quarantine", "v2_admission_config_invalid")
+        require(config.get("native_pilot_admission") in (None, ADMISSION_VERSION), "native_pilot_admission_unknown")
     ratios = config.get("split_ratios", {})
     require(set(ratios) == set(SPLITS) and all(finite_number(x) and x > 0 for x in ratios.values())
             and math.isclose(sum(ratios.values()), 1.0, abs_tol=1e-9), "split_ratios_invalid")
@@ -453,6 +459,11 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
     lock = {"pipeline_version": V2_PIPELINE_VERSION if v2 else PIPELINE_VERSION, "public_identity_scheme": identity_scheme,
             "config_sha256": object_digest(config),
             "student_config_sha256": object_digest(student_config), "mode": mode}
+    native_pilot_mode = config.get("native_pilot_admission") == ADMISSION_VERSION
+    if native_pilot_mode:
+        require(v2 and protection is not None and "native_history" in protection,
+                "native_pilot_requires_historical_protection_registry")
+        lock["native_pilot_admission"] = ADMISSION_VERSION
     previous = deepcopy(state) if state else None
     if protection is not None:
         validate_registry(protection)
@@ -475,6 +486,9 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
     for index, record in enumerate(records):
         try:
             validate_record(record, config, mode, student_config, require_usable=not v2)
+            if is_native_pilot(record):
+                require(protection is not None and record["audit_only"]["native_collection"]["protection_registry_sha256"] == registry_hash(protection),
+                        "native_pilot_protection_registry_mismatch")
             if v2:
                 structurally_valid.append(record)
                 require(has_usable_targets(record), "root_has_no_usable_targets")
@@ -505,15 +519,18 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
     frozen = next_state["stage_count"] > 0
     protected_test_tokens = {token for info in (protection or {}).get("components", {}).values()
                              if info["split"] == "test" for token in info["tokens"]}
+    protected_all_tokens = {token for info in (protection or {}).get("components", {}).values() for token in info["tokens"]}
     retained_tokens = {"prepared_public_input_digest:" + digest for digest, info in old_seen.items()
                        if not info["held_out_excluded"]}
     group_splits, conflicts, conflict_reasons = {}, {}, {}
     for group, old_groups in history.items():
         old_splits = {next_state["components"][g]["split"] for g in old_groups}
         retroactive_test_link = bool(tokens[group] & protected_test_tokens and tokens[group] & retained_tokens)
-        if len(old_splits) > 1 or retroactive_test_link:
+        retroactive_native_link = native_pilot_mode and bool(tokens[group] & protected_all_tokens and tokens[group] & retained_tokens)
+        if len(old_splits) > 1 or retroactive_test_link or retroactive_native_link:
             conflicts[group] = sorted(old_splits)
-            conflict_reasons[group] = ("retained_target_connected_to_protected_test" if retroactive_test_link
+            conflict_reasons[group] = ("retained_native_target_connected_to_protected_history" if retroactive_native_link
+                                       else "retained_target_connected_to_protected_test" if retroactive_test_link
                                        else "historical_cross_split_merge")
         else:
             group_splits[group] = next(iter(old_splits)) if old_splits else choose_split(group, config)
@@ -539,6 +556,8 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
         source_all[str(source)] += 1
         group = group_ids[index]
         reason = conflict_reasons[group] if group in conflicts else errors.get(index)
+        if reason is None and is_native_pilot(record) and tokens[group] & protected_all_tokens:
+            reason = "native_pilot_previously_registered_source_or_alias"
         split = group_splits.get(group)
         digest = None
         if reason is None:
@@ -784,6 +803,33 @@ def export_split_protection(source_dir: Path | str) -> dict:
     require(file_hash(root / "manifest.json") == manifest_hash
             and file_hash(state_path) == manifest["latest_state"]["sha256"], "protection_source_changed_during_read")
     return registry
+
+
+def extend_native_protection(registry: dict, metadata: list[dict]) -> dict:
+    """Bind inspected native provenance into an existing metadata-only registry.
+
+    Input rows must contain only public input/audit metadata, never target payloads.
+    Old split ownership is preserved; new development-only groups use train solely
+    as a registry owner. Fresh native admission excludes ALL registry owners.
+    """
+    validate_registry(registry)
+    require(bool(metadata), "native_history_metadata_required")
+    require(all(isinstance(row, dict) and set(row) <= {"public_input", "audit_only"}
+                and native_source_tokens(row.get("audit_only")) for row in metadata),
+            "native_history_metadata_only_required")
+    groups, tokens, history = provenance_components(metadata, registry, V2_IDENTITY)
+    result = deepcopy(registry)
+    for group in set(groups):
+        splits = {registry["components"][old]["split"] for old in history[group]}
+        require(len(splits) <= 1, "native_history_cross_split_bridge")
+        for old in history[group]: result["components"].pop(old, None)
+        result["components"][group] = {"split": next(iter(splits)) if splits else "train", "tokens": sorted(tokens[group])}
+    result["native_history"] = {"schema_version": "nosl.native-history-protection.v1",
+        "base_registry_sha256": registry_hash(registry), "base_registry": deepcopy(registry),
+        "native_tokens": sorted(set().union(*(record_tokens(row, V2_IDENTITY) for row in metadata))),
+        "metadata_sha256": object_digest(metadata), "rows": len(metadata)}
+    validate_registry(result)
+    return result
 
 
 def bound_split_protection(output_dir: Path, manifest: dict) -> dict | None:
@@ -1034,6 +1080,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--shard-size", type=int, default=1000)
     parser.add_argument("--protect-from-prepared", type=Path,
                         help="Seed a NEW version corpus with verified portable old split aliases; exclude old test-connected roots")
+    parser.add_argument("--protection-registry", type=Path,
+                        help="Use an already exported metadata-only registry, including inspected native history")
     parser.add_argument("--provenance-journals", nargs="+", type=Path, default=[],
                         help="Union all generation attempt metadata before filtering; never use journal targets")
     args = parser.parse_args(argv)
@@ -1047,7 +1095,9 @@ def main(argv: list[str] | None = None) -> int:
         records, origins = read_jsonl(args.inputs)
         require(all(file_hash(path) == descriptor["sha256"] for path, descriptor in zip(args.inputs, inputs)), "input_changed_during_read")
         config = read_json(args.config)
-        protection = export_split_protection(args.protect_from_prepared) if args.protect_from_prepared else None
+        require(not (args.protect_from_prepared and args.protection_registry), "choose_one_protection_source")
+        protection = (read_json(args.protection_registry) if args.protection_registry else
+                      export_split_protection(args.protect_from_prepared) if args.protect_from_prepared else None)
         provenance = []
         if args.provenance_journals:
             journal_inputs = [{"path": str(p.resolve()), "sha256": file_hash(p), "bytes": p.stat().st_size,

@@ -1,0 +1,54 @@
+{
+  "schema_version": "nosl.native-pilot-engineering-proof.v1",
+  "fixture_only": true,
+  "unique_source_roots": 12,
+  "actual_source_runs": 3,
+  "certified_roots": 2,
+  "raw_unlabeled_roots": 10,
+  "allocated_action_worlds": 18,
+  "settled_action_worlds": 18,
+  "real_registry_sha256": "868baa56050ca0d76ba82d9b14cfd1a5f3b118151a2f559e75ab50b1254b1537",
+  "original5000_registry_sha256": "11018097f16541154db11908163c2bd7e79ee94f5217932fbbb43ec7eab0b4f4",
+  "current40_registry_sha256": "2adc6486c2d78ac5fa0b54cacd2d5a108ee9ba9941f5c68504c25061ca77afe0",
+  "protected_original_test_rows": 494,
+  "inspected_native_metadata_rows": 200,
+  "historical_target_shard_binary_reads": 11,
+  "historical_target_values_decoded": false,
+  "protected_component_count": 2579,
+  "accepted_roots": 2,
+  "filter_reasons": {
+    "only explicitly non-trainable native development teacher records are supported": 10
+  },
+  "loaded": {
+    "train": 1,
+    "validation": 1
+  },
+  "result": {
+    "status": "ENGINEERING_SMOKE_ONLY",
+    "manifest": "artifacts/fresh-native-proof/real-prepared/manifest.json",
+    "stage_id": "stage-000001-05944af62a957320",
+    "isolation_passed": true,
+    "input_attempts": 12,
+    "usable_new_roots_before_holdout_exclusion": 2,
+    "accepted_roots": 2,
+    "duplicate_attempts": 0,
+    "frozen_holdout_excluded_roots": 0,
+    "full_candidate_complete_new_roots": 1,
+    "auxiliary_only_usable_new_roots": 1
+  },
+  "quality_accepted": false,
+  "training_run": false,
+  "backward_run": false,
+  "optimizer_steps": 0,
+  "profile_actually_executed": "native-public-entry-reviewed-memory-exchangeable-v2",
+  "other_profiles_evidence": "Existing reviewed ImportNativeAsync/choice/generation-potion tests; not covered by this end-to-end cohort",
+  "verification": {
+    "data_suite": "151 total: 145 passed and 6 optional live tests skipped in the dependency-free invocation",
+    "native_live_suite": "11 tests, actual native collector and teacher; no model execution",
+    "csharp_guard_tests": "2 tests",
+    "fingerprint_test": "1 test, backward and optimizer methods guarded",
+    "synthetic_registry_check": "Earlier separate engineering-only regression; real registry collected in an exact same-namespace replay",
+    "initial_declared_single_run": "3 unsupported roots, then same namespace expanded to the declared 4-run/12-root bound; no seed namespace search"
+  },
+  "artifact_directory": "artifacts/fresh-native-proof"
+}

@@ -65,7 +65,7 @@ def write_json(path, data):
 def prepared_fixture(root, config, train, validation):
     """Minimum valid immutable M5 chain, with deliberately unparsable test bytes."""
     root.mkdir()
-    lock = {"public_identity_scheme": PUBLIC_IDENTITY_SCHEME,
+    lock = {"pipeline_version": "nosl.dataset.prepare.v3", "public_identity_scheme": PUBLIC_IDENTITY_SCHEME,
             "student_config_sha256": canonical_object_digest(config), "mode": "pilot"}
     versions = train[0]["audit_only"]["versions"]
     files = []
