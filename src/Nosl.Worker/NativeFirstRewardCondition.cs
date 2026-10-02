@@ -66,7 +66,7 @@ internal sealed class NativeFirstRewardCondition
 
     private static NativeFirstRewardCondition Create(DecisionPacket root, NativeTapePrior prior)
     {
-        Require(prior is { SchemaVersion: NativeTapePrior.Version, Execution: not null }
+        Require(prior is { SchemaVersion: NativeTapePrior.Version or NativeTapePrior.RewardsVersion, Execution: not null }
             && prior.Execution.EmitsPublicRunContext
             && !PublicRunContext.IsHistoryUnavailable(prior.Execution.PublicCombatHistoryMode),
             "complete_public_run_history_required");
@@ -85,6 +85,11 @@ internal sealed class NativeFirstRewardCondition
                 && relic.Details.TryGetValue("isMelted", out int melted) && melted == 0
                 && relic.Details.TryGetValue("stackCount", out int count) && count == 1),
             "first_reward_inventory_not_certified");
+        // Typed Neow history can identify a positive after it was removed or
+        // melted. This narrower asset-origin proof still requires its ordinary
+        // retained target, including when used only for encounter/map proposals.
+        Require(entry.Relics.Any(relic => relic.Id == neow!.TargetRelicId),
+            "first_reward_neow_target_not_retained");
         Require(entry.MaxHp == 70 && entry.Hp is > 0 and <= 56 && entry.MaxEnergy == 3
             && entry.PotionSlots == 2 && entry.Potions is { Length: 2 } && entry.Potions.All(potion => potion is null)
             && entry.OrbSlots == 0 && entry.CardRemovalsUsed == 0,

@@ -5,6 +5,7 @@ using Sts2Sim.Core.Hooks;
 using Sts2Sim.Core.Models;
 using Sts2Sim.Core.Models.CardPools;
 using Sts2Sim.Core.Runs;
+using Sts2Sim.Core.Random;
 
 namespace Sts2Sim.Core.Factories;
 
@@ -52,14 +53,16 @@ public static class CardFactory
             CardCreationOptions selectionOptions = Hook.ModifyCardRewardCreationOptions(player.RunState, player, options);
             Random.Rng selectionRng = selectionOptions.RngOverride ?? player.PlayerRng.Rewards;
             var remaining = selectionOptions.GetPossibleCards(player).Where(card => !selected.Contains(card.Id)).Distinct().ToList();
+            bool modifyOdds = selectionOptions.Flags.HasFlag(CardCreationFlags.ForceRarityOddsChange) ||
+                (selectionOptions.Source == CardCreationSource.Encounter && selectionOptions.RarityOdds is
+                    CardRarityOddsType.RegularEncounter or CardRarityOddsType.EliteEncounter or CardRarityOddsType.BossEncounter);
+            using IDisposable? labelSelection = BeginLabelSelection(player, selectionRng,
+                LabelRewardCardSelectionKind.CreationOptions, i, optionCount, selectionOptions, remaining, modifyOdds);
             IEnumerable<CardModel> candidates;
             if (selectionOptions.RarityOdds == CardRarityOddsType.Uniform)
                 candidates = remaining.Where(c => c.Rarity is not (CardRarity.Basic or CardRarity.Ancient));
             else
             {
-                bool modifyOdds = selectionOptions.Flags.HasFlag(CardCreationFlags.ForceRarityOddsChange) ||
-                    (selectionOptions.Source == CardCreationSource.Encounter && selectionOptions.RarityOdds is
-                        CardRarityOddsType.RegularEncounter or CardRarityOddsType.EliteEncounter or CardRarityOddsType.BossEncounter);
                 CardRarity rolled = modifyOdds
                     ? player.Odds.CardRarity.Roll(selectionOptions.RarityOdds, selectionRng)
                     : player.Odds.CardRarity.RollWithBaseOdds(selectionOptions.RarityOdds, selectionRng);
@@ -162,6 +165,30 @@ public static class CardFactory
         return options;
     }
 
+    private static IDisposable? BeginLabelSelection(Player player, Rng rng,
+        LabelRewardCardSelectionKind kind, int index, int count, CardCreationOptions options,
+        List<CardModel> remaining, bool changesFutureOdds)
+    {
+        if (!LabelRandomScope.HasRewardCardSelection) return null;
+        bool uniform = kind == LabelRewardCardSelectionKind.CreationOptions && options.RarityOdds == CardRarityOddsType.Uniform;
+        LabelCardRarityThresholds? thresholds = uniform ? null
+            : player.Odds.CardRarity.GetLabelRollThresholds(options.RarityOdds, changesFutureOdds);
+        var branches = new List<LabelRewardCardBranch>();
+        if (uniform)
+            branches.Add(new(null, Array.AsReadOnly(remaining.Where(card => card.Rarity is not
+                (CardRarity.Basic or CardRarity.Ancient)).ToArray())));
+        else
+            foreach (CardRarity rolled in new[] { CardRarity.Rare, CardRarity.Uncommon, CardRarity.Common })
+            {
+                CardRarity selected = kind == LabelRewardCardSelectionKind.CreationOptions
+                    ? GetNextAllowedRarity(rolled, remaining.Select(card => card.Rarity).ToHashSet()) : rolled;
+                branches.Add(new(rolled, Array.AsReadOnly(remaining.Where(card => card.Rarity == selected).ToArray())));
+            }
+        return LabelRandomScope.BeginRewardCardSelection(new(player, rng, kind, index, count,
+            options.Source, options.Flags, options.RarityOdds, thresholds, changesFutureOdds && !uniform,
+            Array.AsReadOnly(remaining.ToArray()), branches.AsReadOnly()));
+    }
+
     private static CardRarity GetNextAllowedRarity(
         CardRarity startingRarity,
         IReadOnlySet<CardRarity> allowedRarities)
@@ -218,6 +245,11 @@ public static class CardFactory
         for (int i = 0; i < optionCount; i++)
         {
             CardCreationOptions modifiedCreation = Hook.ModifyCardRewardCreationOptions(player.RunState, player, creationOptions);
+            using IDisposable? labelSelection = LabelRandomScope.HasRewardCardSelection
+                ? BeginLabelSelection(player, rng, LabelRewardCardSelectionKind.LegacyCombat,
+                    i, optionCount, modifiedCreation, modifiedCreation.GetPossibleCards(player)
+                        .Where(card => !selectedCanonicals.Contains(card)).ToList(), changesFutureOdds: true)
+                : null;
             CardRarity rarity = player.Odds.CardRarity.Roll(modifiedCreation.RarityOdds, rng);
             List<CardModel> candidates = modifiedCreation.GetPossibleCards(player)
                 .Where(card =>

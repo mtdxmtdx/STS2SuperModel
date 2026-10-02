@@ -7,8 +7,9 @@ using Sts2Sim.Core.Models.Relics;
 namespace Nosl.Worker;
 
 /// <summary>
-/// Public-only certificate for a retained Neow positive under the declared fresh
-/// Silent A10 ideal-tape prior. Other priors/entries retain plain replay.
+/// Public-only certificate for observed Neow positives under the Rewards hybrid
+/// prior, or a retained positive under either declared fresh Silent A10 tape prior.
+/// Other priors/entries retain plain replay.
 /// This certificate says nothing about the finite common-run-seed posterior.
 /// </summary>
 internal sealed class NativeNeowCondition
@@ -35,12 +36,22 @@ internal sealed class NativeNeowCondition
     ];
     private static readonly HashSet<Type> PositiveTypes = [.. BasePositives, .. ExtraPairs.SelectMany(pair => pair)];
     private static readonly HashSet<string> PositiveIds = new(PositiveTypes.Select(type => type.Name), StringComparer.Ordinal);
+    private static readonly HashSet<string> CurseIds = new(StringComparer.Ordinal)
+    {
+        nameof(CursedPearl), nameof(DowsingRod), nameof(HeftyTablet), nameof(LargeCapsule),
+        nameof(LeafyPoultice), nameof(NeowsBones), nameof(NeowsSacrifice), nameof(PrecariousShears),
+        nameof(SilkenTress), nameof(SilverCrucible),
+    };
     private static readonly HashSet<string> NativePoolShapes = BuildNativePoolShapes();
     internal static ShuffleRational RootEnvelope { get; } = MaximumEnvelope(
         Enumerable.Range(MinimumNativePoolSize, MaximumNativePoolSize - MinimumNativePoolSize + 1));
+    private static readonly ShuffleRational ObservedPrefixRootEnvelope = MaximumEnvelope(
+        Enumerable.Range(MinimumNativePoolSize, MaximumNativePoolSize - MinimumNativePoolSize + 1), prefixLength: 2);
 
-    internal string TargetRelicId { get; }
-    private NativeNeowCondition(string targetRelicId) => TargetRelicId = targetRelicId;
+    internal IReadOnlyList<string> PositivePrefixIds { get; }
+    internal string TargetRelicId => PositivePrefixIds[0];
+    private NativeNeowCondition(params string[] positivePrefixIds) =>
+        PositivePrefixIds = Array.AsReadOnly(positivePrefixIds.ToArray());
 
     internal static bool TryCreate(DecisionPacket publicRoot, NativeTapePrior prior,
         out NativeNeowCondition? condition, out string? reason)
@@ -54,7 +65,7 @@ internal sealed class NativeNeowCondition
 
     private static NativeNeowCondition Create(DecisionPacket root, NativeTapePrior prior)
     {
-        Require(prior is { SchemaVersion: NativeTapePrior.Version,
+        Require(prior is { SchemaVersion: NativeTapePrior.Version or NativeTapePrior.RewardsVersion,
             Execution: { SourcePolicyId: PublicContinuationPolicies.ReviewedId } },
             "fresh_native_run_prior_required");
         Require(prior.Execution.ResolvedOutsideCombatScript is NaturalSourceCollector.ScriptVersion
@@ -62,6 +73,9 @@ internal sealed class NativeNeowCondition
         Require(root is { Status: "player_decision" or "card_choice", Observation: not null, Actions.Length: > 0 },
             "active_decision_required");
         var observation = root.Observation!;
+        if (prior.UsesRewardsProvenance && observation.Ascension == 10
+            && TryObservedInitialPrefix(root.PublicEvidence, out var observedPrefix))
+            return new(observedPrefix);
         Require(observation.Ascension == 10 && observation.History is { Length: >= 2 }
             && observation.History[0] is { Kind: "combat_started", Detail: "Silent:A10" }
             && observation.History[1].Kind == NativeEntryAssets.EventKind
@@ -121,6 +135,38 @@ internal sealed class NativeNeowCondition
         return new(target.Id);
     }
 
+    private static bool TryObservedInitialPrefix(PublicRunEvidence? evidence, out string[] prefix)
+    {
+        prefix = [];
+        if (evidence is null || evidence.Events.Length < 4) return false;
+        var events = evidence.Events;
+        // The fixed fresh-run execution emits these four observations before any
+        // subchoice, map travel or combat. Requiring this uninterrupted boundary
+        // excludes missing starts, earlier gaps, other owners and later screens.
+        // A gap AFTER the linked choice does not erase the already observed prefix.
+        // Native initial act zero has only Neow; no private event ID is consulted.
+        if (events[0].Payload is not PublicRunStarted { Character: "Silent", Ascension: 10 }
+            || events[1] is not { OwnerOrdinal: 0, Payload: PublicOwnerStarted
+                { OwnerKind: PublicEvidenceOwnerKind.Event, ActIndex: 0, Floor: 1,
+                    ParentOwnerOrdinal: null, CompleteFromOwnerStart: true } }
+            || events[2] is not { OwnerOrdinal: 0, Payload: PublicOptionsObserved observed }
+            || observed.Options.Length != 3
+            || observed.Options.Any(option => option.IsLocked || option.Price is not null)
+            || !PositiveIds.Contains(observed.Options[0].Key)
+            || !PositiveIds.Contains(observed.Options[1].Key)
+            || !CurseIds.Contains(observed.Options[2].Key)
+            || events[3] is not { OwnerOrdinal: 0, Payload: PublicOptionChosen chosen }
+            || chosen.OfferEventOrdinal != events[2].EventOrdinal
+            || chosen.Key != observed.Options[0].Key)
+            return false;
+        // Both declared scripts select the first unlocked initial option. These
+        // typed offers directly prove its origin even if later removed or melted.
+        // The third option remains a full-packet equality constraint: its native
+        // curse draw and the extra-positive coins retain their original joint law.
+        prefix = [observed.Options[0].Key, observed.Options[1].Key];
+        return true;
+    }
+
     /// <summary>
     /// Call only after identifying the current hypothetical Neow's own Rng and its
     /// initial Type shuffle. Invalid native shapes are engine errors, not rejection.
@@ -136,23 +182,26 @@ internal sealed class NativeNeowCondition
             || pool.Distinct().Count() != pool.Length || !NativePoolShapes.Contains(PoolKey(pool)))
             throw new InvalidOperationException("Neow positive shuffle does not match its certified native pool shapes");
         string[] ids = pool.Select(type => type.Name).ToArray();
-        if (!ids.Contains(TargetRelicId, StringComparer.Ordinal))
+        if (PositivePrefixIds.Any(id => !ids.Contains(id, StringComparer.Ordinal)))
             throw new NativePublicConstraintMismatchException("Published Neow positive is absent from this native pool");
-        var plan = ConditionalShuffleProposal.Create(ids, [TargetRelicId], nextWord)
+        var plan = ConditionalShuffleProposal.Create(ids, PositivePrefixIds, nextWord)
             ?? throw new InvalidOperationException("Certified native Neow positive has no shuffle proposal support");
-        return new(plan, RootEnvelope);
+        return new(plan, PositivePrefixIds.Count == 1 ? RootEnvelope : ObservedPrefixRootEnvelope);
     }
 
     // Test precision permits exhaustive finite analogs of this same root correction.
     internal static ShuffleRational MaximumEnvelope(IEnumerable<int> poolSizes,
-        int precisionBits = ConditionalShuffleProposal.NativePrecisionBits)
+        int precisionBits = ConditionalShuffleProposal.NativePrecisionBits, int prefixLength = 1)
     {
         ArgumentNullException.ThrowIfNull(poolSizes);
+        if (prefixLength < 1) throw new ArgumentOutOfRangeException(nameof(prefixLength));
         var maximum = new ShuffleRational(0, 1);
         foreach (int count in poolSizes)
         {
-            if (count < 1) throw new ArgumentOutOfRangeException(nameof(poolSizes));
+            if (count < prefixLength) throw new ArgumentOutOfRangeException(nameof(poolSizes));
             var envelope = new ShuffleRational(1, count);
+            for (int index = 1; index < prefixLength; index++)
+                envelope = envelope.Multiply(1, count - index);
             for (int bound = 2; bound <= count; bound++)
             {
                 var factor = ConditionalShuffleProposal.Factor(bound, 0, precisionBits);

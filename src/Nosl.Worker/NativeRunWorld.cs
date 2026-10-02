@@ -196,6 +196,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
 
     async Task<PublicAction?> INativeRunControl.DecideAsync(DecisionPacket packet, NaturalSourceBoundary boundary)
     {
+        _labelTape?.CheckPublicPrefix(packet.PublicEvidence);
         if (_selectedBoundary is null)
         {
             int globalSlot = _eligibleSlots++, localSlot = _localDecision++;

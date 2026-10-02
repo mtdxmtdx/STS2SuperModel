@@ -154,6 +154,51 @@
 +    internal void RemovePotionInternal(PotionModel potion, PotionMutationKind kind)
 @@ -242,0 +248 @@
 +            OutcomeObserver?.PotionChanged(this, potion.GetType().Name, kind);
+--- a/src/Sts2Sim.Core/Factories/CardFactory.cs
++++ b/src/Sts2Sim.Core/Factories/CardFactory.cs
+@@ -7,0 +8 @@
++using Sts2Sim.Core.Random;
+@@ -54,0 +56,5 @@
++            bool modifyOdds = selectionOptions.Flags.HasFlag(CardCreationFlags.ForceRarityOddsChange) ||
++                (selectionOptions.Source == CardCreationSource.Encounter && selectionOptions.RarityOdds is
++                    CardRarityOddsType.RegularEncounter or CardRarityOddsType.EliteEncounter or CardRarityOddsType.BossEncounter);
++            using IDisposable? labelSelection = BeginLabelSelection(player, selectionRng,
++                LabelRewardCardSelectionKind.CreationOptions, i, optionCount, selectionOptions, remaining, modifyOdds);
+@@ -60,3 +65,0 @@
+-                bool modifyOdds = selectionOptions.Flags.HasFlag(CardCreationFlags.ForceRarityOddsChange) ||
+-                    (selectionOptions.Source == CardCreationSource.Encounter && selectionOptions.RarityOdds is
+-                        CardRarityOddsType.RegularEncounter or CardRarityOddsType.EliteEncounter or CardRarityOddsType.BossEncounter);
+@@ -164,0 +168,24 @@
++    private static IDisposable? BeginLabelSelection(Player player, Rng rng,
++        LabelRewardCardSelectionKind kind, int index, int count, CardCreationOptions options,
++        List<CardModel> remaining, bool changesFutureOdds)
++    {
++        if (!LabelRandomScope.HasRewardCardSelection) return null;
++        bool uniform = kind == LabelRewardCardSelectionKind.CreationOptions && options.RarityOdds == CardRarityOddsType.Uniform;
++        LabelCardRarityThresholds? thresholds = uniform ? null
++            : player.Odds.CardRarity.GetLabelRollThresholds(options.RarityOdds, changesFutureOdds);
++        var branches = new List<LabelRewardCardBranch>();
++        if (uniform)
++            branches.Add(new(null, Array.AsReadOnly(remaining.Where(card => card.Rarity is not
++                (CardRarity.Basic or CardRarity.Ancient)).ToArray())));
++        else
++            foreach (CardRarity rolled in new[] { CardRarity.Rare, CardRarity.Uncommon, CardRarity.Common })
++            {
++                CardRarity selected = kind == LabelRewardCardSelectionKind.CreationOptions
++                    ? GetNextAllowedRarity(rolled, remaining.Select(card => card.Rarity).ToHashSet()) : rolled;
++                branches.Add(new(rolled, Array.AsReadOnly(remaining.Where(card => card.Rarity == selected).ToArray())));
++            }
++        return LabelRandomScope.BeginRewardCardSelection(new(player, rng, kind, index, count,
++            options.Source, options.Flags, options.RarityOdds, thresholds, changesFutureOdds && !uniform,
++            Array.AsReadOnly(remaining.ToArray()), branches.AsReadOnly()));
++    }
++
+@@ -220,0 +248,5 @@
++            using IDisposable? labelSelection = LabelRandomScope.HasRewardCardSelection
++                ? BeginLabelSelection(player, rng, LabelRewardCardSelectionKind.LegacyCombat,
++                    i, optionCount, modifiedCreation, modifiedCreation.GetPossibleCards(player)
++                        .Where(card => !selectedCanonicals.Contains(card)).ToList(), changesFutureOdds: true)
++                : null;
 --- a/src/Sts2Sim.Core/Map/StandardActMap.cs
 +++ b/src/Sts2Sim.Core/Map/StandardActMap.cs
 @@ -3,0 +4,2 @@
@@ -228,6 +273,33 @@
 +    // This payload originates in an explicit public card choice, not hidden draw order.
 +    internal CardModel? NoslSelectedCard => _hasSelectedCard ? ModelDb.GetById<CardModel>(_selectedCardId) : null;
 +    internal int? NoslSelectedUpgrade => _hasSelectedCard ? _selectedCardUpgradeLevel : null;
+--- a/src/Sts2Sim.Core/Odds/CardRarityOdds.cs
++++ b/src/Sts2Sim.Core/Odds/CardRarityOdds.cs
+@@ -87 +87,2 @@
+-        float num2 = GetBaseOdds(type, CardRarity.Rare) + offset;
++        LabelCardRarityThresholds thresholds = GetThresholds(type, offset);
++        float num2 = thresholds.RareUpperExclusive;
+@@ -92 +93 @@
+-        if (num < GetBaseOdds(type, CardRarity.Uncommon) + num2)
++        if (num < thresholds.UncommonUpperExclusive)
+@@ -106 +107,2 @@
+-        if (num < GetBaseOdds(type, CardRarity.Rare))
++        LabelCardRarityThresholds thresholds = GetThresholds(type, 0f);
++        if (num < thresholds.RareUpperExclusive)
+@@ -110 +112 @@
+-        if (num < GetBaseOdds(type, CardRarity.Rare) + GetBaseOdds(type, CardRarity.Uncommon))
++        if (num < thresholds.UncommonUpperExclusive)
+@@ -114,0 +117,10 @@
++    }
++
++    /// <summary>Read-only thresholds for the next native Roll or RollWithBaseOdds call.</summary>
++    public LabelCardRarityThresholds GetLabelRollThresholds(CardRarityOddsType type, bool changesFutureOdds) =>
++        GetThresholds(type, changesFutureOdds && type != CardRarityOddsType.BossEncounter ? CurrentValue : 0f);
++
++    private LabelCardRarityThresholds GetThresholds(CardRarityOddsType type, float offset)
++    {
++        float rare = GetBaseOdds(type, CardRarity.Rare) + offset;
++        return new(rare, GetBaseOdds(type, CardRarity.Uncommon) + rare);
 --- /dev/null
 +++ b/src/Sts2Sim.Core/Random/LabelRandomProvenance.cs
 @@ -0,0 +1,38 @@
@@ -271,12 +343,14 @@
 +}
 --- /dev/null
 +++ b/src/Sts2Sim.Core/Random/LabelRandomScope.cs
-@@ -0,0 +1,228 @@
+@@ -0,0 +1,265 @@
 +using Sts2Sim.Core.Entities.Creatures;
 +using Sts2Sim.Core.Entities.Players;
 +using Sts2Sim.Core.Content;
 +using Sts2Sim.Core.Rooms;
 +using Sts2Sim.Core.Runs;
++using Sts2Sim.Core.Entities.Cards;
++using Sts2Sim.Core.Models;
 +
 +namespace Sts2Sim.Core.Random;
 +
@@ -296,6 +370,25 @@
 +
 +/// <summary>The native map boundary before randomized point counts are generated.</summary>
 +public sealed record LabelMapGenerationContext(RunState Run, ActDefinition Act, Rng Rng);
++
++/// <summary>Actual strict float comparison thresholds used by native rarity selection.</summary>
++public readonly record struct LabelCardRarityThresholds(float RareUpperExclusive, float UncommonUpperExclusive);
++
++public enum LabelRewardCardSelectionKind { LegacyCombat, CreationOptions }
++
++/// <summary>One native hidden rolled-rarity arm; candidates retain native order and duplicate entries.</summary>
++public sealed record LabelRewardCardBranch(CardRarity? RolledRarity, IReadOnlyList<CardModel> Candidates);
++
++/// <summary>
++/// Label-only snapshot immediately before native rarity/index draws, after creation modifiers.
++/// Null thresholds mean the native uniform branch has no rarity draw. Branches are computed
++/// by CardFactory using that overload's own fallback and exclusion policy; hooks run once.
++/// </summary>
++public sealed record LabelRewardCardSelectionContext(Player Player, Rng Rng,
++    LabelRewardCardSelectionKind Kind, int SelectionIndex, int OptionCount,
++    CardCreationSource Source, CardCreationFlags Flags, CardRarityOddsType OddsType,
++    LabelCardRarityThresholds? Thresholds, bool ChangesFutureOdds,
++    IReadOnlyList<CardModel> RemainingCards, IReadOnlyList<LabelRewardCardBranch> Branches);
 +
 +/// <summary>
 +/// Explicit label-only distribution departure: substitutes hypothetical random-tape words
@@ -350,10 +443,11 @@
 +        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp = null,
 +        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null,
 +        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null,
-+        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null)
++        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null,
++        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection = null)
 +    {
 +        ArgumentNullException.ThrowIfNull(nextWord);
-+        var scope = new Scope(Current.Value, nextWord, null, beginShuffle, beginMonsterHp, beginCombatReward, beginNormalEncounter, beginMapGeneration);
++        var scope = new Scope(Current.Value, nextWord, null, beginShuffle, beginMonsterHp, beginCombatReward, beginNormalEncounter, beginMapGeneration, beginRewardCardSelection);
 +        Current.Value = scope;
 +        return scope;
 +    }
@@ -372,12 +466,13 @@
 +        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp = null,
 +        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null,
 +        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null,
-+        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null)
++        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null,
++        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection = null)
 +    {
 +        ArgumentNullException.ThrowIfNull(nextRewardWord);
 +        ArgumentNullException.ThrowIfNull(nextStateWord);
 +        var scope = new Scope(Current.Value, nextStateWord, nextRewardWord, beginShuffle, beginMonsterHp, beginCombatReward,
-+            beginNormalEncounter, beginMapGeneration);
++            beginNormalEncounter, beginMapGeneration, beginRewardCardSelection);
 +        Current.Value = scope;
 +        return scope;
 +    }
@@ -462,6 +557,17 @@
 +        finally { InsideCallback.Value = false; }
 +    }
 +
++    internal static bool HasRewardCardSelection => Current.Value?.BeginRewardCardSelection is not null && !InsideCallback.Value;
++
++    internal static IDisposable? BeginRewardCardSelection(LabelRewardCardSelectionContext context)
++    {
++        Scope? scope = Current.Value;
++        if (scope?.BeginRewardCardSelection is null || InsideCallback.Value) return null;
++        InsideCallback.Value = true;
++        try { return scope.BeginRewardCardSelection(context); }
++        finally { InsideCallback.Value = false; }
++    }
++
 +    private sealed class Scope(
 +        Scope? previous,
 +        Func<LabelRandomState, ulong>? nextWord,
@@ -470,7 +576,8 @@
 +        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp,
 +        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward,
 +        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter,
-+        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration) : IDisposable
++        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration,
++        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection) : IDisposable
 +    {
 +        public Scope? Previous { get; } = previous;
 +        public Func<LabelRandomState, ulong>? NextWord { get; } = nextWord;
@@ -481,6 +588,8 @@
 +        public Func<LabelCombatRewardContext, IDisposable?>? BeginCombatReward { get; } = beginCombatReward;
 +        public Func<LabelNormalEncounterContext, IDisposable?>? BeginNormalEncounter { get; } = beginNormalEncounter;
 +        public Func<LabelMapGenerationContext, IDisposable?>? BeginMapGeneration { get; } = beginMapGeneration;
++
++        public Func<LabelRewardCardSelectionContext, IDisposable?>? BeginRewardCardSelection { get; } = beginRewardCardSelection;
 +
 +        public void Dispose()
 +        {

@@ -28,6 +28,11 @@ internal static class NativeTapeReplayDataset
     internal static string ImplementationFor(NativeRunExecutionOptions execution) => execution.EmitsPublicEvidence
         ? ImplementationVersion + "-public-evidence-v1" : ImplementationVersion;
 
+    internal static string ImplementationFor(NativeTapePrior prior) => prior.UsesRewardsProvenance
+        ? "nosl-native-rewards-state-tape-conditional-v1-public-evidence-v1" : ImplementationFor(prior.Execution);
+    internal static string DatasetFor(NativeTapePrior prior) => prior.UsesRewardsProvenance
+        ? "nosl.native-rewards-tape-replay-development.v1" : DatasetVersion;
+
     internal static async Task<object> CollectAsync(NativeTapeCollectionOptions options, TeacherOptions teacherOptions,
         CancellationToken cancellationToken = default)
     {
@@ -64,7 +69,7 @@ internal static class NativeTapeReplayDataset
             try
             {
                 var sourceWorld = await NativeRunWorld.OpenLabelTapeAsync(prior.Execution, recipe,
-                    new NativeLabelTape(recipe), budget.Token);
+                    NativeLabelTape.ForDeclaredPrior(prior, recipe), budget.Token);
                 if (sourceWorld is null)
                 { attempts.Add(new { sourceDrawSeed, recipe, status = "absent_under_declared_source_horizon", seconds = attemptTimer.Elapsed.TotalSeconds }); continue; }
                 DecisionPacket publicRoot;
@@ -76,20 +81,20 @@ internal static class NativeTapeReplayDataset
                 if (source.UsesPrimitiveConditioning) acceleratedRoots++;
                 var result = await CombatTeacher.EvaluateAsync(source, teacherOptions);
                 string runIdentity = NativePilotDataset.SourceIdentity(recipe.SourceIdentity);
-                string sourceRun = "native-tape-source-v1:" + runIdentity;
+                string sourceRun = (prior.UsesRewardsProvenance ? "native-rewards-tape-source-v1:" : "native-tape-source-v1:") + runIdentity;
                 string entry = publicRoot.Observation!.History.Single(e => e.Kind == NativeEntryAssets.EventKind).Detail;
                 string sourceCombat = sourceRun + "/public-entry:" + Hash(entry);
                 var record = JsonNode.Parse(PublicJson.Serialize(TeacherDataset.Record(result, sourceRun, sourceCombat,
                     sourceCombat + "/tape-root-family", teacherOptions.EvaluationSeeds, teacherOptions.ExplorationSeeds)))!.AsObject();
                 var audit = record["audit_only"]!.AsObject();
-                record["schema_version"] = DatasetVersion;
-                record["record_kind"] = "native_tape_replay_development_candidate";
-                audit["dataset_version"] = DatasetVersion;
+                record["schema_version"] = DatasetFor(prior);
+                record["record_kind"] = prior.UsesRewardsProvenance ? "native_rewards_tape_replay_development_candidate" : "native_tape_replay_development_candidate";
+                audit["dataset_version"] = DatasetFor(prior);
                 audit["source_kind"] = "natural_under_explicit_label_tape_prior";
                 audit["actual_seed"] = recipe.SourceIdentity;
                 audit["native_source_run_identity"] = runIdentity;
                 audit["native_run"] = true; audit["native_default_start"] = true;
-                audit["source_prior"] = NativeTapePrior.Version;
+                audit["source_prior"] = prior.SchemaVersion;
                 audit["source_prior_identity"] = prior.Identity;
                 audit["declared_prior"] = JsonNode.Parse(PublicJson.Serialize(prior));
                 audit["source_draw_seed"] = JsonValue.Create(sourceDrawSeed);
@@ -106,17 +111,25 @@ internal static class NativeTapeReplayDataset
                 audit["first_reward_conditioning_eligible"] = source.UsesConditionalFirstReward;
                 audit["first_encounter_conditioning_eligible"] = source.UsesConditionalFirstEncounter;
                 audit["initial_prefix_conditioning_eligible"] = source.UsesConditionalInitialPrefix;
+                if (prior.UsesRewardsProvenance)
+                {
+                    audit["public_reward_conditioning_eligible"] = source.UsesConditionalPublicRewards;
+                    audit["public_reward_targets"] = source.PublicRewardTargetCount;
+                    audit["public_combat_prefix_conditioning_eligible"] = source.UsesConditionalPublicCombats;
+                    audit["public_combat_shuffle_targets"] = source.PublicCombatShuffleTargets;
+                    audit["public_combat_hp_targets"] = source.PublicCombatHpTargets;
+                }
                 audit["public_local_decision_conditioning"] = source.ConditionedPublicDecisionIndex;
                 audit["public_combat_coordinate_conditioning"] = source.ConditionedPublicCombatIndex;
                 audit["conditioning_reason"] = source.ConditioningReason;
                 audit["formal_labels"] = false; audit["trainable"] = false; audit["engineering_smoke"] = true;
-                audit["posterior_implementation"] = ImplementationFor(prior.Execution);
-                audit["sampler_version"] = ImplementationFor(prior.Execution);
+                audit["posterior_implementation"] = ImplementationFor(prior);
+                audit["sampler_version"] = ImplementationFor(prior);
                 audit["posterior_proposals"] = JsonNode.Parse(PublicJson.Serialize(source.ProposalAudit));
                 audit["collection_id"] = options.CollectionId;
-                audit["versions"]!["dataset"] = DatasetVersion;
-                audit["versions"]!["sampler"] = ImplementationFor(prior.Execution);
-                audit["versions"]!["posterior_implementation"] = ImplementationFor(prior.Execution);
+                audit["versions"]!["dataset"] = DatasetFor(prior);
+                audit["versions"]!["sampler"] = ImplementationFor(prior);
+                audit["versions"]!["posterior_implementation"] = ImplementationFor(prior);
                 audit["versions"]!["source_prior"] = prior.Identity;
                 records.Add(record);
                 int acceptedHere = source.ProposalAudit.Count(a => a.Status == "accepted");

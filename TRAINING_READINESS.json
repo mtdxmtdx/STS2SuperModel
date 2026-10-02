@@ -28,7 +28,7 @@
     "data_pipeline_passed": 145,
     "generator_archive_passed": 63,
     "integrated_v2_teacher_to_backward": true,
-    "full_current_integration_passed": 1305,
+    "full_current_integration_passed": 1381,
     "natural_source_tests_passed": 5,
     "native_recorder_tests_passed": 7,
     "natural_raw_roots": 200,
@@ -98,7 +98,7 @@
     "confirmed_hard_preference_cases": 2,
     "confirmed_numerically_evaluated_preference_cases": 1,
     "cross_version_protection_cases": 24,
-    "current_full_suite": "PASS_1305_OF_1305",
+    "current_full_suite": "PASS_1381_OF_1381",
     "v2_trainer_no_fit_tests_passed": 21,
     "v2_student_no_backward_tests_passed": 19,
     "student_regression": 185,
@@ -137,7 +137,12 @@
     "conditional_tape_fresh_carry_in_roots": 12,
     "conditional_tape_fresh_complete_carry_in_roots": 0,
     "public_run_evidence_native_tests": 1305,
-    "public_run_evidence_student_tests": 26
+    "public_run_evidence_student_tests": 26,
+    "public_rewards_hybrid_report": "configs/native_rewards_hybrid_verification.json",
+    "public_rewards_hybrid_new_development_roots": 8,
+    "public_rewards_hybrid_proposals": 1024,
+    "public_rewards_hybrid_accepted_worlds": 0,
+    "public_rewards_hybrid_throughput_gate_passed": false
   },
   "remaining": [
     "V7 joint native initial-prefix conditioning passes the reused two-carry-in diagnostic gate:18/22branches settle,4ComputeTruncated,0EngineError. A separately predeclared16root development probe fails the breadth gate:0/12multi-action carry-in roots complete,20/226branches settle,206ComputeTruncated,0EngineError. Opt-in public run-evidence recording and the v4 engineering student are verified. General compositional likelihood proposals remain in progress; production scale and new fits remain paused.",

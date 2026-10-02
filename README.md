@@ -12,6 +12,7 @@ Silent A10 单场战斗 NOSL 独立工程。当前接入 **固定上游规则＋
 | [已确认偏好](docs/CONFIRMED_PREFERENCE_FEEDBACK.md) | 两个具体偏好约束及稀有药水的暂定倾向，不虚构统一价格 |
 | [50项验收映射](docs/M3_M6_ACCEPTANCE_MAP.md) | 原始编号逐项对应实测证据、支持边界和未完成工作 |
 | [M3–M6检查点](docs/M3_M6_ACCEPTANCE_CHECKPOINT.md) | 新实现、实测证据、数据阶段及尚未闭合的门槛 |
+| [混合采样验证](docs/NATIVE_REWARDS_TAPE.md) | 显式奖励先验、完整公开历史组合提议；8个新开发根局面的吞吐门槛未通过 |
 | [当前状态](docs/STATUS.md) | 已实现范围、阶段状态和剩余缺口 |
 | [开发与协议](docs/DEVELOPMENT.md) | 构建、测试、JSONL worker 和 API |
 | [实施结果](docs/M0-M2_REPORT.md) | M0–M2 改动与证据 |

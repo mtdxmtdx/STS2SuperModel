@@ -23,7 +23,7 @@
   "evidence": {
     "baseline_integration_cases": 31,
     "natural_encounter_adapter_opening_cases": 80,
-    "current_full_suite": "PASS_1305_OF_1305",
+    "current_full_suite": "PASS_1381_OF_1381",
     "build": "PASS_0_WARNINGS_0_ERRORS",
     "client_fidelity": "UPSTREAM_TRUSTED_NOT_INDEPENDENTLY_VERIFIED",
     "protocol_two_process": "PASS",
@@ -56,7 +56,7 @@
     "pilot_closed_loop_source_battles": 16,
     "generator_archive_passed": 63,
     "experimental_resource_guard_cases": 17,
-    "full_current_integration_passed": 1305,
+    "full_current_integration_passed": 1381,
     "python_student_passed": 185,
     "reviewed_continuation_v2": true,
     "common_inventory_relative_native_outcomes": 80,
@@ -114,7 +114,12 @@
     "conditional_tape_fresh_carry_in_roots": 12,
     "conditional_tape_fresh_complete_carry_in_roots": 0,
     "public_run_evidence_native_tests": 1305,
-    "public_run_evidence_student_tests": 26
+    "public_run_evidence_student_tests": 26,
+    "public_rewards_hybrid_report": "configs/native_rewards_hybrid_verification.json",
+    "public_rewards_hybrid_new_development_roots": 8,
+    "public_rewards_hybrid_proposals": 1024,
+    "public_rewards_hybrid_accepted_worlds": 0,
+    "public_rewards_hybrid_throughput_gate_passed": false
   },
   "full_silent_content_ready": false,
   "ready_for_training": false,
