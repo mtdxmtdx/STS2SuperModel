@@ -1,0 +1,53 @@
+{
+  "schema": "nosl.public-history-followup-verification.v1",
+  "status": "FOCUSED_COMPONENTS_VERIFIED_BROAD_GATE_STILL_CLOSED",
+  "source_commit": "be97e50",
+  "prior_unchanged": true,
+  "public_observation_bytes_unchanged": true,
+  "sampler_probe_not_rerun": true,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_production_rows": 0,
+  "full_m3_m6_complete": false,
+  "implemented": [
+    "Source-reviewed weak-slime turns, bounded plain Slimed discard generation, and Slimed Draw/Exhaust; draw certificate v4",
+    "Generated plain Slimed physical-card admission at actual owned reshuffle marker with unchanged exact public-pool correction",
+    "Incremental label-only evidence check at each detached append, including maps/events/rewards; original callback failure precedence preserved"
+  ],
+  "combined_main_regression": {
+    "passed": 81,
+    "failed": 0,
+    "skipped": 0,
+    "filter": "NativeSlimeDrawClosureTests | NativePublicMonsterBranchIntent | NativeEarlyPublicPrefix | NativePublicPrefixConstraint | NativeConditionedWordFailure | NativeHybridV6",
+    "trx": {
+      "path": "artifacts/reports/hybrid-v7/slime-early-prefix.trx",
+      "bytes": 126046,
+      "sha256": "b748d11a2fedd583fd009f0c87459e9be78f4e6b6d10d63dc18ca945492d294d"
+    },
+    "log": {
+      "path": "artifacts/hybrid-v7-components.log",
+      "bytes": 2195,
+      "sha256": "5588fa6ea6af983de9429af1c5cb9e45f63d9d37eed20309703f0337190d9c22"
+    }
+  },
+  "early_prefix_author_regression": {
+    "source_commit": "43b6503a1ec666d3722e7f1b996c5d57d7a6ef18",
+    "passed": 109,
+    "failed": 0,
+    "trx": {
+      "path": "artifacts/reports/hybrid-v7/early-prefix-author.trx",
+      "bytes": 158951,
+      "sha256": "061b2ccbb30acb54eabf1d1ad411f10bc5ab440c7ad8f8df8d2b7b12d36c870a"
+    },
+    "separate_raw_log_available": false
+  },
+  "independent_review": [
+    "Slime closure and generated physical pool: separate reviewer approved; native Slimed shuffle-before-Exhaust edge covered",
+    "Early prefix observer, exception identity, continuation and source-byte preservation: lead read-only review clear"
+  ],
+  "boundaries": [
+    "Previous v6 1689/Core4493+3 and reused-eight results remain pinned to their documented historical sources",
+    "No new full aggregate or throughput/breadth assertion for this followup",
+    "Finite later-encounter, all-public-map-slice and whole-event-permutation accelerators remain separate work in progress"
+  ]
+}

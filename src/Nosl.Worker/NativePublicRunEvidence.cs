@@ -16,10 +16,11 @@ namespace Nosl.Worker;
 /// observer scopes only; every emitted value is an explicitly selected public DTO.
 /// No source trace, encounter catalog, random state, or outcome ledger is an input.
 /// </summary>
-internal sealed class NativePublicRunEvidence(RunState run, string? mapObservationProfile = null)
+internal sealed class NativePublicRunEvidence(RunState run, string? mapObservationProfile = null,
+    Action<PublicRunEvidenceEvent>? onAppended = null)
 {
     private PublicRunEvidenceRecorder? _recorder;
-    private PublicRunEvidenceRecorder Recorder => _recorder ??= new(null);
+    private PublicRunEvidenceRecorder Recorder => _recorder ??= new(null, onAppended);
     private readonly Dictionary<AbstractRoom, long> _rooms = new(ReferenceEqualityComparer.Instance);
     private readonly List<(RewardsSet Set, long Owner)> _rewards = [];
     private readonly Dictionary<RewardsSet, long> _lastRewardOffers = new(ReferenceEqualityComparer.Instance);
@@ -40,7 +41,7 @@ internal sealed class NativePublicRunEvidence(RunState run, string? mapObservati
     internal void BeginRun(bool observedNativeStart)
     {
         if (_recorder is not null) { Recorder.RecordGap(null, PublicEvidenceGapReason.Interrupted); return; }
-        _recorder = new(observedNativeStart ? new("Silent", 10, Assets(run.Players.Single())) : null);
+        _recorder = new(observedNativeStart ? new("Silent", 10, Assets(run.Players.Single())) : null, onAppended);
     }
     internal PublicRunEvidence Capture() => Recorder.Capture();
     internal void EnterFloor() => _floorObserved = true;

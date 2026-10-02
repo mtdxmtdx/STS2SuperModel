@@ -21,7 +21,7 @@ internal sealed record NativePublicDrawPrefixAudit(string CertificateVersion, in
 /// </summary>
 internal static class NativePublicDrawPrefixCondition
 {
-    internal const string Version = "nosl.public-first-draw-cycle.v3";
+    internal const string Version = "nosl.public-first-draw-cycle.v4";
 
     // Read the complete sealed OnPlay implementations, including both upgrade branches and
     // inherited result locations. Strike/Defend's GeneratedCardSpec has no GeneratedPowerEffect.
@@ -36,11 +36,14 @@ internal static class NativePublicDrawPrefixCondition
     private static readonly HashSet<string> PlayedCards =
     [nameof(StrikeSilent), nameof(DefendSilent), nameof(Neutralize), nameof(Survivor),
         nameof(Backflip), nameof(Deflect), nameof(Mirage), nameof(NeowsFury), nameof(Strangle),
-        nameof(Finisher), nameof(SuckerPunch)];
+        nameof(Finisher), nameof(SuckerPunch), nameof(Slimed)];
     // All callbacks and branch selection reviewed, not merely the published numeric intent.
     // CorpseSlug: damage/Frail/stun; SludgeSpinner: damage/Weak/Strength; Toadpole:
     // fixed front/rear cyclic attacks and Thorns +/-2. None summons or touches piles.
-    private static readonly HashSet<string> EnemyTurns = [nameof(CorpseSlug), nameof(SludgeSpinner), nameof(Toadpole)];
+    // Twig/Leaf attacks only damage; their other moves generate plain Slimed to Discard.
+    // Their entire graphs and entry/generation callbacks are reviewed, not just intent IDs.
+    private static readonly HashSet<string> EnemyTurns = [nameof(CorpseSlug), nameof(SludgeSpinner), nameof(Toadpole),
+        nameof(TwigSlimeS), nameof(TwigSlimeM), nameof(LeafSlimeS), nameof(LeafSlimeM)];
     // Exact PowerModel implementations, including BeforeApplied/AfterApplied/AfterRemoved.
     // Weak/Frail only scale values/tick duration, Strength scales damage, Ravenous changes
     // CorpseSlug AI and applies Strength on a death. StranglePower only snapshots its
@@ -104,11 +107,13 @@ internal static class NativePublicDrawPrefixCondition
         var decision = (PublicCombatDecision)first.Payload;
         long decisionOrdinal = first.EventOrdinal;
         var roster = decision.Observation.Enemies.ToDictionary(enemy => enemy.Slot, enemy => enemy.Id);
-        Dictionary<string, int>? remaining = entry.Deck.GroupBy(card => card.Id, StringComparer.Ordinal)
+        var inventory = entry.Deck.GroupBy(card => card.Id, StringComparer.Ordinal)
             .ToDictionary(group => group.Key, group => group.Count(), StringComparer.Ordinal);
+        Dictionary<string, int>? remaining = new(inventory, StringComparer.Ordinal);
         foreach (string id in prefix) remaining[id]--;
         string? stop = CheckSnapshot(decision, first.EventOrdinal);
         string? activeKind = null, activeModel = null, pendingCard = null;
+        int pendingSlimed = 0;
         bool decisionAvailable = true;
         if (stop is null)
         {
@@ -158,10 +163,11 @@ internal static class NativePublicDrawPrefixCondition
                 // reshuffle and the snapshot. No hidden order or physical membership is read.
                 var pool = actual.SelectMany(pair => Enumerable.Repeat(pair.Key, pair.Value))
                     .Concat(cycle!.Prefix).ToArray();
-                var entryCounts = entry.Deck.GroupBy(card => card.Id, StringComparer.Ordinal)
-                    .ToDictionary(group => group.Key, group => group.Count(), StringComparer.Ordinal);
+                // Entry plus explicitly witnessed generation is only an upper bound:
+                // exhaust/hand membership can vary. This snapshot fixes the EXACT pool,
+                // so the correction envelope never depends on a sampled latent pool.
                 if (pool.Length == 0 || pool.GroupBy(id => id, StringComparer.Ordinal)
-                    .Any(group => !entryCounts.TryGetValue(group.Key, out int count) || group.Count() > count))
+                    .Any(group => !inventory.TryGetValue(group.Key, out int count) || group.Count() > count))
                     return "reshuffle_snapshot_pool_mismatch";
                 cycle.Pool = pool; cycle.WitnessEvent = eventOrdinal;
                 remaining = new(actual, StringComparer.Ordinal);
@@ -179,6 +185,7 @@ internal static class NativePublicDrawPrefixCondition
                     if (CheckSnapshot(next, observed.EventOrdinal) is { } snapshotReason) return snapshotReason;
                     decision = next; decisionOrdinal = observed.EventOrdinal; decisionAvailable = true;
                     activeKind = activeModel = null;
+                    pendingSlimed = 0;
                     if (next.Status != "card_choice") pendingCard = null;
                     return null;
                 case PublicCombatActionTaken taken:
@@ -188,6 +195,7 @@ internal static class NativePublicDrawPrefixCondition
                     var observation = decision.Observation;
                     activeKind = action.Kind;
                     activeModel = null;
+                    pendingSlimed = 0;
                     switch (action.Kind)
                     {
                         case "play":
@@ -218,6 +226,10 @@ internal static class NativePublicDrawPrefixCondition
                             // only the currently public hand, including unseen card IDs elsewhere.
                             if (observation.Hand.Any(card => !HasNoTurnEndEffect(card.Id)))
                                 return "draw_cycle_hand_end_effect_not_certified";
+                            // Under the complete listener/turn closure, these are the ONLY
+                            // possible generation sources. StatusIntent omits its count;
+                            // exact sealed move implementations fix it at one or two.
+                            pendingSlimed = observation.Enemies.Sum(SlimedGenerationLimit);
                             return null;
                         default: return "draw_cycle_action_not_certified";
                     }
@@ -225,23 +237,35 @@ internal static class NativePublicDrawPrefixCondition
                     if (fact.FactKind == PublicCombatFactKind.Shuffled)
                     {
                         if (!allowReshuffles) return "first_reshuffle";
-                        if (activeKind != "end_turn" && activeModel is not (nameof(Backflip) or nameof(SwiftPotion)))
+                        if (activeKind != "end_turn" && !IsOrdinaryDrawSource(activeModel))
                             return "reshuffle_source_not_certified";
                         if (remaining is null) return "reshuffle_public_witness_missing";
                         if (remaining.Values.Sum() != 0) return "reshuffle_before_draw_pool_exhausted";
                         cycle = new(cycles.Count, observed.EventOrdinal); cycles.Add(cycle);
                         remaining = null;
+                        pendingSlimed = 0;
                         return null;
                     }
-                    if (fact.FactKind is PublicCombatFactKind.CardGenerated or PublicCombatFactKind.HiddenCardGenerated)
+                    if (fact.FactKind == PublicCombatFactKind.HiddenCardGenerated)
                         return "draw_cycle_generation_not_certified";
+                    if (fact.FactKind == PublicCombatFactKind.CardGenerated)
+                    {
+                        // The public fact carries no destination. Only this closed native
+                        // enemy-turn path proves Discard; visible generation alone cannot.
+                        if (activeKind != "end_turn" || pendingSlimed == 0 || !IsPlainGeneratedSlimed(fact.Cards.Single()))
+                            return "draw_cycle_generation_not_certified";
+                        pendingSlimed--;
+                        inventory[nameof(Slimed)] = inventory.GetValueOrDefault(nameof(Slimed)) + 1;
+                        return null;
+                    }
                     if (fact.FactKind == PublicCombatFactKind.PreSettlement) return "combat_pre_settlement";
                     if (activeKind is null) return "draw_cycle_effect_without_certified_action";
                     switch (fact.FactKind)
                     {
                         case PublicCombatFactKind.CardDrawn:
-                            if (activeKind != "end_turn" && activeModel is not (nameof(Backflip) or nameof(SwiftPotion)))
+                            if (activeKind != "end_turn" && !IsOrdinaryDrawSource(activeModel))
                                 return "draw_cycle_draw_source_not_certified";
+                            pendingSlimed = 0;
                             var drawn = fact.Cards.Single();
                             if (!SafeCardMetadata(drawn)) return "draw_cycle_draw_pool_mismatch";
                             if (remaining is not null)
@@ -272,6 +296,7 @@ internal static class NativePublicDrawPrefixCondition
                         case PublicCombatFactKind.Damage: return null;
                         case PublicCombatFactKind.PlayerTurnStarted:
                         case PublicCombatFactKind.PlayerTurnEnded:
+                            pendingSlimed = 0;
                             return activeKind == "end_turn" ? null : "draw_cycle_turn_not_certified";
                         case PublicCombatFactKind.IntentPublished:
                             return roster.TryGetValue(fact.TargetSlot!.Value, out string? id) && id == fact.Model
@@ -285,6 +310,26 @@ internal static class NativePublicDrawPrefixCondition
 
     private static bool IsSly(PublicCard card) => card.Keywords.Contains("Sly", StringComparer.Ordinal)
         || card.Details?.SlyThisTurn == true;
+
+    // Slimed's complete OnPlay is ordinary Draw(1, fromHandDraw:false), with inherited
+    // Exhaust result. Its entry/draw/exhaust/turn-end and generation hooks are base no-ops.
+    private static bool IsOrdinaryDrawSource(string? model) => model is nameof(Backflip) or nameof(SwiftPotion) or nameof(Slimed);
+
+    private static int SlimedGenerationLimit(PublicEnemy enemy) => enemy.Hp > 0
+        && enemy.Intents is [{ Kind: "StatusCard", Damage: null, Repeats: null }]
+        ? enemy.Id switch { nameof(TwigSlimeM) or nameof(LeafSlimeS) => 1, nameof(LeafSlimeM) => 2, _ => 0 }
+        : 0;
+
+    internal static bool IsPlainGeneratedSlimed(PublicCard card) => card is
+        { Id: nameof(Slimed), Upgrade: 0, Cost: 1, StarCost: -1, Type: "Status", Affliction: null }
+        && card.Keywords.SequenceEqual(["Exhaust"])
+        && (card.Enchantments?.Length ?? 0) == 0
+        && card.Details is { CostsXEnergy: false, CostsXStar: false, LocalEnergyCost: 1, LocalStarCost: -1,
+            RetainThisTurn: false, SlyThisTurn: false, BaseReplayCount: 0, ExhaustOnNextPlay: false,
+            FreeThisTurn: false, FreeUntilPlayed: false, FreeThisCombat: false, StarCostThisTurn: null,
+            EnergyModifiers.Length: 0 }
+        && card.PublicState is { Count: 2 } state && state.TryGetValue("targetType", out string? target) && target == "None"
+        && state.TryGetValue("tags", out string? tags) && tags == "";
 
     private static bool SafeCardMetadata(PublicCard card) => card.Affliction is null
         && (card.Enchantments ?? []).All(effect => effect.Id == nameof(Sharp));

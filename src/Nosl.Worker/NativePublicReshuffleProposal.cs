@@ -61,9 +61,13 @@ internal sealed class NativePublicReshuffleProposal(NativePublicReshuffleConditi
         if (target is null) return null;
         var cards = items.OfType<CardModel>().ToArray();
         var actualPool = state.DiscardPile.Cards.Concat(state.DrawPile.Cards).ToArray();
+        // Closed slime generation creates a new physical Slimed without a deck origin.
+        // It is still a distinct owned index in the exact native pile union. The public
+        // witness fixes the ID counts below; no sampled-pool envelope is substituted.
         if (cards.Length != items.Count || cards.Distinct(ReferenceEqualityComparer.Instance).Count() != cards.Length
             || cards.Length != actualPool.Length || cards.Any(card => !ReferenceEquals(card.Owner, context.Player)
-                || card.DeckVersion is null || card.Pile?.Type is not (PileType.Draw or PileType.Discard))
+                || (card.DeckVersion is null && !NativePublicDrawPrefixCondition.IsPlainGeneratedSlimed(PublicViews.Card(card)))
+                || card.Pile?.Type is not (PileType.Draw or PileType.Discard))
             || actualPool.Any(card => !cards.Contains(card, ReferenceEqualityComparer.Instance)))
             throw new InvalidOperationException("Reshuffle boundary does not contain its owned physical pile union");
         string[] ids = cards.Select(card => card.GetType().Name).ToArray();

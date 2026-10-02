@@ -225,7 +225,7 @@ public static class NaturalSourceCollector
         private readonly PublicEventChoiceController _eventController = new(options.OutsideCombatScript);
         private readonly bool _emitRunContext = PublicRunContext.ValidateChannel(options.PublicContextProfile, options.PublicCombatHistoryMode);
         private readonly NativePublicRunEvidence? _evidence = options.EmitsPublicEvidence
-            ? new(run, options.PublicMapObservationProfile) : null;
+            ? new(run, options.PublicMapObservationProfile, ownedControl?.PublicEvidenceObserver) : null;
         internal PublicRunEvidence? CaptureEvidence() => _evidence?.Capture();
         private bool _beginRunObserved, _completeFromRunStart;
         private EventModel? _eventOwner;

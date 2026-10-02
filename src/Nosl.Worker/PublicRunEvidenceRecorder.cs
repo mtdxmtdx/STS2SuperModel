@@ -17,14 +17,22 @@ public sealed class PublicRunEvidenceRecorder
     private PublicRunEvidence _evidence;
     private ImmutableArray<PublicRunEvidenceEvent> Events => _evidence.Events;
     private readonly Dictionary<long, List<string>> _historyHashes = [];
+    private readonly Action<PublicRunEvidenceEvent>? _onAppended;
+    private Exception? _observerFailure;
     private long _nextOwner;
     private readonly Dictionary<long, (long Decision, int HistoryIndex, string Action)> _pendingActionEchoes = [];
 
-    public PublicRunEvidenceRecorder(PublicRunStarted? observedRunStart)
+    public PublicRunEvidenceRecorder(PublicRunStarted? observedRunStart) : this(observedRunStart, null) { }
+
+    // Only owned label replay supplies an observer. Ordinary source collection
+    // retains the same public API and records exactly the same detached events.
+    internal PublicRunEvidenceRecorder(PublicRunStarted? observedRunStart, Action<PublicRunEvidenceEvent>? onAppended)
     {
+        _onAppended = onAppended;
         _evidence = new(PublicRunEvidence.Version, observedRunStart is not null,
             [new(0, null, observedRunStart is null
                 ? new PublicEvidenceGap(PublicEvidenceGapReason.RunStartNotObserved) : observedRunStart)]);
+        NotifyAppended(Events[0]);
     }
 
     public PublicRunEvidence Capture() => _evidence;
@@ -90,7 +98,8 @@ public sealed class PublicRunEvidenceRecorder
                     "revision", "kind", "slot", "target", "selection"));
                 else Record(ownerOrdinal, Project(history[i]));
             }
-            catch (Exception e) when (e is ArgumentException or JsonException or NotSupportedException or InvalidOperationException or FormatException or OverflowException)
+            catch (Exception e) when (!ReferenceEquals(e, _observerFailure)
+                && e is ArgumentException or JsonException or NotSupportedException or InvalidOperationException or FormatException or OverflowException)
             {
                 RecordGap(ownerOrdinal, PublicEvidenceGapReason.UnsupportedObservation);
             }
@@ -142,7 +151,20 @@ public sealed class PublicRunEvidenceRecorder
         var entry = new PublicRunEvidenceEvent(Events.Length, owner, payload);
         // The validated immutable transition cannot retain a rejected event or alter a saved capture.
         _evidence = _evidence.Append(entry);
+        NotifyAppended(entry);
         return entry.EventOrdinal;
+    }
+
+    private void NotifyAppended(PublicRunEvidenceEvent entry)
+    {
+        try { _onAppended?.Invoke(entry); }
+        catch (Exception error)
+        {
+            // Observer control flow is not malformed public input. Preserve its
+            // exact exception even when it uses a projection-error exception type.
+            _observerFailure = error;
+            throw;
+        }
     }
 
     private static string Hash(string text) => Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(text)));

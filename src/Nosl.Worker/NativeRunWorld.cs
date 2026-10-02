@@ -14,6 +14,7 @@ namespace Nosl.Worker;
 // Optional ownership seam; ordinary collection retains its original behavior.
 internal interface INativeRunControl
 {
+    Action<PublicRunEvidenceEvent>? PublicEvidenceObserver => null;
     void CombatEntering(NativeEntryAssets entry) { }
     void BeforeDecision();
     Task<PublicAction?> DecideAsync(DecisionPacket packet, NaturalSourceBoundary boundary);
@@ -185,6 +186,9 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         _combatIndex++; _localDecision = 0;
         _labelTape?.CombatEntering(_combatIndex, entry, NativeRun.Rng.Shuffle);
     }
+
+    Action<PublicRunEvidenceEvent>? INativeRunControl.PublicEvidenceObserver =>
+        _labelTape is null ? null : _labelTape.ObservePublicEvidence;
 
     void INativeRunControl.BeforeDecision()
     {

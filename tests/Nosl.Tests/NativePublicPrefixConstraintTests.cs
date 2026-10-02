@@ -44,4 +44,20 @@ public sealed class NativePublicPrefixConstraintTests
         Assert.Equal(3, constraint.CheckedEvents);
         Assert.Equal(Recorded().Capture().Events.Length, target.Events.Length);
     }
+
+    [Fact]
+    public void PerAppendChecksRequireContiguousEventsOnlyUntilTargetEnds()
+    {
+        var target = Recorded().Capture();
+        var constraint = new NativePublicPrefixConstraint(target);
+        Assert.Throws<InvalidOperationException>(() => constraint.Observe(target.Events[1]));
+        constraint.Observe(target.Events[0]);
+        Assert.Throws<InvalidOperationException>(() => constraint.Observe(target.Events[0]));
+        foreach (var entry in target.Events.Skip(1)) constraint.Observe(entry);
+        Assert.Equal(target.Events.Length, constraint.CheckedEvents);
+        // Once the target ends, even unrelated candidate events add no constraint.
+        constraint.Observe(new(999, null, new PublicEvidenceGap(PublicEvidenceGapReason.Interrupted)));
+        constraint.Check(target);
+        Assert.Equal(target.Events.Length, constraint.CheckedEvents);
+    }
 }

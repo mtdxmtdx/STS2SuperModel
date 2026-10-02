@@ -285,6 +285,11 @@ internal sealed class NativeLabelTape
         RequireSuccessfulConditionedWords();
         _publicPrefixConstraint?.Check(evidence);
     }
+    internal void ObservePublicEvidence(PublicRunEvidenceEvent evidence)
+    {
+        RequireSuccessfulConditionedWords();
+        _publicPrefixConstraint?.Observe(evidence);
+    }
 
     private IDisposable EnterStateOverride(Func<LabelRandomState, ulong> nextState) => _rewardsOracle is null
         ? LabelRandomScope.Enter(nextState)

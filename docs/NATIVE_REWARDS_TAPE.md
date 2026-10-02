@@ -43,9 +43,13 @@ and the base identities of standard primary combat card offers. Reward rarity
 arms remain latent and carry their native probability; a root-wide catalog
 bound supports exact rejection correction. Native hooks, typed evidence and
 final full-packet equality retain all remaining public observations. A public
-prefix contradiction can stop a hypothetical replay at its next stable decision
-without spending the rest of that replay budget. Unresolved structural errors
-remain distinct from proven public contradictions.
+prefix contradiction stops an owned label replay as soon as its detached event
+is appended, including outside-combat options, map choices and reward offers,
+before a later combat-entry guard can hide it. The optional observer compares
+each target event once and stops constraining events when that prefix ends;
+ordinary source recording and final full-packet equality are unchanged.
+Unresolved conditioned-word failures take precedence over later public
+contradictions, and observer exceptions are never converted into evidence gaps.
 
 See [primary reward identities](NATIVE_PUBLIC_REWARD_IDENTITY.md),
 [historical startups](NATIVE_PUBLIC_COMBAT_PREFIXES.md), and
