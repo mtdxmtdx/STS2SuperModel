@@ -40,6 +40,9 @@ public static class TeacherRanking
     public static (double Lower, double Upper)? RestrictedSupport(CombatSession session, ObjectiveProfile profile)
     {
         if (!BeliefSampler.UsesExchangeablePosterior(session)) return null;
+        // A new posterior family does not inherit the original family's support
+        // certificate merely because its distinguishing cards left current piles.
+        if (BeliefSampler.PosteriorProfileFor(session) == BeliefSampler.SlyExchangeableProfile) return null;
         var o = session.Observe().Observation!;
         string[] cards = ["StrikeSilent","DefendSilent","Neutralize","Survivor","AscendersBane","Acrobatics","Backflip","Prepared","ThinkingAhead","DeadlyPoison","Slimed","CloakAndDagger","DaggerThrow","Dash","LegSweep","Blur","DodgeAndRoll","BladeDance","PoisonedStab","Slice","NoxiousFumes","DaggerSpray","Footwork","Shiv"];
         string[] relics = ["RingOfTheSnake","MeatOnTheBone","ChosenCheese"];

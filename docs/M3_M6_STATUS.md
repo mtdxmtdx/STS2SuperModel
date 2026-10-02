@@ -15,17 +15,25 @@ The new v2 real simulator record passes the actual preparation CLI and forward/b
 
 ## Verification evidence
 
-Final integrated checkpoint: **929/929 C# cases passed, zero skips/failures** in isolated build output after integrating the new native observer hook. This is separate from the earlier frozen upstream regression.
+Final integrated checkpoint: **944/944 C# cases passed, zero skips/failures** in isolated build output, including the Sly posterior extension and strengthened callback assertions. This is separate from the earlier frozen upstream regression.
 
 - Trusted upstream bridge checkpoint: 803 integration cases, plus 4,479 upstream tests passed and 3 opt-in skips. The later observer-decorator hook has separate native invariance and recorder tests; the older full-Core result is not attributed to it.
 - M3/objective and teacher regression: 44 cases passed; with the 10 bridge-safety cases, 54 passed.
 - Python student/integrity regression: 165 cases passed, including Quest and resource-policy guard regressions.
-- Calibration evidence-tool mutation regressions: 24 passed, plus 21,180 archived outcome arithmetic checks; these are not simulator cases.
-- Data engineering/report/identity regression: 105 cases passed.
+- Calibration evidence-tool mutation regressions: 45 passed, including the exact new preference constraints, plus 21,180 archived outcome arithmetic checks; these are not simulator cases.
+- Data engineering/report/identity regression: 129 cases passed.
 - Generator persistence/archive/phase/recovery checks: 63 cases passed, including reviewed balanced allocation and attempted-block accounting.
 - Natural-source collector: 5 cases passed, plus 7 original RunDriver recorder cases. Native startup/map/combat/reward progression and observer/RNG invariance are separate evidence. Actual proof cohort: 200 raw roots, 6 runs, 26 combats, 15 encounters; zero source errors. The independently reviewed native carry-in prototype certifies 16 of 200 roots for 87 action targets / 174 settled branches; 184 remain raw. Only one of six runs contributes the eligible subset. These development records are not admitted as training data.
 
 Reports are generated beneath the ignored `artifacts/` directory. Current pilot results and remaining gates are in [FIRST_BOUNDED_PILOT.md](FIRST_BOUNDED_PILOT.md). Earlier numerical gates below are historical evidence.
+
+The subsequent [160-attempt balanced block](BALANCED_VALIDATION_BLOCK.md) completed
+with 73 effective roots and eight diagnostic records. All attempts are accounted
+for; 26 timed out and 53 phases were unavailable. It does not pass the scale gate.
+The [confirmed preference feedback](CONFIRMED_PREFERENCE_FEEDBACK.md) constrains
+one exact death-risk example and one FirePotion tradeoff without assigning prices.
+The [Sly sampler](CONSTRUCTED_SLY_POSTERIOR.md) fixes one measured computational
+bottleneck under a distinct prior/version, not general natural carry-in coverage.
 
 ## Data-stage boundaries
 

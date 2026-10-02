@@ -62,7 +62,8 @@ public sealed class NativeBeliefTests
     [Fact]
     public async Task SamePublicNativeHistoryErasesHiddenOrderAndFutureStreamsBeforePolicyContinuation()
     {
-        await NaturalSourceCollector.CollectWithNativeBoundaryAsync(new(MaxRoots: 1, SeedPrefix: SourceSeed), async (root, boundary) =>
+        bool callbackCompleted = false;
+        var report = await NaturalSourceCollector.CollectWithNativeBoundaryAsync(new(MaxRoots: 1, SeedPrefix: SourceSeed), async (root, boundary) =>
         {
             await using var original = CombatSession.ImportNative(root, boundary);
             await using var perturbed = original.ForkExact();
@@ -99,13 +100,19 @@ public sealed class NativeBeliefTests
             }
             Assert.Equal("terminal_settled", a.Observe().Status);
             Assert.Equal(PublicJson.Serialize(await a.SettleAsync()), PublicJson.Serialize(await b.SettleAsync()));
+            callbackCompleted = true;
         });
+        // The collector records callback exceptions as source errors; do not let
+        // swallowed assertions turn this information-isolation test into a pass.
+        Assert.All(report.Runs, run => Assert.Null(run.Error));
+        Assert.True(callbackCompleted);
     }
 
     [Fact]
     public async Task CertificateIsFailClosedForEntryAssetsHistoryPrivateRoleAndChoiceReplay()
     {
-        await NaturalSourceCollector.CollectWithNativeBoundaryAsync(new(MaxRoots: 1, SeedPrefix: SourceSeed), async (root, boundary) =>
+        bool callbackCompleted = false;
+        var report = await NaturalSourceCollector.CollectWithNativeBoundaryAsync(new(MaxRoots: 1, SeedPrefix: SourceSeed), async (root, boundary) =>
         {
             Assert.Throws<NotSupportedException>(() => CombatSession.ImportNative(root, boundary with { HistoryComplete = false }));
             Assert.Throws<NotSupportedException>(() => CombatSession.ImportNative(root,
@@ -124,7 +131,10 @@ public sealed class NativeBeliefTests
             await Assert.ThrowsAsync<NotSupportedException>(() => BeliefSampler.SampleWorldAsync(native, 4));
             await native.StepAsync(native.Observe().Actions.First());
             Assert.Equal("player_decision", native.Observe().Status);
+            callbackCompleted = true;
         });
+        Assert.All(report.Runs, run => Assert.Null(run.Error));
+        Assert.True(callbackCompleted);
     }
 
     [Fact]

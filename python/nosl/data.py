@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import hashlib
 import math
+import re
 from pathlib import Path
 
 from .public_identity import PUBLIC_IDENTITY_SCHEME, public_input_digest
@@ -134,6 +135,118 @@ def _hash_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+
+REGISTRY_VERSION = "nosl.dataset.split-protection.v1"
+SPLITS = {"train", "validation", "test"}
+TOKEN_PREFIXES = {"source_run_group", "source_combat_id", "branch_family",
+                  "public_state_digest", "prepared_public_input_digest"}
+
+
+def require(condition, reason):
+    if not condition:
+        raise ValueError("split_protection:" + reason)
+
+
+def is_sha256(value):
+    return isinstance(value, str) and re.fullmatch(r"[0-9a-f]{64}", value) is not None
+
+
+def registry_bytes(registry):
+    return (json.dumps(registry, sort_keys=True, separators=(",", ":"),
+                       ensure_ascii=False, allow_nan=False) + "\n").encode("utf-8")
+
+
+def registry_hash(registry):
+    return hashlib.sha256(registry_bytes(registry)).hexdigest()
+
+
+def validate_components(components):
+    require(isinstance(components, dict) and bool(components), "components_missing")
+    owners = {}
+    for group, info in components.items():
+        require(is_sha256(group) and isinstance(info, dict)
+                and set(info) == {"split", "tokens"} and info["split"] in SPLITS,
+                "component_invalid")
+        tokens = info["tokens"]
+        require(isinstance(tokens, list) and all(isinstance(t, str) for t in tokens)
+                and tokens == sorted(set(tokens)), "component_tokens_invalid")
+        for token in tokens:
+            prefix, separator, value = token.partition(":")
+            require(separator and prefix in TOKEN_PREFIXES and bool(value.strip()), "token_invalid")
+            require(prefix != "prepared_public_input_digest" or is_sha256(value), "digest_invalid")
+            require(token not in owners, "token_has_multiple_owners")
+            owners[token] = group
+        expected = hashlib.sha256(json.dumps(tokens, ensure_ascii=False,
+                                              separators=(",", ":")).encode()).hexdigest()
+        require(group == expected, "component_digest_mismatch")
+    return owners
+
+
+def validate_registry(registry):
+    require(isinstance(registry, dict) and set(registry) == {
+        "schema_version", "public_identity_scheme", "source", "components"}, "fields_invalid")
+    require(registry["schema_version"] == REGISTRY_VERSION, "version_unknown")
+    require(registry["public_identity_scheme"] == PUBLIC_IDENTITY_SCHEME, "identity_unknown")
+    source = registry["source"]
+    require(isinstance(source, dict) and set(source) == {
+        "manifest_sha256", "split_state_sha256", "versions", "frozen_test_shards"}, "source_invalid")
+    require(is_sha256(source["manifest_sha256"]) and is_sha256(source["split_state_sha256"]),
+            "source_hash_invalid")
+    require(isinstance(source["versions"], dict) and bool(source["versions"])
+            and all(isinstance(v, str) and v for v in source["versions"].values()), "source_versions_invalid")
+    require(isinstance(source["frozen_test_shards"], list), "source_frozen_test_invalid")
+    for shard in source["frozen_test_shards"]:
+        require(isinstance(shard, dict) and set(shard) == {"sha256", "bytes", "rows"}
+                and is_sha256(shard["sha256"]) and type(shard["bytes"]) is int and shard["bytes"] >= 0
+                and type(shard["rows"]) is int and shard["rows"] >= 0, "source_frozen_test_invalid")
+    validate_components(registry["components"])
+    return registry
+
+
+def validate_binding(lock, descriptors, read_registry, state):
+    """Enforce the optional contract in both preparation and the student loader.
+
+    Ordinary datasets have neither the lock key nor a registry descriptor. The
+    registry is an immutable first-stage file; later states retain all aliases.
+    """
+    bound = lock.get("split_protection")
+    files = [item for item in descriptors if item["kind"] == "split_protection"]
+    if bound is None:
+        require(not files, "unbound_registry")
+        return None
+    require(isinstance(bound, dict) and set(bound) == {"schema_version", "sha256"}
+            and bound["schema_version"] == REGISTRY_VERSION and is_sha256(bound["sha256"]),
+            "binding_version_or_hash_invalid")
+    require(len(files) == 1 and files[0]["sha256"] == bound["sha256"], "registry_binding_mismatch")
+    registry = validate_registry(read_registry(files[0]["path"]))
+    require(registry_hash(registry) == bound["sha256"], "registry_checksum_mismatch")
+    validate_state_protection(state, registry)
+    return registry
+
+
+def validate_state_protection(state, registry, *, enforce_exclusion=True):
+    owners = validate_components(state["components"])
+    protected_test_groups = set()
+    for info in registry["components"].values():
+        groups = {owners.get(token) for token in info["tokens"]}
+        require(None not in groups and len(groups) <= 1, "protected_alias_closure_removed")
+        require(all(state["components"][group]["split"] == info["split"] for group in groups),
+                "protected_split_reassigned")
+        if info["split"] == "test":
+            protected_test_groups.update(groups)
+    for digest, info in state["seen_public_digests"].items():
+        group = owners.get("prepared_public_input_digest:" + digest)
+        require(group is not None and state["components"][group]["split"] == info["split"],
+                "seen_digest_split_inconsistent")
+        # The exporting source itself retains its original test. Only a NEW
+        # protected corpus has this lock and must exclude all old test targets.
+        if enforce_exclusion and "split_protection" in state["lock"] and group in protected_test_groups:
+            require(info["held_out_excluded"] is True and digest not in state["frozen_test_digests"],
+                    "protected_test_target_retained")
+    for digest in state["frozen_test_digests"]:
+        group = owners.get("prepared_public_input_digest:" + digest)
+        require(group is not None and state["components"][group]["split"] == "test", "frozen_test_alias_missing")
+
 def prepared_paths(root: Path, split: str, expected_config_sha256: str | None = None) -> tuple[list[Path], str]:
     """Read the immutable M5 manifest contract without importing pipeline/teacher."""
     if split not in ("train", "validation", "test"):
@@ -194,6 +307,10 @@ def prepared_paths(root: Path, split: str, expected_config_sha256: str | None = 
         reject("manifest isolation state mismatch")
     if not state_isolated:
         reject("dataset isolation blocked by historical split conflicts")
+    # The optional portable registry is part of the immutable dataset contract,
+    # not unchecked audit decoration. Legacy v3 datasets need no registry.
+    validate_binding(manifest["lock"], list(descriptors.values()),
+                     lambda path: json.loads(safe(path).read_text()), state)
     selected = first_test if split == "test" else [x for stage in stages for x in stage["files"] if x["kind"] == split]
     return [safe(x["path"]) for x in selected], _hash_file(manifest_path)
 

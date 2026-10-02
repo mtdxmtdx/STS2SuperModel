@@ -1,0 +1,412 @@
+{
+  "schema": "nosl.balanced-validation-result.v1",
+  "status": "COMPLETE_ENGINEERING_BLOCK_SCALE_GATE_NOT_PASSED",
+  "source_commit": "399d4103ca9a687d2391d36b7c56c05a053696be",
+  "plan": "configs/m5_balanced_validation_plan.json",
+  "plan_sha256": "0f301210081fd25c83af46d4054f94fa84d72a3bb4f5eb4737ac92af2213e374",
+  "versions": {
+    "continuation": "nosl-public-rules-v2",
+    "dataset": "nosl.teacher-data.public-rules-v2.v1",
+    "generation_config": "06baf76175b6fa3517695ef0fe4d6fe5530bdd3f6c5702323b7813fcd27fa9ad",
+    "objective": "nosl_silent_a10_terminal_v4_candidate",
+    "observation_schema": "nosl.public.v2",
+    "posterior_implementation": "nosl-belief-dispatch-v2",
+    "public_schema": "nosl.student.public.v1",
+    "simulator": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
+    "teacher": "nosl-full-combat-teacher-v1:T0"
+  },
+  "counts": {
+    "accepted_duplicate_record_journals": 0,
+    "accepted_journal_without_valid_record": 0,
+    "after_hp_change_roots": 20,
+    "after_hp_gain_roots": 0,
+    "after_hp_loss_roots": 20,
+    "all_head_complete_roots": 68,
+    "attempt_journal_rows": 160,
+    "auxiliary_only_no_value_roots": 1,
+    "completed_whole_candidate_roots": 73,
+    "decision_rows": 81,
+    "diagnostic_only_decision_rows": 8,
+    "diagnostic_only_public_roots": 8,
+    "duplicate_public_roots": 0,
+    "duplicate_usable_public_roots": 0,
+    "empirical_value_only_roots": 72,
+    "equivalent_set_roots": 0,
+    "failed_memory_budget": 0,
+    "failed_other_failure": 0,
+    "failed_process_interruption": 0,
+    "failed_reset_engine_error": 0,
+    "failed_reset_terminal_boundary": 0,
+    "failed_reset_unclassified": 0,
+    "failed_reset_unsupported": 0,
+    "failed_source_budget_exhausted": 0,
+    "failed_source_phase_absent": 53,
+    "failed_source_snapshot_unclassified": 0,
+    "failed_timeout": 26,
+    "full_utility_roots": 68,
+    "hp_unchanged_from_start_roots": 53,
+    "invalid_attempt_rows": 0,
+    "invalid_decision_rows": 0,
+    "journal_accepted": 81,
+    "journal_duplicate_public_input": 0,
+    "journal_failed_attempt": 79,
+    "journal_interrupted_attempt": 0,
+    "journal_measured_elapsed_rows": 160,
+    "journal_missing_elapsed_rows": 0,
+    "journal_recovered_attempts": 0,
+    "journal_recovered_partial_rows": 0,
+    "journal_recovered_unknown_rows": 0,
+    "later_turn_after_hp_loss_roots": 20,
+    "later_turn_roots": 32,
+    "not_full_utility_usable_roots": 5,
+    "objective_calibrated_roots": 0,
+    "objective_uncalibrated_or_undeclared_roots": 73,
+    "partial_value_roots": 4,
+    "pending_choice_roots": 2,
+    "root_candidates": 430,
+    "strong_pair_labels": 0,
+    "strong_pair_roots": 0,
+    "turn_one_roots": 41,
+    "unique_effective_public_roots": 73,
+    "unique_valid_public_roots": 81,
+    "usable_decision_rows": 73,
+    "valid_decision_rows": 81,
+    "valid_records_without_accepted_journal": 0
+  },
+  "source_identities": {
+    "attempts": {
+      "battles": 40
+    },
+    "unique_effective_roots": {
+      "battles": 40,
+      "branch_families": 40,
+      "runs": 40
+    },
+    "valid_records": {
+      "battles": 40,
+      "branch_families": 40,
+      "runs": 40
+    }
+  },
+  "worlds": {
+    "allocated_worlds": 6880,
+    "completed_worlds": 6880,
+    "error_worlds": 0,
+    "failed_uncommitted_requested_action_worlds": 2432,
+    "other_worlds": 0,
+    "truncated_worlds": 0,
+    "unique_root_exploration_worlds": 0,
+    "unique_root_independent_eval_worlds": 1168,
+    "committed_population": "globally_deduplicated_usable_public_roots",
+    "committed_unique_action_world_completion_fraction": 1.0,
+    "failed_requested_action_worlds_total_if_complete": 2432,
+    "interrupted_requested_action_worlds_total_if_complete": 0
+  },
+  "saved_outcome_accounting": {
+    "valid_records": {
+      "allocated_worlds": 7568,
+      "completed_worlds": 7450,
+      "decision_records": 81,
+      "error_worlds": 0,
+      "other_worlds": 0,
+      "root_exploration_worlds": 0,
+      "root_independent_eval_worlds": 1296,
+      "truncated_worlds": 118
+    },
+    "diagnostic_only_records": {
+      "allocated_worlds": 688,
+      "completed_worlds": 570,
+      "decision_records": 8,
+      "error_worlds": 0,
+      "other_worlds": 0,
+      "root_exploration_worlds": 0,
+      "root_independent_eval_worlds": 128,
+      "truncated_worlds": 118
+    },
+    "unique_valid_public_roots": {
+      "allocated_worlds": 7568,
+      "completed_worlds": 7450,
+      "decision_records": 81,
+      "error_worlds": 0,
+      "other_worlds": 0,
+      "root_exploration_worlds": 0,
+      "root_independent_eval_worlds": 1296,
+      "truncated_worlds": 118
+    }
+  },
+  "failures_by_reason": {
+    "source_attempt_deadline": 26,
+    "source_snapshot_unavailable:terminal_before_requested_phase": 53
+  },
+  "source_distributions": {
+    "attempts": {
+      "source_category": {
+        "potion_constructed": 16,
+        "relic_constructed": 16,
+        "single_card_constructed": 64,
+        "starter_constructed": 64
+      }
+    },
+    "unique_effective_roots": {
+      "posterior_profile": {
+        "reviewed-stable-exchangeable-v1": 47,
+        "reviewed-stable-origin-conditional-choice-v1": 2,
+        "whole-setup-rejection-v1": 24
+      },
+      "ranking_evidence": {
+        "FIXED_N_PAIRED_HOEFFDING_BONFERRONI": 47,
+        "MASKED_NO_CERTIFIED_UTILITY_SUPPORT": 26
+      },
+      "source_category": {
+        "potion_constructed": 4,
+        "relic_constructed": 4,
+        "single_card_constructed": 22,
+        "starter_constructed": 43
+      },
+      "source_kind": {
+        "constructed": 73
+      }
+    },
+    "unique_valid_roots": {
+      "posterior_profile": {
+        "reviewed-stable-exchangeable-v1": 47,
+        "reviewed-stable-origin-conditional-choice-v1": 2,
+        "whole-setup-rejection-v1": 32
+      }
+    }
+  },
+  "requested_phases": {
+    "opening": 40,
+    "turn2": 40,
+    "turn3": 40,
+    "choice": 40
+  },
+  "emitted_rows_by_requested_phase": {
+    "opening": 40,
+    "turn2": 27,
+    "turn3": 12,
+    "choice": 2
+  },
+  "resources": {
+    "started_at_utc": "2026-10-02T03:36:45Z",
+    "completed_at_utc": "2026-10-02T04:10:52Z",
+    "aggregate_measured_wall_worker_seconds": 4496.479501548005,
+    "max_worker_wall_seconds": 2046.9092152250014,
+    "aggregate_cpu_seconds": 4483.108247,
+    "largest_process_peak_rss_mib": 162.98828125
+  },
+  "clone_fraction_of_teacher_elapsed": 0.9528531492370753,
+  "raw_archive_verification": {
+    "verification_requested": true,
+    "verified_records_by_storage": {
+      "gzip_reference": 81
+    },
+    "status": "VERIFIED_FOR_VALID_ROWS"
+  },
+  "integrity": {
+    "source_files_stable": true,
+    "error_counts": {},
+    "examples": [],
+    "passed": true
+  },
+  "stability": {
+    "split": {
+      "disjoint": true,
+      "first4_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "predeclared": true,
+      "remaining12_indices": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    "eligible_roots": 68,
+    "eligible_actions": 397,
+    "source_combat_groups": 35,
+    "effective_provenance_public_components": 35,
+    "excluded_roots": 13,
+    "maximum_absolute_full16_native_value_error": 2.2737367544323206e-13,
+    "rankings": {
+      "non_end_turn": {
+        "argmin_set_changed_roots": 0,
+        "disjoint_argmin_set_roots": 0,
+        "empirical_sign_changes": 6,
+        "pair_count": 677,
+        "paired_cost_difference_absolute_mean_change": {
+          "max": 83.5592592592593,
+          "mean": 0.48832788608145244,
+          "min": 0.0,
+          "n": 677,
+          "sample_variance": 30.96689571990341
+        },
+        "paired_cost_difference_sample_variances": {
+          "first4": {
+            "max": 251357.39308641976,
+            "mean": 1114.9345993493237,
+            "min": 0.0,
+            "n": 677,
+            "sample_variance": 279142116.2994154
+          },
+          "full16": {
+            "max": 163382.30550617285,
+            "mean": 725.2230882422372,
+            "min": 0.0,
+            "n": 677,
+            "sample_variance": 117936814.5809063
+          },
+          "remaining12": {
+            "max": 152337.81399176954,
+            "mean": 676.3694245555222,
+            "min": 0.0,
+            "n": 677,
+            "sample_variance": 102530683.4567562
+          }
+        },
+        "roots_with_at_least_two_actions": 68,
+        "roots_with_full16_empirical_contrast": 29,
+        "source_groups": 35,
+        "strict_reversal_roots": 1,
+        "strict_reversal_source_groups": 1,
+        "strict_reversals": 6,
+        "tie_status_changed_roots": 0,
+        "tie_status_changes": 0
+      },
+      "with_end_turn": {
+        "argmin_set_changed_roots": 2,
+        "disjoint_argmin_set_roots": 0,
+        "empirical_sign_changes": 20,
+        "pair_count": 1001,
+        "paired_cost_difference_absolute_mean_change": {
+          "max": 83.5592592592593,
+          "mean": 0.6657079181440413,
+          "min": 0.0,
+          "n": 1001,
+          "sample_variance": 28.57221154159389
+        },
+        "paired_cost_difference_sample_variances": {
+          "first4": {
+            "max": 335143.190781893,
+            "mean": 3350.549682340954,
+            "min": 0.0,
+            "n": 1001,
+            "sample_variance": 1027731527.3365582
+          },
+          "full16": {
+            "max": 268114.5526255144,
+            "mean": 2530.911036320214,
+            "min": 0.0,
+            "n": 1001,
+            "sample_variance": 603561178.812239
+          },
+          "remaining12": {
+            "max": 274208.0651851852,
+            "mean": 2529.5505448238496,
+            "min": 0.0,
+            "n": 1001,
+            "sample_variance": 612752754.7783227
+          }
+        },
+        "roots_with_at_least_two_actions": 68,
+        "roots_with_full16_empirical_contrast": 54,
+        "source_groups": 35,
+        "strict_reversal_roots": 1,
+        "strict_reversal_source_groups": 1,
+        "strict_reversals": 6,
+        "tie_status_changed_roots": 3,
+        "tie_status_changes": 14
+      }
+    },
+    "zero_of_16_deaths_marginal_95_percent_upper": 0.2059072142078227,
+    "certified_pairs": 0
+  },
+  "isolation": {
+    "old_test_targets_read": false,
+    "old_test_collisions": 0,
+    "old_validation_collisions": 0,
+    "old_train_collisions": 0,
+    "old_test_rows": 494,
+    "protected_test_components": 244,
+    "protected_test_public_digests": 524,
+    "old_test_sha256": "8c684b1c0bba7be4e97d8e5ce5151a835404b2d7d18cc84f71d7af1a2590de72",
+    "all_new_attempts_unioned_before_filtering": 160,
+    "all_new_decisions_unioned_before_filtering": 81
+  },
+  "disposition": {
+    "further_scale": false,
+    "new_fit": false,
+    "formal_training": false,
+    "additional_optimizer_steps": 0,
+    "total_first_trial_optimizer_steps": 497,
+    "reason": "Completed audit supports pipeline integrity, not broader resource-aware learning readiness. Full-label stability covers only 68 roots/35 source groups; all potion-category roots are excluded; 26 attempts time out; no confidence-certified preferences. Address target applicability and broader conditional posterior support before another scale gate."
+  },
+  "limits": [
+    "Constructed distribution; no natural-distribution or full-content coverage claim.",
+    "Every root contains DefendSilent, so the narrow v2 cycle certificate is false at the observed root. Whole-rollout certificate activations were not instrumented; block results do not estimate causal benefit of v2.",
+    "The completed block retains dispatcher v2. Later Sly dispatcher v3 does not retroactively apply.",
+    "Auxiliary-only usable roots are included in effective count; this is not a count of full utility labels.",
+    "First4 and remaining12 are disjoint archived sample splits under one frozen continuation, not a policy comparison or strength evaluation.",
+    "All 81 rows and 160 attempts were inspected for development; any newly prepared test split is development-only, not a fresh blind benchmark.",
+    "Zero certified pairs alone does not block empirical regression pilots; the scale pause rests on missing resource supervision, computational selection, limited independent groups and observed first-pilot applicability failures."
+  ],
+  "evidence_files": [
+    {
+      "path": "artifacts/reports/m3-m6/balanced-validation-40-final.json",
+      "bytes": 26049,
+      "sha256": "f7b95a76b6152b614a7c6b2042fe04fec49827d30f4f6663c206b9c94cbbd365"
+    },
+    {
+      "path": "artifacts/data/balanced-v5-rules-v2-validation-40/execution.json",
+      "bytes": 10697,
+      "sha256": "536d8ad22da74cb8d2dda73eb25dd771a6d6944c9cc903cd29f3a01feadd7dc8"
+    },
+    {
+      "path": "artifacts/diagnostics/balanced-v5-fixed16/final-20261002T0412Z-v2/report.json",
+      "bytes": 3332028,
+      "sha256": "f932a52f33192767b6a3699732d0ae6282a76cd38cfd1e518b89b1e2d907aff1"
+    },
+    {
+      "path": "artifacts/reviews/balanced-v5-rules-v2-validation-40-isolation/completed-block/report.json",
+      "bytes": 16139,
+      "sha256": "603461d3d2d81be69f65dbc4fecfbbc7d87ecd50a6e3f769401f4d36001949c2"
+    },
+    {
+      "path": "artifacts/reviews/cross-version-protection-development-final/report.json",
+      "bytes": 11490,
+      "sha256": "818ef7c9b6f4c0ef0ff8854e6fcd4af53412f5b3eff446417ad2cce861317b83"
+    },
+    {
+      "path": "artifacts/reports/m3-m6/final-protection-compatibility.json",
+      "bytes": 703,
+      "sha256": "6d050f645a57e5b99e302a98a8208b64aedaa6d59228b42cd5db9d2081e8d12d"
+    }
+  ],
+  "protected_development_preparation": {
+    "mode": "pilot",
+    "already_inspected_development": true,
+    "new_rows": {
+      "train": 57,
+      "validation": 10,
+      "test": 6
+    },
+    "quarantined_no_usable_targets": 8,
+    "manifest_sha256": "adf545cd6ddd13d00a1323ae42318cea4b24797c2d59928b199fb9a3b7ed7db1",
+    "registry_sha256": "11018097f16541154db11908163c2bd7e79ee94f5217932fbbb43ec7eab0b4f4",
+    "old_test_targets_read_or_copied": false,
+    "versions_unchanged": true,
+    "training_started": false
+  }
+}

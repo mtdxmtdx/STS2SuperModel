@@ -28,6 +28,9 @@ REPO = Path(__file__).resolve().parents[1]
 PIPELINE_VERSION = "nosl.dataset.prepare.v3"
 sys.path.insert(0, str(REPO / "python"))
 from nosl.public_identity import PUBLIC_IDENTITY_SCHEME, public_input_digest
+from nosl.data import (REGISTRY_VERSION, is_sha256, registry_bytes, registry_hash,
+                                  validate_binding, validate_components, validate_registry,
+                                  validate_state_protection)
 SPLITS = ("train", "validation", "test")
 HEADS = ("value", "win_probability", "death_probability", "expected_final_hp",
          "hp_distribution", "potion_net_change")
@@ -281,6 +284,11 @@ def record_tokens(record: Any) -> set[str]:
             tokens.add("prepared_public_input_digest:" + public_digest(record["public_input"]))
         except (ValueError, TypeError):
             pass
+    # Metadata-only journals carry semantic identity without fabricating a
+    # public input. This token is conservative provenance, never a target.
+    if (record.get("public_digest_scheme") == PUBLIC_IDENTITY_SCHEME
+            and is_sha256(record.get("public_input_digest"))):
+        tokens.add("prepared_public_input_digest:" + record["public_input_digest"])
     return tokens
 
 
@@ -400,7 +408,8 @@ def object_digest(value: Any) -> str:
 
 
 def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
-            state: dict | None = None, student_config: dict | None = None) -> tuple[dict, dict, list]:
+            state: dict | None = None, student_config: dict | None = None, *,
+            protection: dict | None = None, provenance_records: list | None = None) -> tuple[dict, dict, list]:
     """Pure batch preparation. Persist report['split_state'] with the stage manifest.
 
     Existing test shards never change. A new row connected to test inherits the
@@ -415,10 +424,18 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
             "config_sha256": object_digest(config),
             "student_config_sha256": object_digest(student_config), "mode": mode}
     previous = deepcopy(state) if state else None
+    if protection is not None:
+        validate_registry(protection)
+        lock["split_protection"] = {"schema_version": REGISTRY_VERSION, "sha256": registry_hash(protection)}
     if previous:
         require(previous.get("schema_version") == "nosl.dataset.split-state.v2", "split_state_version_unknown")
         require(previous.get("lock") == lock, "append_configuration_or_mode_mismatch")
-    group_ids, tokens, history = provenance_components(records, previous)
+        if protection is not None:
+            validate_state_protection(previous, protection)
+            require(not previous["cross_split_conflicts"], "protected_corpus_cross_split_conflict_resume_blocked")
+    prior_components = previous or ({"components": protection["components"]} if protection else None)
+    provenance_records = provenance_records or []
+    group_ids, tokens, history = provenance_components(records + provenance_records, prior_components)
     versions = previous.get("versions") if previous else None
     observation_schema = previous.get("observation_schema") if previous else None
     # Validate every row before choosing corpus versions; invalid rows never set the version lock.
@@ -445,17 +462,24 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
     source_all, source_accepted = Counter(), Counter()
     accepted = []
     next_state = previous or {"schema_version": "nosl.dataset.split-state.v2", "lock": lock,
-                              "versions": versions, "components": {}, "seen_public_digests": {},
+                              "versions": versions, "components": deepcopy(protection["components"]) if protection else {}, "seen_public_digests": {},
                               "frozen_test_digests": [], "stage_count": 0, "cross_split_conflicts": [],
                               "cumulative_attempts": 0}
     old_seen = dict(next_state["seen_public_digests"])
     seen = set(old_seen)
     frozen = next_state["stage_count"] > 0
-    group_splits, conflicts = {}, {}
+    protected_test_tokens = {token for info in (protection or {}).get("components", {}).values()
+                             if info["split"] == "test" for token in info["tokens"]}
+    retained_tokens = {"prepared_public_input_digest:" + digest for digest, info in old_seen.items()
+                       if not info["held_out_excluded"]}
+    group_splits, conflicts, conflict_reasons = {}, {}, {}
     for group, old_groups in history.items():
         old_splits = {next_state["components"][g]["split"] for g in old_groups}
-        if len(old_splits) > 1:
+        retroactive_test_link = bool(tokens[group] & protected_test_tokens and tokens[group] & retained_tokens)
+        if len(old_splits) > 1 or retroactive_test_link:
             conflicts[group] = sorted(old_splits)
+            conflict_reasons[group] = ("retained_target_connected_to_protected_test" if retroactive_test_link
+                                       else "historical_cross_split_merge")
         else:
             group_splits[group] = next(iter(old_splits)) if old_splits else choose_split(group, config)
     # Lock all resolvable provenance, including invalid/duplicate rows. Such rows
@@ -465,18 +489,21 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
             next_state["components"].pop(old_group, None)
         next_state["components"][group] = {"split": split, "tokens": sorted(tokens[group])}
     if conflicts:
-        next_state["cross_split_conflicts"].extend({"component": k, "historical_splits": v} for k, v in sorted(conflicts.items()))
+        next_state["cross_split_conflicts"].extend({"component": k, "historical_splits": v,
+                                                   **({"tokens": sorted(tokens[k]), "reason": conflict_reasons[k]} if protection else {})}
+                                                  for k, v in sorted(conflicts.items()))
+    protected_test_groups = {group for group, aliases in tokens.items() if aliases & protected_test_tokens}
     unique_valid_new = 0
     full_candidate_complete_new = 0
     trajectory_complete_new = 0
     auxiliary_only_new = 0
-    duplicates, holdout_excluded = 0, 0
+    duplicates, holdout_excluded, protected_excluded = 0, 0, 0
     for index, record in enumerate(records):
         audit = record.get("audit_only", {}) if isinstance(record, dict) else {}
         source = audit.get("source_kind", "undeclared") if isinstance(audit, dict) else "undeclared"
         source_all[str(source)] += 1
         group = group_ids[index]
-        reason = "historical_cross_split_merge" if group in conflicts else errors.get(index)
+        reason = conflict_reasons[group] if group in conflicts else errors.get(index)
         split = group_splits.get(group)
         digest = None
         if reason is None:
@@ -495,9 +522,13 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
                 full_candidate_complete_new += complete
                 trajectory_complete_new += trajectories
                 auxiliary_only_new += not complete
-                next_state["seen_public_digests"][digest] = {"split": split, "held_out_excluded": frozen and split == "test",
+                protected_test = group in protected_test_groups
+                next_state["seen_public_digests"][digest] = {"split": split, "held_out_excluded": protected_test or frozen and split == "test",
                                                           "full_candidate_complete": complete, "all_candidate_trajectory_complete": trajectories}
-                if frozen and split == "test":
+                if protected_test:
+                    reason = "protected_old_test_component_excluded"
+                    protected_excluded += 1
+                elif frozen and split == "test":
                     reason = "frozen_test_holdout_not_extended"
                     holdout_excluded += 1
         if reason is not None:
@@ -540,7 +571,7 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
                        "full_candidate_complete_roots": sum(info["full_candidate_complete"] for info in cumulative_accepted),
                        "auxiliary_only_usable_roots": sum(not info["full_candidate_complete"] for info in cumulative_accepted)},
         "accepted_roots": len(accepted), "rejected_or_excluded_roots": len(rejected),
-        "invalid_roots": sum(1 for x in rejected if x["reason"] not in ("exact_public_input_duplicate", "frozen_test_holdout_not_extended")),
+        "invalid_roots": sum(1 for x in rejected if x["reason"] not in ("exact_public_input_duplicate", "frozen_test_holdout_not_extended", "protected_old_test_component_excluded")),
         "duplicate_attempts": duplicates, "frozen_holdout_excluded_roots": holdout_excluded,
         "full_candidate_complete_new_roots": full_candidate_complete_new,
         "all_candidate_trajectory_complete_new_roots": trajectory_complete_new,
@@ -579,6 +610,23 @@ def prepare(records: list[Any], config: dict, mode: str = "engineering-smoke",
         "automatic_generation_or_training_authorized": False,
         "stage_promotion": "REQUIRES_EXPLICIT_REVIEW_OF_QUALITY_THROUGHPUT_AND_SOURCE_COVERAGE"
     }
+    if protection is not None:
+        validate_state_protection(next_state, protection)
+        protected_tokens = {token for info in protection["components"].values() for token in info["tokens"]}
+        closure = {group: info for group, info in next_state["components"].items()
+                   if protected_tokens.intersection(info["tokens"])}
+        report["split_protection"] = {
+            **lock["split_protection"], "source": protection["source"],
+            "old_targets_read_or_copied": False, "old_seen_digests_imported": False,
+            "provenance_only_rows": len(provenance_records),
+            "version_mismatch_roots": sum("versions_mismatch" in error for error in errors.values()),
+            "protected_test_excluded_roots": protected_excluded,
+            "protected_alias_closure": closure,
+            "new_component_aliases": {group: {"tokens": sorted(tokens[group]),
+                                      "historical_components": sorted(history[group]),
+                                      "split": group_splits.get(group)} for group in sorted(tokens)},
+            "note": "All incoming decision and provenance-only rows participate before filtering. Old test-connected roots are excluded from every target split. Old train roots may receive deliberate new-version labels; old validation roots remain validation. Resplitting inspected development data does not create an unseen benchmark."
+        }
     return splits, report, rejected
 
 
@@ -636,6 +684,7 @@ def verify_manifest(output_dir: Path | str) -> dict:
             and manifest.get("public_identity_scheme") == PUBLIC_IDENTITY_SCHEME
             and manifest.get("lock", {}).get("public_identity_scheme") == PUBLIC_IDENTITY_SCHEME, "manifest_version_or_public_identity_unknown")
     seen_paths = set()
+    descriptors = []
     parent_hash = None
     stage_ids = set()
     for entry in manifest["stages"]:
@@ -649,6 +698,7 @@ def verify_manifest(output_dir: Path | str) -> dict:
         require(stage["parent_stage_sha256"] == parent_hash, "stage_chain_mismatch")
         parent_hash = entry["sha256"]
         for descriptor in stage["files"]:
+            descriptors.append(descriptor)
             path = safe_path(root, descriptor["path"])
             require(descriptor["path"] not in seen_paths, "duplicate_manifest_file")
             seen_paths.add(descriptor["path"])
@@ -662,11 +712,103 @@ def verify_manifest(output_dir: Path | str) -> dict:
             and state["observation_schema"] == manifest["observation_schema"], "state_lock_mismatch")
     require(state["stage_count"] == len(manifest["stages"]), "state_stage_count_mismatch")
     require(manifest["isolation_passed"] == (not bool(state["cross_split_conflicts"])), "manifest_isolation_state_mismatch")
-    require(manifest["latest_state"]["path"] in seen_paths, "state_not_in_stage_manifest")
+    require(manifest["latest_state"] in descriptors, "state_not_in_stage_manifest")
     first_stage = read_json(safe_path(root, manifest["stages"][0]["manifest"]))
     first_test = [item for item in first_stage["files"] if item["kind"] == "test"]
     require(manifest["frozen_test_shards"] == first_test, "frozen_test_manifest_changed")
+    validate_binding(manifest["lock"], descriptors,
+                     lambda path: read_json(safe_path(root, path)), state)
     return manifest
+
+
+def export_split_protection(source_dir: Path | str) -> dict:
+    """Verify old shards as opaque bytes and project only portable split metadata.
+
+    No old JSONL shard is decoded. Every token, including invalid/diagnostic
+    aliases absent from accepted records, comes from the verified split state.
+    """
+    root = Path(source_dir)
+    manifest_hash = file_hash(root / "manifest.json")
+    manifest = verify_manifest(root)
+    require(manifest["isolation_passed"] is True, "protection_source_isolation_blocked")
+    state_path = safe_path(root, manifest["latest_state"]["path"])
+    state = read_json(state_path)
+    require(state.get("schema_version") == "nosl.dataset.split-state.v2", "protection_source_state_version_unknown")
+    require(state.get("observation_schema") in ("nosl.public.v1", "nosl.public.v2"), "protection_source_observation_schema_unknown")
+    registry = {"schema_version": REGISTRY_VERSION, "public_identity_scheme": PUBLIC_IDENTITY_SCHEME,
+                "source": {"manifest_sha256": manifest_hash,
+                           "split_state_sha256": manifest["latest_state"]["sha256"],
+                           "versions": deepcopy(manifest["versions"]),
+                           "frozen_test_shards": [{k: d[k] for k in ("sha256", "bytes", "rows")}
+                                                  for d in manifest["frozen_test_shards"]]},
+                "components": deepcopy(state["components"])}
+    validate_registry(registry)
+    validate_state_protection(state, registry, enforce_exclusion=False)
+    require(file_hash(root / "manifest.json") == manifest_hash
+            and file_hash(state_path) == manifest["latest_state"]["sha256"], "protection_source_changed_during_read")
+    return registry
+
+
+def bound_split_protection(output_dir: Path, manifest: dict) -> dict | None:
+    """Only call after verify_manifest; keep resumes independent of source paths."""
+    if "split_protection" not in manifest["lock"]:
+        return None
+    first = read_json(safe_path(output_dir, manifest["stages"][0]["manifest"]))
+    descriptor = next(item for item in first["files"] if item["kind"] == "split_protection")
+    return read_json(safe_path(output_dir, descriptor["path"]))
+
+
+def recover_initial_protection(output_dir: Path, protection: dict | None) -> dict | None:
+    """Do not drop a first-stage registry if publishing the root was interrupted."""
+    for request_path in sorted((output_dir / "stages").glob("*/request.json")):
+        request = read_json(request_path)
+        expected = request.get("split_protection_sha256")
+        if expected is None:
+            require(protection is None, "uncommitted_stage_protection_changed")
+            continue
+        if protection is None:
+            path = request_path.parent / "split_protection.json"
+            require(path.exists(), "uncommitted_protection_missing_supply_original_source")
+            protection = read_json(path)
+            validate_registry(protection)
+        require(registry_hash(protection) == expected, "uncommitted_stage_protection_changed")
+    return protection
+
+
+def journal_provenance(rows: list, generation_config: dict | None = None) -> list[dict]:
+    """Project generation journals to aliases, failing closed on bad metadata."""
+    if generation_config is not None:
+        # The pinned generator defines these aliases even for failed attempts
+        # whose journal predates explicit alias fields. Import metadata helpers
+        # only; never invoke a worker, reconcile, repair or generation routine.
+        import generate_pilot_data as generator
+        require(generation_config.get("generator_sha256") == file_hash(Path(generator.__file__))
+                and generation_config.get("version") == generator.VERSION
+                and generation_config.get("public_identity_scheme") == PUBLIC_IDENTITY_SCHEME,
+                "journal_generator_or_identity_unsupported")
+        label_hash = generator.sha(generator.generation_identity_config(generation_config))
+    result = []
+    for row in rows:
+        require(isinstance(row, dict), "journal_row_not_object")
+        audit = {key: row[key] for key in PROVENANCE_FIELDS if key in row}
+        if generation_config is not None:
+            require(row.get("generation_config_sha256") == label_hash
+                    and row.get("generation_version") == generator.VERSION, "journal_generation_config_mismatch")
+            index = generator.validate_journal(row, generation_config)
+            battle = index // generation_config["roots_per_battle"]
+            for key, suffix in (("source_run_group", "run"), ("source_combat_id", "combat"), ("branch_family", "family")):
+                expected = f"{generation_config['seed_prefix']}:{suffix}:{battle}"
+                require(key not in audit or audit[key] == expected, "journal_declared_alias_mismatch")
+                audit[key] = expected
+        require(bool(audit) and all(isinstance(value, str) and value.strip() for value in audit.values()),
+                "journal_provenance_missing_or_invalid")
+        record = {"audit_only": audit}
+        if row.get("public_input_digest") is not None:
+            require(row.get("public_digest_scheme") == PUBLIC_IDENTITY_SCHEME
+                    and is_sha256(row["public_input_digest"]), "journal_public_digest_invalid")
+            record.update(public_input_digest=row["public_input_digest"], public_digest_scheme=PUBLIC_IDENTITY_SCHEME)
+        result.append(record)
+    return result
 
 
 def iter_dataset_paths(output_dir: Path | str, split: str) -> list[Path]:
@@ -689,17 +831,31 @@ def write_json(path: Path, value: Any) -> None:
 
 
 def _persist_batch(output_dir: Path, records: list, origins: list, config: dict, mode: str,
-                  inputs: list[dict], resume: bool, shard_size: int = 1000) -> dict:
+                  inputs: list[dict], resume: bool, shard_size: int = 1000, *,
+                  protection: dict | None = None, provenance_records: list | None = None) -> dict:
     require(type(shard_size) is int and shard_size > 0, "shard_size_invalid")
     output_dir.mkdir(parents=True, exist_ok=True)
     root_manifest = output_dir / "manifest.json"
     old = verify_manifest(output_dir) if root_manifest.exists() else None
     require(not old or resume, "output_exists_use_resume")
     state = read_json(safe_path(output_dir, old["latest_state"]["path"])) if old else None
+    if old:
+        bound = bound_split_protection(output_dir, old)
+        require(protection is None or bound is not None and registry_hash(protection) == registry_hash(bound),
+                "append_split_protection_changed")
+        protection = bound
+    else:
+        protection = recover_initial_protection(output_dir, protection)
+    if protection is not None:
+        validate_registry(protection)
     student_config = load_student_config()
     request = {"inputs": inputs, "config_sha256": object_digest(config),
                "student_config_sha256": object_digest(student_config), "mode": mode,
                "shard_size": shard_size}
+    if protection is not None:
+        request["split_protection_sha256"] = registry_hash(protection)
+    if provenance_records:
+        request["provenance_records_sha256"] = object_digest(provenance_records)
     if old:
         require(old["lock"]["config_sha256"] == request["config_sha256"]
                 and old["lock"]["student_config_sha256"] == request["student_config_sha256"]
@@ -707,10 +863,15 @@ def _persist_batch(output_dir: Path, records: list, origins: list, config: dict,
         last = read_json(safe_path(output_dir, old["stages"][-1]["manifest"]))
         if last["request"] == request:
             return {"status": "ALREADY_COMMITTED", "manifest": str(root_manifest), "stage_id": last["id"], "isolation_passed": old["isolation_passed"]}
-    splits, report, rejected = prepare(records, config, mode, state, student_config)
-    # An all-invalid/version-mismatch attempt must not create or modify a corpus.
-    require(report["versions"] is not None, "no_valid_versioned_records")
-    if any("versions_mismatch" in reason for reason in report["filter_reasons"]):
+    splits, report, rejected = prepare(records, config, mode, state, student_config,
+                                       protection=protection, provenance_records=provenance_records)
+    # Ordinary invalid/version-mismatch attempts cannot alter the corpus. A
+    # protected isolation failure must durably block existing targets even if
+    # an unrelated row also has bad versions. Incompatible labels remain
+    # quarantined; a blocked first stage may have no label-version population.
+    protected_conflict = protection is not None and not report["split"]["audit_passed"]
+    require(report["versions"] is not None or protected_conflict, "no_valid_versioned_records")
+    if any("versions_mismatch" in reason for reason in report["filter_reasons"]) and not protected_conflict:
         raise ValidationError("record_versions_mismatch_no_stage_committed")
     for row in rejected:
         row["origin"] = origins[row["input_row"]]
@@ -750,6 +911,10 @@ def _persist_batch(output_dir: Path, records: list, origins: list, config: dict,
         remember(staging / "split_state.json", "split_state")
         write_json(staging / "quality_report.json", report)
         remember(staging / "quality_report.json", "quality_report")
+        if protection is not None and old is None:
+            path = staging / "split_protection.json"
+            path.write_bytes(registry_bytes(protection))
+            remember(path, "split_protection")
         stage = {"schema_version": "nosl.dataset.stage.v2", "id": stage_id,
                  "parent_stage_sha256": parent_hash, "request": request, "lock": next_state["lock"],
                  "versions": report["versions"], "observation_schema": report["observation_schema"], "files": descriptors}
@@ -807,9 +972,11 @@ def output_lock(output_dir: Path):
 
 
 def persist_batch(output_dir: Path, records: list, origins: list, config: dict, mode: str,
-                  inputs: list[dict], resume: bool, shard_size: int = 1000) -> dict:
+                  inputs: list[dict], resume: bool, shard_size: int = 1000, *,
+                  protection: dict | None = None, provenance_records: list | None = None) -> dict:
     with output_lock(output_dir):
-        return _persist_batch(output_dir, records, origins, config, mode, inputs, resume, shard_size)
+        return _persist_batch(output_dir, records, origins, config, mode, inputs, resume, shard_size,
+                              protection=protection, provenance_records=provenance_records)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -821,6 +988,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--resume", action="store_true", help="Append compatible data or recover an interrupted identical stage")
     parser.add_argument("--verify-only", action="store_true", help="Verify all checksums, versions and frozen holdout without writing")
     parser.add_argument("--shard-size", type=int, default=1000)
+    parser.add_argument("--protect-from-prepared", type=Path,
+                        help="Seed a NEW version corpus with verified portable old split aliases; exclude old test-connected roots")
+    parser.add_argument("--provenance-journals", nargs="+", type=Path, default=[],
+                        help="Union all generation attempt metadata before filtering; never use journal targets")
     args = parser.parse_args(argv)
     try:
         if args.verify_only:
@@ -832,7 +1003,27 @@ def main(argv: list[str] | None = None) -> int:
         records, origins = read_jsonl(args.inputs)
         require(all(file_hash(path) == descriptor["sha256"] for path, descriptor in zip(args.inputs, inputs)), "input_changed_during_read")
         config = read_json(args.config)
-        result = persist_batch(args.output_dir, records, origins, config, args.mode, inputs, args.resume, args.shard_size)
+        protection = export_split_protection(args.protect_from_prepared) if args.protect_from_prepared else None
+        provenance = []
+        if args.provenance_journals:
+            journal_inputs = [{"path": str(p.resolve()), "sha256": file_hash(p), "bytes": p.stat().st_size,
+                               "kind": "provenance_journal"} for p in args.provenance_journals]
+            for path in args.provenance_journals:
+                journal_rows, _ = read_jsonl([path])
+                sidecar = path.parent / "generation_config.json"
+                generation_config = None
+                if sidecar.exists():
+                    descriptor = {"path": str(sidecar.resolve()), "sha256": file_hash(sidecar),
+                                  "bytes": sidecar.stat().st_size, "kind": "journal_generation_config"}
+                    generation_config = read_json(sidecar)
+                    require(file_hash(sidecar) == descriptor["sha256"], "journal_config_changed_during_read")
+                    journal_inputs.append(descriptor)
+                provenance.extend(journal_provenance(journal_rows, generation_config))
+            require(all(file_hash(p) == d["sha256"] for p, d in zip(args.provenance_journals, journal_inputs)),
+                    "journal_changed_during_read")
+            inputs.extend(journal_inputs)
+        result = persist_batch(args.output_dir, records, origins, config, args.mode, inputs, args.resume, args.shard_size,
+                               protection=protection, provenance_records=provenance)
         print(json.dumps(result, sort_keys=True))
         return 0 if result.get("isolation_passed", True) else 2
     except (OSError, ValueError, TypeError, KeyError) as exc:

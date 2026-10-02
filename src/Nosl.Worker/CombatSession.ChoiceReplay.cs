@@ -17,8 +17,8 @@ public sealed partial class CombatSession
     {
         if (_request is not null) return; // A suffix can contain another choice response.
         await ReleaseChoiceOriginAsync();
-        // This optimization is intentionally only the existing constructed 24-card
-        // family. Native import and arbitrary setup/generation choices remain blocked
+        // This optimization is intentionally only the reviewed constructed card
+        // families. Native import and arbitrary setup/generation choices remain blocked
         // or use their existing conservative whole-setup posterior.
         if (HasNativeProvenance || action.Kind != "play"
             || !ReviewedChoiceCards.Contains(State.Players[0].PlayerCombatState!.Hand.Cards[action.Slot].GetType().Name)

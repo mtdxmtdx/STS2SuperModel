@@ -1,0 +1,76 @@
+{
+  "schema": "nosl.confirmed-preference-feedback.v1",
+  "feedback_id": "nosl-preference-feedback-2026-10-02-v1",
+  "date": "2026-10-02",
+  "candidate_objective_id": "nosl_silent_a10_terminal_v4_candidate",
+  "evidence_kind": "exact_hypothetical_preference_cases",
+  "probabilities_are_assumptions": true,
+  "simulator_worlds": 0,
+  "calibrated": false,
+  "formal_label_profiles_admitted": [],
+  "formal_labels_allowed": false,
+  "transcript": {
+    "question_1": "初始70血、资源不变：A必胜并剩50血；B有99%概率获胜并剩70血、1%概率死亡。你更偏好哪个？",
+    "question_2": "两种方案都必胜，本场后续没有更好的喝药时机，也不会自动补药：A用掉一瓶火焰药水，剩50血；B保留药水，剩38血。你选哪个？换成稀有／高价值药水时会改变吗？",
+    "reply": "1偏好B 2偏好A，换成稀有药水可能偏向A"
+  },
+  "cases": [
+    {
+      "id": "death_risk_70hp",
+      "question": "question_1",
+      "initial_hp": 70,
+      "initial_hp_source": "explicit_in_question",
+      "resources": "unchanged_as_stipulated; no differential resource or permanent value",
+      "alternatives": {
+        "A": [{"probability": "1", "terminal_kind": "win", "terminal_hp": 50, "inventory_value_coefficients": {}}],
+        "B": [
+          {"probability": "99/100", "terminal_kind": "win", "terminal_hp": 70, "inventory_value_coefficients": {}},
+          {"probability": "1/100", "terminal_kind": "loss", "terminal_hp": 0, "inventory_value_coefficients": {}}
+        ]
+      },
+      "preference": {"strength": "confirmed_strict", "preferred": "B", "other": "A", "hard_constraint": true},
+      "constraint": {"variable": "defeatCost", "relation": "<", "constant": "1930", "downsideCoefficient_multiplier": "3510/7"}
+    },
+    {
+      "id": "fire_potion_50_vs_38",
+      "question": "question_2",
+      "initial_hp": null,
+      "initial_hp_source": "not_stated; common H0 remains a parameter",
+      "conditions": {"both_win": true, "better_later_use_in_this_combat": false, "automatic_replenishment": false},
+      "resource_id": "FirePotion",
+      "inventory_accounting": "start minus retained end inventory; one consumed bottle is charged once",
+      "alternatives": {
+        "A": [{"probability": "1", "terminal_kind": "win", "terminal_hp": 50, "inventory_value_coefficients": {"FirePotion": 1}}],
+        "B": [{"probability": "1", "terminal_kind": "win", "terminal_hp": 38, "inventory_value_coefficients": {}}]
+      },
+      "preference": {"strength": "confirmed_strict", "preferred": "A", "other": "B", "hard_constraint": true},
+      "constraint": {
+        "variable": "FirePotion future inventory value",
+        "relation": "<",
+        "upper_bound": "12 + eta/H0 * (max(H0-38,0)^2 - max(H0-50,0)^2)",
+        "domain": "H0 > 0, eta >= 0",
+        "sufficient_not_necessary": "v_FirePotion < 12",
+        "assigned_price": null
+      },
+      "illustration": {"initial_hp": 70, "initial_hp_is_confirmed": false, "purpose": "explicit assumption for illustrating the bound only"}
+    },
+    {
+      "id": "rare_potion_50_vs_38",
+      "question": "question_2",
+      "inherits_scenario": "fire_potion_50_vs_38",
+      "resource_id": null,
+      "resource_description": "稀有／高价值药水; exact item and value unspecified",
+      "preference": {"strength": "tentative", "preferred": "A", "other": "B", "hard_constraint": false},
+      "hard_label": null,
+      "assigned_price": null
+    }
+  ],
+  "limits": [
+    "The death preference is specific to the stated comparison, not a universal 1% risk budget or a uniquely identified objective.",
+    "Question 2 does not state initial HP. Do not inherit 70 HP from question 1.",
+    "The tentative rare-potion answer is not a hard label, item price or universal higher-value exception.",
+    "The 9-HP potion consideration gate is separate from future inventory value and never forces use.",
+    "Do not charge both inventory loss and a per-use potion fee.",
+    "These fixtures do not change T0 continuation, existing labels, prices, default profiles, corpus data or model weights."
+  ]
+}

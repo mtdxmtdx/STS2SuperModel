@@ -7,6 +7,9 @@ Silent A10 单场战斗 NOSL 独立工程。当前接入 **最新上游规则＋
 | 入口 | 内容 |
 |---|---|
 | [首轮试点结果](docs/FIRST_BOUNDED_PILOT.md) | 数据、实际试训、闭环结果、错误诊断和未闭合门槛 |
+| [后续160次验证](docs/BALANCED_VALIDATION_BLOCK.md) | 40场构造战斗、73个有效决策点、超时与标签稳定性；扩大规模门槛未通过 |
+| [已确认偏好](docs/CONFIRMED_PREFERENCE_FEEDBACK.md) | 两个具体偏好约束及稀有药水的暂定倾向，不虚构统一价格 |
+| [50项验收映射](docs/M3_M6_ACCEPTANCE_MAP.md) | 原始编号逐项对应实测证据、支持边界和未完成工作 |
 | [M3–M6检查点](docs/M3_M6_STATUS.md) | 新实现、实测证据、数据阶段及尚未闭合的门槛 |
 | [当前状态](docs/STATUS.md) | 已实现范围、阶段状态和剩余缺口 |
 | [开发与协议](docs/DEVELOPMENT.md) | 构建、测试、JSONL worker 和 API |

@@ -5,6 +5,9 @@ scope. **Full-scope readiness is blocked.** The completed 5,000-root corpus and
 497-step experimental fit do not close subjective resource calibration, general
 natural posterior coverage, or policy-quality acceptance.
 
+The [50-case evidence map](M3_M6_ACCEPTANCE_MAP.md) separates bounded passes,
+remaining M3–M6 work and later M7/M8 evaluation/export requirements.
+
 | Milestone | Verified deliverable | Remaining gate |
 |---|---|---|
 | M3 | Fixed-start terminal objective, raw outcome/accounting, native 9-HP consideration and bounded 5/80 plan evidence, unknown-value masks, separate common-inventory relative proof | Candidate risk profile is not uniquely calibrated; potion/permanent future values unresolved; general event provenance and bonus-plan scope incomplete |
@@ -17,9 +20,9 @@ client connection or deployment follows from this checkpoint.
 
 ## Final verification
 
-The final combined source build passed **929/929 C# integration cases**, zero
-skips/failures. All **165 Python student tests**, **63 generator tests**, **105 data
-tests** and **24 calibration evidence tests** pass. The unchanged vendored Core has
+The final combined source build passed **944/944 C# integration cases**, zero
+skips/failures. All **165 Python student tests**, **63 generator tests**, **129 data
+tests** and **45 calibration evidence tests** pass. The unchanged vendored Core has
 its earlier 4,479 passes and three existing opt-in skips. Builds used isolated
 output; the original data worker and first-pilot bundle remain reproducible.
 
@@ -34,7 +37,7 @@ before this verified probe or any new cohort.
 ## Fixes driven by the first trial
 
 The [first trial](FIRST_BOUNDED_PILOT.md) exposed unpriced potion-score extrapolation,
-zero-draw Swift Potion use, poor discard/card ordering, and a tradeoff between lower
+zero-draw Swift Potion use, suspected discard/card ordering failures, and a tradeoff between lower
 large-loss MSE and worse common-case MAE. It did not establish stronger play.
 
 The [experimental policy wrapper](EXPERIMENTAL_POLICY_GUARD.md) now abstains for
@@ -56,32 +59,50 @@ values stay unknown. The death-inclusive confidence interval crosses zero. This
 API has its own development profile; it does not rewrite existing corpus targets
 or train the student on uncalibrated preferences.
 
-## Next bounded data check
+The [Sly posterior extension](CONSTRUCTED_SLY_POSTERIOR.md) admits only Reflex and
+Tactician to the reviewed constructed prior, with a new dispatcher/profile
+identity. The exact previously timed-out 30-choice root completes all 480
+candidate/world copies in 12.3 seconds. The student's Defend→Slimed selection
+ties the best empirical value in that diagnostic, correcting the earlier
+suspicion about this particular root. This is no proof of general ordering
+competence or an unchanged posterior model.
 
-[The predeclared plan](../configs/m5_balanced_validation_plan.json) schedules 40
-constructed source battles and all four requested phases, totaling 160 attempted
-boundaries. It uses 16 independent final worlds, four one-CPU workers, a 120-second
-whole-attempt deadline and a 90-minute process guard. Counts are not success quotas.
-Each category is scheduled against all four simple enemies; item/card interactions
-are still far from exhaustive.
+## Completed bounded data check
 
-Every requested boundary, missing phase, timeout, unsupported reset, accepted root,
-mask, raw checksum and semantic duplicate must be reported. Fixed first-four versus
-disjoint remaining-twelve teacher samples can diagnose label stability where exact
-objective facts permit it. No fit follows automatically: useful complete or relative
-supervision and source-group-isolated validation must first be demonstrated.
-The first pilot's 494 test targets stay sealed across continuation versions.
+[The predeclared plan](../configs/m5_balanced_validation_plan.json) completed all
+160 attempted boundaries from 40 constructed battles: 73 unique effective roots,
+eight fully masked diagnostic records, 26 whole-attempt timeouts and 53 unavailable
+phases. All raw references and attempted indices verify. The runtime was rules-v2
+with dispatcher-v2; later Sly changes do not apply retroactively.
+
+[The final audit](BALANCED_VALIDATION_BLOCK.md) retains all incomplete mass and
+compares fixed first-four versus disjoint remaining-twelve worlds. Only 68 roots
+across 35 groups qualify for complete-utility stability; all potion-category roots
+are excluded, and no strong preference pairs are certified. The old 494 test
+targets remain sealed. The new block is inspected development data. Automatic
+scale and another fit stop at this gate; reaching a count does not establish
+useful resource-aware supervision or broad policy quality.
+
+The metadata-only [cross-version protection](../tests/data/README.md) now imports
+all historical split aliases, unions failed journals before filtering, and
+persists contamination blockers through invalid/version-mismatched appends.
+The real new development corpus verifies at 57/10/6 rows; its test partition has
+already been inspected. Original inference hashes and weights are unchanged.
+The revised loader deliberately invalidates old training resume fingerprints,
+while old v3 corpora and the exact first learned bundle still load.
 
 ## Preferences that computation cannot invent
 
-The known preference example compares HP-loss distributions without death. It does
-not settle a tradeoff such as a certain win at 50 HP versus a 99% win at 70 HP and
-1% death, from the same 70-HP start with no resource differences.
+The user now prefers a 99% win at 70 HP / 1% death over a certain win at 50 HP,
+from a 70-HP start with unchanged resources. This exact authored hypothetical
+constrains `K < 1930 + (3510/7) * eta`; the candidate K=1000, eta=0.2 agrees.
+It does not uniquely identify the objective or set a universal 1% risk budget.
 
-Likewise, the nine-HP rule establishes eligibility for consideration, not a universal
-price. A certain win at 50 HP after consuming FirePotion versus a certain win at
-38 HP while retaining it requires a resource preference, with no better timing
-or automatic refill assumed. One answer constrains that item/context; it cannot
-calibrate every rare potion, relic or future reward. Until supported values or
-robust acceptable ranges exist, absolute labels remain masked and applicability
-stays limited. Runtime/coverage improvements can proceed independently.
+The user also prefers consuming FirePotion and winning at 50 HP over retaining it
+and winning at 38 HP, with no better later timing or automatic refill. Starting HP
+was unspecified, so this gives a parameterized upper bound on its future inventory
+value, not an assigned price. The rare-potion leaning remains tentative. The
+[versioned feedback](CONFIRMED_PREFERENCE_FEEDBACK.md) preserves both hard cases
+and the tentative answer. General item, permanent and reward values remain open;
+unsupported absolute labels stay masked. The nine-HP consideration rule is not a
+price or forced-use instruction.

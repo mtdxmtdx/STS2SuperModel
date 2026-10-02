@@ -2,7 +2,7 @@
   "schema": "nosl.m3.acceptance-disposition.v1",
   "objective_profile_id": "nosl_silent_a10_terminal_v4_candidate",
   "contract_implementation_status": "BOUNDED_CONTRACT_AND_ACCOUNTING_EVIDENCE_PASSED",
-  "production_calibration_status": "BLOCKED_UNCALIBRATED_PREFERENCES_AND_RESOURCE_VALUES",
+  "production_calibration_status": "PARTIAL_CONFIRMED_CONSTRAINTS_RESOURCE_VALUES_UNRESOLVED",
   "calibrated": false,
   "formal_label_profiles_admitted": [],
   "formal_labels_allowed": false,
@@ -17,7 +17,7 @@
     "evidence_tool_mutation_tests": 16,
     "archived_record_checks": 21180,
     "bounded_hunt_real_integrations": 12,
-    "calibration_evidence_tests_current": 24,
+    "calibration_evidence_tests_current": 45,
     "native_potion_paired_cases": 4,
     "native_potion_independent_root_world_draws": 128,
     "native_potion_selected_endpoints": 256
@@ -25,9 +25,9 @@
   "criteria": [
     {
       "id": "confirmed_preferences_not_reversed",
-      "status": "BOUNDED_PASS",
-      "evidence": "Original contracts and exact candidate sensitivity; 0 < eta < 150/13 in the proposed family",
-      "remaining": "K and unique eta not identified; micro-death-risk preferences unknown"
+      "status": "BOUNDED_CONFIRMED_RISK_PASS_FIRE_VALUE_BOUND",
+      "evidence": "Original contracts and exact candidate sensitivity; original 0<eta<150/13 plus confirmed death-case K<1930+(3510/7)*eta; K1000 eta0.2 agrees. Confirmed FirePotion preference supplies a parameterized value upper bound, without assigned price.",
+      "remaining": "Two new comparisons do not establish a universal risk budget or full resource valuation. A unique K/eta is not required for empirical pilot diagnostics."
     },
     {
       "id": "potion_nine_consideration_only",
@@ -67,10 +67,12 @@
     "Archived engineering-200 corpus lacks maxHP-change/root-after-HP-loss cases; current v4 post-loss support is reported separately"
   ],
   "preference_and_valuation_blockers": [
-    "risk-family and coefficients not uniquely identified",
-    "micro-death-risk tradeoffs unconfirmed",
-    "potion exception and permanent future values unresolved"
+    "General risk calibration beyond the exact confirmed comparisons remains partial; no unique coefficient or universal 1% budget is claimed",
+    "Item-specific future inventory and permanent/reward values remain unresolved; rare-potion answer is tentative"
   ],
   "client_differential": "Not independently measured; informational under user-accepted pinned upstream rule authority, not a new prerequisite",
-  "native_potion_evidence": "docs/POTION_PAIRED_EVIDENCE.md"
+  "native_potion_evidence": "docs/POTION_PAIRED_EVIDENCE.md",
+  "confirmed_preference_feedback": "configs/preference_feedback_2026_10_02.json",
+  "confirmed_hard_preference_cases": 2,
+  "numerically_evaluated_hard_cases": 1
 }

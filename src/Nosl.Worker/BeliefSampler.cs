@@ -6,9 +6,11 @@ namespace Nosl.Worker;
 
 public static class BeliefSampler
 {
-    public const string ImplementationVersion = "nosl-belief-dispatch-v2";
+    public const string ImplementationVersion = "nosl-belief-dispatch-v3";
     public const string ExchangeableProfile = "reviewed-stable-exchangeable-v1";
     public const string ConditionalChoiceProfile = "reviewed-stable-origin-conditional-choice-v1";
+    public const string SlyExchangeableProfile = "reviewed-constructed-reflex-tactician-exchangeable-v1";
+    public const string SlyConditionalChoiceProfile = "reviewed-constructed-reflex-tactician-conditional-choice-v1";
     public const string WholeSetupReplayProfile = "whole-setup-rejection-v1";
     public const string UnsupportedProfile = "unsupported-posterior-provenance-v1";
 
@@ -17,12 +19,16 @@ public static class BeliefSampler
     {
         try
         {
-            if(UsesExchangeablePosterior(source)) return source.HasNativeProvenance ? NativeBeliefCertificate.Profile : ExchangeableProfile;
-            if(UsesConditionalChoicePosterior(source)) return ConditionalChoiceProfile;
+            if(UsesExchangeablePosterior(source)) return source.HasNativeProvenance ? NativeBeliefCertificate.Profile : HasSlyInitialPrior(source) ? SlyExchangeableProfile : ExchangeableProfile;
+            if(UsesConditionalChoicePosterior(source)) return HasSlyInitialPrior(source) ? SlyConditionalChoiceProfile : ConditionalChoiceProfile;
         }
         catch(NotSupportedException) { return UnsupportedProfile; }
         return source.HasNativeProvenance || source.HasInPlaceSampledProvenance ? UnsupportedProfile : WholeSetupReplayProfile;
     }
+    // Family identity comes from the declared prior, even after Sly cards leave combat.
+    private static bool HasSlyInitialPrior(CombatSession source) =>
+        (source.InitialScenario.Deck ?? []).Any(c => c.TrimEnd('+') is "Reflex" or "Tactician");
+
     // Public constraints define an exchangeable posterior for this finite supported scope.
     // Canonicalize BEFORE shuffling: shuffling the private source order with a fixed RNG leaks its permutation.
     public static CombatSession SampleWorld(CombatSession source, ulong samplerSeed) =>
@@ -34,7 +40,7 @@ public static class BeliefSampler
     {
         if(source.NativeCertificate is { } certificate) return certificate.AllowsCurrent(source);
         var p=source.State.Players.Single();
-        string[] cards=["StrikeSilent","DefendSilent","Neutralize","Survivor","AscendersBane","Acrobatics","Backflip","Prepared","ThinkingAhead","DeadlyPoison","Slimed","CloakAndDagger","DaggerThrow","Dash","LegSweep","Blur","DodgeAndRoll","BladeDance","PoisonedStab","Slice","NoxiousFumes","DaggerSpray","Footwork","Shiv"];
+        string[] cards=["StrikeSilent","DefendSilent","Neutralize","Survivor","AscendersBane","Acrobatics","Backflip","Prepared","ThinkingAhead","DeadlyPoison","Slimed","CloakAndDagger","DaggerThrow","Dash","LegSweep","Blur","DodgeAndRoll","BladeDance","PoisonedStab","Slice","NoxiousFumes","DaggerSpray","Footwork","Shiv","Reflex","Tactician"];
         string[] relics=["RingOfTheSnake","MeatOnTheBone","ChosenCheese"];
         string[] potions=["FirePotion","BlockPotion","EnergyPotion","SwiftPotion","FruitJuice"];
         string[] enemies=["TwigSlimeS","LeafSlimeS","Nibbit","TwigSlimeM"];
@@ -50,7 +56,7 @@ public static class BeliefSampler
             && source.State.Enemies.All(e=>enemies.Contains(e.Monster!.GetType().Name))
             && p.Relics.All(r=>relics.Contains(r.GetType().Name))
             && p.PotionSlots.Where(x=>x is not null).All(x=>potions.Contains(x!.GetType().Name))
-            && p.PlayerCombatState!.AllPiles.SelectMany(x=>x.Cards).All(c=>cards.Contains(c.GetType().Name)&&c.Enchantments.Count==0&&c.Affliction is null);
+            && p.PlayerCombatState!.AllPiles.SelectMany(x=>x.Cards).All(c=>cards.Contains(c.GetType().Name)&&c.Enchantments.Count==0&&c.Affliction is null&&!c.TemporarySlyThisTurn);
     }
     public static Task<CombatSession> SampleWorldAsync(CombatSession source,ulong samplerSeed,int maxReplayAttempts=256)
     {

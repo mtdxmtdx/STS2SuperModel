@@ -1,0 +1,2388 @@
+{
+  "schema": "nosl.m3-m6.acceptance-progress.v1",
+  "date_utc": "2026-10-02",
+  "source_head": "a7863c53e438c0fcd90ade2867f0adad64de68e6",
+  "snapshot_kind": "Integrated protection source plus concurrent final documentation/report updates; current checked evidence, not a fresh test execution by this mapping task.",
+  "authority": [
+    {
+      "path": "docs/spec/v4/PLAN_NOSL_FULL_COMBAT_V4.md",
+      "sha256": "65032d4ac7e574bee878f8fa0c1e35391306e5fd41979686dcc26df54a43bf4e"
+    },
+    {
+      "path": "docs/spec/v4/acceptance_catalog.json",
+      "sha256": "fd742b0f31f8a042c76e51d7520ae5b0cfd0c815b80bee7787f7f68a1fba435d"
+    },
+    {
+      "path": "configs/acceptance_progress.json",
+      "sha256": "2aa7420781703c20f9b559e789ea0829a4681f0730efed65ef22bf3b045d37f8"
+    },
+    {
+      "path": "configs/preference_feedback_2026_10_02.json",
+      "sha256": "83dce2dcedcefd0c4d2644d3c015e28373b4d99d83aa43507e37d773f0733d76"
+    }
+  ],
+  "historical_tracker_policy": "configs/acceptance_progress.json is historical M0–M2 evidence and is unchanged; original catalog statuses are preserved as v4_original_status.",
+  "overall_status": "READY_FOR_BOUNDED_PILOT_FULL_SCOPE_BLOCKED",
+  "full_catalog_complete": false,
+  "formal_training_run": false,
+  "formal_labels_allowed": false,
+  "model_promoted": false,
+  "status_definitions": {
+    "PASS_SUPPORTED_SCOPE": "The named behavior is supported by the explicit bounded evidence. Not full-content, full-milestone or policy-strength acceptance.",
+    "PARTIAL": "A meaningful part is implemented/evidenced, but a stated part of this original case remains unverified or incomplete.",
+    "BLOCKED": "Required external evidence for this original case is unavailable; scoped precursor evidence is listed without claiming the case passed.",
+    "NOT_RUN": "The actual acceptance operation has not run or its implementation does not exist; precursor tests do not count as acceptance."
+  },
+  "case_count": 50,
+  "status_counts": {
+    "PASS_SUPPORTED_SCOPE": 33,
+    "PARTIAL": 14,
+    "NOT_RUN": 2,
+    "BLOCKED": 1
+  },
+  "status_counts_are_not_completion_percentages": true,
+  "verified_regressions": [
+    {
+      "suite": "native",
+      "passed": 944,
+      "path": "artifacts/reports/m3-m6/full-integrated-sly.trx",
+      "sha256": "c8e7e895b48929562ed12e142e67de8f81bd5fb4663394a10e9b98655952f6ea",
+      "verification": "Existing report/hash and terminal result inspected; suite not rerun by this mapping task."
+    },
+    {
+      "suite": "python_student",
+      "passed": 165,
+      "path": "artifacts/reports/m3-m6/final-protection-student-tests.log",
+      "sha256": "b7aaba8d1924c8629f45f86fe10efae1087b5740db0c892882094daf93857d81",
+      "verification": "Existing report/hash and terminal result inspected; suite not rerun by this mapping task."
+    },
+    {
+      "suite": "generator",
+      "passed": 63,
+      "path": "artifacts/reports/m3-m6/final-generator-tests.log",
+      "sha256": "03e2598e15fdf7bcbef6b6d44db70d743d93a2c64289167c85f492d613b6a0ce",
+      "verification": "Existing report/hash and terminal result inspected; suite not rerun by this mapping task."
+    },
+    {
+      "suite": "data",
+      "passed": 129,
+      "path": "artifacts/reports/m3-m6/final-protection-data-tests.log",
+      "sha256": "e3ad0a4086054c68267c5730c32e05894f82b97f6ee54bc5101221ab203aa103",
+      "verification": "Existing report/hash and terminal result inspected; suite not rerun by this mapping task."
+    },
+    {
+      "suite": "calibration_evidence",
+      "passed": 45,
+      "path": "artifacts/reports/m3-m6/confirmed-preferences-tests.log",
+      "sha256": "364019ed6df57808023ad01f3bd5feb445b34f0bfe0ff594eb7e1f6700bdbc97",
+      "verification": "Existing report/hash and terminal result inspected; suite not rerun by this mapping task."
+    }
+  ],
+  "regression_limits": [
+    "944 native passes bind to full-integrated-sly.trx. final-m3-m6.trx is an earlier 929-case run, not the 944 result.",
+    "The independently reviewed cross-version split protection is now integrated; the verified final main data suite passes 129 cases and the compatible student suite passes 165, with zero optimizer steps.",
+    "Suite counts support the referenced component tests, not automatic promotion of all 50 acceptance cases.",
+    "Original synthetic contract report is separate from native integration and calibration evidence tests."
+  ],
+  "data_and_fit_snapshot": {
+    "first_corpus": {
+      "effective_roots": 5000,
+      "source_battles": 2513,
+      "independent_root_world_draws": 20000,
+      "experimental_optimizer_steps": 497,
+      "formal_training": false,
+      "source": "docs/FIRST_BOUNDED_PILOT.md"
+    },
+    "completed_followup_block": {
+      "attempted_boundaries": 160,
+      "constructed_source_battles": 40,
+      "saved_records": 81,
+      "effective_roots": 73,
+      "full_utility_roots": 68,
+      "partial_utility_roots": 4,
+      "auxiliary_only_roots": 1,
+      "fully_masked_diagnostic_records": 8,
+      "whole_attempt_timeouts": 26,
+      "absent_phases": 53,
+      "source_groups_for_complete_utility_stability": 35,
+      "complete_utility_stability_roots": 68,
+      "saved_allocated_candidate_world_copies": 7568,
+      "saved_settled_copies": 7450,
+      "saved_truncated_copies": 118,
+      "timeout_requested_copies_unknown": 2432,
+      "strong_pairs_certified": 0,
+      "continuation": "nosl-public-rules-v2",
+      "posterior": "nosl-belief-dispatch-v2",
+      "scale_gate": "STOP",
+      "scale_gate_reasons": [
+        "Missing resource-aware supervision; no potion-category root admits complete utility comparison.",
+        "Sparse posterior timeouts disproportionately censor later/harder phases; coverage is not broad.",
+        "Small-N evidence has no certified strong pairs or equivalence sets; this is not the sole stop reason."
+      ],
+      "new_optimizer_steps": 0,
+      "old_sealed_test_roots": 494,
+      "all_followup_records_are_inspected_development_data": true,
+      "source": "docs/BALANCED_VALIDATION_BLOCK.md",
+      "protected_development_copy": {
+        "path": "artifacts/prepared/current40-development-protected-final",
+        "train_rows": 57,
+        "validation_rows": 10,
+        "development_test_rows": 6,
+        "stages": 1,
+        "verify_only_status": "VERIFIED",
+        "isolation_passed": true,
+        "fresh_benchmark": false,
+        "evidence": "docs/BALANCED_VALIDATION_BLOCK.md"
+      }
+    },
+    "separate_sly_diagnostic": {
+      "posterior": "nosl-belief-dispatch-v3",
+      "root_candidates": 30,
+      "original_evaluation_world_seeds": 16,
+      "settled_copies": 480,
+      "incomplete_copies": 0,
+      "teacher_seconds": 12.3,
+      "source": "docs/CONSTRUCTED_SLY_POSTERIOR.md",
+      "limits": "One constructed posterior extension under a different prior. Does not upgrade the completed v2 block, demonstrate broad competence or provide natural carry-in coverage."
+    }
+  },
+  "confirmed_preferences": {
+    "source": "configs/preference_feedback_2026_10_02.json",
+    "hard_cases": 2,
+    "numerically_evaluated_hard_cases": 1,
+    "simulator_worlds": 0,
+    "death_case": "At explicit H0=70 and unchanged resources, B (99% win at70/1% death) over A (certain win at50) constrains K < 1930 + (3510/7)*eta. Candidate K=1000, eta=.2 agrees; no universal 1% risk budget is inferred.",
+    "fire_potion_case": "A consumes FirePotion and wins at50 over B retains it and wins at38, with no better later use/refill. H0 is unspecified: v < 12 + eta/H0*(max(H0-38,0)^2-max(H0-50,0)^2), H0>0. This is a bound, not an assigned price.",
+    "rare_potion_case": "Tentative leaning toward A, no hard label, identified item or assigned price.",
+    "assigned_prices": {},
+    "formal_profile_admission": []
+  },
+  "remaining_gates": [
+    {
+      "id": "ENGINEERING_NATIVE_POSTERIOR",
+      "kind": "engineering",
+      "cases": [
+        "N01",
+        "N02",
+        "N08",
+        "N11",
+        "N12",
+        "L04",
+        "D05"
+      ],
+      "gap": "General natural carry-in posterior, current-state sufficiency, owned choice replay and sparse-conditioning coverage. The native proof cohort has 200 raw roots/6 runs/26 combats/15 encounters; only 16 roots from one run certify 87 actions/174 branches, with 184 roots still raw. Sly v3 repairs one constructed family, not this gap.",
+      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
+    },
+    {
+      "id": "ENGINEERING_FORCED_EVENTS",
+      "kind": "engineering",
+      "cases": [
+        "L01",
+        "L05",
+        "L06",
+        "L07",
+        "D05"
+      ],
+      "gap": "Native event ownership/return/reward lifecycle for BattlewornDummy, DenseVegetation, PunchOff, FakeMerchant and TheLanternKey; do not substitute ordinary rooms.",
+      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
+    },
+    {
+      "id": "ENGINEERING_LOOPS_AND_STALLS",
+      "kind": "engineering",
+      "cases": [
+        "P03",
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05"
+      ],
+      "gap": "Broader loop/progress families, safe profitable finite stalling and any accelerated macro need native evidence and expansion/exit equivalence. v2 fixes only its public certificate.",
+      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
+    },
+    {
+      "id": "ENGINEERING_ACTIVE_BONUS_CONTROL",
+      "kind": "engineering",
+      "cases": [
+        "B01",
+        "B03",
+        "B04",
+        "B05",
+        "B06"
+      ],
+      "gap": "General active-plan public memory, student schema/encoding/labels/inference updates and broader reward attribution; ordinary records remain inactive.",
+      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
+    },
+    {
+      "id": "ENGINEERING_RESOURCE_PROVENANCE_AND_LABELS",
+      "kind": "engineering",
+      "cases": [
+        "P05",
+        "P07",
+        "P08",
+        "B03",
+        "D03",
+        "E01",
+        "E05"
+      ],
+      "gap": "General resource/permanent-event provenance, loss-aware relative supervision integration and useful resource-decision targets. The separate common-inventory API cannot silently replace ordinary targets.",
+      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
+    },
+    {
+      "id": "ENGINEERING_INSTRUMENTATION_AND_COVERAGE",
+      "kind": "instrumentation",
+      "cases": [
+        "C02",
+        "D01",
+        "D03",
+        "D05",
+        "E03"
+      ],
+      "gap": "Continuation-wide certificate activation, phase/source/policy coverage, targeted posterior runtime evidence, and source-group evaluation intervals. The 160-attempt block has no certified v2 root; no activation attribution is justified.",
+      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
+    },
+    {
+      "id": "PREFERENCE_AND_VALUATION_EVIDENCE",
+      "kind": "preference_valuation",
+      "cases": [
+        "P01",
+        "P02",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "B01",
+        "B03",
+        "E01"
+      ],
+      "gap": "Two confirmed exact constraints do not identify a unique risk model or prices. FirePotion starting HP/value is unresolved; rare potion preference is tentative; permanent assets/rewards and broader item values remain open. Computation cannot invent these preferences.",
+      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
+    },
+    {
+      "id": "INDEPENDENT_POLICY_AND_DELIVERY",
+      "kind": "evaluation",
+      "cases": [
+        "E01",
+        "E03",
+        "E04",
+        "E05",
+        "E06"
+      ],
+      "gap": "Broader blind source-group evaluation, quality acceptance, calibrated applicability, final export tolerance/parity and explicit promotion remain unestablished. Formal training has not run. Do not require stronger learned play or final deployment/client verification to finish the authorized M3–M6 engineering checkpoint.",
+      "phase": "Later M7/M8 acceptance",
+      "blocks_authorized_m3_m6_engineering_checkpoint": false
+    },
+    {
+      "id": "ORIGINAL_CLIENT_DIFFERENTIAL",
+      "kind": "external_evidence",
+      "cases": [
+        "E02"
+      ],
+      "gap": "No original-client trace comparison. It remains an original catalog/M8 gap, not a newly imposed blocker to pinned-upstream M3–M6 engineering. Do not require stronger learned play or final deployment/client verification to finish the authorized M3–M6 engineering checkpoint.",
+      "phase": "Later M7/M8 acceptance",
+      "blocks_authorized_m3_m6_engineering_checkpoint": false
+    }
+  ],
+  "cases": [
+    {
+      "id": "N01",
+      "category": "NOSL",
+      "title": "真实隐藏牌序替换",
+      "expected": "公共信息与sampler配置不变时输入、候选和教师根值不变。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Fixed sampler configuration preserves complete T0/T1 root candidates, outcomes and frozen continuation identity under actual source draw-order and future-RNG replacement.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/TeacherTests.cs",
+          "methods": [
+            "CompleteTeacherIsInvariantToTrueHiddenReplacement"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ReviewedPublicRuleTests.cs",
+          "methods": [
+            "HiddenDrawOrderAndFutureReplacementDoNotChangePublicPolicyOrTeacher"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/SlyBeliefTests.cs",
+          "methods": [
+            "SamePublicSourceErasesPrivateOrderFutureRngAndIndistinguishableInstances"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Demonstrated constructed/native certificate families only; no blanket posterior sufficiency proof for all legal natural carry-in states.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "N02",
+      "category": "NOSL",
+      "title": "真实seed替换",
+      "expected": "真实seed和stream内部状态不进入策略；采样使用独立配置。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Explicit public DTOs and independent belief seeds isolate true seed and future streams; sampler provenance is audit-only.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "N01_N02_N09_N10_HiddenReplacementDoesNotChangePublicInputsCandidatesOrRootDiagnostics"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativeBeliefTests.cs",
+          "methods": [
+            "SamePublicNativeHistoryErasesHiddenOrderAndFutureStreamsBeforePolicyContinuation"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/AnchoredHuntTests.cs",
+          "methods": [
+            "SamePublicAnchorDifferentPrivateSourceSeedsGivesSameEvaluation"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Additional natural-state families still require their own prior/sufficiency evidence.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "N03",
+      "category": "NOSL",
+      "title": "相同信息同策略",
+      "expected": "假想world不同但尚未有新公开信息时动作分布相同。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Frozen public tree and public-only continuations cannot select different actions before the public packet/history changes.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/TeacherTests.cs",
+          "methods": [
+            "FrozenTreeCannotDifferentiateWorldsBeforePublicInformationChanges"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "N03_N04_N08_N11_InformationFusionAndPublicHistory"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Applies to implemented T0/T1 and finite public controllers, not unimplemented future policies.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "N04",
+      "category": "NOSL",
+      "title": "信息公开后分化",
+      "expected": "实际抽到不同公开手牌后允许采取不同动作。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Newly revealed draw/history changes the public information key and permits a different frozen-tree action.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/TeacherTests.cs",
+          "methods": [
+            "FrozenTreeCannotDifferentiateWorldsBeforePublicInformationChanges"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "N03_N04_N08_N11_InformationFusionAndPublicHistory"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "No assertion that every public revelation should cause a policy change; broad policy strength remains unevaluated.",
+      "remaining_work_kinds": [
+        "evaluation"
+      ]
+    },
+    {
+      "id": "N05",
+      "category": "NOSL",
+      "title": "已知牌顶",
+      "expected": "保留合法已知位置；只采样未知位置。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Known physical draw positions survive supported sampling, upgrade/cost changes and conditional choice replay; only unknown positions are sampled.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "N05_N06_N07_RealKnownTopMove_DrawAndShuffleUpdate_NoIntentResampling"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/BridgeSafetyTests.cs",
+          "methods": [
+            "KnownTopTracksPublicUpgradeAndCostMutationAcrossClone"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/SlyBeliefTests.cs",
+          "methods": [
+            "KnownPhysicalReflexAndDuplicateUnknownsSurviveConditionalSampling"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Broader unreviewed content remains outside fast posterior certificates.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "N06",
+      "category": "NOSL",
+      "title": "洗牌更新",
+      "expected": "已知位置约束在真实洗牌后按规则撤销/更新。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Real draws/shuffles update or clear known positions; accepted conditional replay retains the observed suffix and reshuffle RNG.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "N05_N06_N07_RealKnownTopMove_DrawAndShuffleUpdate_NoIntentResampling"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ConditionalChoiceBeliefTests.cs",
+          "methods": [
+            "DiscardReshuffleChoiceConditionsFutureRngAndRetainsAcceptedStateAcrossForks"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "General natural carry-in and unreviewed generation/choice mechanisms remain bounded.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "N07",
+      "category": "NOSL",
+      "title": "当前意图冻结",
+      "expected": "不能把已公开intent当成未来未知重新抽样。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Published current intent is preserved by exact branches; future monster history is conditioned rather than silently replacing the current public intent.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "L02_N07_A10ClonePreservesPublishedIntentAndSubsequentEngineTrace"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/EncounterCoverageTests.cs",
+          "methods": [
+            "RepeatLimitedMonsterPosteriorConditionsOnFullPublicIntentHistory"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Registered encounter/opening tests are not exhaustive future-history or forced-event lifecycle acceptance.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "N08",
+      "category": "NOSL",
+      "title": "历史必要性",
+      "expected": "屏幕相同但必要历史不同的节点不得错误合并。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Public history participates in frozen-tree information keys and ordered student encoding; distinct necessary histories are not intentionally merged.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/TeacherTests.cs",
+          "methods": [
+            "FrozenTreeCannotDifferentiateWorldsBeforePublicInformationChanges"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_student.py",
+          "methods": [
+            "test_history_order_is_observable",
+            "test_v2_counters_change_encoding"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Active bonus-controller memory is not yet admitted by the ordinary student schema; general history sufficiency needs content-specific evidence.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "N09",
+      "category": "NOSL",
+      "title": "候选旁路",
+      "expected": "合法候选数量、顺序或过滤不能泄漏隐藏未来。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Hidden replacement leaves candidate identities/order/count unchanged; every legal ordered choice remains present at supported choice roots.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "N01_N02_N09_N10_HiddenReplacementDoesNotChangePublicInputsCandidatesOrRootDiagnostics"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/TeacherTests.cs",
+          "methods": [
+            "PublicChoiceRootUsesIndependentNativeReplayAndKeepsAllCandidates"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/SlyBeliefTests.cs",
+          "methods": [
+            "ActualRevisionNineAcceptsExactlyOneOfSixCompletePacketsAndThirtyOrderedActions"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "No all-content combinatorial enumeration claim; unsupported contexts must reject explicitly.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "N10",
+      "category": "NOSL",
+      "title": "元数据隔离",
+      "expected": "seed、private hash、teacher值、预算、排名、标签质量不成为输入。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Strict public schemas, encoding and process boundaries reject private/audit fields and exclude teacher scores, budgets and continuation metadata from student features.",
+      "evidence": [
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_student.py",
+          "methods": [
+            "test_metadata_never_enters_features",
+            "test_private_nested_event_field_rejected",
+            "test_standalone_dependency_import_graph"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/data/test_prepare_dataset.py",
+          "methods": [
+            "test_unknown_metadata_cannot_enter_public",
+            "test_per_root_policy_digest_is_audit_only"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Future schema extensions must preserve the same whitelist; this does not validate every unknown mechanism.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "N11",
+      "category": "NOSL",
+      "title": "子选择策略",
+      "expected": "弃牌/消耗/选目标等同样遵守公共信息约束。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Native discard/top/ordered multi-selection choices use public packets and independently owned replay; Sly order is semantically preserved.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "L04_DrawDiscardAndTopChoicesUsePublicCandidateOrder"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ConditionalChoiceBeliefTests.cs",
+          "methods": [
+            "PendingSurvivorErasesHiddenOrderAndRngAndForksOnlyItsAcceptedSampledOrigin"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/SlyBeliefTests.cs",
+          "methods": [
+            "OrderedSlyChoiceUsesNativePlayPilesEnergyHistoryAndCounters"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_student.py",
+          "methods": [
+            "test_ordered_multi_selection_is_not_pooled_away"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Reflex/Tactician extension excludes other Sly, temporary Sly, unreviewed initial content and native carry-in choice replay.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "N12",
+      "category": "NOSL",
+      "title": "精确小世界概率",
+      "expected": "可枚举场景中采样和精确期望一致且概率质量正确。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M2 dependency",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Exact three-card permutation and conditional-choice enumerations agree with the declared bounded draw posterior; the Sly revision-9 packet accepts one of six orders.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "N12_ExactMultisetPosteriorAndSampledFrequencyAgree"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ConditionalChoiceBeliefTests.cs",
+          "methods": [
+            "PreparedConditionalPosteriorMatchesExactSmallEnumerationAndRetainsRejectionMass"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/SlyBeliefTests.cs",
+          "methods": [
+            "ActualRevisionNineAcceptsExactlyOneOfSixCompletePacketsAndThirtyOrderedActions"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/CONSTRUCTED_SLY_POSTERIOR.md",
+          "methods": [],
+          "detail": "Dispatcher v3 is a separately versioned conditional permutation/independent-future-RNG prior."
+        }
+      ],
+      "unresolved_scope": "No exact enumeration of all future RNG distributions, no equivalence to the previous finite whole-setup-seed posterior, and no general natural posterior coverage.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "L01",
+      "category": "生命周期",
+      "title": "合法动作覆盖",
+      "expected": "支持内容的合法动作完整，非法输入明确拒绝。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M1 dependency",
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "Supported adapter actions use native playability/targets, reject stale tokens and keep engine-legal potion and choice actions.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "L01_ActualSilentA10_LegalTargetsAndStaleTokens",
+            "L01_EnginePlayabilityIsUsedRatherThanCostOnly"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/EnvironmentCoverageTests.cs",
+          "methods": [
+            "EveryPotionExecutesThroughRealAdapterAndExactClone"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/BridgeSafetyTests.cs",
+          "methods": [
+            "LargeDrawChoiceEnumeratesEverySingleSelectionWithoutBitOverflow"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Five forced-event owner contexts and broad interactions remain unsupported or unverified; catalog registration is not full-scope acceptance.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "L02",
+      "category": "生命周期",
+      "title": "clone对象映射",
+      "expected": "卡牌、目标、玩家映射正确，无活局对象交叉执行。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M1 dependency",
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "Exact branch object maps and concrete native replay own their cards, players, rooms, targets and accepted continuation state.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "L02_L03_BranchOwnsRoomAndAllMutableObjects_OriginalUntouched",
+            "L02_N07_A10ClonePreservesPublishedIntentAndSubsequentEngineTrace"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ConditionalChoiceBeliefTests.cs",
+          "methods": [
+            "PendingSurvivorErasesHiddenOrderAndRngAndForksOnlyItsAcceptedSampledOrigin"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Scope is the tested clone/replay paths; arbitrary asynchronous or projection-sensitive states are not automatically cloneable.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "L03",
+      "category": "生命周期",
+      "title": "clone无污染",
+      "expected": "分支动作/选择/结算不改变活局及其他分支。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M1 dependency",
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "Branch execution and settlement leave source public/RNG/assets unchanged; accepted replay forks survive parent disposal in the reviewed families.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "L02_L03_BranchOwnsRoomAndAllMutableObjects_OriginalUntouched"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativeBeliefTests.cs",
+          "methods": [
+            "ActualNativeCarryInImportsWithoutFreshSetupAndLeavesWholeSourceRunUnchanged"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ConditionalChoiceBeliefTests.cs",
+          "methods": [
+            "DiscardReshuffleChoiceConditionsFutureRngAndRetainsAcceptedStateAcrossForks"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "No claim of arbitrary in-process parallel safety or all-content mutable-object closure.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "L04",
+      "category": "生命周期",
+      "title": "选择悬挂恢复",
+      "expected": "真实子选择可完成；异步栈不假装被clone。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M1 dependency",
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "Real pending choices complete through independently owned stable-origin/native replay; a suspended coroutine is not treated as cloneable state.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "L04_RealDiscardChoice_IndependentReplay_NotCoroutineClone"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/BridgeSafetyTests.cs",
+          "methods": [
+            "ChoicePosteriorReplaysOwnedSampledOriginsAndUnreviewedInPlaceStillFailsClosed"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ConditionalChoiceBeliefTests.cs",
+          "methods": [
+            "PendingSurvivorErasesHiddenOrderAndRngAndForksOnlyItsAcceptedSampledOrigin"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "General native carry-in choice replay and unreviewed in-place pending choices still fail closed or exhaust compute.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "L05",
+      "category": "生命周期",
+      "title": "战后自动效果",
+      "expected": "最后敌人死亡后必要hooks结算一次，HP与原驱动一致。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M1 dependency",
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "Supported victory/automatic settlement hooks run once; MeatOnTheBone/ChosenCheese HP/max-HP match the native original-room path.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "L05_L07_ActualVictoryHooksAndCleanupMatchOriginalRoom"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/TeacherTests.cs",
+          "methods": [
+            "TeacherCapturesAutomaticHealingAndUnresolvedPermanentValue"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "RealSimulator_AutomaticHealingAndMaxHpRemainSeparateFromFutureValue"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Pinned simulator lifecycle agreement is not original game-client differential evidence; forced-event return/reward owners remain open.",
+      "remaining_work_kinds": [
+        "engineering",
+        "external_evidence"
+      ]
+    },
+    {
+      "id": "L06",
+      "category": "生命周期",
+      "title": "胜负规则",
+      "expected": "同时死亡、逃跑、延迟效果按引擎判定，不自行简化。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M1 dependency",
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "Actual loss, Fairy rescue, engine-owned terminal outcomes and unfinished/error outcomes are distinguished.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "L06_LossIsNotHealedOrSilentlyChangedToWin"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/EnvironmentCoverageTests.cs",
+          "methods": [
+            "FairyPreventsDeathAutomaticallyInCloneWithoutConsumingSourceBottle"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "TrueLossOnlyGetsFailurePenaltyAndLosesFutureResources",
+            "IncompleteAndErrorsAreNeverLosses"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "No complete dedicated adapter matrix for simultaneous death, all escape/delayed effects and forced-event terminal contexts.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "L07",
+      "category": "生命周期",
+      "title": "终点一致",
+      "expected": "不同入口得到同一声明终点，奖励选择未被教师代做。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M1 dependency",
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "Supported original and branch entry paths stop after required automatic settlement, before reward selection; TheHunt records the offered CardReward without selecting it.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "L05_L07_ActualVictoryHooksAndCleanupMatchOriginalRoom"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/AnchoredHuntTests.cs",
+          "methods": [
+            "ActualHuntFatalAndOfferedCardRewardAreRecordedWithoutInventedUtility"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_policy_evaluation.py",
+          "methods": [
+            "test_wrong_settlement_boundary_is_not_a_game_result"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Five native forced-event owner/return contexts remain outside this scoped endpoint result.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "P01",
+      "category": "偏好",
+      "title": "低均值风险取舍",
+      "expected": "60血都获胜资源相同，0/.9与30/.1优于固定8。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M3"
+      ],
+      "verified_scope": "The production objective reproduces the exact 60-HP 0/.9 + 30/.1 preference over certain loss 8 with the fixed combat-start anchor.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "ConfirmedRiskExamplesAndFixedCombatStartAnchor"
+          ],
+          "detail": "Production scorer over authored outcome vectors, not a native sampled lottery."
+        },
+        {
+          "kind": "exact_synthetic_contract",
+          "path": "docs/spec/v4/tests/test_preference_contract.py",
+          "methods": [
+            "test_01_user_accepts_lower_mean_lottery"
+          ],
+          "detail": "Authored exact distributions, not simulator samples; original 30-test report is historical."
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/calibration/test_preference_feedback.py",
+          "methods": [
+            "test_candidate_matches_death_case_but_is_not_calibrated"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "The exact native lottery comparison is not established; broad risk calibration is not identified by this or the new 70-HP hypothetical.",
+      "remaining_work_kinds": [
+        "native_acceptance_evidence",
+        "preference_valuation"
+      ]
+    },
+    {
+      "id": "P02",
+      "category": "偏好",
+      "title": "同均值稳定性",
+      "expected": "同样前提固定3优于均值3的0/30波动。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M3"
+      ],
+      "verified_scope": "The same production objective prefers fixed loss 3 over the authored equal-mean 0/30 lottery.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "ConfirmedRiskExamplesAndFixedCombatStartAnchor"
+          ],
+          "detail": "Fixed loss cost 3.03 versus mixture cost 3.3 under the candidate profile."
+        },
+        {
+          "kind": "exact_synthetic_contract",
+          "path": "docs/spec/v4/tests/test_preference_contract.py",
+          "methods": [
+            "test_02_equal_mean_prefers_stable"
+          ],
+          "detail": "Authored exact distributions, not simulator samples; original 30-test report is historical."
+        }
+      ],
+      "unresolved_scope": "The exact native stochastic comparison is not established; candidate eta is not uniquely calibrated.",
+      "remaining_work_kinds": [
+        "native_acceptance_evidence",
+        "preference_valuation"
+      ]
+    },
+    {
+      "id": "P03",
+      "category": "偏好",
+      "title": "全程保血非速杀",
+      "expected": "安全无伤多回合优于仅为速度损失5血。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M3"
+      ],
+      "verified_scope": "Exact contract favors no HP loss over loss 5; production scoring adds no action/turn-count penalty, and native finite attack cycles preserve that property.",
+      "evidence": [
+        {
+          "kind": "exact_synthetic_contract",
+          "path": "docs/spec/v4/tests/test_preference_contract.py",
+          "methods": [
+            "test_03_safe_no_loss_beats_faster_hp_loss"
+          ],
+          "detail": "Authored exact distributions, not simulator samples; original 30-test report is historical."
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "ConfirmedRiskExamplesAndFixedCombatStartAnchor"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/FiniteLoopTests.cs",
+          "methods": [
+            "NativeAttackDrawCycleTerminatesAndExpandedReplayPreservesEveryAtomicAction"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "No dedicated native paired multi-turn no-loss versus faster 5-loss case establishes the entire requested comparison; broad safe stalling is still incomplete.",
+      "remaining_work_kinds": [
+        "engineering",
+        "native_acceptance_evidence"
+      ]
+    },
+    {
+      "id": "P04",
+      "category": "偏好",
+      "title": "整场非机械满防",
+      "expected": "全程掉5优于眼前无伤但后面掉12。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M3"
+      ],
+      "verified_scope": "Exact full-combat terminal-cost contract prefers loss 5 over loss 12; the teacher runs all candidates to actual settlement.",
+      "evidence": [
+        {
+          "kind": "exact_synthetic_contract",
+          "path": "docs/spec/v4/tests/test_preference_contract.py",
+          "methods": [
+            "test_04_whole_combat_five_beats_twelve"
+          ],
+          "detail": "Authored exact distributions, not simulator samples; original 30-test report is historical."
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/TeacherTests.cs",
+          "methods": [
+            "CompleteTeacherIsInvariantToTrueHiddenReplacement"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/COMMON_RESOURCE_RELATIVE_EVIDENCE.md",
+          "methods": [],
+          "detail": "Revision-14 replay exposes the actual draw/block versus Fumes ordering contrast under a separate relative profile."
+        }
+      ],
+      "unresolved_scope": "No dedicated native 5-versus-12 fixture proves the precise immediate-defense/whole-combat tradeoff; relative evidence remains development-only and does not establish learned ordering competence.",
+      "remaining_work_kinds": [
+        "native_acceptance_evidence",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "P05",
+      "category": "偏好",
+      "title": "药水时机",
+      "expected": "达9点可用但等待更好且安全的时机可以更优。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M3"
+      ],
+      "verified_scope": "Nine HP is inclusive consideration, not compulsory use; paired native use-now/never-use B0 confirmation distinguishes below/above/inconclusive gates without pricing the potion.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "PotionNineIsInclusiveConsiderationAndRescueCanBeBelowNine",
+            "RealSimulator_FiveHpWholePlanDifferenceAndSamePotionTimingCancel"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/calibration/test_potion_comparisons.py",
+          "methods": [
+            "test_nine_sample_is_not_exact_boundary_proof",
+            "test_complete_pair_preserves_unpriced_utility_mask"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/POTION_PAIRED_EVIDENCE.md",
+          "methods": [],
+          "detail": "128 confirmation worlds and 256 selected endpoints; B0 itself never uses/discards potions."
+        }
+      ],
+      "unresolved_scope": "The native comparator does not optimize delayed potion timing. A safe better-later-use case and resource-aware continuation/supervision remain open; the confirmed FirePotion bound is not a price.",
+      "remaining_work_kinds": [
+        "engineering",
+        "preference_valuation",
+        "native_acceptance_evidence"
+      ]
+    },
+    {
+      "id": "P06",
+      "category": "偏好",
+      "title": "药水救命",
+      "expected": "低于9点但真实保命需要不被一般门槛否决。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M3"
+      ],
+      "verified_scope": "The production gate permits independently verified rescue below nine; the real 1-HP fixture distinguishes FirePotion rescue from native loss.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "PotionNineIsInclusiveConsiderationAndRescueCanBeBelowNine",
+            "RealSimulator_RescueBelowNineIsConsiderationAndActualLossIsDistinct"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/calibration/test_potion_comparisons.py",
+          "methods": [
+            "test_observed_rescue_below_general_gate_is_unknown_not_rejected"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Generic sampled rescue is not an exact rescue certificate; the native confirmation runner reports its rescue eligibility unresolved and general potion utility remains unpriced.",
+      "remaining_work_kinds": [
+        "engineering",
+        "preference_valuation"
+      ]
+    },
+    {
+      "id": "P07",
+      "category": "偏好",
+      "title": "物品不重复计价",
+      "expected": "保留价值与消耗扣分不能双算；两路线都喝只计一次。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M3"
+      ],
+      "verified_scope": "Loss-aware start/end inventory is charged once; event logs provide provenance rather than a second usage fee. Two real routes consuming the same potion each charge once.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "InventoryIsChargedOnceAndEventsAreOnlyProvenance",
+            "RealSimulator_FiveHpWholePlanDifferenceAndSamePotionTimingCancel"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/CommonResourceObjectiveTests.cs",
+          "methods": [
+            "LossRetentionMaskCannotBeReplacedByMatchingRawConsumption",
+            "RealNativeReplayReproducesTheOriginalPairedWorldsWithNoAbsoluteRelabeling"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/calibration/test_preference_feedback.py",
+          "methods": [
+            "test_inventory_is_priced_once_and_not_implicitly_zero"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Test-only prices do not calibrate inventory values. Relative cancellation has strict closure/provenance requirements and does not populate ordinary absolute labels.",
+      "remaining_work_kinds": [
+        "preference_valuation",
+        "engineering"
+      ]
+    },
+    {
+      "id": "P08",
+      "category": "偏好",
+      "title": "回血不重复",
+      "expected": "当前HP和永久最大HP未来价值拆分；累计伤害不重复扣分。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M3"
+      ],
+      "verified_scope": "Settled HP includes actual healing exactly once; permanent max-HP future value is a separate nullable component and cumulative damage is diagnostic.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "DamageAndHealingDiagnosticsDoNotDoubleCountTerminalHp",
+            "MissingPermanentValuesAndMissingMaxHpEventsRemainExplicit",
+            "RealSimulator_AutomaticHealingAndMaxHpRemainSeparateFromFutureValue"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Future permanent values and general permanent-event provenance remain unresolved; unknown components remain masked.",
+      "remaining_work_kinds": [
+        "preference_valuation",
+        "engineering"
+      ]
+    },
+    {
+      "id": "B01",
+      "category": "额外收益",
+      "title": "5与80边界",
+      "expected": "精确Delta=5,p=.8时可考虑而非强制；采样跨界是未决。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M3",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Production gates admit exact Delta=5,p=.8 only as eligible-not-mandatory and keep sampled threshold crossings unresolved; native TheHunt evidence has fixed-N bounds.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "FiveAndEightyBoundariesAreInclusiveWithUncertaintySeparate",
+            "FixedSampleIntervalsDoNotTreatPointEightAsAnExactProbability"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/AnchoredHuntTests.cs",
+          "methods": [
+            "ActualNextTurnFinishCostsFiveVersusUnmodifiedNormalBaseline"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/M3_ANCHORED_HUNT.md",
+          "methods": [],
+          "detail": "Observed five-HP means and small-N success rates do not become exact expectations or eligibility proofs."
+        }
+      ],
+      "unresolved_scope": "The exact joint native 5/.8 boundary is not established. General bonus-plan safety/valuation and trained active-control behavior remain incomplete.",
+      "remaining_work_kinds": [
+        "native_acceptance_evidence",
+        "engineering",
+        "preference_valuation"
+      ]
+    },
+    {
+      "id": "B02",
+      "category": "额外收益",
+      "title": "不是单轨迹上限",
+      "expected": "预计额外代价上限不能误写成每个结果最多5。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M3",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "The exact contract applies five HP to expected extra cost, and the Hunt reducer uses full paired differences with support [-anchorHP,+anchorHP].",
+      "evidence": [
+        {
+          "kind": "exact_synthetic_contract",
+          "path": "docs/spec/v4/tests/test_preference_contract.py",
+          "methods": [
+            "test_19_bonus_not_a_per_trajectory_cap"
+          ],
+          "detail": "Authored exact distributions, not simulator samples; original 30-test report is historical."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/M3_ANCHORED_HUNT.md",
+          "methods": [],
+          "detail": "Fixed-N paired mean interval uses every allocated world; support is not clipped at five."
+        }
+      ],
+      "unresolved_scope": "No dedicated native stochastic fixture with an individual cost above five but acceptable expected cost closes this precise regression.",
+      "remaining_work_kinds": [
+        "native_acceptance_evidence"
+      ]
+    },
+    {
+      "id": "B03",
+      "category": "额外收益",
+      "title": "成功分母",
+      "expected": "指定斩杀且获益且未失败，不只统计活下来的分支。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M3",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Specified fatal, actual earned CardReward, deadline and true settled win are separate facts; death/incomplete mass stays in the unconditional allocated denominator.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "FixedSampleIntervalsDoNotTreatPointEightAsAnExactProbability"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/AnchoredHuntTests.cs",
+          "methods": [
+            "ActualHuntFatalAndOfferedCardRewardAreRecordedWithoutInventedUtility",
+            "RealDeathAndPublicSafetyExitRemainDistinct",
+            "ComputationTruncationKeepsUnknownMassAndBonusLabelsNull"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Restricted single-TheHunt no-other-reward-source family only; general reward attribution/provenance and future value remain open.",
+      "remaining_work_kinds": [
+        "engineering",
+        "preference_valuation"
+      ]
+    },
+    {
+      "id": "B04",
+      "category": "额外收益",
+      "title": "预算与截止不重开",
+      "expected": "固定公开锚点和deadline，跨回合不自动获得新预算。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M3",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "The opt-in finite Hunt controller preserves a fixed public anchor and next-turn deadline, irreversibly exits on expiry/failure, and never renews the five-HP plan budget.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "AnchoredPlansNeverRenewBudgetOrMoveDeadline"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/AnchoredHuntTests.cs",
+          "methods": [
+            "MissExitsToBaselineAndNeverRenewsDeadlineAcrossLaterTurns",
+            "ActualMissedDrawExitsOnTheOriginalDeadlineTurn",
+            "MidCombatAnchorKeepsOriginalCombatHpReference"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "No general budget allocation across repeated controller invocations or active student-plan schema; a fresh call cannot be represented as continuation of an old budget.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "B05",
+      "category": "额外收益",
+      "title": "反事实基准",
+      "expected": "基准为不特意追收益的正常策略，不能故意弱化。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M3",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "Hunt pairs its finite plan with the unchanged normal public-rules-v1 continuation in the same sampled worlds; baseline identity and incidental reward are preserved.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/AnchoredHuntTests.cs",
+          "methods": [
+            "ActualNextTurnFinishCostsFiveVersusUnmodifiedNormalBaseline",
+            "IncidentalSuccessAfterSafetyAbortPreservesAbortAndBaselineIdentity"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "AnchoredPlansNeverRenewBudgetOrMoveDeadline"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/M3_ANCHORED_HUNT.md",
+          "methods": [],
+          "detail": "Baseline may naturally earn the benefit and is not weakened for comparison."
+        }
+      ],
+      "unresolved_scope": "This certifies the declared baseline identity, not optimality of B0 or an ideal baseline for every future plan.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "B06",
+      "category": "额外收益",
+      "title": "部署记忆非教师数值",
+      "expected": "学生仅公共自身记忆，不要求现场教师反事实值。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M3",
+        "M4",
+        "M6"
+      ],
+      "verified_scope": "FiniteHuntPolicy stores public anchor/deadline/controller state without teacher values; ordinary standalone student input is public-only.",
+      "evidence": [
+        {
+          "kind": "implementation",
+          "path": "src/Nosl.Contracts/FiniteHuntPolicy.cs",
+          "methods": [],
+          "detail": "Finite public controller receives DecisionPacket only."
+        },
+        {
+          "kind": "implementation",
+          "path": "src/Nosl.Worker/TeacherDataset.cs",
+          "methods": [],
+          "detail": "Ordinary records emit controller_context.status=inactive."
+        },
+        {
+          "kind": "implementation",
+          "path": "python/nosl/schema.py",
+          "methods": [],
+          "detail": "Only inactive controller_context is currently admitted."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/M3_ANCHORED_HUNT.md",
+          "methods": [],
+          "detail": "Opt-in evaluator does not modify ordinary teacher/student schema or deploy a policy."
+        }
+      ],
+      "unresolved_scope": "Active bonus-plan memory, labels, encoding, inference updates and deployment regressions are not integrated into the student. This is an engineering gap independent of preference answers.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "C01",
+      "category": "循环",
+      "title": "合法致胜无限",
+      "expected": "低效率但有限可结束的循环不因次数多被判差。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "Native FlashOfSteel/base-plus finite repeatable cycles settle through 13/9 atomic actions and receive no action-count utility penalty; T0/T1 keep all candidates.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/FiniteLoopTests.cs",
+          "methods": [
+            "NativeAttackDrawCycleTerminatesAndExpandedReplayPreservesEveryAtomicAction",
+            "TeacherKeepsAllCandidatesAndIndependentWorldsForFiniteAttackCycle"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ReviewedPublicRuleTests.cs",
+          "methods": [
+            "ProfitableNativeAttackDrawCycleRemainsWinningAndUnpenalized"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Bounded constructed cycles only; a too-small compute budget stays truncated. Broad winning loops and acceleration are not established.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "C02",
+      "category": "循环",
+      "title": "防够继续有益动作",
+      "expected": "停无益防御循环，保留有效攻击和其他收益。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "Opt-in public-rules-v2 stops the certified Finesse/Impatience defensive cycle once enough native block is present while preserving useful draw, BladeDance/Shivs and profitable attacks.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ReviewedPublicRuleTests.cs",
+          "methods": [
+            "EnoughNativeBlockStopsFinesseAndPlaysUsefulNonAttackBeforeSettledWin",
+            "ImpatienceStillDrawsFinesseWhenMoreNativeBlockIsUseful",
+            "UnreviewedEffectsOrUnidentifiedDrawFailClosedAndNativeChoicesRemainLegal"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/PUBLIC_CONTINUATION_V2_EVIDENCE.md",
+          "methods": [],
+          "detail": "One mixed fixture improves completion 16/48 to 48/48; all v2 empirical values tie."
+        }
+      ],
+      "unresolved_scope": "Narrow public certificate only; v1 remains fallback/default and general defense/trigger families can still cycle. The completed 160-attempt block had no root certificate match, and continuation-wide activation was not instrumented.",
+      "remaining_work_kinds": [
+        "engineering",
+        "instrumentation"
+      ]
+    },
+    {
+      "id": "C03",
+      "category": "循环",
+      "title": "安全有限拖回合",
+      "expected": "真正安全且收益增加允许拖；无收益不无限空转。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "SafeFiniteStall has a separate finite deadline and requires its own evidence; unsupported stall claims stay unresolved.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "SafeFiniteStallHasSeparateDeadlineAndNeedsItsOwnEvidence"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ReviewedPublicRuleTests.cs",
+          "methods": [
+            "ReviewedClosedFamilyExitsByLegalEndTurnsAndOnlyActualSettlementIsLoss"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "No general native safe profitable-stall controller or proof of progress/exit has been implemented. Pure-loop end-turn exits can truly lose and are not evidence of safe profitable stalling.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "C04",
+      "category": "循环",
+      "title": "macro等价",
+      "expected": "加速循环可展开并保持规则/RNG/副作用/退出等价。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "NOT_RUN",
+      "milestones": [
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "Atomic native-loop replay preserves packets, RNG, assets and endpoints in current fixtures; this is precursor evidence only.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/FiniteLoopTests.cs",
+          "methods": [
+            "NativeAttackDrawCycleTerminatesAndExpandedReplayPreservesEveryAtomicAction"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/FINITE_LOOP_EVIDENCE.md",
+          "methods": [],
+          "detail": "Explicitly implements neither a loop detector nor an accelerated macro."
+        }
+      ],
+      "unresolved_scope": "No macro implementation, expansion equivalence test or formal semantic/RNG/side-effect/exit proof has run. Do not relabel ordinary replay as macro acceptance.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "C05",
+      "category": "循环",
+      "title": "隐藏进展不误判循环",
+      "expected": "公开状态重复不直接证明完整语义无进展。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M4",
+        "M5"
+      ],
+      "verified_scope": "Repeated public shape or excessive block does not declare semantic nontermination; changing counters/history and all unfinished world mass are retained.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/FiniteLoopTests.cs",
+          "methods": [
+            "DrawOrDefensiveCycleRemainsUnresolvedAtComputeBudgetRatherThanBecomingDefeat"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ReviewedPublicRuleTests.cs",
+          "methods": [
+            "ReviewedClosedFamilyExitsByLegalEndTurnsAndOnlyActualSettlementIsLoss"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/PUBLIC_CONTINUATION_V2_EVIDENCE.md",
+          "methods": [],
+          "detail": "v2 selects real legal actions; only native settlement establishes win/loss."
+        }
+      ],
+      "unresolved_scope": "No general semantic loop/progress detector or macro exists; this scoped pass covers conservative non-classification, not loop completeness.",
+      "remaining_work_kinds": [
+        "engineering"
+      ]
+    },
+    {
+      "id": "D01",
+      "category": "数据",
+      "title": "计数守恒",
+      "expected": "所有采样world的完成/截断/异常均记录，不丢困难轨迹。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "verified_scope": "All allocated candidate/world outcomes and all attempted boundaries retain complete/truncated/error/timeout/absent status; archives and budget accounting reconcile.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/TeacherTests.cs",
+          "methods": [
+            "BudgetExhaustionRetainsEveryWorldAndMasksEveryIncompleteTarget"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/data/test_prepare_dataset.py",
+          "methods": [
+            "test_world_accounting_conservation",
+            "test_error_is_never_converted_to_loss"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/generation/test_balanced_generation.py",
+          "methods": [
+            "test_failed_and_interrupted_attempts_remain_in_block_and_world_budget"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/BALANCED_VALIDATION_BLOCK.md",
+          "methods": [],
+          "detail": "160=81 saved+26 timeouts+53 absent; 7568 saved candidate copies=7450 settled+118 truncated. Another 2432 requested copies remain timeout-unknown."
+        }
+      ],
+      "unresolved_scope": "Timeout copies have no recovered terminal result and are not losses or zero labels. Accounting correctness does not remove computational censoring or certify source coverage.",
+      "remaining_work_kinds": [
+        "engineering",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "D02",
+      "category": "数据",
+      "title": "独立最终评估",
+      "expected": "搜索选优样本与冻结续策后的最终标签评估隔离。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "verified_scope": "T1 exploration and final evaluation use disjoint seed sets; continuation is frozen before fixed-N final labels, with duplicate/overlap/formal gates rejected.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/TeacherTests.cs",
+          "methods": [
+            "ExplorationEvaluationAndProductionGatesFailClosed"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/data/test_prepare_dataset.py",
+          "methods": [
+            "test_seed_overlap_and_independence_guard"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/calibration/test_potion_comparisons.py",
+          "methods": [
+            "test_plan_is_bounded_and_eval_seeds_are_disjoint"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Final labels remain Q under that frozen continuation; this is not independent policy-quality validation or proof of optimal actions.",
+      "remaining_work_kinds": [
+        "evaluation"
+      ]
+    },
+    {
+      "id": "D03",
+      "category": "数据",
+      "title": "动作覆盖质量",
+      "expected": "未评动作不填0；未评完全不称全动作最优。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "verified_scope": "All legal candidates stay visible. Missing/incomplete/unpriced utilities are null and masked; incomplete roots cannot claim a complete ranking or certified pair.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/TeacherTests.cs",
+          "methods": [
+            "BudgetExhaustionRetainsEveryWorldAndMasksEveryIncompleteTarget",
+            "RankingUsesFixedPairedMeanBoundsAndNeverInventsEquivalence"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/data/test_prepare_dataset.py",
+          "methods": [
+            "test_masked_zero_rejected",
+            "test_missing_candidate_rejects_whole_root",
+            "test_incomplete_root_cannot_claim_pairwise_win"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_pilot_metrics.py",
+          "methods": [
+            "test_missing_value_candidate_excludes_whole_root_from_empirical_ranking"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "No certified strong pairs in the balanced block. More importantly, all potion-category roots lack complete utility support; zero pairs alone is not the scale-stop rationale.",
+      "remaining_work_kinds": [
+        "preference_valuation",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "D04",
+      "category": "数据",
+      "title": "源战斗分组切分",
+      "expected": "同run/战斗/反事实分支不跨train与test。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "verified_scope": "Transitive run/combat/branch/public-identity components determine splits; invalid bridges and append conflicts remain protected. Integrated metadata-only cross-version protection preserves old split aliases without importing old target rows or relaxing teacher-version locks.",
+      "evidence": [
+        {
+          "kind": "python_test",
+          "path": "tests/data/test_prepare_dataset.py",
+          "methods": [
+            "test_transitive_run_combat_branch_and_digest_union",
+            "test_invalid_bridge_still_connects_valid_roots",
+            "test_crosssplit_bridge_quarantines_and_permanently_blocks",
+            "test_frozen_test_never_extended"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_public_identity_leakage.py",
+          "methods": [
+            "test_representationally_equivalent_cross_battle_roots_cannot_cross_splits"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/BALANCED_VALIDATION_BLOCK.md",
+          "methods": [],
+          "detail": "Independent audit unions 81 decisions and 160 attempts before filtering; protects 524 digests/244 old test components, with old 494 test targets unread."
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/data/test_split_protection.py",
+          "methods": [
+            "test_old_test_direct_and_semantic_identity_excluded_from_all_splits",
+            "test_rejected_historical_alias_is_protected",
+            "test_journal_bridge_and_semantic_digest_survive",
+            "test_protected_new_corpus_and_resume_keep_strict_versions",
+            "test_later_same_split_bridge_to_protected_test_commits_permanent_block"
+          ],
+          "detail": "Part of the verified final 129-test data suite; protection crosses versions while each new target corpus retains strict versions."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "tests/data/README.md",
+          "methods": [],
+          "detail": "Documents metadata-only cross-version protection and the reviewed 57/10/6 development copy."
+        }
+      ],
+      "unresolved_scope": "The protected 57 train / 10 validation / 6 development-test rows were already inspected; their assigned test partition is not a fresh benchmark. The old 494 test targets remain unread; full coverage and policy-quality evidence are separate gates.",
+      "remaining_work_kinds": [
+        "evaluation"
+      ]
+    },
+    {
+      "id": "D05",
+      "category": "数据",
+      "title": "范围缺口诚实",
+      "expected": "未知效果不静默删除；首版全范围与pilot明确区分。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "verified_scope": "Coverage, source provenance and explicit unsupported statuses distinguish registered content, constructed pilots, raw natural traces and certified labels; no full-scope readiness claim is made.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/EncounterCoverageTests.cs",
+          "methods": [
+            "CatalogRetainsEveryActPoolAndEveryRegisteredMonsterWithoutEquatingRegistrationWithVerification",
+            "UnsupportedEventSettlementCannotSilentlyMasqueradeAsAnOrdinaryRoom"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativeBeliefTests.cs",
+          "methods": [
+            "PrototypeExportNamesItsNativeProfileAndCannotPromoteFormalTraining"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/COVERAGE_BRIDGE.md",
+          "methods": [],
+          "detail": "Lists the five forced-event owners and sampler/context boundaries."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/M3_M6_ACCEPTANCE_CHECKPOINT.md",
+          "methods": [],
+          "detail": "Full scope remains blocked after bounded data and fit."
+        }
+      ],
+      "unresolved_scope": "General natural carry-in, five forced-event lifecycles, broad hard interactions and resource labels remain absent. This pass is for honest accounting of those gaps, not full content completion.",
+      "remaining_work_kinds": [
+        "engineering",
+        "preference_valuation"
+      ]
+    },
+    {
+      "id": "D06",
+      "category": "数据",
+      "title": "续策版本",
+      "expected": "Q^pi记录pi版本；不冒称最优或纯学生胜率。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "verified_scope": "Q values retain frozen continuation/posterior/objective identities in audit metadata; v1/v2/v3 data are not silently substituted or appended under an old version lock.",
+      "evidence": [
+        {
+          "kind": "python_test",
+          "path": "tests/generation/test_continuation_selection.py",
+          "methods": [
+            "test_teacher_identity_and_dataset_lock_cannot_be_substituted",
+            "test_v2_is_bound_to_generation_config_and_cannot_resume_as_v1"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/data/test_prepare_dataset.py",
+          "methods": [
+            "test_changed_versions_quarantined",
+            "test_per_root_policy_digest_is_audit_only"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/CONSTRUCTED_SLY_POSTERIOR.md",
+          "methods": [],
+          "detail": "New dispatcher v3/prior is separately identified; existing v2 completed block stays v2."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/FIRST_BOUNDED_PILOT.md",
+          "methods": [],
+          "detail": "Teacher-label metrics and actual student rollouts are reported separately."
+        }
+      ],
+      "unresolved_scope": "Continuation-dependent values are neither optimal Q nor pure-student win probabilities; any future relabel/profile integration needs new identity.",
+      "remaining_work_kinds": [
+        "engineering",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "E01",
+      "category": "评测",
+      "title": "纯学生闭环",
+      "expected": "独立种子下学生连续决策，标签预测与真实结果分别报告。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M6 evaluator engineering prerequisite",
+        "M7 bounded diagnostic completed",
+        "M8 full policy-quality acceptance"
+      ],
+      "verified_scope": "A frozen independent constructed holdout executes actual public-only student and baseline decisions through terminal settlement; teacher prediction metrics remain separate.",
+      "evidence": [
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_policy_evaluation.py",
+          "methods": [
+            "test_student_receives_only_public_and_reports_actual_settlement",
+            "test_paired_rollouts_use_same_declared_source_seed",
+            "test_summary_keeps_unresolved_source_denominator_and_pairing"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/FIRST_BOUNDED_PILOT.md",
+          "methods": [],
+          "detail": "16 source battles, 32 paired rollouts, 16 wins each; student uses four extra potions, so HP difference is not a net-utility strength result."
+        }
+      ],
+      "unresolved_scope": "Only 16 constructed sources; these become observed diagnostics after evaluation. Broad source coverage, resource-aware quality and frozen noninferiority/improvement acceptance remain open; no promotion. Stronger play is a later policy-quality gate, not an M6 implementation prerequisite.",
+      "remaining_work_kinds": [
+        "engineering",
+        "preference_valuation",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "E02",
+      "category": "评测",
+      "title": "原版对拍",
+      "expected": "顺序RNG、固定版本，最后自动结算也纳入；缺客户端不标通过。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "BLOCKED",
+      "milestones": [
+        "M8 original-client differential; outside authorized M3–M6 checkpoint"
+      ],
+      "verified_scope": "The adapter compares supported branches with the pinned native simulator lifecycle under sequential RNG; no original-client differential result exists.",
+      "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/M012Tests.cs",
+          "methods": [
+            "L05_L07_ActualVictoryHooksAndCleanupMatchOriginalRoom"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/COVERAGE_BRIDGE.md",
+          "methods": [],
+          "detail": "User accepts pinned upstream rules; current game-client compatibility is not independently checked."
+        }
+      ],
+      "unresolved_scope": "Original-client version/access and full trace differential evidence are unavailable. Mark E02 blocked for the original M8 acceptance; do not make it a new prerequisite for the user-authorized pinned-upstream M3–M6 engineering work.",
+      "remaining_work_kinds": [
+        "external_evidence"
+      ]
+    },
+    {
+      "id": "E03",
+      "category": "评测",
+      "title": "统计不确定性",
+      "expected": "胜率战损区间按独立源局统计，零次死亡不称概率零。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PARTIAL",
+      "milestones": [
+        "M5/M6 accounting and uncertainty handling",
+        "M8 source-group policy evaluation"
+      ],
+      "verified_scope": "Reports preserve independent source counts, paired completion/unresolved denominators and conditional-world uncertainty; zero observed deaths is never asserted to mean zero probability.",
+      "evidence": [
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_policy_evaluation.py",
+          "methods": [
+            "test_summary_keeps_unresolved_source_denominator_and_pairing"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ObjectiveTests.cs",
+          "methods": [
+            "FixedSampleIntervalsDoNotTreatPointEightAsAnExactProbability"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/PILOT_POLICY_EVALUATION.md",
+          "methods": [],
+          "detail": "Current student evaluation explicitly makes no confidence/significance claim."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/BALANCED_VALIDATION_BLOCK.md",
+          "methods": [],
+          "detail": "Sixteen conditional worlds give about 20.59% marginal exact-binomial upper death endpoint at zero observed deaths; action copies cannot be pooled."
+        }
+      ],
+      "unresolved_scope": "Required source-battle/run-group confidence intervals for actual student win rate/HP and broad independent evaluation are not established. Conditional posterior-world intervals are not substitutes.",
+      "remaining_work_kinds": [
+        "engineering",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "E04",
+      "category": "交付",
+      "title": "无模拟器独立推理",
+      "expected": "只有模型包＋公共输入可运行，禁止在线搜索隐性依赖。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M6 standalone inference engineering",
+        "M8 final qualified model delivery"
+      ],
+      "verified_scope": "Standalone public inference loads the bounded experimental package with deterministic preprocessing and no simulator, teacher, searcher, trainer or dataset dependency.",
+      "evidence": [
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_student.py",
+          "methods": [
+            "test_independent_process_schema_only",
+            "test_standalone_dependency_import_graph",
+            "test_bundle_weight_and_config_hash_guards_no_training"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_pilot_reproducibility.py",
+          "methods": [
+            "test_standalone_inference_imports_no_trainer_dataset_or_teacher"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/M3_M6_ACCEPTANCE_CHECKPOINT.md",
+          "methods": [],
+          "detail": "976838-parameter public-only model; bounded fit remains experimental/unpromoted."
+        }
+      ],
+      "unresolved_scope": "Engineering inference pass only. No calibrated/promoted final model, general active bonus context or complete resource-aware policy applicability has been delivered.",
+      "remaining_work_kinds": [
+        "engineering",
+        "preference_valuation",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "E05",
+      "category": "交付",
+      "title": "输入范围与非法候选",
+      "expected": "未知机制/关键历史缺失/空候选给明确状态，不自信乱选。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "PASS_SUPPORTED_SCOPE",
+      "milestones": [
+        "M6 strict public schema and input guards",
+        "M8 calibrated applicability"
+      ],
+      "verified_scope": "Unknown content/private fields, incomplete history, empty legal candidates, terminal/waiting envelopes and unvalidated weights produce explicit statuses; resource guard abstains without fallback.",
+      "evidence": [
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_student.py",
+          "methods": [
+            "test_unknown_content_rejected",
+            "test_incomplete_history_rejected",
+            "test_empty_actions_explicit_rejection",
+            "test_terminal_explicit_without_model_call",
+            "test_waiting_explicit_without_model_call"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_experimental_policy.py",
+          "methods": [
+            "test_no_legal_candidate_is_not_terminal_or_waiting",
+            "test_legal_use_or_discard_blocks_even_when_raw_winner_preserves_potion",
+            "test_past_potion_use_or_discard_blocks_after_bottle_gone",
+            "test_observed_gold_gain_or_spend_conservatively_abstains"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "Known resource abstention is deliberately conservative and does not constitute calibrated applicability detection for every supported registered mechanic.",
+      "remaining_work_kinds": [
+        "engineering",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "E06",
+      "category": "交付",
+      "title": "导出一致性",
+      "expected": "最终部署格式与训练框架输出在声明容差内一致。",
+      "v4_original_status": "SPECIFIED_NOT_EXECUTED",
+      "status": "NOT_RUN",
+      "milestones": [
+        "M8 final deployment export parity; outside authorized M3–M6 checkpoint"
+      ],
+      "verified_scope": "Checkpoint restoration, bundle integrity and inference-source compatibility have tests; these are export precursors only.",
+      "evidence": [
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_pilot_reproducibility.py",
+          "methods": [
+            "test_ordinary_checkpoint_roundtrip_restores_model_optimizer_and_rng"
+          ],
+          "detail": ""
+        },
+        {
+          "kind": "python_test",
+          "path": "tests/python/test_student.py",
+          "methods": [
+            "test_bundle_weight_and_config_hash_guards_no_training"
+          ],
+          "detail": ""
+        }
+      ],
+      "unresolved_scope": "No declared final deployment export format/tolerance and end-to-end final-format versus training-framework output-parity report have been executed. Same-framework checkpoint restoration is not that acceptance test. This is later M8 delivery work, not a newly imposed prerequisite for M6 engineering readiness.",
+      "remaining_work_kinds": [
+        "engineering",
+        "evaluation"
+      ]
+    }
+  ],
+  "mapping_validation": "All 50 original IDs/title/expected texts retained once in original order; referenced paths and named methods checked; original catalog and historical tracker hashes unchanged. No runtime, corpus, weights or existing tracker modified by this mapping task.",
+  "phase_relevance": {
+    "M3": "Production objective/gates and bounded native accounting are implemented; native acceptance gaps and unresolved risk/resource valuation keep full calibration open.",
+    "M4": "T0/T1 and bounded Hunt/loop/posterior engineering are implemented and tested; general posterior/loop/active-control scope remains open.",
+    "M5": "PILOT_DATA_READY for declared constructed scope; general natural carry-in, forced-event/hard-interaction coverage, missing resource supervision and censoring block full-scope readiness.",
+    "M6": "READY_FOR_BOUNDED_PILOT engineering: strict public model/loader, masked losses, forward/backward, independent inference and bounded training machinery. Broader play strength is not a prerequisite of the authorized M6 engineering checkpoint; upstream M3/M5 full-scope gaps still prevent READY_FOR_TRAINING for the complete target.",
+    "M7": "A separately bounded 497-step experimental fit and 16-source diagnostic were completed. Formal training and promotion have not occurred.",
+    "M8": "Original-client differential, source-group full quality acceptance and final deployment export parity remain later-stage requirements. Their catalog presence does not invent new prerequisites for this M3–M6 checkpoint."
+  }
+}

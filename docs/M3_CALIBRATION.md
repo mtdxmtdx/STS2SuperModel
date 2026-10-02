@@ -1,6 +1,35 @@
 # M3 terminal objective and calibration evidence
 
-Validation date: 2026-10-01. Two evidence layers are distinguished below: the earlier original-checkout C# contract/integration run, and a new read-only reconciliation of the expanded-checkout archived `engineering-200-v2` corpus. The latter tests saved outcome arithmetic, not current simulator execution, the corrected public boundary, or original-client fidelity.
+Historical validation date: 2026-10-01. The archived-corpus sections below preserve
+that checkpoint. Current evidence also includes the bounded Hunt and potion
+integrations and the confirmed 2026-10-02 preferences described here; historical
+statements that all death-risk preferences were unknown do not supersede them.
+
+## Current preference update, 2026-10-02
+
+The user confirmed two comparisons: B (99% win at 70 HP / 1% death) over A
+(certain win at 50 HP), from 70 HP with unchanged resources; and consuming
+FirePotion to win at 50 HP over retaining it to win at 38 HP in the specified
+no-better-timing/no-refill context. The rare/high-value potion answer is tentative.
+
+The [exact versioned fixtures](CONFIRMED_PREFERENCE_FEEDBACK.md) yield
+`K < 1930 + (3510/7) * eta`; candidate K=1000, eta=0.2 agrees. The FirePotion
+comparison supplies a parameterized upper bound on its future inventory value,
+because starting HP was not specified. No item price is assigned. Forty-five
+calibration tests pass. These examples constrain a family; a uniquely identified
+coefficient is not required to run empirical pilots, and the feedback does not
+by itself admit a formal calibrated profile.
+
+Full resource calibration remains partial. Additional engineering is also
+required for general active bonus control, broad permanent-event accounting and
+full posterior/content support. Those are implementation gaps, not decisions the
+user can resolve merely by choosing a number. See the
+[current acceptance checkpoint](M3_M6_ACCEPTANCE_CHECKPOINT.md).
+
+The remaining historical sections distinguish the earlier original-checkout C#
+contract/integration run from reconciliation of `engineering-200-v2`. The latter
+tests saved arithmetic, not current simulator execution, the corrected public
+boundary or independent original-client fidelity.
 
 ## Result
 

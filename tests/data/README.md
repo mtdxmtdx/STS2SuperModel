@@ -78,3 +78,80 @@ split contamination. Test paths always refer to the initial frozen holdout.
 
 Starting a new training experiment should bind the exact top-level manifest SHA;
 appending data changes that identity and is not a resume of the same experiment.
+
+## New teacher versions with old split protection
+
+A new teacher, continuation or sampler version requires a **new output corpus**.
+Do not change version fields or append incompatible labels to the old corpus.
+Import its complete split aliases without importing its labels or deduplication
+history:
+
+```sh
+python -B tools/prepare_dataset.py new/shard-*/decisions.jsonl \
+  --output-dir artifacts/new-version-development --mode pilot \
+  --protect-from-prepared artifacts/pilot-dataset \
+  --provenance-journals new/shard-*/attempts.jsonl
+```
+
+The source must pass immutable manifest, state, shard and public-identity checks.
+Old JSONL shards are streamed only for SHA-256 integrity checks; old targets are
+never parsed or copied. All source components are imported, including aliases
+from rejected and diagnostic roots. The portable `nosl.dataset.split-protection.v1`
+registry contains source manifest/state hashes, source version metadata, frozen
+test shard hashes and complete component/token/split metadata. It contains no
+old `seen_public_digests` set, so intentional new-version labels on old training
+public roots remain eligible.
+
+All incoming decision rows and supplied journal rows join provenance before any
+validity, usability or duplicate filtering. Journals can supply explicit aliases
+and semantic digest metadata. For existing generator-v7 journals lacking aliases,
+the neighboring `generation_config.json` must match the exact local generator
+hash, declared generation identity and source indices; the pinned generator's
+run/combat/family aliases are then recovered, including failed attempts. These
+sidecar files are included in the immutable request hashes. Unsupported or
+inconsistent journal metadata fails closed. Supply every relevant journal; the
+tool cannot discover missing inputs outside the supplied paths.
+
+Every old-test-connected component is excluded from **all** new target shards,
+even in the new corpus's first stage. Old validation and training components keep
+their assignments. Newly discovered aliases persist in the state. Cross-split
+bridges quarantine the connected rows, save the full conflicting alias set,
+permanently block readiness and prohibit further protected appends. Reports
+include the full protected alias closure, incoming component aliases and counts.
+If a later bridge connects an already retained new-test root to an old protected
+test, it also commits a permanent blocker even though both split names are test.
+The existing shard bytes remain immutable; the loader refuses the now-contaminated
+corpus. A separate version-mismatch row cannot prevent this blocker from being
+saved: incompatible labels stay quarantined under the existing version lock.
+An initial invalid-only conflict produces a blocked metadata corpus with no label
+version population. None of these conflict cases can be consumed or resumed.
+
+The registry SHA is bound in the corpus lock and its immutable first-stage file.
+Both the preparer and independent student loader enforce registry schema,
+checksum, binding, alias retention and inherited splits. Subsequent `--resume`
+automatically uses the bound registry even when `--protect-from-prepared` is
+omitted. A changed registry or adding protection to an existing ordinary corpus
+is rejected; missing/corrupt protection cannot silently fall back to normal
+preparation. A moved protected output can resume without the original corpus.
+Interrupted first-stage publication retains or fails closed on its registry.
+Same-version append checks, original frozen test bytes and formal-mode blocking
+remain in force.
+
+APIs add keyword-only `protection` and `provenance_records` to `prepare` and
+`persist_batch`. Construct protection with `export_split_protection(old_dir)`.
+For pure in-memory resumes, explicitly pass the same validated registry; the
+transactional disk API reloads it automatically. Pure API dictionaries are
+caller-owned inputs, not independently authenticated historical evidence.
+
+Legacy v3 corpora without protection remain supported without a format/version
+bump. Registry enforcement lives in `python/nosl/data.py`, so its existing
+training-source fingerprint covers the complete implementation. This targeted
+loader revision correctly rejects resuming the original training checkpoint.
+All inference fingerprinted sources remain unchanged, and the original learned
+bundle still loads. Future training requires a fresh reviewed experiment; this
+feature never authorizes or starts training.
+
+The October 2 completed 40-battle cohort was already inspected. Its protected
+development copy is not a fresh unseen benchmark, including its new test split.
+It preserves the actual continuation-v2 / posterior-dispatch-v2 labels; it must
+not be presented as newly generated dispatcher-v3 evidence.
