@@ -29,19 +29,20 @@
 - `src/Sts2Sim.Core/Random/LabelRandomScope.cs`
 - `src/Sts2Sim.Core/Random/MegaRandom.cs`
 - `src/Sts2Sim.Core/Random/Rng.cs`
+- `src/Sts2Sim.Core/Rewards/RewardsSet.cs`
 - `src/Sts2Sim.Core/Rooms/CombatRoom.cs`
 - `src/Sts2Sim.Core/Runs/RunDriver.cs`
 - `src/Sts2Sim.Core/Sts2Sim.Core.csproj`
 - `tests/Sts2Sim.Core.Tests/Combat/PlayerOutcomeObserverTests.cs`
 - `tests/Sts2Sim.Core.Tests/Random/LabelRandomScopeTests.cs`
-- `tests/Sts2Sim.Core.Tests/Combat/MonsterHpRollingTests.cs`
+- `tests/Sts2Sim.Core.Tests/Entities/Creatures/MonsterHpRollingTests.cs`
 
 补丁为零上下文 unified diff；从固定上游复现时使用 `git apply --unidiff-zero`。
 
 原生敌人扩展另加两个只读证书检查：TwoTailedRat 的召唤倒计时 getter，以及 CombatState 的遭遇槽位顺序比较。二者仅用于核对公开历史可以确定的状态，不修改游戏规则、随机数或克隆行为。
 
-2026-10-02 已从该固定提交的全新本地归档依次应用两个补丁，对比全部 2,229 个已跟踪 Core／Core.Tests 文件，字节完全一致。验证摘要见 [vendor_patch_verification.json](../../configs/vendor_patch_verification.json)。玩家观察器不会被 clone 复制；结算统计只记录已经发生的数值变化，不进入策略输入，也不重复加入终局代价。详见 [结算事件记录](../../docs/OUTCOME_EVENT_ACCOUNTING.md)。
+2026-10-02 已从该固定提交的全新本地归档依次应用两个补丁，对比全部 2,229 个已跟踪 Core／Core.Tests 文件，字节完全一致。验证摘要见 [vendor_patch_verification.json](../../configs/vendor_patch_verification.json)。最新奖励回调版本另独立运行一次完整 Core 测试：4,493 通过、3 个既有 opt-in 跳过、0 失败，共 4,496 项；保留该次真实 stdout／stderr、TRX、源码清单与程序集 SHA-256，路径及耗时记录在验证摘要中。玩家观察器不会被 clone 复制；结算统计只记录已经发生的数值变化，不进入策略输入，也不重复加入终局代价。详见 [结算事件记录](../../docs/OUTCOME_EVENT_ACCOUNTING.md)。
 
-`LabelRandomScope` 是明确的标签分布扩展：仍按原生顺序推进每次随机生成器状态、计数器和数值转换，只在显式异步作用域内用假想随机带替换原始 64 位随机字。完整抽取前状态作为地址，相同状态（包括精确 clone）共享值；不同状态的共同种子相关性在新理想先验中被独立随机字替代。默认顺序模式、现有 keyed 模式及旧数据的先验不会因此改变。洗牌提议只通过原来的 Fisher–Yates 循环消费随机字；初始敌人HP提议只包装原生唯一HP算法中的一次抽取，保留原来的可选值、排重、赋值与精确概率校正。该扩展不是客户端顺序 seed 回放的替代品，也没有写入任一远端模拟器仓库。详见 [条件随机带采样](../../docs/NATIVE_CONDITIONAL_TAPE.md)。
+`LabelRandomScope` 是明确的标签分布扩展：仍按原生顺序推进每次随机生成器状态、计数器和数值转换，只在显式异步作用域内用假想随机带替换原始 64 位随机字。完整抽取前状态作为地址，相同状态（包括精确 clone）共享值；不同状态的共同种子相关性在新理想先验中被独立随机字替代。默认顺序模式、现有 keyed 模式及旧数据的先验不会因此改变。洗牌提议只通过原来的 Fisher–Yates 循环消费随机字；初始敌人HP提议只包装原生唯一HP算法中的一次抽取，保留原来的可选值、排重、赋值与精确概率校正。战斗奖励另加可选、仅用于标签的生成作用域回调，置于原生药水是否出现的抽取之前，保留药水、金币、卡牌及其余奖励的原生生成逻辑与抽取顺序。相对 `57ebe64`，Core 仅修改 `Random/LabelRandomScope.cs` 与 `Rewards/RewardsSet.cs`；未启用该回调时保持现有语义。该扩展不是客户端顺序 seed 回放的替代品，也没有写入任一远端模拟器仓库。详见 [条件随机带采样](../../docs/NATIVE_CONDITIONAL_TAPE.md)。
 
 本地可选性能补丁：[vendor-map-pruning-optimization.patch](../../docs/vendor-map-pruning-optimization.patch)。在上述连接补丁后应用，同样使用 `git apply --unidiff-zero`。仅修改 `src/Sts2Sim.Core/Map/MapPathPruning.cs`，省略同一次剪枝扫描中完全相同节点片段的重复计算；不改变地图、候选顺序或 RNG 消耗。证明、前后测量和精确对照见 [sampling/cloning profile](../../docs/CLONE_PROFILING.md)。未向任一上游仓库写入。

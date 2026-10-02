@@ -7,15 +7,13 @@ The existing `owned_native_replay` operation and all frozen data keep their old
 distribution. New tape records are development-only and rejected by the existing
 production loader.
 
-The v2 opening gate remains passed: 16 independent worlds and 160 settled
-branches from the same eight opening roots. The subsequent event-controller loop
-is now repaired under separately versioned public scriptv3. Broader retained-Neow
-and initial-HP certificates, plus an optional public run-context channel, pass
-1,212 native integration tests. The v4 four-root probe has zero engine errors but
-still accepts no worlds for its three genuine carry-in roots in 384 proposals.
-The next bottleneck is earlier inventory/HP/gold history, not the repaired loop.
-See the [v4 report](../configs/conditional_native_tape_v4_verification.json) and
-[public context contract](PUBLIC_RUN_CONTEXT.md). Production remains quarantined.
+The v2 opening gate remains passed. The event controller and public run-context
+channel are repaired/verified. V5 adds an exact first-native-reward proposal and
+obtains both independent posterior draws for one genuine carry-in root. The fixed
+four-root probe settles4/22branches with18explicitly truncated and0engine errors
+in67.12seconds. The predeclared gate requires two complete carry-in roots and
+still fails with one; production and new fits remain paused. Current evidence is
+in the [v5 report](../configs/conditional_native_tape_v5_verification.json).
 
 ## Distribution and reproducibility
 
@@ -179,6 +177,39 @@ These four public inputs have new information and a new prior identity; they mus
 not be relabeled as independent copies of the old v2 roots or inherit old targets.
 The new Python boundary preserves full context in identity and features, abstains
 without a compatible trained v3 bundle, and rejects production admission.
+
+## First native reward proposal
+
+For a narrowly source-certified second combat, immutable entry assets establish
+the origin of the first normal reward. The proof uses public act/floor/complete
+combat count, retained ordinary WingedBoots or LeadPaperweight, an unmodified
+starter deck plus plain Accelerant or DeadlyPoison, empty entry potion slots, and
+the original single FuzzyWurmCrawler or SludgeSpinner startup roster. It excludes
+intervening events and all first-reward modifiers. This is an accelerator
+certificate; the full prior and other content retain their rejection fallback.
+
+A label-only scope wraps the native reward generation and proposes its first five
+primitive words: no potion, gold, first-card rarity, first-card index, and no
+upgrade. All use the actual Rng wrapper's53-bit NextDouble grid, including the
+float rounding before potion/rarity comparisons. MegaRandom's24-bit NextFloat is
+not the called method. Gold and card-index buckets use native multiplication
+boundaries; zero is the sole upgrade trigger at this act. The joint preimage mass
+is constant for each root, so its exact rejection correction is1. Every later
+offer/draw and the whole first combat remain native.
+
+Prefix guards check expected RNG addresses, freshness, replay agreement and
+completion. A private primitive RNG snapshot enumerates addresses without
+copying native draw observers. The Core callback is inactive in ordinary runs.
+Focused native tests verify both reward origins, all11native reward draws, full
+owned replay/forks through settlement, finite primitive enumeration and exact
+53-bit boundaries. Current aggregate is1229native integration tests plus a fresh
+4493-pass/3-existing-skip Core run with raw stdout and TRX retained.
+
+The same four v3 public packets/prior are reused in the v5 probe. Root9004 accepts
+at attempts52and95, while root9001 still fails all512proposals:500prior-HP
+nonmatches and12different target rosters. The latter is the next measured
+constraint. The two-world gate is not weakened, and the larger256proposal budget
+is explicitly separated from the old64proposal budget.
 
 ## Reproduction
 

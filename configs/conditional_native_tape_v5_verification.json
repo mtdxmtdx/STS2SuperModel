@@ -1,0 +1,226 @@
+{
+  "schema": "nosl.conditional-native-tape-verification.v5",
+  "source_commit": "3a8a0a69ee6eacc72e87652c0804c8e1e5966083",
+  "status": "ONE_CARRY_IN_ROOT_NOW_SAMPLED_TWO_ROOT_GATE_STILL_FAILED",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes_since_v4": 0,
+  "new_production_dataset_rows": 0,
+  "sampler_version": "nosl-native-tape-structured-conditional-v5",
+  "prior_unchanged_from_v4": true,
+  "all_four_public_inputs_unchanged_from_v4": true,
+  "reused_roots_are_not_new_unique_data": true,
+  "proposal_scope": "Optional source-certified first normal reward for public Act0/floor3/complete combat-index1, Ring plus ordinary WingedBoots or LeadPaperweight, starter deck plus plain Accelerant or DeadlyPoison, no entry potions, and single FuzzyWurmCrawler or SludgeSpinner startup. All other roots retain full native rejection fallback.",
+  "exact_primitive_law": "All five roles use the actual native Rng wrapper 53-bit NextDouble grid. Potion/rarity threshold buckets include float rounding. Plain first-card upgrade excludes only high-word zero. No unused native reward offer or first-combat HP is forced.",
+  "joint_density": "The five-event native/proposal ratio is constant for each certified root, so the root envelope equals that exact rational probability and its rejection correction is1. It composes with the existing Neow/HP/shuffle corrections.",
+  "independent_review": "Corrected the initially proposed24-bit shortcut before implementation; independent source and mathematical reviews clear53-bit preimages, origin closure, native prefix ownership, and root-constant composition.",
+  "native_suite": {
+    "passed": 1229,
+    "failed": 0,
+    "skipped": 0,
+    "path": "artifacts/reports/conditional-tape/first-reward-v5-aggregate.trx",
+    "bytes": 1811220,
+    "sha256": "b280983cd7363476cc3a8a3b544cdfd0be1731c3f2220ddb6dcf75416d2cd893"
+  },
+  "core_suite": {
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "duration_reported": "4 m 14 s",
+    "trx_duration_seconds": 255.594817,
+    "trx_counters": {
+      "total": 4496,
+      "executed": 4493,
+      "passed": 4493,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "skipped_count_source": "Three per-test NotExecuted outcomes, matching stdout and total minus executed. The test adapter leaves aggregate notExecuted at zero.",
+    "build_and_test_wall_seconds": 273.38604428500184,
+    "evidence_kind": "fresh_single_full_core_run_with_redirected_stdout_stderr_and_trx",
+    "exit_code": 0,
+    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 14 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "raw_log_available": true,
+    "trx_available": true,
+    "log_path": "artifacts/first-reward-core-verification/full-core.log",
+    "log_sha256": "bc25cb67c882fb698de92208be92c794a439e56b85c598eb305a0d0e14dfd832",
+    "trx_path": "artifacts/first-reward-core-verification/test-results/vendor-core.trx",
+    "trx_sha256": "c9c2e3e15dcbd78776777b17bb3efbcb2ecad791fe920e7bc5e4084e2826cf10",
+    "run_record_path": "artifacts/first-reward-core-verification/run-record.json",
+    "run_record_sha256": "cf03b9312d45dd12adac066db71fd3daa52c70c26a96b6d50859ac433163c386",
+    "invocations": 1,
+    "rerun_for_packaging": true,
+    "source_worktree": "STS2SuperModel-coverage",
+    "verified_source_commit": "3a8a0a69ee6eacc72e87652c0804c8e1e5966083",
+    "build_artifacts": "artifacts/first-reward-core-verification",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/first-reward-core-verification --nologo -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core.trx' --results-directory artifacts/first-reward-core-verification/test-results",
+    "command_note": "Portable replay command; the results directory is shown relative to the repository. The exact process argv is preserved in run-record.json. Run after sourcing the existing shared .NET 9 environment. Build and tests used the isolated artifacts path with one MSBuild worker, node reuse and shared compilation disabled, and NuGet auditing disabled. The process stdout and stderr were redirected directly to the preserved log.",
+    "started_at_utc": "2026-10-02T12:46:46.132645+00:00",
+    "finished_at_utc": "2026-10-02T12:51:19.518896+00:00",
+    "src_git_tree": "2220294c79d06fe485b02e9702787d58e2947df0",
+    "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+    "test_assembly_path": "artifacts/first-reward-core-verification/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "7e467c71c3cc8ad44b79547fccafb53d5eb824e8f17a52576e8133e0673f2383",
+    "core_assembly_path": "artifacts/first-reward-core-verification/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "c085d67ef116f8e0f65ff29dbf224c7b8fa4d3db6ac4b054860e27f38c6e2b2d",
+    "assembly_hash_capture": "Captured from the isolated artifacts immediately after the fresh full suite; no later build or test was run there.",
+    "verified_source_manifest_sha256": "fd46c24cea2776a7c6f2ae4ad95acdf03216253c2510f3e359a726176ae14460"
+  },
+  "vendor_reconstruction": {
+    "path": "configs/vendor_patch_verification.json",
+    "bytes": 8293,
+    "sha256": "ccc8200e083006867f911da5c761909cad7b3ddce25e6c29948bd4b0024e9889"
+  },
+  "probe": {
+    "priorIdentity": "56b2f605f9b4fa82a9c5ce8d7ce0513310c552d2bc41e08eee88a2d9eddb25c4",
+    "prior": {
+      "schemaVersion": "nosl.native-state-tape-prior.v1",
+      "execution": {
+        "maxFloors": 8,
+        "sourceDecisionHorizon": 1024,
+        "sourcePolicyId": "nosl-public-rules-v2",
+        "outsideCombatScript": "nosl-natural-public-script-v3",
+        "publicContextProfile": "nosl.public-run-context.v1"
+      },
+      "eligibleCombats": 3,
+      "eligibleDecisionsPerCombat": 8,
+      "primitiveLaw": "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1",
+      "primitiveImplementation": "sha256-address-expansion-with-explicit-conditioned-overrides-v1",
+      "rootLaw": "independent-uniform-fixed-combat-and-local-decision-indices-v1",
+      "outsideCombatScript": "nosl-natural-public-script-v3"
+    },
+    "sourceDrawsRequested": 4,
+    "existingRoots": 4,
+    "recordedRoots": 4,
+    "acceptedPosteriorDraws": 4,
+    "allocatedCandidateWorlds": 22,
+    "settledCandidateWorlds": 4,
+    "elapsedSeconds": 67.1171872,
+    "peakWorkerMemoryBytes": 129839104,
+    "budgetExpired": false,
+    "proposal_statuses": {
+      "public_constraint_mismatch": 1177,
+      "absent_under_declared_source_horizon": 3,
+      "accepted": 4
+    },
+    "source_breakdown": [
+      {
+        "source_draw_seed": 9001,
+        "combat_index": 1,
+        "accepted_worlds": 0,
+        "proposals": 512,
+        "accepted_draws_within_first_64": [],
+        "statuses": {
+          "public_constraint_mismatch": 512
+        },
+        "nonmatch_reasons": {
+          "First native combat HP differs from the public next entry": 500,
+          "Native initial monster roster differs from the public opening": 12
+        }
+      },
+      {
+        "source_draw_seed": 9002,
+        "combat_index": 2,
+        "accepted_worlds": 0,
+        "proposals": 512,
+        "accepted_draws_within_first_64": [],
+        "statuses": {
+          "public_constraint_mismatch": 509,
+          "absent_under_declared_source_horizon": 3
+        },
+        "nonmatch_reasons": {
+          "Published target combat entry differs": 509,
+          "absent": 3
+        }
+      },
+      {
+        "source_draw_seed": 9003,
+        "combat_index": 0,
+        "accepted_worlds": 2,
+        "proposals": 13,
+        "accepted_draws_within_first_64": [
+          {
+            "sample_call": 1,
+            "attempt": 1
+          },
+          {
+            "sample_call": 2,
+            "attempt": 12
+          }
+        ],
+        "statuses": {
+          "accepted": 2,
+          "public_constraint_mismatch": 11
+        },
+        "nonmatch_reasons": {
+          "Native initial monster roster differs from the public opening": 11
+        }
+      },
+      {
+        "source_draw_seed": 9004,
+        "combat_index": 1,
+        "accepted_worlds": 2,
+        "proposals": 147,
+        "accepted_draws_within_first_64": [
+          {
+            "sample_call": 1,
+            "attempt": 52
+          }
+        ],
+        "statuses": {
+          "public_constraint_mismatch": 145,
+          "accepted": 2
+        },
+        "nonmatch_reasons": {
+          "First native combat HP differs from the public next entry": 130,
+          "Native initial monster roster differs from the public opening": 13,
+          "Published target combat entry differs": 2
+        }
+      }
+    ]
+  },
+  "probe_request": {
+    "path": "artifacts/reports/conditional-tape/later-first-reward-v5-request.jsonl",
+    "bytes": 646,
+    "sha256": "18e9bc9127a2057a1a08e84e3fd698fa3a72e6e29a2dca24a64f89815015ace5"
+  },
+  "probe_predeclaration": {
+    "path": "artifacts/reports/conditional-tape/later-first-reward-v5-predeclaration.json",
+    "bytes": 902,
+    "sha256": "2eac8eb519374122478c479eae78144cc712fef8ded8fae70ee1a7d035a5c9c4"
+  },
+  "probe_response": {
+    "path": "artifacts/reports/conditional-tape/later-first-reward-v5-response.jsonl",
+    "bytes": 863425,
+    "sha256": "33f1dc2218120c41ac8c8d3fe79deb195d6e19e204a965d4ae37bc049f3db03c"
+  },
+  "gate": {
+    "required_complete_genuine_carry_in_roots": 2,
+    "actual_complete_genuine_carry_in_roots": 1,
+    "passed": false,
+    "assigned_candidate_worlds": 22,
+    "settled": 4,
+    "compute_truncated": 18,
+    "engine_errors": 0
+  },
+  "budget_comparison_note": "V5 permits256proposals per draw, versus64in v4. The exact accepted positions within the first64 are reported separately; neither unequal budgets nor reused roots establish a general speedup or new production data.",
+  "next_work": "Condition the first two native weak-encounter draws jointly on the publicly identified second encounter, retaining exact first-encounter weights and native prior HP. No budget-only enlargement or fit is authorized by this failed gate."
+}

@@ -64,6 +64,8 @@ public sealed class RewardsSet
         Random.Rng potionOddsRng = player.PlayerRng.ForSemanticKey(
             PlayerRngType.Rewards,
             $"{rewardKey}/slot=potion_presence");
+        using IDisposable? labelRewardScope = Random.LabelRandomScope.BeginCombatReward(
+            player, potionOddsRng, roomType, encounter, fixedGoldAmount, goldProportion);
 
         PotionReward? potion = null;
         if (player.Odds.PotionReward.Roll(roomType, potionOddsRng))

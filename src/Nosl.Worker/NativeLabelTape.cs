@@ -21,6 +21,9 @@ internal sealed class NativeLabelTape
     private readonly NativeInitialShuffleCondition? _condition;
     private readonly NativeInitialHpCondition? _hpCondition;
     private readonly NativeNeowCondition? _neowCondition;
+    private readonly NativeFirstRewardCondition? _firstRewardCondition;
+    private NativeFirstRewardProposal? _firstRewardPlan;
+    private int _currentCombatIndex = -1;
     private readonly string? _expectedEntryJson;
     private readonly Dictionary<LabelRandomState, ulong> _overrides;
     private readonly HashSet<LabelRandomState> _visited = [];
@@ -37,19 +40,22 @@ internal sealed class NativeLabelTape
     internal int ConditionedCells => _overrides.Count;
     internal int ConditionedHpCount => _hpPlans.Count;
     internal bool NeowConditionApplied => _neowPlan is not null;
+    internal bool FirstRewardConditionApplied => _firstRewardPlan is not null;
 
     internal NativeLabelTape(NativeTapeRecipe recipe, NativeInitialShuffleCondition? condition = null,
         IReadOnlyDictionary<LabelRandomState, ulong>? overrides = null, string? expectedEntryJson = null,
-        NativeInitialHpCondition? hpCondition = null, NativeNeowCondition? neowCondition = null)
+        NativeInitialHpCondition? hpCondition = null, NativeNeowCondition? neowCondition = null,
+        NativeFirstRewardCondition? firstRewardCondition = null)
     {
         _recipe = recipe; _condition = condition; _expectedEntryJson = expectedEntryJson ?? condition?.EntryJson;
         _hpCondition = hpCondition;
         _neowCondition = neowCondition;
+        _firstRewardCondition = firstRewardCondition;
         _overrides = overrides is null ? [] : new(overrides);
     }
 
-    internal IDisposable EnterScope() => LabelRandomScope.Enter(Word, BeginShuffle, BeginMonsterHp);
-    internal NativeLabelTape ReplayCopy() => new(_recipe, _condition, _overrides, _expectedEntryJson, _hpCondition, _neowCondition);
+    internal IDisposable EnterScope() => LabelRandomScope.Enter(Word, BeginShuffle, BeginMonsterHp, BeginCombatRewardGeneration);
+    internal NativeLabelTape ReplayCopy() => new(_recipe, _condition, _overrides, _expectedEntryJson, _hpCondition, _neowCondition, _firstRewardCondition);
     internal void AttachHypotheticalRun(RunState run)
     {
         if (_run is not null) throw new InvalidOperationException("A hypothetical tape already owns a native run");
@@ -58,6 +64,7 @@ internal sealed class NativeLabelTape
 
     internal void CombatEntering(int combatIndex, NativeEntryAssets entry, Rng initialShuffleRng)
     {
+        _currentCombatIndex = combatIndex;
         if (combatIndex != _recipe.CombatIndex) return;
         if (_expectedEntryJson is not null && _expectedEntryJson != PublicJson.Serialize(entry))
             throw new NativePublicConstraintMismatchException("Published target combat entry differs");
@@ -116,6 +123,8 @@ internal sealed class NativeLabelTape
 
     internal void ValidateProposalCompletion()
     {
+        if (_firstRewardCondition is not null && _firstRewardPlan is null)
+            throw new InvalidOperationException("A first-reward-conditioned root was reached without its native first reward generation");
         if (_neowCondition is not null && _neowPlan is null)
             throw new InvalidOperationException("A Neow-conditioned root was reached without its native positive shuffle");
         if (_hpCondition is not null && (_conditioningInitialHp || _hpPlans.Count != _hpCondition.EnemyCount))
@@ -129,6 +138,7 @@ internal sealed class NativeLabelTape
         // No random rejection may hide a missing required hook or a partial plan.
         ValidateProposalCompletion();
         if (_neowPlan is not null && !_neowPlan.AcceptCorrection(nextWord)) return false;
+        if (_firstRewardPlan is not null && !_firstRewardPlan.AcceptCorrection(nextWord)) return false;
         foreach (var hp in _hpPlans) if (!hp.AcceptCorrection(nextWord)) return false;
         return _plan?.AcceptCorrection(nextWord) ?? true;
     }
@@ -142,6 +152,55 @@ internal sealed class NativeLabelTape
         var plan = _hpCondition!.CreateProposal(context, _conditionedHpIds, random.NextUnsignedLong);
         _conditionedHpIds.Add(id); _hpPlans.Add(plan);
         return ForceWords([plan.RawWord], "HP");
+    }
+
+    private IDisposable? BeginCombatRewardGeneration(LabelCombatRewardContext context)
+    {
+        if (_firstRewardCondition is null || _currentCombatIndex != 0) return null;
+        if (_firstRewardPlan is not null)
+            throw new InvalidOperationException("Native first-combat reward generation occurred twice");
+        if (_run is null || !ReferenceEquals(context.Player.RunState, _run))
+            throw new InvalidOperationException("Native reward conditioning escaped its owned hypothetical run");
+        var random = new Rng(_recipe.ProposalSeed, "nosl-native-tape-conditional-first-reward-v1");
+        _firstRewardPlan = _firstRewardCondition.CreateProposal(context, random.NextUnsignedLong);
+        return ForcePrefixWords(_firstRewardPlan.RawWords, context.Rng);
+    }
+
+    private IDisposable ForcePrefixWords(IReadOnlyList<ulong> words, Rng nativeRng)
+    {
+        // This callback runs with label interception suppressed. Advancing this
+        // exact private clone records expected addresses without reading source
+        // data, consuming the native stream, or changing hypothetical tape cells.
+        var snapshot = nativeRng.ToSerializable();
+        // Use the primitive copy so hypothetical address enumeration does not
+        // emit native Rng diagnostics or copy its per-draw observer.
+        var clone = new MegaRandom(snapshot);
+        var expected = new LabelRandomState[words.Count];
+        for (int i = 0; i < expected.Length; i++)
+        {
+            clone.FillSerializableState(snapshot);
+            expected[i] = new(snapshot.state0, snapshot.state1, snapshot.state2, snapshot.state3);
+            clone.NextULong();
+        }
+        int ordinal = 0; bool callbackFailed = false;
+        var inner = LabelRandomScope.Enter(state =>
+        {
+            if (ordinal == words.Count) return Word(state);
+            try
+            {
+                if (state != expected[ordinal])
+                    throw new InvalidOperationException("Native first reward prefix used an unexpected RNG state or stream");
+                if (_visited.Contains(state))
+                    throw new InvalidOperationException("Conditional first reward revisited an earlier tape cell; alias correction is unresolved");
+                ulong value = words[ordinal++];
+                if (_overrides.TryGetValue(state, out ulong replayValue) && replayValue != value)
+                    throw new InvalidOperationException("Owned hypothetical first reward replay changed its conditioned tape");
+                _overrides[state] = value; _visited.Add(state);
+                return value;
+            }
+            catch { callbackFailed = true; throw; }
+        });
+        return new CompleteWordScope(inner, () => callbackFailed || ordinal == words.Count, "first reward prefix");
     }
 
     private IDisposable ForceWords(IReadOnlyList<ulong> words, string purpose)
