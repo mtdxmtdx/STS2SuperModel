@@ -133,6 +133,7 @@ def summary(records, supports, predictions=None, constant=None):
     learned, baseline, weighted_learned, weighted_baseline = [], [], [], []
     regrets, agreements, ranks = [], [], []
     spreads, nonzero_spread_regrets, nonzero_spread_agreements = [], [], []
+    non_end_turn_spreads, contrast_full_policy_regrets, contrast_full_policy_agreements = [], [], []
     candidate_counts, best_mean_counts = Counter(), Counter()
     for index, (record, support) in enumerate(zip(records, supports)):
         rows = value_rows(record)
@@ -155,6 +156,12 @@ def summary(records, supports, predictions=None, constant=None):
             spreads.append(spread)
             candidate_counts[len(means)] += 1
             best_mean_counts[sum(abs(best - value) <= RANKING_TOLERANCE for value in means.values())] += 1
+            non_end_turn_means = [value for action_index, value in means.items()
+                                 if record["public_input"]["candidate_actions"][action_index]["kind"] != "end_turn"]
+            non_end_turn_spread = None
+            if len(non_end_turn_means) >= 2:
+                non_end_turn_spread = max(non_end_turn_means) - min(non_end_turn_means)
+                non_end_turn_spreads.append(non_end_turn_spread)
         if predictions is None:
             continue
         prediction = predictions[index]
@@ -176,6 +183,10 @@ def summary(records, supports, predictions=None, constant=None):
             if spread > RANKING_TOLERANCE:
                 nonzero_spread_regrets.append(regret)
                 nonzero_spread_agreements.append(agreement)
+            if non_end_turn_spread is not None and non_end_turn_spread > RANKING_TOLERANCE:
+                # Filter roots, not choices: the selected action and best mean still include end_turn.
+                contrast_full_policy_regrets.append(regret)
+                contrast_full_policy_agreements.append(agreement)
     result = {"roots": len(records), "distinct_source_battles": len({s["source_battle"] for s in supports}),
               "distinct_source_run_groups": len({s["source_run_group"] for s in supports}),
               "distinct_branch_families": len({s["branch_family"] for s in supports}), **dict(counts)}
@@ -189,6 +200,14 @@ def summary(records, supports, predictions=None, constant=None):
                            "count": len(spreads)},
         "legal_candidate_count_distribution": {str(size): count for size, count in sorted(candidate_counts.items())},
         "best_mean_candidate_count_distribution": {str(size): count for size, count in sorted(best_mean_counts.items())}}
+    result["non_end_turn_empirical_contrast"] = {
+        "complete_roots_with_two_or_more_non_end_turn_candidates": len(non_end_turn_spreads),
+        "all_equal_non_end_turn_mean_roots": sum(spread <= RANKING_TOLERANCE for spread in non_end_turn_spreads),
+        "nonzero_non_end_turn_spread_roots": sum(spread > RANKING_TOLERANCE for spread in non_end_turn_spreads),
+        "non_end_turn_utility_spread": {"min": min(non_end_turn_spreads) if non_end_turn_spreads else None,
+                                        "mean": metric(non_end_turn_spreads)["value"],
+                                        "max": max(non_end_turn_spreads) if non_end_turn_spreads else None,
+                                        "count": len(non_end_turn_spreads)}}
     if predictions is not None:
         def regression(errors, weighted):
             weight = sum(w for _, w in weighted)
@@ -204,6 +223,9 @@ def summary(records, supports, predictions=None, constant=None):
                       selected_action_empirical_mean_rank=metric(ranks),
                       nonzero_spread_empirical_teacher_mean_regret=metric(nonzero_spread_regrets),
                       nonzero_spread_empirical_teacher_best_action_agreement=metric(nonzero_spread_agreements))
+        result["non_end_turn_empirical_contrast"].update(
+            full_policy_empirical_teacher_mean_regret=metric(contrast_full_policy_regrets),
+            full_policy_empirical_teacher_best_action_agreement=metric(contrast_full_policy_agreements))
     return result
 
 
@@ -330,7 +352,8 @@ def build_report(prepared, bundle, *, max_records=10000, max_loaded_bytes=512 * 
             "ranking_semantics": {**final["empirical_teacher_ranking_semantics"],
                                   "selection": "actual inference selected_index from highest predicted legal utility",
                                   "rank": "1 + number of legal empirical teacher means exceeding the selected mean by >1e-9; ties share rank",
-                                  "label_support": "complete legal sets with at least two candidates; spread = maximum minus minimum empirical teacher mean; all-equal means spread <=1e-9, nonzero spread >1e-9; best-mean candidates are within 1e-9 of maximum"},
+                                  "label_support": "complete legal sets with at least two candidates; spread = maximum minus minimum empirical teacher mean; all-equal means spread <=1e-9, nonzero spread >1e-9; best-mean candidates are within 1e-9 of maximum",
+                                  "non_end_turn_empirical_contrast": "root subset requires complete values for all legal candidates, at least two non-end_turn candidates, and spread >1e-9 among their empirical means; full-policy metrics retain the actual selected_index and compare against all legal candidates including end_turn"},
             "warnings": ["Teacher continuation targets are finite small-N estimates; mean regret/agreement/rank are empirical and not certified labels.",
                          "All-equal empirical means yield agreement for every legal choice; nonzero-spread metrics expose action-dependent empirical support but do not establish learning or true action equivalence.",
                          "Missing utility excludes the entire root from ranking metrics and stays visible in every applicable stratum.",

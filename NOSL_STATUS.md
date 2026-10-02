@@ -8,7 +8,7 @@ uncalibrated risk/resource values and broader bonus-controller support.
 
 - Runtime: 902 integration cases passed; build zero warnings/errors
 - Updated vendored Core: 4,479 passed, three existing opt-in skips
-- Python student: 136 cases; data/report/identity: 97; generator recovery: 32
+- Python student: 143 cases; data/report/identity: 97; generator recovery: 32
 - Stable phase gate: 203 usable roots and 8 retained diagnostic-only roots;
   98 later-turn, 56 post-HP-loss, and 10 pending-choice roots
 - The same frozen pilot corpus is growing toward 5,000 roots; bounded experimental

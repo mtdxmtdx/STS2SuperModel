@@ -176,6 +176,30 @@ support. Tied best actions still count as agreement in this view when other lega
 actions have lower means. Neither flat nor nonzero spread establishes true action
 equivalence, certified preferences, or learning; no label or target is changed.
 
+`non_end_turn_empirical_contrast` exposes a narrower descriptive root slice in
+every train/validation summary. It first requires available values for **all legal
+candidates**, including `end_turn`, and at least two legal candidates whose public
+action kind is not `end_turn`. A single play plus `end_turn` does not qualify.
+Other action kinds are retained; this is not a forced-card or play-only policy.
+
+- `complete_roots_with_two_or_more_non_end_turn_candidates` counts this population
+- `non_end_turn_utility_spread` gives minimum, mean, maximum, and count of the
+  empirical spread among those non-end-turn candidates, including tied roots
+- `all_equal_non_end_turn_mean_roots` counts spread at most `1e-9`;
+  `nonzero_non_end_turn_spread_roots` counts spread greater than `1e-9`
+
+Within that block, validation's `full_policy_empirical_teacher_mean_regret` and
+`full_policy_empirical_teacher_best_action_agreement` cover only the roots with
+nonzero non-end-turn spread. They retain the actual full-policy `selected_index`
+and compare its mean against **all legal candidates**, including `end_turn`.
+For example, with non-end-turn means 5 and 1 and an end-turn mean of 7, selecting
+end-turn has regret 0 and agreement 1; selecting the action valued 5 has regret 2
+and agreement 0. If end-turn instead has mean 0, selecting it has regret 5.
+There is no replacement selection or removal of end-turn from policy evaluation.
+No qualifying roots yields null metrics with count zero. This slice preserves
+the original eligibility, metrics, and labels, and does not certify that the
+sampled non-end-turn contrasts are real preferences or evidence of learning.
+
 ## Bounds and tests
 
 The report holds at most 10,000 train-plus-validation records. Defaults are 512
@@ -195,6 +219,7 @@ Tests cover masks, weights and constant means; exact same-support errors; all
 availability classes and missing potion ranking support; declared/actual phases;
 source battles; flat/distinct means, best-mean ties and tolerance boundaries;
 candidate-count distributions; current enemy composition, order and multiplicity;
+non-end-turn contrast support with actual full-policy end-turn selections;
 incomplete-root exclusions, illegal/single candidates; split leakage; hard bounds;
 test-byte integrity without test-outcome parsing; read-only execution; and
 provenance/source/weight tampering. Temporary synthetic bundles contain random

@@ -280,6 +280,62 @@ class PilotReportingTests(unittest.TestCase):
         self.assertEqual(train_groups.keys(), groups.keys())
         self.assertEqual(train_groups['["potion",["Nibbit","TwigSlimeS"]]']["roots"], 2)
 
+    def test_non_end_turn_contrast_requires_two_distinct_means_and_all_legal_values(self):
+        items = [record("contrast", 1, (5., 1., 0.)), record("tied", 2, (5., 5., 0.)),
+                 record("one-play", 3, (5., 999., 0.)), record("missing-end", 4, (5., 1., 0.))]
+        mask_all(items[2], 1)
+        items[2]["public_input"]["legal_mask"][1] = False
+        mask_value(items[3], 2)
+        supports = [report.support_row(item) for item in items]
+        expected = {"complete_roots_with_two_or_more_non_end_turn_candidates": 2,
+                    "all_equal_non_end_turn_mean_roots": 1, "nonzero_non_end_turn_spread_roots": 1,
+                    "non_end_turn_utility_spread": {"min": 0., "mean": 2., "max": 4., "count": 2}}
+        self.assertEqual(report.summary(items, supports)["non_end_turn_empirical_contrast"], expected)
+        result = report.summary(items, supports, [prediction([0., 0., 0.], 0)] * 4, 0.)
+        self.assertEqual(result["non_end_turn_empirical_contrast"], {
+            **expected, "full_policy_empirical_teacher_mean_regret": {"value": 0., "count": 1},
+            "full_policy_empirical_teacher_best_action_agreement": {"value": 1., "count": 1}})
+        self.assertEqual(result["empirical_teacher_mean_regret"]["count"], 3)
+        self.assertEqual(result["nonzero_spread_empirical_teacher_mean_regret"]["count"], 3)
+        for item in items[2:]:
+            empty = report.summary([item], [report.support_row(item)], [prediction([0., 0., 0.], 0)], 0.)
+            self.assertEqual(empty["non_end_turn_empirical_contrast"]["non_end_turn_utility_spread"],
+                             {"min": None, "mean": None, "max": None, "count": 0})
+            self.assertEqual(empty["non_end_turn_empirical_contrast"]["full_policy_empirical_teacher_mean_regret"],
+                             {"value": None, "count": 0})
+
+    def test_non_end_turn_contrast_retains_actual_end_turn_choice_and_full_policy_best(self):
+        items = [record("end-best", 1, (5., 1., 7.)), record("end-bad", 2, (5., 1., 0.)),
+                 record("card-below-end", 3, (5., 1., 7.))]
+        predictions = [prediction([0., 1., 2.], 2), prediction([0., 1., 2.], 2),
+                       prediction([2., 1., 0.], 0)]
+        result = report.stratified(items, [report.support_row(item) for item in items], predictions, 0.)
+        contrast = result["overall"]["non_end_turn_empirical_contrast"]
+        self.assertEqual(contrast["nonzero_non_end_turn_spread_roots"], 3)
+        self.assertEqual(contrast["full_policy_empirical_teacher_mean_regret"], {"value": 7. / 3, "count": 3})
+        self.assertEqual(contrast["full_policy_empirical_teacher_best_action_agreement"], {"value": 1. / 3, "count": 3})
+        for groups in result["strata"].values():
+            self.assertEqual(sum(group["non_end_turn_empirical_contrast"]["nonzero_non_end_turn_spread_roots"]
+                                 for group in groups.values()), 3)
+            self.assertEqual(sum(group["non_end_turn_empirical_contrast"]["full_policy_empirical_teacher_mean_regret"]["count"]
+                                 for group in groups.values()), 3)
+        for battle, regret, agreement in (("end-best", 0., 1.), ("end-bad", 5., 0.), ("card-below-end", 2., 0.)):
+            with self.subTest(battle=battle):
+                group = result["strata"]["source_battle"]["battle-" + battle]["non_end_turn_empirical_contrast"]
+                self.assertEqual(group["full_policy_empirical_teacher_mean_regret"], {"value": regret, "count": 1})
+                self.assertEqual(group["full_policy_empirical_teacher_best_action_agreement"], {"value": agreement, "count": 1})
+
+    def test_non_end_turn_contrast_uses_existing_tolerance(self):
+        for delta, count in ((1e-9, 0), (1.5e-9, 1)):
+            with self.subTest(delta=delta):
+                item = record(means=(0., delta, 2.))
+                result = report.summary([item], [report.support_row(item)], [prediction([0., 0., 1.], 2)], 0.)
+                contrast = result["non_end_turn_empirical_contrast"]
+                self.assertEqual(contrast["all_equal_non_end_turn_mean_roots"], 1 - count)
+                self.assertEqual(contrast["nonzero_non_end_turn_spread_roots"], count)
+                self.assertEqual(contrast["full_policy_empirical_teacher_best_action_agreement"],
+                                 {"value": 1. if count else None, "count": count})
+
     def test_illegal_and_single_action_candidates_do_not_inflate_ranking(self):
         item = record()
         for index in (1, 2):

@@ -16,7 +16,11 @@
     "original_contract_python_rerun": 30,
     "evidence_tool_mutation_tests": 16,
     "archived_record_checks": 21180,
-    "bounded_hunt_real_integrations": 12
+    "bounded_hunt_real_integrations": 12,
+    "calibration_evidence_tests_current": 24,
+    "native_potion_paired_cases": 4,
+    "native_potion_independent_root_world_draws": 128,
+    "native_potion_selected_endpoints": 256
   },
   "criteria": [
     {
@@ -27,9 +31,9 @@
     },
     {
       "id": "potion_nine_consideration_only",
-      "status": "CONTRACT_PASS_EMPIRICAL_GATE_OPEN",
-      "evidence": "Inclusive exact threshold/rescue; 80 saved contrasts all explicitly unresolved",
-      "remaining": "Certified policy-comparison uncertainty and item-specific exception values"
+      "status": "BOUNDED_NATIVE_PAIRED_GATE_EVIDENCE_GENERAL_CALIBRATION_OPEN",
+      "evidence": "Four guarded native fixed-policy comparisons, 32 disjoint confirmation worlds each: five HP below general gate, empirical nine inconclusive, fifteen eligible-not-mandatory; independent support/interval/provenance audit passed",
+      "remaining": "General scenarios, rescue-need certification and item-specific future values remain unresolved; no universal price or full utility ranking inferred"
     },
     {
       "id": "whole_anchored_five_no_reset",
@@ -60,12 +64,13 @@
     "Archived engineering corpus has old public-boundary fingerprint; corrected runtime verified separately and pilot corpus must remain re-versioned",
     "complete HP-event/provenance instrumentation absent",
     "Bounded opt-in Hunt template now has real success/deadline evidence; general bonus-context student training remains unsupported",
-    "corpus has no maxHP-change or root-after-HP-loss cases"
+    "Archived engineering-200 corpus lacks maxHP-change/root-after-HP-loss cases; current v4 post-loss support is reported separately"
   ],
   "preference_and_valuation_blockers": [
     "risk-family and coefficients not uniquely identified",
     "micro-death-risk tradeoffs unconfirmed",
     "potion exception and permanent future values unresolved"
   ],
-  "client_differential": "Not independently measured; informational under user-accepted pinned upstream rule authority, not a new prerequisite"
+  "client_differential": "Not independently measured; informational under user-accepted pinned upstream rule authority, not a new prerequisite",
+  "native_potion_evidence": "docs/POTION_PAIRED_EVIDENCE.md"
 }

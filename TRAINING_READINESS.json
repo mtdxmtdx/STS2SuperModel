@@ -24,7 +24,7 @@
     "frozen_upstream_core_passed": 4479,
     "frozen_upstream_core_opt_in_skipped": 3,
     "objective_teacher_passed": 44,
-    "python_student_passed": 136,
+    "python_student_passed": 143,
     "data_pipeline_passed": 97,
     "generator_archive_passed": 32,
     "integrated_v2_teacher_to_backward": true,
@@ -62,7 +62,11 @@
     "finite_loop_real_cases_passed": 6,
     "finite_loop_objective_teacher_regression_passed": 50,
     "expected_mean_loss_and_runtime_identity_verified": true,
-    "real_mse_forward_backward_optimizer_steps": 0
+    "real_mse_forward_backward_optimizer_steps": 0,
+    "native_potion_paired_cases": 4,
+    "native_potion_independent_root_world_draws": 128,
+    "native_potion_selected_endpoints": 256,
+    "calibration_evidence_tests_current": 24
   },
   "remaining": [
     "Small experimental pilot corpus/fit remains pending; broader scale is quality and resource gated",

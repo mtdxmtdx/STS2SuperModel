@@ -164,3 +164,22 @@ show source/phase/posterior strata, incomplete utility support and a train-only
 constant-mean baseline. They do not evaluate test outcomes. The full Python suite
 passes 136 tests. See [runtime identity](PILOT_TRAINING_REPRODUCIBILITY.md) and
 [learning diagnostics](PILOT_LEARNING_DIAGNOSTICS.md).
+
+
+## Native potion consideration evidence
+
+Four tightly guarded constructed roots now have paired native B0/use-now evidence
+from 128 independent confirmation worlds and 256 selected settled endpoints.
+Fixed-N simultaneous intervals distinguish a five-HP saving below the general
+nine-HP gate from a fifteen-HP saving eligible for consideration. Empirical nine
+remains inconclusive; exact nine is only the separately labeled mathematical
+contract check. A sampled rescue preserves an explicit unknown rescue certificate
+instead of incorrectly rejecting the exception. The restricted [0,startHp] support
+is justified by an immediate FirePotion win under reviewed native mechanics,
+not observed extrema. Independent review reproduced every reduction and checked
+the proof, unchanged runtime and preserved execution artifacts.
+
+These cases add zero production roots and no potion prices. Consumed-potion
+utility, general resource preference calibration and formal labels remain
+masked. Calibration evidence tests are 24/24, and the current main Python suite
+is 143/143. See [native paired potion evidence](POTION_PAIRED_EVIDENCE.md).
