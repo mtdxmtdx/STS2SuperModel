@@ -5,12 +5,18 @@ namespace Nosl.Tests;
 
 public class ConditionalShuffleProposalTests
 {
-    [Fact]
-    public void CorrectedDuplicateCardProposalMatchesExhaustiveNativeWordLaw()
+    [Theory]
+    [InlineData(2, 96, 2, 15)]
+    [InlineData(4, 8, 1, 90)]
+    [InlineData(6, 4, 1, 180)]
+    public void CorrectedDuplicateCardProposalMatchesExhaustiveNativeWordLaw(int prefixLength,
+        int supportedPermutations, int probabilityNumerator, int probabilityDenominator)
     {
         const int bits = 3, domain = 1 << bits;
         string[] signatures = ["A", "A", "B", "C", "C", "D"];
-        string[] prefix = ["A", "C"];
+        // Equal IDs may be different upgrade/enchantment copies. Keep physical
+        // identities distinct even when later-turn evidence fixes the full ID cycle.
+        string[] prefix = new[] { "A", "C", "A", "D", "C", "B" }.Take(prefixLength).ToArray();
         var nativeCounts = new Dictionary<string, int>(StringComparer.Ordinal);
         // Independent enumeration of every native primitive-word combination:
         // 8^5 worlds, not uniform permutations (8 is indivisible by 3, 5 and 6).
@@ -28,7 +34,7 @@ public class ConditionalShuffleProposalTests
             string key = string.Join(",", order);
             nativeCounts[key] = nativeCounts.GetValueOrDefault(key) + 1;
         }
-        Assert.Equal(96, nativeCounts.Count);
+        Assert.Equal(supportedPermutations, nativeCounts.Count);
         // A uniform accepted-permutation implementation would pass support and
         // packet matching, but fail this distribution check.
         Assert.True(nativeCounts.Values.Distinct().Count() > 1);
@@ -42,7 +48,7 @@ public class ConditionalShuffleProposalTests
             Assert.NotNull(plan);
             Assert.Equal(order, plan.PhysicalPermutation);
             Assert.Equal(order, ApplyRawWords(plan.RawWords, signatures.Length, bits));
-            Assert.Equal(new ShuffleRational(2, 15), plan.PrefixProbability);
+            Assert.Equal(new ShuffleRational(probabilityNumerator, probabilityDenominator), plan.PrefixProbability);
 
             // Enumerate all correction-Bernoulli outcomes too. This exercises
             // the actual correction method, including its early rejection.

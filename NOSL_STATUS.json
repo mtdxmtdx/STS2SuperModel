@@ -115,7 +115,7 @@
     "conditional_tape_fresh_complete_carry_in_roots": 0,
     "public_run_evidence_native_tests": 1305,
     "public_run_evidence_student_tests": 26,
-    "public_rewards_hybrid_report": "configs/native_rewards_hybrid_v4_verification.json",
+    "public_rewards_hybrid_report": "configs/native_rewards_hybrid_v5_verification.json",
     "public_rewards_hybrid_new_development_roots": 8,
     "public_rewards_hybrid_proposals": 277,
     "public_rewards_hybrid_accepted_worlds": 2,
@@ -163,5 +163,15 @@
   "owned_native_replay_verification": "configs/owned_native_replay_verification.json",
   "conditional_native_tape_verification": "configs/conditional_native_tape_v7_verification.json",
   "public_run_context_verification": "docs/PUBLIC_RUN_CONTEXT.md",
-  "public_run_evidence_verification": "configs/public_run_evidence_verification.json"
+  "public_run_evidence_verification": "configs/public_run_evidence_verification.json",
+  "native_rewards_hybrid_v5": {
+    "status": "VERIFIED_COMPOSITION_BOUNDED_DIAGNOSTIC_RUNNING",
+    "native_tests_passed": 1547,
+    "core_tests_passed": 4493,
+    "core_tests_opt_in_skipped": 3,
+    "new_production_rows": 0,
+    "new_optimizer_steps": 0,
+    "full_readiness": false,
+    "report": "configs/native_rewards_hybrid_v5_verification.json"
+  }
 }

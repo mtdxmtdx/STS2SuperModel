@@ -55,7 +55,7 @@ public sealed class NativePrefixOuterRetryTests
     }
 
     [Fact]
-    public async Task NativeCleanExhaustionConsumesOuterAttemptsAndLaterIndependentWorldCanComplete()
+    public async Task NativeCleanExhaustionConsumesOuterAttemptsAndIndependentWorldCanComplete()
     {
         var prior = new NativeTapePrior
         {
@@ -82,9 +82,11 @@ public sealed class NativePrefixOuterRetryTests
             Assert.Null(audit.InitialPrefixCorrection);
         });
         Assert.NotEqual(bounded.ProposalAudit[0].AuxiliaryRecipe, bounded.ProposalAudit[1].AuxiliaryRecipe);
-        // This previously recorded diagnostic lost its first requested world
-        // solely to a clean 64-trial prefix exhaustion. The next outer recipe
-        // must now be tried, retaining the original fixed outer budget.
+        // Keep the same recorded root/seed/budget after adding the public act
+        // predicate. Skipping wrong-act map words changes the deterministic
+        // proposal stream: this fixture now accepts its first K64 outer attempt.
+        // The K1 case above still proves two clean exhaustions are retried and
+        // fully charged; no new successful root or seed was searched here.
         var laterRecipe = prior.Draw(new Rng(11008, "nosl-native-tape-source-draw-v1"));
         await using (var original = await NativeRunWorld.OpenLabelTapeAsync(prior.Execution, laterRecipe,
             NativeLabelTape.ForDeclaredPrior(prior, laterRecipe)))
@@ -93,9 +95,9 @@ public sealed class NativePrefixOuterRetryTests
         await using var world = await continuing.SampleWorldAsync(501, 16);
         Assert.Equal(PublicJson.Serialize(root), PublicJson.Serialize(world.Observe()));
         Assert.Equal("accepted", continuing.ProposalAudit[^1].Status);
-        Assert.True(continuing.ProposalAudit.Length > 1);
-        Assert.Equal("component_budget_exhausted", continuing.ProposalAudit[0].Status);
-        Assert.Equal(64, continuing.ProposalAudit[0].InitialPrefixStats!.CompletedTrials);
+        var accepted = Assert.Single(continuing.ProposalAudit);
+        Assert.InRange(accepted.InitialPrefixStats!.CompletedTrials, 1, 64);
+        Assert.Equal(accepted.InitialPrefixStats.CompletedTrials, accepted.InitialPrefixRunSeedDraws);
         Assert.Equal(Enumerable.Range(1, continuing.ProposalAudit.Length), continuing.ProposalAudit.Select(a => a.Attempt));
         Assert.Equal(continuing.ProposalAudit.Length, continuing.ProposalAudit.Select(a => a.AuxiliaryRecipe).Distinct().Count());
     }

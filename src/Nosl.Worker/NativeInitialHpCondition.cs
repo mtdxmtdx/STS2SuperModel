@@ -69,6 +69,12 @@ internal sealed class NativeInitialHpCondition
     }
 
     internal static bool TryCreate(DecisionPacket root, out NativeInitialHpCondition? condition,
+        out string? reason) => TryCreate(root, false, out condition, out reason);
+
+    internal static bool TryCreatePublicCombatV3(DecisionPacket root, out NativeInitialHpCondition? condition,
+        out string? reason) => TryCreate(root, true, out condition, out reason);
+
+    private static bool TryCreate(DecisionPacket root, bool publicCombatV3, out NativeInitialHpCondition? condition,
         out string? reason)
     {
         condition = null;
@@ -81,9 +87,14 @@ internal sealed class NativeInitialHpCondition
         // and PublicKnowledge's lifetime slots persist across removal/summoning. Therefore
         // an original slot/type still present at a later stable or pending-choice root has
         // initial HP equal to its current MaxHp, regardless of damage, block or powers.
-        if (!NativeInitialShuffleCondition.TryCreate(root, out _, out reason)) return false;
+        bool startupCertified = publicCombatV3
+            ? NativeInitialShuffleCondition.TryCreatePublicCombatV3(root, out _, out reason)
+            : NativeInitialShuffleCondition.TryCreate(root, out _, out reason);
+        if (!startupCertified) return false;
         var observation = root.Observation!;
         int index = 2;
+        if (publicCombatV3)
+            while (index < observation.History.Length && observation.History[index].Kind == "power_changed") index++;
         while (index < observation.History.Length && observation.History[index].Kind == "draw") index++;
         index++; // The shuffle certificate has proved this is player_turn 1.
         try

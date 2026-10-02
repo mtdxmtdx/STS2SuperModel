@@ -16,7 +16,7 @@ namespace Nosl.Worker;
 /// observer scopes only; every emitted value is an explicitly selected public DTO.
 /// No source trace, encounter catalog, random state, or outcome ledger is an input.
 /// </summary>
-internal sealed class NativePublicRunEvidence(RunState run)
+internal sealed class NativePublicRunEvidence(RunState run, string? mapObservationProfile = null)
 {
     private PublicRunEvidenceRecorder? _recorder;
     private PublicRunEvidenceRecorder Recorder => _recorder ??= new(null);
@@ -165,7 +165,7 @@ internal sealed class NativePublicRunEvidence(RunState run)
         }
         // The declared v1 map channel is this choice slice: current node, all
         // offered destinations, and ordinary edges between those visible nodes.
-        long observed = Recorder.Record(owner, NativePublicMapSlice.Observe(run.Map, current, choices));
+        long observed = Recorder.Record(owner, NativePublicMapSlice.Observe(run.Map, current, choices, mapObservationProfile));
         Recorder.Record(owner, new PublicMapChosen(observed, new(selected.coord.col, selected.coord.row))); End(owner);
     }
     internal void Rewards(RewardsSet rewards, RewardDecision selected)

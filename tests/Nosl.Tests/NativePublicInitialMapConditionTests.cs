@@ -1,6 +1,7 @@
 using System.Collections.Immutable;
 using Nosl.Contracts;
 using Nosl.Worker;
+using Sts2Sim.Core.Content;
 using Sts2Sim.Core.Content.Acts;
 using Sts2Sim.Core.Entities.Players;
 using Sts2Sim.Core.Models;
@@ -22,22 +23,26 @@ public sealed class NativePublicInitialMapConditionTests
     };
 
     [Theory]
-    [InlineData(false)]
-    [InlineData(true)]
-    public void DetachedSliceConditionsTheWholePrefixAndLeavesBothNativeActsAvailable(bool boots)
+    [InlineData(false, false)]
+    [InlineData(true, false)]
+    [InlineData(false, true)]
+    [InlineData(true, true)]
+    public void DetachedSliceConditionsTheWholePrefixAndLeavesBothNativeActsAvailable(bool boots, bool canonical)
     {
+        string? profile = canonical ? PublicMapObservationProfiles.CoordinateOrderV1 : null;
+        var prior = Prior with { Execution = Prior.Execution with { PublicMapObservationProfile = profile } };
         var recipe = new NativeTapeRecipe(17, 23, 29, 0, 0);
         foreach (bool overgrowth in new[] { true, false })
         {
             var random = new Rng(31, "public-map-native-fixture"); int draw = 0;
             var original = NativeComponentRejection.Evaluate(() => new RunState(recipe.IndependentRunSeed, ascensionLevel: 10),
                 () => draw++ == 0 ? overgrowth ? 0UL : ulong.MaxValue : random.NextUnsignedLong());
-            var evidence = Evidence(original.Value, boots ? "WingedBoots" : "GoldenPearl");
+            var evidence = Evidence(original.Value, boots ? "WingedBoots" : "GoldenPearl", profile: profile);
             // JSON round-trip is the entire certificate input. No source run, seed,
             // native map or native act is passed to TryCreate.
             var detached = PublicJson.Read<PublicRunEvidence>(PublicJson.Serialize(evidence));
             var root = new DecisionPacket("fixture", null, [], detached);
-            Assert.True(NativeInitialPrefixCondition.TryCreate(root, Prior, out var condition, out var reason), reason);
+            Assert.True(NativeInitialPrefixCondition.TryCreate(root, prior, out var condition, out var reason), reason);
             Assert.NotNull(condition!.PublicMap); Assert.Null(condition.TargetActType);
             Assert.Null(condition.MapTravel); Assert.Equal(boots, condition.HasFreeTravel);
             Assert.True(condition.MatchesMap(original.Value.Map));
@@ -69,7 +74,7 @@ public sealed class NativePublicInitialMapConditionTests
             Assert.Empty(exhaustedWords); Assert.Equal(1, exhausted.Stats.CompletedTrials);
             Assert.Equal(miss.Trace.Count, exhausted.Stats.TotalWordDraws);
 
-            var tape = NativeLabelTape.ForDeclaredPrior(Prior, plan.SelectedRecipe, initialPrefixPlan: plan);
+            var tape = NativeLabelTape.ForDeclaredPrior(prior, plan.SelectedRecipe, initialPrefixPlan: plan);
             using (tape.EnterScope())
             {
                 var replay = new RunState(plan.SelectedRecipe.IndependentRunSeed, ascensionLevel: 10);
@@ -106,6 +111,76 @@ public sealed class NativePublicInitialMapConditionTests
                 }
             }
         }
+    }
+
+    [Theory]
+    [InlineData(true, false)]
+    [InlineData(false, false)]
+    [InlineData(true, true)]
+    [InlineData(false, true)]
+    public void CertifiedOpeningActJoinsMapPredicateAndRejectsWrongActBeforeMapWords(bool overgrowth, bool canonical)
+    {
+        string? profile = canonical ? PublicMapObservationProfiles.CoordinateOrderV1 : null;
+        var prior = Prior with { Execution = Prior.Execution with { PublicMapObservationProfile = profile } };
+        var recipe = new NativeTapeRecipe(17, 23, 29, 0, 0);
+        var random = new Rng(31, "public-map-native-fixture"); int draw = 0;
+        var original = NativeComponentRejection.Evaluate(() => new RunState(recipe.IndependentRunSeed, ascensionLevel: 10),
+            () => draw++ == 0 ? overgrowth ? 0UL : ulong.MaxValue : random.NextUnsignedLong());
+        Type targetAct = overgrowth ? typeof(Overgrowth) : typeof(Underdocks);
+        Assert.Equal(targetAct, original.Value.Act.GetType());
+        var mapOnly = Evidence(original.Value, "GoldenPearl", profile: profile);
+        var roster = NativeOpeningEncounterCatalog.Entries.First(entry => entry.ActType == targetAct).Rosters.First();
+        var evidence = WithOpeningRoster(mapOnly, roster);
+        var root = PublicJson.Read<DecisionPacket>(PublicJson.Serialize(new DecisionPacket("fixture", null, [], evidence)));
+        Assert.True(NativePublicOpeningEncounterCondition.TryCreate(root, prior, out var opening, out var reason), reason);
+        Assert.True(NativeInitialPrefixCondition.TryCreate(root, prior, out var condition, out reason), reason);
+        Assert.Equal(opening!.TargetActType, condition!.TargetActType);
+        Assert.NotNull(condition.PublicMap); Assert.Null(condition.MapTravel);
+
+        // A fresh wrong-act candidate consumes all three native act words, but
+        // never touches a map word. The next attempt redraws the whole seed and
+        // oracle prefix; the accepted constructor trace is preserved exactly.
+        var wrongRecipe = recipe with { RunSeed = 997 };
+        var wrongRandom = new Rng(101, "public-joint-act-wrong-fixture"); int wrongDraw = 0;
+        var wrongAct = NativeComponentRejection.Evaluate(() => ActDefinition.GetRandomList(wrongRecipe.IndependentRunSeed),
+            () => wrongDraw++ == 0 ? overgrowth ? ulong.MaxValue : 0UL : wrongRandom.NextUnsignedLong());
+        Assert.NotEqual(targetAct, wrongAct.Value[0].GetType());
+        Assert.Equal(NativeInitialPrefixProposal.MapTraceOffset, wrongAct.Trace.Count);
+        var inputs = new Queue<ulong>(new[] { wrongRecipe.RunSeed }.Concat(wrongAct.Trace.DistinctBy(w => w.State).Select(w => w.Word))
+            .Concat(new[] { recipe.RunSeed }).Concat(original.Trace.DistinctBy(w => w.State).Select(w => w.Word)));
+        var plan = condition.Prepare(recipe with { RunSeed = 998 }, 2, () => inputs.Dequeue());
+        Assert.Empty(inputs); Assert.Equal(2, plan.RunSeedDraws); Assert.Equal(recipe, plan.SelectedRecipe);
+        Assert.Equal(targetAct, plan.TargetActType); Assert.Equal(original.Trace, plan.Trace);
+        Assert.Equal(wrongAct.Trace.Count + original.Trace.Count, plan.Stats.TotalWordDraws);
+        var tape = NativeLabelTape.ForDeclaredPrior(prior, plan.SelectedRecipe, initialPrefixPlan: plan);
+        using (tape.EnterScope())
+        {
+            var replay = new RunState(plan.SelectedRecipe.IndependentRunSeed, ascensionLevel: 10);
+            tape.AttachHypotheticalRun(replay); tape.ValidateProposalCompletion();
+            Assert.Equal(targetAct, replay.Act.GetType()); Assert.True(condition.MatchesMap(replay.Map));
+            Assert.Equal(NativeMapTravelConditionTests.MapShape(original.Value.Map), NativeMapTravelConditionTests.MapShape(replay.Map));
+        }
+        var exhaustedInputs = new Queue<ulong>(new[] { wrongRecipe.RunSeed }
+            .Concat(wrongAct.Trace.DistinctBy(w => w.State).Select(w => w.Word)));
+        var exhausted = Assert.Throws<NativeComponentBudgetExceededException>(() =>
+            condition.Prepare(recipe, 1, () => exhaustedInputs.Dequeue()));
+        Assert.Empty(exhaustedInputs); Assert.Equal(1, NativeInitialPrefixCondition.FailureRunSeedDraws(exhausted));
+        Assert.Equal(3, exhausted.Stats.TotalWordDraws); Assert.Equal(1, exhausted.Stats.CompletedTrials);
+
+        // No retained roster, a gap before it, an unknown roster, or unavailable
+        // history cannot manufacture an act. The independent map certificate and
+        // original both-act prior remain available in each case.
+        foreach (var fallback in new[] { mapOnly, WithOpeningRoster(mapOnly, roster, gap: true),
+            WithOpeningRoster(mapOnly, ["UnreviewedOpeningMonster"]) })
+        {
+            Assert.True(NativeInitialPrefixCondition.TryCreate(new("fixture", null, [], fallback), prior,
+                out var unjoined, out reason), reason);
+            Assert.Null(unjoined!.TargetActType); Assert.NotNull(unjoined.PublicMap);
+        }
+        var unavailable = prior with { Execution = prior.Execution with
+            { PublicCombatHistoryMode = PublicRunContext.UnavailableHistoryMode } };
+        Assert.True(NativeInitialPrefixCondition.TryCreate(root, unavailable, out var noHistory, out reason), reason);
+        Assert.Null(noHistory!.TargetActType); Assert.NotNull(noHistory.PublicMap);
     }
 
     [Theory]
@@ -160,11 +235,14 @@ public sealed class NativePublicInitialMapConditionTests
         Assert.False(NativeFirstRewardCondition.TryCreate(root, Prior, out _, out _));
         Assert.True(NativeInitialPrefixCondition.TryCreate(root, Prior, out var condition, out var reason), reason);
         Assert.NotNull(condition!.PublicMap);
+        Assert.True(NativePublicOpeningEncounterCondition.TryCreate(root, Prior, out var opening, out reason), reason);
+        Assert.Equal(opening!.TargetActType, condition.TargetActType);
         Assert.True(new NativeTapeReplaySource(root, Prior).UsesConditionalInitialPrefix);
         var plan = condition.Prepare(recipe with { RunSeed = 123, ProposalSeed = 987 }, 256);
         var tape = NativeLabelTape.ForDeclaredPrior(Prior, plan.SelectedRecipe, initialPrefixPlan: plan);
         await using var replay = await NativeRunWorld.OpenLabelTapeAsync(Prior.Execution, plan.SelectedRecipe, tape);
         Assert.NotNull(replay); tape.ValidateProposalCompletion();
+        Assert.Equal(opening.TargetActType, replay.NativeRun.Act.GetType());
         var replaySlice = replay.Observe().PublicEvidence!.Events.First(e => e.Payload is PublicMapObserved).Payload;
         var rootSlice = root.PublicEvidence!.Events.First(e => e.Payload is PublicMapObserved).Payload;
         // These fixtures' initial selected relic may differ in the unconditioned
@@ -179,17 +257,28 @@ public sealed class NativePublicInitialMapConditionTests
     public void JointFreshSeedRetriesPreserveAliasDependentFinitePosterior()
     {
         int[] emitted = new int[2]; int exhausted = 0;
-        NativeComponentTrial<(int Seed, bool Match)> Candidate(int ticket)
+        int lazyMapReads = 0, eagerMapReads = 0;
+        NativeComponentTrial<(int Seed, bool Match)> Candidate(int ticket, bool earlyActRejection = true)
         {
             int seed = ticket & 1;
             var words = new Queue<ulong>([(ulong)((ticket >> 1) & 1), (ulong)((ticket >> 2) & 1)]);
             return NativeComponentRejection.Evaluate(() =>
             {
                 var act = new Rng(17); var map = seed == 0 ? act.CloneExact() : new Rng(18);
-                ulong a = act.NextUnsignedLong(), m = map.NextUnsignedLong();
+                ulong a = act.NextUnsignedLong();
+                if (earlyActRejection && a != 0) return (seed, false);
+                if (earlyActRejection) lazyMapReads++; else eagerMapReads++;
+                ulong m = map.NextUnsignedLong();
                 return (seed, a == 0 && m == 0);
             }, () => words.Dequeue());
         }
+        for (int ticket = 0; ticket < 8; ticket++)
+        {
+            var lazy = Candidate(ticket); var eager = Candidate(ticket, earlyActRejection: false);
+            Assert.Equal(eager.Value, lazy.Value);
+            if (lazy.Value.Match) Assert.Equal(eager.Trace, lazy.Trace);
+        }
+        Assert.Equal(4, lazyMapReads); Assert.Equal(8, eagerMapReads);
         for (int first = 0; first < 8; first++)
         for (int second = 0; second < 8; second++)
         {
@@ -203,7 +292,9 @@ public sealed class NativePublicInitialMapConditionTests
             }
             catch (NativeComponentBudgetExceededException) { exhausted++; }
         }
-        // Native matching masses 2/8 and 1/8 become 26/64 and 13/64.
+        // The joint event is observed act zero AND the matching map. Marginalize
+        // wrong-act maps without reading their words; alias-dependent matching
+        // masses 2/8 and 1/8 still become 26/64 and 13/64.
         // The same root-constant p/q=8/13 applies despite seed-specific aliasing.
         Assert.Equal([26, 13], emitted); Assert.Equal(25, exhausted);
         Assert.Equal(new ShuffleRational(8, 13), new ShuffleRational(16, emitted[0]));
@@ -212,7 +303,21 @@ public sealed class NativePublicInitialMapConditionTests
         Assert.NotEqual(new ShuffleRational(2, 1), new ShuffleRational(12, 7));
     }
 
-    private static PublicRunEvidence Evidence(RunState run, string neow, string change = "")
+    private static PublicRunEvidence WithOpeningRoster(PublicRunEvidence mapOnly, IReadOnlyList<string> roster, bool gap = false)
+    {
+        var evidence = mapOnly;
+        long owner = evidence.Events.Where(e => e.OwnerOrdinal is not null).Max(e => e.OwnerOrdinal!.Value) + 1;
+        void Add(PublicEvidencePayload payload) => evidence = evidence.Append(new(evidence.Events.Length, owner, payload));
+        Add(new PublicOwnerStarted(PublicEvidenceOwnerKind.Combat, 0, 2, null, true));
+        Add(new PublicCombatFact(PublicCombatFactKind.Started));
+        if (gap) Add(new PublicEvidenceGap(PublicEvidenceGapReason.Interrupted));
+        Add(new PublicCombatFact(PublicCombatFactKind.PlayerTurnStarted, turn: 1));
+        for (int i = 0; i < roster.Count; i++)
+            Add(new PublicCombatFact(PublicCombatFactKind.IntentPublished, targetSlot: i, model: roster[i]));
+        return evidence;
+    }
+
+    private static PublicRunEvidence Evidence(RunState run, string neow, string change = "", string? profile = null)
     {
         PublicRelic Relic(string id) => new(id, new Dictionary<string, int> { ["isWax"] = 0, ["isMelted"] = 0, ["stackCount"] = 1 });
         PublicEvidenceAssets Assets(params string[] ids) => new(70, 70, 99, [], ids.Select(Relic).ToArray(), [null, null], 3, 2, 0, 0);
@@ -233,7 +338,7 @@ public sealed class NativePublicInitialMapConditionTests
             change == "wrong_map_floor" ? 2 : 1);
         var current = run.Map.StartingMapPoint;
         var choices = neow == "WingedBoots" ? run.Map.GetPointsInRow(1).ToArray() : current.Children.ToArray();
-        long observed = recorder.Record(map, NativePublicMapSlice.Observe(run.Map, current, choices));
+        long observed = recorder.Record(map, NativePublicMapSlice.Observe(run.Map, current, choices, profile));
         var chosen = NativeSourceMapChoice.Choose(choices, 70, 70);
         if (change != "missing_choice") recorder.Record(map, new PublicMapChosen(observed, new(chosen.coord.col, chosen.coord.row)));
         recorder.Record(map, new PublicOwnerEnded(PublicEvidenceOwnerOutcome.Completed));

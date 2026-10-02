@@ -5,6 +5,7 @@ using Nosl.Contracts;
 using Sts2Sim.Core.Content;
 using Sts2Sim.Core.Models;
 using Sts2Sim.Core.Models.Monsters;
+using Sts2Sim.Core.Models.Enchantments;
 using Sts2Sim.Core.Models.Powers;
 using Sts2Sim.Core.Models.Relics;
 
@@ -102,6 +103,19 @@ internal sealed class NativeInitialShuffleCondition
         PrefixProbability = probability;
     }
 
+    /// <summary>Extend only after a public transition certificate proves these are successive initial-pile draws.</summary>
+    internal NativeInitialShuffleCondition ExtendDrawPrefix(IReadOnlyList<string> prefix)
+    {
+        if (prefix.Count < _drawPrefixIds.Length || !prefix.Take(_drawPrefixIds.Length).SequenceEqual(_drawPrefixIds))
+            throw new ArgumentException("An extended shuffle certificate must preserve its startup prefix", nameof(prefix));
+        var counts = new Dictionary<string, int>(_deckCounts, StringComparer.Ordinal);
+        foreach (string id in prefix)
+            if (!counts.TryGetValue(id, out int remaining) || remaining == 0)
+                throw new ArgumentException("An extended shuffle prefix exceeds its public entry pool", nameof(prefix));
+            else counts[id]--;
+        return new(EntryJson, _deckIds, prefix.ToArray());
+    }
+
     internal bool MatchesEntryJson(string entryJson) => StringComparer.Ordinal.Equals(EntryJson, entryJson);
 
     /// <summary>The caller must check this before conditioning the actual native shuffle.</summary>
@@ -115,21 +129,25 @@ internal sealed class NativeInitialShuffleCondition
 
     internal static bool TryCreate(DecisionPacket publicRoot,
         out NativeInitialShuffleCondition? condition, out string? reason)
-        => TryCreate(publicRoot, false, out condition, out reason);
+        => TryCreate(publicRoot, 1, out condition, out reason);
 
     // Explicit acceleration-profile opt-in. Legacy tape/corpus callers retain the v1 closure.
     internal static bool TryCreatePublicCombatV2(DecisionPacket publicRoot,
         out NativeInitialShuffleCondition? condition, out string? reason)
-        => TryCreate(publicRoot, true, out condition, out reason);
+        => TryCreate(publicRoot, 2, out condition, out reason);
 
-    private static bool TryCreate(DecisionPacket publicRoot, bool publicCombatV2,
+    internal static bool TryCreatePublicCombatV3(DecisionPacket publicRoot,
+        out NativeInitialShuffleCondition? condition, out string? reason)
+        => TryCreate(publicRoot, 3, out condition, out reason);
+
+    private static bool TryCreate(DecisionPacket publicRoot, int publicCombatVersion,
         out NativeInitialShuffleCondition? condition, out string? reason)
     {
         condition = null;
         reason = null;
         try
         {
-            condition = Create(publicRoot, publicCombatV2);
+            condition = Create(publicRoot, publicCombatVersion);
             return true;
         }
         catch (Ineligible exception) { reason = exception.Message; return false; }
@@ -137,8 +155,9 @@ internal sealed class NativeInitialShuffleCondition
         catch (ArgumentException) { reason = "invalid_public_entry"; return false; }
     }
 
-    private static NativeInitialShuffleCondition Create(DecisionPacket root, bool publicCombatV2)
+    private static NativeInitialShuffleCondition Create(DecisionPacket root, int publicCombatVersion)
     {
+        bool publicCombatV2 = publicCombatVersion >= 2;
         Require(root is { Status: "player_decision" or "card_choice", Observation: not null, Actions.Length: > 0 }, "active_decision_required");
         var observation = root.Observation!;
         Require(observation.History is { Length: >= 4 }
@@ -155,14 +174,15 @@ internal sealed class NativeInitialShuffleCondition
         foreach (var card in entry.Deck)
         {
             Require(card is not null && card.Keywords is not null && !card.Keywords.Contains("Innate", StringComparer.Ordinal)
-                && (card.Enchantments?.Length ?? 0) == 0 && card.Affliction is null,
+                && ((card.Enchantments?.Length ?? 0) == 0 || (publicCombatVersion >= 3
+                    && card.Enchantments!.All(effect => effect.Id == nameof(Sharp)))) && card.Affliction is null,
                 "initial_shuffle_card_reordering_not_certified");
             RequireSafeHooks(card.Id, typeof(CardModel));
         }
         foreach (var relic in entry.Relics)
         {
             Require(relic is not null && relic.Details is not null, "invalid_public_entry");
-            RequireSafeHooks(relic.Id, typeof(RelicModel));
+            RequireSafeHooks(relic.Id, typeof(RelicModel), publicCombatV3: publicCombatVersion >= 3);
         }
         foreach (string? potion in entry.Potions)
             if (potion is not null) RequireSafeHooks(potion, typeof(PotionModel));
@@ -171,7 +191,11 @@ internal sealed class NativeInitialShuffleCondition
         // closure above is therefore necessary; an apparently plain history alone is not proof.
         // CombatEngine.StartCombatAsync/SetupPlayerTurnAsync and Player.PopulateCombatState
         // establish the order: ordinary shuffle, startup hooks, then the hand draw. We permit
-        // only the reviewed count/counter modifiers below, and no enchantment or Innate move.
+        // only the reviewed count/counter modifiers below, and no Innate move. V3 also
+        // admits the exact sealed Sharp enchantment: CanEnchant is a pure predicate,
+        // EnchantDamageAdditive changes only damage; inherited OnDrawn/OnPlay and
+        // ModifyShuffleOrder are no-ops. IDs stay coarse: physical upgraded/enchanted
+        // copies are sampled separately and final native equality checks all metadata.
         // CardModel's protected cloning paths preserve physical card type/order. The only current
         // concrete AfterCloned overrides (Abundance, Fetch, Regret) reset private working memory;
         // this fixed-source review is additional to the public hook reflection check.
@@ -239,7 +263,7 @@ internal sealed class NativeInitialShuffleCondition
         return new(entryJson, entry.Deck.Select(card => card.Id).ToArray(), prefix.ToArray());
     }
 
-    private static void RequireSafeHooks(string id, Type category, bool ravenousV2 = false)
+    private static void RequireSafeHooks(string id, Type category, bool ravenousV2 = false, bool publicCombatV3 = false)
     {
         Require(Models.TryGetValue(id, out Type[]? matches), "unknown_entry_model:" + id);
         Type[] candidates = matches.Where(type => category.IsAssignableFrom(type)).ToArray();
@@ -250,6 +274,11 @@ internal sealed class NativeInitialShuffleCondition
             MethodInfo implementation = type!.GetMethod(hook.Name,
                 hook.GetParameters().Select(parameter => parameter.ParameterType).ToArray())!;
             if (implementation.DeclaringType == typeof(AbstractModel)) continue;
+            // CombatRoom creates rewards only in post-victory settlement. LavaRock's sole
+            // hook cannot execute during startup or an unfinished first draw cycle.
+            if (publicCombatV3 && type == typeof(LavaRock)
+                && implementation.DeclaringType == typeof(LavaRock)
+                && hook.Name == nameof(AbstractModel.ModifyRewards)) continue;
             if (ravenousV2 && type == typeof(RavenousPower) && implementation.DeclaringType == typeof(RavenousPower)
                 && hook.Name == nameof(AbstractModel.AfterDeath)) continue;
             // CombatRoom.CompleteCombatOnceAsync/ResolveVictoryOnceAsync dispatch these only

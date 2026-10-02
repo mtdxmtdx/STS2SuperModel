@@ -133,6 +133,7 @@ public sealed class EncounterDefinition
 
     private IReadOnlyList<(MonsterModel Monster, string? SlotName)> CreateMonstersCore(Rng? rng)
     {
+        using IDisposable? labelScope = Sts2Sim.Core.Random.LabelCorpseSlugScope.EnterEncounter(this, rng);
         IReadOnlyList<(MonsterModel Monster, string? SlotName)> generated = _monsterBatchFactory(rng)
             ?? throw new InvalidOperationException("Monster batch factory returned null.");
         if (generated.Any(entry => entry.Monster is null))

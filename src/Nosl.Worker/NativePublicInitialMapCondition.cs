@@ -23,15 +23,17 @@ internal sealed class NativePublicInitialMapCondition
     };
 
     private readonly string _slice;
+    private readonly string? _mapObservationProfile;
     private readonly PublicMapCoordinate _chosen;
     internal bool HasFreeTravel { get; }
     internal long MapEventOrdinal { get; }
 
     private NativePublicInitialMapCondition(PublicMapObserved slice, PublicMapChosen chosen,
-        bool freeTravel, long mapEventOrdinal)
+        bool freeTravel, long mapEventOrdinal, string? mapObservationProfile)
     {
         _slice = PublicJson.Serialize(slice); _chosen = chosen.Coordinate;
         HasFreeTravel = freeTravel; MapEventOrdinal = mapEventOrdinal;
+        _mapObservationProfile = mapObservationProfile;
     }
 
     internal static bool TryCreate(PublicRunEvidence? evidence, NativeTapePrior prior,
@@ -45,6 +47,10 @@ internal sealed class NativePublicInitialMapCondition
         { reason = "typed_map_native_prior_required"; return false; }
         if (evidence is null || evidence.Events.Length < 8)
         { reason = "observed_initial_map_required"; return false; }
+        if (PublicMapObservationProfiles.UsesCoordinateOrder(prior.Execution.PublicMapObservationProfile)
+            && evidence.Events.Select(e => e.Payload).OfType<PublicMapObserved>()
+                .Any(map => !PublicMapObservationProfiles.IsCoordinateOrdered(map)))
+        { reason = "coordinate_order_map_options_required"; return false; }
         var events = evidence.Events;
         if (events[0].Payload is not PublicRunStarted { Character: "Silent", Ascension: 10 } runStart
             || runStart.Assets.Relics is not [ { Id: "RingOfTheSnake" } ]
@@ -87,7 +93,8 @@ internal sealed class NativePublicInitialMapCondition
             || slice.Nodes.Any(n => n.Coordinate != current && (n.Coordinate.Row != 1
                 || n.NodeType != PublicMapNodeType.Monster)))
         { reason = "complete_native_first_map_slice_required"; return false; }
-        condition = new(slice, chosen, neow.Key == "WingedBoots", mapEvents[1].EventOrdinal);
+        condition = new(slice, chosen, neow.Key == "WingedBoots", mapEvents[1].EventOrdinal,
+            prior.Execution.PublicMapObservationProfile);
         return true;
     }
 
@@ -106,14 +113,15 @@ internal sealed class NativePublicInitialMapCondition
         var choices = HasFreeTravel ? row : current.Children.ToArray();
         var selected = NativeSourceMapChoice.Choose(choices, 1, 1);
         return _chosen == new PublicMapCoordinate(selected.coord.col, selected.coord.row)
-            && _slice == PublicJson.Serialize(NativePublicMapSlice.Observe(map, current, choices));
+            && _slice == PublicJson.Serialize(NativePublicMapSlice.Observe(map, current, choices, _mapObservationProfile));
     }
 }
 
 /// <summary>The recorder's exact visible slice; Unknown is an icon, never its hidden room roll.</summary>
 internal static class NativePublicMapSlice
 {
-    internal static PublicMapObserved Observe(ActMap map, MapPoint current, IReadOnlyList<MapPoint> choices)
+    internal static PublicMapObserved Observe(ActMap map, MapPoint current, IReadOnlyList<MapPoint> choices,
+        string? mapObservationProfile = null)
     {
         PublicMapCoordinate Coord(MapPoint p) => new(p.coord.col, p.coord.row);
         PublicMapNodeType Type(MapPoint p) => p.PointType switch
@@ -129,7 +137,10 @@ internal static class NativePublicMapSlice
         var included = points.ToHashSet();
         var edges = points.SelectMany(p => p.Children.Where(included.Contains).Select(c => new PublicMapEdge(Coord(p), Coord(c))))
             .OrderBy(e => e.From.Row).ThenBy(e => e.From.Col).ThenBy(e => e.To.Row).ThenBy(e => e.To.Col).ToImmutableArray();
+        // Sort a projection, never the native collection or the source's actions.
+        IEnumerable<MapPoint> observedChoices = PublicMapObservationProfiles.UsesCoordinateOrder(mapObservationProfile)
+            ? choices.OrderBy(p => p.coord.row).ThenBy(p => p.coord.col) : choices;
         return new(Coord(current), points.Select(p => new PublicMapNode(Coord(p), Type(p))).ToImmutableArray(), edges,
-            choices.Select(p => new PublicMapOption(Coord(p), current.Children.Contains(p))).ToImmutableArray());
+            observedChoices.Select(p => new PublicMapOption(Coord(p), current.Children.Contains(p))).ToImmutableArray());
     }
 }

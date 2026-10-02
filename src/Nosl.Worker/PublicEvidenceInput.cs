@@ -44,6 +44,7 @@ internal static class PublicEvidenceInput
     {
         if (options.EmitsPublicEvidence != (packet.PublicEvidence is not null))
             throw new ArgumentException("The declared evidence channel differs from the public packet");
+        PublicMapObservationProfiles.ValidateEvidence(options.PublicMapObservationProfile, packet.PublicEvidence);
         if (packet.PublicEvidence is not null) Validate(packet);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using Nosl.Contracts;
 using Nosl.Worker;
 using Sts2Sim.Core.Random;
@@ -29,7 +30,7 @@ public sealed class NativePublicOpeningEncounterIntegrationTests
         var source = new NativeTapeReplaySource(observed, prior);
         Assert.True(source.UsesConditionalPublicOpeningEncounter);
         Assert.False(source.UsesConditionalFirstEncounter); // Never overlap slot-zero cells.
-        Assert.Contains("conditional-v4", source.PosteriorProfile);
+        Assert.Contains("conditional-v5", source.PosteriorProfile);
         Assert.True(NativePublicOpeningEncounterCondition.TryCreate(observed, prior, out var opening, out var reason), reason);
         // This fixture reuses a chosen hypothetical recipe only to isolate the
         // production hook and exact replay law. It is not source-posterior evidence.
@@ -76,8 +77,26 @@ public sealed class NativePublicOpeningEncounterIntegrationTests
         // different RunSeed, TapeSeed and ProposalSeed.
         var auxiliary = new NativeTapeRecipe(16657447854696103605UL, 2016841812778250893UL,
             8312175039547833285UL, 0, 0);
-        var prefix = initial.Prepare(auxiliary, 64);
-        Assert.Equal(10773775229783546949UL, prefix.SelectedRecipe.RunSeed);
+        // Preserve this existing replay coordinate without searching for a new
+        // downstream match. Early act rejection now consumes fewer auxiliary
+        // words, so recover the recorded map-only prefix at its original public
+        // map boundary, then verify the new joint predicate accepts that exact
+        // seed/word trace. Fresh joint sampling is exercised separately.
+        var evidence = root.PublicEvidence!;
+        long combatStart = evidence.Events.First(e => e.Payload is PublicOwnerStarted
+            { OwnerKind: PublicEvidenceOwnerKind.Combat }).EventOrdinal;
+        var mapEvidence = new PublicRunEvidence(evidence.SchemaVersion, true,
+            evidence.Events.Take((int)combatStart).ToImmutableArray());
+        Assert.True(NativeInitialPrefixCondition.TryCreate(new("fixture", null, [], mapEvidence), prior,
+            out var mapOnly, out why), why);
+        Assert.Null(mapOnly!.TargetActType);
+        var recorded = mapOnly.Prepare(auxiliary, 64);
+        Assert.Equal(10773775229783546949UL, recorded.SelectedRecipe.RunSeed);
+        var nativeWords = new Queue<ulong>(new[] { recorded.SelectedRecipe.RunSeed }
+            .Concat(recorded.Trace.DistinctBy(word => word.State).Select(word => word.Word)));
+        var prefix = initial.Prepare(auxiliary, 1, () => nativeWords.Dequeue());
+        Assert.Empty(nativeWords); Assert.Equal(recorded.Trace, prefix.Trace);
+        Assert.Equal(opening!.TargetActType, prefix.TargetActType);
         var tape = NativeLabelTape.ForDeclaredPrior(prior, prefix.SelectedRecipe,
             expectedEntryJson: root.Observation!.History.Single(e => e.Kind == NativeEntryAssets.EventKind).Detail,
             neowCondition: neow, initialPrefixPlan: prefix, publicCombatCondition: combats,

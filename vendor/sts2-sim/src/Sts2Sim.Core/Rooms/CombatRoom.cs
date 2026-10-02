@@ -180,6 +180,7 @@ public sealed class CombatRoom : AbstractRoom
             return;
         }
 
+        using IDisposable? labelScope = Sts2Sim.Core.Random.LabelCorpseSlugScope.EnterFactory(runState, this);
         IReadOnlyList<(MonsterModel Monster, string? SlotName)>? generated;
         if (_encounterFactory is not null)
         {

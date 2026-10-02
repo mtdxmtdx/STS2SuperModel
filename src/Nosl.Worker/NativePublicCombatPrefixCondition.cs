@@ -8,7 +8,7 @@ namespace Nosl.Worker;
 internal sealed record NativePublicCombatPrefixInput(int CombatIndex, long OwnerOrdinal,
     long? DecisionEventOrdinal, string? EntryJson, NativeInitialShuffleCondition? Shuffle,
     NativeInitialHpCondition? Hp, string? ShuffleReason, string? HpReason,
-    NativeCorpseSlugHpCondition? SlugHp = null)
+    NativeCorpseSlugHpCondition? SlugHp = null, NativePublicDrawPrefixAudit? DrawPrefix = null)
 {
     internal int HpCount => Hp?.EnemyCount ?? SlugHp?.EnemyCount ?? 0;
 }
@@ -17,7 +17,8 @@ internal sealed record NativePublicCombatPrefixInput(int CombatIndex, long Owner
 /// Reuses the existing source-pinned startup certificates for each observed combat.
 /// Only typed public values are inputs; neither native objects nor source audit data
 /// participate. Combat indices count every combat owner start, including forced fights
-/// that never offered a decision. The first stable snapshot fixes each certificate.
+/// that never offered a decision. The first stable snapshot fixes startup HP;
+/// certified later transitions can extend the draw prefix.
 /// </summary>
 internal sealed class NativePublicCombatPrefixCondition
 {
@@ -77,13 +78,16 @@ internal sealed class NativePublicCombatPrefixCondition
             string? entryJson = packet?.Observation!.History[1].Detail;
             if (packet is not null)
             {
-                NativeInitialShuffleCondition.TryCreatePublicCombatV2(packet, out shuffle, out shuffleReason);
-                NativeInitialHpCondition.TryCreate(packet, out hp, out hpReason);
+                NativeInitialShuffleCondition.TryCreatePublicCombatV3(packet, out shuffle, out shuffleReason);
+                NativeInitialHpCondition.TryCreatePublicCombatV3(packet, out hp, out hpReason);
                 if (hp is null && shuffle is not null && packet.Observation!.Enemies.Any(enemy => enemy.Id == "CorpseSlug"))
                     NativeCorpseSlugHpCondition.TryCreate(packet, out slugHp, out hpReason);
             }
+            NativePublicDrawPrefixAudit? drawPrefix = null;
+            if (shuffle is not null)
+                shuffle = NativePublicDrawPrefixCondition.Extend(shuffle, events, first!, globalGap, out drawPrefix);
             inputs.Add(index, new(index, owner.OwnerOrdinal.Value, first?.EventOrdinal,
-                entryJson, shuffle, hp, shuffleReason, hpReason, slugHp));
+                entryJson, shuffle, hp, shuffleReason, hpReason, slugHp, drawPrefix));
         }
         return new(inputs, inputs.Count == 0 ? "no_observed_combat_owner" : null);
     }
@@ -140,9 +144,9 @@ internal sealed class NativePublicCombatPrefixCondition
             cursor++;
         }
         if (cursor == intentStart) { reason = "startup_intent_history_required"; return null; }
-        // Later actions, redraws and reshuffles remain in the full typed evidence
-        // checked by replay. They are deliberately absent from this startup-only
-        // certificate input and cannot lengthen the initial permutation constraint.
+        // This packet proves startup only. The separate action-linked transition closure
+        // can extend its draw prefix using the original typed evidence. Full history
+        // and stable snapshots remain unchanged for final native replay equality.
         return new(decision.Status, decision.Observation with { History = history.ToArray() }, decision.Actions);
     }
 }

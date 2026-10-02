@@ -50,6 +50,7 @@ public sealed class CorpseSlug : MonsterModel
 
     public static void EnsureCorpseSlugsStartWithDifferentMoves(IEnumerable<MonsterModel> monsters, Rng rng)
     {
+        using IDisposable? labelScope = LabelCorpseSlugScope.BeginInitialIntents(monsters, rng);
         int starter = rng.NextInt(3);
         foreach (CorpseSlug slug in monsters.OfType<CorpseSlug>())
         {

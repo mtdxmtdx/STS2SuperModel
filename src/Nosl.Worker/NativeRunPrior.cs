@@ -12,11 +12,12 @@ internal sealed record NativeRunExecutionOptions(int MaxFloors = 60, int SourceD
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? OutsideCombatScript = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicContextProfile = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicCombatHistoryMode = null,
-    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicEvidenceProfile = null)
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicEvidenceProfile = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicMapObservationProfile = null)
 {
     // Omitted selection preserves old serialized priors and their exact identities.
     internal string ResolvedOutsideCombatScript => NaturalSourceCollector.ResolveScriptVersion(OutsideCombatScript);
-    internal bool EmitsPublicEvidence => PublicRunEvidence.ValidateChannel(PublicEvidenceProfile, PublicContextProfile);
+    internal bool EmitsPublicEvidence => PublicMapObservationProfiles.ValidateChannel(PublicMapObservationProfile, PublicEvidenceProfile, PublicContextProfile);
     internal bool EmitsPublicRunContext => PublicRunContext.ValidateChannel(PublicContextProfile, PublicCombatHistoryMode);
 }
 

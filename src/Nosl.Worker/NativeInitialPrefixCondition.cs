@@ -24,15 +24,21 @@ internal sealed class NativeInitialPrefixCondition
     internal bool HasFreeTravel { get; }
     private NativeInitialPrefixCondition(Type actType, NativeMapTravelCondition? mapTravel, int hp, bool freeTravel)
     { TargetActType = actType; MapTravel = mapTravel; TargetEntryHp = hp; HasFreeTravel = freeTravel; }
-    private NativeInitialPrefixCondition(NativePublicInitialMapCondition publicMap)
-    { PublicMap = publicMap; HasFreeTravel = publicMap.HasFreeTravel; }
+    private NativeInitialPrefixCondition(NativePublicInitialMapCondition publicMap, Type? observedActType)
+    { PublicMap = publicMap; HasFreeTravel = publicMap.HasFreeTravel; TargetActType = observedActType; }
 
     internal static bool TryCreate(DecisionPacket root, NativeTapePrior prior,
         out NativeInitialPrefixCondition? condition, out string? reason)
     {
         condition = null;
         if (NativePublicInitialMapCondition.TryCreate(root.PublicEvidence, prior, out var publicMap, out reason))
-        { condition = new(publicMap!); return true; }
+        {
+            // Reuse only a certified retained public opening roster. This joins
+            // two necessary events; it does not force a native act or hold a seed.
+            // An unavailable roster leaves both initial acts in map rejection.
+            NativePublicOpeningEncounterCondition.TryCreate(root, prior, out var opening, out _);
+            condition = new(publicMap!, opening?.TargetActType); return true;
+        }
         if (!NativeActSelectionCondition.TryCreate(root, prior, out var act, out reason)) return false;
         if (!NativeFirstRewardCondition.TryCreate(root, prior, out var reward, out reason)) return false;
         NativeMapTravelCondition.TryCreate(root, prior, out var map, out _);

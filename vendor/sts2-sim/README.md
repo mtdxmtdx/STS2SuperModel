@@ -14,6 +14,7 @@
 - `src/Sts2Sim.Core/Commands/CardCmd.cs`
 - `src/Sts2Sim.Core/Commands/CardPileCmd.cs`
 - `src/Sts2Sim.Core/Commands/PotionCmd.cs`
+- `src/Sts2Sim.Core/Content/EncounterDefinition.cs`
 - `src/Sts2Sim.Core/Entities/Creatures/Creature.cs`
 - `src/Sts2Sim.Core/Entities/Players/IPlayerOutcomeObserver.cs`
 - `src/Sts2Sim.Core/Entities/Players/Player.cs`
@@ -26,9 +27,11 @@
 - `src/Sts2Sim.Core/Models/Cards/Fetch.cs`
 - `src/Sts2Sim.Core/Models/Cards/Guilty.cs`
 - `src/Sts2Sim.Core/Models/Cards/ThrummingHatchet.cs`
+- `src/Sts2Sim.Core/Models/Monsters/CorpseSlug.cs`
 - `src/Sts2Sim.Core/Models/Monsters/TwoTailedRat.cs`
 - `src/Sts2Sim.Core/Models/Powers/NightmarePower.cs`
 - `src/Sts2Sim.Core/Odds/CardRarityOdds.cs`
+- `src/Sts2Sim.Core/Random/LabelCorpseSlugScope.cs`
 - `src/Sts2Sim.Core/Random/LabelRandomProvenance.cs`
 - `src/Sts2Sim.Core/Random/LabelRandomScope.cs`
 - `src/Sts2Sim.Core/Random/MegaRandom.cs`
@@ -63,4 +66,8 @@
 
 最新连接层在 `CardFactory` 两种原生重载的逐卡选择边界增加可选 label-only 上下文，并从 `CardRarityOdds` 暴露已有阈值；不额外抽取 RNG，不重排生成流程，也不修改普通顺序模式。相对 `b8f2b4c` 仅这两个文件及 `LabelRandomScope.cs` 变化；全部2,230个文件重新从上游归档加补丁复现一致，完整 Core 4,493通过、3个既有opt-in跳过。完整新混合提议的 Worker 证明与吞吐结果见 [混合奖励验证](../../configs/native_rewards_hybrid_verification.json)，本次尚未通过广度吞吐门槛，也没有新增生产数据或训练。
 
-当前v4组合版本重新复现全部2,231个跟踪源码文件，并在固定生产源码`ded6aeb7`上重新完整运行Core：4,493通过、3个既有opt-in跳过、0失败。相对上一打包源码`3ae3160`，只新增或修改8个Core文件：`Factories/PotionFactory.cs`、`Models/Events/Ancients/Neow.cs`、`Models/Relics/ScrollBoxes.cs`、`Odds/PotionRewardOdds.cs`、`Random/LabelRandomScope.cs`、`Random/LabelRewardResourceScope.cs`、`Rewards/GoldReward.cs`和`Rewards/RewardsSet.cs`。这些是显式启用的公开条件标签边界；奖励异常时通知可中止边界，保留原始异常，不改变普通原生调用的随机抽取和生成顺序。其余补丁段及独立地图性能补丁不变。准确源码、程序集、原始测试日志和补丁哈希见[最新重建证据](../../configs/vendor_patch_verification.json)。历史段落中的2,230文件计数与回归结果仅对应各自旧检查点。
+v4组合检查点重新复现全部2,231个跟踪源码文件，并在固定生产源码`ded6aeb7`上重新完整运行Core：4,493通过、3个既有opt-in跳过、0失败。相对上一打包源码`3ae3160`，只新增或修改8个Core文件：`Factories/PotionFactory.cs`、`Models/Events/Ancients/Neow.cs`、`Models/Relics/ScrollBoxes.cs`、`Odds/PotionRewardOdds.cs`、`Random/LabelRandomScope.cs`、`Random/LabelRewardResourceScope.cs`、`Rewards/GoldReward.cs`和`Rewards/RewardsSet.cs`。这些是显式启用的公开条件标签边界；奖励异常时通知可中止边界，保留原始异常，不改变普通原生调用的随机抽取和生成顺序。其余补丁段及独立地图性能补丁不变。准确源码、程序集、原始测试日志和补丁哈希见[最新重建证据](../../configs/vendor_patch_verification.json)。历史段落中的2,230文件计数与回归结果仅对应各自旧检查点。
+
+v5连接层相对已打包源码`ded6aeb7`只修改4个Core文件：`Content/EncounterDefinition.cs`、`Models/Monsters/CorpseSlug.cs`、新增`Random/LabelCorpseSlugScope.cs`和`Rooms/CombatRoom.cs`。显式启用的label作用域在遭遇工厂、战斗房间准备及CorpseSlug原生`NextInt(3)`之前提供实际假想工厂上下文；不传入来源seed或目标招式，也不直接改写怪物状态。未启用作用域时保持原生生成和抽取顺序。对固定源码`18075150`从上游归档加两个补丁重新复现全部2,232个跟踪Core／Core.Tests文件，字节与文件集合完全一致；其余补丁段、独立地图性能补丁与Core测试树保持不变。
+
+该v5固定源码另全新运行一次完整Core套件：4,493通过、3个既有opt-in跳过、0失败，构建加测试270.32秒。使用独立构建目录，保留本次真实stdout／stderr、TRX、执行记录、源码清单及程序集哈希；运行前后源码哈希均一致。上一v4报告和原始回归记录按原源码固定点单独保留，不计作本次新测试。准确路径、时间与SHA-256见[最新重建证据](../../configs/vendor_patch_verification.json)。

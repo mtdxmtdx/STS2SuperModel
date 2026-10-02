@@ -149,7 +149,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         var sourceOptions = new NaturalSourceOptions(MaxFloors: _options.MaxFloors,
             ContinuationPolicyId: _options.SourcePolicyId, OutsideCombatScript: _options.OutsideCombatScript,
             PublicContextProfile: _options.PublicContextProfile, PublicCombatHistoryMode: _options.PublicCombatHistoryMode,
-            PublicEvidenceProfile: _options.PublicEvidenceProfile);
+            PublicEvidenceProfile: _options.PublicEvidenceProfile, PublicMapObservationProfile: _options.PublicMapObservationProfile);
         _bridge = new(NativeRun, sourceOptions, PublicContinuationPolicies.Create(_options.SourcePolicyId), [],
             "owned-independent-proposal", _proposalSeed, null, null, _lifetime.Token, this,
             startsAtNativeRunBeginning: _constructedLifecycle is null);

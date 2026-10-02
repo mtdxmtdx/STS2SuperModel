@@ -7,7 +7,7 @@ using Sts2Sim.Core.Random;
 namespace Nosl.Worker;
 
 /// <summary>
-/// Public-combat-v2 only: the native unslotted two/three CorpseSlug factories create
+/// Explicit public-combat profiles only: the native unslotted two/three CorpseSlug factories create
 /// enemies in published order. AfterAddedToRoom publishes each self-power in that
 /// same order, assigning its lifetime public slot before the initial intents.
 /// CorpseSlug/RavenousPower never change MaxHp; later damage does not alter targets.
@@ -31,7 +31,7 @@ internal sealed class NativeCorpseSlugHpCondition
         out string? reason)
     {
         condition = null;
-        if (!NativeInitialShuffleCondition.TryCreatePublicCombatV2(packet, out _, out reason)) return false;
+        if (!NativeInitialShuffleCondition.TryCreatePublicCombatV3(packet, out _, out reason)) return false;
         var observation = packet.Observation!;
         int turn = Array.FindIndex(observation.History, entry => entry.Kind == "player_turn");
         var startup = observation.History.Skip(turn + 1).TakeWhile(entry => entry.Kind == "intent_published")

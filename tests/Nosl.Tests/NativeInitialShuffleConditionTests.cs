@@ -239,4 +239,24 @@ public sealed class NativeInitialShuffleConditionTests
         Assert.False(NativeInitialShuffleCondition.TryCreate(root, out _, out string? reason));
         Assert.Equal(expectedReason, reason);
     }
+    [Theory]
+    [InlineData("LavaRock", false)]
+    [InlineData("NeowsTorment", true)]
+    [InlineData("LavaRock", true)]
+    public void PublicV3AdmitsOnlyReviewedStartupExceptionsAndRetainsCoarsePhysicalIds(string relic, bool sharp)
+    {
+        var root = EditEntry(Root(relic), entry => entry with
+        {
+            Deck = sharp ? [entry.Deck[0] with { Upgrade = 1, Enchantments = [new("Sharp", 3)] }, .. entry.Deck.Skip(1)] : entry.Deck,
+        });
+        Assert.False(NativeInitialShuffleCondition.TryCreate(root, out _, out _));
+        Assert.False(NativeInitialShuffleCondition.TryCreatePublicCombatV2(root, out _, out _));
+        Assert.True(NativeInitialShuffleCondition.TryCreatePublicCombatV3(root, out var condition, out string? reason), reason);
+        Assert.True(NativeInitialHpCondition.TryCreatePublicCombatV3(root, out _, out reason), reason);
+        Assert.False(NativeInitialHpCondition.TryCreate(root, out _, out _));
+        Assert.Equal(2, condition!.DeckIds.Count(id => id == "StrikeSilent"));
+        Assert.Equal(4d / 40320d, condition.PrefixProbability, 12);
+        Assert.Contains(sharp ? "Sharp" : "LavaRock", condition.EntryJson);
+    }
+
 }

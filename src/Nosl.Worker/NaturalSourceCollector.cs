@@ -27,7 +27,12 @@ public sealed record NaturalSourceOptions(int Runs = 1, int MaxFloors = 20, int 
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? OutsideCombatScript = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicContextProfile = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicCombatHistoryMode = null,
-    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicEvidenceProfile = null);
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicEvidenceProfile = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicMapObservationProfile = null)
+{
+    internal bool EmitsPublicEvidence => PublicMapObservationProfiles.ValidateChannel(
+        PublicMapObservationProfile, PublicEvidenceProfile, PublicContextProfile);
+}
 public sealed record NaturalSourceTrace(int Index, string Kind, string PublicDetail);
 public sealed record NaturalRunAudit(string SourceRunGroup, string ActualSeed, string Outcome,
     int FloorsResolved, int CombatsEntered, int Decisions, int RootsCollected,
@@ -38,11 +43,13 @@ public sealed record NaturalSourceRoot(DecisionPacket PublicRoot, string SourceR
     int DecisionIndex, int Act, int Floor, string RoomType, string Encounter, string ActualSeed,
     int StartHp, int StartMaxHp, int StartGold, PublicCard[] PermanentDeck,
     NaturalSourceTrace[] SourceTrace, string CombatPolicy,
-    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? OutsideCombatScript = null)
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? OutsideCombatScript = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicMapObservationProfile = null)
 {
     public const string PosteriorReason = "native_posterior_not_evaluated_by_raw_collector";
     public object ToSourceRecord()
     {
+        PublicMapObservationProfiles.ValidateEvidence(PublicMapObservationProfile, PublicRoot.PublicEvidence);
         bool contextual = PublicRoot.Observation?.Schema == PublicRunContext.ObservationSchema;
         if (contextual != (PublicRoot.Observation?.RunContext is not null))
             throw new ArgumentException("Public run context requires its separately versioned observation schema");
@@ -54,7 +61,7 @@ public sealed record NaturalSourceRoot(DecisionPacket PublicRoot, string SourceR
             history_complete = true, controller_context = new { status = "inactive" },
             candidate_actions = PublicRoot.Actions, legal_mask = PublicRoot.Actions.Select(_ => true).ToArray(),
         }, PublicRoot);
-        return new
+        var record = new
         {
             schema_version = PublicRoot.PublicEvidence is not null ? "nosl.natural-source.v4" : contextual ? "nosl.natural-source.v3" : "nosl.natural-source.v2", record_kind = "natural_raw_source_candidate",
             public_input = input,
@@ -77,6 +84,12 @@ public sealed record NaturalSourceRoot(DecisionPacket PublicRoot, string SourceR
                 simulator_commit = "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0", rules_version = "0.111.0",
             },
         };
+        // An external producer profile suffices: the DTO shape and coordinate
+        // references have not changed. Preserve every legacy record byte on omission.
+        if (PublicMapObservationProfile is null) return record;
+        var declared = System.Text.Json.Nodes.JsonNode.Parse(PublicJson.Serialize(record))!.AsObject();
+        declared["audit_only"]!["public_map_observation_profile"] = PublicMapObservationProfile;
+        return declared;
     }
 }
 // Worker-private adapter input, never serialized or passed to a policy. The
@@ -159,7 +172,7 @@ public static class NaturalSourceCollector
         options ??= new();
         _ = ResolveScriptVersion(options.OutsideCombatScript);
         _ = PublicRunContext.ValidateChannel(options.PublicContextProfile, options.PublicCombatHistoryMode);
-        _ = PublicRunEvidence.ValidateChannel(options.PublicEvidenceProfile, options.PublicContextProfile);
+        _ = options.EmitsPublicEvidence;
         var configuredPolicy = PublicContinuationPolicies.Create(options.ContinuationPolicyId);
         policy ??= configuredPolicy;
         if (options.Runs <= 0 || options.MaxFloors <= 0 || options.MaxRoots <= 0 ||
@@ -211,8 +224,8 @@ public static class NaturalSourceCollector
         internal readonly List<NaturalSourceTrace> Trace = [];
         private readonly PublicEventChoiceController _eventController = new(options.OutsideCombatScript);
         private readonly bool _emitRunContext = PublicRunContext.ValidateChannel(options.PublicContextProfile, options.PublicCombatHistoryMode);
-        private readonly NativePublicRunEvidence? _evidence = PublicRunEvidence.ValidateChannel(options.PublicEvidenceProfile, options.PublicContextProfile)
-            ? new(run) : null;
+        private readonly NativePublicRunEvidence? _evidence = options.EmitsPublicEvidence
+            ? new(run, options.PublicMapObservationProfile) : null;
         internal PublicRunEvidence? CaptureEvidence() => _evidence?.Capture();
         private bool _beginRunObserved, _completeFromRunStart;
         private EventModel? _eventOwner;
@@ -293,7 +306,7 @@ public static class NaturalSourceCollector
             NaturalSourceRoot SnapshotRoot() => new(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)),
                 sourceRun, $"{sourceRun}/combat-{CombatsEntered:D4}", _combatDecision,
                 run.CurrentActIndex, run.TotalFloor, room.RoomType.ToString(), room.EncounterName, actualSeed,
-                _startHp, _startMaxHp, _startGold, _permanentDeck.ToArray(), Trace.ToArray(), policy.Id, options.OutsideCombatScript);
+                _startHp, _startMaxHp, _startGold, _permanentDeck.ToArray(), Trace.ToArray(), policy.Id, options.OutsideCombatScript, options.PublicMapObservationProfile);
             NaturalSourceBoundary Boundary() => new(state, room, _knowledge.Copy(), _startHp, _startMaxHp, _startGold,
                 _startPotions.ToArray(), _initialAssets, _revision, choice is null, true,
                 _choiceOrigin is null ? null : new(_choiceOrigin,
