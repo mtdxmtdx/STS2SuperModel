@@ -1,8 +1,8 @@
 {
   "schema": "nosl.m3-m6.continued-engineering.v1",
   "date_utc": "2026-10-02",
-  "source_head": "65bdfb302686b6407938698f6ab03a491a28b412",
-  "status": "READY_FOR_PILOT_WITH_DECLARED_ENGINEERING_AND_CALIBRATION_GAPS",
+  "source_head": "847fda553b14d9b12806701bd5f1d7d2626f9c78",
+  "status": "READY_FOR_PILOT_FULL_SCOPE_BLOCKED",
   "full_m3_m6_complete": false,
   "formal_training": false,
   "new_optimizer_steps": 0,
@@ -11,57 +11,57 @@
   "verified_regressions": [
     {
       "suite": "native",
-      "passed": 1037,
+      "passed": 1048,
       "failed": 0,
       "skipped": 0,
-      "path": "artifacts/reports/m3-m6/continued-native-v6-full.trx",
-      "bytes": 1518310,
-      "sha256": "fcf5df64f6c4428596737ea9aed146c708cef95c2e01edbcb645b225a3ac617b"
+      "path": "artifacts/reports/recovery/full-recovered-native.trx",
+      "bytes": 1531208,
+      "sha256": "0deb0fe04ee4ecb513666c73f56c58e3d9c94119f7682f04caa86a998b1c0f9c"
     },
     {
       "suite": "core",
       "passed": 4480,
       "failed": 0,
       "skipped": 3,
-      "path": "artifacts/reports/m3-m6/continued-core-full.trx",
-      "bytes": 6964889,
-      "sha256": "1aa80dfa8ef12553e1f0d963e560372c95f5bfe06fa052f31f0d16e0cf4011fb"
+      "path": "artifacts/reports/recovery/core-recovery.trx",
+      "bytes": 6955941,
+      "sha256": "9bc950b98135390173d93f51394ac3db7dd50212ac0e4d6fd4ebb32c634e8511"
     },
     {
-      "suite": "python_data",
-      "passed": 140,
+      "suite": "python_no_learning",
+      "passed": 205,
       "failed": 0,
       "skipped": 0,
-      "path": "artifacts/reports/m3-m6/continued-v2-data-final.log",
-      "bytes": 240,
-      "sha256": "17c46146fabefaf798472bd149bfeb5118edb24c6d02628031cfa3797ea67a07"
+      "path": "artifacts/reports/recovery/full-recovered-python.log",
+      "bytes": 34348,
+      "sha256": "11b6351b5fca1d20a8fead53ed81cbe6fdf010a5e2cb0b6cef74fb6cec8880f5"
     },
     {
-      "suite": "python_v2_trainer_no_fit",
-      "passed": 21,
+      "suite": "data",
+      "passed": 145,
       "failed": 0,
-      "skipped": 0,
-      "path": "artifacts/reports/m3-m6/continued-v2-trainer-final.log",
-      "bytes": 438,
-      "sha256": "2df8d201cba5deafe37e8ae76c40191b48a6641b696a4fe9ed99451cc183ea9c"
+      "skipped": 6,
+      "path": "artifacts/reports/recovery/full-recovered-data.log",
+      "bytes": 24790,
+      "sha256": "d8b67e52f9fc0e1ad9b936770a98cdbb0457c09a7baa9c90e7c5e7b61080f25a"
     },
     {
-      "suite": "python_v2_student_no_backward",
-      "passed": 19,
+      "suite": "generator",
+      "passed": 63,
       "failed": 0,
       "skipped": 0,
-      "path": "artifacts/reports/m3-m6/continued-v2-student-noopt.log",
-      "bytes": 3377,
-      "sha256": "be3c64e7c3dc0317ca6d58b490071fd68667f91bc5e715ca4ce55229dac32c0e"
+      "path": "artifacts/reports/recovery/generator.log",
+      "bytes": 10982,
+      "sha256": "fa9ab583409e0aa7908e07eabadf19633bcdc1e7c946283e7daf98d1ba36330d"
     },
     {
-      "suite": "choice_and_provenance",
-      "passed": 10,
+      "suite": "calibration",
+      "passed": 46,
       "failed": 0,
       "skipped": 0,
-      "path": "artifacts/reports/m3-m6/continued-choice-v2-provenance.trx",
-      "bytes": 16096,
-      "sha256": "43c38c29689eac349d6f3dde4aa0fa195c72e728559c7ce0e1d108a27074cde5"
+      "path": "artifacts/reports/recovery/calibration.log",
+      "bytes": 7746,
+      "sha256": "39da166e7391676d4298f632049afab5a47369e1ebf9649190279c9a54fdfb8a"
     }
   ],
   "historical_python_regression": {
@@ -76,7 +76,10 @@
     "All five native forced-event owner/return/reward lifecycles through the first actual reward decision",
     "Reviewed natural carry-in, native stable-origin pending choices and untouched generation-potion closure",
     "Public student v2 active Hunt context, native entry assets and forced-event context validation/encoding",
-    "Versioned production v2 preparation, source-group protection, bounded trainer, checkpoint/resume and standalone bundle with actual-supervision applicability guards"
+    "Versioned production v2 preparation, source-group protection, bounded trainer, checkpoint/resume and standalone bundle with actual-supervision applicability guards",
+    "Protected fresh native collection/export/preparation/loading with exact historical alias registry and explicit runtime pins",
+    "Separate finite public Regen controller/context with immutable deadline and committed-history consistency guards",
+    "Native better-later Flex comparison with same continuation and strict unknown-inventory cancellation"
   ],
   "native_fixed_diagnostic_cohort": {
     "raw_roots": 200,
@@ -107,16 +110,12 @@
     },
     "generation_potion_teacher_limit": "Frozen T0 cancels optional card generation. Nonempty closure is verified separately for all 39 eligible generated cards, including actual settlement."
   },
-  "active_remaining_engineering": [
-    "A distinct safe finite Regen healing-stall controller/public context is under implementation; Hunt next-turn semantics do not substitute for it",
-    "A fresh certified native-pilot collection/export/admission path is under implementation; existing inspected prototype rows remain quarantined",
-    "A real safe better-later potion-use comparison is being added as bounded timing evidence"
-  ],
+  "active_remaining_engineering": [],
   "remaining_full_scope_gates": [
-    "Broader natural entry/encounter and generated pending-choice posterior coverage remains explicit",
-    "No calibrated permanent/reward/item value table or uniquely identified risk objective; unsupported utility components remain masked",
-    "The failed balanced data-quality gate still blocks expanded generation and new fitting",
-    "General policy strength, original-client differential and final deployment export are later M7/M8 evidence, not invented prerequisites for these engineering fixes"
+    "Broader natural carry-in/encounter and generated pending-choice posterior coverage remains engineering/evidence work;26 of fixed200 native roots are still explicit encounter rejections",
+    "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
+    "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
+    "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3–M6 prerequisites"
   ],
   "frozen_assets_preserved": [
     "Original pilot-5000-v4 corpus and its 494 sealed test targets",
@@ -128,6 +127,87 @@
     "Outcome/event ledger: no remaining material findings",
     "Five forced-event lifecycle: no remaining material findings after narrow setup-proposal rejection fix",
     "Native carry-in, pending choice and generation-potion increments: no remaining material findings",
-    "Versioned v2 production pipeline: six review findings fixed; no remaining blocking engineering issue"
+    "Versioned v2 production pipeline: six review findings fixed; no remaining blocking engineering issue",
+    "Reconstructed native/finite runtime: no material defects; registry closure, all4Regen spoof/rewind fixes and complete fingerprints independently checked"
+  ],
+  "declared_scope_engineering_complete": true,
+  "fresh_native_admission": {
+    "status": "RECOVERY_REPLAY_VERIFIED",
+    "same_observed_roots": 12,
+    "actual_runs": 3,
+    "certified_roots": 2,
+    "raw_rejections": 10,
+    "settled_candidate_worlds": 18,
+    "protected_components": 2579,
+    "protection_sha256": "868baa56050ca0d76ba82d9b14cfd1a5f3b118151a2f559e75ab50b1254b1537",
+    "loaded": {
+      "train": 1,
+      "validation": 1
+    },
+    "preparation": {
+      "status": "ENGINEERING_SMOKE_ONLY",
+      "manifest": "artifacts/prepared/recovered-native-engineering-proof/manifest.json",
+      "stage_id": "stage-000001-31a675624adabc77",
+      "isolation_passed": true,
+      "input_attempts": 12,
+      "usable_new_roots_before_holdout_exclusion": 2,
+      "accepted_roots": 2,
+      "duplicate_attempts": 0,
+      "frozen_holdout_excluded_roots": 0,
+      "full_candidate_complete_new_roots": 1,
+      "auxiliary_only_usable_new_roots": 1
+    },
+    "formal_training": false,
+    "new_optimizer_steps": 0,
+    "backward_calls": 0,
+    "fresh_benchmark": false
+  },
+  "finite_regen": {
+    "native_tests": 8,
+    "python_forward_only_tests": 8,
+    "independently_reviewed": true,
+    "paired_worlds": 2,
+    "combat_start_hp": 50,
+    "baseline_final_hp": 50,
+    "plan_final_hp": 65,
+    "safe_end_turns": 5,
+    "fixed_deadline": 6,
+    "absolute_utility_masked": true,
+    "cross_policy_relative_mask": false,
+    "statistical_eligibility": "UNRESOLVED",
+    "record_trainable": false
+  },
+  "delayed_potion": {
+    "independent_pairs": 32,
+    "five_hp_advantage": 16,
+    "ties": 16,
+    "mean_hp_advantage": 2.5,
+    "relative_cost_interval": [
+      1.3212564526976007,
+      3.7620768806357323
+    ],
+    "both_arms_consume": "one FlexPotion",
+    "absolute_utility_masked": true,
+    "formal_labels": false,
+    "raw_reproduction_sha256": "40322f8167c33dc95bea1da5b0bac61cb4c1bfa53920e2e1d7281c2db5afc951"
+  },
+  "recovery": {
+    "event": "Cloud filesystem rolled back at2026-10-02T07:09Z",
+    "durable_source_base": "45d098d9f7a28802234ee89558b682f8a26c4150",
+    "source_reconstructed_and_revalidated": true,
+    "all_three_original_archives_exact_sha256_match": true,
+    "original_weights_sha256": "ee274ca0d67f4b082fa21f1203ae96ffc49e4e80fb94f1cb50afbe5b75566139",
+    "old_test_targets_decoded": false,
+    "same_fixed_native200_replayed": true,
+    "historical_native_protection_registry_exact_match": true,
+    "registry_sha256": "868baa56050ca0d76ba82d9b14cfd1a5f3b118151a2f559e75ab50b1254b1537",
+    "same_native12_replayed": true,
+    "new_independent_data_count_from_replays": 0
+  },
+  "verification_limits": [
+    "205Python checks excluded11 previously executed backward-related tests and guarded backward/optimizer.step; no new optimizer steps",
+    "Data suite145pass+6optional live skips; actual same12root native proof and its metadata/loader checks are separately retained",
+    "Core source is unchanged since the complete4480/3 recovery run",
+    "Fixed200,12root and32pair replays restore earlier inspected evidence; none is counted as fresh independent data"
   ]
 }

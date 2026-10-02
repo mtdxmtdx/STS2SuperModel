@@ -6,11 +6,9 @@ experimental pilot now completed one epoch and 497 optimizer steps on the audite
 unpromoted, and do not establish broad policy strength. See
 [the full results and limits](../docs/FIRST_BOUNDED_PILOT.md).
 
-The frozen v1 implementation remains unchanged. An explicit
+The frozen v1 inference and configuration remain unchanged; the shared data loader has version-aware integrity extensions. An explicit
 [v2 public-context engineering path](../docs/STUDENT_V2_ENGINEERING.md) now consumes
-finite Hunt anchors and new public native/event facts. It has separate nullable
-whole-plan labels, no-optimizer smoke and standalone fail-closed inference;
-it is untrained and is not yet integrated with production dataset preparation.
+finite Hunt/Regen anchors and public native/event facts. It now integrates protected production preparation/loading, bounded checkpoint/resume, explicit fresh-native admission and standalone guarded inference. Whole-plan labels remain nullable; Regen-only evidence has no applicable learned heads. This v2 implementation is untrained.
 
 Engineering forward/backward tests still take zero optimizer steps. Formal
 training remains disabled. Experimental selection should use the new

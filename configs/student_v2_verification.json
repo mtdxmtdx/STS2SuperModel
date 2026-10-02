@@ -1,5 +1,5 @@
 {
-  "status": "VERSIONED_PRODUCTION_PIPELINE_VERIFIED_FOR_DECLARED_PILOT_SCOPE",
+  "status": "PUBLIC_V2_PRODUCTION_AND_FINITE_CONTEXT_ENGINEERING_VERIFIED",
   "base_commit": "8fae1ad",
   "public_schema": "nosl.student.public.v2",
   "date_utc": "2026-10-02",
@@ -21,10 +21,9 @@
   "model_promoted": false,
   "full_m3_m6_complete": false,
   "remaining": [
-    "A distinct safe finite Regen healing-stall controller/public context is under implementation; Hunt next-turn semantics do not substitute for it",
-    "A fresh certified native-pilot collection/export/admission path is under implementation; existing inspected prototype rows remain quarantined",
-    "A real safe better-later potion-use comparison is being added as bounded timing evidence",
-    "Broader calibrated policy quality and formal training remain outside this checkpoint"
+    "Broader source coverage and calibrated resource/permanent/reward values",
+    "No learned finite-plan execution or broad policy-strength acceptance",
+    "Data scale/new fitting remains quality-gated; formal training disabled"
   ],
   "verification_commands": [
     "PYTHONPATH=python python -m unittest discover -s tests/python -p test_student_v2.py -v",
@@ -43,8 +42,8 @@
       "No safe learned finite-plan execution or broad policy strength verified"
     ]
   },
-  "current_source_head": "65bdfb302686b6407938698f6ab03a491a28b412",
-  "production_data_tests_passed": 140,
+  "current_source_head": "847fda553b14d9b12806701bd5f1d7d2626f9c78",
+  "production_data_tests_passed": 145,
   "production_trainer_tests_passed": 21,
   "current_student_forward_only_tests_passed": 19,
   "production_single_batch_backward": {
@@ -55,7 +54,7 @@
     "execution": "Executed once in the author worktree; not repeated by integration or independent review"
   },
   "frozen_v1_inference_and_config_unchanged": true,
-  "legacy_data_loader_change": "13-line version-aware manifest verification extension; legacy default preserved, training fingerprint changes intentionally",
+  "legacy_data_loader_change": "Version-aware identity and native protection validation; legacy defaults preserved and source fingerprints intentionally updated",
   "frozen_v1_sha256_baseline": {
     "python/nosl/__init__.py": "53b4c27e9d3d35511fd6382fee5a5593ff512aaf0ae9902733c840b262df80bc",
     "python/nosl/train.py": "aa84cf1aca3c38865c92646b1843dac7a866494da57c49433fe98eb96870604e",
@@ -67,5 +66,8 @@
     "python/nosl/inference.py": "305424c34c80c86b94f02c329bf9ed7cd907604dcc2b2a79bc73a5bc280e89dd",
     "python/nosl/reproducibility.py": "eb14771c6240202b391f0ce81dc0dbe00573902af3072dca5f3ba595cf574bd1",
     "configs/student.pilot.json": "4ae365791770d22917f3ce87298c76baecafb2b4a5e2cd2b57d8716bd50f974f"
-  }
+  },
+  "production_data_opt_in_tests_skipped": 6,
+  "current_python_no_learning_aggregate_passed": 205,
+  "finite_regen_forward_tests_passed": 8
 }

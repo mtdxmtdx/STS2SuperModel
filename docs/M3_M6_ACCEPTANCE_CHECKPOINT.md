@@ -1,36 +1,75 @@
-# M3–M6 acceptance checkpoint
+# M3–M6 engineering checkpoint
 
-The reusable pipeline is ready for pilots within its declared scope. Full M3–M6
-acceptance remains open: objective calibration and broad coverage are incomplete,
-and fresh native admission plus a safe finite healing-stall path are being finished.
-The 5,000-root corpus and 497-step experimental fit remain historical evidence.
+The declared pilot engineering paths are implemented and reviewed. **Full-scope
+READY_FOR_TRAINING remains false.** The remaining limits are broader native
+coverage and calibrated resource/permanent/reward values, rather than missing
+fresh-native admission or finite public controller code.
 
-| Milestone | Current engineering deliverable | Remaining gate |
+| Milestone | Current deliverable | Remaining full-scope gate |
 |---|---|---|
-| M3 | Fixed-start objective, complete private committed HP/potion ledger, native five-owner settlement, 9-HP consideration, fixed 5/80 plan, unknown-value masks | Broader risk/resource/permanent valuation; exact native calibration comparisons remain bounded |
-| M4 | All-candidate T0/T1, independent final evaluation, reviewed native stable/choice/potion sampling, public cycle exit and Hunt controller | Separate finite beneficial healing stall in progress; broader posterior/continuation coverage |
-| M5 | Immutable raw/protected preparation, source-group isolation, 5,000 constructed roots, complete attempted-block accounting, v2 production dataset path | Fresh certified native admission in progress; full source coverage and resource-label quality remain gated |
-| M6 | Public-context v2 model/loader, masked bounded trainer, exact resume/bundle identity, standalone inference and actual-supervision applicability | Finite-stall context in progress; calibrated learned quality is a later gate |
+| M3 | Fixed-start objective; complete private HP/potion ledger; native event settlement;9/5/80 gates; separate native potion-timing comparison | Provisional risk profile; changed retained resources and permanent/reward benefits need calibrated values |
+| M4 | All-candidate T0/T1; independent final samples; public cycle exit; Hunt and distinct finite Regen controllers | Broader native posterior and continuation coverage |
+| M5 | Immutable source-group protection;5,000 constructed roots; complete attempted-block accounting; protected fresh-native collection/preparation/loading | Failed data-quality gate still pauses expanded generation and another fit |
+| M6 | Publicv2 contexts; strict loaders; masked bounded trainer/checkpoints; exact fingerprints; standalone guarded inference | No learned finite-plan or broad policy-quality acceptance; weights remain experimental |
 
-## Current verification
+The fixed native diagnostic cohort supports **174/200 roots**, with
+**2,222/2,222 candidate-world continuations settled**. The 26 remaining roots are
+explicit encounter rejections. A separate bounded fresh-path integration preserves
+all 12 attempts:2 certified,10 raw rejections,18 settled worlds, and one train/one
+validation root behind 2,579 historical protection components. These observed
+engineering fixtures are not a fresh benchmark or an expanded training corpus.
 
-Integrated native **1,037/1,037**, Core **4,480 passes / three existing opt-in
-skips**, data **140**, guarded v2 trainer **21**, and v2 forward-only checks **19**
-pass. These suites overlap earlier aggregates. Zero new optimizer steps ran;
-only the original 497-step experimental fit exists. Current sources and report
-hashes are in [continued engineering evidence](M3_M6_ENGINEERING_CONTINUATION.md).
-The [50-case map](M3_M6_ACCEPTANCE_MAP.md) preserves exact scope and later M7/M8
-requirements without turning test counts into completion percentages.
+The finite Regen example ends at 65 HP versus immediate50 HP after five defended
+turns, keeping combat-startHP50 and deadline6. Consumed RegenPotion remains
+unpriced; absolute utilities and learned action/Hunt labels stay masked.
+A 32-world same-consumption Flex comparison favors safe later use, with16 ties
+and16 five-HP advantages. This is bounded timing evidence, not a general optimizer.
 
-The fixed native diagnostic cohort now has 174 supported roots and 2,222 settled
-candidate/world continuations. All older public inputs and 150 earlier target
-payloads are unchanged. Every inspected native record remains development data;
-26 explicit encounter rejections remain. All five formerly blocked forced-event
-owners now have native owner/return/reward lifecycle tests.
+## Final verification
 
-Formal training, promotion, deployment and remote simulator writes have not run.
-The remaining sections describe the historical fit and data-quality decision;
-later engineering fixes do not retroactively change those artifacts.
+At runtime source `847fda5`, **1,048/1,048 native tests**, **4,480 Core passes with
+three existing opt-in skips**, **205 Python no-learning checks**, **145 data
+passes plus six optional live-test skips**, **63 generator tests** and **46
+calibration checks** pass. Focused checks overlap these totals. Eleven existing
+backward-related tests were deliberately excluded from the final aggregate;
+the previously declared engineering backward already ran. No new optimizer step
+or formal training occurred.
+
+The cloud filesystem rollback was recovered from the published PR and verified
+Library archives. The original 5,000 corpus,494 sealed test targets and497-step
+weights match their original hashes. Timing evidence regenerated byte-for-byte;
+the same native200 roots reproduce174supported/2,222 settled and exactly the prior
+protection-registry hash. The same12-root proof was replayed without increasing
+independent counts. Reconstructed code and fresh native fixture outputs were
+revalidated before publication.
+
+See [machine-readable evidence](../configs/m3_m6_continued_engineering_report.json),
+[all 50 cases](M3_M6_ACCEPTANCE_MAP.md), [fresh admission](FRESH_NATIVE_PILOT.md),
+[finite healing](FINITE_REGEN_STALL.md), [potion timing](DELAYED_POTION_TIMING_EVIDENCE.md),
+and [the historical first trial](FIRST_BOUNDED_PILOT.md).
+
+## Interpretation and next work
+
+The candidate risk coefficients satisfy the declared cases; a uniquely determined
+coefficient is not required for pilot engineering. Future retained inventory,
+permanent assets and extra rewards still require a stated valuation model/evidence.
+Their unknown values must not be replaced by zero.
+
+Broader natural encounter/choice support is still software and evidence work,
+not something the user can resolve by choosing a number. Extend those measured
+coverage gaps and useful resource-label support before another predeclared quality
+cohort. Do not resume fitting or large generation just to reach a count. The earlier
+5,000-root fit remains one epoch/497 steps; the 160-attempt follow-up remains73 effective
+roots.100k and million-root milestones have not been reached.
+
+M7/M8 policy strength, original-client differential and final deployment-format
+parity remain later acceptance. No macro is used, so macro expansion equivalence
+is conditional future work. This checkpoint does not authorize formal training,
+model promotion, deployment, main merge, or simulator-remote writes.
+
+## Historical pilot diagnosis
+
+The following retained evidence predates the final engineering closures above.
 
 ## Fixes driven by the first trial
 

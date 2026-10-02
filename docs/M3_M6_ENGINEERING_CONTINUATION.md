@@ -1,88 +1,68 @@
-# Continued M3–M6 engineering verification
+# M3–M6 engineering checkpoint
 
-This checkpoint follows the published 8fae1ad engineering snapshot. It closes
-specific implementation gaps while preserving the original datasets, sealed
-holdout, experimental weights and default worker binaries. It does not declare
-full M3–M6 acceptance or restart the failed scale gate.
+The declared pilot engineering paths are implemented and reviewed. **Full-scope
+READY_FOR_TRAINING remains false.** The remaining limits are broader native
+coverage and calibrated resource/permanent/reward values, rather than missing
+fresh-native admission or finite public controller code.
 
-## Implemented and independently reviewed
+| Milestone | Current deliverable | Remaining full-scope gate |
+|---|---|---|
+| M3 | Fixed-start objective; complete private HP/potion ledger; native event settlement;9/5/80 gates; separate native potion-timing comparison | Provisional risk profile; changed retained resources and permanent/reward benefits need calibrated values |
+| M4 | All-candidate T0/T1; independent final samples; public cycle exit; Hunt and distinct finite Regen controllers | Broader native posterior and continuation coverage |
+| M5 | Immutable source-group protection;5,000 constructed roots; complete attempted-block accounting; protected fresh-native collection/preparation/loading | Failed data-quality gate still pauses expanded generation and another fit |
+| M6 | Publicv2 contexts; strict loaders; masked bounded trainer/checkpoints; exact fingerprints; standalone guarded inference | No learned finite-plan or broad policy-quality acceptance; weights remain experimental |
 
-- [Outcome accounting](OUTCOME_EVENT_ACCOUNTING.md) observes actual committed HP
-  loss/healing/direct sets/max caps and potion generation, consumption and discard.
-  Each branch owns an immutable copied prefix. Unknown removal stays incomplete;
-  diagnostic damage is never charged twice
-- [Forced events](FORCED_EVENT_LIFECYCLE.md) use the actual native owner, return and
-  reward paths for BattlewornDummy, DenseVegetation, PunchOff, FakeMerchant and
-  TheLanternKey. Ordinary unresolved rewards prevent premature owner return.
-  Native offered choices remain unselected and are not treated as acquired assets
-- [Native carry-in](NATIVE_BELIEF_EXTENSION_V2.md) reconstructs reviewed public
-  monster/power memory and independently samples unknown order and future RNG.
-  [Pending choices](NATIVE_CHOICE_REPLAY.md) replay an owned stable origin and
-  condition every public suffix packet; they do not clone a suspended coroutine
-- [Generation potions](NATIVE_GENERATION_POTIONS.md) admit untouched held Attack
-  and Power potions at reviewed stable Silent/A10 roots. Actual eligible pools,
-  all 39 generated descendants, hand overflow, cancellation, delayed choices and
-  settlement have native tests. Consumed histories and generated pending imports
-  remain explicit exclusions; no root card/power allowlist was silently widened
-- [Public student v2](STUDENT_V2_ENGINEERING.md) validates and encodes public entry
-  assets, forced events and finite Hunt anchor/deadline/status/history. Production
-  preparation protects source groups and frozen split aliases before filtering.
-  The bounded trainer binds exact source/runtime/data identities, keeps unresolved
-  costs and masks, and exports standalone bundles. Action applicability reflects
-  actual committed objective supervision; untrained and unvalidated plans abstain
+The fixed native diagnostic cohort supports **174/200 roots**, with
+**2,222/2,222 candidate-world continuations settled**. The 26 remaining roots are
+explicit encounter rejections. A separate bounded fresh-path integration preserves
+all 12 attempts:2 certified,10 raw rejections,18 settled worlds, and one train/one
+validation root behind 2,579 historical protection components. These observed
+engineering fixtures are not a fresh benchmark or an expanded training corpus.
 
-## Current native diagnostic result
+The finite Regen example ends at 65 HP versus immediate50 HP after five defended
+turns, keeping combat-startHP50 and deadline6. Consumed RegenPotion remains
+unpriced; absolute utilities and learned action/Hunt labels stay masked.
+A 32-world same-consumption Flex comparison favors safe later use, with16 ties
+and16 five-HP advantages. This is bounded timing evidence, not a general optimizer.
 
-The original 200 roots represent six runs, 26 source battles and 15 encounter
-families. The versioned increment supports 174 roots and all 2,222 allocated
-candidate/world continuations settle. All source inputs/traces and all 150 older
-supported target payloads remain unchanged. The 26 rejections are CorpseSlugsWeak
-(16), TwoTailedRatsNormal (8), and RubyRaiders (2).
+## Final verification
 
-There are 494 empirical objective action targets and 617 masked values. All 174
-complete-ranking masks remain false. This is not evidence that every supported
-root supplies a usable full-objective preference. The frozen T0 cancels optional
-card generation; its 378 newly admitted continuations are distinct from the
-separate nonempty generation tests. Every inspected native record stays
-non-trainable. A separate fresh collection/admission operation is being completed.
+At runtime source `847fda5`, **1,048/1,048 native tests**, **4,480 Core passes with
+three existing opt-in skips**, **205 Python no-learning checks**, **145 data
+passes plus six optional live-test skips**, **63 generator tests** and **46
+calibration checks** pass. Focused checks overlap these totals. Eleven existing
+backward-related tests were deliberately excluded from the final aggregate;
+the previously declared engineering backward already ran. No new optimizer step
+or formal training occurred.
 
-## Verification and reproducibility
+The cloud filesystem rollback was recovered from the published PR and verified
+Library archives. The original 5,000 corpus,494 sealed test targets and497-step
+weights match their original hashes. Timing evidence regenerated byte-for-byte;
+the same native200 roots reproduce174supported/2,222 settled and exactly the prior
+protection-registry hash. The same12-root proof was replayed without increasing
+independent counts. Reconstructed code and fresh native fixture outputs were
+revalidated before publication.
 
-| Check | Result | Scope |
-|---|---:|---|
-| Integrated native suite | 1,037 passed | Current merged source through 65bdfb3 |
-| Current vendored Core | 4,480 passed, 3 opt-in skips | Complete run after observer/lifecycle hooks; later commits do not change Core |
-| Data preparation | 140 passed | Includes v2 protected append and provenance rejection |
-| V2 bounded trainer | 21 passed | Backward and optimizer steps forbidden |
-| V2 student | 19 passed | Forward/schema/inference; earlier backward test deliberately excluded |
-| Choice and provenance | 10 passed | Focused subset, not additional independent test count |
+See [machine-readable evidence](../configs/m3_m6_continued_engineering_report.json),
+[all 50 cases](M3_M6_ACCEPTANCE_MAP.md), [fresh admission](FRESH_NATIVE_PILOT.md),
+[finite healing](FINITE_REGEN_STALL.md), [potion timing](DELAYED_POTION_TIMING_EVIDENCE.md),
+and [the historical first trial](FIRST_BOUNDED_PILOT.md).
 
-The earlier 185-test Python aggregate remains a separate source checkpoint.
-Exactly one versioned production integration batch already exercised backward;
-all weights remained unchanged, with zero optimizer steps. It was not repeated
-by integration or independent review. The only fitted weights remain the earlier
-497-step experimental pilot.
+## Interpretation and next work
 
-[The machine-readable report](../configs/m3_m6_continued_engineering_report.json)
-binds each current report with its SHA-256. The vendored source reconstructs
-byte-for-byte from pinned upstream plus the two documented local patches;
-[packaging verification](../configs/vendor_patch_verification.json) covers all
-2,227 tracked vendored files. Neither simulator remote is modified.
+The candidate risk coefficients satisfy the declared cases; a uniquely determined
+coefficient is not required for pilot engineering. Future retained inventory,
+permanent assets and extra rewards still require a stated valuation model/evidence.
+Their unknown values must not be replaced by zero.
 
-## Remaining work
+Broader natural encounter/choice support is still software and evidence work,
+not something the user can resolve by choosing a number. Extend those measured
+coverage gaps and useful resource-label support before another predeclared quality
+cohort. Do not resume fitting or large generation just to reach a count. The earlier
+5,000-root fit remains one epoch/497 steps; the 160-attempt follow-up remains73 effective
+roots.100k and million-root milestones have not been reached.
 
-The fresh native-pilot exporter/admission, separate finite Regen healing-stall
-controller/context, and one native better-later potion comparison are active
-bounded engineering work. They do not require new fitting or arbitrary item prices.
-
-Broader native posterior/content coverage and calibrated resource/permanent/reward
-values still prevent full-scope readiness. Unknown utility components stay masked.
-The two authored preference comparisons constrain candidate values; they do not
-identify a unique risk model or price table. The historical data-quality failure
-continues to block scale and another fit.
-
-General learned strength, original-client differential and final deployment-format
-parity belong to later policy/delivery acceptance. No macro is used; macro expansion
-proof is conditional future work, not a reason to label current atomic execution
-incorrect. See the [milestone checkpoint](M3_M6_ACCEPTANCE_CHECKPOINT.md) and
-[case map](M3_M6_ACCEPTANCE_MAP.md) for qualified statuses.
+M7/M8 policy strength, original-client differential and final deployment-format
+parity remain later acceptance. No macro is used, so macro expansion equivalence
+is conditional future work. This checkpoint does not authorize formal training,
+model promotion, deployment, main merge, or simulator-remote writes.

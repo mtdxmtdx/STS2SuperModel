@@ -15,15 +15,12 @@ no-better-timing/no-refill context. The rare/high-value potion answer is tentati
 The [exact versioned fixtures](CONFIRMED_PREFERENCE_FEEDBACK.md) yield
 `K < 1930 + (3510/7) * eta`; candidate K=1000, eta=0.2 agrees. The FirePotion
 comparison supplies a parameterized upper bound on its future inventory value,
-because starting HP was not specified. No item price is assigned. Forty-five
+because starting HP was not specified. No item price is assigned. Forty-six
 calibration tests pass. These examples constrain a family; a uniquely identified
 coefficient is not required to run empirical pilots, and the feedback does not
 by itself admit a formal calibrated profile.
 
-Full resource calibration remains partial. Additional engineering is also
-required for general active bonus control, broad permanent-event accounting and
-full posterior/content support. Those are implementation gaps, not decisions the
-user can resolve merely by choosing a number. See the
+Full resource calibration remains partial. Public Hunt/Regen context, complete committed HP/potion accounting and five native event owners are now implemented. Broader posterior/content coverage remains engineering/evidence work; choosing a number cannot supply that coverage. See the
 [current acceptance checkpoint](M3_M6_ACCEPTANCE_CHECKPOINT.md).
 
 The remaining historical sections distinguish the earlier original-checkout C#

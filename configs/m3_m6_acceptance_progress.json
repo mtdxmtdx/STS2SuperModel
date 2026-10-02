@@ -1,7 +1,7 @@
 {
   "schema": "nosl.m3-m6.acceptance-progress.v1",
   "date_utc": "2026-10-02",
-  "source_head": "65bdfb302686b6407938698f6ab03a491a28b412",
+  "source_head": "847fda553b14d9b12806701bd5f1d7d2626f9c78",
   "snapshot_kind": "Current integrated continuation checkpoint; original catalog and M0–M2 tracker preserved",
   "authority": [
     {
@@ -22,7 +22,7 @@
     }
   ],
   "historical_tracker_policy": "configs/acceptance_progress.json is historical M0–M2 evidence and is unchanged; original catalog statuses are preserved as v4_original_status.",
-  "overall_status": "READY_FOR_PILOT_WITH_DECLARED_ENGINEERING_AND_CALIBRATION_GAPS",
+  "overall_status": "READY_FOR_PILOT_FULL_SCOPE_BLOCKED",
   "full_catalog_complete": false,
   "formal_training_run": false,
   "formal_labels_allowed": false,
@@ -35,8 +35,8 @@
   },
   "case_count": 50,
   "status_counts": {
-    "PASS_SUPPORTED_SCOPE": 34,
-    "PARTIAL": 13,
+    "PASS_SUPPORTED_SCOPE": 35,
+    "PARTIAL": 12,
     "NOT_RUN": 2,
     "BLOCKED": 1
   },
@@ -44,57 +44,57 @@
   "verified_regressions": [
     {
       "suite": "native",
-      "passed": 1037,
+      "passed": 1048,
       "failed": 0,
       "skipped": 0,
-      "path": "artifacts/reports/m3-m6/continued-native-v6-full.trx",
-      "bytes": 1518310,
-      "sha256": "fcf5df64f6c4428596737ea9aed146c708cef95c2e01edbcb645b225a3ac617b"
+      "path": "artifacts/reports/recovery/full-recovered-native.trx",
+      "bytes": 1531208,
+      "sha256": "0deb0fe04ee4ecb513666c73f56c58e3d9c94119f7682f04caa86a998b1c0f9c"
     },
     {
       "suite": "core",
       "passed": 4480,
       "failed": 0,
       "skipped": 3,
-      "path": "artifacts/reports/m3-m6/continued-core-full.trx",
-      "bytes": 6964889,
-      "sha256": "1aa80dfa8ef12553e1f0d963e560372c95f5bfe06fa052f31f0d16e0cf4011fb"
+      "path": "artifacts/reports/recovery/core-recovery.trx",
+      "bytes": 6955941,
+      "sha256": "9bc950b98135390173d93f51394ac3db7dd50212ac0e4d6fd4ebb32c634e8511"
     },
     {
-      "suite": "python_data",
-      "passed": 140,
+      "suite": "python_no_learning",
+      "passed": 205,
       "failed": 0,
       "skipped": 0,
-      "path": "artifacts/reports/m3-m6/continued-v2-data-final.log",
-      "bytes": 240,
-      "sha256": "17c46146fabefaf798472bd149bfeb5118edb24c6d02628031cfa3797ea67a07"
+      "path": "artifacts/reports/recovery/full-recovered-python.log",
+      "bytes": 34348,
+      "sha256": "11b6351b5fca1d20a8fead53ed81cbe6fdf010a5e2cb0b6cef74fb6cec8880f5"
     },
     {
-      "suite": "python_v2_trainer_no_fit",
-      "passed": 21,
+      "suite": "data",
+      "passed": 145,
       "failed": 0,
-      "skipped": 0,
-      "path": "artifacts/reports/m3-m6/continued-v2-trainer-final.log",
-      "bytes": 438,
-      "sha256": "2df8d201cba5deafe37e8ae76c40191b48a6641b696a4fe9ed99451cc183ea9c"
+      "skipped": 6,
+      "path": "artifacts/reports/recovery/full-recovered-data.log",
+      "bytes": 24790,
+      "sha256": "d8b67e52f9fc0e1ad9b936770a98cdbb0457c09a7baa9c90e7c5e7b61080f25a"
     },
     {
-      "suite": "python_v2_student_no_backward",
-      "passed": 19,
+      "suite": "generator",
+      "passed": 63,
       "failed": 0,
       "skipped": 0,
-      "path": "artifacts/reports/m3-m6/continued-v2-student-noopt.log",
-      "bytes": 3377,
-      "sha256": "be3c64e7c3dc0317ca6d58b490071fd68667f91bc5e715ca4ce55229dac32c0e"
+      "path": "artifacts/reports/recovery/generator.log",
+      "bytes": 10982,
+      "sha256": "fa9ab583409e0aa7908e07eabadf19633bcdc1e7c946283e7daf98d1ba36330d"
     },
     {
-      "suite": "choice_and_provenance",
-      "passed": 10,
+      "suite": "calibration",
+      "passed": 46,
       "failed": 0,
       "skipped": 0,
-      "path": "artifacts/reports/m3-m6/continued-choice-v2-provenance.trx",
-      "bytes": 16096,
-      "sha256": "43c38c29689eac349d6f3dde4aa0fa195c72e728559c7ce0e1d108a27074cde5"
+      "path": "artifacts/reports/recovery/calibration.log",
+      "bytes": 7746,
+      "sha256": "39da166e7391676d4298f632049afab5a47369e1ebf9649190279c9a54fdfb8a"
     }
   ],
   "regression_limits": [
@@ -188,7 +188,7 @@
         "L04",
         "D05"
       ],
-      "gap": "Fixed native200 now supports174 roots and2222 settled candidate/world continuations with independent stable/choice/generation-potion profiles. Remaining26 roots are explicit encounter rejections; general natural state coverage remains bounded. Fresh production admission is in progress.",
+      "gap": "Reviewed174/200 native roots plus working protected fresh collection/loading (2certified/12attempted,18settled worlds). General carry-in,26 rejected encounter roots and unreviewed choice origins remain engineering/evidence gaps.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
     },
     {
@@ -216,8 +216,9 @@
         "C04",
         "C05"
       ],
-      "gap": "Public v2 useful-action exit and native profitable attack loops are verified. Safe finite Regen stall is the remaining concrete controller implementation. No macro is used, so macro equivalence is conditional future work.",
-      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
+      "gap": "Native attack loops, public useful-action exit and separate finite Regen healing stall are verified. Broader planning/coverage remains open. No macro is used; macro equivalence is conditional future work.",
+      "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence",
+      "closed_for_reviewed_templates": true
     },
     {
       "id": "ENGINEERING_ACTIVE_BONUS_CONTROL",
@@ -229,9 +230,10 @@
         "B05",
         "B06"
       ],
-      "gap": "CLOSED for reviewed finite Hunt public context, masks, encoding and standalone inference guards; safe finite Regen context is in progress. No learned plan execution is claimed.",
+      "gap": "Reviewed Hunt and Regen public anchors/deadlines/status/history, validation, encoding, masks and inference guards are implemented. No trained finite-plan execution or arbitrary conditional-budget allocator is claimed.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence",
-      "closed_for_finite_hunt": true
+      "closed_for_finite_hunt": true,
+      "closed_for_reviewed_templates": true
     },
     {
       "id": "ENGINEERING_RESOURCE_PROVENANCE_AND_LABELS",
@@ -1338,7 +1340,7 @@
       "milestones": [
         "M3"
       ],
-      "verified_scope": "Nine HP is inclusive consideration, not compulsory use; paired native use-now/never-use B0 confirmation distinguishes below/above/inconclusive gates without pricing the potion.",
+      "verified_scope": "Nine HP is inclusive consideration, not compulsory use; paired native use-now/never-use B0 confirmation distinguishes below/above/inconclusive gates without pricing the potion. A32-world identical-continuation Flex timing comparison safely waits, consumes the same potion, and saves5HP in16worlds while tying16; hidden-source replacement reproduces all paired traces.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -1363,9 +1365,15 @@
           "path": "docs/POTION_PAIRED_EVIDENCE.md",
           "methods": [],
           "detail": "128 confirmation worlds and 256 selected endpoints; B0 itself never uses/discards potions."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/DELAYED_POTION_TIMING_EVIDENCE.md",
+          "methods": [],
+          "detail": "Unknown identical consumed inventory cancels; both absolute utilities remain masked"
         }
       ],
-      "unresolved_scope": "The native comparator does not optimize delayed potion timing. A safe better-later-use case and resource-aware continuation/supervision remain open; the confirmed FirePotion bound is not a price.",
+      "unresolved_scope": "This is a safe better-later existence case, not a general timing optimizer or use-versus-retain valuation. General resource-aware supervision and calibrated values remain open.",
       "remaining_work_kinds": [
         "engineering",
         "preference_valuation",
@@ -1711,7 +1719,7 @@
         "M4",
         "M6"
       ],
-      "verified_scope": "Student v2 validates and encodes active public Hunt anchor/deadline/status/history, native entry assets and forced-event context without requiring teacher values. Masked whole-plan targets and standalone inference guards are implemented.",
+      "verified_scope": "Student v2 validates and encodes active public Hunt anchor/deadline/status/history, native entry assets and forced-event context without requiring teacher values. Masked whole-plan targets and standalone inference guards are implemented. Distinct finite Regen context admits actual healing only with consistent committed public history and masks Hunt-only heads.",
       "evidence": [
         {
           "kind": "implementation",
@@ -1744,7 +1752,7 @@
           "detail": "Strict public v2 context and protected production preparation/training/inference"
         }
       ],
-      "unresolved_scope": "Finite Hunt scope only; untrained or unvalidated active-plan execution abstains explicitly. Regen finite-stall context is in progress.",
+      "unresolved_scope": "Reviewed finite templates only; untrained/unvalidated learned plan execution explicitly abstains. Arbitrary new controller families require separate public contracts/evidence.",
       "remaining_work_kinds": [
         "engineering"
       ]
@@ -1827,12 +1835,12 @@
       "title": "安全有限拖回合",
       "expected": "真正安全且收益增加允许拖；无收益不无限空转。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M4",
         "M5"
       ],
-      "verified_scope": "SafeFiniteStall has a separate finite deadline and requires its own evidence; unsupported stall claims stay unresolved.",
+      "verified_scope": "Public finite Regen controller uses native defense/healing and finishes at65HP versus immediate50HP, with fixed combat-start50HP, five safe end turns and unchanged deadline6. FullHP/depletion/deadline/scope/history guards exit irreversibly.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -1849,9 +1857,15 @@
             "ReviewedClosedFamilyExitsByLegalEndTurnsAndOnlyActualSettlementIsLoss"
           ],
           "detail": ""
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/FINITE_REGEN_STALL.md",
+          "methods": [],
+          "detail": "Native8/Python8 and independent review; separate from Hunt thresholds"
         }
       ],
-      "unresolved_scope": "No general native safe profitable-stall controller or proof of progress/exit has been implemented. Pure-loop end-turn exits can truly lose and are not evidence of safe profitable stalling.",
+      "unresolved_scope": "Three-card/TwigSlimeS family only. Two-world statistical eligibility remains unresolved; consumed RegenPotion leaves absolute utility masked. No general safe-stall planner or learned execution is claimed.",
       "remaining_work_kinds": [
         "engineering"
       ]
@@ -2086,7 +2100,7 @@
         "M5",
         "M6"
       ],
-      "verified_scope": "Transitive run/combat/branch/public-identity components determine splits; invalid bridges and append conflicts remain protected. Integrated metadata-only cross-version protection preserves old split aliases without importing old target rows or relaxing teacher-version locks.",
+      "verified_scope": "Transitive run/combat/branch/public-identity components determine splits; invalid bridges and append conflicts remain protected. Integrated metadata-only cross-version protection preserves old split aliases without importing old target rows or relaxing teacher-version locks. Fresh native operation binds the complete2579-component historical registry and canonical source-seed audit aliases; one train and one validation root load without decoding old test targets.",
       "evidence": [
         {
           "kind": "python_test",
@@ -2136,6 +2150,12 @@
           "path": "docs/STUDENT_V2_ENGINEERING.md",
           "methods": [],
           "detail": "Strict public v2 context and protected production preparation/training/inference"
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/FRESH_NATIVE_PILOT.md",
+          "methods": [],
+          "detail": "Explicit fresh collection/admission and historical protection"
         }
       ],
       "unresolved_scope": "The protected 57 train / 10 validation / 6 development-test rows were already inspected; their assigned test partition is not a fresh benchmark. The old 494 test targets remain unread; full coverage and policy-quality evidence are separate gates.",
@@ -2155,7 +2175,7 @@
         "M5",
         "M6"
       ],
-      "verified_scope": "Registry coverage, execution provenance and explicit statuses distinguish broad constructed support, raw native sources and174 certified native development roots. All five forced-event owner contexts now have native lifecycle tests.",
+      "verified_scope": "Registry coverage, execution provenance and explicit statuses distinguish broad constructed support, raw native sources and174 certified native development roots. All five forced-event owner contexts now have native lifecycle tests. Fresh recovery replay reports all12attempts:2certified,10raw rejections and18settled action-worlds. Observed engineering fixtures are not a fresh benchmark.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -2191,6 +2211,12 @@
           "path": "docs/NATIVE_GENERATION_POTIONS.md",
           "methods": [],
           "detail": "174-root fixed diagnostic cohort with untouched generation-potion closure"
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/FRESH_NATIVE_PILOT.md",
+          "methods": [],
+          "detail": "Explicit fresh collection/admission and historical protection"
         }
       ],
       "unresolved_scope": "General natural state coverage, hard interactions and calibrated resource labels remain incomplete; existing inspected native records are not production data.",
@@ -2242,6 +2268,12 @@
           "path": "docs/FIRST_BOUNDED_PILOT.md",
           "methods": [],
           "detail": "Teacher-label metrics and actual student rollouts are reported separately."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/FRESH_NATIVE_PILOT.md",
+          "methods": [],
+          "detail": "Explicit fresh collection/admission and historical protection"
         }
       ],
       "unresolved_scope": "Continuation-dependent values are neither optimal Q nor pure-student win probabilities; any future relabel/profile integration needs new identity.",
@@ -2506,10 +2538,10 @@
   ],
   "mapping_validation": "All 50 original IDs/title/expected texts retained once in original order; referenced paths and named methods checked; original catalog and historical tracker hashes unchanged. No runtime, corpus, weights or existing tracker modified by this mapping task.",
   "phase_relevance": {
-    "M3": "Outcome and preference engineering now includes complete private committed HP/potion accounting and five event owners; calibration remains partial.",
-    "M4": "All-candidate T0/T1, public v2 useful-action exits and reviewed native continuation families are implemented. A separate safe finite healing-stall controller remains active engineering work.",
-    "M5": "Constructed PILOT_DATA_READY; fresh certified native collection/admission is active engineering work. Broader source coverage and resource-value quality still block full scope.",
-    "M6": "Public v2 context, protected dataset preparation/load, masked bounded trainer/checkpoint and standalone inference are implemented and independently reviewed for declared pilot scope. Safe-stall context is being added. Stronger play and final export are later-stage requirements.",
+    "M3": "Objective/complete outcome engineering verified in declared scope; resource values and formal calibration profiles remain unresolved.",
+    "M4": "T0/T1, reviewed native continuations, public cycle exit, Hunt and separate finite Regen controllers implemented/reviewed; general posterior/content coverage remains bounded.",
+    "M5": "PILOT_DATA_READY including separately protected fresh-native admission. Full coverage and resource-label quality remain gated; earlier quality failure pauses scale/fitting.",
+    "M6": "READY_FOR_PILOT: publicv2 contexts, protected loaders, masked bounded trainer/checkpoints and standalone inference. Stronger learned play and final export are later stages.",
     "M7": "A separately bounded 497-step experimental fit and 16-source diagnostic were completed. Formal training and promotion have not occurred.",
     "M8": "Original-client differential, source-group full quality acceptance and final deployment export parity remain later-stage requirements. Their catalog presence does not invent new prerequisites for this M3–M6 checkpoint."
   },
@@ -2519,6 +2551,10 @@
     "All five native forced-event owner/return/reward lifecycles through the first actual reward decision",
     "Reviewed natural carry-in, native stable-origin pending choices and untouched generation-potion closure",
     "Public student v2 active Hunt context, native entry assets and forced-event context validation/encoding",
-    "Versioned production v2 preparation, source-group protection, bounded trainer, checkpoint/resume and standalone bundle with actual-supervision applicability guards"
-  ]
+    "Versioned production v2 preparation, source-group protection, bounded trainer, checkpoint/resume and standalone bundle with actual-supervision applicability guards",
+    "Protected fresh native collection/export/preparation/loading with exact historical alias registry and explicit runtime pins",
+    "Separate finite public Regen controller/context with immutable deadline and committed-history consistency guards",
+    "Native better-later Flex comparison with same continuation and strict unknown-inventory cancellation"
+  ],
+  "declared_scope_engineering_complete": true
 }
