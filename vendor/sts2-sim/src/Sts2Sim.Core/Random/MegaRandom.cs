@@ -24,6 +24,16 @@ public sealed class MegaRandom
 
     private ulong _s3;
 
+    // Label-only metadata. Untagged generators keep their existing full-state law.
+    private ulong? _labelInitialSeed;
+    private ulong _labelRawCursor;
+    private bool _labelRewardsOrigin;
+    private bool _labelHybrid;
+
+    public LabelRandomAddressV1? LabelRewardAddress => _labelRewardsOrigin
+        ? new LabelRandomAddressV1(LabelRandomProvenance.RewardsOrigin, _labelInitialSeed!.Value, _labelRawCursor)
+        : null;
+
     public MegaRandom(ulong seed)
     {
         Reinitialise(seed);
@@ -55,6 +65,9 @@ public sealed class MegaRandom
 
     public void Reinitialise(ulong seed)
     {
+        _labelHybrid = _labelHybrid || LabelRandomScope.UsesRewardProvenance;
+        _labelInitialSeed = _labelRewardsOrigin || LabelRandomScope.UsesRewardProvenance ? seed : null;
+        _labelRawCursor = 0;
         _s0 = Splitmix64(ref seed);
         _s1 = Splitmix64(ref seed);
         _s2 = Splitmix64(ref seed);
@@ -63,6 +76,14 @@ public sealed class MegaRandom
 
     public void Reinitialise(SerializableRng serializable)
     {
+        LabelRandomProvenance? provenance = serializable.LabelProvenance;
+        provenance?.Validate();
+        if ((_labelHybrid || LabelRandomScope.UsesRewardProvenance) && provenance is null)
+            throw new InvalidOperationException("A hybrid label RNG restore requires an explicit source partition.");
+        _labelHybrid = provenance is not null;
+        _labelRewardsOrigin = provenance?.Partition == LabelRandomProvenance.RewardsPartition;
+        _labelInitialSeed = provenance?.InitialSeed;
+        _labelRawCursor = provenance?.RawCursor ?? 0;
         _s0 = serializable.state0;
         _s1 = serializable.state1;
         _s2 = serializable.state2;
@@ -71,6 +92,9 @@ public sealed class MegaRandom
 
     private ulong NextULongInner()
     {
+        LabelRandomAddressV1? labelAddress = LabelRewardAddress;
+        if (_labelInitialSeed is not null)
+            _labelRawCursor = checked(_labelRawCursor + 1);
         ulong s = _s0;
         ulong s2 = _s1;
         ulong s3 = _s2;
@@ -89,7 +113,7 @@ public sealed class MegaRandom
         _s2 = s3;
         _s3 = s4;
         // Explicit label scopes replace only the word, after native state advancement.
-        return LabelRandomScope.NextWordOrOriginal(labelState, result);
+        return LabelRandomScope.NextWordOrOriginal(labelState, labelAddress, result);
     }
 
     public int Next(int maxValue)
@@ -161,6 +185,37 @@ public sealed class MegaRandom
         rng.state1 = _s1;
         rng.state2 = _s2;
         rng.state3 = _s3;
+        rng.LabelProvenance = _labelRewardsOrigin
+            ? new LabelRandomProvenance(LabelRandomProvenance.LawId, LabelRandomProvenance.RewardsPartition,
+                LabelRandomProvenance.RewardsOrigin,
+                _labelInitialSeed!.Value, _labelRawCursor)
+            : _labelHybrid ? new LabelRandomProvenance(LabelRandomProvenance.LawId,
+                LabelRandomProvenance.FullStatePartition) : null;
+    }
+
+    /// <summary>
+    /// Explicit label-only binding for the native player Rewards construction role.
+    /// Has no effect without the hybrid scope, and cannot infer lineage from loaded state.
+    /// </summary>
+    public MegaRandom WithLabelRewardsProvenance()
+    {
+        if (!LabelRandomScope.UsesRewardProvenance) return this;
+        if (_labelRewardsOrigin) return this;
+        if (_labelInitialSeed is null || _labelRawCursor != 0)
+            throw new InvalidOperationException("Rewards provenance must be bound at native seed construction.");
+        _labelRewardsOrigin = true;
+        _labelHybrid = true;
+        return this;
+    }
+
+    internal void PreserveLabelOriginForReseed(MegaRandom source, ulong effectiveSeed)
+    {
+        _labelHybrid = source._labelHybrid || _labelHybrid;
+        if (!source._labelRewardsOrigin) return;
+        _labelRewardsOrigin = true;
+        _labelHybrid = true;
+        _labelInitialSeed = effectiveSeed;
+        _labelRawCursor = 0;
     }
 
     /// <summary>
@@ -169,6 +224,12 @@ public sealed class MegaRandom
     /// </summary>
     public MegaRandom Clone()
     {
-        return new MegaRandom(_s0, _s1, _s2, _s3);
+        return new MegaRandom(_s0, _s1, _s2, _s3)
+        {
+            _labelInitialSeed = _labelInitialSeed,
+            _labelRawCursor = _labelRawCursor,
+            _labelRewardsOrigin = _labelRewardsOrigin,
+            _labelHybrid = _labelHybrid
+        };
     }
 }

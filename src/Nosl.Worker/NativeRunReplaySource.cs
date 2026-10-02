@@ -34,6 +34,7 @@ internal sealed class NativeRunReplaySource : ITeacherSource
         _root = PublicJson.Read<DecisionPacket>(_serializedRoot);
         if (_root.Status is not ("player_decision" or "card_choice") || _root.Observation is null || _root.Actions.Length == 0)
             throw new ArgumentException("An active public native root is required");
+        PublicEvidenceInput.ValidateProfile(_prior.Execution, _root);
         var entryEvents = _root.Observation.History.Where(e => e.Kind == NativeEntryAssets.EventKind).ToArray();
         if (entryEvents.Length != 1) throw new ArgumentException("A complete published native entry asset anchor is required");
         var entry = PublicJson.Read<NativeEntryAssets>(entryEvents[0].Detail);
@@ -48,8 +49,10 @@ internal sealed class NativeRunReplaySource : ITeacherSource
     public int StartMaxHp { get; }
     public string?[] StartPotions => _startPotions.ToArray();
     public DecisionPacket Observe() => PublicJson.Read<DecisionPacket>(_serializedRoot);
-    public string PosteriorProfile => Profile;
-    public string PriorWarning => "Independent owned native run and fixed-slot prior; conditioned only on the published combat packet/history; earlier run histories are marginalized. No actual source seed or hidden graph is input. Declared source horizons limit coverage; proposal exhaustion is computationally inconclusive.";
+    public string PosteriorProfile => _prior.Execution.EmitsPublicEvidence ? Profile + "-public-evidence-v1" : Profile;
+    public string PriorWarning => _prior.Execution.EmitsPublicEvidence
+        ? "Independent owned native run and fixed-slot prior; all recorded public run evidence is included in exact packet equality. Unrecorded histories remain marginalized. No actual source seed or hidden graph is input. Declared source horizons limit coverage; proposal exhaustion is computationally inconclusive."
+        : "Independent owned native run and fixed-slot prior; conditioned only on the published combat packet/history; earlier run histories are marginalized. No actual source seed or hidden graph is input. Declared source horizons limit coverage; proposal exhaustion is computationally inconclusive.";
     public (double Lower, double Upper)? RankingSupport(ObjectiveProfile profile) => null;
     internal NativeRunPrior Prior => _prior.Freeze();
     internal NativeRunProposalAudit[] ProposalAudit => _attempts.ToArray();

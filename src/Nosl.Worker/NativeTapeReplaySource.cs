@@ -41,6 +41,7 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
         var root = PublicJson.Read<DecisionPacket>(_serializedRoot);
         if (root.Status is not ("player_decision" or "card_choice") || root.Observation is null || root.Actions.Length == 0)
             throw new ArgumentException("An active public native decision is required");
+        PublicEvidenceInput.ValidateProfile(_prior.Execution, root);
         if (_prior.Execution.EmitsPublicRunContext)
         {
             if (root.Observation.Schema != PublicRunContext.ObservationSchema || root.Observation.RunContext is not { } context)
@@ -94,7 +95,7 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
     public int StartMaxHp { get; }
     public string?[] StartPotions => _potions.ToArray();
     public DecisionPacket Observe() => PublicJson.Read<DecisionPacket>(_serializedRoot);
-    public string PosteriorProfile => Profile;
+    public string PosteriorProfile => _prior.Execution.EmitsPublicEvidence ? Profile + "-public-evidence-v1" : Profile;
     public string PriorWarning => "Separate ideal state-addressed random-tape law; SHA256 pseudorandom implementation, not the sequential run-seed posterior. Equal-state aliases and native primitive conversions are retained. Public local decision coordinates and certified primitive proposals use exact root-constant density corrections relative to the ideal law. Uncertified mechanisms retain native tape rejection; errors and budget exhaustion remain unresolved.";
     public (double Lower, double Upper)? RankingSupport(ObjectiveProfile profile) => null;
     internal bool UsesConditionalShuffle => _condition is not null;

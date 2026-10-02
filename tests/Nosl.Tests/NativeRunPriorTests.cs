@@ -112,13 +112,17 @@ public class NativeRunPriorTests
         Assert.Equal(a.Prior.Identity, b.Prior.Identity);
     }
 
-    [Fact]
-    public async Task ExactFiniteNativeEnumerationAgreesWithIndependentPublicAcceptance()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task ExactFiniteNativeEnumerationAgreesWithIndependentPublicAcceptance(bool publicEvidence)
     {
         var prior = new NativeRunPrior
         {
             EligibleSlots = 1, FiniteSeedSupport = [11, 22],
-            Execution = new(MaxFloors: 1, SourceDecisionHorizon: 64),
+            Execution = new(MaxFloors: 1, SourceDecisionHorizon: 64,
+                PublicContextProfile: publicEvidence ? PublicRunContext.Version : null,
+                PublicEvidenceProfile: publicEvidence ? PublicRunEvidence.Version : null),
         };
         var packets = new Dictionary<NativeRunRecipe, DecisionPacket>();
         foreach (var recipe in prior.EnumerateFiniteRecipes())

@@ -127,9 +127,12 @@ public class PlayerRngSet
     private Rng CreateRng(PlayerRngType rngType)
     {
         string name = StringHelper.SnakeCase(rngType.ToString());
-        return _usesSemanticKeys
+        Rng rng = _usesSemanticKeys
             ? Rng.CreateSemanticKeyRequired(Seed + StringHelper.GetDeterministicHashCode(name))
             : new Rng(Seed, name);
+        if (!_usesSemanticKeys && rngType == PlayerRngType.Rewards)
+            rng.WithLabelRewardsProvenance();
+        return rng;
     }
 
     /// <summary>
@@ -192,6 +195,7 @@ public class PlayerRngSet
 
     public static PlayerRngSet FromSerializable(SerializablePlayerRngSet save)
     {
+        ValidateLabelSnapshot(save);
         PlayerRngSet playerRngSet = new PlayerRngSet(save.Seed);
         foreach (var (key, serializable) in save.Rngs)
         {
@@ -202,6 +206,7 @@ public class PlayerRngSet
 
     public void LoadFromSerializable(SerializablePlayerRngSet save)
     {
+        ValidateLabelSnapshot(save);
         if (Seed != save.Seed)
         {
             throw new NotImplementedException("RngSet seed should not change during the run!");
@@ -209,6 +214,18 @@ public class PlayerRngSet
         foreach (var (key, serializable) in save.Rngs)
         {
             _rngs[key].LoadFromSerializable(serializable);
+        }
+    }
+
+    private static void ValidateLabelSnapshot(SerializablePlayerRngSet save)
+    {
+        if (!LabelRandomScope.UsesRewardProvenance && !save.Rngs.Values.Any(rng => rng.LabelProvenance is not null))
+            return;
+        foreach (PlayerRngType type in Enum.GetValues<PlayerRngType>())
+        {
+            if (!save.Rngs.TryGetValue(type, out SerializableRng? rng) || rng.LabelProvenance is not { } provenance)
+                throw new InvalidOperationException("A hybrid player RNG snapshot requires every source partition.");
+            provenance.Validate();
         }
     }
 

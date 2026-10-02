@@ -78,7 +78,9 @@ public sealed record PublicObservation(string Schema, int StartHp, int Ascension
     int OrbCapacity = 0, PublicOrb[]? Orbs = null, PublicPet[]? Pets = null, int UnidentifiedDrawCount = 0,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] PublicRunContext? RunContext = null);
 public sealed record PublicAction(int Revision, string Kind, int Slot = -1, int Target = -1, int[]? Selection = null);
-public sealed record DecisionPacket(string Status, PublicObservation? Observation, PublicAction[] Actions);
+public sealed record DecisionPacket(string Status, PublicObservation? Observation, PublicAction[] Actions,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [property: JsonConverter(typeof(PublicRunEvidenceJsonConverter))] PublicRunEvidence? PublicEvidence = null);
 public sealed record TerminalFacts(string Result, int StartHp, int FinalHp, int StartMaxHp, int FinalMaxHp,
     string?[] Potions, PublicEvent[] Events, string Boundary, int RewardSelectionsMade,
     ForcedEventSettlementFacts? ForcedEvent = null);

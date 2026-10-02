@@ -23,7 +23,7 @@
   "evidence": {
     "baseline_integration_cases": 31,
     "natural_encounter_adapter_opening_cases": 80,
-    "current_full_suite": "PASS_1259_OF_1259",
+    "current_full_suite": "PASS_1305_OF_1305",
     "build": "PASS_0_WARNINGS_0_ERRORS",
     "client_fidelity": "UPSTREAM_TRUSTED_NOT_INDEPENDENTLY_VERIFIED",
     "protocol_two_process": "PASS",
@@ -56,7 +56,7 @@
     "pilot_closed_loop_source_battles": 16,
     "generator_archive_passed": 63,
     "experimental_resource_guard_cases": 17,
-    "full_current_integration_passed": 1259,
+    "full_current_integration_passed": 1305,
     "python_student_passed": 185,
     "reviewed_continuation_v2": true,
     "common_inventory_relative_native_outcomes": 80,
@@ -112,7 +112,9 @@
     "conditional_tape_complete_carry_in_roots": 2,
     "conditional_tape_carry_in_gate_passed": false,
     "conditional_tape_fresh_carry_in_roots": 12,
-    "conditional_tape_fresh_complete_carry_in_roots": 0
+    "conditional_tape_fresh_complete_carry_in_roots": 0,
+    "public_run_evidence_native_tests": 1305,
+    "public_run_evidence_student_tests": 26
   },
   "full_silent_content_ready": false,
   "ready_for_training": false,
@@ -123,7 +125,7 @@
   "training": "BOUNDED_EXPERIMENTAL_497_STEPS_COMPLETED_UNPROMOTED",
   "next_milestone": "IMPROVE_MEASURED_NATIVE_COVERAGE_AND_RESOURCE_LABEL_QUALITY_BEFORE_SCALE",
   "remaining_full_scope_gaps": [
-    "V7 joint native initial-prefix conditioning passes the reused two-carry-in diagnostic gate:18/22branches settle,4ComputeTruncated,0EngineError. A separately predeclared16root development probe fails the breadth gate:0/12multi-action carry-in roots complete,20/226branches settle,206ComputeTruncated,0EngineError. Full public run-evidence recording and compositional likelihood proposals are being implemented; production scale and new fits remain paused.",
+    "V7 joint native initial-prefix conditioning passes the reused two-carry-in diagnostic gate:18/22branches settle,4ComputeTruncated,0EngineError. A separately predeclared16root development probe fails the breadth gate:0/12multi-action carry-in roots complete,20/226branches settle,206ComputeTruncated,0EngineError. Opt-in public run-evidence recording and the v4 engineering student are verified. General compositional likelihood proposals remain in progress; production scale and new fits remain paused.",
     "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
     "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
     "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3–M6 prerequisites"
@@ -150,5 +152,6 @@
   "native_encounter_extension": "NATIVE_ENCOUNTER_EXTENSION_SUMMARY.json",
   "owned_native_replay_verification": "configs/owned_native_replay_verification.json",
   "conditional_native_tape_verification": "configs/conditional_native_tape_v7_verification.json",
-  "public_run_context_verification": "docs/PUBLIC_RUN_CONTEXT.md"
+  "public_run_context_verification": "docs/PUBLIC_RUN_CONTEXT.md",
+  "public_run_evidence_verification": "configs/public_run_evidence_verification.json"
 }

@@ -25,6 +25,9 @@ internal static class NativeTapeReplayDataset
     internal const string DatasetVersion = "nosl.native-tape-replay-development.v1";
     internal const string ImplementationVersion = "nosl-native-tape-structured-conditional-v7";
 
+    internal static string ImplementationFor(NativeRunExecutionOptions execution) => execution.EmitsPublicEvidence
+        ? ImplementationVersion + "-public-evidence-v1" : ImplementationVersion;
+
     internal static async Task<object> CollectAsync(NativeTapeCollectionOptions options, TeacherOptions teacherOptions,
         CancellationToken cancellationToken = default)
     {
@@ -107,13 +110,13 @@ internal static class NativeTapeReplayDataset
                 audit["public_combat_coordinate_conditioning"] = source.ConditionedPublicCombatIndex;
                 audit["conditioning_reason"] = source.ConditioningReason;
                 audit["formal_labels"] = false; audit["trainable"] = false; audit["engineering_smoke"] = true;
-                audit["posterior_implementation"] = ImplementationVersion;
-                audit["sampler_version"] = ImplementationVersion;
+                audit["posterior_implementation"] = ImplementationFor(prior.Execution);
+                audit["sampler_version"] = ImplementationFor(prior.Execution);
                 audit["posterior_proposals"] = JsonNode.Parse(PublicJson.Serialize(source.ProposalAudit));
                 audit["collection_id"] = options.CollectionId;
                 audit["versions"]!["dataset"] = DatasetVersion;
-                audit["versions"]!["sampler"] = ImplementationVersion;
-                audit["versions"]!["posterior_implementation"] = ImplementationVersion;
+                audit["versions"]!["sampler"] = ImplementationFor(prior.Execution);
+                audit["versions"]!["posterior_implementation"] = ImplementationFor(prior.Execution);
                 audit["versions"]!["source_prior"] = prior.Identity;
                 records.Add(record);
                 int acceptedHere = source.ProposalAudit.Count(a => a.Status == "accepted");

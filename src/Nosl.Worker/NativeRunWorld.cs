@@ -79,6 +79,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         _ = PublicContinuationPolicies.Create(options.SourcePolicyId);
         _ = options.ResolvedOutsideCombatScript;
         _ = options.EmitsPublicRunContext;
+        _ = options.EmitsPublicEvidence;
         _options = options; _proposalSeed = seed; _selectedSlot = slot; _callerToken = cancellationToken;
         _constructedLifecycle = constructedLifecycle;
         _labelTape = labelTape; _selectedCombat = selectedCombat;
@@ -147,7 +148,8 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         using var labelScope = _labelTape?.EnterScope();
         var sourceOptions = new NaturalSourceOptions(MaxFloors: _options.MaxFloors,
             ContinuationPolicyId: _options.SourcePolicyId, OutsideCombatScript: _options.OutsideCombatScript,
-            PublicContextProfile: _options.PublicContextProfile, PublicCombatHistoryMode: _options.PublicCombatHistoryMode);
+            PublicContextProfile: _options.PublicContextProfile, PublicCombatHistoryMode: _options.PublicCombatHistoryMode,
+            PublicEvidenceProfile: _options.PublicEvidenceProfile);
         _bridge = new(NativeRun, sourceOptions, PublicContinuationPolicies.Create(_options.SourcePolicyId), [],
             "owned-independent-proposal", _proposalSeed, null, null, _lifetime.Token, this,
             startsAtNativeRunBeginning: _constructedLifecycle is null);
@@ -266,7 +268,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
                 + "; actual offered reward counts; settlement timing covers snapshot hook only",
         };
         SettlementSeconds = timer.Elapsed.TotalSeconds;
-        _packet = new("terminal_settled", null, []);
+        _packet = new("terminal_settled", null, [], _bridge?.CaptureEvidence());
         _next.TrySetResult(_packet);
         // Synchronous notification is deliberately terminal. In particular the
         // driver cannot consume the first postcombat reward or event decision.

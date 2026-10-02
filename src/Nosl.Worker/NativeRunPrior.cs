@@ -11,10 +11,12 @@ internal sealed record NativeRunExecutionOptions(int MaxFloors = 60, int SourceD
     string SourcePolicyId = PublicContinuationPolicies.ReviewedId,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? OutsideCombatScript = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicContextProfile = null,
-    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicCombatHistoryMode = null)
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicCombatHistoryMode = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicEvidenceProfile = null)
 {
     // Omitted selection preserves old serialized priors and their exact identities.
     internal string ResolvedOutsideCombatScript => NaturalSourceCollector.ResolveScriptVersion(OutsideCombatScript);
+    internal bool EmitsPublicEvidence => PublicRunEvidence.ValidateChannel(PublicEvidenceProfile, PublicContextProfile);
     internal bool EmitsPublicRunContext => PublicRunContext.ValidateChannel(PublicContextProfile, PublicCombatHistoryMode);
 }
 
@@ -48,6 +50,7 @@ internal sealed record NativeRunPrior
         _ = PublicContinuationPolicies.Create(Execution.SourcePolicyId);
         _ = Execution.ResolvedOutsideCombatScript;
         _ = Execution.EmitsPublicRunContext;
+        _ = Execution.EmitsPublicEvidence;
         if (FiniteSeedSupport is { } support && (support.Length is < 1 or > 4096 || support.Distinct().Count() != support.Length))
             throw new ArgumentException("A finite seed prior must declare unique support before collecting roots");
     }

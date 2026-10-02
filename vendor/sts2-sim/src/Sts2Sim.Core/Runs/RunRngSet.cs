@@ -238,6 +238,7 @@ public class RunRngSet
 
     public static RunRngSet FromSave(SerializableRunRngSet save)
     {
+        ValidateLabelSnapshot(save);
         RunRngSet runRngSet = new RunRngSet(save.Seed);
         foreach (var (key, serializable) in save.Rngs)
         {
@@ -248,6 +249,7 @@ public class RunRngSet
 
     public void LoadFromSerializable(SerializableRunRngSet save)
     {
+        ValidateLabelSnapshot(save);
         if (StringSeed != save.Seed)
         {
             throw new NotImplementedException("RngSet seed should not change during the run!");
@@ -255,6 +257,18 @@ public class RunRngSet
         foreach (var (key, serializable) in save.Rngs)
         {
             _rngs[key].LoadFromSerializable(serializable);
+        }
+    }
+
+    private static void ValidateLabelSnapshot(SerializableRunRngSet save)
+    {
+        if (!LabelRandomScope.UsesRewardProvenance && !save.Rngs.Values.Any(rng => rng.LabelProvenance is not null))
+            return;
+        foreach (RunRngType type in Enum.GetValues<RunRngType>())
+        {
+            if (!save.Rngs.TryGetValue(type, out SerializableRng? rng) || rng.LabelProvenance is not { } provenance)
+                throw new InvalidOperationException("A hybrid run RNG snapshot requires every source partition.");
+            provenance.Validate();
         }
     }
 

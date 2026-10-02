@@ -24,6 +24,9 @@ internal static class NativeRunReplayDataset
     internal const string DatasetVersion = "nosl.native-owned-replay-development.v1";
     internal const string ImplementationVersion = "nosl-owned-native-run-replay-v1";
 
+    internal static string ImplementationFor(NativeRunExecutionOptions execution) => execution.EmitsPublicEvidence
+        ? ImplementationVersion + "-public-evidence-v1" : ImplementationVersion;
+
     internal static async Task<object> CollectAsync(NativeRunCollectionOptions options, TeacherOptions teacherOptions,
         CancellationToken cancellationToken = default)
     {
@@ -100,17 +103,18 @@ internal static class NativeRunReplayDataset
                 audit["selected_source_slot"] = recipe.Slot;
                 audit["source_seed_conditioning"] = false;
                 audit["conditioning"] = "exact_published_decision_packet_only";
-                audit["earlier_run_histories"] = "marginalized_under_declared_source_script";
+                audit["earlier_run_histories"] = prior.Execution.EmitsPublicEvidence
+                    ? "recorded_public_channel_conditioned_by_exact_packet_equality" : "marginalized_under_declared_source_script";
                 audit["formal_labels"] = false;
                 audit["trainable"] = false;
                 audit["engineering_smoke"] = true;
-                audit["posterior_implementation"] = ImplementationVersion;
-                audit["sampler_version"] = ImplementationVersion;
+                audit["posterior_implementation"] = ImplementationFor(prior.Execution);
+                audit["sampler_version"] = ImplementationFor(prior.Execution);
                 audit["posterior_proposals"] = JsonNode.Parse(PublicJson.Serialize(source.ProposalAudit));
                 audit["collection_id"] = options.CollectionId;
                 audit["versions"]!["dataset"] = DatasetVersion;
-                audit["versions"]!["sampler"] = ImplementationVersion;
-                audit["versions"]!["posterior_implementation"] = ImplementationVersion;
+                audit["versions"]!["sampler"] = ImplementationFor(prior.Execution);
+                audit["versions"]!["posterior_implementation"] = ImplementationFor(prior.Execution);
                 audit["versions"]!["source_prior"] = prior.Identity;
                 records.Add(record);
                 int accepted = source.ProposalAudit.Count(a => a.Status == "accepted");

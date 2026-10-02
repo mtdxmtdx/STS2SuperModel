@@ -34,6 +34,9 @@ public static class LabelRandomScope
     private static readonly AsyncLocal<Scope?> Current = new();
     private static readonly AsyncLocal<bool> InsideCallback = new();
 
+    // Legacy nested forcing scopes keep their enclosing provenance construction mode.
+    internal static bool UsesRewardProvenance => Current.Value?.UsesProvenance == true && !InsideCallback.Value;
+
     /// <summary>
     /// Enter a temporary scope flowing across awaits. Dispose in nesting order within the
     /// entering execution context. Concurrent worlds must enter their own scopes and own
@@ -76,12 +79,36 @@ public static class LabelRandomScope
         Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null)
     {
         ArgumentNullException.ThrowIfNull(nextWord);
-        var scope = new Scope(Current.Value, nextWord, beginShuffle, beginMonsterHp, beginCombatReward, beginNormalEncounter, beginMapGeneration);
+        var scope = new Scope(Current.Value, nextWord, null, beginShuffle, beginMonsterHp, beginCombatReward, beginNormalEncounter, beginMapGeneration);
         Current.Value = scope;
         return scope;
     }
 
-    internal static ulong NextWordOrOriginal(LabelRandomState state, ulong original)
+    /// <summary>
+    /// Enter the hybrid law: tagged player Rewards use origin/seed/raw-cursor cells;
+    /// all untagged RNGs retain the full-state law, independent of the Rewards partition.
+    /// Construct owned native worlds inside this scope. Missing source-partition markers
+    /// at restore boundaries fail closed. Callers own oracle consistency and the
+    /// independence of both partitions. Native conversion and advancement are unchanged.
+    /// </summary>
+    public static IDisposable EnterRewardProvenance(
+        Func<LabelRandomAddressV1, ulong> nextRewardWord,
+        Func<LabelRandomState, ulong> nextStateWord,
+        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null,
+        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp = null,
+        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null,
+        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null,
+        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null)
+    {
+        ArgumentNullException.ThrowIfNull(nextRewardWord);
+        ArgumentNullException.ThrowIfNull(nextStateWord);
+        var scope = new Scope(Current.Value, nextStateWord, nextRewardWord, beginShuffle, beginMonsterHp, beginCombatReward,
+            beginNormalEncounter, beginMapGeneration);
+        Current.Value = scope;
+        return scope;
+    }
+
+    internal static ulong NextWordOrOriginal(LabelRandomState state, LabelRandomAddressV1? address, ulong original)
     {
         Scope? scope = Current.Value;
         if (scope is null || InsideCallback.Value) return original;
@@ -89,7 +116,9 @@ public static class LabelRandomScope
         InsideCallback.Value = true;
         try
         {
-            return scope.NextWord(state);
+            if (scope.NextProvenanceWord is not null && address is { } rewardAddress)
+                return scope.NextProvenanceWord(rewardAddress);
+            return scope.NextWord!(state);
         }
         finally
         {
@@ -161,7 +190,8 @@ public static class LabelRandomScope
 
     private sealed class Scope(
         Scope? previous,
-        Func<LabelRandomState, ulong> nextWord,
+        Func<LabelRandomState, ulong>? nextWord,
+        Func<LabelRandomAddressV1, ulong>? nextProvenanceWord,
         Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle,
         Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp,
         Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward,
@@ -169,7 +199,9 @@ public static class LabelRandomScope
         Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration) : IDisposable
     {
         public Scope? Previous { get; } = previous;
-        public Func<LabelRandomState, ulong> NextWord { get; } = nextWord;
+        public Func<LabelRandomState, ulong>? NextWord { get; } = nextWord;
+        public Func<LabelRandomAddressV1, ulong>? NextProvenanceWord { get; } = nextProvenanceWord;
+        public bool UsesProvenance { get; } = nextProvenanceWord is not null || previous?.UsesProvenance == true;
         public Func<Rng, IReadOnlyList<object?>, IDisposable?>? BeginShuffle { get; } = beginShuffle;
         public Func<LabelMonsterHpContext, IDisposable?>? BeginMonsterHp { get; } = beginMonsterHp;
         public Func<LabelCombatRewardContext, IDisposable?>? BeginCombatReward { get; } = beginCombatReward;

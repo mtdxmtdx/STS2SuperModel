@@ -32,6 +32,7 @@ internal sealed record NativeTapePrior
         _ = PublicContinuationPolicies.Create(Execution.SourcePolicyId);
         _ = Execution.ResolvedOutsideCombatScript;
         _ = Execution.EmitsPublicRunContext;
+        _ = Execution.EmitsPublicEvidence;
         return this with { Execution = Execution with { } };
     }
 

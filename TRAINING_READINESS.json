@@ -28,7 +28,7 @@
     "data_pipeline_passed": 145,
     "generator_archive_passed": 63,
     "integrated_v2_teacher_to_backward": true,
-    "full_current_integration_passed": 1259,
+    "full_current_integration_passed": 1305,
     "natural_source_tests_passed": 5,
     "native_recorder_tests_passed": 7,
     "natural_raw_roots": 200,
@@ -98,7 +98,7 @@
     "confirmed_hard_preference_cases": 2,
     "confirmed_numerically_evaluated_preference_cases": 1,
     "cross_version_protection_cases": 24,
-    "current_full_suite": "PASS_1259_OF_1259",
+    "current_full_suite": "PASS_1305_OF_1305",
     "v2_trainer_no_fit_tests_passed": 21,
     "v2_student_no_backward_tests_passed": 19,
     "student_regression": 185,
@@ -135,10 +135,12 @@
     "conditional_tape_complete_carry_in_roots": 2,
     "conditional_tape_carry_in_gate_passed": false,
     "conditional_tape_fresh_carry_in_roots": 12,
-    "conditional_tape_fresh_complete_carry_in_roots": 0
+    "conditional_tape_fresh_complete_carry_in_roots": 0,
+    "public_run_evidence_native_tests": 1305,
+    "public_run_evidence_student_tests": 26
   },
   "remaining": [
-    "V7 joint native initial-prefix conditioning passes the reused two-carry-in diagnostic gate:18/22branches settle,4ComputeTruncated,0EngineError. A separately predeclared16root development probe fails the breadth gate:0/12multi-action carry-in roots complete,20/226branches settle,206ComputeTruncated,0EngineError. Full public run-evidence recording and compositional likelihood proposals are being implemented; production scale and new fits remain paused.",
+    "V7 joint native initial-prefix conditioning passes the reused two-carry-in diagnostic gate:18/22branches settle,4ComputeTruncated,0EngineError. A separately predeclared16root development probe fails the breadth gate:0/12multi-action carry-in roots complete,20/226branches settle,206ComputeTruncated,0EngineError. Opt-in public run-evidence recording and the v4 engineering student are verified. General compositional likelihood proposals remain in progress; production scale and new fits remain paused.",
     "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
     "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
     "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3–M6 prerequisites"
@@ -166,5 +168,6 @@
   "owned_native_replay_verification": "configs/owned_native_replay_verification.json",
   "owned_native_runtime": "nosl-owned-native-run-replay-v1",
   "conditional_native_tape_verification": "configs/conditional_native_tape_v7_verification.json",
-  "public_run_context_verification": "docs/PUBLIC_RUN_CONTEXT.md"
+  "public_run_context_verification": "docs/PUBLIC_RUN_CONTEXT.md",
+  "public_run_evidence_verification": "configs/public_run_evidence_verification.json"
 }

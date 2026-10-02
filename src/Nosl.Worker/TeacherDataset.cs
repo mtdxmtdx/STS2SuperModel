@@ -21,15 +21,16 @@ public static class TeacherDataset
             throw new ArgumentException("Public run context requires its separately versioned observation schema");
         result.PublicRoot.Observation.RunContext?.Validate();
         bool forcedEvent = result.PublicRoot.Observation!.History.Any(e => e.Kind == "forced_event_context");
-        string publicSchema = publicRunContext ? PublicRunContext.StudentSchema
+        bool publicEvidence = result.PublicRoot.PublicEvidence is not null;
+        string publicSchema = publicEvidence ? PublicRunEvidence.StudentSchema : publicRunContext ? PublicRunContext.StudentSchema
             : forcedEvent || result.PublicRoot.Observation.History.Any(e => e.Kind == "native_entry_assets")
             ? HuntStudentContext.PublicSchema : "nosl.student.public.v1";
-        var publicInput = new
+        object publicInput = PublicEvidenceInput.Extend(new
         {
             schema_version = publicSchema, observation = result.PublicRoot.Observation,
             history_complete = true, controller_context = new { status = "inactive" },
             candidate_actions = result.PublicRoot.Actions, legal_mask = result.PublicRoot.Actions.Select(_ => true).ToArray(),
-        };
+        }, result.PublicRoot);
         var actions = result.Candidates.Select((candidate, index) =>
         {
             var o = candidate.Outcomes; var evaluation = candidate.Evaluation;
@@ -89,10 +90,16 @@ public static class TeacherDataset
             && PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion) != PublicContinuationPolicies.ReviewedDatasetVersion)
             return record;
         var versioned = JsonNode.Parse(PublicJson.Serialize(record))!.AsObject();
-        string datasetVersion = publicRunContext ? "nosl.dataset.public-run-context.v1"
+        string datasetVersion = publicEvidence ? PublicEvidenceInput.DatasetVersion : publicRunContext ? "nosl.dataset.public-run-context.v1"
             : forcedEvent ? "nosl.dataset.forced-events.v2" : PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion);
         versioned["audit_only"]!["dataset_version"] = datasetVersion;
         versioned["audit_only"]!["versions"]!["dataset"] = datasetVersion;
+        if (publicEvidence)
+        {
+            versioned["audit_only"]!["trainable"] = false;
+            versioned["audit_only"]!["public_evidence_profile"] = PublicRunEvidence.Version;
+            versioned["audit_only"]!["versions"]!["public_evidence"] = PublicRunEvidence.Version;
+        }
         if (forcedEvent) versioned["audit_only"]!["constructed_event_fixture"] = true;
         if (publicRunContext || publicSchema == HuntStudentContext.PublicSchema)
         {
