@@ -1,4 +1,4 @@
-# Observed Neow positive-prefix proposal
+# Observed Neow opening proposal
 
 This development-only acceleration belongs exclusively to the separately declared
 `nosl.native-rewards-state-tape-prior.v1` law. It does not migrate the legacy v7
@@ -43,28 +43,51 @@ typed evidence is attached.
 
 ## Proposal and correction
 
-The existing `NativeLabelTape.BeginShuffle` hook identifies Neow's own native
-positive shuffle. `ConditionalShuffleProposal.Create` receives the actual native
-pool order and the two observed positive keys. It samples a uniform physical
-permutation conditional on that ordered prefix and inverts native Fisher–Yates
-using the existing exact 53-bit floating-point bucket boundaries. The third,
-curse option is never forced: the native curse draw and extra-positive coin draws
-still produce the latent pool, and complete public-packet equality still checks
-the displayed curse and all remaining public history.
+A label-only `LabelRandomScope.BeginNeowInitialOptions` boundary exposes Neow's
+actual allowed curse pool and its own RNG before the curse and extra-pair rolls.
+It surrounds only those native rolls; normal generation, filtering, draw order,
+counters and shuffle remain unchanged. The worker verifies the source-pinned
+ordered ten-curse pool, then samples the observed third option's exact native
+53-bit index bucket. Only an extra-pair coin needed to include an observed
+positive is conditioned. Other coin words come from the ordinary full-state
+oracle, including any prior aliases. Native `Rng.NextBool` means `Next(2) == 0`:
+the first member of each pair takes bucket zero. LargeCapsule skips the entire
+LavaRock/SmallCapsule pair, exactly as in native generation.
 
-For pool size n, prefix length k, domain D = 2^53, and native bucket lengths B_b,
-the density ratio is:
+`NativeLabelTape.BeginShuffle` still identifies Neow's own native positive
+shuffle. `ConditionalShuffleProposal.Create` receives the actual native pool
+order and both observed positives. It samples a uniform physical permutation
+conditional on that ordered prefix and inverts native Fisher–Yates using exact
+53-bit floating-point bucket boundaries. Complete public-packet equality still
+checks all three displayed options and the remaining public history.
 
-`native/proposal = (1 / (n falling k)) * product(b * B_b / D, b = 2..n)`
+Let D = 2^53, C be the observed curse's exact bucket length, r the number of
+required extra-pair coins, n the native positive-pool size, k the prefix length,
+and B_b the actual shuffle bucket lengths. The opening density factor is
+`L = (C / D) * (1 / 2^r)`. It depends only on the certified public root, never on
+an unrequired latent coin. The joint ratio is:
 
-The global envelope is the maximum of the corresponding expression with each
-bucket replaced by its maximum bucket length, over **all** certified native pool
-sizes 14, 15 and 16. For k = 2 its prefix factor is `1 / (n * (n - 1))`. Correction
-accepts with exactly `(native/proposal) / globalEnvelope`. It preserves every
-native curse/coin path's prior mass, including multiple paths yielding the same
-pool. No conditional normalizer Z is estimated, and the envelope is not selected
-from the sampled pool. A valid native pool missing either observed positive is a
-public nonmatch; invalid pool shapes remain engine errors/unresolved outcomes.
+`native/proposal = L * (1 / (n falling k)) * product(b * B_b / D, b = 2..n)`
+
+The joint global envelope is L times the maximum shuffle expression with each
+bucket replaced by its maximum length over **all** certified native pool sizes
+14, 15 and 16. For k = 2 the prefix factor is `1 / (n * (n - 1))`. Correction
+accepts with exactly `(joint native/proposal) / joint globalEnvelope`. The common
+L cancels in that Bernoulli probability, but remains explicit in both the joint
+ratio and envelope. No conditional normalizer Z is estimated, and no envelope is
+selected from the sampled pool. Each native unrequired coin path retains its
+prior mass, including multiple paths yielding the same pool.
+
+Impossible public extra-pair combinations, a required suppressed pair, or a
+valid native pool omitting an observed positive remain public nonmatches. Invalid
+native pool shapes or changed allowed curse order are engine errors/unresolved
+outcomes. Opening replay validates every native pre-draw state and complete roll
+count. Every forced word must be a fresh full-state oracle cell; a previously
+visited forced cell is an unresolved alias error, never rejection or resampling.
+Replay copies must reuse exactly the same conditioned words. Untouched coin
+words retain ordinary oracle lookup and are not registered as conditioned cells.
+The observed-opening path is available only under the hybrid prior; uncertified
+or legacy roots retain their earlier single-positive path unchanged.
 
 `RootEnvelope` keeps its original single-positive value. `MaximumEnvelope` keeps
 the existing call signature behavior through `prefixLength = 1`; its optional
@@ -80,10 +103,16 @@ raw words, physical permutation and ratio remain identical.
 - Unchanged legacy identity and one-positive proposal bytes, including absent
   evidence and typed evidence attached to the old prior
 - All ten native curse branches and all three-coin assignments, covering all 52
-  native pool shapes and sizes 14–16, while preserving the actual third option
+  native pool shapes and sizes 14–16, followed by every curse with zero, one or
+  two required coins, both pair polarities, LargeCapsule suppression, untouched
+  native coin choices, and unchanged native RNG advancement
 - Exhaustive finite raw-word laws with variable pool sizes, unequal latent masses,
   ordered two-option prefixes in both orders, and exact rational correction;
   using a sampled-pool envelope demonstrably changes latent posterior odds
+- Exhaustive finite opening raw words composed with shuffle permutations and
+  exact correction, preserving each compatible latent coin path's joint mass
+- Forced opening aliases fail closed, untouched coin aliases remain native,
+  impossible public pair combinations reject, and allowed-pool drift is an error
 - A real native hybrid opening, full public-packet equality after conditioning
   both positives, and independent continuation replay with the conditioned words
 

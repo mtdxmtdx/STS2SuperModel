@@ -67,9 +67,9 @@ The exact source breakdown, predeclaration, request and response hashes are in
 Observed rejection causes were 455 Neow option/pool mismatches, 254 initial
 roster mismatches, 289 combat-entry asset mismatches and 26 map-prefix mismatches.
 Startup card-grant branches remain native; they can create public entry assets
-that are unlikely to match without their own corrected proposal. The next
-bounded work conditions visible curse/pool choices, the public first map slice
-and first encounter roster, followed by specific public card-grant branches.
+that are unlikely to match without their own corrected proposal. The v4 implementation now conditions visible curse/pool choices, the public
+first map slice and first encounter roster, together with ArcaneScroll,
+ScrollBoxes and Kaleidoscope card grants.
 These eight roots are now inspected development cases, not a new blind test for
 later revisions. Further breadth validation needs a fresh predeclared cohort.
 
@@ -77,3 +77,31 @@ All new rows remain quarantined development records. Production enlargement
 and new fitting stay paused until useful full-history throughput and data
 quality pass; the original corpus, sealed test split and experimental weights
 are unchanged. This checkpoint does not establish complete M3–M6 acceptance.
+
+## Corrected composition v4
+
+The sampler version is `nosl-native-rewards-state-tape-conditional-v4-public-evidence-v1`.
+The prior identity remains unchanged. Past primary potion presence, identity and
+gold now use explicit native reward boundaries, with latent pity preserved and a
+root-wide likelihood envelope. Abort-aware scopes preserve the original native
+failure instead of replacing it with missing-card cleanup errors. Fixed-budget
+outer retries after complete prefix exhaustion retain the corrected per-attempt
+submeasure; see [the retry law](NATIVE_PREFIX_OUTER_RETRY.md). A clock deadline
+can still favor faster latent worlds. Failure accounting alone does not establish
+an unbiased retained-source population.
+
+The full worker regression passed 1,485 tests. A subsequent test-only change
+strengthened the resource-conditioned replay through terminal settlement and
+passed all 8 affected checks; production source was unchanged. The fresh Core
+suite passed 4,493 tests with 3 existing opt-in skips, and all 2,231 tracked Core
+files reconstruct byte-for-byte from the pinned source and local patches.
+
+A predeclared repeat of the same eight inspected roots hit its 360-second cap.
+Four roots executed and four remained explicitly unexecuted. There were 277
+proposals, 2 accepted worlds, and 16 settled out of 56 allocated candidate-world
+copies; the other 40 were ComputeTruncated. All recorded public inputs match
+the original cohort. The aggregate test run overlapped the beginning, so the
+recorded duration is a resource diagnostic, not an isolated production benchmark.
+The main remaining costs were map-prefix rejection, initial slug intents and
+later first-cycle draws. No new unique roots, production rows or fitting occurred.
+The exact evidence and remaining work are in [the v4 report](../configs/native_rewards_hybrid_v4_verification.json).

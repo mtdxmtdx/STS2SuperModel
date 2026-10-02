@@ -7,7 +7,11 @@ namespace Nosl.Worker;
 /// <summary>Detached, observer-indexed inputs. Ineligibility disables acceleration only.</summary>
 internal sealed record NativePublicCombatPrefixInput(int CombatIndex, long OwnerOrdinal,
     long? DecisionEventOrdinal, string? EntryJson, NativeInitialShuffleCondition? Shuffle,
-    NativeInitialHpCondition? Hp, string? ShuffleReason, string? HpReason);
+    NativeInitialHpCondition? Hp, string? ShuffleReason, string? HpReason,
+    NativeCorpseSlugHpCondition? SlugHp = null)
+{
+    internal int HpCount => Hp?.EnemyCount ?? SlugHp?.EnemyCount ?? 0;
+}
 
 /// <summary>
 /// Reuses the existing source-pinned startup certificates for each observed combat.
@@ -19,8 +23,8 @@ internal sealed class NativePublicCombatPrefixCondition
 {
     internal IReadOnlyDictionary<int, NativePublicCombatPrefixInput> Combats { get; }
     internal int EligibleShuffleCount => Combats.Values.Count(input => input.Shuffle is not null);
-    internal int EligibleHpCombatCount => Combats.Values.Count(input => input.Hp is not null);
-    internal int EligibleHpCount => Combats.Values.Sum(input => input.Hp?.EnemyCount ?? 0);
+    internal int EligibleHpCombatCount => Combats.Values.Count(input => input.HpCount > 0);
+    internal int EligibleHpCount => Combats.Values.Sum(input => input.HpCount);
     internal string? Reason { get; }
 
     private NativePublicCombatPrefixCondition(Dictionary<int, NativePublicCombatPrefixInput> combats,
@@ -68,15 +72,18 @@ internal sealed class NativePublicCombatPrefixCondition
             }
             NativeInitialShuffleCondition? shuffle = null;
             NativeInitialHpCondition? hp = null;
+            NativeCorpseSlugHpCondition? slugHp = null;
             string? shuffleReason = reason, hpReason = reason;
             string? entryJson = packet?.Observation!.History[1].Detail;
             if (packet is not null)
             {
-                NativeInitialShuffleCondition.TryCreate(packet, out shuffle, out shuffleReason);
+                NativeInitialShuffleCondition.TryCreatePublicCombatV2(packet, out shuffle, out shuffleReason);
                 NativeInitialHpCondition.TryCreate(packet, out hp, out hpReason);
+                if (hp is null && shuffle is not null && packet.Observation!.Enemies.Any(enemy => enemy.Id == "CorpseSlug"))
+                    NativeCorpseSlugHpCondition.TryCreate(packet, out slugHp, out hpReason);
             }
             inputs.Add(index, new(index, owner.OwnerOrdinal.Value, first?.EventOrdinal,
-                entryJson, shuffle, hp, shuffleReason, hpReason));
+                entryJson, shuffle, hp, shuffleReason, hpReason, slugHp));
         }
         return new(inputs, inputs.Count == 0 ? "no_observed_combat_owner" : null);
     }
@@ -103,10 +110,24 @@ internal sealed class NativePublicCombatPrefixCondition
             new(NativeEntryAssets.EventKind, PublicJson.Serialize(entry)),
         };
         int cursor = 2;
+        // Retain every typed power fact in the certificate input. The explicit v2
+        // source closure validates their model, amount, owner and startup roster;
+        // full typed replay equality still checks these original facts unchanged.
+        while (cursor < prefix.Length && prefix[cursor].Payload is PublicCombatFact
+            { FactKind: PublicCombatFactKind.PowerChanged } power)
+        {
+            history.Add(new("power_changed", PublicJson.Serialize(new
+            {
+                target = power.TargetModel, targetSlot = power.TargetSlot, sourceSlot = power.SourceSlot,
+                id = power.Model, amount = power.Amount,
+            })));
+            cursor++;
+        }
+        int drawStart = cursor;
         while (cursor < prefix.Length && prefix[cursor].Payload is PublicCombatFact
             { FactKind: PublicCombatFactKind.CardDrawn } draw)
         { history.Add(new("draw", PublicJson.Serialize(draw.Cards.Single()))); cursor++; }
-        if (cursor == 2 || cursor >= prefix.Length || prefix[cursor].Payload is not PublicCombatFact
+        if (cursor == drawStart || cursor >= prefix.Length || prefix[cursor].Payload is not PublicCombatFact
             { FactKind: PublicCombatFactKind.PlayerTurnStarted, Turn: 1 })
         { reason = "uninterrupted_initial_draw_history_required"; return null; }
         history.Add(new("player_turn", "1")); cursor++;

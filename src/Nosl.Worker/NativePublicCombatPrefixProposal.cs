@@ -23,6 +23,7 @@ internal sealed class NativePublicCombatPrefixProposal(
     private bool _awaitingInitialShuffle, _conditioningInitialHp;
     private readonly HashSet<int> _entered = [], _shuffled = [];
     private readonly HashSet<string> _activeHpIds = new(StringComparer.Ordinal);
+    private int _activeHpCount;
     private readonly List<ConditionalShufflePlan> _shuffles = [];
     private readonly List<NativeHpProposal> _hp = [];
 
@@ -50,14 +51,14 @@ internal sealed class NativePublicCombatPrefixProposal(
         ValidateActiveCompletion();
         _combatIndex = combatIndex; _active = null;
         _awaitingInitialShuffle = _conditioningInitialHp = false;
-        _initialShuffleRng = null; _activeHpIds.Clear();
+        _initialShuffleRng = null; _activeHpIds.Clear(); _activeHpCount = 0;
         if (!condition.Combats.TryGetValue(combatIndex, out var input)
-            || (input.Shuffle is null && input.Hp is null)) return;
+            || (input.Shuffle is null && input.HpCount == 0)) return;
         if (input.EntryJson != PublicJson.Serialize(entry))
             throw new NativePublicConstraintMismatchException("Published combat-prefix entry differs at combat " + combatIndex);
         _active = input; _entered.Add(combatIndex);
         _initialShuffleRng = initialShuffleRng;
-        _awaitingInitialShuffle = true; _conditioningInitialHp = input.Hp is not null;
+        _awaitingInitialShuffle = true; _conditioningInitialHp = input.HpCount > 0;
     }
 
     internal IDisposable? BeginShuffle(Rng rng, IReadOnlyList<object?> items)
@@ -70,7 +71,7 @@ internal sealed class NativePublicCombatPrefixProposal(
             || cards.Any(card => !ReferenceEquals(card.Owner, owner) || card.DeckVersion is null || card.Pile?.Type != PileType.Draw)
             || owner?.PlayerCombatState is null || !owner.PlayerCombatState.DrawPile.Cards.SequenceEqual(cards))
             throw new InvalidOperationException("Public combat prefix did not identify its owned native initial draw pile");
-        if (_active!.Hp is { } hp && _activeHpIds.Count != hp.EnemyCount)
+        if (_activeHpCount != _active!.HpCount)
             throw new NativePublicConstraintMismatchException("Native initial roster has fewer monsters than public combat " + _combatIndex);
         _awaitingInitialShuffle = _conditioningInitialHp = false;
         _shuffled.Add(_combatIndex);
@@ -96,8 +97,10 @@ internal sealed class NativePublicCombatPrefixProposal(
             throw new InvalidOperationException("Public combat HP conditioning escaped its owned native run");
         string id = context.Creature.Monster?.GetType().Name
             ?? throw new InvalidOperationException("Public combat HP conditioning requires a monster");
-        var plan = _active!.Hp!.CreateProposal(context, _activeHpIds, nextWord);
-        _activeHpIds.Add(id); _hp.Add(plan);
+        var plan = _active!.SlugHp is { } slugs
+            ? slugs.CreateProposal(context, _activeHpCount, nextWord)
+            : _active.Hp!.CreateProposal(context, _activeHpIds, nextWord);
+        _activeHpIds.Add(id); _activeHpCount++; _hp.Add(plan);
         return forceStateWords([plan.RawWord], "public combat " + _combatIndex + " HP");
     }
 
@@ -112,7 +115,7 @@ internal sealed class NativePublicCombatPrefixProposal(
     private void ValidateActiveCompletion()
     {
         if (_active is not null && (_awaitingInitialShuffle || _conditioningInitialHp
-            || (_active.Hp is { } hp && _activeHpIds.Count != hp.EnemyCount)))
+            || _activeHpCount != _active.HpCount))
             throw new InvalidOperationException("A certified public combat startup was not completed");
     }
 

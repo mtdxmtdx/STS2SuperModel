@@ -1,0 +1,493 @@
+{
+  "schema": "nosl.native-rewards-hybrid-verification.v4",
+  "source_commit": "ded6aeb7c3dbcdb2cd654f35c2530eabaccd9cd3",
+  "status": "CORRECTED_COMPOSITION_VERIFIED_REUSED_DIAGNOSTIC_HIT_COMPUTE_CAP",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "new_production_dataset_rows": 0,
+  "new_unique_source_roots": 0,
+  "sampler_version": "nosl-native-rewards-state-tape-conditional-v4-public-evidence-v1",
+  "prior": {
+    "schemaVersion": "nosl.native-rewards-state-tape-prior.v1",
+    "execution": {
+      "maxFloors": 8,
+      "sourceDecisionHorizon": 1024,
+      "sourcePolicyId": "nosl-public-rules-v2",
+      "outsideCombatScript": "nosl-natural-public-script-v3",
+      "publicContextProfile": "nosl.public-run-context.v1",
+      "publicEvidenceProfile": "nosl.public-run-evidence.v1"
+    },
+    "eligibleCombats": 3,
+    "eligibleDecisionsPerCombat": 8,
+    "primitiveLaw": "independent-rewards-origin-seed-raw-cursor-and-native-full-state-partitions-v1",
+    "primitiveImplementation": "sha256-address-expansion-with-explicit-conditioned-overrides-v1",
+    "rootLaw": "independent-uniform-fixed-combat-and-local-decision-indices-v1",
+    "outsideCombatScript": "nosl-natural-public-script-v3"
+  },
+  "prior_identity": "d61db05514950173d55dd38593253f23c9b93c910767f8d12c742e830b767ff7",
+  "prior_unchanged_from_hybrid_v1": true,
+  "implemented": [
+    "Observed Neow curse and required pool coins with joint exact correction",
+    "Typed first-map whole fresh-seed/oracle prefix; no held-seed retries",
+    "Public first weak encounter identity without narrowing native catalog",
+    "ArcaneScroll grant, both ScrollBoxes bundles and both Kaleidoscope offers",
+    "Native CorpseSlug power facts, initial permutation and duplicate-slot HP",
+    "Past public potion presence/identity and gold, retaining pity and root-wide envelopes",
+    "Abort-aware native reward scopes preserving original errors",
+    "Clean whole-prefix exhaustion retries inside the unchanged fixed outer budget"
+  ],
+  "native_suite": {
+    "passed": 1485,
+    "failed": 0,
+    "skipped": 0,
+    "source_commit": "a21f2875a472ac87ad32e3bd15697bf84a3b2801",
+    "path": "artifacts/reports/hybrid-v4/hybrid-v4-aggregate.trx",
+    "bytes": 2188793,
+    "sha256": "f6e9cc8bad971f9d84adaa911a8e05aa6721b355e48f068638f2cd98ca199f06"
+  },
+  "final_test_only_extension": {
+    "passed": 8,
+    "failed": 0,
+    "source_commit": "fea8f258ee5340cdf97726dc460cb80c91cd5d6b",
+    "equivalent_main_commit": "ded6aeb7c3dbcdb2cd654f35c2530eabaccd9cd3",
+    "note": "Production source unchanged; corrected the resource-conditioned fixture to continue through settlement and assert all past-only condition counters remain fixed. Full aggregate above predates this stronger test-only assertion.",
+    "path": "artifacts/reports/hybrid-v4/hybrid-v4-resource-settlement.trx",
+    "bytes": 13166,
+    "sha256": "4e693fc3bfdd0bc896df065589f101946166fc8d8da73908d82f284fe3f0d0b4"
+  },
+  "core_suite": {
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "duration_reported": "4 m 8 s",
+    "trx_duration_seconds": 249.233552,
+    "trx_counters": {
+      "total": 4496,
+      "executed": 4493,
+      "passed": 4493,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "skipped_count_source": "Three per-test NotExecuted outcomes, matching stdout and total minus executed. The test adapter leaves aggregate notExecuted at zero.",
+    "build_and_test_wall_seconds": 265.39814989000297,
+    "evidence_kind": "fresh_single_full_core_run_with_redirected_stdout_stderr_and_trx",
+    "exit_code": 0,
+    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 8 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "raw_log_available": true,
+    "trx_available": true,
+    "log_path": "artifacts/hybrid-v4-core-verification/full-core.log",
+    "log_sha256": "0f788808ca640123707119de458655a0cc1e3dfcf8e678b5624c8a2e67278ac5",
+    "trx_path": "artifacts/hybrid-v4-core-verification/test-results/vendor-core.trx",
+    "trx_sha256": "264ff577424ecbe4368ae25646010a61e2aaa5295153a92b8fa7e6a954f6de5c",
+    "run_record_path": "artifacts/hybrid-v4-core-verification/run-record.json",
+    "run_record_sha256": "639026455f64047a38991bb9afdc8231f5aabd55647bdf026b1d037a5317d339",
+    "invocations": 1,
+    "rerun_for_packaging": true,
+    "sdk_version": "9.0.303",
+    "source_hashes_verified_before_run": true,
+    "source_hashes_verified_after_run": true,
+    "source_worktree": "STS2SuperModel-coverage",
+    "verified_source_commit": "ded6aeb7c3dbcdb2cd654f35c2530eabaccd9cd3",
+    "build_artifacts": "artifacts/hybrid-v4-core-verification",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/hybrid-v4-core-verification --nologo -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core.trx' --results-directory artifacts/hybrid-v4-core-verification/test-results",
+    "command_note": "Portable replay command; the results directory is shown relative to the repository. The exact process argv is preserved in run-record.json. Run after sourcing the existing shared .NET 9 environment. Build and tests used the isolated artifacts path with one MSBuild worker, node reuse and shared compilation disabled, and NuGet auditing disabled. The process stdout and stderr were redirected directly to the preserved log.",
+    "started_at_utc": "2026-10-02T19:11:20.695752+00:00",
+    "finished_at_utc": "2026-10-02T19:15:46.225927+00:00",
+    "src_git_tree": "5456b9394721eb032573080544a6aa6f964aa7e0",
+    "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+    "test_assembly_path": "artifacts/hybrid-v4-core-verification/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "5310185638b2ab5db5ad4f15f1f8df376ff0f6ba5391012d3a0a7f4c59087673",
+    "core_assembly_path": "artifacts/hybrid-v4-core-verification/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "87ed38f2bfaf0d1ec655a3874f47e0219f78b19c5299222f52b42d4da835f287",
+    "assembly_hash_capture": "Captured from the isolated artifacts immediately after the fresh full suite; no later build or test was run there.",
+    "verified_source_manifest_sha256": "2810599affdd76da388d9cdf3049b0f33bd64338f30827bb328045c4eda2d6ad"
+  },
+  "vendor_reconstruction": {
+    "path": "configs/vendor_patch_verification.json",
+    "bytes": 10282,
+    "sha256": "0b39af15b6242718ec18c9c8c5345221ebf9e60a1d9a5c8d93109737abbf0713"
+  },
+  "independent_reviews": [
+    "Neow joint curse/coin/shuffle law and alias handling: clear",
+    "Public-map whole-prefix law and later-map lifecycle: clear",
+    "First encounter roster source/correction proof: clear",
+    "Three Neow card-source likelihood/envelope and native preservation: clear",
+    "CorpseSlug startup/duplicate HP and legacy isolation: clear",
+    "Resource presence/pity, identity and gold envelope: clear",
+    "Outer retry law/code with finite2:1 and downstream1:1 checks: clear",
+    "Owning reward/card scope composition: no production blocker; settlement-test gap corrected and8tests passed"
+  ],
+  "retry_verification": {
+    "passed": 15,
+    "failed": 0,
+    "finite_outer_alias_counts": [
+      2314,
+      1157,
+      625
+    ],
+    "finite_downstream_corrected_counts": [
+      5304,
+      5304,
+      5776
+    ],
+    "first_draft_K1_native_success_fixture_exhausted_128_attempts": true,
+    "replacement_fixture_role": "Previously observed K64 clean exhaustion regression; not throughput evidence",
+    "path": "artifacts/reports/hybrid-v4/hybrid-v4-retry.trx",
+    "bytes": 23762,
+    "sha256": "7a8ed0204630ef7b35fc0a5aed48aade191b1fd69ada955b9568d2c9771225a6"
+  },
+  "reused_eight_probe": {
+    "sourceDrawsRequested": 8,
+    "existingRoots": 4,
+    "recordedRoots": 4,
+    "acceptedPosteriorDraws": 2,
+    "allocatedCandidateWorlds": 56,
+    "settledCandidateWorlds": 16,
+    "elapsedSeconds": 360.06585,
+    "peakWorkerMemoryBytes": 188030976,
+    "budgetExpired": true,
+    "proposal_attempts": 277,
+    "proposal_statuses": {
+      "exact_proposal_density_correction_rejected": 2,
+      "public_constraint_mismatch": 155,
+      "accepted": 2,
+      "component_budget_exhausted": 117,
+      "computation_cancelled": 1
+    },
+    "terminal_statuses": {
+      "Win": 16,
+      "ComputeTruncated": 40
+    },
+    "all_recorded_public_inputs_unchanged": true,
+    "source_attempts_accounted": 8,
+    "unexecuted_sources": 4,
+    "source_breakdown": [
+      {
+        "sourceDrawSeed": 11001,
+        "recipe": {
+          "runSeed": 6784017684338474864,
+          "tapeSeed": 7073298359657263651,
+          "proposalSeed": 8565562895986878890,
+          "combatIndex": 0,
+          "decisionIndex": 0
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "certified_public_initial_draw_prefix",
+        "acceptedPosteriorDraws": 2,
+        "proposalAttempts": 10,
+        "allocatedWorlds": 16,
+        "settledWorlds": 16,
+        "seconds": 16.799381,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "exact_proposal_density_correction_rejected": 2,
+          "public_constraint_mismatch": 6,
+          "accepted": 2
+        },
+        "rejection_causes": {
+          "exact_proposal_density_correction_rejected": 2,
+          "Native act differs from the observed opening roster": 6,
+          "accepted": 2
+        },
+        "terminal_statuses": {
+          "Win": 16
+        },
+        "public_startup_diagnostics": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": true,
+            "hpTargets": 1,
+            "shuffleReason": null,
+            "hpReason": null
+          }
+        ]
+      },
+      {
+        "sourceDrawSeed": 11002,
+        "recipe": {
+          "runSeed": 359042659159769668,
+          "tapeSeed": 8236859120578255591,
+          "proposalSeed": 12826995029369825269,
+          "combatIndex": 0,
+          "decisionIndex": 7
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "uninterrupted_initial_draw_history_required",
+        "acceptedPosteriorDraws": 0,
+        "proposalAttempts": 128,
+        "allocatedWorlds": 10,
+        "settledWorlds": 0,
+        "seconds": 157.4824846,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "component_budget_exhausted": 48,
+          "public_constraint_mismatch": 80
+        },
+        "rejection_causes": {
+          "Native initial_prefix component exhausted its complete-trial budget": 48,
+          "Published run evidence differs at event 48 (combat_fact:CardDrawn)": 12,
+          "Native act differs from the observed opening roster": 43,
+          "Published run evidence differs at event 26 (combat_fact:IntentPublished)": 22,
+          "Published run evidence differs at event 50 (combat_fact:CardDrawn)": 1,
+          "Published run evidence differs at event 49 (combat_fact:CardDrawn)": 1,
+          "Published run evidence differs at event 51 (combat_fact:CardDrawn)": 1
+        },
+        "terminal_statuses": {
+          "ComputeTruncated": 10
+        },
+        "public_startup_diagnostics": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": true,
+            "hpTargets": 2,
+            "shuffleReason": null,
+            "hpReason": null
+          }
+        ]
+      },
+      {
+        "sourceDrawSeed": 11003,
+        "recipe": {
+          "runSeed": 13669140442968424232,
+          "tapeSeed": 2107739589254101537,
+          "proposalSeed": 5171803456263415760,
+          "combatIndex": 0,
+          "decisionIndex": 4
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "uninterrupted_initial_draw_history_required",
+        "acceptedPosteriorDraws": 0,
+        "proposalAttempts": 128,
+        "allocatedWorlds": 16,
+        "settledWorlds": 0,
+        "seconds": 172.2264046,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 63,
+          "component_budget_exhausted": 65
+        },
+        "rejection_causes": {
+          "Published run evidence differs at event 22 (combat_fact:IntentPublished)": 17,
+          "Native initial_prefix component exhausted its complete-trial budget": 65,
+          "Native act differs from the observed opening roster": 35,
+          "Published run evidence differs at event 45 (combat_fact:CardDrawn)": 10,
+          "Published run evidence differs at event 46 (combat_fact:CardDrawn)": 1
+        },
+        "terminal_statuses": {
+          "ComputeTruncated": 16
+        },
+        "public_startup_diagnostics": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": true,
+            "hpTargets": 2,
+            "shuffleReason": null,
+            "hpReason": null
+          }
+        ]
+      },
+      {
+        "sourceDrawSeed": 11004,
+        "recipe": {
+          "runSeed": 8076967941473750961,
+          "tapeSeed": 13310377264619595299,
+          "proposalSeed": 11221649035463315405,
+          "combatIndex": 2,
+          "decisionIndex": 6
+        },
+        "status": "existing_root_evaluated",
+        "usesConditionalShuffle": false,
+        "usesConditionalHp": false,
+        "usesConditionalNeow": true,
+        "usesConditionalFirstReward": false,
+        "usesConditionalFirstEncounter": false,
+        "usesConditionalInitialPrefix": true,
+        "conditioningReason": "initial_shuffle_card_reordering_not_certified",
+        "acceptedPosteriorDraws": 0,
+        "proposalAttempts": 11,
+        "allocatedWorlds": 14,
+        "settledWorlds": 0,
+        "seconds": 13.5548881,
+        "public_input_unchanged": true,
+        "proposal_statuses": {
+          "component_budget_exhausted": 4,
+          "public_constraint_mismatch": 6,
+          "computation_cancelled": 1
+        },
+        "rejection_causes": {
+          "Native initial_prefix component exhausted its complete-trial budget": 4,
+          "Native act differs from the observed opening roster": 5,
+          "Published run evidence differs at event 13 (combat_fact:CardDrawn)": 1,
+          "OperationCanceledException: The operation was canceled.": 1
+        },
+        "terminal_statuses": {
+          "ComputeTruncated": 14
+        },
+        "public_startup_diagnostics": [
+          {
+            "combatIndex": 0,
+            "shuffleEligible": false,
+            "hpTargets": 0,
+            "shuffleReason": "entry_hook_not_certified:LavaRock.ModifyRewards",
+            "hpReason": "entry_hook_not_certified:LavaRock.ModifyRewards"
+          },
+          {
+            "combatIndex": 1,
+            "shuffleEligible": false,
+            "hpTargets": 0,
+            "shuffleReason": "initial_shuffle_card_reordering_not_certified",
+            "hpReason": "initial_shuffle_card_reordering_not_certified"
+          },
+          {
+            "combatIndex": 2,
+            "shuffleEligible": false,
+            "hpTargets": 0,
+            "shuffleReason": "initial_shuffle_card_reordering_not_certified",
+            "hpReason": "initial_shuffle_card_reordering_not_certified"
+          }
+        ]
+      },
+      {
+        "sourceDrawSeed": 11005,
+        "recipe": {
+          "runSeed": 8828569053132642135,
+          "tapeSeed": 11742149149862170653,
+          "proposalSeed": 17957384049193286860,
+          "combatIndex": 0,
+          "decisionIndex": 2
+        },
+        "status": "not_executed_computation_cancelled",
+        "seconds": 0
+      },
+      {
+        "sourceDrawSeed": 11006,
+        "recipe": {
+          "runSeed": 16384621433409447625,
+          "tapeSeed": 6734181621440024958,
+          "proposalSeed": 13855802291457293684,
+          "combatIndex": 1,
+          "decisionIndex": 6
+        },
+        "status": "not_executed_computation_cancelled",
+        "seconds": 0
+      },
+      {
+        "sourceDrawSeed": 11007,
+        "recipe": {
+          "runSeed": 10222183416343435034,
+          "tapeSeed": 12727597898765872253,
+          "proposalSeed": 10651958784376862030,
+          "combatIndex": 2,
+          "decisionIndex": 3
+        },
+        "status": "not_executed_computation_cancelled",
+        "seconds": 0
+      },
+      {
+        "sourceDrawSeed": 11008,
+        "recipe": {
+          "runSeed": 9876807377608938154,
+          "tapeSeed": 11688964905070267849,
+          "proposalSeed": 7130715396133987344,
+          "combatIndex": 0,
+          "decisionIndex": 0
+        },
+        "status": "not_executed_computation_cancelled",
+        "seconds": 0
+      }
+    ],
+    "prefix_completed_trials": 11990,
+    "prefix_callback_word_draws": 3341089,
+    "gate_passed": false,
+    "coverage_incomplete_due_to_declared_wall_cap": true,
+    "predeclaration": {
+      "path": "artifacts/reports/hybrid-v4/reused-eight-predeclaration.json",
+      "bytes": 1525,
+      "sha256": "c259d346000d4e14c75167b51a59af31ba1c9eb94502d16db0025bfb9951569b"
+    },
+    "request": {
+      "path": "artifacts/reports/hybrid-v4/reused-eight-request.jsonl",
+      "bytes": 836,
+      "sha256": "02d320633f8e6e94b8172afa608cf6c6669c5071c0e568ff20c538d8692790b0"
+    },
+    "response": {
+      "path": "artifacts/reports/hybrid-v4/reused-eight-response.jsonl",
+      "bytes": 1771997,
+      "sha256": "d7356adee943161edc03141197e5fa19fa9698a59b427d85c47096b64db7dcef"
+    },
+    "resources": {
+      "path": "artifacts/reports/hybrid-v4/reused-eight-resources.json",
+      "bytes": 149,
+      "sha256": "df5981575b35eb0be15988ed89280ba0e4bf5d02fd108f91f4697ce8474383a5"
+    },
+    "timing_note": "The aggregate test process overlapped the beginning of this bounded diagnostic. These are actual resource measurements, not an isolated production-throughput benchmark."
+  },
+  "three_opening_v2_diagnostic": {
+    "source_draw_seeds": [
+      11001,
+      11003,
+      11008
+    ],
+    "accepted_worlds": 3,
+    "allocated_candidate_worlds": 46,
+    "settled_candidate_worlds": 23,
+    "seconds": 26.8129494,
+    "engine_errors": 0,
+    "role": "Reused targeted repair evidence; no fresh breadth or new data count",
+    "response": {
+      "path": "artifacts/reports/hybrid-v4/hybrid-reused-opening-v2-response.jsonl",
+      "bytes": 867752,
+      "sha256": "ff119c5721c2c8182e42cd35630188b7a451245d876ca03870cb972878676908"
+    }
+  },
+  "boundaries": [
+    "All roots, failed proposals, cancellation and unexecuted source entries retained; no success quota",
+    "Conditional fixed-attempt law does not prove deadline-censored worlds or retained-source populations unbiased",
+    "Records remain quarantined; no new training, model promotion, old corpus modification or sealed494test decoding",
+    "All simulator changes are local vendored hooks; no remote simulator writes"
+  ],
+  "remaining_measured_work": [
+    "Map matching still retains incidental native option enumeration; audit a separately versioned coordinate-canonical observation channel",
+    "Initial slug intent and later first-cycle draw history remain unconditioned",
+    "Explicit public startup certificate still rejects LavaRock reward-only hooks and Sharp enchantments; add justified support",
+    "Repeat bounded diagnostic after causal repairs, then predeclare fresh development roots before any production-scale gate",
+    "M3 resource calibration and partial supervision remain separate from sampler correctness"
+  ]
+}

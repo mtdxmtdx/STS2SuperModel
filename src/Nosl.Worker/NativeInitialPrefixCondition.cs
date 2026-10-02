@@ -17,17 +17,22 @@ internal sealed class NativeInitialPrefixCondition
     private const string FailureRunSeedDrawsKey = "nosl.initial-prefix.run-seed-draws";
     internal static int FailureRunSeedDraws(Exception exception) =>
         exception.Data[FailureRunSeedDrawsKey] is int count ? count : 0;
-    internal Type TargetActType { get; }
+    internal Type? TargetActType { get; }
     internal NativeMapTravelCondition? MapTravel { get; }
+    internal NativePublicInitialMapCondition? PublicMap { get; }
     internal int TargetEntryHp { get; }
     internal bool HasFreeTravel { get; }
     private NativeInitialPrefixCondition(Type actType, NativeMapTravelCondition? mapTravel, int hp, bool freeTravel)
     { TargetActType = actType; MapTravel = mapTravel; TargetEntryHp = hp; HasFreeTravel = freeTravel; }
+    private NativeInitialPrefixCondition(NativePublicInitialMapCondition publicMap)
+    { PublicMap = publicMap; HasFreeTravel = publicMap.HasFreeTravel; }
 
     internal static bool TryCreate(DecisionPacket root, NativeTapePrior prior,
         out NativeInitialPrefixCondition? condition, out string? reason)
     {
         condition = null;
+        if (NativePublicInitialMapCondition.TryCreate(root.PublicEvidence, prior, out var publicMap, out reason))
+        { condition = new(publicMap!); return true; }
         if (!NativeActSelectionCondition.TryCreate(root, prior, out var act, out reason)) return false;
         if (!NativeFirstRewardCondition.TryCreate(root, prior, out var reward, out reason)) return false;
         NativeMapTravelCondition.TryCreate(root, prior, out var map, out _);
@@ -36,6 +41,7 @@ internal sealed class NativeInitialPrefixCondition
 
     internal bool MatchesMap(ActMap map)
     {
+        if (PublicMap is not null) return PublicMap.MatchesMap(map);
         var (_, second) = NativeSourceMapChoice.FirstTwoChoices(map, TargetEntryHp, 70, HasFreeTravel);
         // At the certified floor/index, only a Monster point or an Unknown
         // resolving natively to Monster can supply normal encounter slot one.
@@ -76,11 +82,12 @@ internal sealed class NativeInitialPrefixCondition
                     throw new InvalidOperationException("Reviewed native initial act pool changed");
                 // A wrong act proves this full prefix cannot match. Unread map
                 // cells integrate out; no act object or constructor is forced.
-                if (acts[0].GetType() != TargetActType) return new PrefixTrial(selected, false);
+                if (TargetActType is not null && acts[0].GetType() != TargetActType)
+                    return new PrefixTrial(selected, acts[0].GetType(), false);
                 var runRng = new RunRngSet(selected.IndependentRunSeed);
                 var mapRng = StandardActMap.CreateRng(runRng.Seed, 0);
                 var map = StandardActMap.CreateFor(acts[0], mapRng, new AscensionManager(10), hasSecondBoss: false);
-                return new PrefixTrial(selected, MatchesMap(map));
+                return new PrefixTrial(selected, acts[0].GetType(), MatchesMap(map));
             }, nextWord, cancellationToken);
         }
         try
@@ -89,7 +96,7 @@ internal sealed class NativeInitialPrefixCondition
                 candidate => candidate.Match, cancellationToken);
             if (result.Trace.Count <= NativeInitialPrefixProposal.MapTraceOffset)
                 throw new InvalidOperationException("Selected initial prefix omitted native map generation");
-            return new(auxiliaryRecipe, result.Value.Recipe, TargetActType, MapTravel is not null,
+            return new(auxiliaryRecipe, result.Value.Recipe, result.Value.ActType, MapTravel is not null,
                 result.Trace, result.Stats, maxTrials);
         }
         catch (Exception exception)
@@ -99,7 +106,7 @@ internal sealed class NativeInitialPrefixCondition
         }
     }
 
-    private sealed record PrefixTrial(NativeTapeRecipe Recipe, bool Match);
+    private sealed record PrefixTrial(NativeTapeRecipe Recipe, Type ActType, bool Match);
 }
 
 /// <summary>

@@ -13,7 +13,18 @@ internal sealed record NativeTapeProposalAudit(int SampleCall, int Attempt, Nati
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] int? RewardsTapeCells = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] int? ConditionedPublicRewardCards = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicRewardLikelihood = null,
-    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicRewardEnvelope = null);
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicRewardEnvelope = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] int? ConditionedNeowCards = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? NeowCardLikelihood = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? NeowCardEnvelope = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] int? ConditionedResourcePresence = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] int? ConditionedResourceGold = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] int? ConditionedResourcePotions = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicResourceLikelihood = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? PublicResourceEnvelope = null);
+
+internal sealed record NativePublicCombatConditionAudit(int CombatIndex, bool ShuffleEligible, int HpTargets,
+    string? ShuffleReason, string? HpReason);
 
 /// <summary>Public-only conditional sampling under the explicit ideal tape prior.</summary>
 internal sealed class NativeTapeReplaySource : ITeacherSource
@@ -25,10 +36,13 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
     private readonly NativeInitialShuffleCondition? _condition;
     private readonly NativeInitialHpCondition? _hpCondition;
     private readonly NativeNeowCondition? _neowCondition;
+    private readonly NativeNeowCardCondition? _neowCardCondition;
     private readonly NativeFirstRewardCondition? _firstRewardCondition;
     private readonly NativeFirstEncounterCondition? _firstEncounterCondition;
+    private readonly NativePublicOpeningEncounterCondition? _publicOpeningEncounterCondition;
     private readonly NativeInitialPrefixCondition? _initialPrefixCondition;
     private readonly NativePublicRewardCondition? _publicRewardCondition;
+    private readonly NativePublicRewardResourceCondition? _publicResourceCondition;
     private readonly NativePublicCombatPrefixCondition? _publicCombatCondition;
     private readonly PublicRunEvidence? _expectedPublicEvidence;
     private readonly int _initialPrefixMaxTrials;
@@ -90,9 +104,18 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
             _hpCondition = hpCondition;
         if (enableConditioning && NativeNeowCondition.TryCreate(root, _prior, out var neowCondition, out _))
             _neowCondition = neowCondition;
+        if (enableConditioning && _prior.UsesRewardsProvenance)
+        {
+            NaturalSourceCollector.InitializeNativeModels();
+            if (NativeNeowCardCondition.TryCreate(root, _prior, out var neowCards, out _)) _neowCardCondition = neowCards;
+        }
         if (enableConditioning && !_prior.UsesRewardsProvenance && NativeFirstRewardCondition.TryCreate(root, _prior, out var firstRewardCondition, out _))
             _firstRewardCondition = firstRewardCondition;
-        if (enableConditioning && NativeFirstEncounterCondition.TryCreate(root, _prior, out var firstEncounterCondition, out _))
+        if (enableConditioning && _prior.UsesRewardsProvenance
+            && NativePublicOpeningEncounterCondition.TryCreate(root, _prior, out var openingEncounter, out _))
+            _publicOpeningEncounterCondition = openingEncounter;
+        if (enableConditioning && _publicOpeningEncounterCondition is null
+            && NativeFirstEncounterCondition.TryCreate(root, _prior, out var firstEncounterCondition, out _))
             _firstEncounterCondition = firstEncounterCondition;
         if (enableConditioning && NativeInitialPrefixCondition.TryCreate(root, _prior, out var initialPrefixCondition, out _))
             _initialPrefixCondition = initialPrefixCondition;
@@ -100,11 +123,17 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
         {
             NaturalSourceCollector.InitializeNativeModels();
             var publicRewards = NativePublicRewardCondition.Create(evidence);
-            if (publicRewards.Targets.Count > 0) _publicRewardCondition = publicRewards;
+            if (publicRewards.Targets.Count > 0)
+            {
+                _publicRewardCondition = publicRewards;
+                _publicResourceCondition = NativePublicRewardResourceCondition.Create(evidence, publicRewards);
+            }
         }
         if (enableConditioning && _prior.UsesRewardsProvenance && root.PublicEvidence is not null)
         {
             var combats = NativePublicCombatPrefixCondition.Create(root);
+            PublicCombatDiagnostics = combats.Combats.Values.Select(input => new NativePublicCombatConditionAudit(
+                input.CombatIndex, input.Shuffle is not null, input.HpCount, input.ShuffleReason, input.HpReason)).ToArray();
             if (combats.EligibleShuffleCount > 0)
             {
                 _publicCombatCondition = combats;
@@ -119,7 +148,7 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
     public int StartMaxHp { get; }
     public string?[] StartPotions => _potions.ToArray();
     public DecisionPacket Observe() => PublicJson.Read<DecisionPacket>(_serializedRoot);
-    public string PosteriorProfile => _prior.UsesRewardsProvenance ? "owned-native-rewards-state-tape-conditional-v1-public-evidence-v1"
+    public string PosteriorProfile => _prior.UsesRewardsProvenance ? "owned-native-rewards-state-tape-conditional-v4-public-evidence-v1"
         : _prior.Execution.EmitsPublicEvidence ? Profile + "-public-evidence-v1" : Profile;
     public string PriorWarning => _prior.UsesRewardsProvenance
         ? "Separate hybrid ideal oracle: player Rewards use shared origin/initial-seed/raw-cursor cells, independent of all other native full-state cells. Exact clones, source-partition restores and same-lineage recreation retain sharing. Cross-partition and Rewards orbit-offset coincidences no longer share words. SHA256 is a reproducible ideal-oracle implementation, not exact finite-seed inference. Full recorded public evidence is conditioned; primary card identity proposals retain exact latent-rarity likelihood and a fixed-root catalog envelope. Other mechanisms retain native replay; errors and budgets remain unresolved."
@@ -128,15 +157,19 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
     internal bool UsesConditionalShuffle => _condition is not null;
     internal bool UsesConditionalHp => _hpCondition is not null;
     internal bool UsesConditionalNeow => _neowCondition is not null;
+    internal bool UsesConditionalNeowCards => _neowCardCondition is not null;
     internal bool UsesConditionalFirstReward => _firstRewardCondition is not null;
     internal bool UsesConditionalFirstEncounter => _firstEncounterCondition is not null;
+    internal bool UsesConditionalPublicOpeningEncounter => _publicOpeningEncounterCondition is not null;
     internal bool UsesConditionalInitialPrefix => _initialPrefixCondition is not null;
     internal bool UsesConditionalPublicRewards => _publicRewardCondition is not null;
+    internal bool UsesConditionalPublicResources => _publicResourceCondition is not null;
     internal int PublicRewardTargetCount => _publicRewardCondition?.Targets.Count ?? 0;
     internal bool UsesConditionalPublicCombats => _publicCombatCondition is not null;
     internal int PublicCombatShuffleTargets => _publicCombatCondition?.EligibleShuffleCount ?? 0;
     internal int PublicCombatHpTargets => _publicCombatCondition?.EligibleHpCount ?? 0;
-    internal bool UsesPrimitiveConditioning => UsesConditionalShuffle || UsesConditionalHp || UsesConditionalNeow || UsesConditionalFirstReward || UsesConditionalFirstEncounter || UsesConditionalInitialPrefix || UsesConditionalPublicRewards || UsesConditionalPublicCombats;
+    internal NativePublicCombatConditionAudit[] PublicCombatDiagnostics { get; } = [];
+    internal bool UsesPrimitiveConditioning => UsesConditionalShuffle || UsesConditionalHp || UsesConditionalNeow || UsesConditionalFirstReward || UsesConditionalFirstEncounter || UsesConditionalInitialPrefix || UsesConditionalPublicRewards || UsesConditionalPublicCombats || UsesConditionalPublicOpeningEncounter || UsesConditionalNeowCards;
     internal int ConditionedPublicDecisionIndex => _publicDecisionIndex;
     internal int? ConditionedPublicCombatIndex => _publicCombatIndex;
     internal NativeTapeRecipe DrawConditionedRecipe(Rng random)
@@ -150,7 +183,7 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
             CombatIndex = _publicCombatIndex ?? recipe.CombatIndex };
     }
     private string ProposalDescription => !UsesPrimitiveConditioning ? "plain_tape_rejection"
-        : "conditional:" + string.Join("+", new[] { UsesConditionalNeow ? "neow" : null, UsesConditionalFirstReward ? "first_reward" : null, UsesConditionalFirstEncounter ? "first_encounters" : null, UsesConditionalInitialPrefix ? "joint_initial_prefix" : null, UsesConditionalPublicRewards ? "public_reward_identities" : null, UsesConditionalPublicCombats ? "public_combat_startups" : null,
+        : "conditional:" + string.Join("+", new[] { UsesConditionalNeow ? "neow" : null, UsesConditionalNeowCards ? "neow_cards" : null, UsesConditionalFirstReward ? "first_reward" : null, UsesConditionalFirstEncounter ? "first_encounters" : null, UsesConditionalPublicOpeningEncounter ? "public_opening_encounter" : null, UsesConditionalInitialPrefix ? "joint_initial_prefix" : null, UsesConditionalPublicRewards ? "public_reward_identities" : null, UsesConditionalPublicResources ? "public_reward_resources" : null, UsesConditionalPublicCombats ? "public_combat_startups" : null,
             UsesConditionalHp ? "initial_hp" : null, UsesConditionalShuffle ? "initial_shuffle" : null }.OfType<string>());
     internal string ConditioningReason { get; }
     internal NativeTapeProposalAudit[] ProposalAudit => _attempts.ToArray();
@@ -178,9 +211,9 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
             var tape = NativeLabelTape.ForDeclaredPrior(_prior, recipe, _condition, expectedEntryJson: _entryJson,
                 hpCondition: _hpCondition, neowCondition: _neowCondition, firstRewardCondition: _firstRewardCondition, firstEncounterCondition: _firstEncounterCondition,
                 publicRewardCondition: _publicRewardCondition, publicCombatCondition: _publicCombatCondition,
-                expectedPublicEvidence: _expectedPublicEvidence);
+                expectedPublicEvidence: _expectedPublicEvidence, publicOpeningEncounterCondition: _publicOpeningEncounterCondition, neowCardCondition: _neowCardCondition, publicResourceCondition: _publicResourceCondition);
             var timer = Stopwatch.StartNew();
-            NativeRunWorld? world = null; bool accepted = false; Exception? operationFailure = null;
+            NativeRunWorld? world = null; bool accepted = false, preparingPrefix = false; Exception? operationFailure = null;
             void Audit(string status, string? detail = null) => _attempts.Add(new(call, attempt, recipe, status,
                 ProposalDescription, tape.DistinctCells, tape.ConditionedCells, timer.Elapsed.TotalSeconds, detail,
                 tape.ConditionedHpCount, tape.NeowConditionApplied, tape.FirstRewardConditionApplied, tape.ProposedFirstEncounterIndex,
@@ -189,12 +222,19 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
                 prefixPlan is null ? null : NativeInitialPrefixProposal.CorrectionClaim, prefixRunSeeds,
                 _prior.UsesRewardsProvenance ? tape.RewardsCells : null,
                 _prior.UsesRewardsProvenance ? tape.ConditionedPublicRewardCards : null,
-                Fraction(tape.PublicRewardRatio), Fraction(tape.PublicRewardEnvelope)));
+                Fraction(tape.PublicRewardRatio), Fraction(tape.PublicRewardEnvelope),
+                _prior.UsesRewardsProvenance ? tape.ConditionedNeowCards : null, Fraction(tape.NeowCardRatio), Fraction(tape.NeowCardEnvelope),
+                _prior.UsesRewardsProvenance ? tape.ConditionedResourcePresence : null,
+                _prior.UsesRewardsProvenance ? tape.ConditionedResourceGold : null,
+                _prior.UsesRewardsProvenance ? tape.ConditionedResourcePotions : null,
+                Fraction(tape.PublicResourceRatio), Fraction(tape.PublicResourceEnvelope)));
             try
             {
                 if (_initialPrefixCondition is not null)
                 {
+                    preparingPrefix = true;
                     prefixPlan = _initialPrefixCondition.Prepare(auxiliaryRecipe, _initialPrefixMaxTrials, _cancellation);
+                    preparingPrefix = false;
                     prefixStats = prefixPlan.Stats;
                     prefixRunSeeds = prefixPlan.RunSeedDraws;
                     recipe = prefixPlan.SelectedRecipe;
@@ -202,7 +242,7 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
                         hpCondition: _hpCondition, neowCondition: _neowCondition,
                         firstRewardCondition: _firstRewardCondition, firstEncounterCondition: _firstEncounterCondition,
                         initialPrefixPlan: prefixPlan, publicRewardCondition: _publicRewardCondition, publicCombatCondition: _publicCombatCondition,
-                        expectedPublicEvidence: _expectedPublicEvidence);
+                        expectedPublicEvidence: _expectedPublicEvidence, publicOpeningEncounterCondition: _publicOpeningEncounterCondition, neowCardCondition: _neowCardCondition, publicResourceCondition: _publicResourceCondition);
                 }
                 world = await NativeRunWorld.OpenLabelTapeAsync(_prior.Execution, recipe, tape, _cancellation);
                 if (world is null) Audit("absent_under_declared_source_horizon");
@@ -221,6 +261,17 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
                 prefixStats = exception.Stats;
                 prefixRunSeeds = NativeInitialPrefixCondition.FailureRunSeedDraws(exception);
                 Audit("component_budget_exhausted", exception.Message);
+                // A fixed-K whole fresh-prefix draw has an explicit null outcome
+                // when every complete trial misses its root-only public predicate.
+                // Retrying a complete independent outer recipe consumes this
+                // attempt; its root-constant successful subdensity is unchanged.
+                // This deliberately does not make arbitrary component errors or
+                // partial/canceled trials retryable, and preserves legacy v7.
+                if (_prior.UsesRewardsProvenance && preparingPrefix && prefixPlan is null && world is null
+                    && _initialPrefixCondition is not null && exception.Component == "initial_prefix"
+                    && exception.Stats.CompletedTrials == _initialPrefixMaxTrials
+                    && prefixRunSeeds == _initialPrefixMaxTrials)
+                    continue;
                 var inconclusive = new PosteriorSamplingException(attempt);
                 inconclusive.Data["component"] = exception.Component;
                 inconclusive.Data["component_complete_trials"] = exception.Stats.CompletedTrials;
@@ -253,7 +304,12 @@ internal sealed class NativeTapeReplaySource : ITeacherSource
                             prefixPlan is null ? null : NativeInitialPrefixProposal.CorrectionClaim, prefixRunSeeds,
                             _prior.UsesRewardsProvenance ? tape.RewardsCells : null,
                             _prior.UsesRewardsProvenance ? tape.ConditionedPublicRewardCards : null,
-                            Fraction(tape.PublicRewardRatio), Fraction(tape.PublicRewardEnvelope));
+                            Fraction(tape.PublicRewardRatio), Fraction(tape.PublicRewardEnvelope),
+                _prior.UsesRewardsProvenance ? tape.ConditionedNeowCards : null, Fraction(tape.NeowCardRatio), Fraction(tape.NeowCardEnvelope),
+                _prior.UsesRewardsProvenance ? tape.ConditionedResourcePresence : null,
+                _prior.UsesRewardsProvenance ? tape.ConditionedResourceGold : null,
+                _prior.UsesRewardsProvenance ? tape.ConditionedResourcePotions : null,
+                Fraction(tape.PublicResourceRatio), Fraction(tape.PublicResourceEnvelope));
                         if (index < 0) _attempts.Add(failed); else _attempts[index] = failed;
                         if (operationFailure is not null)
                             throw new AggregateException("Tape proposal and cleanup failed", operationFailure, exception);

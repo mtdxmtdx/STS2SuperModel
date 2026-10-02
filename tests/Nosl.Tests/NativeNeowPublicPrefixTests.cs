@@ -91,6 +91,7 @@ public sealed class NativeNeowPublicPrefixTests
             Assert.True(NativeNeowCondition.TryCreate(root, prior, out var condition, out var reason), reason);
             Assert.Equal([nameof(PreciseScissors), nameof(PhialHolster)], condition!.PositivePrefixIds);
             Assert.Equal(nameof(PreciseScissors), condition.TargetRelicId);
+            Assert.Equal(nameof(LeafyPoultice), condition.ObservedCurseId);
         }
         var laterGap = Evidence("later_gap");
         Assert.False(laterGap.CompleteFromRunStart);
@@ -142,6 +143,7 @@ public sealed class NativeNeowPublicPrefixTests
             () => ulong.MaxValue)!;
         foreach (var condition in new[] { absent!, present, fallback! })
         {
+            Assert.Null(condition.ObservedCurseId);
             var proposal = condition.CreateProposal(pool, () => ulong.MaxValue);
             Assert.Equal(original.RawWords, proposal.Plan.RawWords);
             Assert.Equal(original.PhysicalPermutation, proposal.Plan.PhysicalPermutation);
@@ -332,6 +334,208 @@ public sealed class NativeNeowPublicPrefixTests
         // A lifecycle fixture with the original state recipe proves replay and
         // public equality, not an independently sampled posterior acceptance rate.
     }
+
+    [Theory]
+    [InlineData(nameof(WingedBoots), nameof(ScrollBoxes))]
+    [InlineData(nameof(LavaRock), nameof(StoneHumidifier))]
+    [InlineData(nameof(SmallCapsule), nameof(NeowsTalisman))]
+    [InlineData(nameof(NutritiousOyster), nameof(Pomander))]
+    public async Task NativeOpeningConditionsCurseAndOnlyRequiredCoins(string first, string second)
+    {
+        NaturalSourceCollector.InitializeNativeModels();
+        Type[] curses = NativeCurses();
+        string[][] pairs = [[nameof(LavaRock), nameof(SmallCapsule)],
+            [nameof(NutritiousOyster), nameof(StoneHumidifier)], [nameof(NeowsTalisman), nameof(Pomander)]];
+        foreach (Type curse in curses)
+            for (int booleans = 0; booleans < 8; booleans++)
+            {
+                Assert.True(NativeNeowCondition.TryCreate(Root(Evidence(first: first, second: second, curse: curse.Name)),
+                    Hybrid, out var condition, out _));
+                if (curse == typeof(LargeCapsule) && pairs[0].Any(p => p == first || p == second))
+                {
+                    Assert.Throws<NativePublicConstraintMismatchException>(() => condition!.CreateOpeningProposal(curses, () => ulong.MaxValue));
+                    continue;
+                }
+                var run = new RunState("neow-observed-opening", ascensionLevel: 10);
+                run.AddPlayer(Player.CreateForNewRun(ModelDb.Character<Silent>(), run));
+                _ = run.CurrentAncientEventType;
+                var room = new EventRoom(() => (Neow)ModelDb.Event<Neow>().MutableClone());
+                run.PushRoom(room);
+                NativeNeowOpeningProposal? opening = null;
+                NativeNeowProposal? shuffle = null;
+                int rolls = 0, forced = 0, untouched = 0;
+                var before = new Rng(0);
+                using (LabelRandomScope.Enter(_ => throw new InvalidOperationException("Opening draw escaped its native boundary"),
+                    beginNeowInitialOptions: context =>
+                    {
+                        Assert.Same(room.Event, context.Neow); Assert.Same(room.Event.Rng, context.Rng);
+                        Assert.Equal(curses, context.AllowedCurses);
+                        opening = condition!.CreateOpeningProposal(context.AllowedCurses, () => ulong.MaxValue);
+                        before = context.Rng.CloneExact();
+                        return LabelRandomScope.Enter(_ =>
+                        {
+                            int ordinal = rolls++;
+                            if (opening.RawWords[ordinal] is { } word) { forced++; return word; }
+                            untouched++;
+                            return ((booleans >> (ordinal - 1)) & 1) == 0 ? 0UL : ulong.MaxValue;
+                        });
+                    }, beginShuffle: (rng, items) =>
+                    {
+                        Assert.NotNull(opening);
+                        Type[] pool = items.Cast<Type>().ToArray();
+                        int coin = 1;
+                        for (int pairIndex = 0; pairIndex < 3; pairIndex++)
+                        {
+                            if (pairIndex == 0 && curse == typeof(LargeCapsule)) continue;
+                            string[] pair = pairs[pairIndex];
+                            string? required = pair.SingleOrDefault(p => p == first || p == second);
+                            string expected = required ?? pair[(booleans >> (coin - 1)) & 1];
+                            Assert.Contains(pool, type => type.Name == expected);
+                            Assert.Equal(required is not null, opening.RawWords[coin++].HasValue);
+                        }
+                        Assert.Equal(coin, rolls);
+                        for (int i = 0; i < rolls; i++) before.NextUnsignedLong();
+                        Assert.Equal(PublicJson.Serialize(before.ToSerializable()), PublicJson.Serialize(rng.ToSerializable()));
+                        shuffle = condition!.CreateProposal(pool, () => ulong.MaxValue, opening);
+                        int ordinal = 0;
+                        return LabelRandomScope.Enter(_ => shuffle.Plan.RawWords[ordinal++]);
+                    }))
+                    await room.Enter(run);
+                Assert.Equal([first, second, curse.Name], room.Event.CurrentOptions.Select(option => option.Key));
+                int requiredCoins = pairs.Count(pair => pair.Any(p => p == first || p == second));
+                Assert.Equal(1 + requiredCoins, forced);
+                Assert.Equal((curse == typeof(LargeCapsule) ? 2 : 3) - requiredCoins, untouched);
+                var curseBucket = ConditionalShuffleProposal.Factor(10, Array.IndexOf(curses, curse));
+                var ratio = new ShuffleRational(curseBucket.BucketSize, 1UL << 53).Multiply(1, 1 << requiredCoins);
+                Assert.Equal(ratio, opening!.NativeToProposalRatio);
+                Assert.Equal(shuffle!.Plan.NativeToProposalRatio.Multiply(ratio.Numerator, ratio.Denominator), shuffle.NativeToProposalRatio);
+                Assert.Equal(NativeNeowCondition.MaximumEnvelope([14, 15, 16], prefixLength: 2)
+                    .Multiply(ratio.Numerator, ratio.Denominator), shuffle.RootEnvelope);
+                await room.Exit(run); run.PopCurrentRoom();
+            }
+    }
+
+    [Fact]
+    public void ImpossiblePublicOpeningRejectsAndNativeCursePoolDriftIsAnError()
+    {
+        foreach (var pair in new[] { (nameof(LavaRock), nameof(SmallCapsule)),
+            (nameof(NutritiousOyster), nameof(StoneHumidifier)), (nameof(NeowsTalisman), nameof(Pomander)) })
+        {
+            Assert.True(NativeNeowCondition.TryCreate(Root(Evidence(first: pair.Item1, second: pair.Item2)), Hybrid, out var impossible, out _));
+            Assert.Throws<NativePublicConstraintMismatchException>(() => impossible!.CreateOpeningProposal(NativeCurses(), () => ulong.MaxValue));
+        }
+        Assert.True(NativeNeowCondition.TryCreate(Root(Evidence()), Hybrid, out var condition, out _));
+        Assert.Throws<InvalidOperationException>(() => condition!.CreateOpeningProposal(NativeCurses().Reverse().ToArray(), () => ulong.MaxValue));
+        Assert.Throws<InvalidOperationException>(() => condition!.CreateOpeningProposal(NativeCurses().Skip(1).ToArray(), () => ulong.MaxValue));
+        var recipe = Hybrid.Draw(new Rng(9001));
+        Assert.Throws<ArgumentException>(() => new NativeLabelTape(recipe, neowCondition: condition));
+        var unentered = NativeLabelTape.ForDeclaredPrior(Hybrid, recipe, neowCondition: condition);
+        Assert.Throws<InvalidOperationException>(() => unentered.ValidateProposalCompletion());
+    }
+
+    [Theory]
+    [InlineData(0, true)]
+    [InlineData(1, false)]
+    [InlineData(3, true)]
+    public async Task OpeningForcedAliasesFailWhileUnrequiredCoinAliasesKeepTheirOracleCell(int visitedDraw, bool fails)
+    {
+        NaturalSourceCollector.InitializeNativeModels();
+        Assert.True(NativeNeowCondition.TryCreate(Root(Evidence(second: nameof(NeowsTalisman), curse: nameof(SilkenTress))),
+            Hybrid, out var condition, out _));
+        var recipe = Hybrid.Draw(new Rng(9001, "nosl-native-tape-source-draw-v1")) with { CombatIndex = 0, DecisionIndex = 0 };
+        var tape = NativeLabelTape.ForDeclaredPrior(Hybrid, recipe, neowCondition: condition);
+        var earlier = new Rng(new RunRngSet(recipe.IndependentRunSeed).Seed, ModelDb.Event<Neow>().Id.Entry);
+        for (int i = 0; i < visitedDraw; i++) earlier.NextUnsignedLong();
+        using (tape.EnterScope()) earlier.NextUnsignedLong();
+        if (fails)
+        {
+            var error = await Assert.ThrowsAsync<InvalidOperationException>(() => NativeRunWorld.OpenLabelTapeAsync(Hybrid.Execution, recipe, tape));
+            Assert.Contains("Neow opening revisited an earlier tape cell", error.Message);
+        }
+        else
+        {
+            await using var world = await NativeRunWorld.OpenLabelTapeAsync(Hybrid.Execution, recipe, tape);
+            Assert.NotNull(world); tape.ValidateProposalCompletion();
+            var options = Assert.IsType<PublicOptionsObserved>(world.Observe().PublicEvidence!.Events[2].Payload);
+            Assert.Equal([nameof(WingedBoots), nameof(NeowsTalisman), nameof(SilkenTress)], options.Options.Select(o => o.Key));
+        }
+    }
+
+    [Theory]
+    [InlineData(0, false)]
+    [InlineData(3, false)]
+    [InlineData(6, true)]
+    [InlineData(9, true)]
+    public void FiniteOpeningAndShuffleCorrectionPreservesEveryLatentCoinPath(int curseIndex, bool requireTwoCoins)
+    {
+        const int bits = 4, domain = 1 << bits;
+        string first = nameof(NutritiousOyster), second = requireTwoCoins ? nameof(Pomander) : nameof(WingedBoots);
+        Assert.True(NativeNeowCondition.TryCreate(Root(Evidence(first: first, second: second, curse: NativeCurses()[curseIndex].Name)),
+            Hybrid, out var condition, out _));
+        var opening = condition!.CreateOpeningProposal(NativeCurses(), () => ulong.MaxValue, bits);
+        int coinCount = opening.RawWords.Count - 1;
+        var nativeOpenings = new Dictionary<int, int>();
+        int openingSpace = 1 << (bits * opening.RawWords.Count);
+        // Exhaust raw opening words independently of the proposal's bucket math.
+        for (int encoded = 0; encoded < openingSpace; encoded++)
+        {
+            int value = encoded;
+            int curse = (int)((double)(value % domain) / domain * 10); value /= domain;
+            int coins = 0;
+            for (int coin = 0; coin < coinCount; coin++)
+            {
+                coins |= (int)((double)(value % domain) / domain * 2) << coin; value /= domain;
+            }
+            int oysterIndex = curseIndex == 3 ? 0 : 1;
+            if (curse != curseIndex || ((coins >> oysterIndex) & 1) != 0
+                || (requireTwoCoins && ((coins >> (oysterIndex + 1)) & 1) != 1)) continue;
+            nativeOpenings[coins] = nativeOpenings.GetValueOrDefault(coins) + 1;
+        }
+        int forcedCoins = requireTwoCoins ? 2 : 1;
+        Assert.Equal(1 << (coinCount - forcedCoins), nativeOpenings.Count);
+        var shuffleEnvelope = NativeNeowCondition.MaximumEnvelope([3, 4, 5], bits, prefixLength: 2);
+        var envelope = shuffleEnvelope.Multiply(opening.NativeToProposalRatio.Numerator, opening.NativeToProposalRatio.Denominator);
+        foreach (var latent in nativeOpenings)
+        {
+            // Different native coin paths can alias the same pool, or change its size.
+            int count = 3 + latent.Key % 3;
+            string[] ids = Enumerable.Range(0, count).Select(i => i.ToString()).ToArray();
+            var permutations = new Dictionary<string, int>();
+            int shuffleSpace = 1 << (bits * (count - 1));
+            for (int encoded = 0; encoded < shuffleSpace; encoded++)
+            {
+                int value = encoded; int[] order = Enumerable.Range(0, count).ToArray();
+                for (int bound = count; bound > 1; bound--)
+                {
+                    int index = (int)((double)(value % domain) / domain * bound); value /= domain;
+                    (order[bound - 1], order[index]) = (order[index], order[bound - 1]);
+                }
+                if (order[0] != 0 || order[1] != 1) continue;
+                string key = string.Join(",", order); permutations[key] = permutations.GetValueOrDefault(key) + 1;
+            }
+            foreach (var permutation in permutations)
+            {
+                int[] order = permutation.Key.Split(',').Select(int.Parse).ToArray();
+                var remaining = Enumerable.Range(2, count - 2).ToList();
+                var choices = new Queue<ulong>();
+                foreach (int item in order.Skip(2))
+                {
+                    if (remaining.Count > 1) choices.Enqueue((ulong)(remaining.Count + remaining.IndexOf(item)));
+                    remaining.Remove(item);
+                }
+                var plan = ConditionalShuffleProposal.Create(ids, ["0", "1"], () => choices.Count > 0 ? choices.Dequeue() : ulong.MaxValue, bits)!;
+                var joint = new NativeNeowProposal(plan, envelope, opening.NativeToProposalRatio);
+                int tails = Enumerable.Range(1, count - 2).Aggregate(1, (a, b) => a * b);
+                var accepted = joint.AcceptanceProbability.Multiply(1, nativeOpenings.Count * tails);
+                var native = new ShuffleRational(latent.Value, openingSpace).Multiply(permutation.Value, shuffleSpace);
+                Assert.Equal(native.Multiply(envelope.Denominator, envelope.Numerator), accepted);
+                Assert.Equal(order, plan.PhysicalPermutation);
+            }
+        }
+    }
+
+    private static Type[] NativeCurses() => [typeof(CursedPearl), typeof(DowsingRod), typeof(HeftyTablet), typeof(LargeCapsule),
+        typeof(LeafyPoultice), typeof(NeowsBones), typeof(NeowsSacrifice), typeof(PrecariousShears), typeof(SilkenTress), typeof(SilverCrucible)];
 
     private static Type[] NativePool() => [typeof(ArcaneScroll), typeof(BoomingConch), typeof(FishingRod), typeof(GoldenPearl),
         typeof(Kaleidoscope), typeof(LeadPaperweight), typeof(LostCoffer), typeof(NeowsTorment), typeof(NewLeaf),

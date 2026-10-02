@@ -2,6 +2,7 @@ using Sts2Sim.Core.Entities.Relics;
 using Sts2Sim.Core.Events;
 using Sts2Sim.Core.Helpers;
 using Sts2Sim.Core.Models.Relics;
+using Sts2Sim.Core.Random;
 
 namespace Sts2Sim.Core.Models.Events;
 
@@ -67,18 +68,24 @@ public sealed class Neow : AncientEventModel
     {
         // 偏离 #178：模拟器没有 modifier 集合与管线，省略权威实现的 modifier 专属选项分支。
         List<Type> allowedCurses = CurseTypes.Where(IsAllowedAtNeow).ToList();
-        Type chosenCurse = Rng.NextItem(allowedCurses)
-            ?? throw new InvalidOperationException("No Ancient curse relic is allowed at Neow.");
-
-        var positives = new List<Type>(PositiveTypes);
-        RemoveMutuallyExclusivePositives(positives, chosenCurse);
-
-        if (chosenCurse != typeof(LargeCapsule))
+        Type chosenCurse;
+        List<Type> positives;
+        // Label-only interception; ordinary execution retains the native rolls and order.
+        using (LabelRandomScope.BeginNeowInitialOptions(this, Rng, allowedCurses))
         {
-            positives.Add(Rng.NextBool() ? typeof(LavaRock) : typeof(SmallCapsule));
+            chosenCurse = Rng.NextItem(allowedCurses)
+                ?? throw new InvalidOperationException("No Ancient curse relic is allowed at Neow.");
+
+            positives = new List<Type>(PositiveTypes);
+            RemoveMutuallyExclusivePositives(positives, chosenCurse);
+
+            if (chosenCurse != typeof(LargeCapsule))
+            {
+                positives.Add(Rng.NextBool() ? typeof(LavaRock) : typeof(SmallCapsule));
+            }
+            positives.Add(Rng.NextBool() ? typeof(NutritiousOyster) : typeof(StoneHumidifier));
+            positives.Add(Rng.NextBool() ? typeof(NeowsTalisman) : typeof(Pomander));
         }
-        positives.Add(Rng.NextBool() ? typeof(NutritiousOyster) : typeof(StoneHumidifier));
-        positives.Add(Rng.NextBool() ? typeof(NeowsTalisman) : typeof(Pomander));
 
         List<Type> allowedPositives = positives.Where(IsAllowedAtNeow).ToList();
         allowedPositives.UnstableShuffle(Rng);

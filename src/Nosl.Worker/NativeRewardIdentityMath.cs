@@ -19,18 +19,22 @@ internal static class NativeRewardIdentityMath
 {
     internal static IReadOnlyList<NativeRewardIdentityArm> Arms(LabelRewardCardSelectionContext context,
         string targetId, int bits = 53)
+        => Arms(context.Branches, context.Thresholds, targetId, bits);
+
+    internal static IReadOnlyList<NativeRewardIdentityArm> Arms(IReadOnlyList<LabelRewardCardBranch> branches,
+        LabelCardRarityThresholds? thresholds, string targetId, int bits = 53)
     {
         if (bits is < 1 or > 53) throw new ArgumentOutOfRangeException(nameof(bits));
         ulong domain = 1UL << bits;
-        ulong rareEnd = context.Thresholds is { } t ? FloatLowerBound(t.RareUpperExclusive, bits) : 0;
-        ulong uncommonEnd = context.Thresholds is { } u ? FloatLowerBound(u.UncommonUpperExclusive, bits) : 0;
+        ulong rareEnd = thresholds is { } t ? FloatLowerBound(t.RareUpperExclusive, bits) : 0;
+        ulong uncommonEnd = thresholds is { } u ? FloatLowerBound(u.UncommonUpperExclusive, bits) : 0;
         if (uncommonEnd < rareEnd) throw new InvalidOperationException("Invalid native rarity thresholds");
-        if (context.Thresholds is null && (context.Branches.Count != 1 || context.Branches[0].RolledRarity is not null))
+        if (thresholds is null && (branches.Count != 1 || branches[0].RolledRarity is not null))
             throw new InvalidOperationException("Uniform native card selection has invalid branches");
-        if (context.Thresholds is not null && !context.Branches.Select(b => b.RolledRarity)
+        if (thresholds is not null && !branches.Select(b => b.RolledRarity)
             .SequenceEqual(new CardRarity?[] { CardRarity.Rare, CardRarity.Uncommon, CardRarity.Common }))
             throw new InvalidOperationException("Native rarity branch partition changed");
-        return context.Branches.Select(branch =>
+        return branches.Select(branch =>
         {
             (ulong start, ulong end) = branch.RolledRarity switch
             {

@@ -5,6 +5,7 @@ using Sts2Sim.Core.Rooms;
 using Sts2Sim.Core.Runs;
 using Sts2Sim.Core.Entities.Cards;
 using Sts2Sim.Core.Models;
+using Sts2Sim.Core.Models.Events;
 
 namespace Sts2Sim.Core.Random;
 
@@ -24,6 +25,13 @@ public sealed record LabelNormalEncounterContext(RunState Run, ActDefinition Act
 
 /// <summary>The native map boundary before randomized point counts are generated.</summary>
 public sealed record LabelMapGenerationContext(RunState Run, ActDefinition Act, Rng Rng);
+
+/// <summary>The native Neow opening boundary before its curse and extra-pair coin draws.</summary>
+public sealed record LabelNeowInitialOptionsContext(Neow Neow, Rng Rng, IReadOnlyList<Type> AllowedCurses);
+
+/// <summary>Actual post-modifier ScrollBoxes pools, before its native bundle draws.</summary>
+public sealed record LabelScrollBoxesContext(Player Player, Rng Rng,
+    IReadOnlyList<CardModel> Commons, IReadOnlyList<CardModel> Uncommons);
 
 /// <summary>Actual strict float comparison thresholds used by native rarity selection.</summary>
 public readonly record struct LabelCardRarityThresholds(float RareUpperExclusive, float UncommonUpperExclusive);
@@ -58,6 +66,14 @@ public static class LabelRandomScope
     // Legacy nested forcing scopes keep their enclosing provenance construction mode.
     internal static bool UsesRewardProvenance => Current.Value?.UsesProvenance == true && !InsideCallback.Value;
 
+    internal static IDisposable? InvokeResourceCallback(Func<IDisposable?> callback)
+    {
+        if (InsideCallback.Value) return null;
+        InsideCallback.Value = true;
+        try { return callback(); }
+        finally { InsideCallback.Value = false; }
+    }
+
     /// <summary>
     /// Enter a temporary scope flowing across awaits. Dispose in nesting order within the
     /// entering execution context. Concurrent worlds must enter their own scopes and own
@@ -91,6 +107,10 @@ public static class LabelRandomScope
     /// Optional label-only scope around native map generation, starting before
     /// randomized point counts. Initial construction runs before players are added.
     /// </param>
+    /// <param name="beginNeowInitialOptions">
+    /// Optional label-only scope around Neow's native curse and extra-pair draws.
+    /// Receives the actual allowed curse order and RNG; native rules are unchanged.
+    /// </param>
     public static IDisposable Enter(
         Func<LabelRandomState, ulong> nextWord,
         Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null,
@@ -98,10 +118,12 @@ public static class LabelRandomScope
         Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null,
         Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null,
         Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null,
-        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection = null)
+        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection = null,
+        Func<LabelNeowInitialOptionsContext, IDisposable?>? beginNeowInitialOptions = null,
+        Func<LabelScrollBoxesContext, IDisposable?>? beginScrollBoxes = null)
     {
         ArgumentNullException.ThrowIfNull(nextWord);
-        var scope = new Scope(Current.Value, nextWord, null, beginShuffle, beginMonsterHp, beginCombatReward, beginNormalEncounter, beginMapGeneration, beginRewardCardSelection);
+        var scope = new Scope(Current.Value, nextWord, null, beginShuffle, beginMonsterHp, beginCombatReward, beginNormalEncounter, beginMapGeneration, beginRewardCardSelection, beginNeowInitialOptions, beginScrollBoxes);
         Current.Value = scope;
         return scope;
     }
@@ -121,12 +143,14 @@ public static class LabelRandomScope
         Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null,
         Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null,
         Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null,
-        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection = null)
+        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection = null,
+        Func<LabelNeowInitialOptionsContext, IDisposable?>? beginNeowInitialOptions = null,
+        Func<LabelScrollBoxesContext, IDisposable?>? beginScrollBoxes = null)
     {
         ArgumentNullException.ThrowIfNull(nextRewardWord);
         ArgumentNullException.ThrowIfNull(nextStateWord);
         var scope = new Scope(Current.Value, nextStateWord, nextRewardWord, beginShuffle, beginMonsterHp, beginCombatReward,
-            beginNormalEncounter, beginMapGeneration, beginRewardCardSelection);
+            beginNormalEncounter, beginMapGeneration, beginRewardCardSelection, beginNeowInitialOptions, beginScrollBoxes);
         Current.Value = scope;
         return scope;
     }
@@ -211,6 +235,28 @@ public static class LabelRandomScope
         finally { InsideCallback.Value = false; }
     }
 
+    internal static IDisposable? BeginNeowInitialOptions(Neow neow, Rng rng, IReadOnlyList<Type> allowedCurses)
+    {
+        Scope? scope = Current.Value;
+        if (scope?.BeginNeowInitialOptions is null || InsideCallback.Value) return null;
+        var context = new LabelNeowInitialOptionsContext(neow, rng, Array.AsReadOnly(allowedCurses.ToArray()));
+        InsideCallback.Value = true;
+        try { return scope.BeginNeowInitialOptions(context); }
+        finally { InsideCallback.Value = false; }
+    }
+
+    internal static IDisposable? BeginScrollBoxes(Player player, Rng rng,
+        IReadOnlyList<CardModel> commons, IReadOnlyList<CardModel> uncommons)
+    {
+        Scope? scope = Current.Value;
+        if (scope?.BeginScrollBoxes is null || InsideCallback.Value) return null;
+        var context = new LabelScrollBoxesContext(player, rng,
+            Array.AsReadOnly(commons.ToArray()), Array.AsReadOnly(uncommons.ToArray()));
+        InsideCallback.Value = true;
+        try { return scope.BeginScrollBoxes(context); }
+        finally { InsideCallback.Value = false; }
+    }
+
     internal static bool HasRewardCardSelection => Current.Value?.BeginRewardCardSelection is not null && !InsideCallback.Value;
 
     internal static IDisposable? BeginRewardCardSelection(LabelRewardCardSelectionContext context)
@@ -231,7 +277,9 @@ public static class LabelRandomScope
         Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward,
         Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter,
         Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration,
-        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection) : IDisposable
+        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection,
+        Func<LabelNeowInitialOptionsContext, IDisposable?>? beginNeowInitialOptions,
+        Func<LabelScrollBoxesContext, IDisposable?>? beginScrollBoxes) : IDisposable
     {
         public Scope? Previous { get; } = previous;
         public Func<LabelRandomState, ulong>? NextWord { get; } = nextWord;
@@ -244,6 +292,10 @@ public static class LabelRandomScope
         public Func<LabelMapGenerationContext, IDisposable?>? BeginMapGeneration { get; } = beginMapGeneration;
 
         public Func<LabelRewardCardSelectionContext, IDisposable?>? BeginRewardCardSelection { get; } = beginRewardCardSelection;
+
+        public Func<LabelNeowInitialOptionsContext, IDisposable?>? BeginNeowInitialOptions { get; } = beginNeowInitialOptions;
+
+        public Func<LabelScrollBoxesContext, IDisposable?>? BeginScrollBoxes { get; } = beginScrollBoxes;
 
         public void Dispose()
         {

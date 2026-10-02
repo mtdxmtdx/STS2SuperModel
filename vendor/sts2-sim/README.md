@@ -62,3 +62,5 @@
 本地可选性能补丁：[vendor-map-pruning-optimization.patch](../../docs/vendor-map-pruning-optimization.patch)。在上述连接补丁后应用，同样使用 `git apply --unidiff-zero`。仅修改 `src/Sts2Sim.Core/Map/MapPathPruning.cs`，省略同一次剪枝扫描中完全相同节点片段的重复计算；不改变地图、候选顺序或 RNG 消耗。证明、前后测量和精确对照见 [sampling/cloning profile](../../docs/CLONE_PROFILING.md)。未向任一上游仓库写入。
 
 最新连接层在 `CardFactory` 两种原生重载的逐卡选择边界增加可选 label-only 上下文，并从 `CardRarityOdds` 暴露已有阈值；不额外抽取 RNG，不重排生成流程，也不修改普通顺序模式。相对 `b8f2b4c` 仅这两个文件及 `LabelRandomScope.cs` 变化；全部2,230个文件重新从上游归档加补丁复现一致，完整 Core 4,493通过、3个既有opt-in跳过。完整新混合提议的 Worker 证明与吞吐结果见 [混合奖励验证](../../configs/native_rewards_hybrid_verification.json)，本次尚未通过广度吞吐门槛，也没有新增生产数据或训练。
+
+当前v4组合版本重新复现全部2,231个跟踪源码文件，并在固定生产源码`ded6aeb7`上重新完整运行Core：4,493通过、3个既有opt-in跳过、0失败。相对上一打包源码`3ae3160`，只新增或修改8个Core文件：`Factories/PotionFactory.cs`、`Models/Events/Ancients/Neow.cs`、`Models/Relics/ScrollBoxes.cs`、`Odds/PotionRewardOdds.cs`、`Random/LabelRandomScope.cs`、`Random/LabelRewardResourceScope.cs`、`Rewards/GoldReward.cs`和`Rewards/RewardsSet.cs`。这些是显式启用的公开条件标签边界；奖励异常时通知可中止边界，保留原始异常，不改变普通原生调用的随机抽取和生成顺序。其余补丁段及独立地图性能补丁不变。准确源码、程序集、原始测试日志和补丁哈希见[最新重建证据](../../configs/vendor_patch_verification.json)。历史段落中的2,230文件计数与回归结果仅对应各自旧检查点。

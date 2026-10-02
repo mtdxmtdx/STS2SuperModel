@@ -7,6 +7,7 @@ using Sts2Sim.Core.Models;
 using Sts2Sim.Core.Models.Cards;
 using Sts2Sim.Core.Models.Characters;
 using Sts2Sim.Core.Runs;
+using Sts2Sim.Core.Random;
 
 namespace Sts2Sim.Core.Models.Relics;
 
@@ -65,6 +66,8 @@ public sealed class ScrollBoxes : RelicModel
 
         List<CardModel> commons = commonOptions.GetPossibleCards(player).ToList();
         List<CardModel> uncommons = uncommonOptions.GetPossibleCards(player).ToList();
+        // Label-only snapshot after native modifiers; ordinary generation is unchanged.
+        using IDisposable? labelBundles = LabelRandomScope.BeginScrollBoxes(player, rewards, commons, uncommons);
         var bundles = new List<IReadOnlyList<CardModel>>();
         var usedCardIds = new HashSet<ModelId>();
         for (int bundleIndex = 0; bundleIndex < 2; bundleIndex++)

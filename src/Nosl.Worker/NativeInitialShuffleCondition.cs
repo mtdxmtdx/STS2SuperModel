@@ -5,6 +5,7 @@ using Nosl.Contracts;
 using Sts2Sim.Core.Content;
 using Sts2Sim.Core.Models;
 using Sts2Sim.Core.Models.Monsters;
+using Sts2Sim.Core.Models.Powers;
 using Sts2Sim.Core.Models.Relics;
 
 namespace Nosl.Worker;
@@ -114,12 +115,21 @@ internal sealed class NativeInitialShuffleCondition
 
     internal static bool TryCreate(DecisionPacket publicRoot,
         out NativeInitialShuffleCondition? condition, out string? reason)
+        => TryCreate(publicRoot, false, out condition, out reason);
+
+    // Explicit acceleration-profile opt-in. Legacy tape/corpus callers retain the v1 closure.
+    internal static bool TryCreatePublicCombatV2(DecisionPacket publicRoot,
+        out NativeInitialShuffleCondition? condition, out string? reason)
+        => TryCreate(publicRoot, true, out condition, out reason);
+
+    private static bool TryCreate(DecisionPacket publicRoot, bool publicCombatV2,
+        out NativeInitialShuffleCondition? condition, out string? reason)
     {
         condition = null;
         reason = null;
         try
         {
-            condition = Create(publicRoot);
+            condition = Create(publicRoot, publicCombatV2);
             return true;
         }
         catch (Ineligible exception) { reason = exception.Message; return false; }
@@ -127,7 +137,7 @@ internal sealed class NativeInitialShuffleCondition
         catch (ArgumentException) { reason = "invalid_public_entry"; return false; }
     }
 
-    private static NativeInitialShuffleCondition Create(DecisionPacket root)
+    private static NativeInitialShuffleCondition Create(DecisionPacket root, bool publicCombatV2)
     {
         Require(root is { Status: "player_decision" or "card_choice", Observation: not null, Actions.Length: > 0 }, "active_decision_required");
         var observation = root.Observation!;
@@ -167,6 +177,16 @@ internal sealed class NativeInitialShuffleCondition
         // this fixed-source review is additional to the public hook reflection check.
         var prefix = new List<string>();
         int index = 2;
+        var startupPowers = new List<StartupPower>();
+        if (publicCombatV2)
+            while (index < observation.History.Length && observation.History[index].Kind == "power_changed")
+            {
+                var power = PublicJson.Read<StartupPower>(observation.History[index++].Detail);
+                Require(power is { Target: nameof(CorpseSlug), Id: nameof(RavenousPower), Amount: 5,
+                    TargetSlot: >= 0, SourceSlot: >= 0 } && power.TargetSlot == power.SourceSlot,
+                    "startup_power_not_certified");
+                startupPowers.Add(power);
+            }
         while (index < observation.History.Length && observation.History[index].Kind == "draw")
         {
             var drawn = PublicJson.Read<PublicCard>(observation.History[index++].Detail);
@@ -182,12 +202,28 @@ internal sealed class NativeInitialShuffleCondition
         Require(startupEnemies.Length > 0 && startupEnemies.Select(enemy => enemy.Slot)
             .SequenceEqual(Enumerable.Range(0, startupEnemies.Length))
             && startupEnemies.All(enemy => enemy.Id is not null && Models.TryGetValue(enemy.Id, out Type[]? types)
-                && types.Any(type => type.IsSealed && ReviewedStartupMonsters.Contains(type))), "startup_monster_not_certified");
+                && types.Any(type => type.IsSealed && (ReviewedStartupMonsters.Contains(type)
+                    || (publicCombatV2 && type == typeof(CorpseSlug))))), "startup_monster_not_certified");
+        if (publicCombatV2)
+        {
+            var slugSlots = startupEnemies.Where(enemy => enemy.Id == nameof(CorpseSlug)).Select(enemy => enemy.Slot);
+            Require(startupPowers.Select(power => power.TargetSlot!.Value).SequenceEqual(slugSlots),
+                "startup_power_roster_not_certified");
+        }
         foreach (StartupIntent enemy in startupEnemies)
         {
             RequireSafeHooks(enemy.Id, typeof(MonsterModel));
             Type type = Models[enemy.Id].Single(candidate => typeof(MonsterModel).IsAssignableFrom(candidate));
-            Require(type.GetMethod(nameof(MonsterModel.AfterAddedToRoom))!.DeclaringType == typeof(MonsterModel),
+            if (publicCombatV2 && type == typeof(CorpseSlug))
+            {
+                // Fixed-source CorpseSlug.AfterAddedToRoom only applies its own RavenousPower.
+                // GenerateMoveStateMachine selects an ordinary MoveState from StarterMoveIdx;
+                // none of its callbacks runs during startup. RavenousPower's sole hook is
+                // AfterDeath, affecting slug AI/Strength only, never cards or their order.
+                RequireSafeHooks(nameof(RavenousPower), typeof(PowerModel), ravenousV2: true);
+            }
+            Require(type.GetMethod(nameof(MonsterModel.AfterAddedToRoom))!.DeclaringType == typeof(MonsterModel)
+                || (publicCombatV2 && type == typeof(CorpseSlug)),
                 "startup_monster_hook_not_certified:" + enemy.Id);
         }
         // The requested draw count may depend on an unpublished room type or a safe relic
@@ -203,7 +239,7 @@ internal sealed class NativeInitialShuffleCondition
         return new(entryJson, entry.Deck.Select(card => card.Id).ToArray(), prefix.ToArray());
     }
 
-    private static void RequireSafeHooks(string id, Type category)
+    private static void RequireSafeHooks(string id, Type category, bool ravenousV2 = false)
     {
         Require(Models.TryGetValue(id, out Type[]? matches), "unknown_entry_model:" + id);
         Type[] candidates = matches.Where(type => category.IsAssignableFrom(type)).ToArray();
@@ -214,6 +250,8 @@ internal sealed class NativeInitialShuffleCondition
             MethodInfo implementation = type!.GetMethod(hook.Name,
                 hook.GetParameters().Select(parameter => parameter.ParameterType).ToArray())!;
             if (implementation.DeclaringType == typeof(AbstractModel)) continue;
+            if (ravenousV2 && type == typeof(RavenousPower) && implementation.DeclaringType == typeof(RavenousPower)
+                && hook.Name == nameof(AbstractModel.AfterDeath)) continue;
             // CombatRoom.CompleteCombatOnceAsync/ResolveVictoryOnceAsync dispatch these only
             // after combat ends, so their earlier-run effects are already in the entry anchor.
             // In particular FishingRod.AfterCombatEnd cannot run before this initial draw prefix.
@@ -231,5 +269,6 @@ internal sealed class NativeInitialShuffleCondition
     private static void Require([DoesNotReturnIf(false)] bool value, string reason)
     { if (!value) throw new Ineligible(reason); }
     private sealed record StartupIntent(int Slot, string Id);
+    private sealed record StartupPower(string Target, int? TargetSlot, int? SourceSlot, string Id, decimal Amount);
     private sealed class Ineligible(string message) : Exception(message);
 }

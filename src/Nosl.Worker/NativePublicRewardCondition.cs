@@ -227,6 +227,8 @@ internal sealed class NativePublicRewardProposal(NativePublicRewardCondition con
         catch { _failed = true; throw; }
     }
 
+    internal void AbortActiveBoundary() => _failed = true;
+
     internal void ValidateCompletion()
     {
         if (_active is not null || _failed || _completed.Count != condition.Targets.Count)

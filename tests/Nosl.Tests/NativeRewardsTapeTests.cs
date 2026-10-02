@@ -106,9 +106,16 @@ public sealed class NativeRewardsTapeTests
         // not an accepted posterior world until the whole public prefix matches.
         await using var fork = await world.ForkForContinuationAsync();
         Assert.Equal(PublicJson.Serialize(world.Observe()), PublicJson.Serialize(fork.Observe()));
-        var action = PublicContinuationPolicies.Create(PublicContinuationPolicies.ReviewedId).Choose(world.Observe());
-        await world.StepAsync(action); await fork.StepAsync(action);
-        Assert.Equal(PublicJson.Serialize(world.Observe()), PublicJson.Serialize(fork.Observe()));
+        var policy = PublicContinuationPolicies.Create(PublicContinuationPolicies.ReviewedId);
+        for (int i = 0; i < 200 && world.Observe().Status != "terminal_settled"; i++)
+        {
+            Assert.Equal(PublicJson.Serialize(world.Observe()), PublicJson.Serialize(fork.Observe()));
+            var action = policy.Choose(world.Observe());
+            await world.StepAsync(action); await fork.StepAsync(action);
+        }
+        Assert.Equal("terminal_settled", world.Observe().Status);
+        Assert.Equal(PublicJson.Serialize(await world.RecordSettledAsync(policy.Id, 0)),
+            PublicJson.Serialize(await fork.RecordSettledAsync(policy.Id, 0)));
     }
 
     [Fact]
@@ -150,14 +157,21 @@ public sealed class NativeRewardsTapeTests
         { Assert.NotNull(original); root = original.Observe(); }
         var rewards = NativePublicRewardCondition.Create(root.PublicEvidence!);
         Assert.Single(rewards.Targets);
+        var resources = NativePublicRewardResourceCondition.Create(root.PublicEvidence!, rewards);
+        Assert.NotNull(resources.Targets[0].GoldCertificate.RoomType); // Exercise real direct-map guards.
+        Assert.True(resources.Targets[0].GoldCertificate.Envelope.Numerator < resources.Targets[0].GoldCertificate.Envelope.Denominator);
         Assert.True(NativeNeowCondition.TryCreate(root, Hybrid, out var neow, out var why), why);
         Assert.Equal(2, neow!.PositivePrefixIds.Count);
         var proposed = recipe with { ProposalSeed = 223344 };
         var tape = NativeLabelTape.ForDeclaredPrior(Hybrid, proposed, neowCondition: neow, publicRewardCondition: rewards,
-            expectedPublicEvidence: root.PublicEvidence);
+            expectedPublicEvidence: root.PublicEvidence, publicResourceCondition: resources);
         await using var world = await NativeRunWorld.OpenLabelTapeAsync(Hybrid.Execution, proposed, tape);
         Assert.NotNull(world); tape.ValidateProposalCompletion();
         Assert.Equal(3, tape.ConditionedPublicRewardCards);
+        Assert.Equal(1, tape.ConditionedResourcePresence); Assert.Equal(1, tape.ConditionedResourceGold);
+        Assert.Equal(resources.Targets[0].Potion is null ? 0 : 1, tape.ConditionedResourcePotions);
+        Assert.True(tape.PublicResourceRatio!.Value.Numerator * tape.PublicResourceEnvelope!.Value.Denominator
+            <= tape.PublicResourceEnvelope.Value.Numerator * tape.PublicResourceRatio.Value.Denominator);
         Assert.Equal(PublicJson.Serialize(root), PublicJson.Serialize(world.Observe()));
         Assert.Equal(root.PublicEvidence!.Events.Length, tape.PublicPrefixEventsChecked);
         var ratio = tape.PublicRewardRatio!.Value; var envelope = tape.PublicRewardEnvelope!.Value;
@@ -166,9 +180,21 @@ public sealed class NativeRewardsTapeTests
         var random = new Rng(4545); _ = tape.AcceptCorrection(random.NextUnsignedLong);
         await using var fork = await world.ForkForContinuationAsync();
         Assert.Equal(PublicJson.Serialize(world.Observe()), PublicJson.Serialize(fork.Observe()));
-        var action = PublicContinuationPolicies.Create(PublicContinuationPolicies.ReviewedId).Choose(world.Observe());
-        await world.StepAsync(action); await fork.StepAsync(action);
-        Assert.Equal(PublicJson.Serialize(world.Observe()), PublicJson.Serialize(fork.Observe()));
+        var observedCounts = (tape.ConditionedResourcePresence, tape.ConditionedResourceGold,
+            tape.ConditionedResourcePotions, tape.ConditionedPublicRewardCards);
+        var policy = PublicContinuationPolicies.Create(PublicContinuationPolicies.ReviewedId);
+        for (int i = 0; i < 200 && world.Observe().Status != "terminal_settled"; i++)
+        {
+            Assert.Equal(PublicJson.Serialize(world.Observe()), PublicJson.Serialize(fork.Observe()));
+            var action = policy.Choose(world.Observe());
+            await world.StepAsync(action); await fork.StepAsync(action);
+        }
+        Assert.Equal("terminal_settled", world.Observe().Status);
+        Assert.Equal(PublicJson.Serialize(await world.RecordSettledAsync(policy.Id, 0)),
+            PublicJson.Serialize(await fork.RecordSettledAsync(policy.Id, 0)));
+        Assert.Equal(observedCounts, (tape.ConditionedResourcePresence, tape.ConditionedResourceGold,
+            tape.ConditionedResourcePotions, tape.ConditionedPublicRewardCards)); // No unseen future rewards conditioned.
+
     }
 
     [Fact]

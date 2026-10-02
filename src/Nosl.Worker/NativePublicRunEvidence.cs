@@ -163,26 +163,10 @@ internal sealed class NativePublicRunEvidence(RunState run)
             Recorder.RecordGap(owner, PublicEvidenceGapReason.ObservationMissing);
             End(owner); return;
         }
-        PublicMapCoordinate Coord(MapPoint p) => new(p.coord.col, p.coord.row);
-        PublicMapNodeType Type(MapPoint p) => p.PointType switch
-        {
-            MapPointType.Ancient => PublicMapNodeType.Ancient, MapPointType.Boss => PublicMapNodeType.Boss,
-            MapPointType.Elite => PublicMapNodeType.Elite, MapPointType.Monster => PublicMapNodeType.Monster,
-            MapPointType.RestSite => PublicMapNodeType.Rest, MapPointType.Shop => PublicMapNodeType.Shop,
-            MapPointType.Treasure => PublicMapNodeType.Treasure, MapPointType.Unknown => PublicMapNodeType.Unknown,
-            _ when ReferenceEquals(p, run.Map.StartingMapPoint) => PublicMapNodeType.Start,
-            _ => PublicMapNodeType.Unknown,
-        };
         // The declared v1 map channel is this choice slice: current node, all
         // offered destinations, and ordinary edges between those visible nodes.
-        var points = choices.Prepend(current).Distinct().OrderBy(p => p.coord.row).ThenBy(p => p.coord.col).ToArray();
-        var included = points.ToHashSet();
-        var edges = points.SelectMany(p => p.Children.Where(included.Contains).Select(c => new PublicMapEdge(Coord(p), Coord(c))))
-            .OrderBy(e => e.From.Row).ThenBy(e => e.From.Col).ThenBy(e => e.To.Row).ThenBy(e => e.To.Col).ToImmutableArray();
-        long observed = Recorder.Record(owner, new PublicMapObserved(Coord(current),
-            points.Select(p => new PublicMapNode(Coord(p), Type(p))).ToImmutableArray(), edges,
-            choices.Select(p => new PublicMapOption(Coord(p), current.Children.Contains(p))).ToImmutableArray()));
-        Recorder.Record(owner, new PublicMapChosen(observed, Coord(selected))); End(owner);
+        long observed = Recorder.Record(owner, NativePublicMapSlice.Observe(run.Map, current, choices));
+        Recorder.Record(owner, new PublicMapChosen(observed, new(selected.coord.col, selected.coord.row))); End(owner);
     }
     internal void Rewards(RewardsSet rewards, RewardDecision selected)
     {
