@@ -330,19 +330,19 @@
   },
   "current_native_sampler": {
     "implementation": "nosl-native-map-rewards-tape-marginalized-v8-public-evidence-v2",
-    "status": "FROZEN_VALIDATED_V8_PROBES_PENDING",
+    "status": "ALL_FOUR_PREDECLARED_DIAGNOSTIC_GATES_PASSED",
     "recovery_and_fix_report": "configs/recovery_verification_20261003.json",
-    "latest_completed_probe_report": "configs/native_map_origin_verification_v7.json",
-    "latest_completed_probe_is_historical": true,
-    "current_implementation_probe_started": false,
+    "latest_completed_probe_report": "configs/native_map_origin_verification_v8.json",
+    "latest_completed_probe_is_historical": false,
+    "current_implementation_probe_started": true,
     "new_production_rows": 0,
     "new_optimizer_steps": 0,
     "new_backward_passes": 0,
     "full_readiness": false,
-    "current_report": "configs/native_map_v8_validation_plan.json",
-    "current_implementation_probe_completed": false,
-    "inspected_gate_passed": null,
-    "fresh_gate_passed": null,
+    "current_report": "configs/native_map_origin_verification_v8.json",
+    "current_implementation_probe_completed": true,
+    "inspected_gate_passed": true,
+    "fresh_gate_passed": true,
     "production_admission": false,
     "runtime_source_commit": "650b8d9d4d284c886a7556184a352bcc3c6bad91",
     "runtime_freeze": "artifacts/reports/map-public-v8/runtime-freeze.json",
@@ -457,7 +457,7 @@
     "native_interface_cohort_admitted": false,
     "formal_training": false,
     "model_promoted": false,
-    "historical_protection": "Original5000 protection restored:2533components/18207aliases;10131attempt identities and current20 map sources extend to2648components. Later balanced160, policy16, natural200 and fresh-native registry remain missing; all current diagnostics remain quarantined.",
+    "historical_protection": "Original5000 metadata restored:2533components/18207aliases; all10131attempt identities and44current map sources extend to2672components. Later balanced160, policy16, natural200 and historical fresh-native registry remain missing; all diagnostics are excluded and quarantined.",
     "remaining_limits": [
       "Uncalibrated resource/permanent/reward values remain masked",
       "Broad native data-quality and throughput gates remain open",
@@ -517,5 +517,54 @@
     "adapter_source_commit": "ce02e294804adc7f7fdf16872b15e86465793e80",
     "adapter_verification": "docs/FRESH_CONSTRUCTED_HUNT_FULL_POLICY_V5_VERIFICATION.json",
     "current_integration": "configs/m6_current_integration_v8.json"
-  }
+  },
+  "native_map_origin_v8": {
+    "status": "ALL_FOUR_PREDECLARED_DIAGNOSTIC_GATES_PASSED",
+    "source_commit": "650b8d9d4d284c886a7556184a352bcc3c6bad91",
+    "sampler": "nosl-native-map-rewards-tape-marginalized-v8-public-evidence-v2",
+    "prior_identity": "10b8d166ee4dfe2cacd0946d5737f38de676e55b20b69acf635c3898da88e3f6",
+    "native_tests_passed": 2261,
+    "core_tests_passed": 4493,
+    "core_tests_opt_in_skipped": 3,
+    "guarded_python_tests_passed": 72,
+    "new_production_rows": 0,
+    "new_optimizer_steps": 0,
+    "new_backward_passes": 0,
+    "production_admission": false,
+    "full_readiness": false,
+    "report": "configs/native_map_origin_verification_v8.json",
+    "inspected_eight": {
+      "gate_passed": true,
+      "complete_roots": 8,
+      "accepted_worlds": 16,
+      "settled_branches": 98,
+      "assigned_branches": 98,
+      "external_seconds": 22.354677327999525
+    },
+    "inspected_twelve": {
+      "gate_passed": true,
+      "complete_roots": 11,
+      "accepted_worlds": 22,
+      "settled_branches": 150,
+      "assigned_branches": 164,
+      "external_seconds": 49.61360694399991
+    },
+    "previously_fresh_twelve": {
+      "gate_passed": true,
+      "complete_roots": 9,
+      "accepted_worlds": 18,
+      "settled_branches": 140,
+      "assigned_branches": 178,
+      "external_seconds": 53.45737147800173
+    },
+    "fresh_twelve": {
+      "gate_passed": true,
+      "complete_roots": 9,
+      "accepted_worlds": 18,
+      "settled_branches": 116,
+      "assigned_branches": 146,
+      "external_seconds": 30.1610862790003
+    }
+  },
+  "current_protection_extension": "configs/protection_metadata_v8_extension.json"
 }

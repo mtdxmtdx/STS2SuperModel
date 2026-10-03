@@ -273,7 +273,7 @@
         "B05",
         "B06"
       ],
-      "gap": "Reviewed Hunt/Regen public anchors and full-v5 policy/value interfaces exist. Native exact B01/B02 contracts pass in declared finite fixtures. Real full-v5 finite-plan producer labels and integration remain underway; learned execution is later M7/M8 work.",
+      "gap": "Fresh constructed full-v5 Hunt labels now reach the actual full-policy loss through recomputed native paired evidence. Natural/general plan-data admission and broader source/phase coverage remain separate; learned execution is later M7/M8 work.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence",
       "closed_for_finite_hunt": true,
       "closed_for_reviewed_templates": true
@@ -2850,6 +2850,24 @@
       "opt_in": true,
       "defaults_changed": false,
       "new_training": false
+    },
+    "map_v8": {
+      "verification": "configs/native_map_origin_verification_v8.json",
+      "native_passed": 2261,
+      "guarded_python_passed": 72,
+      "all_four_gates_passed": true,
+      "fresh_requested": 12,
+      "fresh_complete": 9,
+      "fresh_settled": 116,
+      "fresh_assigned": 146,
+      "production_admission": false
+    },
+    "full_v5_plan_producer": {
+      "core": "docs/FRESH_CONSTRUCTED_HUNT_V5_VERIFICATION.json",
+      "policy": "docs/FRESH_CONSTRUCTED_HUNT_FULL_POLICY_V5_VERIFICATION.json",
+      "current_integration": "configs/m6_current_integration_v8.json",
+      "constructed_engineering_only": true,
+      "natural_admission": false
     }
   },
   "historical_scoped_checkpoint": {
@@ -2888,8 +2906,7 @@
     "current_task_status": "PARTIAL",
     "current_open_engineering": [
       "Bounded native posterior/source coverage and production data-quality/admission gates",
-      "Resource/utility masks and consumed-supervision coverage",
-      "Real full-v5 finite-plan producer labels and integration evidence"
+      "Resource/utility masks and consumed-supervision coverage"
     ],
     "no_execution_by_reconciliation": {
       "native_builds": 0,

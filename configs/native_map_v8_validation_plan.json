@@ -1,7 +1,7 @@
 {
   "schema": "nosl.native-map-v8-validation-plan.v1",
   "created_utc": "2026-10-03T13:23:41.965229+00:00",
-  "status": "RUNTIME_FROZEN_NOT_STARTED",
+  "status": "COMPLETED_ALL_FOUR_PRESERVED_GATES_PASSED",
   "planning_commit_base": "16a6398fd2e334e1dfe5d7d7c578c0abcf97e209",
   "runtime_commit": "650b8d9d4d284c886a7556184a352bcc3c6bad91",
   "prior_identity": "10b8d166ee4dfe2cacd0946d5737f38de676e55b20b69acf635c3898da88e3f6",
@@ -152,7 +152,8 @@
       "missing_required_category": "inconclusive_not_pass",
       "production_admission": false
     },
-    "launch_requires": "All three inspected cohorts pass their preserved gates under the same independently reviewed frozen runtime, zero engine/cleanup errors. These12sources have not been generated or inspected at planning time."
+    "launch_requires": "All three inspected cohorts pass their preserved gates under the same independently reviewed frozen runtime, zero engine/cleanup errors. These12sources have not been generated or inspected at planning time.",
+    "freshness_after_execution": "Now inspected development data; no replacement or reuse as fresh."
   },
   "per_cohort_budget": {
     "posterior_worlds_per_root": 2,
@@ -179,5 +180,6 @@
   "formal_training": false,
   "runtime_freeze": "artifacts/reports/map-public-v8/runtime-freeze.json",
   "native_tests_passed": 2261,
-  "guarded_python_tests_passed": 72
+  "guarded_python_tests_passed": 72,
+  "completion_report": "configs/native_map_origin_verification_v8.json"
 }
