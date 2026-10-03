@@ -1,5 +1,7 @@
 # sts2-sim — current upstream vendored Core
 
+当前恢复阶段另附 [vendor-recovery-map-integration.patch](../../docs/vendor-recovery-map-integration.patch)，基于本项目 `d77960c` 的 vendored 源码应用。它包含独立地图随机带来源和完整公开地图重建的可选连接点；普通模式保持原生行为。新补丁已逐字重建 2,238 个 Core／Core.Tests 文件，并通过 74 项受影响的随机数／地图测试。下面的完整 Core 回归记录仍属于其原来的历史源码快照，不能代替当前恢复版本的全量验证。详见 [恢复检查点](../../docs/RECOVERY_CHECKPOINTS.md)。
+
 来源：[iRyougi/sts2-sim](https://github.com/iRyougi/sts2-sim/tree/5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0)，固定提交 `5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0`，规则声明 `0.111.0 / 41cef1ea / 222455745`，MIT。用户指定直接信任上游规则，原版对拍不作为本工程接入门槛。
 
 保留完整公开 Core/Core.Tests 源码、AGENTS、CONTRIBUTING、LICENSE；上游原 README 保存在 [UPSTREAM_README.md](UPSTREAM_README.md)。没有加入游戏程序集、资源或反编译文件。构建入口为根目录 `Nosl.M012.sln`。

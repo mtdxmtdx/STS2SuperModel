@@ -1,0 +1,18 @@
+{
+  "schema": "nosl.recovery-vendor-patch.v1",
+  "base_project_commit": "d77960c2041fe48e00d6534168532386588a96ff",
+  "patch": "docs/vendor-recovery-map-integration.patch",
+  "patch_sha256": "5f4bc0fb3784a31d979d37718cb5b78850cc0e4338839d86cb76a76a3337608a",
+  "verified_files": 2238,
+  "all_bytes_match": true,
+  "fresh_core_regression": {
+    "scope": "affected Random and Map tests",
+    "passed": 74,
+    "failed": 0,
+    "skipped": 0,
+    "full_suite": false,
+    "trx": "artifacts/reports/recovery-map-core/map-core.trx"
+  },
+  "historical_upstream_reconstruction": "configs/vendor_patch_verification.json",
+  "scope": "Incremental patch from published project baseline; no new upstream or client fidelity claim."
+}

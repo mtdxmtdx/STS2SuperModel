@@ -37,3 +37,20 @@ Fresh event-permutation validation: 13 passed, 0 failed, 0 skipped, including
 finite-world probability checks, real native replay, and continuation equality.
 The recovered sampler implementation is versioned as Rewards v10 while its
 posterior law remains v7. Historical verification files remain unchanged.
+
+## Independent map prior and reconstruction
+
+Restored the separately declared map-origin law, strict provenance serialization
+and clone/reseed behavior, and reconstruction of a native map from a complete
+public graph. Missing or incomplete channels decline reconstruction. This
+checkpoint supplies the components; their owning sampler integration follows.
+
+Fresh checks: 40 public-map/prior/reconstruction tests and 74 affected Core
+random/map tests passed, with no failures, skips, build warnings or errors.
+These focused results are separate from the historical full Core regression.
+
+The incremental vendor patch is `docs/vendor-recovery-map-integration.patch`.
+Applied to the vendored source at project commit `d77960c`, it reconstructs all
+2,238 tracked Core and Core.Tests files byte-for-byte. Verification is recorded
+in `configs/vendor_recovery_patch_verification.json`; this check does not
+reclassify historical upstream or full-suite evidence as a fresh run.

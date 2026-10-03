@@ -16,12 +16,16 @@ internal sealed record NativeTapePrior
 {
     internal const string Version = "nosl.native-state-tape-prior.v1";
     internal const string RewardsVersion = "nosl.native-rewards-state-tape-prior.v1";
+    internal const string MapVersion = "nosl.native-map-rewards-state-tape-prior.v1";
     public string SchemaVersion { get; init; } = Version;
     public NativeRunExecutionOptions Execution { get; init; } = new();
     public int EligibleCombats { get; init; } = 80;
     public int EligibleDecisionsPerCombat { get; init; } = 128;
-    [JsonIgnore] internal bool UsesRewardsProvenance => SchemaVersion == RewardsVersion;
-    public string PrimitiveLaw => UsesRewardsProvenance
+    [JsonIgnore] internal bool UsesRewardsProvenance => SchemaVersion is RewardsVersion or MapVersion;
+    [JsonIgnore] internal bool UsesMapProvenance => SchemaVersion == MapVersion;
+    public string PrimitiveLaw => UsesMapProvenance
+        ? "independent-map-act-seed-raw-cursor-rewards-origin-seed-raw-cursor-and-native-full-state-partitions-v1"
+        : UsesRewardsProvenance
         ? "independent-rewards-origin-seed-raw-cursor-and-native-full-state-partitions-v1"
         : "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1";
     public string PrimitiveImplementation => "sha256-address-expansion-with-explicit-conditioned-overrides-v1";
@@ -30,7 +34,7 @@ internal sealed record NativeTapePrior
 
     internal NativeTapePrior Freeze()
     {
-        if (SchemaVersion is not (Version or RewardsVersion) || Execution is null || Execution.MaxFloors is < 1 or > 100
+        if (SchemaVersion is not (Version or RewardsVersion or MapVersion) || Execution is null || Execution.MaxFloors is < 1 or > 100
             || Execution.SourceDecisionHorizon is < 1 or > 100000 || EligibleCombats is < 1 or > 10000
             || EligibleDecisionsPerCombat is < 1 or > 100000)
             throw new ArgumentException("Invalid declared native tape prior");
@@ -40,6 +44,12 @@ internal sealed record NativeTapePrior
         _ = Execution.EmitsPublicEvidence;
         if (UsesRewardsProvenance && !Execution.EmitsPublicEvidence)
             throw new ArgumentException("The Rewards hybrid prior requires its explicit public run-evidence channel");
+        if (UsesMapProvenance && (Execution.PublicMapObservationProfile != PublicMapObservationProfiles.CompleteGraphV1
+            || Execution.PublicEvidenceProfile != PublicRunEvidence.CompleteMapVersion))
+            throw new ArgumentException("The Map hybrid prior requires its explicit complete public-map graph channel");
+        if (!UsesMapProvenance && (Execution.PublicMapObservationProfile == PublicMapObservationProfiles.CompleteGraphV1
+            || Execution.PublicEvidenceProfile == PublicRunEvidence.CompleteMapVersion))
+            throw new ArgumentException("The complete public-map graph channel requires the separately versioned Map hybrid prior");
         return this with { Execution = Execution with { } };
     }
 

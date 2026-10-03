@@ -29,10 +29,28 @@ public sealed class MegaRandom
     private ulong _labelRawCursor;
     private bool _labelRewardsOrigin;
     private bool _labelHybrid;
+    private bool _labelMapLaw;
+    private int? _labelMapActIndex;
 
     public LabelRandomAddressV1? LabelRewardAddress => _labelRewardsOrigin
         ? new LabelRandomAddressV1(LabelRandomProvenance.RewardsOrigin, _labelInitialSeed!.Value, _labelRawCursor)
         : null;
+
+    public LabelMapRandomAddressV1? LabelMapAddress => _labelMapActIndex is { } actIndex
+        ? new LabelMapRandomAddressV1(actIndex, _labelInitialSeed!.Value, _labelRawCursor)
+        : null;
+
+    private string? LabelLaw => !_labelHybrid ? null
+        : _labelMapLaw ? LabelRandomProvenance.MapLawId : LabelRandomProvenance.LawId;
+
+    private void RequireCompatibleLabelLaw(string? sourceLaw)
+    {
+        // Neither a nested scope nor a loaded source can erase the object's law.
+        // Check both constraints independently, before any state/lineage mutation.
+        if ((LabelLaw is { } existingLaw && sourceLaw != existingLaw)
+            || (LabelRandomScope.ProvenanceLaw is { } activeLaw && sourceLaw != activeLaw))
+            throw new InvalidOperationException("A hybrid label RNG restore or reseed cannot change its declared primitive law.");
+    }
 
     public MegaRandom(ulong seed)
     {
@@ -65,8 +83,10 @@ public sealed class MegaRandom
 
     public void Reinitialise(ulong seed)
     {
+        RequireCompatibleLabelLaw(LabelLaw ?? LabelRandomScope.ProvenanceLaw);
         _labelHybrid = _labelHybrid || LabelRandomScope.UsesRewardProvenance;
-        _labelInitialSeed = _labelRewardsOrigin || LabelRandomScope.UsesRewardProvenance ? seed : null;
+        _labelMapLaw = _labelMapLaw || LabelRandomScope.UsesMapProvenance;
+        _labelInitialSeed = _labelRewardsOrigin || _labelMapActIndex is not null || LabelRandomScope.UsesRewardProvenance ? seed : null;
         _labelRawCursor = 0;
         _s0 = Splitmix64(ref seed);
         _s1 = Splitmix64(ref seed);
@@ -80,8 +100,11 @@ public sealed class MegaRandom
         provenance?.Validate();
         if ((_labelHybrid || LabelRandomScope.UsesRewardProvenance) && provenance is null)
             throw new InvalidOperationException("A hybrid label RNG restore requires an explicit source partition.");
+        RequireCompatibleLabelLaw(provenance?.Law);
         _labelHybrid = provenance is not null;
+        _labelMapLaw = provenance?.Law == LabelRandomProvenance.MapLawId;
         _labelRewardsOrigin = provenance?.Partition == LabelRandomProvenance.RewardsPartition;
+        _labelMapActIndex = provenance?.ActIndex;
         _labelInitialSeed = provenance?.InitialSeed;
         _labelRawCursor = provenance?.RawCursor ?? 0;
         _s0 = serializable.state0;
@@ -93,6 +116,7 @@ public sealed class MegaRandom
     private ulong NextULongInner()
     {
         LabelRandomAddressV1? labelAddress = LabelRewardAddress;
+        LabelMapRandomAddressV1? mapAddress = LabelMapAddress;
         if (_labelInitialSeed is not null)
             _labelRawCursor = checked(_labelRawCursor + 1);
         ulong s = _s0;
@@ -113,7 +137,7 @@ public sealed class MegaRandom
         _s2 = s3;
         _s3 = s4;
         // Explicit label scopes replace only the word, after native state advancement.
-        return LabelRandomScope.NextWordOrOriginal(labelState, labelAddress, result);
+        return LabelRandomScope.NextWordOrOriginal(labelState, labelAddress, mapAddress, result);
     }
 
     public int Next(int maxValue)
@@ -185,11 +209,15 @@ public sealed class MegaRandom
         rng.state1 = _s1;
         rng.state2 = _s2;
         rng.state3 = _s3;
-        rng.LabelProvenance = _labelRewardsOrigin
-            ? new LabelRandomProvenance(LabelRandomProvenance.LawId, LabelRandomProvenance.RewardsPartition,
+        string law = _labelMapLaw ? LabelRandomProvenance.MapLawId : LabelRandomProvenance.LawId;
+        rng.LabelProvenance = _labelMapActIndex is { } actIndex
+            ? new LabelRandomProvenance(law, LabelRandomProvenance.MapPartition,
+                LabelRandomProvenance.MapOrigin, _labelInitialSeed!.Value, _labelRawCursor, actIndex)
+            : _labelRewardsOrigin
+            ? new LabelRandomProvenance(law, LabelRandomProvenance.RewardsPartition,
                 LabelRandomProvenance.RewardsOrigin,
                 _labelInitialSeed!.Value, _labelRawCursor)
-            : _labelHybrid ? new LabelRandomProvenance(LabelRandomProvenance.LawId,
+            : _labelHybrid ? new LabelRandomProvenance(law,
                 LabelRandomProvenance.FullStatePartition) : null;
     }
 
@@ -201,18 +229,32 @@ public sealed class MegaRandom
     {
         if (!LabelRandomScope.UsesRewardProvenance) return this;
         if (_labelRewardsOrigin) return this;
-        if (_labelInitialSeed is null || _labelRawCursor != 0)
+        if (_labelInitialSeed is null || _labelRawCursor != 0 || _labelMapActIndex is not null)
             throw new InvalidOperationException("Rewards provenance must be bound at native seed construction.");
         _labelRewardsOrigin = true;
         _labelHybrid = true;
         return this;
     }
 
+    internal void WithLabelMapProvenance(int actIndex)
+    {
+        if (!LabelRandomScope.UsesMapProvenance) return;
+        if (actIndex < 0) throw new ArgumentOutOfRangeException(nameof(actIndex));
+        if (_labelInitialSeed is null || _labelRawCursor != 0 || _labelRewardsOrigin || _labelMapActIndex is not null)
+            throw new InvalidOperationException("Map provenance must be bound at native seed construction.");
+        _labelMapActIndex = actIndex;
+        _labelHybrid = true;
+        _labelMapLaw = true;
+    }
+
     internal void PreserveLabelOriginForReseed(MegaRandom source, ulong effectiveSeed)
     {
+        RequireCompatibleLabelLaw(source.LabelLaw ?? LabelLaw);
         _labelHybrid = source._labelHybrid || _labelHybrid;
-        if (!source._labelRewardsOrigin) return;
-        _labelRewardsOrigin = true;
+        _labelMapLaw = source._labelMapLaw || _labelMapLaw;
+        if (!source._labelRewardsOrigin && source._labelMapActIndex is null) return;
+        _labelRewardsOrigin = source._labelRewardsOrigin;
+        _labelMapActIndex = source._labelMapActIndex;
         _labelHybrid = true;
         _labelInitialSeed = effectiveSeed;
         _labelRawCursor = 0;
@@ -229,7 +271,9 @@ public sealed class MegaRandom
             _labelInitialSeed = _labelInitialSeed,
             _labelRawCursor = _labelRawCursor,
             _labelRewardsOrigin = _labelRewardsOrigin,
-            _labelHybrid = _labelHybrid
+            _labelHybrid = _labelHybrid,
+            _labelMapLaw = _labelMapLaw,
+            _labelMapActIndex = _labelMapActIndex
         };
     }
 }

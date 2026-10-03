@@ -376,7 +376,7 @@ public sealed partial class RunState : IRunState
         ActDefinition act = Act;
         var mapRng = StandardActMap.CreateRng(Rng.Seed, CurrentActIndex);
         using IDisposable? labelMapScope = LabelRandomScope.BeginMapGeneration(this, act, mapRng);
-        Map = StandardActMap.CreateFor(
+        Map = LabelMapConstructionScope.TryConstruct(new(this, act, mapRng)) ?? StandardActMap.CreateFor(
             act, mapRng, Ascension,
             hasSecondBoss: Ascension.HasLevel(AscensionLevel.DoubleBoss) && CurrentActIndex == _acts.Length - 1);
         Map = Hooks.Hook.ModifyGeneratedMap(this, Map, CurrentActIndex);

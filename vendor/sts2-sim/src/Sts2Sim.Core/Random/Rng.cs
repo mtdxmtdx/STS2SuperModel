@@ -27,6 +27,9 @@ public class Rng
     /// <summary>Next Rewards oracle cell, present only in the opt-in hybrid label law.</summary>
     public LabelRandomAddressV1? LabelRewardAddress => _random.LabelRewardAddress;
 
+    /// <summary>Next Map cell, present only in the separately versioned Map hybrid law.</summary>
+    public LabelMapRandomAddressV1? LabelMapAddress => _random.LabelMapAddress;
+
     /// <summary>Diagnostic identity for RNGs outside the run/player stream sets.</summary>
     public string? DiagnosticStreamName { get; private set; }
 
@@ -67,6 +70,13 @@ public class Rng
     internal Rng WithLabelRewardsProvenance()
     {
         _random.WithLabelRewardsProvenance();
+        return this;
+    }
+
+    /// <summary>Bind only the genuine native per-act map generator at construction.</summary>
+    internal Rng WithLabelMapProvenance(int actIndex)
+    {
+        _random.WithLabelMapProvenance(actIndex);
         return this;
     }
 

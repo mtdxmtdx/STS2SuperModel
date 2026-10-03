@@ -65,6 +65,17 @@ public static class LabelRandomScope
 
     // Legacy nested forcing scopes keep their enclosing provenance construction mode.
     internal static bool UsesRewardProvenance => Current.Value?.UsesProvenance == true && !InsideCallback.Value;
+    internal static bool UsesMapProvenance => Current.Value?.UsesMapProvenance == true && !InsideCallback.Value;
+    internal static string? ProvenanceLaw => !UsesRewardProvenance ? null
+        : UsesMapProvenance ? LabelRandomProvenance.MapLawId : LabelRandomProvenance.LawId;
+
+    private static void RequireNestedHybridLaw(bool usesMap)
+    {
+        // Generic Enter is a forcing override and inherits its enclosing law.
+        // The explicit hybrid entry points may nest only within the same law.
+        if (Current.Value is { UsesProvenance: true } previous && previous.UsesMapProvenance != usesMap)
+            throw new InvalidOperationException("Nested hybrid RNG scopes must use the same declared primitive law.");
+    }
 
     internal static IDisposable? InvokeResourceCallback(Func<IDisposable?> callback)
     {
@@ -149,13 +160,44 @@ public static class LabelRandomScope
     {
         ArgumentNullException.ThrowIfNull(nextRewardWord);
         ArgumentNullException.ThrowIfNull(nextStateWord);
+        RequireNestedHybridLaw(usesMap: false);
         var scope = new Scope(Current.Value, nextStateWord, nextRewardWord, beginShuffle, beginMonsterHp, beginCombatReward,
             beginNormalEncounter, beginMapGeneration, beginRewardCardSelection, beginNeowInitialOptions, beginScrollBoxes);
         Current.Value = scope;
         return scope;
     }
 
-    internal static ulong NextWordOrOriginal(LabelRandomState state, LabelRandomAddressV1? address, ulong original)
+    /// <summary>
+    /// Enter the separately versioned three-partition law. Only StandardActMap's
+    /// native source receives Map lineage; incidental draws made during generation
+    /// retain their own partition. The Rewards and full-state partitions are unchanged.
+    /// </summary>
+    public static IDisposable EnterMapRewardProvenance(
+        Func<LabelMapRandomAddressV1, ulong> nextMapWord,
+        Func<LabelRandomAddressV1, ulong> nextRewardWord,
+        Func<LabelRandomState, ulong> nextStateWord,
+        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null,
+        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp = null,
+        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null,
+        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null,
+        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null,
+        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection = null,
+        Func<LabelNeowInitialOptionsContext, IDisposable?>? beginNeowInitialOptions = null,
+        Func<LabelScrollBoxesContext, IDisposable?>? beginScrollBoxes = null)
+    {
+        ArgumentNullException.ThrowIfNull(nextMapWord);
+        ArgumentNullException.ThrowIfNull(nextRewardWord);
+        ArgumentNullException.ThrowIfNull(nextStateWord);
+        RequireNestedHybridLaw(usesMap: true);
+        var scope = new Scope(Current.Value, nextStateWord, nextRewardWord, beginShuffle, beginMonsterHp, beginCombatReward,
+            beginNormalEncounter, beginMapGeneration, beginRewardCardSelection, beginNeowInitialOptions,
+            beginScrollBoxes, nextMapWord);
+        Current.Value = scope;
+        return scope;
+    }
+
+    internal static ulong NextWordOrOriginal(LabelRandomState state, LabelRandomAddressV1? address,
+        LabelMapRandomAddressV1? mapAddress, ulong original)
     {
         Scope? scope = Current.Value;
         if (scope is null || InsideCallback.Value) return original;
@@ -163,6 +205,8 @@ public static class LabelRandomScope
         InsideCallback.Value = true;
         try
         {
+            if (scope.NextMapWord is not null && mapAddress is { } sourceMapAddress)
+                return scope.NextMapWord(sourceMapAddress);
             if (scope.NextProvenanceWord is not null && address is { } rewardAddress)
                 return scope.NextProvenanceWord(rewardAddress);
             return scope.NextWord!(state);
@@ -279,12 +323,15 @@ public static class LabelRandomScope
         Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration,
         Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection,
         Func<LabelNeowInitialOptionsContext, IDisposable?>? beginNeowInitialOptions,
-        Func<LabelScrollBoxesContext, IDisposable?>? beginScrollBoxes) : IDisposable
+        Func<LabelScrollBoxesContext, IDisposable?>? beginScrollBoxes,
+        Func<LabelMapRandomAddressV1, ulong>? nextMapWord = null) : IDisposable
     {
         public Scope? Previous { get; } = previous;
         public Func<LabelRandomState, ulong>? NextWord { get; } = nextWord;
         public Func<LabelRandomAddressV1, ulong>? NextProvenanceWord { get; } = nextProvenanceWord;
+        public Func<LabelMapRandomAddressV1, ulong>? NextMapWord { get; } = nextMapWord;
         public bool UsesProvenance { get; } = nextProvenanceWord is not null || previous?.UsesProvenance == true;
+        public bool UsesMapProvenance { get; } = nextMapWord is not null || previous?.UsesMapProvenance == true;
         public Func<Rng, IReadOnlyList<object?>, IDisposable?>? BeginShuffle { get; } = beginShuffle;
         public Func<LabelMonsterHpContext, IDisposable?>? BeginMonsterHp { get; } = beginMonsterHp;
         public Func<LabelCombatRewardContext, IDisposable?>? BeginCombatReward { get; } = beginCombatReward;
