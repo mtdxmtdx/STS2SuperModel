@@ -31,12 +31,20 @@ these singleton candidate sets in the exhaustive pinned pools:
 | SunkenStatue | GRAB_SWORD, DIVE_INTO_WATER |
 | WoodCarvings | BIRD, SNAKE, TORUS or BIRD, TORUS |
 | RoomFullOfCheese | GORGE, SEARCH |
+| BrainLeech | SHARE_KNOWLEDGE, RIP |
+| DoorsOfLightAndDark | LIGHT, DARK |
 
-All six event signatures have no public prices. Lock flags may conservatively admit more
+All reviewed event signatures have no public prices. Lock flags may conservatively admit more
 states; complete replay checks them. `NO_OPTIONS` alone does not identify
 SelfHelpBook. Unrecognized or ambiguous signatures stop this extractor, rather
 than choosing a hidden identity. The finite scan kernel itself accepts candidate
 sets, and its tests exercise ambiguous two-event signatures.
+
+BrainLeech and Doors require both options unlocked, matching their fixed native
+first pages. Their later extensions and outcome laws are documented in
+[BrainLeech cards](PUBLIC_BRAIN_LEECH_CARDS.md) and
+[Doors LIGHT upgrades](PUBLIC_DOORS_LIGHT_UPGRADES.md). Event identity conditioning
+does not by itself constrain their displayed cards or unordered upgrade outcomes.
 
 The three additional identities are source-certified over the entire pinned
 native pools, not inferred from a retained source seed. `SunkenStatue` and

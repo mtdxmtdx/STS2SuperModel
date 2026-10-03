@@ -31,8 +31,8 @@ internal static class NativeTapeReplayDataset
         ? ImplementationVersion + "-public-evidence-v1" : ImplementationVersion;
 
     internal static string ImplementationFor(NativeTapePrior prior) => prior.UsesMapProvenance
-        ? "nosl-native-map-rewards-tape-marginalized-v5-public-evidence-v2" : prior.UsesRewardsProvenance
-        ? "nosl-native-rewards-state-tape-conditional-v11-public-evidence-v1" : ImplementationFor(prior.Execution);
+        ? "nosl-native-map-rewards-tape-marginalized-v6-public-evidence-v2" : prior.UsesRewardsProvenance
+        ? "nosl-native-rewards-state-tape-conditional-v12-public-evidence-v1" : ImplementationFor(prior.Execution);
     internal static string DatasetFor(NativeTapePrior prior) => prior.UsesMapProvenance
         ? "nosl.native-map-rewards-tape-replay-development.v1" : prior.UsesRewardsProvenance
         ? "nosl.native-rewards-tape-replay-development.v1" : DatasetVersion;
@@ -153,6 +153,8 @@ internal static class NativeTapeReplayDataset
                     if (source.UsesConditionalNeowPotions) audit["neow_potion_conditioning_eligible"] = true;
                     if (source.UsesConditionalPublicEventCards)
                     { audit["public_event_card_conditioning_eligible"] = true; audit["public_event_card_targets"] = source.PublicEventCardTargets; }
+                    if (source.UsesConditionalPublicEventUpgrades)
+                    { audit["public_event_upgrade_conditioning_eligible"] = true; audit["public_event_upgrade_targets"] = source.PublicEventUpgradeTargets; }
                     if (source.UsesConditionalPublicUnknownRooms)
                     {
                         audit["public_unknown_room_conditioning_eligible"] = true;

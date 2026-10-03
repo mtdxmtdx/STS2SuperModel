@@ -33,6 +33,8 @@ internal sealed class NativeLabelTape
     private readonly NativeNeowPotionProposal? _neowPotionProposal;
     private readonly NativeNeowCardCondition? _neowCardCondition;
     private readonly NativeNeowCardProposal? _neowCardProposal;
+    private readonly NativePublicEventUpgradeCondition? _publicEventUpgradeCondition;
+    private readonly NativePublicEventUpgradeProposal? _publicEventUpgradeProposal;
     private readonly NativePublicEventCardCondition? _publicEventCardCondition;
     private readonly NativePublicEventCardProposal? _publicEventCardProposal;
     private readonly NativePublicUnknownRoomCondition? _publicUnknownRoomCondition;
@@ -103,6 +105,10 @@ internal sealed class NativeLabelTape
     internal int ConditionedNeowCards => _neowCardProposal?.ConditionedCardCount ?? 0;
     internal ShuffleRational? NeowCardRatio => _neowCardProposal?.NativeToProposalRatio;
     internal ShuffleRational? NeowCardEnvelope => _neowCardProposal?.Envelope;
+    internal int ConditionedEventUpgrades => _publicEventUpgradeProposal?.ConditionedUpgradeCount ?? 0;
+    internal int ConditionedEventUpgradeShuffles => _publicEventUpgradeProposal?.ConditionedShuffleCount ?? 0;
+    internal ShuffleRational? EventUpgradeRatio => _publicEventUpgradeProposal?.NativeToProposalRatio;
+    internal ShuffleRational? EventUpgradeEnvelope => _publicEventUpgradeProposal?.Envelope;
     internal int ConditionedEventCards => _publicEventCardProposal?.ConditionedCardCount ?? 0;
     internal int ConditionedEventCardOffers => _publicEventCardProposal?.ConditionedOfferCount ?? 0;
     internal ShuffleRational? EventCardRatio => _publicEventCardProposal?.NativeToProposalRatio;
@@ -170,7 +176,8 @@ internal sealed class NativeLabelTape
         NativePublicEventCardCondition? publicEventCardCondition = null,
         NativePublicUnknownRoomCondition? publicUnknownRoomCondition = null,
         NativePublicShopCondition? publicShopCondition = null,
-        NativePublicActPrefixPlan? publicActPrefixPlan = null)
+        NativePublicActPrefixPlan? publicActPrefixPlan = null,
+        NativePublicEventUpgradeCondition? publicEventUpgradeCondition = null)
     {
         _recipe = recipe; _condition = condition; _expectedEntryJson = expectedEntryJson ?? condition?.EntryJson;
         _rewardsOracle = rewardsOracle; _mapOracle = mapOracle;
@@ -213,6 +220,14 @@ internal sealed class NativeLabelTape
             if (rewardsOracle is null) throw new ArgumentException("Public Neow potions require an explicit hybrid law");
             var random = new Rng(recipe.ProposalSeed, "nosl-public-neow-potions-v1");
             _neowPotionProposal = new(neowPotionCondition, random.NextUnsignedLong, ForcePrefixWords, CaptureConditionedFailure);
+        }
+        _publicEventUpgradeCondition = publicEventUpgradeCondition;
+        if (publicEventUpgradeCondition is not null)
+        {
+            if (rewardsOracle is null || expectedPublicEvidence is null)
+                throw new ArgumentException("Public event upgrades require the hybrid law and complete public-prefix validation");
+            var random = new Rng(recipe.ProposalSeed, "nosl-public-event-upgrade-pair-v1");
+            _publicEventUpgradeProposal = new(publicEventUpgradeCondition, random.NextUnsignedLong, ForcePrefixWords, CaptureConditionedFailure);
         }
         _publicEventCardCondition = publicEventCardCondition;
         if (publicEventCardCondition is not null)
@@ -366,13 +381,14 @@ internal sealed class NativeLabelTape
         NativePublicEventCardCondition? publicEventCardCondition = null,
         NativePublicUnknownRoomCondition? publicUnknownRoomCondition = null,
         NativePublicShopCondition? publicShopCondition = null,
-        NativePublicActPrefixPlan? publicActPrefixPlan = null) =>
+        NativePublicActPrefixPlan? publicActPrefixPlan = null,
+        NativePublicEventUpgradeCondition? publicEventUpgradeCondition = null) =>
         new(recipe, condition, expectedEntryJson: expectedEntryJson, hpCondition: hpCondition, neowCondition: neowCondition,
             firstRewardCondition: firstRewardCondition, firstEncounterCondition: firstEncounterCondition, initialPrefixPlan: initialPrefixPlan,
             rewardsOracle: prior.Freeze().UsesRewardsProvenance ? new(recipe.TapeSeed) : null,
             publicRewardCondition: publicRewardCondition, publicCombatCondition: publicCombatCondition,
             expectedPublicEvidence: expectedPublicEvidence, publicOpeningEncounterCondition: publicOpeningEncounterCondition, neowCardCondition: neowCardCondition, publicResourceCondition: publicResourceCondition, slugIntentCondition: slugIntentCondition, weakFormationCondition: weakFormationCondition, publicReshuffleCondition: publicReshuffleCondition, monsterBranchCondition: monsterBranchCondition, weakEncounterCondition: weakEncounterCondition, eventPermutationCondition: eventPermutationCondition, eventPermutationPlan: eventPermutationPlan,
-            mapOracle: prior.UsesMapProvenance ? new(recipe.TapeSeed) : null, mapReconstructionCondition: mapReconstructionCondition, neowPotionCondition: neowPotionCondition, publicEventCardCondition: publicEventCardCondition, publicUnknownRoomCondition: publicUnknownRoomCondition, publicShopCondition: publicShopCondition, publicActPrefixPlan: publicActPrefixPlan);
+            mapOracle: prior.UsesMapProvenance ? new(recipe.TapeSeed) : null, mapReconstructionCondition: mapReconstructionCondition, neowPotionCondition: neowPotionCondition, publicEventCardCondition: publicEventCardCondition, publicUnknownRoomCondition: publicUnknownRoomCondition, publicShopCondition: publicShopCondition, publicActPrefixPlan: publicActPrefixPlan, publicEventUpgradeCondition: publicEventUpgradeCondition);
 
     internal IDisposable EnterScope()
     {
@@ -432,7 +448,7 @@ internal sealed class NativeLabelTape
     {
         RequireSuccessfulConditionedWords();
         return new(_recipe, _condition, _overrides, _expectedEntryJson, _hpCondition, _neowCondition,
-            _firstRewardCondition, _firstEncounterCondition, _initialPrefixPlan, _rewardsOracle?.ReplayCopy(), _publicRewardCondition, _publicCombatCondition, _expectedPublicEvidence, _publicOpeningEncounterCondition, _neowCardCondition, _publicResourceCondition, _slugIntentCondition, _weakFormationCondition, _publicReshuffleCondition, _monsterBranchCondition, _weakEncounterCondition, _eventPermutationCondition, _eventPermutationPlan, _mapOracle?.ReplayCopy(), _mapReconstructionCondition, _neowPotionCondition, _publicEventCardCondition, _publicUnknownRoomCondition, _publicShopCondition, _publicActPrefixPlan);
+            _firstRewardCondition, _firstEncounterCondition, _initialPrefixPlan, _rewardsOracle?.ReplayCopy(), _publicRewardCondition, _publicCombatCondition, _expectedPublicEvidence, _publicOpeningEncounterCondition, _neowCardCondition, _publicResourceCondition, _slugIntentCondition, _weakFormationCondition, _publicReshuffleCondition, _monsterBranchCondition, _weakEncounterCondition, _eventPermutationCondition, _eventPermutationPlan, _mapOracle?.ReplayCopy(), _mapReconstructionCondition, _neowPotionCondition, _publicEventCardCondition, _publicUnknownRoomCondition, _publicShopCondition, _publicActPrefixPlan, _publicEventUpgradeCondition);
     }
     private void CaptureConditionedFailure(Exception error)
     {
@@ -461,6 +477,7 @@ internal sealed class NativeLabelTape
         _publicPrefixConstraint?.Observe(evidence);
         // Observe only after the existing exact public-prefix comparison succeeds.
         _publicUnknownRoomProposal?.ObservePublicEvidence(evidence);
+        _publicEventUpgradeProposal?.ObservePublicEvidence(evidence);
     }
 
     private IDisposable EnterStateOverride(Func<LabelRandomState, ulong> nextState) => _mapOracle is not null
@@ -486,6 +503,7 @@ internal sealed class NativeLabelTape
         _neowCardProposal?.AttachHypotheticalRun(run);
         _neowPotionProposal?.AttachHypotheticalRun(run);
         _publicEventCardProposal?.AttachHypotheticalRun(run);
+        _publicEventUpgradeProposal?.AttachHypotheticalRun(run);
         _publicUnknownRoomProposal?.AttachHypotheticalRun(run);
         _publicShopProposal?.AttachHypotheticalRun(run);
     }
@@ -557,6 +575,7 @@ internal sealed class NativeLabelTape
             return ForceWords(_neowPlan.Plan.RawWords, "Neow");
         }
         if (_neowCardProposal?.BeginShuffle(rng, items) is { } neowCards) return neowCards;
+        if (_publicEventUpgradeProposal?.BeginShuffle(rng, items) is { } eventUpgrade) return eventUpgrade;
         if (_publicReshuffleProposal?.BeginShuffle(rng, items) is { } reshuffle) return reshuffle;
         if (_publicCombatProposal is not null) return _publicCombatProposal.BeginShuffle(rng, items);
         if (!_awaitingInitialShuffle || items.Count == 0 || items.Any(x => x is not CardModel)) return null;
@@ -587,6 +606,7 @@ internal sealed class NativeLabelTape
         _neowCardProposal?.ValidateCompletion();
         _neowPotionProposal?.ValidateCompletion();
         _publicEventCardProposal?.ValidateCompletion();
+        _publicEventUpgradeProposal?.ValidateCompletion();
         _publicUnknownRoomProposal?.ValidateCompletion();
         _publicShopProposal?.ValidateCompletion();
         _publicOpeningEncounterProposal?.ValidateCompletion();
@@ -634,6 +654,7 @@ internal sealed class NativeLabelTape
         if (_publicResourceProposal is not null && !_publicResourceProposal.AcceptCorrection(nextWord)) return false;
         if (_neowPotionProposal is not null && !_neowPotionProposal.AcceptCorrection(nextWord)) return false;
         if (_publicEventCardProposal is not null && !_publicEventCardProposal.AcceptCorrection(nextWord)) return false;
+        if (_publicEventUpgradeProposal is not null && !_publicEventUpgradeProposal.AcceptCorrection(nextWord)) return false;
         if (_publicUnknownRoomProposal is not null && !_publicUnknownRoomProposal.AcceptCorrection(nextWord)) return false;
         if (_publicShopProposal is not null && !_publicShopProposal.AcceptCorrection(nextWord)) return false;
         if (_publicCombatProposal is not null && !_publicCombatProposal.AcceptCorrection(nextWord)) return false;

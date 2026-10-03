@@ -1,6 +1,8 @@
 # M3–M6 engineering checkpoint
 
-Current additive Map v3 integration: 1,928 native tests and 53 guarded v5 Python checks pass. The fresh native candidate API, protected auxiliary preparation and bounded pilot interface are implemented; one inspected-source API invocation settles 14/14 branches and passes adapter/no-grad loss checks. No new fit or production admission occurred. The inspected probe completes five of eight roots and68/98 branches in219 seconds, with30 unresolved truncations and zero errors. The later-combat gate fails; public shop and later room/roster gaps remain engineering work. The separately predeclared new development probe has not started. See [current versioned evidence](../configs/native_map_origin_verification_v3.json). The counts and limited-profile cohort evidence below remain historical, not new independent validation.
+Current verified Map v5 integration passes **2,076 native tests** and **4,493 Core tests with three existing opt-in skips**. The 43 Python source/test files associated with the retained 57 guarded v5 checks are unchanged. The inspected eight-source probe completes seven roots, accepts15/16 worlds and settles92/98 branches in293.047seconds. The second inspected twelve-source probe fails its360-second gate: two roots complete,4/24 worlds accepted,10/50 assigned branches settled,40 truncated, and eight source attempts unexecuted. All failure mass is retained. No fresh twelve-source probe, expanded production, backward pass or optimizer step was performed in this snapshot. See the [versioned v5 report](../configs/native_map_origin_verification_v5.json) and [predeclared gates](../configs/native_map_v5_validation_plan.json).
+
+The detailed checkpoint and 50-case tracker below record earlier scoped evidence at their stated source commits. Their old aggregate counts and finite-profile measurements are historical; they do not replace the current v5 result. Current remaining implementation work includes reward-history/event conditioning efficiency, the full v5 policy engineering interface, and native evidence for three preference examples. Broad production admission remains false.
 
 The declared pilot engineering paths are implemented and reviewed. **Full-scope
 READY_FOR_TRAINING remains false.** The remaining limits are broader native
@@ -43,9 +45,9 @@ unpriced; absolute utilities and learned action/Hunt labels stay masked.
 A 32-world same-consumption Flex comparison favors safe later use, with16 ties
 and16 five-HP advantages. This is bounded timing evidence, not a general optimizer.
 
-## Final verification
+## Historical finite-profile verification
 
-The current encounter runtime passes **1,096/1,096 native tests** and
+The earlier encounter runtime passes **1,096/1,096 native tests** and
 **4,480 Core tests with three existing opt-in skips**. Both vendor patches rebuild
 all 2,227 Core/test files exactly from pinned upstream. Python verification passes
 205 no-learning checks, 145 data checks with seven optional live skips, and all

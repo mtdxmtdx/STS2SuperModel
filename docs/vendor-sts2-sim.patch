@@ -568,6 +568,16 @@
 -        float bonus = roomType == RoomType.Elite ? eliteBonus : 0f;
 -        float threshold = currentValue + bonus * 0.5f;
 --- /dev/null
++++ b/src/Sts2Sim.Core/Random/IAbortableLabelShuffleBoundary.cs
+@@ -0,0 +1,7 @@
++namespace Sts2Sim.Core.Random;
++
++/// <summary>Optional label-only failure notification; ordinary shuffle scopes are unchanged.</summary>
++public interface IAbortableLabelShuffleBoundary : IDisposable
++{
++    void Abort(Exception nativeError);
++}
+--- /dev/null
 +++ b/src/Sts2Sim.Core/Random/LabelCardTransformScope.cs
 @@ -0,0 +1,45 @@
 +using Sts2Sim.Core.Models;
@@ -1906,8 +1916,47 @@
 +        _random.Reinitialise(serializable);
 @@ -153 +176,0 @@
 -        _random.Reinitialise(serializable);
-@@ -494,0 +518 @@
-+        using IDisposable? labelScope = LabelRandomScope.BeginShuffle(this, list);
+@@ -495,9 +518,31 @@
+-        for (int num = list.Count - 1; num > 0; num--)
+-        {
+-            int num2 = NextInt(num + 1);
+-            int index = num;
+-            int index2 = num2;
+-            T value = list[num2];
+-            T value2 = list[num];
+-            list[index] = value;
+-            list[index2] = value2;
++        IDisposable? labelScope = LabelRandomScope.BeginShuffle(this, list);
++        Exception? failure = null;
++        try
++        {
++            for (int num = list.Count - 1; num > 0; num--)
++            {
++                int num2 = NextInt(num + 1);
++                int index = num;
++                int index2 = num2;
++                T value = list[num2];
++                T value2 = list[num];
++                list[index] = value;
++                list[index2] = value2;
++            }
++        }
++        catch (Exception error)
++        {
++            failure = error;
++            if (labelScope is IAbortableLabelShuffleBoundary abortable)
++                try { abortable.Abort(error); } catch { /* Preserve the native exception. */ }
++            throw;
++        }
++        finally
++        {
++            if (failure is not null && labelScope is IAbortableLabelShuffleBoundary)
++            {
++                // The participating proposal has already been notified. Cleanup
++                // cannot replace the original native failure while unwinding.
++                try { labelScope.Dispose(); } catch { }
++            }
++            else labelScope?.Dispose();
 --- a/src/Sts2Sim.Core/Rewards/GoldReward.cs
 +++ b/src/Sts2Sim.Core/Rewards/GoldReward.cs
 @@ -69,0 +70 @@

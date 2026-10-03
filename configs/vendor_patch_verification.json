@@ -2,13 +2,13 @@
   "schema": "nosl.vendor-patch-reconstruction.v2",
   "status": "PASS_PROVENANCE_BASELINE_RECONSTRUCTION_AND_FRESH_FULL_CORE",
   "upstream_commit": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
-  "verified_source_commit": "a6ee77188ea19b45af897f163f753cb21911cab0",
+  "verified_source_commit": "28cccddc44b3cbc4e91eabc7aaf5dfe48dff04a7",
   "verified_source_scope": "Frozen tracked vendor Core/Core.Tests files; worker-only later commits do not change the recorded Core tree or byte manifest.",
-  "src_git_tree": "5b95a98918a235816cb5323117ccf723840e405f",
+  "src_git_tree": "31d0fe0c98d774f28dc967b68f8093d7d0f7d1f4",
   "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
-  "main_patch_sha256": "088dd4a85ddee8983d69fb08083ee2aefc9fe7689cb99ad9476c075087822d8d",
+  "main_patch_sha256": "ca7ffdb4a77a421ff039a34a857c4f315b476592bb26cdcf6959f276ba6f9ec5",
   "map_patch_sha256": "fad7d6a7e85ea44901da2b01227f972926a116af5398686a2628326002bcdc08",
-  "tracked_source_and_test_files_verified": 2242,
+  "tracked_source_and_test_files_verified": 2243,
   "main_patch_files": [
     "src/Sts2Sim.Core/Combat/CombatEngine.cs",
     "src/Sts2Sim.Core/Combat/CombatState.Clone.cs",
@@ -44,6 +44,7 @@
     "src/Sts2Sim.Core/MonsterMoves/RandomBranchState.cs",
     "src/Sts2Sim.Core/Odds/CardRarityOdds.cs",
     "src/Sts2Sim.Core/Odds/PotionRewardOdds.cs",
+    "src/Sts2Sim.Core/Random/IAbortableLabelShuffleBoundary.cs",
     "src/Sts2Sim.Core/Random/LabelCardTransformScope.cs",
     "src/Sts2Sim.Core/Random/LabelCombatReshuffleScope.cs",
     "src/Sts2Sim.Core/Random/LabelCorpseSlugScope.cs",
@@ -76,16 +77,16 @@
   "map_patch_file": "src/Sts2Sim.Core/Map/MapPathPruning.cs",
   "all_bytes_match": true,
   "reconstructed_file_set_matches": true,
-  "source_file_manifest_path": "artifacts/reports/map-v5-vendor-verification/vendor-reconstructed-manifest.json",
-  "source_file_manifest_sha256": "6c705833ef143e5e944698e4a71334a7d17bbdf2aac07599e82b0664c855e197",
+  "source_file_manifest_path": "artifacts/reports/map-v6-vendor-verification/vendor-reconstructed-manifest.json",
+  "source_file_manifest_sha256": "fd5682924819035fb3f1bddf0601030c9c8f4d35959a1e26dde730171e77389e",
   "source_manifest_format": "Sorted JSON array of {path, bytes, sha256}; paths are relative to vendor/sts2-sim, serialized as UTF-8 with two-space indentation and a terminal LF.",
   "source_manifest_before": {
-    "path": "artifacts/reports/map-v5-vendor-verification/source-manifest-before.json",
-    "sha256": "6c705833ef143e5e944698e4a71334a7d17bbdf2aac07599e82b0664c855e197"
+    "path": "artifacts/reports/map-v6-vendor-verification/source-manifest-before.json",
+    "sha256": "fd5682924819035fb3f1bddf0601030c9c8f4d35959a1e26dde730171e77389e"
   },
   "source_manifest_after": {
-    "path": "artifacts/reports/map-v5-vendor-verification/source-manifest-after.json",
-    "sha256": "6c705833ef143e5e944698e4a71334a7d17bbdf2aac07599e82b0664c855e197"
+    "path": "artifacts/reports/map-v6-vendor-verification/source-manifest-after.json",
+    "sha256": "fd5682924819035fb3f1bddf0601030c9c8f4d35959a1e26dde730171e77389e"
   },
   "source_hashes_verified_before_and_after": true,
   "baseline_provenance": {
@@ -109,67 +110,71 @@
     "historical_patch_reverse_then_forward_file_set_and_bytes_match": true
   },
   "baseline_source_manifest": {
-    "path": "artifacts/reports/map-v5-vendor-verification/provenance-derived-upstream-manifest.json",
+    "path": "artifacts/reports/map-v6-vendor-verification/provenance-derived-upstream-manifest.json",
     "sha256": "9324e1599c0197dec97c1f88ce3a1ec23930276fc5cf53bae9484dcf587e8e57"
   },
   "original_source_manifest": {
-    "path": "artifacts/reports/map-v5-vendor-verification/original-source-manifest.json",
+    "path": "artifacts/reports/map-v6-vendor-verification/original-source-manifest.json",
     "sha256": "2391d37fc74eb3b00772cd88ac06ff53c6018e4a3257cdef891c33d6f9628c70"
   },
   "packaging_delta_audit": {
-    "previous_packaged_source_commit": "e1d1cd26e1b791ff56bbeb5c12bbd7ed8fbe75c3",
+    "previous_packaged_source_commit": "a6ee77188ea19b45af897f163f753cb21911cab0",
     "provenance_verified_original_source_commit": "4d888e5d42221a60fb6679aab930993ca5caaaf7",
-    "previous_main_patch_sha256": "00e11ca3d6dd3209c5c862ceed8534bf29b5f42ee42702bbab1a525c94cbdca6",
+    "previous_main_patch_sha256": "088dd4a85ddee8983d69fb08083ee2aefc9fe7689cb99ad9476c075087822d8d",
     "source_delta_from_previous_package": [
-      "src/Sts2Sim.Core/Factories/CardFactory.cs",
-      "src/Sts2Sim.Core/Random/LabelCardTransformScope.cs"
+      "src/Sts2Sim.Core/Random/IAbortableLabelShuffleBoundary.cs",
+      "src/Sts2Sim.Core/Random/Rng.cs"
     ],
     "source_delta_from_original": [
       "src/Sts2Sim.Core/Entities/Merchant/MerchantInventory.cs",
       "src/Sts2Sim.Core/Factories/CardFactory.cs",
+      "src/Sts2Sim.Core/Random/IAbortableLabelShuffleBoundary.cs",
       "src/Sts2Sim.Core/Random/LabelCardTransformScope.cs",
       "src/Sts2Sim.Core/Random/LabelMerchantScope.cs",
       "src/Sts2Sim.Core/Random/LabelUnknownRoomScope.cs",
+      "src/Sts2Sim.Core/Random/Rng.cs",
       "src/Sts2Sim.Core/Rooms/RoomFactory.cs",
       "src/Sts2Sim.Core/Runs/RunState.cs"
     ],
     "new_source_file_sha256": {
       "src/Sts2Sim.Core/Entities/Merchant/MerchantInventory.cs": "9a40e06f9b51604c786784b67a78736246962c630a4fe16b9e1a2bda2076a602",
       "src/Sts2Sim.Core/Factories/CardFactory.cs": "1609275c7dbe2e2409806f5fd76c49d64bb6e827081673ef9df402deef783964",
+      "src/Sts2Sim.Core/Random/IAbortableLabelShuffleBoundary.cs": "85624607210879333e6a5849d4c61f43db4616288ca1af8c5f6b1ce59468eb6d",
       "src/Sts2Sim.Core/Random/LabelCardTransformScope.cs": "776fd67c0a8309cb2a7cdf0009aa168bca00b01774df858f140ba5f218f5239e",
       "src/Sts2Sim.Core/Random/LabelMerchantScope.cs": "b5b9aef2b5a051f3528870e27c78e26a91fb7b9b7b3b5179fee49cc6ae0609ec",
       "src/Sts2Sim.Core/Random/LabelUnknownRoomScope.cs": "438833a943015e8138ee0fe67ed1ed4fb592b2c5b974b37c4dffc01386bc9365",
+      "src/Sts2Sim.Core/Random/Rng.cs": "e6c0cc52969c25301804ab58ed952fb5fdfa2f4be8aecfc3f08c14695f35978d",
       "src/Sts2Sim.Core/Rooms/RoomFactory.cs": "8ffc619b9845ec4c31a0ba156c7584f7bdcb2d9172c018892159200854b094b1",
       "src/Sts2Sim.Core/Runs/RunState.cs": "f03c92bce656d89c6d1de169c8393b64b1fd4521e5f8cc572afe8be2cfb45672"
     },
-    "unchanged_patch_section_count_from_original": 55,
-    "unchanged_patch_section_count_from_previous_package": 60,
+    "unchanged_patch_section_count_from_original": 54,
+    "unchanged_patch_section_count_from_previous_package": 61,
     "unchanged_patch_sections_byte_identical": true,
     "map_patch_byte_identical": true,
     "core_tests_tree_unchanged_from_original": true,
     "incremental_audit": {
-      "path": "artifacts/reports/map-v5-vendor-verification/incremental-delta-audit.json",
-      "sha256": "20caa548bf054dafef35ee208700844bac64dc6917b609f1b80dc836c280f9da"
+      "path": "artifacts/reports/map-v6-vendor-verification/incremental-delta-audit.json",
+      "sha256": "b416046c251426d58f74f136b184d3b10df684ab1c3f818e687368ce428431ed"
     },
-    "note": "Relative to the previous e1d1cd2 package, only CardFactory.cs and new LabelCardTransformScope.cs change. The optional default-transform boundary preserves the original expression when no label scope is active; the opted-in path retains native candidate order, the single index draw, and native transformation construction. The full current patch has 62 sections; 60 previous sections and the separate map-pruning patch remain byte-identical. Relative to the authorized original there are seven source deltas and 55 unchanged patch sections. No source or tests were edited by this packaging task."
+    "note": "Relative to the previous a6ee771 package, only Random/Rng.cs and new Random/IAbortableLabelShuffleBoundary.cs change. The native Fisher–Yates draws, item accesses and swaps stay unchanged. An opt-in abortable label boundary is notified of native failure, and its cleanup cannot replace that failure; ordinary scope disposal follows its existing semantics. The full current patch has 63 sections; 61 previous sections and the map-pruning patch remain byte-identical. Relative to the authorized original there are nine source deltas and 54 unchanged patch sections. No source or tests were edited by this packaging task."
   },
-  "packaging_crosscheck": "passed_provenance_baseline_file_set_exact_bytes_manifests_patch_hashes_transform_delta",
-  "packaging_crosscheck_path": "artifacts/reports/map-v5-vendor-verification/crosscheck-verification.json",
-  "packaging_crosscheck_sha256": "c01fb39ebd3c51cd38339768b1e6dc1113821b66219ce7af903c2f7c6e3db0dc",
+  "packaging_crosscheck": "passed_provenance_baseline_file_set_exact_bytes_manifests_patch_hashes_abortable_shuffle_delta",
+  "packaging_crosscheck_path": "artifacts/reports/map-v6-vendor-verification/crosscheck-verification.json",
+  "packaging_crosscheck_sha256": "d24908250fc9533d6e9c04894aee87685ebe62faf2d8881d6b38cf51d43e80c0",
   "reconstruction_script": {
-    "path": "artifacts/reports/map-v5-vendor-verification/verify_reconstruction.py",
-    "sha256": "67943e11a3e9e866cbc4df74393f2bb3bc9c49f7f6238c81a46a0f84526811ed"
+    "path": "artifacts/reports/map-v6-vendor-verification/verify_reconstruction.py",
+    "sha256": "b274d2ac69083510f5520252197a6cb750a35514fa5cc132858654512b60c8da"
   },
   "reconstruction_commands": {
-    "path": "artifacts/reports/map-v5-vendor-verification/commands.json",
-    "sha256": "0f892c08aa5e82bc3da27e70bc17302af2d1d7a666fb326d956749f4042389cc"
+    "path": "artifacts/reports/map-v6-vendor-verification/commands.json",
+    "sha256": "e005fc94f8c4e651481672e5b5fc5158a13c74d046349961d9d89aa9102d7887"
   },
-  "reproduce_command": "python artifacts/reports/map-v5-vendor-verification/verify_reconstruction.py --repository . --original-archive-directory <authorized-original-archive-directory> --output <new-repository-local-verification-directory>",
+  "reproduce_command": "python artifacts/reports/map-v6-vendor-verification/verify_reconstruction.py --repository . --original-archive-directory <authorized-original-archive-directory> --output <new-repository-local-verification-directory>",
   "vendor_core_suite": {
     "schema": "nosl.current-full-core-artifact-verification.v1",
     "status": "PASS_FRESH_FULL_CORE_ARTIFACTS_VERIFIED",
-    "verified_source_commit": "a6ee77188ea19b45af897f163f753cb21911cab0",
-    "source_pin_basis": "The lead executor confirmed this frozen Core source for its single current run. Core/Core.Tests match the exact packaging reconstruction and post-run byte manifest.",
+    "verified_source_commit": "28cccddc44b3cbc4e91eabc7aaf5dfe48dff04a7",
+    "source_pin_basis": "The lead confirmed frozen runtime 28cccdd and its unchanged Core source for this single completed run. The source file set and exact bytes match the packaging reconstruction and post-run manifest.",
     "passed": 4493,
     "failed": 0,
     "skipped": 3,
@@ -198,22 +203,22 @@
       "pending": 0
     },
     "skipped_count_source": "Three per-test NotExecuted outcomes; matches log and total minus executed. The adapter aggregate notExecuted remains zero.",
-    "duration_reported": "4 m 9 s",
-    "trx_duration_seconds": 250.353185,
+    "duration_reported": "4 m 21 s",
+    "trx_duration_seconds": 262.745469,
     "trx_times": {
-      "creation": "2026-10-03T17:57:37.9617659+09:00",
-      "queuing": "2026-10-03T17:57:37.9617660+09:00",
-      "start": "2026-10-03T17:57:35.9296713+09:00",
-      "finish": "2026-10-03T18:01:46.2828561+09:00"
+      "creation": "2026-10-03T19:58:35.3120993+09:00",
+      "queuing": "2026-10-03T19:58:35.3120993+09:00",
+      "start": "2026-10-03T19:58:34.0182170+09:00",
+      "finish": "2026-10-03T20:02:56.7636862+09:00"
     },
-    "started_at_utc": "2026-10-03T08:57:35.929671+00:00",
-    "finished_at_utc": "2026-10-03T09:01:46.282856+00:00",
-    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 9 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "started_at_utc": "2026-10-03T10:58:34.018217+00:00",
+    "finished_at_utc": "2026-10-03T11:02:56.763686+00:00",
+    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 21 s - Sts2Sim.Core.Tests.dll (net9.0)",
     "evidence_kind": "fresh_single_full_core_run_by_lead_with_independently_checked_log_trx_source_and_assembly_hashes",
     "invocations": 1,
     "invocations_by_packaging_task": 0,
     "exit_code": 0,
-    "execution_receipt_source": "The lead executor confirmed terminal process exit 0, final counters, unchanged Core source and exact argv; artifact contents and hashes were independently verified by this packaging task.",
+    "execution_receipt_source": "The lead confirmed terminal process exit 0, counters, fixed source and exact argv; the packaging task independently read and hashed the completed evidence.",
     "argv": [
       "dotnet",
       "test",
@@ -221,37 +226,37 @@
       "-c",
       "Release",
       "--artifacts-path",
-      "artifacts/map-v5-full-core",
+      "artifacts/map-v6-full-core",
       "-m:1",
       "-nr:false",
       "-p:UseSharedCompilation=false",
       "-p:NuGetAudit=false",
       "--logger",
-      "trx;LogFileName=map-v5-full-core.trx",
+      "trx;LogFileName=map-v6-full-core.trx",
       "--results-directory",
-      "artifacts/reports/map-v5-full/core"
+      "artifacts/reports/map-v6-full/core"
     ],
-    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/map-v5-full-core -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=map-v5-full-core.trx' --results-directory artifacts/reports/map-v5-full/core",
-    "command_note": "Run by the lead after sourcing the shared .NET environment, with combined stdout/stderr redirected to /tmp/map-v5-full-core.log. Uses isolated artifacts, one MSBuild worker, disabled node reuse/shared compilation and disabled NuGet audit.",
-    "log_path": "artifacts/reports/map-v5-vendor-verification/current-full-core.log",
-    "log_sha256": "850e83f0a495888dc7e6830a957807334e7b8cd732fa912b7a5dc21ebf665ed8",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/map-v6-full-core -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=map-v6-full-core.trx' --results-directory artifacts/reports/map-v6-full/core",
+    "command_note": "Run from the repository by the lead after sourcing .dotnet-nosl-env.sh, with combined stdout/stderr redirected to /tmp/map-v6-full-core.log. Uses isolated artifacts, one MSBuild worker, disabled node reuse/shared compilation and disabled NuGet audit.",
+    "log_path": "artifacts/reports/map-v6-vendor-verification/current-full-core.log",
+    "log_sha256": "367534da811bac5c6c328eaed7a35c2cf46de013508fcdf09220cfbed93c7f64",
     "log_capture": "Byte-identical durable copy of the completed lead execution log.",
-    "trx_path": "artifacts/reports/map-v5-full/core/map-v5-full-core.trx",
-    "trx_sha256": "1cc809aa5381aab3d88eb0bcfd24dd07bc301cbf96cb163692546bc16123ffba",
-    "test_assembly_path": "artifacts/map-v5-full-core/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
-    "test_assembly_sha256": "915f3b79b7bade3a22847f3d64f0cc0000df09f3795d0655c9e075881eaf6dc7",
-    "core_assembly_path": "artifacts/map-v5-full-core/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
-    "core_assembly_sha256": "274f7c4d1c1fb30ce8dd9486fc093bdf5334ca47876e5248d4edd1d116fc9b18",
-    "build_artifacts": "artifacts/map-v5-full-core",
+    "trx_path": "artifacts/reports/map-v6-full/core/map-v6-full-core.trx",
+    "trx_sha256": "f920fc4950ab990698421be146287b83f2f0ede1bbdc01443088d24dc196127e",
+    "test_assembly_path": "artifacts/map-v6-full-core/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "106974951361b5f16c50c6adf8e28e7197e18a289f4ccc0c08844177d64489f6",
+    "core_assembly_path": "artifacts/map-v6-full-core/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "121281039e9e56b81fe3f15dd64a8963a3f041c795bff71fd43c8573eada3c5d",
+    "build_artifacts": "artifacts/map-v6-full-core",
     "assembly_hash_capture": "Captured from isolated current-run binaries after completion. This packaging task ran no build or test.",
-    "src_git_tree": "5b95a98918a235816cb5323117ccf723840e405f",
+    "src_git_tree": "31d0fe0c98d774f28dc967b68f8093d7d0f7d1f4",
     "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
-    "verified_source_manifest_sha256": "6c705833ef143e5e944698e4a71334a7d17bbdf2aac07599e82b0664c855e197",
-    "source_manifest_after_path": "artifacts/reports/map-v5-vendor-verification/source-manifest-after-full-core.json",
-    "source_manifest_after_sha256": "6c705833ef143e5e944698e4a71334a7d17bbdf2aac07599e82b0664c855e197",
+    "verified_source_manifest_sha256": "fd5682924819035fb3f1bddf0601030c9c8f4d35959a1e26dde730171e77389e",
+    "source_manifest_after_path": "artifacts/reports/map-v6-vendor-verification/source-manifest-after-full-core.json",
+    "source_manifest_after_sha256": "fd5682924819035fb3f1bddf0601030c9c8f4d35959a1e26dde730171e77389e",
     "source_hashes_verified_after_run": true,
     "source_hashes_verified_before_run": false,
-    "source_manifest_timing_note": "No separate pre-test manifest was captured by this packaging task. The reconstruction before/after manifests establish packaging stability; the dedicated post-run manifest matches them exactly. The lead confirmed Core source remained unchanged since a6ee771.",
+    "source_manifest_timing_note": "No separate pre-test manifest was captured by this packaging task. Reconstruction before/after manifests establish packaging stability; the dedicated post-run manifest matches them exactly. The lead confirmed Core source stayed fixed at runtime 28cccdd.",
     "build_warning_count": 0,
     "build_warnings": [],
     "raw_log_available": true,
@@ -537,8 +542,8 @@
     }
   },
   "packaging_whitespace_audit": {
-    "path": "artifacts/reports/map-v5-vendor-verification/whitespace-audit.json",
-    "sha256": "513c0f675e48219ce11b95da43cb99330d1f998cc79c3142d349f70e7600fd06",
+    "path": "artifacts/reports/map-v6-vendor-verification/whitespace-audit.json",
+    "sha256": "e1123d8f0f72e58c3ce7467ea2b218b2021be0c3583538c569fa49b207082145",
     "source_file": "vendor/sts2-sim/src/Sts2Sim.Core/Models/Relics/PhialHolster.cs",
     "source_line": 36,
     "frozen_source_whitespace_preserved": true,
@@ -549,35 +554,35 @@
   "full_core_suite_invocations": 1,
   "production_generation": false,
   "training": false,
-  "note": "Verified the same authorized original archive and all 56 package payloads / 2,741 source.zip files. Reversed the original main and map patches on its provenance-verified 2,239-file Core/Core.Tests tree, round-tripped that historical tree, and applied the current full patch plus unchanged map patch to reconstruct 2,242 tracked current files. File sets, sizes, SHA-256 and direct bytes match; reconstruction before/after manifests match. Exactly two files differ from the previous e1d1cd2 package; seven differ from the original recovered source. Upstream provenance is inherited from that verified archive without a new remote fetch. Current full-Core validation independently verifies the lead’s single completed run: 4,493 passed, 3 existing opt-in skipped, 0 failed, exit 0, with log/TRX/isolated-assembly hashes and a matching post-run source manifest. Previous and original reports retain their own source pins and are not counted as the current run. No simulator remote writes, builds/tests by the packaging task, production generation or training occurred.",
+  "note": "Verified the same authorized original archive and all 56 package payloads / 2,741 source.zip files. Reversed the original main and map patches on its provenance-verified 2,239-file Core/Core.Tests tree, round-tripped that historical tree, and applied the current cumulative patch plus unchanged map patch to reconstruct 2,243 tracked current files. File sets, sizes, SHA-256 and direct bytes match; reconstruction before/after manifests match. Exactly two files differ from the previous a6ee771 package; nine differ from the original recovered source. Upstream provenance remains inherited from that verified archive without a fresh remote fetch. Current complete Core validation independently verifies the lead’s single completed run on frozen runtime 28cccdd: 4,493 passed, 3 existing opt-in skips, 0 failed, exit 0, with actual log/TRX/isolated-assembly hashes and a matching post-run source manifest. Every previous report retains its original source pin and is not counted as the current run. No simulator remote writes, builds/tests by the packaging task, production generation or training occurred.",
   "full_core_suite_invocations_by_packaging_task": 0,
   "packaging_task_build_invocations": 0,
   "previous_verified_package": {
-    "classification": "PREVIOUS_FULL_CORE_AND_PATCH_PACKAGE_NOT_CURRENT_V5_VALIDATION",
-    "verified_source_commit": "e1d1cd26e1b791ff56bbeb5c12bbd7ed8fbe75c3",
-    "main_patch_sha256": "00e11ca3d6dd3209c5c862ceed8534bf29b5f42ee42702bbab1a525c94cbdca6",
-    "source_file_manifest_sha256": "2f908781a2332effbd07198cc6d494fa80920fe54c83ac5d4c9e59c39c1abb98",
+    "classification": "PREVIOUS_FULL_CORE_AND_PATCH_PACKAGE_NOT_CURRENT_V6_VALIDATION",
+    "verified_source_commit": "a6ee77188ea19b45af897f163f753cb21911cab0",
+    "main_patch_sha256": "088dd4a85ddee8983d69fb08083ee2aefc9fe7689cb99ad9476c075087822d8d",
+    "source_file_manifest_sha256": "6c705833ef143e5e944698e4a71334a7d17bbdf2aac07599e82b0664c855e197",
     "preserved_report": {
-      "path": "artifacts/reports/map-v5-vendor-verification/previous-vendor-verification.json",
-      "sha256": "46dcd084c0961b9f0be4c133adbd7433559a6e7d21a2bc901522a227b8dad704"
+      "path": "artifacts/reports/map-v6-vendor-verification/previous-vendor-verification.json",
+      "sha256": "b4b12e692092735d059fdbf29e7a67952c21992221eba2a23f937e886fcf725f"
     },
     "preserved_patch": {
-      "path": "artifacts/reports/map-v5-vendor-verification/previous-vendor-sts2-sim.patch",
-      "sha256": "00e11ca3d6dd3209c5c862ceed8534bf29b5f42ee42702bbab1a525c94cbdca6"
+      "path": "artifacts/reports/map-v6-vendor-verification/previous-vendor-sts2-sim.patch",
+      "sha256": "088dd4a85ddee8983d69fb08083ee2aefc9fe7689cb99ad9476c075087822d8d"
     },
     "preserved_readme": {
-      "path": "artifacts/reports/map-v5-vendor-verification/previous-vendor-README.md",
-      "sha256": "8a4e1a9907795cea385156d1bda5f87af48e539599ac605729f855d9d60cd8f5"
+      "path": "artifacts/reports/map-v6-vendor-verification/previous-vendor-README.md",
+      "sha256": "9e36c0354048e7d1d592fcb251687ea4b4cbb7657cf665aa609724d8b4c33509"
     },
     "preserved_source_manifest": {
-      "path": "artifacts/reports/map-v5-vendor-verification/previous-source-manifest.json",
-      "sha256": "2f908781a2332effbd07198cc6d494fa80920fe54c83ac5d4c9e59c39c1abb98"
+      "path": "artifacts/reports/map-v6-vendor-verification/previous-source-manifest.json",
+      "sha256": "6c705833ef143e5e944698e4a71334a7d17bbdf2aac07599e82b0664c855e197"
     },
     "vendor_core_suite": {
       "schema": "nosl.current-full-core-artifact-verification.v1",
       "status": "PASS_FRESH_FULL_CORE_ARTIFACTS_VERIFIED",
-      "verified_source_commit": "e1d1cd26e1b791ff56bbeb5c12bbd7ed8fbe75c3",
-      "source_pin_basis": "Lead executor reported this exact frozen source for its single current run; Core and Core.Tests match the packaging reconstruction and the post-run byte manifest.",
+      "verified_source_commit": "a6ee77188ea19b45af897f163f753cb21911cab0",
+      "source_pin_basis": "The lead executor confirmed this frozen Core source for its single current run. Core/Core.Tests match the exact packaging reconstruction and post-run byte manifest.",
       "passed": 4493,
       "failed": 0,
       "skipped": 3,
@@ -606,44 +611,22 @@
         "pending": 0
       },
       "skipped_count_source": "Three per-test NotExecuted outcomes; matches log and total minus executed. The adapter aggregate notExecuted remains zero.",
-      "duration_reported": "4 m 12 s",
-      "trx_duration_seconds": 253.573046,
+      "duration_reported": "4 m 9 s",
+      "trx_duration_seconds": 250.353185,
       "trx_times": {
-        "creation": "2026-10-03T16:46:30.9165443+09:00",
-        "queuing": "2026-10-03T16:46:30.9165444+09:00",
-        "start": "2026-10-03T16:46:29.0897506+09:00",
-        "finish": "2026-10-03T16:50:42.6627963+09:00"
+        "creation": "2026-10-03T17:57:37.9617659+09:00",
+        "queuing": "2026-10-03T17:57:37.9617660+09:00",
+        "start": "2026-10-03T17:57:35.9296713+09:00",
+        "finish": "2026-10-03T18:01:46.2828561+09:00"
       },
-      "started_at_utc": "2026-10-03T07:46:29.089750+00:00",
-      "finished_at_utc": "2026-10-03T07:50:42.662796+00:00",
-      "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 12 s - Sts2Sim.Core.Tests.dll (net9.0)",
+      "started_at_utc": "2026-10-03T08:57:35.929671+00:00",
+      "finished_at_utc": "2026-10-03T09:01:46.282856+00:00",
+      "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 9 s - Sts2Sim.Core.Tests.dll (net9.0)",
       "evidence_kind": "fresh_single_full_core_run_by_lead_with_independently_checked_log_trx_source_and_assembly_hashes",
       "invocations": 1,
       "invocations_by_packaging_task": 0,
-      "log_path": "artifacts/reports/m3-m6-vendor-verification/current-full-core.log",
-      "log_sha256": "0abf42953d79f568d54d41f3cfcc21e843c82b700d187ec29286c9181d02592a",
-      "log_capture": "Byte-identical durable copy of the lead executor’s redirected /tmp/map-v4-full-core.log after completion.",
-      "trx_path": "artifacts/reports/map-v4-full/core/map-v4-full-core.trx",
-      "trx_sha256": "ed73f3ae87a0643ac72a20011cb34c1a128836ee8b94aab8eb560b937eddb542",
-      "test_assembly_path": "artifacts/map-v4-full-core/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
-      "test_assembly_sha256": "4a887e59278a29bd6166f116c764bbe8a750697449334d51b32cfb32afffdb16",
-      "core_assembly_path": "artifacts/map-v4-full-core/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
-      "core_assembly_sha256": "11d7cd44e92641dcb11410dd267b2431c627a5e7e501efac5b5f5e9570b268e1",
-      "assembly_hash_capture": "Read from isolated current-run output after completion. No additional build or test was run there by the packaging task.",
-      "src_git_tree": "574f012d970622fecaeaa08ae859ffa477844432",
-      "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
-      "verified_source_manifest_sha256": "2f908781a2332effbd07198cc6d494fa80920fe54c83ac5d4c9e59c39c1abb98",
-      "source_manifest_after_path": "artifacts/reports/m3-m6-vendor-verification/source-manifest-after-full-core.json",
-      "source_manifest_after_sha256": "2f908781a2332effbd07198cc6d494fa80920fe54c83ac5d4c9e59c39c1abb98",
-      "source_hashes_verified_after_run": true,
-      "source_hashes_verified_before_run_by_packaging_task": false,
-      "source_manifest_timing_note": "The reconstruction before/after manifests were captured while the lead full Core run was already underway. They must not be described as pre-test manifests. The dedicated post-run manifest matches them exactly.",
-      "build_warning_count": 0,
-      "build_warnings": [],
-      "raw_log_available": true,
-      "trx_available": true,
       "exit_code": 0,
-      "execution_receipt_source": "The lead executor confirmed process exit 0 from the completed unified execution session and supplied the exact argv. Artifact contents and hashes were verified independently by the packaging task.",
+      "execution_receipt_source": "The lead executor confirmed terminal process exit 0, final counters, unchanged Core source and exact argv; artifact contents and hashes were independently verified by this packaging task.",
       "argv": [
         "dotnet",
         "test",
@@ -651,27 +634,46 @@
         "-c",
         "Release",
         "--artifacts-path",
-        "artifacts/map-v4-full-core",
+        "artifacts/map-v5-full-core",
         "-m:1",
         "-nr:false",
         "-p:UseSharedCompilation=false",
         "-p:NuGetAudit=false",
         "--logger",
-        "trx;LogFileName=map-v4-full-core.trx",
+        "trx;LogFileName=map-v5-full-core.trx",
         "--results-directory",
-        "artifacts/reports/map-v4-full/core"
+        "artifacts/reports/map-v5-full/core"
       ],
-      "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/map-v4-full-core -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=map-v4-full-core.trx' --results-directory artifacts/reports/map-v4-full/core",
-      "command_note": "Executed by the lead from the repository after sourcing the shared .NET environment; stdout and stderr were redirected to /tmp/map-v4-full-core.log. Build and test used an isolated artifacts directory, one MSBuild worker, disabled node reuse/shared compilation and disabled NuGet audit.",
+      "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/map-v5-full-core -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=map-v5-full-core.trx' --results-directory artifacts/reports/map-v5-full/core",
+      "command_note": "Run by the lead after sourcing the shared .NET environment, with combined stdout/stderr redirected to /tmp/map-v5-full-core.log. Uses isolated artifacts, one MSBuild worker, disabled node reuse/shared compilation and disabled NuGet audit.",
+      "log_path": "artifacts/reports/map-v5-vendor-verification/current-full-core.log",
+      "log_sha256": "850e83f0a495888dc7e6830a957807334e7b8cd732fa912b7a5dc21ebf665ed8",
+      "log_capture": "Byte-identical durable copy of the completed lead execution log.",
+      "trx_path": "artifacts/reports/map-v5-full/core/map-v5-full-core.trx",
+      "trx_sha256": "1cc809aa5381aab3d88eb0bcfd24dd07bc301cbf96cb163692546bc16123ffba",
+      "test_assembly_path": "artifacts/map-v5-full-core/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+      "test_assembly_sha256": "915f3b79b7bade3a22847f3d64f0cc0000df09f3795d0655c9e075881eaf6dc7",
+      "core_assembly_path": "artifacts/map-v5-full-core/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+      "core_assembly_sha256": "274f7c4d1c1fb30ce8dd9486fc093bdf5334ca47876e5248d4edd1d116fc9b18",
+      "build_artifacts": "artifacts/map-v5-full-core",
+      "assembly_hash_capture": "Captured from isolated current-run binaries after completion. This packaging task ran no build or test.",
+      "src_git_tree": "5b95a98918a235816cb5323117ccf723840e405f",
+      "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+      "verified_source_manifest_sha256": "6c705833ef143e5e944698e4a71334a7d17bbdf2aac07599e82b0664c855e197",
+      "source_manifest_after_path": "artifacts/reports/map-v5-vendor-verification/source-manifest-after-full-core.json",
+      "source_manifest_after_sha256": "6c705833ef143e5e944698e4a71334a7d17bbdf2aac07599e82b0664c855e197",
+      "source_hashes_verified_after_run": true,
       "source_hashes_verified_before_run": false,
-      "source_pin_receipt": "The lead confirmed Core was frozen at e1d1cd2 throughout the run; no separate pre-run manifest was captured. The current 2,241-file reconstruction manifest and independently captured post-run manifest match.",
-      "build_artifacts": "artifacts/map-v4-full-core",
-      "no_later_build_in_isolated_core_artifacts": "Confirmed by the lead executor; no build or test was launched by this packaging task."
+      "source_manifest_timing_note": "No separate pre-test manifest was captured by this packaging task. The reconstruction before/after manifests establish packaging stability; the dedicated post-run manifest matches them exactly. The lead confirmed Core source remained unchanged since a6ee771.",
+      "build_warning_count": 0,
+      "build_warnings": [],
+      "raw_log_available": true,
+      "trx_available": true
     },
-    "note": "The entire previous report is preserved byte-for-byte, including its exact original-source historical report and current-at-that-time full Core artifacts. The older original-package raw-log absence applies only to the historical 50edac4 run; the e1d1cd2 current-at-that-time log/TRX/assembly artifacts remain available in their own unchanged directories."
+    "note": "The entire previous a6ee771 report is preserved byte-for-byte, including its previous-package and original-history chain. Its full Core log/TRX/assembly artifacts remain unchanged in their original directories. Its 4,493 passed / 3 skipped result is not counted as the current shuffle-hook regression."
   },
   "current_full_core_artifact_verification": {
-    "path": "artifacts/reports/map-v5-vendor-verification/current-full-core-verification.json",
-    "sha256": "b285665028abc13832049f5570be32a06c34a2523ee940bbe4d044ce256f7842"
+    "path": "artifacts/reports/map-v6-vendor-verification/current-full-core-verification.json",
+    "sha256": "86204d250a3468d1e8fec53aa7c86a5edc32226736595619cca456374f93beb0"
   }
 }

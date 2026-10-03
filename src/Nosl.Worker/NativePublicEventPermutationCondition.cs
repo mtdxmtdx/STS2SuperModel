@@ -292,6 +292,8 @@ internal static class NativeEventSelectionCertificate
         if (keys.SequenceEqual(new[] { "GORGE", "SEARCH" })) return "RoomFullOfCheese";
         if (keys.SequenceEqual(new[] { "SHARE_KNOWLEDGE", "RIP" })
             && options.Options.All(o => !o.IsLocked)) return "BrainLeech";
+        if (keys.SequenceEqual(new[] { "LIGHT", "DARK" })
+            && options.Options.All(o => !o.IsLocked)) return "DoorsOfLightAndDark";
         if (keys.Length == 3 && (keys[0] is "READ_THE_BACK" or "READ_THE_BACK_LOCKED")
             && (keys[1] is "READ_PASSAGE" or "READ_PASSAGE_LOCKED")
             && (keys[2] is "READ_ENTIRE_BOOK" or "READ_ENTIRE_BOOK_LOCKED")) return "SelfHelpBook";

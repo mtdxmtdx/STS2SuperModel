@@ -515,16 +515,37 @@ public class Rng
     /// <typeparam name="T">Type of items in the list.</typeparam>
     public void Shuffle<T>(IList<T> list)
     {
-        using IDisposable? labelScope = LabelRandomScope.BeginShuffle(this, list);
-        for (int num = list.Count - 1; num > 0; num--)
+        IDisposable? labelScope = LabelRandomScope.BeginShuffle(this, list);
+        Exception? failure = null;
+        try
         {
-            int num2 = NextInt(num + 1);
-            int index = num;
-            int index2 = num2;
-            T value = list[num2];
-            T value2 = list[num];
-            list[index] = value;
-            list[index2] = value2;
+            for (int num = list.Count - 1; num > 0; num--)
+            {
+                int num2 = NextInt(num + 1);
+                int index = num;
+                int index2 = num2;
+                T value = list[num2];
+                T value2 = list[num];
+                list[index] = value;
+                list[index2] = value2;
+            }
+        }
+        catch (Exception error)
+        {
+            failure = error;
+            if (labelScope is IAbortableLabelShuffleBoundary abortable)
+                try { abortable.Abort(error); } catch { /* Preserve the native exception. */ }
+            throw;
+        }
+        finally
+        {
+            if (failure is not null && labelScope is IAbortableLabelShuffleBoundary)
+            {
+                // The participating proposal has already been notified. Cleanup
+                // cannot replace the original native failure while unwinding.
+                try { labelScope.Dispose(); } catch { }
+            }
+            else labelScope?.Dispose();
         }
     }
 

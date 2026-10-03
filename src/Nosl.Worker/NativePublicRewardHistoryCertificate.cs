@@ -14,9 +14,11 @@ internal sealed record NativePublicRewardHistoryTarget(IReadOnlyList<LabelCardRa
     float PotionThreshold, NativeGoldEnvelopeCertificate GoldCertificate);
 
 /// <summary>
-/// Optional source-closed PUBLIC prefix, never a sampled-world normalizer. The six
+/// Optional source-closed PUBLIC prefix, never a sampled-world normalizer. The nine
 /// reviewed Neow positives do not update either pity state. NewLeaf's default
 /// transformation uses one Niche index, with no reward rarity or potion roll.
+/// ScrollBoxes uses fixed-rarity indices, ArcaneScroll uses Uniform/Other, and
+/// Pomander upgrades one public starter. A complete unchanged shop leave is neutral.
 /// WoodCarvings and SunkenStatue
 /// have no random reward generation; Gorge uses Source.Other/Uniform. The first three
 /// native weak encounters have no escape, summon, or extra-reward behavior. Every base
@@ -25,9 +27,10 @@ internal sealed record NativePublicRewardHistoryTarget(IReadOnlyList<LabelCardRa
 /// </summary>
 internal static class NativePublicRewardHistoryCertificate
 {
-    private static readonly HashSet<string> Neow = ["FishingRod", "LostCoffer", "LeadPaperweight", "WingedBoots", "PreciseScissors", "NewLeaf"];
+    private static readonly HashSet<string> Neow = ["FishingRod", "LostCoffer", "LeadPaperweight", "WingedBoots", "PreciseScissors", "NewLeaf",
+        "ScrollBoxes", "ArcaneScroll", "Pomander"];
     private static readonly HashSet<string> Relics = ["RingOfTheSnake", "FishingRod", "LostCoffer",
-        "LeadPaperweight", "WingedBoots", "PreciseScissors", "NewLeaf", "SwordOfStone"];
+        "LeadPaperweight", "WingedBoots", "PreciseScissors", "NewLeaf", "ScrollBoxes", "ArcaneScroll", "Pomander", "SwordOfStone"];
     private static readonly string[] RewardHooks = [nameof(AbstractModel.ModifyRewards),
         nameof(AbstractModel.BeforeCombatRewardOffered), nameof(AbstractModel.ShouldForcePotionReward),
         nameof(AbstractModel.ModifyCardRewardCreationOptions), nameof(AbstractModel.ModifyCardRewardCreationOptionsLate),
@@ -60,6 +63,7 @@ internal static class NativePublicRewardHistoryCertificate
             || events[2] is not { OwnerOrdinal: 0, Payload: PublicOptionsObserved initial }
             || events[3] is not { OwnerOrdinal: 0, Payload: PublicOptionChosen { OfferEventOrdinal: 2 } choice }
             || !Neow.Contains(choice.Key) || initial.Options.All(o => o.Key != choice.Key || o.IsLocked)
+            || !CompleteNeutralNeowBoundary(events, start.Assets, choice.Key, character)
             || !NativePublicWeakEncounterSequenceCondition.TryCreate(evidence, out var weak, out _)) return null;
         // All native potion rarity buckets must contain a model. Otherwise an absent
         // display also permits a successful roll into an empty pool and pity is latent.
@@ -136,10 +140,15 @@ internal static class NativePublicRewardHistoryCertificate
                             && !(owner.ParentOwnerOrdinal == 0 && choice.Key == "LostCoffer")) return false;
                         break;
                     case PublicEvidenceOwnerKind.OutsideChoice:
-                        if (!(owner.ParentOwnerOrdinal == 0 && choice.Key is "LeadPaperweight" or "PreciseScissors" or "NewLeaf")
+                        if (!(owner.ParentOwnerOrdinal == 0 && choice.Key is "LeadPaperweight" or "PreciseScissors" or "NewLeaf"
+                                or "ScrollBoxes" or "Pomander")
                             && !(owner.ParentOwnerOrdinal is { } parent && NeutralEvent(parent)
                                 && events.Any(x => x.OwnerOrdinal == e.OwnerOrdinal && x.Payload is PublicCardsObserved
                                     { Choice.Source: "RoomFullOfCheese" }))) return false;
+                        break;
+                    case PublicEvidenceOwnerKind.Shop:
+                        if (!NativePublicShopLeaveBoundary.TryCreate(events, e, out var shop, out _)
+                            || shop!.EndEventOrdinal > through) return false;
                         break;
                     default: return false;
                 }
@@ -163,6 +172,88 @@ internal static class NativePublicRewardHistoryCertificate
     internal static float AdvanceRarity(float offset, CardRarity rarity, float growth) =>
         rarity == CardRarity.Rare ? -0.05f : Math.Min(offset + growth, 0.4f);
     internal static float AdvancePotion(float odds, bool present) => present ? odds - 0.1f : odds + 0.1f;
+
+    private static bool CompleteNeutralNeowBoundary(IReadOnlyList<PublicRunEvidenceEvent> events,
+        PublicEvidenceAssets before, string relic, CharacterModel character)
+    {
+        if (relic is not ("ScrollBoxes" or "ArcaneScroll" or "Pomander")) return true;
+        // These additions require the native starter inventory and the complete
+        // acquisition boundary. An arbitrary child or a partial public grant is
+        // not evidence that the initial pity states survived unchanged.
+        string[] starter = ["AscendersBane", "DefendSilent", "DefendSilent", "DefendSilent", "DefendSilent", "DefendSilent",
+            "Neutralize", "StrikeSilent", "StrikeSilent", "StrikeSilent", "StrikeSilent", "StrikeSilent", "Survivor"];
+        if (!before.Relics.Select(r => r.Id).SequenceEqual(new[] { "RingOfTheSnake" })
+            || !before.Deck.Select(c => c.Id).Order(StringComparer.Ordinal).SequenceEqual(starter.Order(StringComparer.Ordinal))
+            || before.Deck.Any(c => !PlainCard(c))) return false;
+        int end = relic == "ArcaneScroll" ? 4 : 8;
+        if (events.Count <= end || events[end] is not { OwnerOrdinal: 0, Payload: PublicOwnerEnded
+                { Outcome: PublicEvidenceOwnerOutcome.Completed, Assets: not null } ended }) return false;
+        var after = ended.Assets!;
+        if (!after.Relics.Select(r => r.Id).SequenceEqual(new[] { "RingOfTheSnake", relic })
+            || PublicJson.Serialize(before.Relics[0]) != PublicJson.Serialize(after.Relics[0])
+            || before.MaxHp != after.MaxHp || before.Gold != after.Gold || before.MaxEnergy != after.MaxEnergy
+            || before.PotionSlots != after.PotionSlots || !before.Potions.SequenceEqual(after.Potions)
+            || before.OrbSlots != after.OrbSlots || before.CardRemovalsUsed != after.CardRemovalsUsed) return false;
+        var pool = character.CardPool.GetUnlockedCards(PlayerUnlockState.AllUnlocked(), false).ToArray();
+        if (relic == "ArcaneScroll")
+        {
+            var additions = after.Deck.ToList();
+            return RemoveCards(additions, before.Deck) && additions.Count == 1 && PlainCard(additions[0])
+                && pool.Any(c => c.GetType().Name == additions[0].Id && c.Rarity == CardRarity.Rare);
+        }
+        if (events[4] is not { OwnerOrdinal: 1, Payload: PublicOwnerStarted
+                { OwnerKind: PublicEvidenceOwnerKind.OutsideChoice, ActIndex: 0, Floor: 1,
+                    ParentOwnerOrdinal: 0, CompleteFromOwnerStart: true } }
+            || events[5] is not { OwnerOrdinal: 1, Payload: PublicCardsObserved observed }
+            || events[6] is not { OwnerOrdinal: 1, Payload: PublicCardsChosen
+                { OfferEventOrdinal: 5, Cancelled: false, Selection.Length: 1 } selected }
+            || events[7] is not { OwnerOrdinal: 1, Payload: PublicOwnerEnded
+                { Outcome: PublicEvidenceOwnerOutcome.Completed, Assets: null } }) return false;
+        var choice = observed.Choice;
+        if (choice.Source != relic || choice is not { Min: 1, Max: 1, Cancelable: false }
+            || selected.Selection[0] >= choice.Candidates.Length) return false;
+        var expected = before.Deck.ToList();
+        if (relic == "ScrollBoxes")
+        {
+            if (choice is not { CandidateOrder: "public", Candidates.Length: 2, Bundles.Length: 2 }
+                || choice.Bundles.Any(b => b.Length != 3)
+                || choice.Bundles.SelectMany(b => b).Any(c => !PlainCard(c))
+                || choice.Bundles.SelectMany(b => b).Select(c => c.Id).Distinct().Count() != 6
+                || !choice.Candidates.Select(PublicJson.Serialize).SequenceEqual(choice.Bundles.Select(b => PublicJson.Serialize(b[0])))
+                || choice.Bundles.Any(b => b.Where((c, i) => !pool.Any(m => m.GetType().Name == c.Id
+                    && m.Rarity == (i == 2 ? CardRarity.Uncommon : CardRarity.Common))).Any())) return false;
+            expected.AddRange(choice.Bundles[selected.Selection[0]]);
+        }
+        else
+        {
+            if (choice is not { CandidateOrder: "canonical_unordered_reveal", Bundles: null }
+                || !SameCards(choice.Candidates, before.Deck.Where(c => c.Id != "AscendersBane"))) return false;
+            var original = choice.Candidates[selected.Selection[0]];
+            if (original.Id is not ("DefendSilent" or "StrikeSilent" or "Neutralize" or "Survivor")
+                || !RemoveCards(expected, [original])) return false;
+            // Only these reviewed starter upgrades are admitted. Their native
+            // upgrade has no random draw; the projection is a public catalog fact.
+            var upgraded = (CardModel)ModelDb.All<CardModel>().Single(c => c.GetType().Name == original.Id).MutableClone();
+            upgraded.Upgrade(); expected.Add(PublicCardDetailsBuilder.Card(upgraded));
+        }
+        return SameCards(expected, after.Deck);
+    }
+
+    private static bool PlainCard(PublicCard card) => card.Upgrade == 0
+        && (card.Enchantments?.Length ?? 0) == 0 && card.Affliction is null;
+    private static bool SameCards(IEnumerable<PublicCard> first, IEnumerable<PublicCard> second) =>
+        first.Select(PublicJson.Serialize).Order(StringComparer.Ordinal)
+            .SequenceEqual(second.Select(PublicJson.Serialize).Order(StringComparer.Ordinal));
+    private static bool RemoveCards(List<PublicCard> cards, IEnumerable<PublicCard> removed)
+    {
+        foreach (var card in removed)
+        {
+            int at = cards.FindIndex(c => PublicJson.Serialize(c) == PublicJson.Serialize(card));
+            if (at < 0) return false;
+            cards.RemoveAt(at);
+        }
+        return true;
+    }
 
     private static bool NeutralInventory(PublicEvidenceAssets assets)
     {

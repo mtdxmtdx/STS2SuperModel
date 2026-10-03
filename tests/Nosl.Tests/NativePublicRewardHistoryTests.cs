@@ -97,7 +97,7 @@ public sealed class NativePublicRewardHistoryTests
         var evidence = root.PublicEvidence!;
         var cards = NativePublicRewardCondition.Create(evidence);
         Assert.NotNull(cards.Targets[0].PublicHistory);
-        Assert.Null(cards.Targets[1].PublicHistory); // Shop remains a conservative suffix boundary.
+        Assert.NotNull(cards.Targets[1].PublicHistory); // Complete unchanged leave bridges both pity states.
         Assert.True(NativePublicRewardHistoryCertificate.TryRarityOffsetBeforeOwner(evidence, 9, out float offset));
         var first = cards.Targets[0];
         float expected = -0.05f;

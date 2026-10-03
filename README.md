@@ -55,8 +55,8 @@ tools/                 两进程协议烟测
 
 旧源码、数据和提交历史保留在 [codex/history-2026-10-01](https://github.com/mtdxmtdx/STS2SuperModel/tree/codex/history-2026-10-01)，固定归档提交为 [b0bb07b](https://github.com/mtdxmtdx/STS2SuperModel/tree/b0bb07bdd09f8ae7833724126b18738c93d09eb4)。本次工作发布为 STS2SuperModel 的独立分支与草稿PR，未合并main；实验权重与数据单独保存，不混入源码提交。
 
-当前独立地图先验将地图生成随机带与奖励、其他原生状态随机带分开，完整公开地图通过v2证据与v5学生通道传递。新版v3采样组合已补齐已定位的事件选项、Gorge公开卡牌、DaggerThrow与Fairy历史约束，并修复被捕获的原生回调错误分类。完整Worker回归**1,928/1,928通过**，v5数据、受限训练接口和模型边界**53/53通过**；Core源码未再改变，既有完整回归为4,493通过、3项可选跳过。
+当前独立地图先验将地图生成随机带与奖励、其他原生状态随机带分开，完整公开地图通过v2证据与v5学生通道传递。已验证的Map v6组合在v5基础上加入无购买商店/Neow奖励历史界限与Doors LIGHT无序升级条件采样，先验保持不变。完整Worker回归**2,153/2,153通过**，Core **4,493通过、3项既有可选跳过**；Python保留的57项受保护检查对应未改变的源码。新增真实模拟器构造例验证全程保血、整场战损、期望额外战损门槛、同时死亡和延迟结算。详细源码与二进制指纹见[v6验证](configs/native_map_origin_verification_v6.json)；相同预声明来源的v6吞吐复测尚未执行。
 
-新的原生候选API已实际完成一个根局面的7动作×2独立世界共14条结算分支，并通过Python适配、完整公开输入/结果校验及有限的前向损失检查。没有新增反向传播、优化器步骤或入库授权；v5接口只提供辅助监督，未知资源价值与策略排序仍有掩码。相同8根的隔离复测在219秒内完成执行：5根完整、68/98条分支结算、30条计算截断，引擎错误0；第三场战斗门槛仍未通过。新定位缺口为完整公开商店库存以及后续房间/敌人入口条件。另12个新开发来源已预声明，当前保持未启动。参见[v3验证](configs/native_map_origin_verification_v3.json)、[新候选API](docs/NATIVE_COMPLETE_MAP_CANDIDATES.md)、[v5数据准备](docs/V5_NATIVE_DATA_PREPARATION.md)及[受限试训接口](docs/V5_BOUNDED_PILOT_INTERFACE.md)。历史v2为4根完整、54/98条分支结算，不能替代当前版本测量。
+原生候选API已有一个根局面7动作×2独立世界共14条结算分支的实测。当前v5接口仍只接纳辅助监督，未知资源价值与策略排序保持掩码。Map v5的固定8根复测用时293秒：7根完整、15/16世界接纳、92/98分支结算、6条截断，引擎错误0；同先验的第二组12根在360秒预算内只有2根完整、4/24世界接纳、10/50已分配分支结算，其余40条截断，另8根未执行。两组全部失败质量均保留；第二组未通过，因此未启动下一组12个未查看来源，也未扩大生产数据或再次拟合。当前修复聚焦公开奖励历史界限和事件升级的条件采样。参见[候选API](docs/NATIVE_COMPLETE_MAP_CANDIDATES.md)、[v5数据准备](docs/V5_NATIVE_DATA_PREPARATION.md)和[受限试训接口](docs/V5_BOUNDED_PILOT_INTERFACE.md)。
 
 历史原生及混合采样证据保存在[通用回放](docs/NATIVE_OWNED_REPLAY.md)、[条件随机带](docs/NATIVE_CONDITIONAL_TAPE.md)、[混合v5](docs/NATIVE_HYBRID_V5.md)和[v7验证](configs/native_rewards_hybrid_v7_verification.json)。旧先验v6的固定8根诊断曾完成5根、结算64/96条分支，但战斗索引2未通过；v7的2,048个地图候选仅12个匹配全部公开切片，三根带历史局面各256次零匹配。它们是不同版本下的历史测量，不能作为新地图先验的吞吐结果。尚未扩大生产数据或再次拟合。

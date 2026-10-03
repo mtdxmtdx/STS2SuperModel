@@ -2,7 +2,7 @@
   "schema": "nosl.m3-m6.acceptance-progress.v1",
   "date_utc": "2026-10-02",
   "source_head": "6501de5b35c45e96407432163a08152aa26ccfe3",
-  "snapshot_kind": "Current integrated continuation checkpoint; original catalog and M0–M2 tracker preserved",
+  "snapshot_kind": "Historical scoped continuation checkpoint at source_head; original catalog and M0–M2 tracker preserved. Latest sampler evidence is linked in current_evidence_addendum.",
   "authority": [
     {
       "path": "docs/spec/v4/PLAN_NOSL_FULL_COMBAT_V4.md",
@@ -2645,5 +2645,18 @@
   "declared_scope_engineering_complete": true,
   "native_admission_version_verification": "configs/native_v7_admission_verification.json",
   "owned_native_replay_verification": "configs/owned_native_replay_verification.json",
-  "generic_execution_does_not_mean_posterior_throughput": true
+  "generic_execution_does_not_mean_posterior_throughput": true,
+  "current_evidence_addendum": {
+    "as_of_utc": "2026-10-03T10:52:00Z",
+    "source_commit": "16724af55509c862689e93971928819165296688",
+    "report": "configs/native_map_origin_verification_v5.json",
+    "interpretation": "Historical case evidence remains valid within its declared scope. Aggregate counts below are not current source totals. Latest inspected-twelve throughput gate failed; broad production admission and full milestone completion remain false.",
+    "native_passed": 2076,
+    "core_passed": 4493,
+    "core_opt_in_skipped": 3,
+    "retained_guarded_python_checks": 57,
+    "new_production_rows": 0,
+    "new_optimizer_steps": 0,
+    "new_backward_passes": 0
+  }
 }

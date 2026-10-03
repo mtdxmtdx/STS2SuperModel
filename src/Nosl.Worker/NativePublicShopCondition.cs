@@ -73,28 +73,10 @@ internal sealed class NativePublicShopCondition
             var entry = events.FirstOrDefault(e => e.Payload is PublicOwnerStarted { OwnerKind: PublicEvidenceOwnerKind.Shop });
             Require(entry is { OwnerOrdinal: { }, Payload: PublicOwnerStarted { ActIndex: 0, Floor: > 1 and < 38,
                 ParentOwnerOrdinal: null, CompleteFromOwnerStart: true } }, "shop_requires_first_early_ordinary_owner");
-            var start = (PublicOwnerStarted)entry!.Payload; int at = checked((int)entry.EventOrdinal);
-            Require(at >= 5 && events.Length > at + 3 && !events.Take(at + 4).Any(e => e.Payload is PublicEvidenceGap),
-                "shop_requires_uninterrupted_complete_boundary");
-            Require(events[at - 4].Payload is PublicOwnerStarted { OwnerKind: PublicEvidenceOwnerKind.Map,
-                    ActIndex: 0, ParentOwnerOrdinal: null, CompleteFromOwnerStart: true } mapStart && mapStart.Floor == start.Floor - 1
-                && events[at - 3].Payload is PublicMapObserved map && events[at - 2].Payload is PublicMapChosen chosen
-                && chosen.OfferEventOrdinal == events[at - 3].EventOrdinal
-                && map.Nodes.Single(n => n.Coordinate == chosen.Coordinate).NodeType == PublicMapNodeType.Shop
-                && events[at - 1].Payload is PublicOwnerEnded { Assets: not null, Outcome: PublicEvidenceOwnerOutcome.Completed }
-                && events.Skip(at - 4).Take(4).All(e => e.OwnerOrdinal == events[at - 4].OwnerOrdinal),
-                "shop_requires_public_direct_map_before_assets");
-            Require(events[at + 1].Payload is PublicOffersObserved { Groups.Length: 1, ReplacesOfferEventOrdinal: null }
-                && events[at + 1].OwnerOrdinal == entry.OwnerOrdinal
-                && events[at + 2].Payload is PublicOptionChosen { Key: "leave" } leave && leave.OfferEventOrdinal == at + 1
-                && events[at + 2].OwnerOrdinal == entry.OwnerOrdinal
-                && events[at + 3].Payload is PublicOwnerEnded { Outcome: PublicEvidenceOwnerOutcome.Completed, Assets: not null }
-                && events[at + 3].OwnerOrdinal == entry.OwnerOrdinal, "shop_requires_complete_leave_boundary");
-            var assets = ((PublicOwnerEnded)events[at - 1].Payload).Assets!;
-            Require(PublicJson.Serialize(assets) == PublicJson.Serialize(((PublicOwnerEnded)events[at + 3].Payload).Assets),
-                "shop_leave_changed_public_assets");
-            Require(assets.Relics.Select(r => r.Id).SequenceEqual(new[] { nameof(RingOfTheSnake), nameof(PreciseScissors) })
-                && NativeEventCardPoolCertificate.UnmodifiedInventory(assets) && UnmodifiedMerchant(assets),
+            int at = checked((int)entry!.EventOrdinal);
+            Require(NativePublicShopLeaveBoundary.TryCreate(events, entry, out var boundary, out var boundaryReason), boundaryReason!);
+            var assets = boundary!.BeforeAssets;
+            Require(assets.Relics.Select(r => r.Id).SequenceEqual(new[] { nameof(RingOfTheSnake), nameof(PreciseScissors) }),
                 "shop_public_hook_closure_not_certified");
             foreach (var old in events.Take(at))
             {
@@ -128,7 +110,7 @@ internal sealed class NativePublicShopCondition
             }
             float? offset = NativePublicRewardHistoryCertificate.TryRarityOffsetBeforeOwner(root.PublicEvidence,
                 entry.OwnerOrdinal!.Value, out float certified) ? certified : null;
-            condition = new(entry.OwnerOrdinal!.Value, at + 1, start.Floor, 10, assets, (PublicOffersObserved)events[at + 1].Payload, offset);
+            condition = new(entry.OwnerOrdinal!.Value, at + 1, boundary.Floor, 10, assets, boundary.Offers, offset);
             return true;
         }
         catch (NotCertified e) { reason = e.Message; return false; }
@@ -156,14 +138,6 @@ internal sealed class NativePublicShopCondition
         };
     }
 
-    private static bool UnmodifiedMerchant(PublicEvidenceAssets assets)
-    {
-        var types = assets.Deck.Select(c => ModelDb.All<CardModel>().Single(m => m.GetType().Name == c.Id).GetType())
-            .Concat(assets.Relics.Select(r => ModelDb.All<RelicModel>().Single(m => m.GetType().Name == r.Id).GetType()))
-            .Concat(assets.Potions.OfType<string>().Select(p => ModelDb.All<PotionModel>().Single(m => m.GetType().Name == p).GetType()));
-        string[] hooks = [nameof(AbstractModel.ModifyMerchantCardCreationResults), nameof(AbstractModel.ModifyMerchantPrice)];
-        return types.All(t => t.GetMethods().Where(m => hooks.Contains(m.Name)).All(m => m.DeclaringType == typeof(AbstractModel)));
-    }
     internal static void Require(bool value, string reason) { if (!value) throw new NotCertified(reason); }
     private sealed class NotCertified(string reason) : Exception(reason);
 }
@@ -185,13 +159,7 @@ internal sealed class NativeShopStockCertificate
     internal NativeShopStockCertificate(PublicOffersObserved observed, float? certifiedRarityOffset = null, int ascension = 10)
     {
         var group = observed.Groups.Single(); var offers = group.Offers;
-        NativePublicShopCondition.Require(group.GroupKind == PublicOfferGroupKind.Primary
-            && group.SelectionMode == PublicOfferSelectionMode.Independent && offers.Length == 15
-            && offers.Select(o => o.Key).SequenceEqual(Enumerable.Range(0, 7).Select(i => "card:" + i)
-                .Concat(Enumerable.Range(0, 3).Select(i => "relic:" + i)).Concat(Enumerable.Range(0, 3).Select(i => "potion:" + i))
-                .Concat(new[] { "remove", "leave" })) && offers.Take(13).All(o => o.Price.HasValue)
-            && offers.Take(7).All(o => o.Card is { Upgrade: 0 })
-            && offers.Skip(7).Take(3).All(o => o.Relic is not null) && offers.Skip(10).Take(3).All(o => o.Potion is not null),
+        NativePublicShopCondition.Require(NativePublicShopLeaveBoundary.CompleteOrdinaryStock(observed),
             "shop_requires_all_fifteen_public_slots");
         Cards = offers.Take(7).Select(o => ModelDb.All<CardModel>().Single(c => c.GetType().Name == o.Card!.Id)).ToArray();
         Relics = offers.Skip(7).Take(3).Select(o => ModelDb.All<RelicModel>().Single(r => r.GetType().Name == o.Relic!.Id)).ToArray();
