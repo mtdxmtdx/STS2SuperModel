@@ -1,0 +1,257 @@
+{
+  "schema": "nosl.native-rewards-hybrid-verification.v7",
+  "source_commit": "3af82088ab1aeebf74860cb2d2888d3c24b722c3",
+  "status": "VERIFIED_COMPOSITION_MAP_WORK_EXPOSED_CARRY_IN_BOTTLENECK",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "new_production_dataset_rows": 0,
+  "new_unique_source_roots": 0,
+  "sampler_version": "nosl-native-rewards-state-tape-conditional-v7-public-evidence-v1",
+  "prior_identity": "d61db05514950173d55dd38593253f23c9b93c910767f8d12c742e830b767ff7",
+  "prior_unchanged": true,
+  "public_channel_unchanged": true,
+  "implemented": [
+    "Slime-generated discard cards and Slimed draw/exhaust under source-reviewed closure v4",
+    "Incremental evidence comparison at each append, preserving original callback failure precedence",
+    "Exact joint first-three normal weak encounter prefix with every compatible identity retained",
+    "All certified linked act-zero map slices in the existing complete joint prefix rejection",
+    "One whole native event permutation conditioned on a public-root necessary superset, retaining cursor/visited/wrap/fallback and unknown eligibility",
+    "Separate explicit event component budget, stats and correction provenance; complete preparation exhaustion consumes one outer attempt"
+  ],
+  "native_suite": {
+    "passed": 1792,
+    "failed": 0,
+    "skipped": 0,
+    "source_commit": "3af82088ab1aeebf74860cb2d2888d3c24b722c3",
+    "trx": {
+      "path": "artifacts/reports/hybrid-v7/hybrid-v7-aggregate.trx",
+      "bytes": 2657857,
+      "sha256": "87d4c9fe5add2ce9a7ef4c16360167787b2677fcf9ce5d56bd4001d03638f30c"
+    },
+    "log": {
+      "path": "artifacts/hybrid-v7-aggregate.log",
+      "bytes": 2193,
+      "sha256": "ae2e659276cd842ff4eeb70fafcc0aaf961a914d5d64ca89292641613c3835a2"
+    }
+  },
+  "owning_and_failure_checks": {
+    "initial_event_map_suite_passed": 62,
+    "final_failure_accounting_passed": 14,
+    "coverage": [
+      "exact public packet and settled fork replay",
+      "paired plan/condition and hybrid law guards",
+      "clean fixed-K event exhaustion retry",
+      "runtime event-named budget does not retry or overwrite successful prefix stats",
+      "caught callback error wins over later event budget/mismatch/null/cancellation",
+      "legacy proposal and default collection options omit new event fields"
+    ],
+    "trx": [
+      {
+        "path": "artifacts/reports/hybrid-v7/event-map-owning.trx",
+        "bytes": 94877,
+        "sha256": "8afd3820b36e4f489eb0ee584c777af5650d726821298a83b4a765b226c38294"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/event-failure-accounting.trx",
+        "bytes": 22221,
+        "sha256": "fd0f7ef4364bc97e6c3494964d99d6810c26438dde8c2ac526cd940c308276e1"
+      }
+    ]
+  },
+  "event_author": {
+    "source_commit": "6123a7b0292c2c3f3f9c4b124809741451c8b8cf",
+    "focused_passed": 37,
+    "log": {
+      "path": "artifacts/reports/hybrid-v7/event-permutation-author-final.log",
+      "bytes": 1197,
+      "sha256": "2a09d31212c6d2d3c5a686a3c8ac03f6b04770efd5ee342b64d5d722af45fe39"
+    },
+    "separate_trx_available": false
+  },
+  "core_suite": {
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "duration_reported": "4 m 5 s",
+    "trx_duration_seconds": 246.30367,
+    "trx_counters": {
+      "total": 4496,
+      "executed": 4493,
+      "passed": 4493,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "skipped_count_source": "Three per-test NotExecuted outcomes, matching stdout and total minus executed. The test adapter leaves aggregate notExecuted at zero.",
+    "build_and_test_wall_seconds": 263.8651089190025,
+    "evidence_kind": "fresh_single_full_core_run_with_redirected_stdout_stderr_and_trx",
+    "exit_code": 0,
+    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 5 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "raw_log_available": true,
+    "trx_available": true,
+    "log_path": "artifacts/hybrid-v7-core-verification/full-core.log",
+    "log_sha256": "97bfd34771468ff72fd98acf214ffb2b3f50964fbb6f3bfed5a9fe65d981c5ec",
+    "trx_path": "artifacts/hybrid-v7-core-verification/test-results/vendor-core.trx",
+    "trx_sha256": "a45412fb2f85989aa004e593da264e653b189f3b8a2a7efc2f982c33364fea31",
+    "run_record_path": "artifacts/hybrid-v7-core-verification/run-record.json",
+    "run_record_sha256": "6ec329b099fc4b18e840b367d353b1799de267d08cace1cf3ad8234c712d4fba",
+    "invocations": 1,
+    "rerun_for_packaging": true,
+    "sdk_version": "9.0.303",
+    "source_hashes_verified_before_run": true,
+    "source_hashes_verified_after_run": true,
+    "source_worktree": "STS2SuperModel-coverage",
+    "verified_source_commit": "32d535662af71f174bdbdc6d8ad4f2a7c27e4f46",
+    "build_artifacts": "artifacts/hybrid-v7-core-verification",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/hybrid-v7-core-verification --nologo -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core.trx' --results-directory artifacts/hybrid-v7-core-verification/test-results",
+    "command_note": "Portable replay command; the results directory is shown relative to the repository. The exact process argv is preserved in run-record.json. Run after sourcing the existing shared .NET 9 environment. Build and tests used the isolated artifacts path with one MSBuild worker, node reuse and shared compilation disabled, and NuGet auditing disabled. The process stdout and stderr were redirected directly to the preserved log.",
+    "started_at_utc": "2026-10-02T23:32:59.092654+00:00",
+    "finished_at_utc": "2026-10-02T23:37:23.088869+00:00",
+    "src_git_tree": "be71e3a0880c52af9d0ca0793c85eb33e910ab10",
+    "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+    "test_assembly_path": "artifacts/hybrid-v7-core-verification/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "8bbbffc415f3f47fe265593a6de170881eb22751237fbda380109f46bf5ad136",
+    "core_assembly_path": "artifacts/hybrid-v7-core-verification/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "1db87fa9e1406ee5d0097ad6f68d1fcb44afea28d420b3e295b59b161abf2ae0",
+    "assembly_hash_capture": "Captured from the isolated artifacts immediately after the fresh full suite; no later build or test was run there.",
+    "verified_source_manifest_sha256": "0fc2522448f2d8d98c3ef179752e72033a3c5b0bfc2ae1b54910410c58d6c9ba"
+  },
+  "vendor_reconstruction": {
+    "path": "configs/vendor_patch_verification.json",
+    "bytes": 14686,
+    "sha256": "544f5eba55653c1cff642c7f249936f32c207824309a3fd52ef87248c1cc32c1"
+  },
+  "independent_reviews": [
+    "Weak encounter law/route certificate and owning integration: clear",
+    "Event superset law and native boundary: context cloning/stale completion fixed; clear",
+    "Map mutation closure and linked public projection: malformed completeness edge fixed; clear",
+    "Event owning integration: clear; recommended budget/sticky/fork cases pass"
+  ],
+  "map_component_probe": {
+    "status": "completed",
+    "benchmark_source_commit": "5c64e271caa9e7f21a8b0f50b515c911916551cb",
+    "declaration": {
+      "path": "configs/public-map-history-work-v1.json",
+      "bytes": 782,
+      "sha256": "2d1435f8731b14ebd62191d822efb548ef76f97989f303982c9364f3489f9707"
+    },
+    "run_declaration": {
+      "path": "artifacts/reports/hybrid-v7/map-work-run-declaration.json",
+      "bytes": 693,
+      "sha256": "6f18a9f9d8a3461f0f9af101a5c940ff9f7c87c5373222e89e315756f48cc35f"
+    },
+    "candidates_per_root": 256,
+    "maximum_complete_candidates": 2048,
+    "full_posterior_measured": false,
+    "initial_launch_failure": "Persisted public evidence uses its dedicated enum codec. Initial launch failed before any candidate; fixed decoder and retained failure artifacts before retrying unchanged work.",
+    "initial_failure": [
+      {
+        "path": "artifacts/reports/hybrid-v7/map-work-initial-parse-failure-response.jsonl",
+        "bytes": 1705,
+        "sha256": "57eadd044a4266aaa8c892a34efd4bd244b93d7e72e35d9c08b0d86fd49c91c8"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/map-work-initial-parse-failure-stderr.log",
+        "bytes": 5029,
+        "sha256": "3da6580c76a8c0cb70dec7040bd0617ea4406e333426bb1ae6f92b73b8325517"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/map-work-initial-parse-failure-resources.json",
+        "bytes": 203,
+        "sha256": "85d8feafa6b4e06577dc802baaf9483085957f43a3e6146c3cb3f9f32eee8c01"
+      }
+    ],
+    "complete_candidates": 2048,
+    "source_roots": 8,
+    "first_slice_survivors": 32,
+    "all_slices_survivors": 12,
+    "wrong_act_early_exits": 985,
+    "native_words": 298516,
+    "engine_errors": 0,
+    "cancellation": false,
+    "carry_in_roots": [
+      {
+        "source_draw_seed": 11004,
+        "matches": 0,
+        "candidates": 256
+      },
+      {
+        "source_draw_seed": 11006,
+        "matches": 0,
+        "candidates": 256
+      },
+      {
+        "source_draw_seed": 11007,
+        "matches": 0,
+        "candidates": 256
+      }
+    ],
+    "new_production_rows": 0,
+    "new_optimizer_steps": 0,
+    "new_unique_source_roots": 0,
+    "interpretation": "All three carry-in roots had zero complete-map matches in their fixed256 trials. This identifies practical rarity before combat, not zero support or a precise population acceptance rate.",
+    "resources": {
+      "exit_code": 0,
+      "wall_seconds": 28.74527432800096,
+      "watchdog_cancelled": false,
+      "hard_killed": false,
+      "peak_child_rss_kib": 122628,
+      "user_seconds": 29.710853,
+      "system_seconds": 0.450046
+    },
+    "artifacts": [
+      {
+        "path": "artifacts/reports/hybrid-v7/map-work-response.jsonl",
+        "bytes": 423830,
+        "sha256": "e5f57452d9b870fcebeebeae9f546afe74373727769fc65c0065aee07fda616a"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/map-work-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/map-work-resources.json",
+        "bytes": 204,
+        "sha256": "311ec4f52de2a5c8c84abb47fbc295827d1d71766b5e7939c405cd06ad2fc3f8"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/map-work-analysis.json",
+        "bytes": 8105,
+        "sha256": "5a65797a2e705267b4dda6a6a5992f0eff608be0f18ff3d63b96d79247abf072"
+      },
+      {
+        "path": "artifacts/reports/hybrid-v7/run_map_history_work.py",
+        "bytes": 1901,
+        "sha256": "d16a47bd652015ef69bfe59897992d7b921563b28bff7130381982cb10a4c5e9"
+      }
+    ]
+  },
+  "boundaries": [
+    "All optional certificate failures retain native replay support",
+    "No source hidden world or seed enters conditions; only detached public evidence",
+    "No new production or fitting is admitted by component tests",
+    "Original corpus, sealed494test and experimental weights unchanged",
+    "Full posterior throughput and fresh development breadth remain separate gates"
+  ],
+  "new_full_posterior_probe_completed": false,
+  "next_step": "Separately versioned complete public-map observation and independent Map-origin prior with source-reviewed semantic graph reconstruction; old law/corpus unchanged. No larger rejection run or new fit."
+}

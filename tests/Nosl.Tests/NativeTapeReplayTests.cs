@@ -127,6 +127,9 @@ public sealed class NativeTapeReplayTests
             using var legacyAudit = System.Text.Json.JsonDocument.Parse(PublicJson.Serialize(proposal));
             Assert.False(legacyAudit.RootElement.TryGetProperty("conditionedWeakEncounters", out _));
             Assert.False(legacyAudit.RootElement.TryGetProperty("weakEncounterEnvelope", out _));
+            Assert.False(legacyAudit.RootElement.TryGetProperty("eventPermutationStats", out _));
+            Assert.False(legacyAudit.RootElement.TryGetProperty("eventPermutationMaxTrials", out _));
+            Assert.False(legacyAudit.RootElement.TryGetProperty("conditionedPublicEvents", out _));
         }
         Assert.Equal(a.ProposalAudit.Select(x => (x.Recipe, x.Status, x.ConditionedTapeCells)),
             b.ProposalAudit.Select(x => (x.Recipe, x.Status, x.ConditionedTapeCells)));
@@ -137,6 +140,7 @@ public sealed class NativeTapeReplayTests
         using var doc = System.Text.Json.JsonDocument.Parse(PublicJson.Serialize(report));
         Assert.Equal(2, doc.RootElement.GetProperty("attempts").GetArrayLength());
         Assert.Equal(0, doc.RootElement.GetProperty("recordedRoots").GetInt32());
+        Assert.False(doc.RootElement.GetProperty("options").TryGetProperty("eventPermutationMaxTrials", out _));
         Assert.All(doc.RootElement.GetProperty("attempts").EnumerateArray(), attempt =>
             Assert.Equal("not_executed_computation_cancelled", attempt.GetProperty("status").GetString()));
     }

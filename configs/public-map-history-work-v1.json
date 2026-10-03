@@ -1,0 +1,21 @@
+{
+  "experimentId": "public-map-history-work-v1",
+  "sourceDrawSeeds": [11001, 11002, 11003, 11004, 11005, 11006, 11007, 11008],
+  "existingReportSha256": "599e331603211f235ac1eb8d126161783e5dc62e3bd95a8bd3f64cf4fa646eca",
+  "candidateOracleSeed": 880015,
+  "candidatesPerRoot": 256,
+  "maximumCompleteCandidates": 2048,
+  "prior": {
+    "schemaVersion": "nosl.native-rewards-state-tape-prior.v1",
+    "execution": {
+      "maxFloors": 8,
+      "sourceDecisionHorizon": 1024,
+      "sourcePolicyId": "nosl-public-rules-v2",
+      "outsideCombatScript": "nosl-natural-public-script-v3",
+      "publicContextProfile": "nosl.public-run-context.v1",
+      "publicEvidenceProfile": "nosl.public-run-evidence.v1"
+    },
+    "eligibleCombats": 3,
+    "eligibleDecisionsPerCombat": 8
+  }
+}

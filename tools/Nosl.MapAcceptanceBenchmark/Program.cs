@@ -8,6 +8,12 @@ using Nosl.Worker;
 using Sts2Sim.Core.Random;
 using Sts2Sim.Core.Runs;
 
+if (args is ["--map-history", var historyDeclaration, var existingReport])
+{
+    MapHistoryDiagnostic.Run(historyDeclaration, existingReport);
+    return;
+}
+
 if (args is ["--joint-act", var jointDeclaration])
 {
     await JointActDiagnostic.RunAsync(jointDeclaration);

@@ -85,6 +85,7 @@ public sealed class NativeConditionedWordFailureTests
     [InlineData("null")]
     [InlineData("cancellation")]
     [InlineData("component_budget")]
+    [InlineData("event_budget")]
     public async Task ActualSourceLoopRetainsCallbackFailureBeforeAnyLaterRejection(string later)
     {
         var root = await DetachedRoot();
@@ -97,6 +98,7 @@ public sealed class NativeConditionedWordFailureTests
             if (later == "prefix") tape.CheckPublicPrefix(null);
             if (later == "mismatch") throw new NativePublicConstraintMismatchException("later public mismatch");
             if (later == "cancellation") throw new OperationCanceledException("later cancellation");
+            if (later == "event_budget") throw new NativeComponentBudgetExceededException("public_event_permutation", new(256, 256, 256, 1));
             if (later == "component_budget") throw new NativeComponentBudgetExceededException("initial_prefix", new(64, 64, 64, 1));
             return Task.FromResult<NativeRunWorld?>(null);
         }
@@ -107,6 +109,59 @@ public sealed class NativeConditionedWordFailureTests
         var audit = Assert.Single(source.ProposalAudit);
         Assert.Equal("proposal_engine_error", audit.Status);
         Assert.Contains("alias correction is unresolved", audit.Detail);
+    }
+
+    [Fact]
+    public async Task RuntimeEventNamedBudgetCannotRetryOrOverwritePreparedPrefixStatistics()
+    {
+        var root = await DetachedRoot();
+        int opened = 0;
+        Task<NativeRunWorld?> Open(NativeRunExecutionOptions _, NativeTapeRecipe recipe,
+            NativeLabelTape tape, CancellationToken token)
+        {
+            opened++;
+            throw new NativeComponentBudgetExceededException("public_event_permutation", new(999, 999, 999, 999));
+        }
+        var source = new NativeTapeReplaySource(root, Hybrid, initialPrefixMaxTrials: 256, nativeOpenerForTests: Open);
+        await Assert.ThrowsAsync<PosteriorSamplingException>(() => source.SampleWorldAsync(501, 4));
+        Assert.Equal(1, opened);
+        var last = source.ProposalAudit[^1];
+        Assert.Equal("component_budget_exhausted", last.Status);
+        Assert.NotNull(last.InitialPrefixStats);
+        Assert.InRange(last.InitialPrefixStats.CompletedTrials, 1, 256);
+        Assert.NotEqual(999, last.InitialPrefixStats.TotalWordDraws);
+        Assert.Null(last.EventPermutationStats);
+    }
+
+    [Fact]
+    public async Task CleanEventPreparationExhaustionConsumesAttemptAndKeepsPrefixStats()
+    {
+        // An already observed prefix of the same fixed11007 source battle.
+        var recipe = Hybrid.Draw(new Rng(11007, "nosl-native-tape-source-draw-v1")) with { CombatIndex = 1, DecisionIndex = 0 };
+        DecisionPacket root;
+        await using (var world = await NativeRunWorld.OpenLabelTapeAsync(Hybrid.Execution, recipe,
+            NativeLabelTape.ForDeclaredPrior(Hybrid, recipe)))
+        { Assert.NotNull(world); root = PublicJson.Read<DecisionPacket>(PublicJson.Serialize(world.Observe())); }
+        int opened = 0;
+        Task<NativeRunWorld?> Open(NativeRunExecutionOptions _, NativeTapeRecipe candidate,
+            NativeLabelTape tape, CancellationToken token)
+        { opened++; return Task.FromResult<NativeRunWorld?>(null); }
+        var source = new NativeTapeReplaySource(root, Hybrid, initialPrefixMaxTrials: 256,
+            nativeOpenerForTests: Open, eventPermutationMaxTrials: 1);
+        Assert.True(source.UsesConditionalEventPermutation);
+        await Assert.ThrowsAsync<PosteriorSamplingException>(() => source.SampleWorldAsync(501, 4));
+        Assert.Equal(4, source.ProposalAudit.Length);
+        var exhausted = source.ProposalAudit.Where(a => a.EventPermutationStats is { CompletedTrials: 1 }
+            && a.Status == "component_budget_exhausted").ToArray();
+        Assert.NotEmpty(exhausted);
+        Assert.All(exhausted, a =>
+        {
+            Assert.NotNull(a.InitialPrefixStats); Assert.InRange(a.InitialPrefixStats.CompletedTrials, 1, 256);
+            Assert.Equal(1, a.EventPermutationMaxTrials);
+            Assert.Null(a.EventPermutationCorrection); Assert.Equal(0, a.ConditionedPublicEvents);
+            Assert.Contains("public_event_permutation", a.Detail);
+        });
+        Assert.Equal(opened, source.ProposalAudit.Count(a => a.Status == "absent_under_declared_source_horizon"));
     }
 
     [Fact]

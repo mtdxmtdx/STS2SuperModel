@@ -20,18 +20,19 @@ internal sealed class NativeInitialPrefixCondition
     internal Type? TargetActType { get; }
     internal NativeMapTravelCondition? MapTravel { get; }
     internal NativePublicInitialMapCondition? PublicMap { get; }
+    internal NativePublicMapHistoryCondition? PublicMapHistory { get; }
     internal int TargetEntryHp { get; }
     internal bool HasFreeTravel { get; }
     private NativeInitialPrefixCondition(Type actType, NativeMapTravelCondition? mapTravel, int hp, bool freeTravel)
     { TargetActType = actType; MapTravel = mapTravel; TargetEntryHp = hp; HasFreeTravel = freeTravel; }
-    private NativeInitialPrefixCondition(NativePublicInitialMapCondition publicMap, Type? observedActType)
-    { PublicMap = publicMap; HasFreeTravel = publicMap.HasFreeTravel; TargetActType = observedActType; }
+    private NativeInitialPrefixCondition(NativePublicMapHistoryCondition history, Type? observedActType)
+    { PublicMapHistory = history; PublicMap = history.Initial; HasFreeTravel = history.Initial.HasFreeTravel; TargetActType = observedActType; }
 
     internal static bool TryCreate(DecisionPacket root, NativeTapePrior prior,
         out NativeInitialPrefixCondition? condition, out string? reason)
     {
         condition = null;
-        if (NativePublicInitialMapCondition.TryCreate(root.PublicEvidence, prior, out var publicMap, out reason))
+        if (NativePublicMapHistoryCondition.TryCreate(root.PublicEvidence, prior, out var publicMap, out reason))
         {
             // Reuse only a certified retained public opening roster. This joins
             // two necessary events; it does not force a native act or hold a seed.
@@ -47,7 +48,7 @@ internal sealed class NativeInitialPrefixCondition
 
     internal bool MatchesMap(ActMap map)
     {
-        if (PublicMap is not null) return PublicMap.MatchesMap(map);
+        if (PublicMapHistory is not null) return PublicMapHistory.MatchesMap(map);
         var (_, second) = NativeSourceMapChoice.FirstTwoChoices(map, TargetEntryHp, 70, HasFreeTravel);
         // At the certified floor/index, only a Monster point or an Unknown
         // resolving natively to Monster can supply normal encounter slot one.

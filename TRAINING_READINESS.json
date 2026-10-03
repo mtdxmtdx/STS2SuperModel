@@ -28,7 +28,7 @@
     "data_pipeline_passed": 145,
     "generator_archive_passed": 63,
     "integrated_v2_teacher_to_backward": true,
-    "full_current_integration_passed": 1689,
+    "full_current_integration_passed": 1792,
     "natural_source_tests_passed": 5,
     "native_recorder_tests_passed": 7,
     "natural_raw_roots": 200,
@@ -98,7 +98,7 @@
     "confirmed_hard_preference_cases": 2,
     "confirmed_numerically_evaluated_preference_cases": 1,
     "cross_version_protection_cases": 24,
-    "current_full_suite": "PASS_1689_OF_1689",
+    "current_full_suite": "PASS_1792_OF_1792",
     "v2_trainer_no_fit_tests_passed": 21,
     "v2_student_no_backward_tests_passed": 19,
     "student_regression": 185,
@@ -159,8 +159,8 @@
     "public_rewards_hybrid_multi_action_completed": 3,
     "public_rewards_hybrid_multi_action_denominator": 6,
     "public_rewards_hybrid_combat_index2_completed": false,
-    "current_full_suite_source_commit": "4134427f08f72f89727f261554725ccd561ca282",
-    "current_full_suite_scope": "Last completed aggregate; later public-history components have separate focused validation, no new aggregate claim"
+    "current_full_suite_source_commit": "3af82088ab1aeebf74860cb2d2888d3c24b722c3",
+    "current_full_suite_scope": "Complete native Worker aggregate at the pinned v7 runtime; map benchmark harness codec is tested separately by its run"
   },
   "remaining": [
     "The latest complete public-history diagnostic is hybrid v6 on the same8 previously inspected roots:10 accepted worlds,64/96 candidate copies settled,32 ComputeTruncated,0EngineError;5 roots complete, including3/6 multi-action roots, but no combat-index2 root completes. The gate remains closed. Earlier opening/carry-in reports retain their own pinned historical evidence. Followup public slime and early-mismatch fixes are verified components; all-map, later-encounter and event-permutation integration remains in progress.",
@@ -233,5 +233,20 @@
     "gate_passed": false,
     "seconds": 292.5594886
   },
-  "public_history_followup_verification": "configs/native_public_history_followup_verification.json"
+  "public_history_followup_verification": "configs/native_public_history_followup_verification.json",
+  "native_rewards_hybrid_v7": {
+    "status": "VERIFIED_COMPOSITION_MAP_WORK_EXPOSED_CARRY_IN_BOTTLENECK",
+    "native_tests_passed": 1792,
+    "core_tests_passed": 4493,
+    "core_tests_opt_in_skipped": 3,
+    "new_production_rows": 0,
+    "new_optimizer_steps": 0,
+    "full_readiness": false,
+    "report": "configs/native_rewards_hybrid_v7_verification.json",
+    "map_candidates": 2048,
+    "map_first_slice_matches": 32,
+    "map_all_slice_matches": 12,
+    "carry_in_complete_map_matches": 0,
+    "full_posterior_probe_completed": false
+  }
 }

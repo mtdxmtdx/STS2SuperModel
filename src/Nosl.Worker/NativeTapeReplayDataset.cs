@@ -16,6 +16,8 @@ internal sealed record NativeTapeCollectionOptions
     public bool CompareUnconditioned { get; init; }
     public int ReferenceMaxAttempts { get; init; } = 16;
     public int InitialPrefixMaxTrials { get; init; } = 64;
+    [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public int? EventPermutationMaxTrials { get; init; }
     public int WallBudgetSeconds { get; init; } = 300;
 }
 
@@ -39,7 +41,9 @@ internal static class NativeTapeReplayDataset
         if (options.Prior is null || options.SourceDrawSeeds is null
             || teacherOptions.EvaluationSeeds is null || teacherOptions.ExplorationSeeds is null)
             throw new ArgumentException("Declared prior and seed arrays are required");
-        options = options with { Prior = options.Prior.Freeze(), SourceDrawSeeds = options.SourceDrawSeeds.ToArray() };
+        options = options with { Prior = options.Prior.Freeze(), SourceDrawSeeds = options.SourceDrawSeeds.ToArray(),
+            EventPermutationMaxTrials = options.Prior.UsesRewardsProvenance
+                ? options.EventPermutationMaxTrials ?? 256 : options.EventPermutationMaxTrials };
         teacherOptions = teacherOptions with { EvaluationSeeds = teacherOptions.EvaluationSeeds.ToArray(),
             ExplorationSeeds = teacherOptions.ExplorationSeeds.ToArray() };
         teacherOptions.Validate();
@@ -50,7 +54,8 @@ internal static class NativeTapeReplayDataset
             || teacherOptions.FormalLabels || teacherOptions.EvaluationSeeds.Length > 16
             || teacherOptions.ExplorationSeeds.Length > 16 || teacherOptions.MaxPosteriorAttempts > 4096
             || teacherOptions.MaxDecisions > 300 || options.ReferenceMaxAttempts is < 1 or > 256
-            || options.WallBudgetSeconds is < 1 or > 900 || options.InitialPrefixMaxTrials is < 1 or > 256)
+            || options.WallBudgetSeconds is < 1 or > 900 || options.InitialPrefixMaxTrials is < 1 or > 256
+            || options.EventPermutationMaxTrials is < 1 or > 4096)
             throw new ArgumentException("Tape engineering bounds:16 source draws,16 worlds,4096 proposals,300 decisions,900 seconds; no formal labels");
         using var budget = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         budget.CancelAfter(TimeSpan.FromSeconds(options.WallBudgetSeconds));
@@ -77,7 +82,8 @@ internal static class NativeTapeReplayDataset
                 finally { await sourceWorld.DisposeAsync(); }
                 existing++;
                 // No original world, seed, tape, or source trace enters inference.
-                var source = new NativeTapeReplaySource(publicRoot, prior, options.EnableConditioning, budget.Token, options.InitialPrefixMaxTrials);
+                var source = new NativeTapeReplaySource(publicRoot, prior, options.EnableConditioning, budget.Token, options.InitialPrefixMaxTrials,
+                    eventPermutationMaxTrials: options.EventPermutationMaxTrials ?? 256);
                 if (source.UsesPrimitiveConditioning) acceleratedRoots++;
                 var result = await CombatTeacher.EvaluateAsync(source, teacherOptions);
                 string runIdentity = NativePilotDataset.SourceIdentity(recipe.SourceIdentity);
@@ -115,6 +121,8 @@ internal static class NativeTapeReplayDataset
                 {
                     audit["neow_card_conditioning_eligible"] = source.UsesConditionalNeowCards;
                     audit["public_opening_encounter_conditioning_eligible"] = source.UsesConditionalPublicOpeningEncounter;
+                    audit["public_event_permutation_eligible"] = source.UsesConditionalEventPermutation;
+                    audit["public_event_targets"] = source.PublicEventTargets;
                     audit["public_weak_encounter_sequence_eligible"] = source.UsesConditionalWeakEncounterSequence;
                     audit["public_weak_encounter_targets"] = source.WeakEncounterTargets;
                     audit["public_weak_encounter_prefix_length"] = source.WeakEncounterPrefixLength;

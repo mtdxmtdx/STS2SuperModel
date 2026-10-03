@@ -293,9 +293,14 @@ public sealed partial class RunState : IRunState
     private GeneratedActRooms GenerateActRooms(ActDefinition act, int actIndex, IReadOnlyList<Type> sharedAncients)
     {
         List<Type> events = act.EffectiveEventPool.ToList();
-        events.UnstableShuffle(Rng.ForSemanticKey(
+        Rng eventRng = Rng.ForSemanticKey(
             RunRngType.UpFront,
-            $"run_setup/act={actIndex}/events/shuffle"));
+            $"run_setup/act={actIndex}/events/shuffle");
+        using (LabelEventGenerationScope.Begin(this, act, actIndex, eventRng, events))
+        {
+            events.UnstableShuffle(eventRng);
+            LabelEventGenerationScope.Complete(events);
+        }
 
         // 真实游戏 RunManager.SetUpNewSingleplayer -> InitializeNewRun -> GenerateRooms() 在创建 run
         // 的那一刻（玩家还未看到 Neow）就用 State.Rng.UpFront 把整幕的普通/精英/Boss/先古之民

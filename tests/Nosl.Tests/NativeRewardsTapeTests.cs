@@ -207,6 +207,7 @@ public sealed class NativeRewardsTapeTests
         var report = json.RootElement;
         Assert.False(report.GetProperty("trainable").GetBoolean());
         Assert.False(report.GetProperty("formalTraining").GetBoolean());
+        Assert.Equal(256, report.GetProperty("options").GetProperty("eventPermutationMaxTrials").GetInt32());
         Assert.False(report.GetProperty("budgetExpired").GetBoolean());
         Assert.Equal(Hybrid.Identity, report.GetProperty("priorIdentity").GetString());
         var record = Assert.Single(report.GetProperty("records").EnumerateArray());
