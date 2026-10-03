@@ -22,6 +22,53 @@ public sealed class NativeConditionedWordFailureTests
         Assert.True(tape.HasConditionedWordFailure);
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void IncompleteDisposalCannotBeCaughtAndThenAcceptedOrReplayed(bool prefix)
+    {
+        var tape = new NativeLabelTape(new(11, 22, 33, 0, 0));
+        var native = new Rng(4567, "incomplete-words");
+        var forced = BeginWords(tape, native, prefix);
+        Assert.Equal(1UL, native.NextUnsignedLong());
+        var original = Assert.Throws<InvalidOperationException>(forced.Dispose);
+        Assert.Contains("did not consume its complete conditioned word sequence", original.Message);
+        forced.Dispose(); // Disposal is idempotent even after its first failure.
+        Assert.True(tape.HasConditionedWordFailure);
+        Assert.Same(original, Assert.Throws<InvalidOperationException>(tape.RequireSuccessfulConditionedWords).InnerException);
+        Assert.Same(original, Assert.Throws<InvalidOperationException>(tape.ValidateProposalCompletion).InnerException);
+        Assert.Same(original, Assert.Throws<InvalidOperationException>(() => tape.AcceptCorrection(() => 0)).InnerException);
+        Assert.Same(original, Assert.Throws<InvalidOperationException>(() => tape.ReplayCopy()).InnerException);
+        Assert.Same(original, Assert.Throws<InvalidOperationException>(() => tape.CheckPublicPrefix(null)).InnerException);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void ExplicitAbortSkipsIncompleteCleanupButNeverClearsPriorCallbackFailure(bool prefix)
+    {
+        var clean = new NativeLabelTape(new(11, 22, 33, 0, 0));
+        var native = new Rng(4567, "aborted-words");
+        var scope = Assert.IsAssignableFrom<IAbortableConditionedWordScope>(BeginWords(clean, native, prefix));
+        native.NextUnsignedLong();
+        scope.Abort(); scope.Dispose(); scope.Dispose();
+        Assert.False(clean.HasConditionedWordFailure);
+        clean.RequireSuccessfulConditionedWords();
+        Assert.Equal(1, clean.ConditionedCells);
+
+        var failed = new NativeLabelTape(new(11, 22, 33, 0, 0));
+        var original = MarkFinalWordFailure(failed, prefix, abort: true);
+        Assert.True(failed.HasConditionedWordFailure);
+        Assert.Same(original, Assert.Throws<InvalidOperationException>(failed.RequireSuccessfulConditionedWords).InnerException);
+        Assert.Same(original, Assert.Throws<InvalidOperationException>(() => failed.ReplayCopy()).InnerException);
+    }
+
+    private static IDisposable BeginWords(NativeLabelTape tape, Rng native, bool prefix) => prefix
+        ? typeof(NativeLabelTape).GetMethod("ForcePrefixWords", BindingFlags.Instance | BindingFlags.NonPublic)!
+            .CreateDelegate<Func<IReadOnlyList<ulong>, Rng, string, IDisposable>>(tape)([1, 2], native, "fixture")
+        : typeof(NativeLabelTape).GetMethod("ForceWords", BindingFlags.Instance | BindingFlags.NonPublic)!
+            .CreateDelegate<Func<IReadOnlyList<ulong>, string, IDisposable>>(tape)([1, 2], "fixture");
+
     [Fact]
     public void CompleteSuccessfulWordsStillPermitCorrectionAndOwnedReplay()
     {
@@ -36,7 +83,7 @@ public sealed class NativeConditionedWordFailureTests
         Assert.NotNull(tape.ReplayCopy());
     }
 
-    private static void MarkFinalWordFailure(NativeLabelTape tape, bool prefix = true)
+    private static Exception MarkFinalWordFailure(NativeLabelTape tape, bool prefix = true, bool abort = false)
     {
         var native = new Rng(4567, "last-word-failure");
         var snapshot = native.ToSerializable();
@@ -51,13 +98,17 @@ public sealed class NativeConditionedWordFailureTests
                 .CreateDelegate<Func<IReadOnlyList<ulong>, Rng, string, IDisposable>>(tape)([1, 2], native, "fixture")
             : typeof(NativeLabelTape).GetMethod("ForceWords", BindingFlags.Instance | BindingFlags.NonPublic)!
                 .CreateDelegate<Func<IReadOnlyList<ulong>, string, IDisposable>>(tape)([1, 2], "fixture");
+        Exception original;
         using (forced)
         {
             native.NextUnsignedLong();
-            var original = Assert.Throws<InvalidOperationException>(() => native.NextUnsignedLong());
+            original = Assert.Throws<InvalidOperationException>(() => native.NextUnsignedLong());
             Assert.Contains("alias correction is unresolved", original.Message);
             Assert.Equal(2, native.Counter); // Counter is not a success acknowledgment.
+            if (abort) Assert.IsAssignableFrom<IAbortableConditionedWordScope>(forced).Abort();
         }
+        forced.Dispose();
+        return original;
     }
 
     private static NativeTapePrior Hybrid => new()

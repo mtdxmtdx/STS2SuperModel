@@ -40,7 +40,7 @@ internal sealed class NativePublicWeakEncounterSequenceCondition
     {
         ArgumentNullException.ThrowIfNull(root); ArgumentNullException.ThrowIfNull(prior);
         condition = null; reason = "fresh_native_public_evidence_prior_required";
-        if (prior.SchemaVersion is not (NativeTapePrior.Version or NativeTapePrior.RewardsVersion)
+        if (prior.SchemaVersion is not (NativeTapePrior.Version or NativeTapePrior.RewardsVersion or NativeTapePrior.MapVersion)
             || prior.Execution is not { SourcePolicyId: PublicContinuationPolicies.ReviewedId }
             || !prior.Execution.EmitsPublicEvidence
             || PublicRunContext.IsHistoryUnavailable(prior.Execution.PublicCombatHistoryMode)

@@ -29,6 +29,18 @@ public sealed class NativeInitialShuffleConditionTests
         return root with { Observation = root.Observation with { History = history } };
     }
 
+    [Fact]
+    public void PublicV5RejectsUnsupportedUpgradeWitnessWhileLegacyIdConditionStaysCoarse()
+    {
+        var root = Root();
+        root.Observation!.History[2] = new("draw", PublicJson.Serialize(Card("StrikeSilent") with { Upgrade = 1 }));
+        string before = PublicJson.Serialize(root);
+        Assert.True(NativeInitialShuffleCondition.TryCreatePublicCombatV4(root, out _, out _));
+        Assert.False(NativeInitialShuffleCondition.TryCreatePublicCombatV5(root, out _, out string? reason));
+        Assert.Equal("initial_draw_upgrade_pool_mismatch", reason);
+        Assert.Equal(before, PublicJson.Serialize(root));
+    }
+
     [Theory]
     [InlineData("NeowsTorment")]
     [InlineData("WingedBoots")]

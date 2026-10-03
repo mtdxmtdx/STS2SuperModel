@@ -140,6 +140,33 @@
 +        int hpBefore = CurrentHp, maxBefore = MaxHp;
 @@ -257,0 +265 @@
 +        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.MaxCap, hpBefore, CurrentHp, maxBefore, MaxHp);
+--- a/src/Sts2Sim.Core/Entities/Merchant/MerchantInventory.cs
++++ b/src/Sts2Sim.Core/Entities/Merchant/MerchantInventory.cs
+@@ -57,8 +57,16 @@
+-        Rng shopRng = player.PlayerRng.Shops;
+-        List<MerchantCardEntry> cards = GenerateCardEntries(player, shopRng);
+-        List<MerchantRelicEntry> relics = GenerateRelicEntries(player, shopRng);
+-        List<MerchantPotionEntry> potions = GeneratePotionEntries(player, shopRng);
+-        var cardRemoval = new MerchantCardRemovalEntry(
+-            MerchantCardRemovalEntry.PriceFor(player.RunState.Ascension, player.CardRemovalsUsed),
+-            player);
+-        return new MerchantInventory(player, cards, relics, potions, cardRemoval);
++        var labelContext = new LabelMerchantInventoryContext(player);
++        using IDisposable? labelInventory = LabelMerchantScope.BeginInventory(labelContext);
++        try
++        {
++            Rng shopRng = player.PlayerRng.Shops;
++            List<MerchantCardEntry> cards = GenerateCardEntries(player, shopRng);
++            List<MerchantRelicEntry> relics = GenerateRelicEntries(player, shopRng);
++            List<MerchantPotionEntry> potions = GeneratePotionEntries(player, shopRng);
++            var cardRemoval = new MerchantCardRemovalEntry(
++                MerchantCardRemovalEntry.PriceFor(player.RunState.Ascension, player.CardRemovalsUsed),
++                player);
++            var result = new MerchantInventory(player, cards, relics, potions, cardRemoval);
++            labelContext.CompletedInventory = result;
++            return result;
++        }
++        catch { (labelInventory as IAbortableLabelRewardBoundary)?.Abort(); throw; }
 --- /dev/null
 +++ b/src/Sts2Sim.Core/Entities/Players/IPlayerOutcomeObserver.cs
 @@ -0,0 +1,13 @@
@@ -174,17 +201,35 @@
 +++ b/src/Sts2Sim.Core/Factories/CardFactory.cs
 @@ -7,0 +8 @@
 +using Sts2Sim.Core.Random;
-@@ -54,0 +56,5 @@
+@@ -30,2 +31,15 @@
+-    public static CardModel CreateRandomCardForTransform(CardModel original, bool isInCombat, Random.Rng rng) =>
+-        CreateTransformationCard(original, rng.NextItem(GetDefaultTransformationOptions(original, isInCombat))!);
++    public static CardModel CreateRandomCardForTransform(CardModel original, bool isInCombat, Random.Rng rng)
++    {
++        if (!LabelCardTransformScope.IsActive)
++            return CreateTransformationCard(original, rng.NextItem(GetDefaultTransformationOptions(original, isInCombat))!);
++        var candidates = GetDefaultTransformationOptions(original, isInCombat).ToArray();
++        var context = new LabelCardTransformContext(original, isInCombat, rng, candidates);
++        using var label = LabelCardTransformScope.Begin(context);
++        try
++        {
++            var card = CreateTransformationCard(original, rng.NextItem(candidates)!);
++            context.Complete(card);
++            return card;
++        }
++        catch (Exception error) { context.Abort(error); throw; }
++    }
+@@ -54,0 +69,5 @@
 +            bool modifyOdds = selectionOptions.Flags.HasFlag(CardCreationFlags.ForceRarityOddsChange) ||
 +                (selectionOptions.Source == CardCreationSource.Encounter && selectionOptions.RarityOdds is
 +                    CardRarityOddsType.RegularEncounter or CardRarityOddsType.EliteEncounter or CardRarityOddsType.BossEncounter);
 +            using IDisposable? labelSelection = BeginLabelSelection(player, selectionRng,
 +                LabelRewardCardSelectionKind.CreationOptions, i, optionCount, selectionOptions, remaining, modifyOdds);
-@@ -60,3 +65,0 @@
+@@ -60,3 +78,0 @@
 -                bool modifyOdds = selectionOptions.Flags.HasFlag(CardCreationFlags.ForceRarityOddsChange) ||
 -                    (selectionOptions.Source == CardCreationSource.Encounter && selectionOptions.RarityOdds is
 -                        CardRarityOddsType.RegularEncounter or CardRarityOddsType.EliteEncounter or CardRarityOddsType.BossEncounter);
-@@ -164,0 +168,24 @@
+@@ -164,0 +181,24 @@
 +    private static IDisposable? BeginLabelSelection(Player player, Rng rng,
 +        LabelRewardCardSelectionKind kind, int index, int count, CardCreationOptions options,
 +        List<CardModel> remaining, bool changesFutureOdds)
@@ -209,7 +254,7 @@
 +            Array.AsReadOnly(remaining.ToArray()), branches.AsReadOnly()));
 +    }
 +
-@@ -220,0 +248,5 @@
+@@ -220,0 +261,5 @@
 +            using IDisposable? labelSelection = LabelRandomScope.HasRewardCardSelection
 +                ? BeginLabelSelection(player, rng, LabelRewardCardSelectionKind.LegacyCombat,
 +                    i, optionCount, modifiedCreation, modifiedCreation.GetPossibleCards(player)
@@ -223,14 +268,94 @@
 +        var pool = GetOutOfCombatPool(player);
 +        using IDisposable? labelScope = LabelRewardResourceScope.BeginPotion(new(player, rng, pool));
 +        return CreateRandomFromPool(RollRarity(rng), rng, pool);
+--- /dev/null
++++ b/src/Sts2Sim.Core/Map/StandardActMap.LabelReconstruction.cs
+@@ -0,0 +1,73 @@
++using Sts2Sim.Core.Random;
++
++namespace Sts2Sim.Core.Map;
++
++/// <summary>A semantic public node, without generation state or encounter identity.</summary>
++public readonly record struct LabelMapNode(MapCoord Coordinate, MapPointType PointType);
++
++/// <summary>A directed public path, without native collection insertion order.</summary>
++public readonly record struct LabelMapEdge(MapCoord From, MapCoord To);
++
++public sealed partial class StandardActMap
++{
++    /// <summary>
++    /// Explicit label-only import of a completely observed, already postprocessed
++    /// standard map. The caller must certify the public producer and probability law;
++    /// structural validation alone does not establish native positive support.
++    /// No generation, pruning, postprocessing, or RNG draw occurs here.
++    /// </summary>
++    public static StandardActMap ReconstructForLabels(Rng mapRng, int numberOfRooms,
++        IReadOnlyList<LabelMapNode> nodes, IReadOnlyList<LabelMapEdge> edges,
++        bool hasSecondBoss = false) => new(mapRng, numberOfRooms, nodes, edges, hasSecondBoss);
++
++    private StandardActMap(Rng mapRng, int numberOfRooms,
++        IReadOnlyList<LabelMapNode> nodes, IReadOnlyList<LabelMapEdge> edges, bool hasSecondBoss)
++    {
++        ArgumentNullException.ThrowIfNull(mapRng);
++        ArgumentNullException.ThrowIfNull(nodes);
++        ArgumentNullException.ThrowIfNull(edges);
++        if (numberOfRooms < 1) throw new ArgumentOutOfRangeException(nameof(numberOfRooms));
++        _mapLength = checked(numberOfRooms + 1);
++        Grid = new MapPoint[MapWidth, _mapLength];
++        _rng = mapRng;
++        // Only the generator reads these counts. Imported maps never re-enter it.
++        _pointTypeCounts = new MapPointTypeCounts(0, 0);
++        var points = new Dictionary<MapCoord, MapPoint>();
++        var start = new MapCoord(MapWidth / 2, 0);
++        var boss = new MapCoord(MapWidth / 2, _mapLength);
++        var secondBoss = new MapCoord(MapWidth / 2, _mapLength + 1);
++        foreach (var node in nodes)
++        {
++            var coord = node.Coordinate;
++            bool special = coord == start || coord == boss || (hasSecondBoss && coord == secondBoss);
++            if (coord.col < 0 || coord.col >= MapWidth || (!special && (coord.row < 1 || coord.row >= _mapLength))
++                || !Enum.IsDefined(node.PointType) || node.PointType == MapPointType.Unassigned
++                || (coord == start ? node.PointType != MapPointType.Ancient
++                    : special ? node.PointType != MapPointType.Boss
++                    : node.PointType is MapPointType.Ancient or MapPointType.Boss)
++                || !points.TryAdd(coord, new MapPoint(coord.col, coord.row) { PointType = node.PointType }))
++                throw new ArgumentException("Invalid or duplicate semantic standard-map node", nameof(nodes));
++            if (!special) Grid[coord.col, coord.row] = points[coord];
++        }
++        if (!points.TryGetValue(start, out var startPoint) || !points.TryGetValue(boss, out var bossPoint)
++            || (hasSecondBoss && !points.ContainsKey(secondBoss)))
++            throw new ArgumentException("Missing standard-map special node", nameof(nodes));
++        StartingMapPoint = startPoint;
++        BossMapPoint = bossPoint;
++        SecondBossMapPoint = hasSecondBoss ? points[secondBoss] : null;
++        var uniqueEdges = new HashSet<LabelMapEdge>();
++        foreach (var edge in edges)
++        {
++            if (!points.TryGetValue(edge.From, out var from) || !points.TryGetValue(edge.To, out var to)
++                || edge.To.row != edge.From.row + 1 || !uniqueEdges.Add(edge))
++                throw new ArgumentException("Invalid or duplicate semantic standard-map path", nameof(edges));
++            from.AddChildPoint(to);
++        }
++        var terminal = SecondBossMapPoint ?? BossMapPoint;
++        if (points.Values.Any(p => !ReferenceEquals(p, StartingMapPoint) && p.parents.Count == 0
++                || !ReferenceEquals(p, terminal) && p.Children.Count == 0)
++            || StartingMapPoint.parents.Count != 0 || terminal.Children.Count != 0)
++            throw new ArgumentException("Incomplete standard-map paths", nameof(edges));
++        foreach (var point in GetPointsInRow(1)) startMapPoints.Add(point);
++    }
++}
 --- a/src/Sts2Sim.Core/Map/StandardActMap.cs
 +++ b/src/Sts2Sim.Core/Map/StandardActMap.cs
 @@ -3,0 +4,2 @@
 +using Sts2Sim.Core.Content;
 +using Sts2Sim.Core.Entities.Ascension;
-@@ -15,0 +18,11 @@
+@@ -14 +16 @@
+-public sealed class StandardActMap : ActMap
++public sealed partial class StandardActMap : ActMap
+@@ -15,0 +18,12 @@
 +    /// <summary>The native per-act map RNG, including its original stream name.</summary>
-+    public static Rng CreateRng(ulong runSeed, int actIndex) => new(runSeed, $"act_{actIndex + 1}_map");
++    public static Rng CreateRng(ulong runSeed, int actIndex) =>
++        new Rng(runSeed, $"act_{actIndex + 1}_map").WithLabelMapProvenance(actIndex);
 +
 +    /// <summary>Pure native generation, including randomized point counts and every map pass.</summary>
 +    public static StandardActMap CreateFor(ActDefinition act, Rng mapRng, AscensionManager ascension,
@@ -339,6 +464,53 @@
 +    // This payload originates in an explicit public card choice, not hidden draw order.
 +    internal CardModel? NoslSelectedCard => _hasSelectedCard ? ModelDb.GetById<CardModel>(_selectedCardId) : null;
 +    internal int? NoslSelectedUpgrade => _hasSelectedCard ? _selectedCardUpgradeLevel : null;
+--- a/src/Sts2Sim.Core/Models/Relics/PhialHolster.cs
++++ b/src/Sts2Sim.Core/Models/Relics/PhialHolster.cs
+@@ -4,0 +5 @@
++using Sts2Sim.Core.Random;
+@@ -17,2 +18,2 @@
+-        var generatedIds = new HashSet<ModelId>();
+-        for (int i = 0; i < 2; i++)
++        using IDisposable? labelScope = LabelPhialHolsterScope.BeginGrant(Owner, Owner.RunState.Rng.CombatPotionGeneration);
++        try
+@@ -20,9 +21,2 @@
+-            // 偏离 #171 已销案（偏离 #306，2026-09-08）：权威 PhialHolster 走
+-            // PotionFactory.CreateRandomPotionsOutOfCombat，即角色池 ∪ 共享池；
+-            // 原实现从扁平的全部已注册药水里抽，与 Wellspring（偏离 #301）同源。
+-            // "本批次唯一"是本仓库既有的补充约束，保留。
+-            PotionModel? potion = PotionFactory.CreateRandomOutOfCombat(
+-                Owner,
+-                Owner.RunState.Rng.CombatPotionGeneration,
+-                candidate => !generatedIds.Contains(candidate.Id));
+-            if (potion is null)
++            var generatedIds = new HashSet<ModelId>();
++            for (int i = 0; i < 2; i++)
+@@ -30 +24,15 @@
+-                continue;
++                // 偏离 #171 已销案（偏离 #306，2026-09-08）：权威 PhialHolster 走
++                // PotionFactory.CreateRandomPotionsOutOfCombat，即角色池 ∪ 共享池；
++                // 原实现从扁平的全部已注册药水里抽，与 Wellspring（偏离 #301）同源。
++                // "本批次唯一"是本仓库既有的补充约束，保留。
++                PotionModel? potion = PotionFactory.CreateRandomOutOfCombat(
++                    Owner,
++                    Owner.RunState.Rng.CombatPotionGeneration,
++                    candidate => !generatedIds.Contains(candidate.Id));
++                if (potion is null)
++                {
++                    continue;
++                }
++    
++                generatedIds.Add(potion.Id);
++                await PotionCmd.TryToProcure(potion, Owner);
+@@ -32,3 +40,5 @@
+-
+-            generatedIds.Add(potion.Id);
+-            await PotionCmd.TryToProcure(potion, Owner);
++        }
++        catch
++        {
++            (labelScope as IAbortableLabelPhialHolsterBoundary)?.Abort();
++            throw;
 --- a/src/Sts2Sim.Core/Models/Relics/ScrollBoxes.cs
 +++ b/src/Sts2Sim.Core/Models/Relics/ScrollBoxes.cs
 @@ -9,0 +10 @@
@@ -395,6 +567,54 @@
 @@ -37,2 +40,0 @@
 -        float bonus = roomType == RoomType.Elite ? eliteBonus : 0f;
 -        float threshold = currentValue + bonus * 0.5f;
+--- /dev/null
++++ b/src/Sts2Sim.Core/Random/LabelCardTransformScope.cs
+@@ -0,0 +1,45 @@
++using Sts2Sim.Core.Models;
++
++namespace Sts2Sim.Core.Random;
++
++/// <summary>Owned native default-transform selection, before its single index draw.</summary>
++public sealed class LabelCardTransformContext(CardModel original, bool isInCombat, Rng rng,
++    IReadOnlyList<CardModel> candidates)
++{
++    public CardModel Original { get; } = original;
++    public bool IsInCombat { get; } = isInCombat;
++    public Rng Rng { get; } = rng;
++    public IReadOnlyList<CardModel> Candidates { get; } = Array.AsReadOnly(candidates.ToArray());
++    public CardModel? CompletedCard { get; private set; }
++    public Exception? NativeFailure { get; private set; }
++    internal void Complete(CardModel card) => CompletedCard = card;
++    internal void Abort(Exception error) => NativeFailure = error;
++}
++
++/// <summary>Label-only scope. Native transformation selection and cloning still run unchanged.</summary>
++public static class LabelCardTransformScope
++{
++    private static readonly AsyncLocal<Scope?> Current = new();
++    internal static bool IsActive => Current.Value is not null;
++
++    public static IDisposable Enter(Func<LabelCardTransformContext, IDisposable?> begin)
++    {
++        ArgumentNullException.ThrowIfNull(begin);
++        var scope = new Scope(Current.Value, begin); Current.Value = scope; return scope;
++    }
++
++    internal static IDisposable? Begin(LabelCardTransformContext context) => Current.Value is { } scope
++        ? LabelRandomScope.InvokeResourceCallback(() => scope.Begin(context)) : null;
++
++    private sealed class Scope(Scope? previous, Func<LabelCardTransformContext, IDisposable?> begin) : IDisposable
++    {
++        internal Scope? Previous => previous;
++        internal Func<LabelCardTransformContext, IDisposable?> Begin => begin;
++        public void Dispose()
++        {
++            if (ReferenceEquals(Current.Value, this)) { Current.Value = previous; return; }
++            for (var scope = Current.Value; scope is not null; scope = scope.Previous)
++                if (ReferenceEquals(scope, this)) throw new InvalidOperationException("Card transform scopes must be disposed in nesting order");
++        }
++    }
++}
 --- /dev/null
 +++ b/src/Sts2Sim.Core/Random/LabelCombatReshuffleScope.cs
 @@ -0,0 +1,71 @@
@@ -632,6 +852,92 @@
 +    }
 +}
 --- /dev/null
++++ b/src/Sts2Sim.Core/Random/LabelMapConstructionScope.cs
+@@ -0,0 +1,37 @@
++using Sts2Sim.Core.Map;
++
++namespace Sts2Sim.Core.Random;
++
++/// <summary>
++/// Explicit label-only constructor seam. Returning null retains ordinary native
++/// generation. A replacement is built before native map hooks, at the same point
++/// as ordinary construction; it must not run generation or mutate a live map.
++/// The caller owns eligibility, independent-law proof, and run-boundary guards.
++/// </summary>
++public static class LabelMapConstructionScope
++{
++    private static readonly AsyncLocal<Scope?> Current = new();
++
++    public static IDisposable Enter(Func<LabelMapGenerationContext, StandardActMap?> construct)
++    {
++        ArgumentNullException.ThrowIfNull(construct);
++        var scope = new Scope(Current.Value, construct);
++        Current.Value = scope;
++        return scope;
++    }
++
++    internal static StandardActMap? TryConstruct(LabelMapGenerationContext context) => Current.Value?.Construct(context);
++
++    private sealed class Scope(Scope? previous, Func<LabelMapGenerationContext, StandardActMap?> construct) : IDisposable
++    {
++        internal Scope? Previous { get; } = previous;
++        internal StandardActMap? Construct(LabelMapGenerationContext context) => construct(context);
++        public void Dispose()
++        {
++            if (ReferenceEquals(Current.Value, this)) { Current.Value = Previous; return; }
++            for (var scope = Current.Value; scope is not null; scope = scope.Previous)
++                if (ReferenceEquals(scope, this))
++                    throw new InvalidOperationException("Label map construction scopes must be disposed in nesting order");
++        }
++    }
++}
+--- /dev/null
++++ b/src/Sts2Sim.Core/Random/LabelMerchantScope.cs
+@@ -0,0 +1,43 @@
++using Sts2Sim.Core.Entities.Merchant;
++using Sts2Sim.Core.Entities.Players;
++using Sts2Sim.Core.Models;
++
++namespace Sts2Sim.Core.Random;
++
++/// <summary>Before the player's native relic-bag shuffles; the shared bag has already been created.</summary>
++public sealed record LabelPlayerRelicBagContext(Player Player, Rng Rng, IReadOnlyList<RelicModel> Pool);
++
++/// <summary>Before initial stock generation, with completion populated only after native generation succeeds.</summary>
++public sealed class LabelMerchantInventoryContext(Player player)
++{
++    public Player Player { get; } = player;
++    public MerchantInventory? CompletedInventory { get; internal set; }
++}
++
++/// <summary>Label-only boundaries. Native selection, draws, prices and bag removals remain in their original methods.</summary>
++public static class LabelMerchantScope
++{
++    private static readonly AsyncLocal<Scope?> Current = new();
++    public static IDisposable Enter(Func<LabelPlayerRelicBagContext, IDisposable?> bag,
++        Func<LabelMerchantInventoryContext, IDisposable?> inventory)
++    {
++        var scope = new Scope(Current.Value, bag, inventory); Current.Value = scope; return scope;
++    }
++    internal static IDisposable? BeginBag(LabelPlayerRelicBagContext context) => Current.Value is { } scope
++        ? LabelRandomScope.InvokeResourceCallback(() => scope.Bag(context)) : null;
++    internal static IDisposable? BeginInventory(LabelMerchantInventoryContext context) => Current.Value is { } scope
++        ? LabelRandomScope.InvokeResourceCallback(() => scope.Inventory(context)) : null;
++    private sealed class Scope(Scope? previous, Func<LabelPlayerRelicBagContext, IDisposable?> bag,
++        Func<LabelMerchantInventoryContext, IDisposable?> inventory) : IDisposable
++    {
++        internal Scope? Previous => previous;
++        internal Func<LabelPlayerRelicBagContext, IDisposable?> Bag => bag;
++        internal Func<LabelMerchantInventoryContext, IDisposable?> Inventory => inventory;
++        public void Dispose()
++        {
++            if (ReferenceEquals(Current.Value, this)) { Current.Value = previous; return; }
++            for (var scope = Current.Value; scope is not null; scope = scope.Previous)
++                if (ReferenceEquals(scope, this)) throw new InvalidOperationException("Merchant scopes must be disposed in nesting order");
++        }
++    }
++}
+--- /dev/null
 +++ b/src/Sts2Sim.Core/Random/LabelMonsterMoveScope.cs
 @@ -0,0 +1,126 @@
 +using Sts2Sim.Core.Entities.Creatures;
@@ -761,8 +1067,52 @@
 +    }
 +}
 --- /dev/null
++++ b/src/Sts2Sim.Core/Random/LabelPhialHolsterScope.cs
+@@ -0,0 +1,41 @@
++using Sts2Sim.Core.Entities.Players;
++using Sts2Sim.Core.Factories;
++using Sts2Sim.Core.Models;
++
++namespace Sts2Sim.Core.Random;
++
++/// <summary>The actual PhialHolster pickup, after growing slots and before either native grant.</summary>
++public sealed record LabelPhialHolsterContext(Player Player, Rng Rng, IReadOnlyList<PotionModel> Pool);
++
++public interface IAbortableLabelPhialHolsterBoundary : IDisposable
++{
++    void Abort();
++}
++
++/// <summary>Optional label-only batch boundary; native rarity, filtering and procurement remain untouched.</summary>
++public static class LabelPhialHolsterScope
++{
++    private static readonly AsyncLocal<Scope?> Current = new();
++
++    public static IDisposable Enter(Func<LabelPhialHolsterContext, IDisposable?> begin)
++    {
++        ArgumentNullException.ThrowIfNull(begin);
++        var scope = new Scope(Current.Value, begin); Current.Value = scope; return scope;
++    }
++
++    internal static IDisposable? BeginGrant(Player player, Rng rng) => Current.Value is { } scope
++        ? LabelRandomScope.InvokeResourceCallback(() => scope.Begin(new(player, rng, PotionFactory.GetOutOfCombatPool(player))))
++        : null;
++
++    private sealed class Scope(Scope? previous, Func<LabelPhialHolsterContext, IDisposable?> begin) : IDisposable
++    {
++        internal Scope? Previous => previous;
++        internal Func<LabelPhialHolsterContext, IDisposable?> Begin => begin;
++        public void Dispose()
++        {
++            if (ReferenceEquals(Current.Value, this)) { Current.Value = previous; return; }
++            for (var scope = Current.Value; scope is not null; scope = scope.Previous)
++                if (ReferenceEquals(scope, this)) throw new InvalidOperationException("PhialHolster scopes must be disposed in nesting order");
++        }
++    }
++}
+--- /dev/null
 +++ b/src/Sts2Sim.Core/Random/LabelRandomProvenance.cs
-@@ -0,0 +1,38 @@
+@@ -0,0 +1,50 @@
 +using System.Text.Json.Serialization;
 +
 +namespace Sts2Sim.Core.Random;
@@ -777,6 +1127,12 @@
 +public readonly record struct LabelRandomAddressV1(string OriginFamily, ulong InitialSeed, ulong RawCursor);
 +
 +/// <summary>
++/// One cell in the independently versioned Map partition. ActIndex is native act
++/// lineage, so even effective seed collisions between acts cannot alias cells.
++/// </summary>
++public readonly record struct LabelMapRandomAddressV1(int ActIndex, ulong InitialSeed, ulong RawCursor);
++
++/// <summary>
 +/// Opt-in snapshot marker and source lineage. The seed is the effective native seed of
 +/// the owned hypothetical generator, never a source-run observation. Numeric generator
 +/// state and the wrapper Counter cannot reconstruct this metadata.
@@ -786,24 +1142,30 @@
 +    string Partition,
 +    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? OriginFamily = null,
 +    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] ulong? InitialSeed = null,
-+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] ulong? RawCursor = null)
++    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] ulong? RawCursor = null,
++    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] int? ActIndex = null)
 +{
 +    public const string LawId = "native-rewards-provenance-tape-v1";
++    public const string MapLawId = "native-map-rewards-provenance-tape-v1";
 +    public const string RewardsOrigin = "player-stream/0/Rewards";
++    public const string MapOrigin = "standard-act-map";
 +    public const string FullStatePartition = "full_state";
 +    public const string RewardsPartition = "rewards_lineage";
++    public const string MapPartition = "map_lineage";
 +
 +    internal void Validate()
 +    {
-+        bool fullState = Partition == FullStatePartition && OriginFamily is null && InitialSeed is null && RawCursor is null;
-+        bool rewards = Partition == RewardsPartition && OriginFamily == RewardsOrigin && InitialSeed is not null && RawCursor is not null;
-+        if (Law != LawId || (!fullState && !rewards))
++        bool fullState = Partition == FullStatePartition && OriginFamily is null && InitialSeed is null && RawCursor is null && ActIndex is null;
++        bool rewards = Partition == RewardsPartition && OriginFamily == RewardsOrigin && InitialSeed is not null && RawCursor is not null && ActIndex is null;
++        bool map = Law == MapLawId && Partition == MapPartition && OriginFamily == MapOrigin
++            && InitialSeed is not null && RawCursor is not null && ActIndex is >= 0;
++        if (Law is not (LawId or MapLawId) || (!fullState && !rewards && !map))
 +            throw new InvalidOperationException("Missing or unsupported label RNG provenance.");
 +    }
 +}
 --- /dev/null
 +++ b/src/Sts2Sim.Core/Random/LabelRandomScope.cs
-@@ -0,0 +1,317 @@
+@@ -0,0 +1,364 @@
 +using Sts2Sim.Core.Entities.Creatures;
 +using Sts2Sim.Core.Entities.Players;
 +using Sts2Sim.Core.Content;
@@ -871,6 +1233,17 @@
 +
 +    // Legacy nested forcing scopes keep their enclosing provenance construction mode.
 +    internal static bool UsesRewardProvenance => Current.Value?.UsesProvenance == true && !InsideCallback.Value;
++    internal static bool UsesMapProvenance => Current.Value?.UsesMapProvenance == true && !InsideCallback.Value;
++    internal static string? ProvenanceLaw => !UsesRewardProvenance ? null
++        : UsesMapProvenance ? LabelRandomProvenance.MapLawId : LabelRandomProvenance.LawId;
++
++    private static void RequireNestedHybridLaw(bool usesMap)
++    {
++        // Generic Enter is a forcing override and inherits its enclosing law.
++        // The explicit hybrid entry points may nest only within the same law.
++        if (Current.Value is { UsesProvenance: true } previous && previous.UsesMapProvenance != usesMap)
++            throw new InvalidOperationException("Nested hybrid RNG scopes must use the same declared primitive law.");
++    }
 +
 +    internal static IDisposable? InvokeResourceCallback(Func<IDisposable?> callback)
 +    {
@@ -955,13 +1328,44 @@
 +    {
 +        ArgumentNullException.ThrowIfNull(nextRewardWord);
 +        ArgumentNullException.ThrowIfNull(nextStateWord);
++        RequireNestedHybridLaw(usesMap: false);
 +        var scope = new Scope(Current.Value, nextStateWord, nextRewardWord, beginShuffle, beginMonsterHp, beginCombatReward,
 +            beginNormalEncounter, beginMapGeneration, beginRewardCardSelection, beginNeowInitialOptions, beginScrollBoxes);
 +        Current.Value = scope;
 +        return scope;
 +    }
 +
-+    internal static ulong NextWordOrOriginal(LabelRandomState state, LabelRandomAddressV1? address, ulong original)
++    /// <summary>
++    /// Enter the separately versioned three-partition law. Only StandardActMap's
++    /// native source receives Map lineage; incidental draws made during generation
++    /// retain their own partition. The Rewards and full-state partitions are unchanged.
++    /// </summary>
++    public static IDisposable EnterMapRewardProvenance(
++        Func<LabelMapRandomAddressV1, ulong> nextMapWord,
++        Func<LabelRandomAddressV1, ulong> nextRewardWord,
++        Func<LabelRandomState, ulong> nextStateWord,
++        Func<Rng, IReadOnlyList<object?>, IDisposable?>? beginShuffle = null,
++        Func<LabelMonsterHpContext, IDisposable?>? beginMonsterHp = null,
++        Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null,
++        Func<LabelNormalEncounterContext, IDisposable?>? beginNormalEncounter = null,
++        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration = null,
++        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection = null,
++        Func<LabelNeowInitialOptionsContext, IDisposable?>? beginNeowInitialOptions = null,
++        Func<LabelScrollBoxesContext, IDisposable?>? beginScrollBoxes = null)
++    {
++        ArgumentNullException.ThrowIfNull(nextMapWord);
++        ArgumentNullException.ThrowIfNull(nextRewardWord);
++        ArgumentNullException.ThrowIfNull(nextStateWord);
++        RequireNestedHybridLaw(usesMap: true);
++        var scope = new Scope(Current.Value, nextStateWord, nextRewardWord, beginShuffle, beginMonsterHp, beginCombatReward,
++            beginNormalEncounter, beginMapGeneration, beginRewardCardSelection, beginNeowInitialOptions,
++            beginScrollBoxes, nextMapWord);
++        Current.Value = scope;
++        return scope;
++    }
++
++    internal static ulong NextWordOrOriginal(LabelRandomState state, LabelRandomAddressV1? address,
++        LabelMapRandomAddressV1? mapAddress, ulong original)
 +    {
 +        Scope? scope = Current.Value;
 +        if (scope is null || InsideCallback.Value) return original;
@@ -969,6 +1373,8 @@
 +        InsideCallback.Value = true;
 +        try
 +        {
++            if (scope.NextMapWord is not null && mapAddress is { } sourceMapAddress)
++                return scope.NextMapWord(sourceMapAddress);
 +            if (scope.NextProvenanceWord is not null && address is { } rewardAddress)
 +                return scope.NextProvenanceWord(rewardAddress);
 +            return scope.NextWord!(state);
@@ -1085,12 +1491,15 @@
 +        Func<LabelMapGenerationContext, IDisposable?>? beginMapGeneration,
 +        Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection,
 +        Func<LabelNeowInitialOptionsContext, IDisposable?>? beginNeowInitialOptions,
-+        Func<LabelScrollBoxesContext, IDisposable?>? beginScrollBoxes) : IDisposable
++        Func<LabelScrollBoxesContext, IDisposable?>? beginScrollBoxes,
++        Func<LabelMapRandomAddressV1, ulong>? nextMapWord = null) : IDisposable
 +    {
 +        public Scope? Previous { get; } = previous;
 +        public Func<LabelRandomState, ulong>? NextWord { get; } = nextWord;
 +        public Func<LabelRandomAddressV1, ulong>? NextProvenanceWord { get; } = nextProvenanceWord;
++        public Func<LabelMapRandomAddressV1, ulong>? NextMapWord { get; } = nextMapWord;
 +        public bool UsesProvenance { get; } = nextProvenanceWord is not null || previous?.UsesProvenance == true;
++        public bool UsesMapProvenance { get; } = nextMapWord is not null || previous?.UsesMapProvenance == true;
 +        public Func<Rng, IReadOnlyList<object?>, IDisposable?>? BeginShuffle { get; } = beginShuffle;
 +        public Func<LabelMonsterHpContext, IDisposable?>? BeginMonsterHp { get; } = beginMonsterHp;
 +        public Func<LabelCombatRewardContext, IDisposable?>? BeginCombatReward { get; } = beginCombatReward;
@@ -1267,48 +1676,126 @@
 +        }
 +    }
 +}
+--- /dev/null
++++ b/src/Sts2Sim.Core/Random/LabelUnknownRoomScope.cs
+@@ -0,0 +1,47 @@
++using Sts2Sim.Core.Map;
++using Sts2Sim.Core.Rooms;
++using Sts2Sim.Core.Runs;
++
++namespace Sts2Sim.Core.Random;
++
++/// <summary>The owning map point immediately before its original native unknown-room roll.</summary>
++public sealed class LabelUnknownRoomContext(RunState run, MapPoint point, Rng rng, bool excludeShop)
++{
++    public RunState Run { get; } = run;
++    public MapPoint Point { get; } = point;
++    public Rng Rng { get; } = rng;
++    public bool ExcludeShop { get; } = excludeShop;
++    /// <summary>Set only after the native roll and every odds update return successfully.</summary>
++    public RoomType? CompletedRoomType { get; internal set; }
++}
++
++/// <summary>
++/// Optional label boundary around RoomFactory's unknown case. It does not replace
++/// the roll, blacklist, hook dispatch, RNG advancement, or native odds update.
++/// </summary>
++public static class LabelUnknownRoomScope
++{
++    private static readonly AsyncLocal<Scope?> Current = new();
++
++    public static IDisposable Enter(Func<LabelUnknownRoomContext, IDisposable?> begin)
++    {
++        ArgumentNullException.ThrowIfNull(begin);
++        var scope = new Scope(Current.Value, begin); Current.Value = scope; return scope;
++    }
++
++    internal static IDisposable? Begin(LabelUnknownRoomContext context) => Current.Value is { } scope
++        ? LabelRandomScope.InvokeResourceCallback(() => scope.Begin(context)) : null;
++
++    private sealed class Scope(Scope? previous, Func<LabelUnknownRoomContext, IDisposable?> begin) : IDisposable
++    {
++        internal Scope? Previous => previous;
++        internal Func<LabelUnknownRoomContext, IDisposable?> Begin => begin;
++        public void Dispose()
++        {
++            if (ReferenceEquals(Current.Value, this)) { Current.Value = previous; return; }
++            for (var scope = Current.Value; scope is not null; scope = scope.Previous)
++                if (ReferenceEquals(scope, this))
++                    throw new InvalidOperationException("Unknown-room scopes must be disposed in nesting order");
++        }
++    }
++}
 --- a/src/Sts2Sim.Core/Random/MegaRandom.cs
 +++ b/src/Sts2Sim.Core/Random/MegaRandom.cs
-@@ -26,0 +27,10 @@
+@@ -26,0 +27,28 @@
 +    // Label-only metadata. Untagged generators keep their existing full-state law.
 +    private ulong? _labelInitialSeed;
 +    private ulong _labelRawCursor;
 +    private bool _labelRewardsOrigin;
 +    private bool _labelHybrid;
++    private bool _labelMapLaw;
++    private int? _labelMapActIndex;
 +
 +    public LabelRandomAddressV1? LabelRewardAddress => _labelRewardsOrigin
 +        ? new LabelRandomAddressV1(LabelRandomProvenance.RewardsOrigin, _labelInitialSeed!.Value, _labelRawCursor)
 +        : null;
 +
-@@ -57,0 +68,3 @@
++    public LabelMapRandomAddressV1? LabelMapAddress => _labelMapActIndex is { } actIndex
++        ? new LabelMapRandomAddressV1(actIndex, _labelInitialSeed!.Value, _labelRawCursor)
++        : null;
++
++    private string? LabelLaw => !_labelHybrid ? null
++        : _labelMapLaw ? LabelRandomProvenance.MapLawId : LabelRandomProvenance.LawId;
++
++    private void RequireCompatibleLabelLaw(string? sourceLaw)
++    {
++        // Neither a nested scope nor a loaded source can erase the object's law.
++        // Check both constraints independently, before any state/lineage mutation.
++        if ((LabelLaw is { } existingLaw && sourceLaw != existingLaw)
++            || (LabelRandomScope.ProvenanceLaw is { } activeLaw && sourceLaw != activeLaw))
++            throw new InvalidOperationException("A hybrid label RNG restore or reseed cannot change its declared primitive law.");
++    }
++
+@@ -57,0 +86,5 @@
++        RequireCompatibleLabelLaw(LabelLaw ?? LabelRandomScope.ProvenanceLaw);
 +        _labelHybrid = _labelHybrid || LabelRandomScope.UsesRewardProvenance;
-+        _labelInitialSeed = _labelRewardsOrigin || LabelRandomScope.UsesRewardProvenance ? seed : null;
++        _labelMapLaw = _labelMapLaw || LabelRandomScope.UsesMapProvenance;
++        _labelInitialSeed = _labelRewardsOrigin || _labelMapActIndex is not null || LabelRandomScope.UsesRewardProvenance ? seed : null;
 +        _labelRawCursor = 0;
-@@ -65,0 +79,8 @@
+@@ -65,0 +99,11 @@
 +        LabelRandomProvenance? provenance = serializable.LabelProvenance;
 +        provenance?.Validate();
 +        if ((_labelHybrid || LabelRandomScope.UsesRewardProvenance) && provenance is null)
 +            throw new InvalidOperationException("A hybrid label RNG restore requires an explicit source partition.");
++        RequireCompatibleLabelLaw(provenance?.Law);
 +        _labelHybrid = provenance is not null;
++        _labelMapLaw = provenance?.Law == LabelRandomProvenance.MapLawId;
 +        _labelRewardsOrigin = provenance?.Partition == LabelRandomProvenance.RewardsPartition;
++        _labelMapActIndex = provenance?.ActIndex;
 +        _labelInitialSeed = provenance?.InitialSeed;
 +        _labelRawCursor = provenance?.RawCursor ?? 0;
-@@ -73,0 +95,3 @@
+@@ -73,0 +118,4 @@
 +        LabelRandomAddressV1? labelAddress = LabelRewardAddress;
++        LabelMapRandomAddressV1? mapAddress = LabelMapAddress;
 +        if (_labelInitialSeed is not null)
 +            _labelRawCursor = checked(_labelRawCursor + 1);
-@@ -77,0 +102 @@
+@@ -77,0 +126 @@
 +        var labelState = new LabelRandomState(s, s2, s3, s4);
-@@ -90 +115,2 @@
+@@ -90 +139,2 @@
 -        return result;
 +        // Explicit label scopes replace only the word, after native state advancement.
-+        return LabelRandomScope.NextWordOrOriginal(labelState, labelAddress, result);
-@@ -161,0 +188,31 @@
-+        rng.LabelProvenance = _labelRewardsOrigin
-+            ? new LabelRandomProvenance(LabelRandomProvenance.LawId, LabelRandomProvenance.RewardsPartition,
++        return LabelRandomScope.NextWordOrOriginal(labelState, labelAddress, mapAddress, result);
+@@ -161,0 +212,49 @@
++        string law = _labelMapLaw ? LabelRandomProvenance.MapLawId : LabelRandomProvenance.LawId;
++        rng.LabelProvenance = _labelMapActIndex is { } actIndex
++            ? new LabelRandomProvenance(law, LabelRandomProvenance.MapPartition,
++                LabelRandomProvenance.MapOrigin, _labelInitialSeed!.Value, _labelRawCursor, actIndex)
++            : _labelRewardsOrigin
++            ? new LabelRandomProvenance(law, LabelRandomProvenance.RewardsPartition,
 +                LabelRandomProvenance.RewardsOrigin,
 +                _labelInitialSeed!.Value, _labelRawCursor)
-+            : _labelHybrid ? new LabelRandomProvenance(LabelRandomProvenance.LawId,
++            : _labelHybrid ? new LabelRandomProvenance(law,
 +                LabelRandomProvenance.FullStatePartition) : null;
 +    }
 +
@@ -1320,29 +1807,45 @@
 +    {
 +        if (!LabelRandomScope.UsesRewardProvenance) return this;
 +        if (_labelRewardsOrigin) return this;
-+        if (_labelInitialSeed is null || _labelRawCursor != 0)
++        if (_labelInitialSeed is null || _labelRawCursor != 0 || _labelMapActIndex is not null)
 +            throw new InvalidOperationException("Rewards provenance must be bound at native seed construction.");
 +        _labelRewardsOrigin = true;
 +        _labelHybrid = true;
 +        return this;
 +    }
 +
++    internal void WithLabelMapProvenance(int actIndex)
++    {
++        if (!LabelRandomScope.UsesMapProvenance) return;
++        if (actIndex < 0) throw new ArgumentOutOfRangeException(nameof(actIndex));
++        if (_labelInitialSeed is null || _labelRawCursor != 0 || _labelRewardsOrigin || _labelMapActIndex is not null)
++            throw new InvalidOperationException("Map provenance must be bound at native seed construction.");
++        _labelMapActIndex = actIndex;
++        _labelHybrid = true;
++        _labelMapLaw = true;
++    }
++
 +    internal void PreserveLabelOriginForReseed(MegaRandom source, ulong effectiveSeed)
 +    {
++        RequireCompatibleLabelLaw(source.LabelLaw ?? LabelLaw);
 +        _labelHybrid = source._labelHybrid || _labelHybrid;
-+        if (!source._labelRewardsOrigin) return;
-+        _labelRewardsOrigin = true;
++        _labelMapLaw = source._labelMapLaw || _labelMapLaw;
++        if (!source._labelRewardsOrigin && source._labelMapActIndex is null) return;
++        _labelRewardsOrigin = source._labelRewardsOrigin;
++        _labelMapActIndex = source._labelMapActIndex;
 +        _labelHybrid = true;
 +        _labelInitialSeed = effectiveSeed;
 +        _labelRawCursor = 0;
-@@ -170 +227,7 @@
+@@ -170 +269,9 @@
 -        return new MegaRandom(_s0, _s1, _s2, _s3);
 +        return new MegaRandom(_s0, _s1, _s2, _s3)
 +        {
 +            _labelInitialSeed = _labelInitialSeed,
 +            _labelRawCursor = _labelRawCursor,
 +            _labelRewardsOrigin = _labelRewardsOrigin,
-+            _labelHybrid = _labelHybrid
++            _labelHybrid = _labelHybrid,
++            _labelMapLaw = _labelMapLaw,
++            _labelMapActIndex = _labelMapActIndex
 +        };
 --- a/src/Sts2Sim.Core/Random/PlayerRngSet.cs
 +++ b/src/Sts2Sim.Core/Random/PlayerRngSet.cs
@@ -1372,11 +1875,14 @@
 +            provenance.Validate();
 --- a/src/Sts2Sim.Core/Random/Rng.cs
 +++ b/src/Sts2Sim.Core/Random/Rng.cs
-@@ -26,0 +27,3 @@
+@@ -26,0 +27,6 @@
 +    /// <summary>Next Rewards oracle cell, present only in the opt-in hybrid label law.</summary>
 +    public LabelRandomAddressV1? LabelRewardAddress => _random.LabelRewardAddress;
 +
-@@ -59,0 +63,7 @@
++    /// <summary>Next Map cell, present only in the separately versioned Map hybrid law.</summary>
++    public LabelMapRandomAddressV1? LabelMapAddress => _random.LabelMapAddress;
++
+@@ -59,0 +66,14 @@
 +        return this;
 +    }
 +
@@ -1384,16 +1890,23 @@
 +    internal Rng WithLabelRewardsProvenance()
 +    {
 +        _random.WithLabelRewardsProvenance();
-@@ -130,0 +141 @@
++        return this;
++    }
++
++    /// <summary>Bind only the genuine native per-act map generator at construction.</summary>
++    internal Rng WithLabelMapProvenance(int actIndex)
++    {
++        _random.WithLabelMapProvenance(actIndex);
+@@ -130,0 +151 @@
 +        clone._random.PreserveLabelOriginForReseed(_random, branchSeed);
-@@ -141,0 +153,2 @@
+@@ -141,0 +163,2 @@
 +        clone._random.PreserveLabelOriginForReseed(_random,
 +            branchSeed + StringHelper.GetDeterministicHashCode(streamName));
-@@ -151,0 +165 @@
+@@ -151,0 +175 @@
 +        _random.Reinitialise(serializable);
-@@ -153 +166,0 @@
+@@ -153 +176,0 @@
 -        _random.Reinitialise(serializable);
-@@ -494,0 +508 @@
+@@ -494,0 +518 @@
 +        using IDisposable? labelScope = LabelRandomScope.BeginShuffle(this, list);
 --- a/src/Sts2Sim.Core/Rewards/GoldReward.cs
 +++ b/src/Sts2Sim.Core/Rewards/GoldReward.cs
@@ -1531,6 +2044,25 @@
 @@ -372 +391 @@
 -        RoomType == RoomType.Boss &&
 +        _noslFinalActBoss || RoomType == RoomType.Boss &&
+--- a/src/Sts2Sim.Core/Rooms/RoomFactory.cs
++++ b/src/Sts2Sim.Core/Rooms/RoomFactory.cs
+@@ -41,5 +41,11 @@
+-                return runState.Odds.UnknownMapPoint.Roll(
+-                    excludeShop ? new[] { RoomType.Shop } : Array.Empty<RoomType>(),
+-                    runState.Rng.ForSemanticKey(
+-                        RunRngType.UnknownMapPoint,
+-                        $"act={runState.CurrentActIndex}/floor={runState.TotalFloor}/map_col={point.coord.col}/map_row={point.coord.row}/room_kind=unknown"));
++                Rng unknownRng = runState.Rng.ForSemanticKey(
++                    RunRngType.UnknownMapPoint,
++                    $"act={runState.CurrentActIndex}/floor={runState.TotalFloor}/map_col={point.coord.col}/map_row={point.coord.row}/room_kind=unknown");
++                var boundary = new LabelUnknownRoomContext(runState, point, unknownRng, excludeShop);
++                using (LabelUnknownRoomScope.Begin(boundary))
++                {
++                    RoomType resolved = runState.Odds.UnknownMapPoint.Roll(
++                        excludeShop ? new[] { RoomType.Shop } : Array.Empty<RoomType>(), unknownRng);
++                    boundary.CompletedRoomType = resolved;
++                    return resolved;
++                }
 --- a/src/Sts2Sim.Core/Runs/RunDriver.cs
 +++ b/src/Sts2Sim.Core/Runs/RunDriver.cs
 @@ -107,0 +108,5 @@
@@ -1588,10 +2120,22 @@
 +            provenance.Validate();
 --- a/src/Sts2Sim.Core/Runs/RunState.cs
 +++ b/src/Sts2Sim.Core/Runs/RunState.cs
-@@ -296 +296 @@
+@@ -253,5 +253,6 @@
+-        return new RelicGrabBag(
+-            Rng.ForSemanticKey(
+-                RunRngType.UpFront,
+-                $"run_setup/relic_bag/character={player.Character.Id.Entry}"),
+-            SharedRelicPool.Instance.AllRelics.Concat(player.Character.RelicPool.AllRelics));
++        Rng playerBagRng = Rng.ForSemanticKey(RunRngType.UpFront,
++            $"run_setup/relic_bag/character={player.Character.Id.Entry}");
++        var playerBagPool = SharedRelicPool.Instance.AllRelics.Concat(player.Character.RelicPool.AllRelics).ToArray();
++        using IDisposable? labelBag = LabelMerchantScope.BeginBag(new(player, playerBagRng, playerBagPool));
++        try { return new RelicGrabBag(playerBagRng, playerBagPool); }
++        catch { (labelBag as IAbortableLabelRewardBoundary)?.Abort(); throw; }
+@@ -296 +297 @@
 -        events.UnstableShuffle(Rng.ForSemanticKey(
 +        Rng eventRng = Rng.ForSemanticKey(
-@@ -298 +298,6 @@
+@@ -298 +299,6 @@
 -            $"run_setup/act={actIndex}/events/shuffle"));
 +            $"run_setup/act={actIndex}/events/shuffle");
 +        using (LabelEventGenerationScope.Begin(this, act, actIndex, eventRng, events))
@@ -1599,10 +2143,10 @@
 +            events.UnstableShuffle(eventRng);
 +            LabelEventGenerationScope.Complete(events);
 +        }
-@@ -304,0 +310,2 @@
+@@ -304,0 +311,2 @@
 +        using IDisposable? labelEncounterScope = actIndex == 0
 +            ? LabelRandomScope.BeginNormalEncounter(this, act) : null;
-@@ -370,6 +377,4 @@
+@@ -370,6 +378,4 @@
 -        var mapRng = new Rng(Rng.Seed, $"act_{CurrentActIndex + 1}_map");
 -        MapPointTypeCounts pointTypeCounts = act.GetMapPointTypes(mapRng, Ascension);
 -        Map = new StandardActMap(
@@ -1611,7 +2155,7 @@
 -            pointTypeCounts,
 +        var mapRng = StandardActMap.CreateRng(Rng.Seed, CurrentActIndex);
 +        using IDisposable? labelMapScope = LabelRandomScope.BeginMapGeneration(this, act, mapRng);
-+        Map = StandardActMap.CreateFor(
++        Map = LabelMapConstructionScope.TryConstruct(new(this, act, mapRng)) ?? StandardActMap.CreateFor(
 +            act, mapRng, Ascension,
 --- a/src/Sts2Sim.Core/Saves/SerializableRng.cs
 +++ b/src/Sts2Sim.Core/Saves/SerializableRng.cs

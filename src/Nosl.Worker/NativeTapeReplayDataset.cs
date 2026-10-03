@@ -30,13 +30,26 @@ internal static class NativeTapeReplayDataset
     internal static string ImplementationFor(NativeRunExecutionOptions execution) => execution.EmitsPublicEvidence
         ? ImplementationVersion + "-public-evidence-v1" : ImplementationVersion;
 
-    internal static string ImplementationFor(NativeTapePrior prior) => prior.UsesRewardsProvenance
-        ? "nosl-native-rewards-state-tape-conditional-v10-public-evidence-v1" : ImplementationFor(prior.Execution);
-    internal static string DatasetFor(NativeTapePrior prior) => prior.UsesRewardsProvenance
+    internal static string ImplementationFor(NativeTapePrior prior) => prior.UsesMapProvenance
+        ? "nosl-native-map-rewards-tape-marginalized-v5-public-evidence-v2" : prior.UsesRewardsProvenance
+        ? "nosl-native-rewards-state-tape-conditional-v11-public-evidence-v1" : ImplementationFor(prior.Execution);
+    internal static string DatasetFor(NativeTapePrior prior) => prior.UsesMapProvenance
+        ? "nosl.native-map-rewards-tape-replay-development.v1" : prior.UsesRewardsProvenance
         ? "nosl.native-rewards-tape-replay-development.v1" : DatasetVersion;
 
-    internal static async Task<object> CollectAsync(NativeTapeCollectionOptions options, TeacherOptions teacherOptions,
-        CancellationToken cancellationToken = default)
+    internal static Task<object> CollectAsync(NativeTapeCollectionOptions options, TeacherOptions teacherOptions,
+        CancellationToken cancellationToken = default) => CollectCoreAsync(options, teacherOptions, null, cancellationToken);
+
+    // Only the fresh candidate API can create this prevalidated output contract.
+    // The public diagnostic operation has no switch that can promote its records.
+    internal static Task<object> CollectCompleteMapCandidatesAsync(NativeTapeCollectionOptions options,
+        TeacherOptions teacherOptions, NativeCompleteMapDataset.CollectionContract contract,
+        CancellationToken cancellationToken, Action? afterSourceDisposedForTests = null)
+        => CollectCoreAsync(options, teacherOptions, contract, cancellationToken, afterSourceDisposedForTests);
+
+    private static async Task<object> CollectCoreAsync(NativeTapeCollectionOptions options, TeacherOptions teacherOptions,
+        NativeCompleteMapDataset.CollectionContract? candidateContract, CancellationToken cancellationToken,
+        Action? afterSourceDisposedForTests = null)
     {
         if (options.Prior is null || options.SourceDrawSeeds is null
             || teacherOptions.EvaluationSeeds is null || teacherOptions.ExplorationSeeds is null)
@@ -67,34 +80,51 @@ internal static class NativeTapeReplayDataset
         foreach (ulong sourceDrawSeed in options.SourceDrawSeeds)
         {
             int attemptIndex = attempts.Count;
+            int recordIndex = records.Count;
             var recipe = prior.Draw(new Rng(sourceDrawSeed, "nosl-native-tape-source-draw-v1"));
+            var candidateProvenance = candidateContract?.SourceProvenance(recipe);
+            void AddAttempt(object attempt) => attempts.Add(candidateContract is null ? attempt
+                : candidateContract.Attempt(attempt, sourceDrawSeed, attemptIndex,
+                    records.Count > recordIndex ? recordIndex : null, candidateProvenance!));
             var attemptTimer = Stopwatch.StartNew();
             if (budget.IsCancellationRequested)
-            { attempts.Add(new { sourceDrawSeed, recipe, status = "not_executed_computation_cancelled", seconds = 0d }); continue; }
+            { AddAttempt(new { sourceDrawSeed, recipe, status = "not_executed_computation_cancelled", seconds = 0d }); continue; }
             try
             {
                 var sourceWorld = await NativeRunWorld.OpenLabelTapeAsync(prior.Execution, recipe,
                     NativeLabelTape.ForDeclaredPrior(prior, recipe), budget.Token);
                 if (sourceWorld is null)
-                { attempts.Add(new { sourceDrawSeed, recipe, status = "absent_under_declared_source_horizon", seconds = attemptTimer.Elapsed.TotalSeconds }); continue; }
+                { AddAttempt(new { sourceDrawSeed, recipe, status = "absent_under_declared_source_horizon", seconds = attemptTimer.Elapsed.TotalSeconds }); continue; }
                 DecisionPacket publicRoot;
-                try { publicRoot = PublicJson.Read<DecisionPacket>(PublicJson.Serialize(sourceWorld.Observe())); }
-                finally { await sourceWorld.DisposeAsync(); }
-                existing++;
+                try
+                {
+                    publicRoot = PublicJson.Read<DecisionPacket>(PublicJson.Serialize(sourceWorld.Observe()));
+                    candidateContract?.CapturePublicRoot(candidateProvenance!, publicRoot);
+                    // A successfully observed root exists even if releasing its
+                    // source subsequently fails; failure still prevents labeling.
+                    existing++;
+                }
+                finally
+                {
+                    await sourceWorld.DisposeAsync();
+                    // Internal nonserialized exception seam: the actual world
+                    // is always released before a test can inject cleanup failure.
+                    afterSourceDisposedForTests?.Invoke();
+                }
                 // No original world, seed, tape, or source trace enters inference.
                 var source = new NativeTapeReplaySource(publicRoot, prior, options.EnableConditioning, budget.Token, options.InitialPrefixMaxTrials,
                     eventPermutationMaxTrials: options.EventPermutationMaxTrials ?? 256);
                 if (source.UsesPrimitiveConditioning) acceleratedRoots++;
                 var result = await CombatTeacher.EvaluateAsync(source, teacherOptions);
                 string runIdentity = NativePilotDataset.SourceIdentity(recipe.SourceIdentity);
-                string sourceRun = (prior.UsesRewardsProvenance ? "native-rewards-tape-source-v1:" : "native-tape-source-v1:") + runIdentity;
+                string sourceRun = (prior.UsesMapProvenance ? "native-map-rewards-tape-source-v1:" : prior.UsesRewardsProvenance ? "native-rewards-tape-source-v1:" : "native-tape-source-v1:") + runIdentity;
                 string entry = publicRoot.Observation!.History.Single(e => e.Kind == NativeEntryAssets.EventKind).Detail;
                 string sourceCombat = sourceRun + "/public-entry:" + Hash(entry);
                 var record = JsonNode.Parse(PublicJson.Serialize(TeacherDataset.Record(result, sourceRun, sourceCombat,
                     sourceCombat + "/tape-root-family", teacherOptions.EvaluationSeeds, teacherOptions.ExplorationSeeds)))!.AsObject();
                 var audit = record["audit_only"]!.AsObject();
-                record["schema_version"] = DatasetFor(prior);
-                record["record_kind"] = prior.UsesRewardsProvenance ? "native_rewards_tape_replay_development_candidate" : "native_tape_replay_development_candidate";
+                record["schema_version"] = candidateContract is null ? DatasetFor(prior) : NativeCompleteMapDataset.RawSchemaVersion;
+                record["record_kind"] = candidateContract is not null ? NativeCompleteMapDataset.RawRecordKind : prior.UsesMapProvenance ? "native_map_rewards_tape_replay_development_candidate" : prior.UsesRewardsProvenance ? "native_rewards_tape_replay_development_candidate" : "native_tape_replay_development_candidate";
                 audit["dataset_version"] = DatasetFor(prior);
                 audit["source_kind"] = "natural_under_explicit_label_tape_prior";
                 audit["actual_seed"] = recipe.SourceIdentity;
@@ -120,6 +150,20 @@ internal static class NativeTapeReplayDataset
                 if (prior.UsesRewardsProvenance)
                 {
                     audit["neow_card_conditioning_eligible"] = source.UsesConditionalNeowCards;
+                    if (source.UsesConditionalNeowPotions) audit["neow_potion_conditioning_eligible"] = true;
+                    if (source.UsesConditionalPublicEventCards)
+                    { audit["public_event_card_conditioning_eligible"] = true; audit["public_event_card_targets"] = source.PublicEventCardTargets; }
+                    if (source.UsesConditionalPublicUnknownRooms)
+                    {
+                        audit["public_unknown_room_conditioning_eligible"] = true;
+                        audit["public_unknown_room_targets"] = source.PublicUnknownRoomTargets;
+                    }
+                    if (source.UsesConditionalPublicShop)
+                    {
+                        audit["public_shop_conditioning_eligible"] = true;
+                        audit["public_shop_offer_targets"] = source.PublicShopOfferTargets;
+                        audit["public_shop_bag_targets"] = source.PublicShopBagTargets;
+                    }
                     audit["public_opening_encounter_conditioning_eligible"] = source.UsesConditionalPublicOpeningEncounter;
                     audit["public_event_permutation_eligible"] = source.UsesConditionalEventPermutation;
                     audit["public_event_targets"] = source.PublicEventTargets;
@@ -141,8 +185,19 @@ internal static class NativeTapeReplayDataset
                     audit["public_monster_roll_targets"] = source.PublicMonsterRollTargets;
                     audit["public_monster_branch_targets"] = source.PublicMonsterBranchTargets;
                     audit["public_reshuffle_conditioning"] = JsonNode.Parse(PublicJson.Serialize(source.PublicReshuffleDiagnostics));
+                    // Report the actual post-reshuffle scan endpoint, not only the first-cycle stop.
+                    audit["public_reshuffle_history"] = JsonNode.Parse(PublicJson.Serialize(source.PublicReshuffleHistoryDiagnostics));
                     audit["public_monster_roll_conditioning"] = JsonNode.Parse(PublicJson.Serialize(source.PublicMonsterRollDiagnostics));
                     audit["public_combat_conditioning"] = JsonNode.Parse(PublicJson.Serialize(source.PublicCombatDiagnostics));
+                }
+                if (prior.UsesMapProvenance)
+                {
+                    audit["public_complete_map_reconstruction_eligible"] = source.UsesPublicMapReconstruction;
+                    audit["public_act_prefix_conditioning_eligible"] = source.UsesConditionalPublicActPrefix;
+                    if (source.UsesConditionalPublicActPrefix)
+                        audit["public_act_prefix_budget_source"] = "initialPrefixMaxTrials";
+                    audit["map_marginalization_contract"] = NativePublicMapReconstructionCondition.SupportContract;
+                    audit["public_map_observation_profile"] = prior.Execution.PublicMapObservationProfile;
                 }
                 audit["public_local_decision_conditioning"] = source.ConditionedPublicDecisionIndex;
                 audit["public_combat_coordinate_conditioning"] = source.ConditionedPublicCombatIndex;
@@ -156,11 +211,12 @@ internal static class NativeTapeReplayDataset
                 audit["versions"]!["sampler"] = ImplementationFor(prior);
                 audit["versions"]!["posterior_implementation"] = ImplementationFor(prior);
                 audit["versions"]!["source_prior"] = prior.Identity;
+                candidateContract?.CompleteRecord(record, result, prior, teacherOptions, sourceDrawSeed, attemptIndex);
                 records.Add(record);
                 int acceptedHere = source.ProposalAudit.Count(a => a.Status == "accepted");
                 accepted += acceptedHere; allocated += result.Costs.WorldsAllocated; settled += result.Costs.WorldsCompleted;
                 publicRoots.Add(Hash(PublicJson.Serialize(publicRoot))); sourceRuns.Add(runIdentity);
-                attempts.Add(new { sourceDrawSeed, recipe, status = "existing_root_evaluated", source.UsesConditionalShuffle,
+                AddAttempt(new { sourceDrawSeed, recipe, status = "existing_root_evaluated", source.UsesConditionalShuffle,
                     source.UsesConditionalHp, source.UsesConditionalNeow, source.UsesConditionalFirstReward, source.UsesConditionalFirstEncounter, source.UsesConditionalInitialPrefix,
                     source.ConditioningReason, acceptedPosteriorDraws = acceptedHere, proposalAttempts = source.ProposalAudit.Length,
                     allocatedWorlds = result.Costs.WorldsAllocated, settledWorlds = result.Costs.WorldsCompleted,
@@ -190,12 +246,14 @@ internal static class NativeTapeReplayDataset
             catch (Exception exception)
             {
                 if (attempts.Count > attemptIndex) attempts.RemoveRange(attemptIndex, attempts.Count - attemptIndex);
-                attempts.Add(new { sourceDrawSeed, recipe,
+                if (candidateContract is not null && records.Count > recordIndex)
+                    records.RemoveRange(recordIndex, records.Count - recordIndex);
+                AddAttempt(new { sourceDrawSeed, recipe,
                     status = exception is OperationCanceledException ? "computation_cancelled" : "source_engine_error",
                     detail = exception.GetType().Name + ": " + exception.Message, seconds = attemptTimer.Elapsed.TotalSeconds });
             }
         }
-        return new
+        var report = new
         {
             schema_version = "nosl.native-tape-replay-report.v1", status = "bounded_conditional_tape_engineering_not_production_admission",
             prior, priorIdentity = prior.Identity, options, teacherOptions,
@@ -207,6 +265,7 @@ internal static class NativeTapeReplayDataset
             formalTraining = false, trainable = false, budgetExpired = budget.IsCancellationRequested,
             attempts, references, records,
         };
+        return candidateContract is null ? report : candidateContract.Report(report);
     }
 
     private static string Hash(string value) => Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value))).ToLowerInvariant();

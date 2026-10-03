@@ -66,7 +66,7 @@ internal sealed class NativeFirstRewardCondition
 
     private static NativeFirstRewardCondition Create(DecisionPacket root, NativeTapePrior prior)
     {
-        Require(prior is { SchemaVersion: NativeTapePrior.Version or NativeTapePrior.RewardsVersion, Execution: not null }
+        Require(prior is { SchemaVersion: NativeTapePrior.Version or NativeTapePrior.RewardsVersion or NativeTapePrior.MapVersion, Execution: not null }
             && prior.Execution.EmitsPublicRunContext
             && !PublicRunContext.IsHistoryUnavailable(prior.Execution.PublicCombatHistoryMode),
             "complete_public_run_history_required");

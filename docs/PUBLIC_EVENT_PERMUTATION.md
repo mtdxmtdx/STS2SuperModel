@@ -28,12 +28,65 @@ these singleton candidate sets in the exhaustive pinned pools:
 | TabletOfTruth | DECIPHER, SMASH |
 | WaterloggedScriptorium | BLOODY_INK, TENTACLE_QUILL, PRICKLY_SPONGE |
 | SelfHelpBook | READ_THE_BACK[_LOCKED], READ_PASSAGE[_LOCKED], READ_ENTIRE_BOOK[_LOCKED] |
+| SunkenStatue | GRAB_SWORD, DIVE_INTO_WATER |
+| WoodCarvings | BIRD, SNAKE, TORUS or BIRD, TORUS |
+| RoomFullOfCheese | GORGE, SEARCH |
 
-All three pages have no public prices. Lock flags may conservatively admit more
+All six event signatures have no public prices. Lock flags may conservatively admit more
 states; complete replay checks them. `NO_OPTIONS` alone does not identify
 SelfHelpBook. Unrecognized or ambiguous signatures stop this extractor, rather
 than choosing a hidden identity. The finite scan kernel itself accepts candidate
 sets, and its tests exercise ambiguous two-event signatures.
+
+The three additional identities are source-certified over the entire pinned
+native pools, not inferred from a retained source seed. `SunkenStatue` and
+`RoomFullOfCheese.GenerateInitialOptions` publish their fixed pairs.
+`WoodCarvings.GenerateInitialOptions` always publishes BIRD first and TORUS last;
+it inserts SNAKE exactly when some deck card can receive Slither. Both native
+pages are recognized without inspecting that hypothetical deck. A review of every
+pooled `GenerateInitialOptions`, including their called option helpers and dynamic
+keys, excludes these first tokens from every competing event. In particular:
+
+- `RelicTrader` uses PROCEED or TOP/MIDDLE/BOTTOM, not a relic identity as its key
+- `EndlessConveyor` uses one of its finite dish IDs or LOCKED, followed by OBSERVE_CHEF
+- `SlipperyBridge` starts with OVERCOME; its variable HOLD_ON suffix cannot match
+- Ranwid, StoneOfAllTime, Symbiote, SelfHelpBook, TeaMaster and WelcomeToWongos
+  only choose their source-literal option keys or their `_LOCKED` variants
+- The remaining pooled first pages use source-literal keys; their conditional
+  insertions/removals introduce none of GRAB_SWORD, BIRD or GORGE
+
+The wider vendored event catalog also has no competing first page containing any
+of those three identifying first tokens. LostWisp does use SEARCH, but its page
+is CLAIM/SEARCH; matching SEARCH alone would be unsound and is explicitly rejected.
+None of the pinned pool classes overrides `GenerateInitialOptionsWrapper`.
+Only the first owner page is considered, so later pages, forced fights and reward
+choices cannot be confused with a new event pull. The whole ordered page and no
+price requirement remain mandatory, rather than matching just the unique token.
+
+## Map-law compatibility and scope
+
+The retained Map-law roots 24002, 24007 and 24008 already passed the existing
+initial-map boundary, complete-map reconstruction and opening-roster certificates
+before this change. They failed `certified_public_event_prefix_required` because
+their first event pages were outside the original three signatures. Their added
+targets are respectively SunkenStatue (owner 6, page 146), WoodCarvings (owner 5,
+page 121), and RoomFullOfCheese (owner 6, page 134). Each is one whole-permutation
+target. For 24002, event ordinal 289 is a later combat owner, not another event pull.
+
+The initial-map certificate's prior guard is `UsesRewardsProvenance`, which already
+includes MapVersion. The event proposal uses it only to certify the native fresh
+opening and Neow cursor advance; it never calls its map probability matcher or
+prepares an old-law map trace. This fix therefore leaves the boundary untouched.
+A Missing full-map capture still permits the event certificate if the published
+first map slice and event history suffice; map reconstruction stays disabled and
+native map generation remains the fallback. Unknown future option pages still
+stop extraction. No full graph or public-history field is removed from replay.
+
+The other direct initial-map consumers were audited: `NativePublicMapHistoryCondition`
+feeds the old joint initial-prefix proposal, whose owning source explicitly excludes
+MapVersion; `NativePublicMapReconstructionCondition` uses its detached slice-only
+projection solely as a boundary certificate. Opening-roster and weak-encounter
+successors already accept MapVersion. There is no shared routing refactor here.
 
 ## Eligibility and containment
 
@@ -91,6 +144,14 @@ full-public replay intersects E with the exact observed history and restores all
 constraints deliberately relaxed by the superset. A finite unequal-bucket test
 checks the bounded successful subdensity, including the failure mass.
 
+The additional page signatures only change the fixed public predicate E. Their
+pool, native shuffle law, cap K, existential eligibility masks, owned trace and
+correction mechanism are unchanged. WoodCarvings eligibility remains unknown;
+SunkenStatue and RoomFullOfCheese retain their existing act-zero eligibility masks.
+Thus the same root-constant normalizer proof applies under the independent Map
+law, alongside its separate map marginalization. It does not justify substituting
+a source recipe for an independent posterior draw or ignoring a final mismatch.
+
 ## Owned native boundary
 
 The optional `LabelEventGenerationScope` wraps only the original act event shuffle
@@ -122,3 +183,14 @@ separate independent plans are checked against the whole-permutation condition.
 Fixture source words are used only in the tests, never production proposal inputs.
 These are engineering checks, not production generation, acceptance-rate evidence,
 formal training, or claims that the broader data-stage gate has passed.
+
+`NativeMapEventPermutationTests` adds detached retained-root target admission,
+whole ordered signature variants and counterexamples, unchanged Missing-map and
+unsupported-page fallback, and exact complete-packet/settlement-fork replay with
+the native event trace composed with complete-map reconstruction. Separately
+prepared plans use one fixed unrelated recipe and are checked against the full
+native permutation condition. Source-loop tests use independent recipe draws to
+verify fixed-K clean event exhaustion consumes an outer attempt, keeps complete
+word/cell counts and no old-prefix statistics, and never relabels runtime native
+failure, cancellation or a runtime event-named budget as clean preparation failure.
+These tests establish routing and accounting, not an updated acceptance benchmark.

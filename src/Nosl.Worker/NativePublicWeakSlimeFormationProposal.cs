@@ -5,7 +5,7 @@ using Sts2Sim.Core.Runs;
 
 namespace Nosl.Worker;
 
-/// <summary>One certified native opening factory, using the owning tape's exact-state force scope.</summary>
+/// <summary>One certified native weak factory, using the owning tape's exact-state force scope.</summary>
 internal sealed class NativePublicWeakSlimeFormationProposal(NativePublicWeakSlimeFormationCondition condition,
     Func<ulong> nextWord, Func<IReadOnlyList<ulong>, Rng, string, IDisposable> forcePrefixWords)
 {
@@ -30,9 +30,9 @@ internal sealed class NativePublicWeakSlimeFormationProposal(NativePublicWeakSli
         if (combatIndex != _combatIndex + 1)
             throw new InvalidOperationException("Weak-slime formation owner indices must include every combat entry");
         if (_active && !_complete) throw new InvalidOperationException("A certified weak-slime formation did not complete");
-        _combatIndex = combatIndex; _active = combatIndex == 0;
+        _combatIndex = combatIndex; _active = combatIndex == condition.CombatIndex;
         if (_active && condition.EntryJson != PublicJson.Serialize(entry))
-            throw new NativePublicConstraintMismatchException("Published weak-slime opening entry differs");
+            throw new NativePublicConstraintMismatchException("Published weak-slime entry differs at combat " + combatIndex);
     }
     internal IDisposable? BeginFormation(LabelSlimesWeakFormationContext context)
     {
@@ -42,7 +42,7 @@ internal sealed class NativePublicWeakSlimeFormationProposal(NativePublicWeakSli
             || !ReferenceEquals(context.Room, _run.CurrentRoom) || _plan is not null)
             throw new InvalidOperationException("Weak-slime formation is unowned, out of phase, or repeated");
         var plan = condition.CreateProposal(context, nextWord);
-        var inner = forcePrefixWords(plan.RawWords, context.Rng, "public opening weak-slime formation");
+        var inner = forcePrefixWords(plan.RawWords, context.Rng, "public combat " + _combatIndex + " weak-slime formation");
         _plan = plan;
         return new Completion(() =>
         {

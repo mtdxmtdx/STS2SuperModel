@@ -63,13 +63,15 @@ public sealed record NaturalSourceRoot(DecisionPacket PublicRoot, string SourceR
         }, PublicRoot);
         var record = new
         {
-            schema_version = PublicRoot.PublicEvidence is not null ? "nosl.natural-source.v4" : contextual ? "nosl.natural-source.v3" : "nosl.natural-source.v2", record_kind = "natural_raw_source_candidate",
+            schema_version = PublicRoot.PublicEvidence?.SchemaVersion == PublicRunEvidence.CompleteMapVersion ? "nosl.natural-source.v5"
+                : PublicRoot.PublicEvidence is not null ? "nosl.natural-source.v4" : contextual ? "nosl.natural-source.v3" : "nosl.natural-source.v2", record_kind = "natural_raw_source_candidate",
             public_input = input,
             targets = new { actions = Array.Empty<object>(), pairwise = Array.Empty<object>(), equivalent_action_set = Array.Empty<int>() },
             audit_only = new
             {
                 source_kind = "natural", source_run_group = SourceRunGroup, source_combat_id = SourceCombatId,
-                branch_family = SourceCombatId + "/native-root-family", source_prior = PublicRoot.PublicEvidence is not null
+                branch_family = SourceCombatId + "/native-root-family", source_prior = PublicRoot.PublicEvidence?.SchemaVersion == PublicRunEvidence.CompleteMapVersion
+                    ? "native_sequential_run_silent_a10_public_complete_map_v5" : PublicRoot.PublicEvidence is not null
                     ? "native_sequential_run_silent_a10_public_evidence_v4" : contextual
                     ? "native_sequential_run_silent_a10_public_entry_context_v3" : "native_sequential_run_silent_a10_public_entry_v2",
                 outside_combat_script = NaturalSourceCollector.ResolveScriptVersion(OutsideCombatScript), combat_policy = CombatPolicy,

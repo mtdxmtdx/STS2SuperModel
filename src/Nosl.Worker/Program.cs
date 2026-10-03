@@ -18,6 +18,14 @@ while(Console.ReadLine() is { } line)
             result=new {status="available",version="nosl.continuation-policies.v1",
                 supportedPolicyIds=new[] {PublicContinuationPolicies.LegacyId,PublicContinuationPolicies.ReviewedId}};
         }
+        else if(op=="native_complete_map_runtime_identity")
+        {
+            result=NativeCompleteMapDataset.RuntimeIdentity(root);
+        }
+        else if(op=="native_complete_map_candidates")
+        {
+            result=await NativeCompleteMapDataset.CollectAsync(root);
+        }
         else if(op=="native_tape_replay")
         {
             var options=PublicJson.Read<NativeTapeCollectionOptions>(root.GetProperty("options").GetRawText());

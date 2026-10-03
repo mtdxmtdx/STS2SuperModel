@@ -8,20 +8,21 @@ using Sts2Sim.Core.Random;
 namespace Nosl.Worker;
 
 /// <summary>
-/// Detached ordered startup roster for the already certified first normal weak
-/// encounter. Missing proof disables this proposal; later rosters, source seeds,
+/// Detached ordered startup roster for a certified first-three normal weak
+/// encounter. Missing proof disables this proposal; current snapshots, source seeds,
 /// private move IDs and native source objects are never inputs.
 /// </summary>
 internal sealed class NativePublicWeakSlimeFormationCondition
 {
     internal long CombatOwnerOrdinal { get; }
+    internal int CombatIndex { get; }
     internal string EntryJson { get; }
     internal IReadOnlyList<string> Roster { get; }
     internal ShuffleRational Envelope { get; }
 
-    private NativePublicWeakSlimeFormationCondition(long owner, string entry, string[] roster)
+    private NativePublicWeakSlimeFormationCondition(long owner, int combatIndex, string entry, string[] roster)
     {
-        CombatOwnerOrdinal = owner; EntryJson = entry; Roster = Array.AsReadOnly(roster);
+        CombatOwnerOrdinal = owner; CombatIndex = combatIndex; EntryJson = entry; Roster = Array.AsReadOnly(roster);
         Envelope = NativeWeakSlimeFormationPlan.Mass(Roster);
     }
 
@@ -29,10 +30,32 @@ internal sealed class NativePublicWeakSlimeFormationCondition
         out NativePublicWeakSlimeFormationCondition? condition, out string? reason)
     {
         condition = null;
-        if (!NativePublicOpeningEncounterCondition.TryCreate(root, prior, out var opening, out reason)) return false;
-        reason = "certified_slimes_weak_opening_required";
-        if (opening!.TargetActType != typeof(Overgrowth) || opening.TargetEncounterId != "SLIMES_WEAK") return false;
-        var events = root.PublicEvidence!.Events.Where(entry => entry.OwnerOrdinal == opening.CombatOwnerOrdinal).ToArray();
+        long owner;
+        // Retain the opening certificate where available. For a later weak pull,
+        // the joint sequence certificate proves its normal slot and complete route,
+        // excluding event-parented fights and retaining every compatible identity.
+        if (NativePublicOpeningEncounterCondition.TryCreate(root, prior, out var opening, out reason)
+            && opening!.TargetActType == typeof(Overgrowth) && opening.TargetEncounterId == "SLIMES_WEAK")
+            owner = opening.CombatOwnerOrdinal;
+        else
+        {
+            if (!NativePublicWeakEncounterSequenceCondition.TryCreate(root, prior, out var sequence, out reason)) return false;
+            reason = "certified_slimes_weak_normal_pull_required";
+            if (sequence!.TargetActType != typeof(Overgrowth)) return false;
+            int slimeIndex = NativeOpeningEncounterCatalog.Entries.Single(entry =>
+                entry.ActType == typeof(Overgrowth) && entry.EncounterId == "SLIMES_WEAK").Index;
+            var matches = sequence.Targets.Where(target => target.EncounterIndices.Count == 1
+                && target.EncounterIndices[0] == slimeIndex).ToArray();
+            // The certified native weak bag has no repeats. Never condition an
+            // ambiguous identity or conflate normal-slot and combat-owner indices.
+            if (matches is not [var target]) return false;
+            owner = target.CombatOwnerOrdinal;
+        }
+        var allEvents = root.PublicEvidence!.Events;
+        var combatOwners = allEvents.Where(entry => entry.Payload is PublicOwnerStarted
+            { OwnerKind: PublicEvidenceOwnerKind.Combat }).ToArray();
+        int combatIndex = Array.FindIndex(combatOwners, entry => entry.OwnerOrdinal == owner);
+        var events = allEvents.Where(entry => entry.OwnerOrdinal == owner).ToArray();
         int turn = Array.FindIndex(events, entry => entry.Payload is PublicCombatFact
             { FactKind: PublicCombatFactKind.PlayerTurnStarted, Turn: 1 });
         var intents = events.Skip(turn + 1).TakeWhile(entry => entry.Payload is PublicCombatFact
@@ -51,7 +74,7 @@ internal sealed class NativePublicWeakSlimeFormationCondition
         var entry = new NativeEntryAssets("nosl.native-entry-assets.v1", assets.Hp, assets.MaxHp, assets.Gold,
             assets.Deck, assets.Relics, assets.Potions.ToArray(), assets.MaxEnergy, assets.PotionSlots,
             assets.OrbSlots, assets.CardRemovalsUsed);
-        condition = new(opening.CombatOwnerOrdinal, PublicJson.Serialize(entry), roster); reason = null; return true;
+        condition = new(owner, combatIndex, PublicJson.Serialize(entry), roster); reason = null; return true;
     }
 
     internal NativeWeakSlimeFormationPlan CreateProposal(LabelSlimesWeakFormationContext context, Func<ulong> nextWord)

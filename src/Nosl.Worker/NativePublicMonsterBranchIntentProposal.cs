@@ -12,9 +12,9 @@ namespace Nosl.Worker;
 
 /// <summary>
 /// Exact optional proposal for the native weighted branch primitive. Source-pinned
-/// sealed graphs prove pure constant weights with CannotRepeat; the callback supplies
-/// original effective evaluations. Every envelope maximizes over all possible last
-/// moves, rather than normalizing separately for each sampled hidden state.
+/// sealed graphs prove pure constant weights and their repeat restrictions; the
+/// callback supplies original effective evaluations. Every envelope maximizes over
+/// all possible relevant histories, never just the sampled hidden state.
 /// </summary>
 internal sealed class NativePublicMonsterBranchIntentProposal(NativePublicMonsterBranchIntentCondition condition,
     Func<ulong> nextWord, Func<IReadOnlyList<ulong>, Rng, string, IDisposable> forcePrefixWords)
@@ -131,11 +131,17 @@ internal sealed class NativePublicMonsterBranchIntentProposal(NativePublicMonste
             throw new InvalidOperationException("Monster branch differs from its reviewed native graph");
         var log = monster.MoveStateMachine.StateLog;
         string? last = log.LastOrDefault()?.Id;
-        float[] expected = ids.Select(id => last == id ? 0f : 1f).ToArray();
+        // Twig's attack can repeat twice. Even longer attack runs remain native
+        // support: the first zero-weight branch wins the exact zero-word endpoint.
+        float[] expected = monster is TwigSlimeM
+            ? [log.Count >= 2 && log[^1].Id == ids[0] && log[^2].Id == ids[0] ? 0f : 1f,
+                last == ids[1] ? 0f : 1f]
+            : ids.Select(id => last == id ? 0f : 1f).ToArray();
         if (!context.Weights.SequenceEqual(expected) || context.TotalWeight != expected.Sum())
-            throw new InvalidOperationException("Monster branch weights differ from the pure CannotRepeat certificate");
+            throw new InvalidOperationException("Monster branch weights differ from the source-pinned repeat certificate");
         int selected = ShapeIndex(target);
-        ulong envelope = EnvelopeSize(ids.Length, selected, target.Model == nameof(LeafSlimeS) && target.RollOrdinal == 1);
+        ulong envelope = monster is TwigSlimeM ? TwigEnvelopeSize(selected)
+            : EnvelopeSize(ids.Length, selected, target.Model == nameof(LeafSlimeS) && target.RollOrdinal == 1);
         var plan = NativeFloatBranchProposal.Create(context.TotalWeight, context.Weights, selected, envelope, nextWord)
             ?? throw new NativePublicConstraintMismatchException("Public intent shape has no native branch support");
         int before = context.Rng.Counter;
@@ -179,10 +185,20 @@ internal sealed class NativePublicMonsterBranchIntentProposal(NativePublicMonste
         return Enumerable.Range(0, count).Max(previous => NativeFloatBranchProposal.Bucket(count - 1,
             Enumerable.Range(0, count).Select(index => previous == index ? 0f : 1f).ToArray(), selected, precisionBits).Size);
     }
+    internal static ulong TwigEnvelopeSize(int selected, int precisionBits = 53)
+    {
+        // Every nonempty log ends with sticky, one attack, or >=2 attacks. These
+        // are the complete effective-weight contexts, including zero-word repeats.
+        // Maximize over the whole root-fixed set, never over the sampled log only.
+        float[][] contexts = [[1f, 0f], [1f, 1f], [0f, 1f]];
+        return contexts.Max(weights => NativeFloatBranchProposal.Bucket(weights.Sum(), weights,
+            selected, precisionBits).Size);
+    }
     private static string[] MoveIds(MonsterModel monster) => monster switch
     {
         SludgeSpinner => ["OIL_SPRAY_MOVE", "SLAM_MOVE", "RAGE_MOVE"],
         LeafSlimeS => ["TACKLE_MOVE", "GOOP_MOVE"],
+        TwigSlimeM => ["POKEY_POUNCE_MOVE", "STICKY_SHOT_MOVE"],
         _ => throw new InvalidOperationException("Monster weighted branch is not source-certified"),
     };
     private static int ShapeIndex(NativePublicMonsterRollTarget target) => (target.Model, target.Shape) switch
@@ -192,24 +208,31 @@ internal sealed class NativePublicMonsterBranchIntentProposal(NativePublicMonste
         (nameof(SludgeSpinner), NativePublicMonsterIntentShape.AttackBuff) => 2,
         (nameof(LeafSlimeS), NativePublicMonsterIntentShape.Attack) => 0,
         (nameof(LeafSlimeS), NativePublicMonsterIntentShape.Status) => 1,
+        (nameof(TwigSlimeM), NativePublicMonsterIntentShape.Attack) => 0,
+        (nameof(TwigSlimeM), NativePublicMonsterIntentShape.Status) => 1,
         _ => throw new InvalidOperationException("Unsupported public intent shape"),
     };
     private static void ValidateGraph(MonsterModel monster, int ordinal)
     {
         var ids = MoveIds(monster);
         var machine = monster.MoveStateMachine ?? throw new InvalidOperationException("Monster has no state machine");
-        int expectedLogs = ordinal == 1 && monster is SludgeSpinner ? 1 : ordinal - 1;
+        string initial = monster switch { SludgeSpinner => ids[0], TwigSlimeM => ids[1], _ => "RAND" };
+        int expectedLogs = ordinal == 1 && initial != "RAND" ? 1 : ordinal - 1;
         if (machine.States.Count != ids.Length + 1 || machine.States.GetValueOrDefault("RAND") is not RandomBranchState random
             || random.States.Count != ids.Length || machine.StateLog.Count != expectedLogs
             || machine.PerformedFirstMove != (ordinal > 1)
             || machine.StateLog.Any(state => !ids.Contains(state.Id) || !ReferenceEquals(state, machine.States[state.Id]))
-            || ordinal == 1 && machine.CurrentState.Id != (monster is SludgeSpinner ? ids[0] : "RAND")
+            || initial != "RAND" && machine.StateLog[0].Id != initial
+            || ordinal == 1 && machine.CurrentState.Id != initial
             || ordinal > 1 && !ReferenceEquals(machine.CurrentState, machine.StateLog[^1]))
             throw new InvalidOperationException("Native monster history differs from the source-pinned roll certificate");
         for (int i = 0; i < ids.Length; i++)
         {
             var branch = random.States[i];
-            if (branch.StateId != ids[i] || branch.RepeatType != MoveRepeatType.CannotRepeat || branch.Cooldown != 0
+            bool twice = monster is TwigSlimeM && i == 0;
+            if (branch.StateId != ids[i]
+                || branch.RepeatType != (twice ? MoveRepeatType.CanRepeatXTimes : MoveRepeatType.CannotRepeat)
+                || branch.MaxTimes != (twice ? 2 : 0) || branch.Cooldown != 0
                 || machine.States.GetValueOrDefault(ids[i]) is not MoveState move || !ReferenceEquals(move.FollowUpState, random)
                 || move.MustPerformOnceBeforeTransitioning || move.FollowUpStateId is not null)
                 throw new InvalidOperationException("Native monster graph differs from the pure weighted-branch certificate");

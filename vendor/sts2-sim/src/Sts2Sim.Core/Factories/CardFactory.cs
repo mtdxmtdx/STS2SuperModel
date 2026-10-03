@@ -28,8 +28,21 @@ public static class CardFactory
         return CardPoolProjection.OrderedTransformationCandidates(original, pool, isInCombat);
     }
 
-    public static CardModel CreateRandomCardForTransform(CardModel original, bool isInCombat, Random.Rng rng) =>
-        CreateTransformationCard(original, rng.NextItem(GetDefaultTransformationOptions(original, isInCombat))!);
+    public static CardModel CreateRandomCardForTransform(CardModel original, bool isInCombat, Random.Rng rng)
+    {
+        if (!LabelCardTransformScope.IsActive)
+            return CreateTransformationCard(original, rng.NextItem(GetDefaultTransformationOptions(original, isInCombat))!);
+        var candidates = GetDefaultTransformationOptions(original, isInCombat).ToArray();
+        var context = new LabelCardTransformContext(original, isInCombat, rng, candidates);
+        using var label = LabelCardTransformScope.Begin(context);
+        try
+        {
+            var card = CreateTransformationCard(original, rng.NextItem(candidates)!);
+            context.Complete(card);
+            return card;
+        }
+        catch (Exception error) { context.Abort(error); throw; }
+    }
 
     public static CardModel CreateRandomCardForTransform(
         CardModel original, IEnumerable<CardModel> options, bool isInCombat, Random.Rng rng) =>

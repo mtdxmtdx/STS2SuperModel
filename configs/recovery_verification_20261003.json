@@ -1,0 +1,86 @@
+{
+  "schema": "nosl.archive-recovery-verification.v1",
+  "status": "VERIFIED_RECOVERY_AND_TARGETED_FIXES_NEXT_COMPOSITION_PENDING",
+  "implementation_commit": "1309a95e3870b0a1b9dff509bd5190d5e69365ee",
+  "original_archive": {
+    "filename": "STS2SuperModel-map-origin-v3-4d888e5-recovery.zip",
+    "bytes": 5165100,
+    "sha256": "0efa5b65ed207d5d0ca7d3e9d881e142a94bbb8b85060501a807b12e880d4694",
+    "verified_payloads": 56,
+    "source_files": 2741,
+    "source_commit": "4d888e5d42221a60fb6679aab930993ca5caaaf7",
+    "verified_source_tree": "b0f646a1447c673bc2a9e9754d825e342eb5b3d2"
+  },
+  "fresh_checks": {
+    "restored_native": {
+      "passed": 223,
+      "failed": 0,
+      "skipped": 0,
+      "source_commit": "0fa856b7a036a8b4b2249ded71dab64d4af31e40",
+      "trx": "artifacts/reports/original-recovery/original-native-recovery.trx"
+    },
+    "restored_python": {
+      "passed": 53,
+      "failed": 0,
+      "guard_calls": 0,
+      "source_commit": "0fa856b7a036a8b4b2249ded71dab64d4af31e40",
+      "report": "artifacts/reports/original-recovery/python/v5_guarded_regression-original-recovery.json"
+    },
+    "data_isolation_fix": {
+      "author_commit": "7b0c692acb1bb0b41bfc36c1d62e8eb3401ea0ca",
+      "integrated_commit": "347ce28d830de9ca98e0507fe703024cb1e5abce",
+      "passed": 66,
+      "failed": 0,
+      "skipped": 1,
+      "skip": "optional independent native sample not supplied",
+      "independent_review": "approved",
+      "report": "artifacts/reports/recovered-v4-integration/data-isolation/report.json"
+    },
+    "word_disposal_fix": {
+      "author_commit": "471e00ccb8483bca84d6af70751da9d1314e4c42",
+      "passed": 104,
+      "failed": 0,
+      "skipped": 0,
+      "independent_review": "approved",
+      "log": "artifacts/reports/recovered-v4-integration/word-disposal-focused.log"
+    },
+    "public_reward_history": {
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0,
+      "additional_version_checks_passed": 2,
+      "trx_directory": "artifacts/reports/recovered-v4-integration/reward-history"
+    },
+    "integrated_word_reward_fix": {
+      "source_commit": "1309a95e3870b0a1b9dff509bd5190d5e69365ee",
+      "passed": 50,
+      "failed": 0,
+      "skipped": 0,
+      "trx": "artifacts/reports/recovered-v4-integration/recovered-v4-integration.trx"
+    }
+  },
+  "source_sha256": {
+    "python/nosl/data_v5.py": "5c0945de5fa60ee24895c79d0b97cec9b0aeb8379316411f9aea364ab9d71112",
+    "python/nosl/native_v5.py": "2ec250542e543f86536136611e78687eaca64e819b5bae018b26ae1a516f7678",
+    "python/nosl/prepare_v5.py": "c6c8210baf97e984d804aca11d97435d5f060dfb9c8c6bf3eec91c02e8215086",
+    "python/nosl/protection_v5.py": "df7e6b5496026b2a7c0e0c29ef3d610f0a00dd1cd9c0f8f541b0ebe969239bd0",
+    "src/Nosl.Worker/NativeLabelTape.cs": "3bbed0c2485c6579ff8eff9af8e41df45cd826935bb41ddaccc6e3177dcef5bf",
+    "src/Nosl.Worker/NativeNeowPotionProposal.cs": "1eff1626134dd24a1e83f489bc7326976f05e3118dc74d8a15f47e7dd50fbb41",
+    "src/Nosl.Worker/NativePublicRewardHistoryCertificate.cs": "e4ef7b27c3fd7a5415bc11a32a33ef31e5178028777de7daae5d6706714b3405",
+    "src/Nosl.Worker/NativeTapeReplayDataset.cs": "00058a0ca9f0a48661e28b4c732ce7abbe24a415190d488d97404ec6820c8f77"
+  },
+  "current_sampler": "nosl-native-map-rewards-tape-marginalized-v4-public-evidence-v2",
+  "current_rewards_sampler": "nosl-native-rewards-state-tape-conditional-v10-public-evidence-v1",
+  "posterior_laws_changed": false,
+  "next_work": [
+    "Integrate and independently review unknown-room, later-formation, and first-shop accelerators",
+    "Run the predeclared bounded diagnostic and then fresh development gate if passed"
+  ],
+  "historical_probe": "configs/native_map_origin_verification_v3.json",
+  "current_sampler_probe_run": false,
+  "new_production_rows": 0,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "formal_training_started": false,
+  "full_m3_m6_complete": false
+}

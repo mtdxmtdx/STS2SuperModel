@@ -13,7 +13,12 @@ using Sts2Sim.Core.Runs;
 namespace Nosl.Worker;
 
 internal sealed record NativePublicRewardResourceTarget(NativePublicRewardTarget Owner, int? Gold, string? Potion,
-    NativeGoldEnvelopeCertificate GoldCertificate, ShuffleRational PotionIdentityMass);
+    NativeGoldEnvelopeCertificate GoldCertificate, ShuffleRational PotionIdentityMass)
+{
+    internal ShuffleRational PotionEnvelope => Owner.PublicHistory is { } history
+        ? NativeRewardResourceMath.DisplayMass(false, history.PotionThreshold, Potion is not null, PotionIdentityMass)
+        : Potion is null ? new(1, 1) : PotionIdentityMass;
+}
 
 /// <summary>Detached first displayed primary resource offers, keyed only by certified card owners.</summary>
 internal sealed class NativePublicRewardResourceCondition
@@ -30,7 +35,7 @@ internal sealed class NativePublicRewardResourceCondition
         Targets = new ReadOnlyDictionary<int, NativePublicRewardResourceTarget>(targets);
         Envelope = targets.Values.Aggregate(new ShuffleRational(1, 1), (mass, target) =>
         {
-            var potionBound = target.Potion is null ? new ShuffleRational(1, 1) : target.PotionIdentityMass;
+            var potionBound = target.PotionEnvelope;
             return mass.Multiply(potionBound.Numerator, potionBound.Denominator)
                 .Multiply(target.GoldCertificate.Envelope.Numerator, target.GoldCertificate.Envelope.Denominator);
         });
@@ -68,7 +73,7 @@ internal sealed class NativePublicRewardResourceCondition
             if (id is not null && identityMass.Numerator.IsZero)
                 throw new NativePublicConstraintMismatchException("Public potion has no character-pool support");
             targets.Add(target.CombatIndex, new(target, amount, id,
-                NativeGoldEnvelopeCertificate.Create(evidence, combats[target.CombatIndex], amount), identityMass));
+                target.PublicHistory?.GoldCertificate ?? NativeGoldEnvelopeCertificate.Create(evidence, combats[target.CombatIndex], amount), identityMass));
         }
         return new(start.Character, pool, targets);
     }
@@ -85,6 +90,7 @@ internal sealed class NativeGoldEnvelopeCertificate
     internal IReadOnlyList<(int Min, int Max)> Ranges { get; }
     internal RoomType? RoomType { get; }
     private readonly int _actIndex;
+    private bool _exactWeak;
     private readonly HashSet<string> _encounterNames;
 
     private NativeGoldEnvelopeCertificate(ShuffleRational envelope, IReadOnlyList<(int Min, int Max)> ranges,
@@ -125,6 +131,15 @@ internal sealed class NativeGoldEnvelopeCertificate
         return new(new(maximum, BigInteger.One << 53), ranges, roomType, start.ActIndex, encounters.Select(e => e.Name));
     }
 
+    internal static NativeGoldEnvelopeCertificate ExactWeak(string[] encounterNames, int ascension, int actIndex, int gold)
+    {
+        int min = ascension >= 3 ? 7 : 10, max = ascension >= 3 ? 15 : 20;
+        ulong mass = NativeRewardResourceMath.GoldBucket(min, max, gold).Size;
+        if (mass == 0) throw new NativePublicConstraintMismatchException("Public weak-combat gold has no standard native range support");
+        return new(new(mass, BigInteger.One << 53), [(min, max)], Sts2Sim.Core.Rooms.RoomType.Monster,
+            actIndex, encounterNames) { _exactWeak = true };
+    }
+
     internal static IReadOnlyList<(int Min, int Max)> AllProportionalRanges(int min, int max)
     {
         if (min < 0 || max < min || max > 100) throw new ArgumentOutOfRangeException(nameof(max));
@@ -157,10 +172,12 @@ internal sealed class NativeGoldEnvelopeCertificate
         if (context.Player.RunState is not RunState run || run.CurrentActIndex != _actIndex
             || context.RoomType != RoomType || run.CurrentRoomCount != 1
             || run.CurrentRoom is not CombatRoom { Won: true } room || !ReferenceEquals(room.Encounter, context.Encounter)
-            || context.Encounter is not { } encounter || !_encounterNames.Contains(encounter.Name)
+            || context.Encounter is not { } encounter || !_encounterNames.Contains(_exactWeak ? encounter.IdEntry : encounter.Name)
             || encounter.MinGoldReward is not null || encounter.MaxGoldReward is not null || context.FixedGoldAmount is not null
             || !float.IsFinite(context.GoldProportion) || context.GoldProportion is < 0f or > 1f)
             throw new NativePublicConstraintMismatchException("Native gold boundary differs from its certified public direct-map combat");
+        if (_exactWeak && (context.GoldProportion != 1f || context.Encounter is not { IsWeak: true, GoldProportionCalculator: null }))
+            throw new NativePublicConstraintMismatchException("Native weak-combat gold differs from the complete public history certificate");
     }
 
     internal void ValidateRange(LabelGoldRewardContext context)

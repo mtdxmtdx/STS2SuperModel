@@ -80,8 +80,11 @@ internal sealed class NativePublicCombatPrefixCondition
             string? entryJson = packet?.Observation!.History[1].Detail;
             if (packet is not null)
             {
-                NativeInitialShuffleCondition.TryCreatePublicCombatV3(packet, out shuffle, out shuffleReason);
-                NativeInitialHpCondition.TryCreatePublicCombatV3(packet, out hp, out hpReason);
+                NativeInitialShuffleCondition.TryCreatePublicCombatV5(packet, out shuffle, out shuffleReason);
+                // HP and shuffle share one owned startup lifecycle. An impossible public
+                // upgrade witness cannot leave an HP-only plan with no eligible shuffle.
+                if (shuffle is not null) NativeInitialHpCondition.TryCreatePublicCombatV4(packet, out hp, out hpReason);
+                else hpReason = shuffleReason;
                 if (hp is null && shuffle is not null && packet.Observation!.Enemies.Any(enemy => enemy.Id == "CorpseSlug"))
                     NativeCorpseSlugHpCondition.TryCreate(packet, out slugHp, out hpReason);
                 if (hp is null && slugHp is null && shuffle is not null

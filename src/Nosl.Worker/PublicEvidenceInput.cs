@@ -7,6 +7,7 @@ namespace Nosl.Worker;
 internal static class PublicEvidenceInput
 {
     internal const string DatasetVersion = "nosl.dataset.public-run-evidence.v1";
+    internal const string CompleteMapDatasetVersion = "nosl.dataset.public-complete-map.v1";
     internal static PublicCombatDecision Validate(DecisionPacket packet)
     {
         var evidence = packet.PublicEvidence ?? throw new ArgumentException("The v4 public input requires run evidence");
@@ -35,7 +36,8 @@ internal static class PublicEvidenceInput
         if (packet.PublicEvidence is null) return legacyInput;
         var decision = Validate(packet);
         var input = JsonNode.Parse(PublicJson.Serialize(legacyInput))!.AsObject();
-        input["schema_version"] = PublicRunEvidence.StudentSchema;
+        input["schema_version"] = packet.PublicEvidence.SchemaVersion == PublicRunEvidence.CompleteMapVersion
+            ? PublicRunEvidence.CompleteMapStudentSchema : PublicRunEvidence.StudentSchema;
         input["history_complete"] = decision.HistoryCompleteFromCombatStart;
         input["public_evidence"] = JsonNode.Parse(PublicRunEvidenceJson.Serialize(packet.PublicEvidence));
         return input;

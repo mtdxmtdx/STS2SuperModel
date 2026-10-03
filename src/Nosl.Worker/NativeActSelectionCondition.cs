@@ -12,6 +12,13 @@ internal sealed class NativeActSelectionCondition
     internal Type TargetActType { get; }
     private NativeActSelectionCondition(Type targetActType) => TargetActType = targetActType;
 
+    internal static NativeActSelectionCondition ForReviewedPublicAct(Type targetActType)
+    {
+        if (targetActType != typeof(Overgrowth) && targetActType != typeof(Underdocks))
+            throw new ArgumentException("Unreviewed native initial act", nameof(targetActType));
+        return new(targetActType);
+    }
+
     internal static bool TryCreate(DecisionPacket root, NativeTapePrior prior,
         out NativeActSelectionCondition? condition, out string? reason)
     {
@@ -32,10 +39,31 @@ internal sealed class NativeActSelectionCondition
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(independentRunSeed);
-        var result = NativeComponentRejection.Sample("act_selection", maxTrials,
+        return PrepareTrials(maxTrials,
             () => NativeComponentRejection.Evaluate(() => ActDefinition.GetRandomList(independentRunSeed), nextWord, cancellationToken),
-            acts =>
+            cancellationToken);
+    }
+
+    // Shared bounded-trial validator also permits explicit native-shape-drift
+    // regression fixtures without changing or patching the native act factory.
+    internal NativeActSelectionProposal PrepareTrials(int maxTrials,
+        Func<NativeComponentTrial<IReadOnlyList<ActDefinition>>> draw, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(draw);
+        var result = NativeComponentRejection.Sample("act_selection", maxTrials,
+            () =>
             {
+                var trial = draw();
+                return new NativeComponentTrial<(IReadOnlyList<ActDefinition> Acts, int Words, int Cells)>(
+                    (trial.Value, trial.Trace.Count, trial.DistinctCells), trial.Trace, trial.DistinctCells);
+            },
+            trial =>
+            {
+                // Validate after Sample accounts the completed trial, retaining
+                // measured work even when native shape drift is a fatal error.
+                if (trial.Words != 3 || trial.Cells != 3)
+                    throw new InvalidOperationException("Native act selection changed its three distinct complete draws");
+                var acts = trial.Acts;
                 if (acts.Count != 3 || acts[0].GetType() != typeof(Overgrowth) && acts[0].GetType() != typeof(Underdocks)
                     || acts[1] is not Hive || acts[2] is not Glory)
                     throw new InvalidOperationException("Reviewed native act-selection pool changed");

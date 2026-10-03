@@ -20,9 +20,24 @@ public sealed class NativeNeowCardIntegrationTests
     [InlineData(11002UL, 6, 0)]
     [InlineData(11005UL, 1, 0)]
     [InlineData(11006UL, 6, 2)]
-    public async Task OwningTapeRoutesPublicNeowCardsAndPreservesExactContinuation(ulong seed, int cards, int shuffles)
+    [InlineData(11002UL, 6, 0, true)]
+    [InlineData(11005UL, 1, 0, true)]
+    [InlineData(11006UL, 6, 2, true)]
+    [InlineData(24004UL, 6, 0, true)] // Fresh Map-law probe: ScrollBoxes provenance failure.
+    [InlineData(24005UL, 6, 0, true)]
+    [InlineData(24002UL, 3, 0, true)] // Complete LostCoffer offer including its potion.
+    [InlineData(24104UL, 1, 0, true)] // NewLeaf public single replacement.
+    [InlineData(24105UL, 1, 0, true)]
+    [InlineData(24110UL, 2, 0, true)] // Both LeadPaperweight candidates despite no pick.
+    public async Task OwningTapeRoutesPublicNeowCardsAndPreservesExactContinuation(ulong seed, int cards, int shuffles,
+        bool mapLaw = false)
     {
-        var prior = Hybrid.Freeze();
+        var prior = (mapLaw ? Hybrid with
+        {
+            SchemaVersion = NativeTapePrior.MapVersion,
+            Execution = Hybrid.Execution with { PublicEvidenceProfile = PublicRunEvidence.CompleteMapVersion,
+                PublicMapObservationProfile = PublicMapObservationProfiles.CompleteGraphV1 },
+        } : Hybrid).Freeze();
         var recipe = prior.Draw(new Rng(seed, "nosl-native-tape-source-draw-v1"));
         DecisionPacket root;
         await using (var original = await NativeRunWorld.OpenLabelTapeAsync(prior.Execution, recipe,
@@ -38,6 +53,8 @@ public sealed class NativeNeowCardIntegrationTests
             neowCardCondition: condition, expectedPublicEvidence: root.PublicEvidence);
         await using var world = await NativeRunWorld.OpenLabelTapeAsync(prior.Execution, hypothetical, tape);
         Assert.NotNull(world); tape.ValidateProposalCompletion();
+        Assert.Equal(mapLaw ? LabelRandomProvenance.MapLawId : LabelRandomProvenance.LawId,
+            world.NativeRun.Players.Single().PlayerRng.Rewards.ToSerializable().LabelProvenance!.Law);
         Assert.Equal(cards, tape.ConditionedNeowCards); Assert.Equal(shuffles, tape.ConditionedNeowPoolShuffles);
         Assert.Equal(tape.NeowCardEnvelope, tape.NeowCardRatio);
         Assert.True(tape.AcceptCorrection(() => throw new InvalidOperationException("Root-fixed card mass cancels")));
@@ -53,14 +70,14 @@ public sealed class NativeNeowCardIntegrationTests
         Assert.Equal(PublicJson.Serialize(await world.RecordSettledAsync(policy.Id, 0)),
             PublicJson.Serialize(await fork.RecordSettledAsync(policy.Id, 0)));
 
-        if (shuffles == 0) return;
+        if (shuffles == 0 && condition!.RelicId != "NewLeaf") return;
         // The real owning ForceWords callback must reject a previously visited
         // Niche state; a helper-only mock would not establish this protection.
         var aliased = NativeLabelTape.ForDeclaredPrior(prior, hypothetical, neowCardCondition: condition);
         using (aliased.EnterScope()) new RunRngSet(hypothetical.IndependentRunSeed).Niche.NextInt(4);
         var error = await Assert.ThrowsAsync<InvalidOperationException>(() =>
             NativeRunWorld.OpenLabelTapeAsync(prior.Execution, hypothetical, aliased));
-        Assert.Contains("Kaleidoscope pools", error.Message);
+        Assert.Contains(condition!.RelicId == "NewLeaf" ? "NewLeaf transform" : "Kaleidoscope pools", error.Message);
         Assert.Contains("earlier tape cell", error.Message);
     }
 }

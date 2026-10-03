@@ -1,14 +1,26 @@
 # sts2-sim — current upstream vendored Core
 
-当前恢复阶段另附 [vendor-recovery-map-integration.patch](../../docs/vendor-recovery-map-integration.patch)，基于本项目 `d77960c` 的 vendored 源码应用。它包含独立地图随机带来源和完整公开地图重建的可选连接点；普通模式保持原生行为。新补丁已逐字重建 2,238 个 Core／Core.Tests 文件，并通过 74 项受影响的随机数／地图测试。下面的完整 Core 回归记录仍属于其原来的历史源码快照，不能代替当前恢复版本的全量验证。详见 [恢复检查点](../../docs/RECOVERY_CHECKPOINTS.md)。
-
 来源：[iRyougi/sts2-sim](https://github.com/iRyougi/sts2-sim/tree/5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0)，固定提交 `5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0`，规则声明 `0.111.0 / 41cef1ea / 222455745`，MIT。用户指定直接信任上游规则，原版对拍不作为本工程接入门槛。
 
 保留完整公开 Core/Core.Tests 源码、AGENTS、CONTRIBUTING、LICENSE；上游原 README 保存在 [UPSTREAM_README.md](UPSTREAM_README.md)。没有加入游戏程序集、资源或反编译文件。构建入口为根目录 `Nosl.M012.sln`。
 
 相对当前上游的最小 NOSL 连接补丁见 [vendor-sts2-sim.patch](../../docs/vendor-sts2-sim.patch)：独立房间终局上下文、A10 clone 上下文赋值顺序、只读公共抽牌/移动/生成/移除观察、原生运行观察器转发、玩家 HP／药水已提交变化与自动结算边界通知、明确公开状态的只读 getter，以及 friend assembly。没有重写卡牌/药水/遗物/敌人效果。普通顺序随机模式保持原语义；另增显式启用的 `LabelRandomScope`，仅供有独立版本声明的假想随机带标签先验，详见下文。旧投影 API 保持原语义；奖励/具体 RunState 敏感内容使用独立原生 replay。
 
-修改文件：
+## 当前 Map v5 补丁包（2026-10-03）
+
+当前 Core 固定于 `a6ee77188ea19b45af897f163f753cb21911cab0`，源码树 `5b95a98918a235816cb5323117ccf723840e405f`；Core.Tests 树 `2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1` 与原始恢复包一致。主连接补丁包含 62 个文件段，另保留独立地图剪枝补丁。相对上一已验证的 `e1d1cd2`／打包提交 `97e4dfa`，仅修改 `Factories/CardFactory.cs` 并新增 `Random/LabelCardTransformScope.cs`；其余 60 个历史主补丁段、Core.Tests 和地图剪枝补丁均字节不变。
+
+新增的是显式启用的默认卡牌变换 label 边界。没有启用作用域时，`CreateRandomCardForTransform` 直接执行原有表达式；启用后才物化原生候选序列并暴露只读上下文，仍由原生 `NextItem` 执行单次索引抽取、由原生方法构造变换卡。成功值在完成后记录，原生异常在保留原异常并重新抛出的同时记录。带显式候选集合的重载未改变。没有改写卡牌规则或普通原生调用路径；本次打包任务没有修改任何源码或测试。
+
+此前的 UnknownRoom／Merchant 边界仍保留：UnknownRoom 围绕原生未知房间抽取，在原生更新成功后记录类型；Merchant 围绕玩家遗物袋和首次商店完整库存生成，在原生生成成功后记录库存。选择、价格、袋移除、房间黑名单、原生 RNG 抽取与 odds 更新均保留在原有方法中。相对原始 `4d888e5` 恢复源码，当前共七个 Core 文件不同，其中三个 scope 文件为新增。
+
+本次重新核验同一已授权原始恢复包的全部 56 个 payload，以及 `source.zip` 的全部 2,741 个文件。以其中已验证的 2,239 个 Core／Core.Tests 文件逆向应用原始两个补丁，得到 2,225 文件的上游派生基线；原始补丁正向重放完全复现原始源码。随后更新后的主补丁加不变的地图剪枝补丁，逐文件重建当前全部 2,242 个已跟踪文件；文件集合、大小、SHA-256、直接字节比较与重建前后源码清单均一致。这里使用原始源码的来源证据，没有新下载上游，也不声明独立全新上游归档校验。上游固定点沿用已验证原始包的 `5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0`。
+
+当前主补丁 SHA-256 为 `088dd4a85ddee8983d69fb08083ee2aefc9fe7689cb99ad9476c075087822d8d`；地图补丁仍为 `fad7d6a7e85ea44901da2b01227f972926a116af5398686a2628326002bcdc08`。完整方法、文件哈希、来源边界、当前结果与旧报告见 [vendor_patch_verification.json](../../configs/vendor_patch_verification.json)。`PhialHolster.cs:36` 的既有四空格空白行按原字节保留，严格 whitespace 检查仍会报告该历史空白，不影响补丁应用和完整字节重建。
+
+当前完整 Core 已由主执行任务在相同冻结源码上新运行一次并以 exit 0 结束：4,493 通过、3 个既有 opt-in 跳过、0 失败，终端报告 4 分 9 秒。本打包任务独立核对当前真实 log／TRX、隔离目录 `artifacts/map-v5-full-core` 的两个程序集哈希及运行后源码清单；后者与本次重建清单完全一致。当前 Core 程序集 SHA-256 为 `274f7c4d1c1fb30ce8dd9486fc093bdf5334ca47876e5248d4edd1d116fc9b18`，测试程序集为 `915f3b79b7bade3a22847f3d64f0cc0000df09f3795d0655c9e075881eaf6dc7`。没有单独的测试开始前清单；准确执行命令、证据路径、时间与哈希见验证 JSON。上一源码的完整回归与本次独立记录，没有重复计数。本打包任务没有启动任何构建或测试；没有生产生成、学习或训练，也没有对 `iRyougi/sts2-sim` 或 `mtdxmtdx/sts2-sim` 进行远端写入。
+
+当前主补丁修改／新增文件：
 - `src/Sts2Sim.Core/Combat/CombatEngine.cs`
 - `src/Sts2Sim.Core/Combat/CombatState.Clone.cs`
 - `src/Sts2Sim.Core/Combat/CombatState.cs`
@@ -19,44 +31,69 @@
 - `src/Sts2Sim.Core/Content/Acts/Overgrowth.cs`
 - `src/Sts2Sim.Core/Content/EncounterDefinition.cs`
 - `src/Sts2Sim.Core/Entities/Creatures/Creature.cs`
+- `src/Sts2Sim.Core/Entities/Merchant/MerchantInventory.cs`
 - `src/Sts2Sim.Core/Entities/Players/IPlayerOutcomeObserver.cs`
 - `src/Sts2Sim.Core/Entities/Players/Player.cs`
 - `src/Sts2Sim.Core/Factories/CardFactory.cs`
+- `src/Sts2Sim.Core/Factories/PotionFactory.cs`
+- `src/Sts2Sim.Core/Map/StandardActMap.LabelReconstruction.cs`
 - `src/Sts2Sim.Core/Map/StandardActMap.cs`
 - `src/Sts2Sim.Core/Models/CardModel.cs`
-- `src/Sts2Sim.Core/Models/MonsterModel.cs`
 - `src/Sts2Sim.Core/Models/Cards/Bolas.cs`
 - `src/Sts2Sim.Core/Models/Cards/Bombardment.cs`
 - `src/Sts2Sim.Core/Models/Cards/Dowsing.cs`
 - `src/Sts2Sim.Core/Models/Cards/Fetch.cs`
 - `src/Sts2Sim.Core/Models/Cards/Guilty.cs`
 - `src/Sts2Sim.Core/Models/Cards/ThrummingHatchet.cs`
+- `src/Sts2Sim.Core/Models/Events/Ancients/Neow.cs`
+- `src/Sts2Sim.Core/Models/MonsterModel.cs`
 - `src/Sts2Sim.Core/Models/Monsters/CorpseSlug.cs`
 - `src/Sts2Sim.Core/Models/Monsters/TwoTailedRat.cs`
 - `src/Sts2Sim.Core/Models/Powers/NightmarePower.cs`
+- `src/Sts2Sim.Core/Models/Relics/PhialHolster.cs`
+- `src/Sts2Sim.Core/Models/Relics/ScrollBoxes.cs`
 - `src/Sts2Sim.Core/MonsterMoves/RandomBranchState.cs`
 - `src/Sts2Sim.Core/Odds/CardRarityOdds.cs`
+- `src/Sts2Sim.Core/Odds/PotionRewardOdds.cs`
+- `src/Sts2Sim.Core/Random/LabelCardTransformScope.cs`
 - `src/Sts2Sim.Core/Random/LabelCombatReshuffleScope.cs`
 - `src/Sts2Sim.Core/Random/LabelCorpseSlugScope.cs`
+- `src/Sts2Sim.Core/Random/LabelEventGenerationScope.cs`
+- `src/Sts2Sim.Core/Random/LabelMapConstructionScope.cs`
+- `src/Sts2Sim.Core/Random/LabelMerchantScope.cs`
 - `src/Sts2Sim.Core/Random/LabelMonsterMoveScope.cs`
-- `src/Sts2Sim.Core/Random/LabelSlimesWeakScope.cs`
+- `src/Sts2Sim.Core/Random/LabelPhialHolsterScope.cs`
 - `src/Sts2Sim.Core/Random/LabelRandomProvenance.cs`
 - `src/Sts2Sim.Core/Random/LabelRandomScope.cs`
+- `src/Sts2Sim.Core/Random/LabelRewardResourceScope.cs`
+- `src/Sts2Sim.Core/Random/LabelSlimesWeakScope.cs`
+- `src/Sts2Sim.Core/Random/LabelUnknownRoomScope.cs`
 - `src/Sts2Sim.Core/Random/MegaRandom.cs`
 - `src/Sts2Sim.Core/Random/PlayerRngSet.cs`
 - `src/Sts2Sim.Core/Random/Rng.cs`
+- `src/Sts2Sim.Core/Rewards/GoldReward.cs`
 - `src/Sts2Sim.Core/Rewards/RewardsSet.cs`
 - `src/Sts2Sim.Core/Rooms/CombatRoom.cs`
+- `src/Sts2Sim.Core/Rooms/RoomFactory.cs`
 - `src/Sts2Sim.Core/Runs/RunDriver.cs`
 - `src/Sts2Sim.Core/Runs/RunRngSet.cs`
 - `src/Sts2Sim.Core/Runs/RunState.cs`
 - `src/Sts2Sim.Core/Saves/SerializableRng.cs`
 - `src/Sts2Sim.Core/Sts2Sim.Core.csproj`
 - `tests/Sts2Sim.Core.Tests/Combat/PlayerOutcomeObserverTests.cs`
-- `tests/Sts2Sim.Core.Tests/Random/LabelRandomScopeTests.cs`
 - `tests/Sts2Sim.Core.Tests/Entities/Creatures/MonsterHpRollingTests.cs`
+- `tests/Sts2Sim.Core.Tests/Random/LabelRandomScopeTests.cs`
 
 补丁为零上下文 unified diff；从固定上游复现时使用 `git apply --unidiff-zero`。
+
+## 历史接口演进与验证记录（保留原检查点）
+
+以下段落保留旧检查点的接口背景、文件计数与当时记录的测试结果。其中“最新”“本次”等措辞仅指各段对应的历史检查点；当前状态以上节和验证 JSON 顶层记录为准。
+
+Map v4 的 `e1d1cd2`／打包提交 `97e4dfa` 已重建 2,241 个 Core／Core.Tests 文件，主补丁 SHA-256 为 `00e11ca3d6dd3209c5c862ceed8534bf29b5f42ee42702bbab1a525c94cbdca6`，并全新运行一次完整 Core：4,493 通过、3 个既有 opt-in 跳过、0 失败，终端报告 4 分 12 秒。该次 log／TRX、隔离程序集与运行后源码清单已独立核验并保留；没有单独的测试开始前清单。整个旧报告、旧补丁、旧 README 与源码清单均原样另存，当前验证 JSON 的 `previous_verified_package` 给出路径和哈希，不把该次测试重复算作 Map v5 新测试。
+
+更早 `50edac4` 的 4,493／3／0 历史结果也保留其原报告与哈希；该次旧完整 Core 的 raw log／TRX 不在原始恢复包内，本次未重新核验这些旧日志。这个缺失只指该历史检查点，不指上一段有实际原始日志的 Map v4 检查点。
+
 
 原生敌人扩展另加两个只读证书检查：TwoTailedRat 的召唤倒计时 getter，以及 CombatState 的遭遇槽位顺序比较。二者仅用于核对公开历史可以确定的状态，不修改游戏规则、随机数或克隆行为。
 

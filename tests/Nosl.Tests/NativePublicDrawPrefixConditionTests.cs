@@ -87,7 +87,7 @@ public sealed class NativePublicDrawPrefixConditionTests(ITestOutputHelper outpu
     {
         var f = Opening(action: change == "unknown_potion" ? "potion" : change is "enemy_turn" or "hand_end" ? "end_turn" : "play",
             played: change == "unknown_card" ? "ThinkingAhead" : change == "sly_discard" ? "Survivor" : "Backflip",
-            enemy: change == "enemy_turn" ? "Nibbit" : "SludgeSpinner",
+            enemy: change == "enemy_turn" ? "TwoTailedRat" : "SludgeSpinner",
             potion: change == "unknown_potion" ? "GamblersBrew" : "SwiftPotion",
             second: change == "hand_end" ? Card("Burn") : change == "sly_discard" ? Card("Reflex") with { Keywords = ["Sly"] } : null);
         if (change != "missing_action") f.Recorder.Record(f.Owner, new PublicCombatActionTaken(f.First, f.Action));
@@ -193,7 +193,7 @@ public sealed class NativePublicDrawPrefixConditionTests(ITestOutputHelper outpu
             } };
             recorder.ObserveCombatDecision(owner, packet);
             var certificate = NativePublicCombatPrefixCondition.Create(recorder.Capture()).Combats[0];
-            Assert.Equal("nosl.public-first-draw-cycle.v4", certificate.DrawPrefix!.CertificateVersion);
+            Assert.Equal("nosl.public-first-draw-cycle.v9", certificate.DrawPrefix!.CertificateVersion);
             Assert.Contains(certificate.DrawPrefix.StopReason, new[] { "observed_prefix_complete", "first_reshuffle" });
             return packet;
         }
@@ -284,7 +284,7 @@ public sealed class NativePublicDrawPrefixConditionTests(ITestOutputHelper outpu
         Assert.True(input.DrawPrefix!.ThroughEventOrdinal >= played.EventOrdinal,
             $"{seed} combat {index}: {input.DrawPrefix.StopReason} at {input.DrawPrefix.ThroughEventOrdinal}, before {played.EventOrdinal}");
         Assert.DoesNotContain(id, input.DrawPrefix.StopReason);
-        Assert.Equal("nosl.public-first-draw-cycle.v4", input.DrawPrefix.CertificateVersion);
+        Assert.Equal("nosl.public-first-draw-cycle.v9", input.DrawPrefix.CertificateVersion);
         var full = NativePublicReshuffleCondition.Create(root).CombatAudits[index];
         output.WriteLine($"{seed} C{index}: first prefix={input.Shuffle!.DrawPrefixIds.Length}, through={input.DrawPrefix.ThroughEventOrdinal}, stop={input.DrawPrefix.StopReason}; full through={full.ThroughEventOrdinal}, stop={full.StopReason}");
     }

@@ -57,12 +57,23 @@ public sealed class NativePublicRewardResourceTests
     [InlineData("WeakPotion", true, "fixed")]
     [InlineData(null, false, "omitted")]
     [InlineData(null, false, "boss")]
-    public async Task NativeResourcesComposeWithCardsAndReplayExactly(string? targetPotion, bool forced, string goldKind)
+    [InlineData("StrengthPotion", false, "normal", true)]
+    [InlineData("WeakPotion", true, "fixed", true)]
+    [InlineData(null, false, "omitted", true)]
+    public async Task NativeResourcesComposeWithCardsAndReplayExactly(string? targetPotion, bool forced, string goldKind,
+        bool mapLaw = false)
     {
+        IDisposable Enter(Func<LabelRandomAddressV1, ulong> rewards,
+            Func<LabelCombatRewardContext, IDisposable?>? beginCombatReward = null,
+            Func<LabelRewardCardSelectionContext, IDisposable?>? beginRewardCardSelection = null) => mapLaw
+            ? LabelRandomScope.EnterMapRewardProvenance(new NativeMapOracle(9173).Word, rewards, StateWord,
+                beginCombatReward: beginCombatReward, beginRewardCardSelection: beginRewardCardSelection)
+            : LabelRandomScope.EnterRewardProvenance(rewards, StateWord,
+                beginCombatReward: beginCombatReward, beginRewardCardSelection: beginRewardCardSelection);
         const ulong ordinary = 1UL << 63;
         PublicRunEvidence evidence; string expected;
         var sourceWords = new Queue<ulong>();
-        using (LabelRandomScope.EnterRewardProvenance(_ => sourceWords.Count > 0 ? sourceWords.Dequeue() : ordinary, StateWord))
+        using (Enter(_ => sourceWords.Count > 0 ? sourceWords.Dequeue() : ordinary))
         {
             var (run, player) = CreateRun("resource-observation");
             if (forced) await RelicCmd.Obtain(ModelDb.Relic<WhiteBeastStatue>(), player);
@@ -101,11 +112,13 @@ public sealed class NativePublicRewardResourceTests
             var cardRandom = new Rng(2727);
             var cardProposal = new NativePublicRewardProposal(cards, visited.Contains, Force, cardRandom.NextUnsignedLong);
             bool conditionNow = true;
-            using var scope = LabelRandomScope.EnterRewardProvenance(address =>
-            { visited.Add(address); return overrides.GetValueOrDefault(address, ordinary); }, StateWord,
+            using var scope = Enter(address =>
+            { visited.Add(address); return overrides.GetValueOrDefault(address, ordinary); },
                 beginCombatReward: c => conditionNow ? new Together(cardProposal.BeginCombatReward(c, 0)!, resourceProposal.BeginCombatReward(c, 0)!) : null,
                 beginRewardCardSelection: cardProposal.BeginSelection);
             var (run, player) = CreateRun("resource-independent-world");
+            Assert.Equal(mapLaw ? LabelRandomProvenance.MapLawId : LabelRandomProvenance.LawId,
+                player.PlayerRng.Rewards.ToSerializable().LabelProvenance!.Law);
             if (forced) await RelicCmd.Obtain(ModelDb.Relic<WhiteBeastStatue>(), player);
             Assert.Equal(expected, Offer(Generate(player, run, goldKind)));
             cardProposal.ValidateCompletion(); resourceProposal.ValidateCompletion();
@@ -261,7 +274,7 @@ public sealed class NativePublicRewardResourceTests
     }
 
     [Fact]
-    public async Task ActualPublicMapRewardUsesRootWideGoldBoundAndOnlyFirstDisplayedOwner()
+    public async Task ActualPublicMapRewardUsesCertifiedGoldBoundAndOnlyFirstDisplayedOwner()
     {
         var result = await NaturalSourceCollector.CollectAsync(new NaturalSourceOptions(MaxFloors: 8,
             MaxRoots: 2, MaxRootsPerCombat: 1, SeedPrefix: "owned-native-opening",
@@ -276,7 +289,8 @@ public sealed class NativePublicRewardResourceTests
         Assert.Equal(RoomType.Monster, target.GoldCertificate.RoomType);
         Assert.True(target.GoldCertificate.Envelope.Numerator < target.GoldCertificate.Envelope.Denominator);
         Assert.Contains((7, 15), target.GoldCertificate.Ranges);
-        Assert.Contains((0, 0), target.GoldCertificate.Ranges);
+        Assert.NotNull(target.Owner.PublicHistory);
+        Assert.Equal(new[] { (7, 15) }, target.GoldCertificate.Ranges);
         var displayed = (PublicOffersObserved)evidence.Events[(int)target.Owner.OfferEventOrdinal].Payload;
         Assert.Equal(displayed.Groups.SelectMany(g => g.Offers).Single(o => o.Key == "gold").Gold, target.Gold);
         Assert.Equal(displayed.Groups.SelectMany(g => g.Offers).SingleOrDefault(o => o.Key == "potion")?.Potion, target.Potion);

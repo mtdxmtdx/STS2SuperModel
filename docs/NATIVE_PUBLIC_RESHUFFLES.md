@@ -1,14 +1,14 @@
 # Publicly witnessed reshuffle proposals
 
-`nosl.public-witnessed-reshuffle.v1` is optional acceleration under the existing declared ideal primitive-tape prior. It does not change the public observation channel, finite run-seed prior, native source collection, or corpus admission. Reshuffle draws remain separate from the original first-cycle prefix. Independently versioned transition-closure support additions are documented in `NATIVE_PUBLIC_FIRST_DRAW_CYCLE.md`; this condition currently shares its v4 closure.
+`nosl.public-witnessed-reshuffle.v2` is optional acceleration under the existing declared ideal primitive-tape prior. It does not change the public observation channel, finite run-seed prior, native source collection, or corpus admission. Reshuffle draws remain separate from the original first-cycle prefix. Independently versioned transition-closure support additions are documented in `NATIVE_PUBLIC_FIRST_DRAW_CYCLE.md`; this condition currently shares its v9 closure.
 
 ## Joint public witness
 
 The detached condition reuses the reviewed transition closure in `NativePublicDrawPrefixCondition`. Only the existing exact card, potion, monster, power, relic, and Sharp implementations are admitted. In particular, arbitrary `CardMoved` operations are not public facts, so a quiet log never substitutes for that source review.
 
-An admitted `Shuffled` fact must occur in an ordinary draw-producing continuation after its preceding pile has emptied. A new cycle initially has no certified pool. At a subsequent stable public decision, the same closure must establish that only ordinary `Draw` removed cards from that shuffled pile. The decision must expose every remaining identity through `UnknownDraw`, with no known positions, unidentified cards, or inconsistent counts. The input ID multiset is then exactly the remaining public multiset plus the ordered draw facts since that shuffle. Its counts cannot exceed the entry inventory plus explicitly witnessed plain Slimed generation from the v4 closed slime-turn path. That inventory is only an upper bound; the joint snapshot fixes the exact pool even when held or exhausted membership differs.
+An admitted `Shuffled` fact must occur in an ordinary draw-producing continuation after its preceding pile has emptied. A new cycle initially has no certified pool. At a subsequent stable public decision, the same closure must establish that only ordinary `Draw` removed cards from that shuffled pile. The decision must expose every remaining identity through `UnknownDraw`, with no known positions, unidentified cards, or inconsistent counts. The input `(Id, Upgrade)` multiset is then exactly the remaining public multiset plus the ordered draw facts since that shuffle. Its counts cannot exceed the entry inventory plus explicitly witnessed plain Slimed generation from the v4 closed slime-turn path. That inventory is only an upper bound; the joint snapshot fixes the exact pool even when held or exhausted membership differs.
 
-This is a joint certificate for pool and prefix. It never infers an input pool from a sampled hidden inventory. Hand retention, ordinary discard, Ethereal exhaust, a playing Backflip, and duplicate physical variants can affect actual pool membership; the post-shuffle public witness fixes the required coarse multiset without reconstructing that membership.
+This is a joint certificate for pool and prefix. It never infers an input pool from a sampled hidden inventory. Hand retention, ordinary discard, Ethereal exhaust, a playing Backflip, and duplicate physical variants can affect actual pool membership; the post-shuffle public witness fixes the required public signature multiset without reconstructing that membership.
 
 After the witness, later certified draws can extend the same prefix. An unsupported transition, evidence gap, uncertified generated card, or missing witness stops extension. A second shuffle before the first stable witness leaves the pending cycle unconditioned. Previously certified cycles remain usable. Unsupported content remains in the prior and follows ordinary native replay rejection.
 
@@ -16,7 +16,7 @@ The native ordering matters. `CardPileCmd.Shuffle` combines discard and remainin
 
 ## Exact physical law
 
-For a witnessed pool of size `n` and coarse prefix `a[0..k)`, write
+For a witnessed pool of size `n` and public signature prefix `a[0..k)`, write
 
 `z = product_i remaining_count(a[i]) / (n-i)`.
 
@@ -32,7 +32,7 @@ A root-constant envelope is
 
 The correction accepts with `product_b B_b/M_b`. The combinatorial `z` does not assert uniform native index conversions; those native biases are retained by the bucket factors.
 
-The pool's physical variants and native sort ties can remain latent. They change the actual permutation and selected buckets, but not the publicly fixed size, ID multiplicities, prefix, or envelope. Native sorting runs before the proposal sees the physical list. No public-ID sort replaces native `CardModel.CompareTo`, which compares ID then upgrade. Independent native transitions compose by multiplying their ratios and root-fixed envelopes, even when earlier draws affect later physical membership. Complete public replay equality still checks all remaining metadata and evidence.
+The pool's physical variants and native sort ties can remain latent. They change the actual permutation and selected buckets, but not the publicly fixed size, ID/upgrade multiplicities, prefix, or envelope. Native sorting runs before the proposal sees the physical list. No public-ID sort replaces native `CardModel.CompareTo`, which compares ID then upgrade. Independent native transitions compose by multiplying their ratios and root-fixed envelopes, even when earlier draws affect later physical membership. Complete public replay equality still checks all remaining metadata and evidence.
 
 If pool multiplicities are not fixed by a public witness, a sampled-pool envelope is invalid in general. Pools `[A,A,B]` and `[A,B,B]` have different likelihoods for drawing `A`. Dividing by each pool's own envelope removes those latent odds. This implementation leaves such cycles unconditioned; it does not estimate a normalizer or claim a root-wide envelope from observed samples.
 
@@ -40,7 +40,7 @@ If pool multiplicities are not fixed by a public witness, a sampled-pool envelop
 
 The optional `LabelCombatReshuffleScope` marker is active only when explicitly entered by label execution. Its lexical boundary surrounds exactly `CardPileCmd.Shuffle`'s existing `combined.StableShuffle` call. The generic shuffle callback observes that actual list after native sorting. Other card-list shuffles on the same RNG, including `Uproar`, `BeatDown`, and `Catastrophe`, cannot consume a reshuffle target.
 
-The proposal verifies the hypothetical run, live combat, player, sequential shuffle RNG, combat sequence, reshuffle ordinal, complete physical discard/draw union, and detached public ID pool. It forces only the native shuffle words through the caller's RNG-state-validated forcing scope. Already visited cells, conflicting replay overrides, and changed word consumption remain unresolved. Native counters advance before raw callbacks, so counter equality alone cannot establish success. A target completes only when the exact marker acknowledges that `StableShuffle`, including its forcing scope, returned normally. A final-word error or a forcing-disposal error receives no success acknowledgment. `ValidateCompletion` runs before any randomized correction, so missing targets cannot disappear into random rejection.
+The proposal verifies the hypothetical run, live combat, player, sequential shuffle RNG, combat sequence, reshuffle ordinal, complete physical discard/draw union, and detached public ID/upgrade pool. It forces only the native shuffle words through the caller's RNG-state-validated forcing scope. Already visited cells, conflicting replay overrides, and changed word consumption remain unresolved. Native counters advance before raw callbacks, so counter equality alone cannot establish success. A target completes only when the exact marker acknowledges that `StableShuffle`, including its forcing scope, returned normally. A final-word error or a forcing-disposal error receives no success acknowledgment. `ValidateCompletion` runs before any randomized correction, so missing targets cannot disappear into random rejection.
 
 A witnessed pool mismatch or impossible prefix is a public-constraint rejection of the complete outer attempt: the detached closure proves that world cannot yield the observed root. Missing or malformed call boundaries, alias conflicts, skipped/extra words, native faults, and incomplete target execution are errors, never ordinary rejection, partial restart, or content exclusion. While unwinding an aborted forcing callback, incomplete plans remain unfinished rather than masking the original exception. Ordinary source execution does not activate the marker or force any words.
 
@@ -54,7 +54,7 @@ Create `NativePublicReshuffleCondition` from the detached public packet. When it
 
 ## Focused evidence
 
-Finite tests enumerate all 1,024 native raw-word worlds for two composed cycles where an earlier retained `A` makes later physical variant membership latent. They compare all 24 compatible physical outcomes and every correction outcome with the native mass under a single root-constant envelope. Existing finite duplicate-ID/bucket tests remain unchanged.
+Finite tests enumerate all 1,024 native raw-word worlds for two composed cycles where an earlier retained `A` makes later physical variant membership latent. They compare all 72 coarse and 24 ID/upgrade-refined compatible physical outcomes and every correction outcome with the native mass under a single root-constant envelope. Existing finite duplicate-ID/bucket tests remain unchanged.
 
 Public fixtures cover absent witnesses, gaps, uncertified generation, another shuffle before the witness, excess inventory, unidentified cards, and known positions while retaining the original first-cycle outputs. Native boundary fixtures distinguish an unrelated shuffle of the same physical cards and RNG, verify the exact owned command, and exercise missing scopes, pool mismatches, forcing errors on the first/final word, two-card failure, disposal failures, extra draws, completion-before-correction, and scope cleanup. Successive native cycles also verify different witnessed pool sizes when cards drawn before the later reshuffle remain in hand.
 

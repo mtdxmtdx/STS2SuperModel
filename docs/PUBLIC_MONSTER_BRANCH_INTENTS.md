@@ -29,21 +29,23 @@ Supported public categories uniquely distinguish the pinned sealed graphs:
 
 - SludgeSpinner: Attack+Debuff, Attack, Attack+Buff
 - LeafSlimeS: Attack, StatusCard
+- TwigSlimeM: Attack, StatusCard; its initial StatusCard is deterministic
 
 Attack damage is deliberately not an internal branch identifier: Weak, Strength and
 native arithmetic determine it. Repeat count and kind sequence still identify the
 branch; complete public equality subsequently checks actual damage too.
 
-Current extension scope is SludgeSpinner later rolls through the source-certified
-transition scan, including across native reshuffles, plus LeafSlimeS initial rolls. The implementation/kernel can condition later
-Leaf rolls once a separately reviewed transition certificate includes their turns.
-The current draw closure rejects Leaf enemy turns and generation, so those later
-publications remain ordinary native replay. In particular this implementation does
-not silently claim a certificate for generated Slimed cards. The bridge reuses the
-reviewed reshuffle scanner's transition proof; no caller-supplied endpoint or arbitrary
-shuffle marker grants eligibility. The measured SludgeSpinner event 54 and later
-post-reshuffle publications in retained source root 11004 are covered; initial Leaf
-targets in retained roots 11006/11007 are also covered. These source IDs appear only in tests, never eligibility or features.
+The v2 condition includes later rolls through the source-certified transition scan,
+including across native reshuffles. The existing v7 draw closure already reviews
+Twig/Leaf enemy turns and plain generated Slimed entering Discard; this extension
+does not broaden that closure. The bridge reuses the reviewed reshuffle scanner's
+transition proof; no caller-supplied endpoint or arbitrary shuffle marker grants
+eligibility. The measured SludgeSpinner event 54 and later post-reshuffle publications
+in retained source root 11004 remain covered, as do initial Leaf targets in retained
+roots 11006/11007. The already inspected map root 24008 adds TwigSlimeM public
+StatusCard event 235: combat index 1, owner 11, lifetime slot 1, player turn 3,
+after shuffle event 231. These source IDs locate development fixtures only; they
+never enter eligibility or proposal features.
 
 ## Why the transition boundary also fixes roll ownership
 
@@ -54,18 +56,20 @@ reviews every action and enemy continuation before its certified endpoint, and i
 reshuffle continuation preserves the same action and listener restrictions. Its
 Strike/Defend/Neutralize/Survivor/Backflip/Deflect/Mirage plays, Fire/Block/Energy/
 Strength/Swift potions, and Weak/Frail/Strength/Ravenous powers cannot grant an extra
-player turn or reroll/replace a SludgeSpinner or LeafSlimeS intent. Survivor's Sly path
+player turn or reroll/replace a supported monster's intent. Survivor's Sly path
 is explicitly excluded. CorpseSlug's private Ravenous transition affects its own
-state machine; it cannot alter either supported model. The reviewed entry relic
-hooks change draw count, energy, counters, or map use; post-combat hooks and LavaRock
+state machine; it cannot alter these supported models. Reviewed Twig/Leaf turns
+deal ordinary damage or generate plain Slimed in Discard, and their state entry/exit
+and generation hooks do not reroll or replace any other monster's move. Reviewed
+entry relic hooks change draw count, energy, counters, or map use; post-combat hooks and LavaRock
 reward changes cannot execute within this pre-settlement prefix.
 
 The ordinary engine calls RollMove once for each surviving enemy at the start of a
 normal player turn, before drawing and before PublicKnowledge publishes intents.
 The closure prevents hidden intervening replacement. Consequently the nth certified
 publication for a surviving slot belongs to its nth actual RollMove, not its nth
-random branch call. Sludge's deterministic first roll consumes no branch word; Leaf's
-first roll does. Explicit native roll boundaries and per-creature ordinals preserve
+random branch call. Sludge and Twig's deterministic first rolls consume no branch word;
+Leaf's first roll does. Explicit native roll boundaries and per-creature ordinals preserve
 that distinction. No offset is guessed from repeated IntentPublished events.
 
 ## Native boundary and purity
@@ -83,10 +87,13 @@ order/count, RNG conversion, advancement and state changes are unchanged.
 Runtime ownership checks include the exact hypothetical RunState, current CombatRoom
 and CombatState, single player, MonsterAi stream, ordinary sequential mode, complete
 initial roster and stable creature references. Native graph checks pin the sealed
-SludgeSpinner and LeafSlimeS ordered moves, ordinary MoveStates, constant pure
-CannotRepeat branches, zero cooldown, graph size, log length and performed-first-move
-phase. Effective captured weights must equal the native last-log restriction. These
-are hypothetical replay facts used for proposal likelihood, never source features.
+SludgeSpinner, LeafSlimeS and TwigSlimeM ordered moves, ordinary MoveStates, constant
+pure base weights, zero cooldown, graph size, exact repeat type and MaxTimes, log
+length, original deterministic initial log entry, and performed-first-move phase.
+Sludge/Leaf branches use CannotRepeat. Twig's first branch uses CanRepeatXTimes with
+MaxTimes=2; its second uses CannotRepeat. Effective captured weights must equal
+the corresponding last-log or last-two-log restriction. These are hypothetical
+replay facts used for proposal likelihood, never source features.
 
 The tape's existing ForcePrefixWords must enforce exact stream/state, preexisting-cell
 consistency, full word consumption and unresolved aliases. The proposal independently
@@ -112,7 +119,7 @@ zero-weight endpoint: a first branch with effective weight zero still wins at H=
 It never substitutes equal uniform branch probabilities.
 
 For initial Leaf rolls the public root fixes weights `[1,1]`; the envelope is that
-selected branch's exact mass. For later supported rolls, the public root fixes that
+selected branch's exact mass. For later Sludge/Leaf rolls, the public root fixes that
 there is a last move and all branches have constant base weight one with CannotRepeat.
 Exactly one effective weight is zero. The envelope size M is the maximum selected
 bucket size over *every* possible last-move index, independent of the sampled log.
@@ -122,19 +129,48 @@ mass by one root-constant factor `2^53/M`; no per-world normalizer is silently u
 Products of these fixed factors compose over all certified public targets. The code
 supports latent last moves even when public history could provide a tighter proof.
 
+Twig's later rolls require a different envelope. Its pinned native graph has ordered
+attack/sticky branches, unit base weights, an attack repeat cap of two, and sticky
+CannotRepeat. Every nonempty log ends in exactly one of three relevant contexts:
+
+- Last move sticky: effective weights `[1,0]`
+- Last move attack and its predecessor is absent or sticky: `[1,1]`
+- Last two moves attack: `[0,1]`
+
+These exhaust the possible native weights. In particular, the native first-branch
+`<= 0` comparison permits another attack at high word zero even after two or more
+attacks; such longer runs stay in the third context. No hard two-attack history
+cutoff is imposed. With `D = 2^53`, the attack buckets respectively have sizes
+`D`, `2^52 + 2^28 + 1`, and `1`; sticky buckets have sizes `0`,
+`2^52 - 2^28 - 1`, and `D-1`. The float kernel computes all three exactly.
+The root-fixed envelopes are their maxima, `M_attack = D` and `M_sticky = D-1`.
+They do not depend on the sampled native log, the source recipe, or a per-world
+normalizer. The same exact `b/M` correction applies. Deterministic initial sticky
+consumes zero words and contributes no branch factor. A sticky target after sticky
+has empty native support and is rejected without inventing a draw.
+
 ## Verification
 
 - 16 exact kernel tests: exhaustive reduced-precision words; real NextFloat production
   boundaries; all discarded-bit patterns for tiny 53-bit buckets; zero-weight endpoint,
   float bias, extreme finite weights, no-selection tails, frozen inputs and correction
-- 26 condition/native tests: retained measured targets including post-reshuffle
+- 36 condition/native tests: retained measured targets including post-reshuffle
   publications; same-root audit bridge with gap and unsupported-transition stops;
   detached history; initial and
   later native rolls; stable owner/stream/counter/alias checks; missing/partial scope;
   native zero-word CannotRepeat repeat and its nontrivial global correction; ambiguous
   public history; unchanged weight evaluation count and callback isolation
-- 54 affected Core monster/state-machine, forced-transition, LeafSlimeS, Underdocks
-  weak-monster and combat-clone regression checks pass
+- Twig extension checks: deterministic startup and later owned lifecycle, exact
+  native weight contexts for one/two/three consecutive attacks, exhaustive reduced
+  word domains and envelope maximality, production float bucket boundaries,
+  exhaustive finite correction mass, native zero-word repeats beyond the cap, and
+  inspected event 235 eligibility with an inserted event-231 gap stopping the bridge.
+  The same inspected identity recipe also passes complete public-root equality with
+  the Twig proposal enabled; graph drift is rejected before proposal randomness
+- 47 related draw-history, reshuffle, combat-prefix and map-v4 lifecycle regression
+  checks pass
+- 17 pinned Core TwigSlimeM, RandomBranchState and MonsterMoveStateMachine checks pass;
+  no Core files changed
 
 Full source/tape composition, outer retry accounting, aggregate suites and bounded
 combined throughput are performed by the integrating caller. No acceptance or

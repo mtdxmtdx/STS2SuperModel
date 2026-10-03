@@ -1,0 +1,89 @@
+{
+  "schema": "nosl.development-sampler-cohort.v2",
+  "created_utc": "2026-10-03T09:29:06.421542+00:00",
+  "source_commit": "926d762440b08d7f6dfa39042104e03ec1ffaf3c",
+  "role": "Previously inspected twelve-source failure regression; these are no longer fresh development roots",
+  "request": {
+    "op": "native_tape_replay",
+    "options": {
+      "collectionId": "map-public-inspected-twelve-v5",
+      "prior": {
+        "schemaVersion": "nosl.native-map-rewards-state-tape-prior.v1",
+        "eligibleCombats": 3,
+        "eligibleDecisionsPerCombat": 8,
+        "execution": {
+          "maxFloors": 8,
+          "sourceDecisionHorizon": 1024,
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "outsideCombatScript": "nosl-natural-public-script-v3",
+          "publicContextProfile": "nosl.public-run-context.v1",
+          "publicEvidenceProfile": "nosl.public-run-evidence.v2",
+          "publicMapObservationProfile": "nosl.public-map-complete-graph.v1"
+        }
+      },
+      "sourceDrawSeeds": [
+        24101,
+        24102,
+        24103,
+        24104,
+        24105,
+        24106,
+        24107,
+        24108,
+        24109,
+        24110,
+        24111,
+        24112
+      ],
+      "wallBudgetSeconds": 360,
+      "compareUnconditioned": false,
+      "initialPrefixMaxTrials": 64,
+      "eventPermutationMaxTrials": 256
+    },
+    "teacherOptions": {
+      "mode": "T0",
+      "continuationPolicyId": "nosl-public-rules-v2",
+      "evaluationSeeds": [
+        701,
+        702
+      ],
+      "maxPosteriorAttempts": 64,
+      "maxDecisions": 200
+    }
+  },
+  "external_watchdog_seconds": 420,
+  "gates": {
+    "all_twelve_requested_attempts_retained": true,
+    "all_twelve_attempts_executed": true,
+    "fully_complete_requested_roots_at_least": 6,
+    "fully_complete_later_decision_roots_at_least": 4,
+    "fully_complete_combat_index2_later_decision_roots_at_least": 1,
+    "fully_complete_multi_candidate_roots_at_least": 5,
+    "engine_errors": 0,
+    "assigned_candidate_worlds_completely_accounted": true,
+    "full_completion": "Exactly two accepted posterior worlds and true terminal settlement-complete outcomes for every legal candidate; empirical nonutility masks complete",
+    "missing_required_category": "inconclusive_not_pass",
+    "production_admission": false
+  },
+  "selection_accounting": "All 12 source draws remain denominator, including absent, failed, timed out or unexecuted. No replacements, no success quota, no postinspection category selection. The prior chooses combat and local decision before execution.",
+  "time_bias": "Deadline truncation is unresolved computational mass. Completed-by-deadline rows do not establish unbiased admission.",
+  "run_precondition": "Independent component/composition review and full Worker aggregate pass; unchanged Core source has complete4493/3/0 regression; unchanged Python code retains its57 guarded v5 passes. Freeze binaries/source; no concurrent builds or timed experiments.",
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "production_admission": false,
+  "frozen_test": "not decoded or changed",
+  "gate_use": "Preserve the original twelve-source gates; require unchanged public inputs and prior identity versus v4.",
+  "additional_descriptive_counts": [
+    "fully complete roots with at least two candidates",
+    "fully complete later-combat roots with at least two candidates"
+  ],
+  "current_sampler": "nosl-native-map-rewards-tape-marginalized-v5-public-evidence-v2",
+  "paired_evaluation_seed_note": "Fixed within-root world seeds are reused across roots and implementations for this development comparison; accepted slots are not a claim of globally independent samples.",
+  "freshness": "Previously untouched at its first v4 run, now inspected development data. Repeated execution adds no new independent source count.",
+  "validation_plan": "configs/native_map_v5_validation_plan.json",
+  "baseline_response": {
+    "path": "artifacts/reports/map-public-v5/baseline-inspected-twelve-v4-response.jsonl",
+    "sha256": "36557381251db17f4f4680392d61a1726ef2344241b35a9f85e43aaa8f032543"
+  }
+}

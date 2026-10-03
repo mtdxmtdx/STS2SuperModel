@@ -10,6 +10,10 @@ The frozen v1 inference and configuration remain unchanged; the shared data load
 [v2 public-context engineering path](../docs/STUDENT_V2_ENGINEERING.md) now consumes
 finite Hunt/Regen anchors and public native/event facts. It now integrates protected production preparation/loading, bounded checkpoint/resume, explicit fresh-native admission and standalone guarded inference. Whole-plan labels remain nullable; Regen-only evidence has no applicable learned heads. This v2 implementation is untrained.
 
+The separate [v5 complete-map engineering path](../docs/STUDENT_V5_COMPLETE_MAP.md)
+consumes explicit public evidence v2 with complete or missing graph captures.
+It preserves frozen v4 codecs and checkpoints and remains untrained/quarantined.
+
 Engineering forward/backward tests still take zero optimizer steps. Formal
 training remains disabled. Experimental selection should use the new
 [resource abstention wrapper](../docs/EXPERIMENTAL_POLICY_GUARD.md); raw frozen

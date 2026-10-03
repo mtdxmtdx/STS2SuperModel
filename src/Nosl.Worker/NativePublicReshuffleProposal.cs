@@ -70,10 +70,10 @@ internal sealed class NativePublicReshuffleProposal(NativePublicReshuffleConditi
                 || card.Pile?.Type is not (PileType.Draw or PileType.Discard))
             || actualPool.Any(card => !cards.Contains(card, ReferenceEqualityComparer.Instance)))
             throw new InvalidOperationException("Reshuffle boundary does not contain its owned physical pile union");
-        string[] ids = cards.Select(card => card.GetType().Name).ToArray();
-        if (!ids.Order(StringComparer.Ordinal).SequenceEqual(target.PoolIds.Order(StringComparer.Ordinal)))
+        string[] signatures = cards.Select(card => NativePublicDrawKey.From(card).Signature).ToArray();
+        if (!signatures.Order(StringComparer.Ordinal).SequenceEqual(target.PoolKeys.Select(key => key.Signature).Order(StringComparer.Ordinal)))
             throw new NativePublicConstraintMismatchException("Witnessed public reshuffle pool differs at combat " + _combatIndex);
-        var plan = ConditionalShuffleProposal.Create(ids, target.DrawPrefixIds, nextWord)
+        var plan = ConditionalShuffleProposal.Create(signatures, target.DrawPrefixKeys.Select(key => key.Signature).ToArray(), nextWord)
             ?? throw new NativePublicConstraintMismatchException("Witnessed public reshuffle prefix has no native support");
         int counter = rng.Counter;
         var inner = forcePrefixWords(plan.RawWords, rng, "public combat " + _combatIndex + " reshuffle " + ordinal);

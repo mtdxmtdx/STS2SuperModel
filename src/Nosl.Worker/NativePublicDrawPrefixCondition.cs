@@ -16,12 +16,14 @@ internal sealed record NativePublicDrawPrefixAudit(string CertificateVersion, in
 /// <summary>
 /// A source-pinned transition closure, not an inference from an apparently quiet event log.
 /// CardMoved omits arbitrary pile moves. Every crossed action must therefore prove that its
-/// entire native continuation preserves the undrawn initial pile except for ordinary Draw.
+/// native continuation preserves the undrawn initial pile except for ordinary Draw. A reviewed
+/// interactive continuation can stop at its public selection boundary and resume only after
+/// the selected cards certify the remaining effect (including automatic selections).
 /// Failure stops acceleration at the already proved prefix; no public evidence is removed.
 /// </summary>
 internal static class NativePublicDrawPrefixCondition
 {
-    internal const string Version = "nosl.public-first-draw-cycle.v4";
+    internal const string Version = "nosl.public-first-draw-cycle.v9";
 
     // Read the complete sealed OnPlay implementations, including both upgrade branches and
     // inherited result locations. Strike/Defend's GeneratedCardSpec has no GeneratedPowerEffect.
@@ -32,18 +34,37 @@ internal static class NativePublicDrawPrefixCondition
     // Strangle adds the separately reviewed StranglePower below. Both upgrade branches
     // and the inherited result paths were checked for all four v2 additions.
     // Mirage's Poison lookup is read-only. These plays never generate, transform, insert into,
-    // reorder, or select from Draw. CardModel's result path goes only to Discard/Exhaust.
+    // reorder, or select from Draw. These cards' result paths go to Discard/Exhaust;
+    // the separately reviewed power cards below leave combat through None.
+    // Peck and DaggerSpray only perform powered attacks (targeted multi-hit or all opponents).
+    // Upgrades change only hit count/damage. All entry/play-result/draw/exhaust hooks inherit
+    // the reviewed base behavior; damage/death effects stay inside the listener closure below.
     private static readonly HashSet<string> PlayedCards =
     [nameof(StrikeSilent), nameof(DefendSilent), nameof(Neutralize), nameof(Survivor),
         nameof(Backflip), nameof(Deflect), nameof(Mirage), nameof(NeowsFury), nameof(Strangle),
-        nameof(Finisher), nameof(SuckerPunch), nameof(Slimed)];
+        nameof(Finisher), nameof(SuckerPunch), nameof(Slimed), nameof(Peck), nameof(DaggerSpray), nameof(DaggerThrow),
+        nameof(PhantomBlades), nameof(WellLaidPlans), nameof(Blur), nameof(PoisonedStab), nameof(Tracking)];
+    // These two sealed Power cards only apply the powers reviewed below; their result
+    // location is None. Neither upgrade branch upgrades another card or touches Draw.
+    // Blur only gains block and applies BlurPower; PoisonedStab only attacks and
+    // applies PoisonPower. Their upgrades change numeric amounts, not card identity.
+    // Tracking only applies TrackingPower; its upgrade reduces its own cost.
+    // DaggerThrow attacks, draws normally, then awaits FromHandForDiscard(1). Its prefix is
+    // safe up to that native selection boundary, even if the draw reveals a Sly card. Only
+    // a witnessed non-Sly selection admits the subsequent discard; unselected Sly is inert.
     // All callbacks and branch selection reviewed, not merely the published numeric intent.
     // CorpseSlug: damage/Frail/stun; SludgeSpinner: damage/Weak/Strength; Toadpole:
     // fixed front/rear cyclic attacks and Thorns +/-2. None summons or touches piles.
     // Twig/Leaf attacks only damage; their other moves generate plain Slimed to Discard.
     // Their entire graphs and entry/generation callbacks are reviewed, not just intent IDs.
+    // Seapunk's complete fixed cycle is attack, multi-attack, block/Strength; FuzzyWurmCrawler's
+    // is attack, Strength, attack. ShrinkerBeetle applies ShrinkPower once, then alternates
+    // attacks. All use sealed MoveState transitions with no card-pile or summon callbacks.
     private static readonly HashSet<string> EnemyTurns = [nameof(CorpseSlug), nameof(SludgeSpinner), nameof(Toadpole),
-        nameof(TwigSlimeS), nameof(TwigSlimeM), nameof(LeafSlimeS), nameof(LeafSlimeM)];
+        nameof(TwigSlimeS), nameof(TwigSlimeM), nameof(LeafSlimeS), nameof(LeafSlimeM),
+        nameof(Seapunk), nameof(ShrinkerBeetle), nameof(FuzzyWurmCrawler), nameof(Nibbit)];
+    // Nibbit's pure initial branch reads IsAlone/IsFront; every later state follows
+    // butt -> slice -> hiss -> butt. Effects are damage, block and reviewed Strength.
     // Exact PowerModel implementations, including BeforeApplied/AfterApplied/AfterRemoved.
     // Weak/Frail only scale values/tick duration, Strength scales damage, Ravenous changes
     // CorpseSlug AI and applies Strength on a death. StranglePower only snapshots its
@@ -53,9 +74,25 @@ internal static class NativePublicDrawPrefixCondition
     // power and death callbacks remain inside this same listener closure.
     // ThornsPower only retaliates through unpowered direct damage. Its powered-hit
     // guard prevents retaliation recursion; all application/removal hooks are base no-ops.
+    // ShrinkPower only scales powered damage, ticks nonnegative durations at side end, and
+    // removes itself after its applier dies. BeforeApplied/AfterApplied/AfterRemoved are
+    // inherited no-ops; negative permanent amounts and positive duration amounts are covered.
     // No closure member produces an unreviewed power.
     private static readonly HashSet<string> Powers =
-        [nameof(WeakPower), nameof(FrailPower), nameof(StrengthPower), nameof(RavenousPower), nameof(StranglePower), nameof(ThornsPower)];
+        [nameof(WeakPower), nameof(FrailPower), nameof(StrengthPower), nameof(RavenousPower), nameof(StranglePower), nameof(ThornsPower),
+            nameof(ShrinkPower), nameof(PhantomBladesPower), nameof(WellLaidPlansPower), nameof(BlurPower), nameof(PoisonPower), nameof(TrackingPower)];
+    // PhantomBladesPower only adds Retain to existing/new Shivs and modifies damage.
+    // WellLaidPlansPower only vetoes its owner's hand flush. Retention affects which
+    // cards reach Discard, never Draw order or upgrade levels. The post-shuffle public
+    // snapshot still fixes the exact pool; never infer that an entire hand was flushed.
+    // BlurPower only vetoes block clearing and ticks its duration at owner side start.
+    // PoisonPower's side-start damage is unblockable/unpowered; it decrements itself
+    // unless its owner dies. Accelerant lookup is read-only (that power remains outside
+    // this closure). Death/power removal dispatch the same guarded listeners already
+    // reviewed for attacks and Strangle, including Ravenous's stun/Strength and Shrink
+    // removal. None mutates card piles or upgrade levels; no new listener is introduced.
+    // TrackingPower only multiplies its owner's powered card damage against Weak;
+    // its application/removal hooks are inherited no-ops, with no pile mutation.
     // OnUse is reviewed separately from AbstractModel hooks; PotionUsed occurs AFTER effects.
     private static readonly HashSet<string> UsedPotions =
         [nameof(FirePotion), nameof(BlockPotion), nameof(EnergyPotion), nameof(StrengthPotion), nameof(SwiftPotion)];
@@ -82,22 +119,22 @@ internal static class NativePublicDrawPrefixCondition
         return result.Reshuffles;
     }
 
-    private sealed record ScanResult(string[] InitialPrefix, NativePublicDrawPrefixAudit Audit,
+    private sealed record ScanResult(NativePublicDrawKey[] InitialPrefix, NativePublicDrawPrefixAudit Audit,
         IReadOnlyList<NativePublicReshuffleInput> Reshuffles);
     private sealed class Cycle(int ordinal, long shuffleEvent)
     {
         internal int Ordinal { get; } = ordinal;
         internal long ShuffleEvent { get; } = shuffleEvent;
         internal long? WitnessEvent { get; set; }
-        internal string[]? Pool { get; set; }
-        internal List<string> Prefix { get; } = [];
+        internal NativePublicDrawKey[]? Pool { get; set; }
+        internal List<NativePublicDrawKey> Prefix { get; } = [];
     }
 
     private static ScanResult Scan(NativeInitialShuffleCondition initial, int initialDrawCount,
         PublicRunEvidenceEvent[] ownerEvents, PublicRunEvidenceEvent first, long? globalGap, bool allowReshuffles)
     {
         var entry = PublicJson.Read<NativeEntryAssets>(initial.EntryJson);
-        var prefix = initial.DrawPrefixIds.Take(initialDrawCount).ToList();
+        var prefix = initial.DrawPrefixKeys.Take(initialDrawCount).ToList();
         var cycles = new List<Cycle>();
         Cycle? cycle = null;
         int initialCount = prefix.Count;
@@ -107,10 +144,11 @@ internal static class NativePublicDrawPrefixCondition
         var decision = (PublicCombatDecision)first.Payload;
         long decisionOrdinal = first.EventOrdinal;
         var roster = decision.Observation.Enemies.ToDictionary(enemy => enemy.Slot, enemy => enemy.Id);
-        var inventory = entry.Deck.GroupBy(card => card.Id, StringComparer.Ordinal)
-            .ToDictionary(group => group.Key, group => group.Count(), StringComparer.Ordinal);
-        Dictionary<string, int>? remaining = new(inventory, StringComparer.Ordinal);
-        foreach (string id in prefix) remaining[id]--;
+        var inventory = entry.Deck.Select(NativePublicDrawKey.From).GroupBy(card => card)
+            .ToDictionary(group => group.Key, group => group.Count());
+        Dictionary<NativePublicDrawKey, int>? remaining = new(inventory);
+        int fairies = entry.Potions.Count(potion => potion == nameof(FairyInABottle));
+        foreach (var key in prefix) remaining[key]--;
         string? stop = CheckSnapshot(decision, first.EventOrdinal);
         string? activeKind = null, activeModel = null, pendingCard = null;
         int pendingSlimed = 0;
@@ -136,6 +174,8 @@ internal static class NativePublicDrawPrefixCondition
         {
             var observation = snapshot.Observation;
             if (!snapshot.HistoryCompleteFromCombatStart) return "complete_combat_history_required";
+            if (observation.Potions.Count(potion => potion == nameof(FairyInABottle)) != fairies)
+                return "draw_cycle_automatic_potion_inventory_mismatch";
             if (!observation.Relics.Order(StringComparer.Ordinal).SequenceEqual(entry.Relics.Select(relic => relic.Id).Order(StringComparer.Ordinal))
                 || observation.OrbCapacity != 0 || (observation.Orbs?.Length ?? 0) != 0 || (observation.Pets?.Length ?? 0) != 0)
                 return "draw_cycle_listener_set_changed";
@@ -147,8 +187,8 @@ internal static class NativePublicDrawPrefixCondition
                 || observation.UnknownDraw.Any(item => item.Count <= 0)
                 || observation.DrawCount != observation.UnknownDraw.Sum(item => item.Count))
                 return "draw_cycle_snapshot_pool_mismatch";
-            var actual = observation.UnknownDraw.GroupBy(item => item.Card.Id, StringComparer.Ordinal)
-                .ToDictionary(group => group.Key, group => group.Sum(item => item.Count), StringComparer.Ordinal);
+            var actual = observation.UnknownDraw.GroupBy(item => NativePublicDrawKey.From(item.Card))
+                .ToDictionary(group => group.Key, group => group.Sum(item => item.Count));
             if (remaining is not null && (observation.DrawCount != remaining.Values.Sum()
                 || actual.Any(pair => !remaining.TryGetValue(pair.Key, out int count) || count != pair.Value)
                 || remaining.Any(pair => pair.Value > 0 && !actual.ContainsKey(pair.Key))))
@@ -156,7 +196,8 @@ internal static class NativePublicDrawPrefixCondition
             if (observation.Hand.Concat(observation.Discard).Concat(observation.Exhaust)
                 .Concat(observation.UnknownDraw.Select(item => item.Card)).Any(card => !SafeCardMetadata(card)))
                 return "draw_cycle_card_modifier_not_certified";
-            if (observation.Choice is { Source: not nameof(Survivor) }) return "draw_cycle_choice_not_certified";
+            if (observation.Choice is { } choice && choice.Source != nameof(Survivor)
+                && !IsDaggerThrowDiscardChoice(choice)) return "draw_cycle_choice_not_certified";
             if (remaining is null)
             {
                 // Joint public witness: closure permits only Draw between this native
@@ -166,11 +207,11 @@ internal static class NativePublicDrawPrefixCondition
                 // Entry plus explicitly witnessed generation is only an upper bound:
                 // exhaust/hand membership can vary. This snapshot fixes the EXACT pool,
                 // so the correction envelope never depends on a sampled latent pool.
-                if (pool.Length == 0 || pool.GroupBy(id => id, StringComparer.Ordinal)
+                if (pool.Length == 0 || pool.GroupBy(key => key)
                     .Any(group => !inventory.TryGetValue(group.Key, out int count) || group.Count() > count))
                     return "reshuffle_snapshot_pool_mismatch";
                 cycle.Pool = pool; cycle.WitnessEvent = eventOrdinal;
-                remaining = new(actual, StringComparer.Ordinal);
+                remaining = new(actual);
             }
             return null;
         }
@@ -211,8 +252,20 @@ internal static class NativePublicDrawPrefixCondition
                             activeModel = observation.Potions[action.Slot];
                             return activeModel is not null && UsedPotions.Contains(activeModel) ? null
                                 : "draw_cycle_potion_not_certified:" + activeModel;
-                        case "discard_potion": return null;
+                        case "discard_potion":
+                            if (observation.Potions[action.Slot] == nameof(FairyInABottle)) fairies--;
+                            return null;
                         case "choose":
+                            if (pendingCard == nameof(DaggerThrow))
+                            {
+                                if (observation.Choice is not { } discard || !IsDaggerThrowDiscardChoice(discard)
+                                    || action.Selection is not { Length: 1 } selected || selected[0] < 0
+                                    || selected[0] >= discard.Candidates.Length)
+                                    return "draw_cycle_choice_not_certified";
+                                if (IsSly(discard.Candidates[selected[0]])) return "draw_cycle_sly_discard_not_certified";
+                                activeModel = pendingCard;
+                                return null;
+                            }
                             if (pendingCard != nameof(Survivor) || observation.Choice?.Source != nameof(Survivor)
                                 || observation.Hand.Any(IsSly) || observation.Choice.Candidates.Any(IsSly))
                                 return "draw_cycle_choice_not_certified";
@@ -255,7 +308,8 @@ internal static class NativePublicDrawPrefixCondition
                         if (activeKind != "end_turn" || pendingSlimed == 0 || !IsPlainGeneratedSlimed(fact.Cards.Single()))
                             return "draw_cycle_generation_not_certified";
                         pendingSlimed--;
-                        inventory[nameof(Slimed)] = inventory.GetValueOrDefault(nameof(Slimed)) + 1;
+                        var generatedKey = NativePublicDrawKey.From(fact.Cards.Single());
+                        inventory[generatedKey] = inventory.GetValueOrDefault(generatedKey) + 1;
                         return null;
                     }
                     if (fact.FactKind == PublicCombatFactKind.PreSettlement) return "combat_pre_settlement";
@@ -267,14 +321,15 @@ internal static class NativePublicDrawPrefixCondition
                                 return "draw_cycle_draw_source_not_certified";
                             pendingSlimed = 0;
                             var drawn = fact.Cards.Single();
+                            var drawnKey = NativePublicDrawKey.From(drawn);
                             if (!SafeCardMetadata(drawn)) return "draw_cycle_draw_pool_mismatch";
                             if (remaining is not null)
                             {
-                                if (!remaining.TryGetValue(drawn.Id, out int count) || count == 0)
+                                if (!remaining.TryGetValue(drawnKey, out int count) || count == 0)
                                     return "draw_cycle_draw_pool_mismatch";
-                                remaining[drawn.Id]--;
+                                remaining[drawnKey]--;
                             }
-                            if (cycle is null) prefix.Add(drawn.Id); else cycle.Prefix.Add(drawn.Id);
+                            if (cycle is null) prefix.Add(drawnKey); else cycle.Prefix.Add(drawnKey);
                             return null;
                         case PublicCombatFactKind.CardStarted:
                         case PublicCombatFactKind.CardPlayed:
@@ -286,12 +341,34 @@ internal static class NativePublicDrawPrefixCondition
                         case PublicCombatFactKind.PowerChanged:
                             return Powers.Contains(fact.Model!) ? null : "draw_cycle_power_not_certified:" + fact.Model;
                         case PublicCombatFactKind.ChoiceOffered:
+                            if (activeModel == nameof(DaggerThrow))
+                                return fact.Choice is { } discard && IsDaggerThrowDiscardChoice(discard)
+                                    ? null : "draw_cycle_choice_not_certified";
                             return activeModel == nameof(Survivor) && fact.Choice?.Source == nameof(Survivor)
                                 ? null : "draw_cycle_choice_not_certified";
                         case PublicCombatFactKind.AutomaticSelection:
+                            if (activeModel == nameof(DaggerThrow))
+                            {
+                                // Native observer runs before CardCmd.Discard, including its Sly autoplay.
+                                // The only automatic FromHandForDiscard(1) results contain zero or one card.
+                                if (fact.Model != nameof(DaggerThrow) || fact.UnidentifiedCount != 0
+                                    || fact.Cards.Length > 1 || fact.Cards.Any(card => !SafeCardMetadata(card)))
+                                    return "draw_cycle_selection_not_certified";
+                                return fact.Cards.Any(IsSly) ? "draw_cycle_sly_discard_not_certified" : null;
+                            }
                             return activeModel == nameof(Survivor) && fact.UnidentifiedCount == 0
                                 ? null : "draw_cycle_selection_not_certified";
                         case PublicCombatFactKind.PotionUsed:
+                            // Fairy's only native use is automatic death prevention. Its complete
+                            // consumption/heal/dispatch path preserves piles under the same listener
+                            // closure, and removing it cannot add listeners. Each fact consumes one
+                            // publicly anchored copy, also reconciled at every stable snapshot.
+                            if (fact.Model == nameof(FairyInABottle))
+                            {
+                                if (fairies == 0) return "draw_cycle_automatic_potion_not_certified";
+                                fairies--;
+                                return null;
+                            }
                             return activeKind == "potion" && fact.Model == activeModel ? null : "draw_cycle_potion_not_certified";
                         case PublicCombatFactKind.Damage: return null;
                         case PublicCombatFactKind.PlayerTurnStarted:
@@ -313,7 +390,12 @@ internal static class NativePublicDrawPrefixCondition
 
     // Slimed's complete OnPlay is ordinary Draw(1, fromHandDraw:false), with inherited
     // Exhaust result. Its entry/draw/exhaust/turn-end and generation hooks are base no-ops.
-    private static bool IsOrdinaryDrawSource(string? model) => model is nameof(Backflip) or nameof(SwiftPotion) or nameof(Slimed);
+    private static bool IsOrdinaryDrawSource(string? model) => model is nameof(Backflip) or nameof(SwiftPotion)
+        or nameof(Slimed) or nameof(DaggerThrow);
+
+    private static bool IsDaggerThrowDiscardChoice(PublicChoice choice) => choice is
+        { Source: nameof(DaggerThrow), Min: 1, Max: 1, Cancelable: false, CandidateOrder: "public", Bundles: null }
+        && choice.Candidates.Length > 1 && choice.Candidates.All(SafeCardMetadata);
 
     private static int SlimedGenerationLimit(PublicEnemy enemy) => enemy.Hp > 0
         && enemy.Intents is [{ Kind: "StatusCard", Damage: null, Repeats: null }]

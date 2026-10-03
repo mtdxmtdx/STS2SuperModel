@@ -1,5 +1,7 @@
 # M3–M6 engineering checkpoint
 
+Current additive Map v3 integration: 1,928 native tests and 53 guarded v5 Python checks pass. The fresh native candidate API, protected auxiliary preparation and bounded pilot interface are implemented; one inspected-source API invocation settles 14/14 branches and passes adapter/no-grad loss checks. No new fit or production admission occurred. The inspected probe completes five of eight roots and68/98 branches in219 seconds, with30 unresolved truncations and zero errors. The later-combat gate fails; public shop and later room/roster gaps remain engineering work. The separately predeclared new development probe has not started. See [current versioned evidence](../configs/native_map_origin_verification_v3.json). The counts and limited-profile cohort evidence below remain historical, not new independent validation.
+
 The declared pilot engineering paths are implemented and reviewed. **Full-scope
 READY_FOR_TRAINING remains false.** The remaining limits are broader native
 coverage and calibrated resource/permanent/reward values, rather than missing

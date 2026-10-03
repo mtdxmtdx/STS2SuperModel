@@ -10,6 +10,7 @@ public sealed class PublicRunEvidence
     public const string Version = "nosl.public-run-evidence.v1";
     public const string CompleteMapVersion = "nosl.public-run-evidence.v2";
     public const string StudentSchema = "nosl.student.public.v4";
+    public const string CompleteMapStudentSchema = "nosl.student.public.v5";
 
     public static bool IsRequested(string? profile) => profile switch
     {

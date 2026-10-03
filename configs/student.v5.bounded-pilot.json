@@ -1,0 +1,26 @@
+{
+  "format": "nosl.student.bounded-pilot.config.v5",
+  "experiment_id": "m6-full-public-v5-auxiliary-bounded-pilot-v1",
+  "public_schema": "nosl.student.public.v5",
+  "model_version": "nosl.student.model.v5",
+  "student_config_sha256": "37a4be042142e16ea6b42181e63f375b43a9926f8bd1e6f60236b647b16851f3",
+  "seed": 1729,
+  "torch_threads": 1,
+  "batch_size": 8,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.01,
+  "gradient_clip_norm": 1.0,
+  "max_epochs": 1,
+  "max_optimizer_steps": 700,
+  "max_training_roots": 5000,
+  "max_validation_roots": 5000,
+  "auxiliary_heads": [
+    "win_probability",
+    "death_probability",
+    "expected_final_hp",
+    "hp_distribution",
+    "potion_net_change"
+  ],
+  "formal_training": false,
+  "policy_promotion": false
+}

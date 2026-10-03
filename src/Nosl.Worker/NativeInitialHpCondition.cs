@@ -69,15 +69,19 @@ internal sealed class NativeInitialHpCondition
     }
 
     internal static bool TryCreate(DecisionPacket root, out NativeInitialHpCondition? condition,
-        out string? reason) => TryCreate(root, false, out condition, out reason);
+        out string? reason) => TryCreate(root, 1, out condition, out reason);
 
     internal static bool TryCreatePublicCombatV3(DecisionPacket root, out NativeInitialHpCondition? condition,
-        out string? reason) => TryCreate(root, true, out condition, out reason);
+        out string? reason) => TryCreate(root, 3, out condition, out reason);
 
-    private static bool TryCreate(DecisionPacket root, bool publicCombatV3, out NativeInitialHpCondition? condition,
+    internal static bool TryCreatePublicCombatV4(DecisionPacket root, out NativeInitialHpCondition? condition,
+        out string? reason) => TryCreate(root, 4, out condition, out reason);
+
+    private static bool TryCreate(DecisionPacket root, int publicCombatVersion, out NativeInitialHpCondition? condition,
         out string? reason)
     {
         condition = null;
+        bool publicCombatV3 = publicCombatVersion >= 3;
         // Source-pinned lifetime invariant: none of the 54 sealed types above changes its
         // MaxHp after the native initial roll. The only enemy writers are TestSubject,
         // ToughEgg, DecimillipedeSegment and WaterfallGiant, all outside this certificate.
@@ -87,9 +91,11 @@ internal sealed class NativeInitialHpCondition
         // and PublicKnowledge's lifetime slots persist across removal/summoning. Therefore
         // an original slot/type still present at a later stable or pending-choice root has
         // initial HP equal to its current MaxHp, regardless of damage, block or powers.
-        bool startupCertified = publicCombatV3
-            ? NativeInitialShuffleCondition.TryCreatePublicCombatV3(root, out _, out reason)
-            : NativeInitialShuffleCondition.TryCreate(root, out _, out reason);
+        bool startupCertified = publicCombatVersion >= 4
+            ? NativeInitialShuffleCondition.TryCreatePublicCombatV4(root, out _, out reason)
+            : publicCombatV3
+                ? NativeInitialShuffleCondition.TryCreatePublicCombatV3(root, out _, out reason)
+                : NativeInitialShuffleCondition.TryCreate(root, out _, out reason);
         if (!startupCertified) return false;
         var observation = root.Observation!;
         int index = 2;

@@ -4,6 +4,11 @@ This is an opt-in proposal under `nosl.native-rewards-state-tape-prior.v1`, not 
 
 The supported sources are ArcaneScroll, ScrollBoxes and Kaleidoscope for the native fresh solo Silent A10 startup. The public starting inventory must contain RingOfTheSnake alone. Their actual native generation must still run in the owned initial Neow room, on floor one, with exactly the starter and selected relic. This closes the creation-modifier inventory: RingOfTheSnake and these pickup relics do not change card creation pools. A pool or overload change fails closed.
 
+Subsequent extensions also cover [LostCoffer](NATIVE_NEOW_LOST_COFFER.md) and
+[NewLeaf/LeadPaperweight](PUBLIC_NEOW_TRANSFORM_COLORLESS.md). The latter preserve
+NewLeaf's one Niche transformation word and LeadPaperweight's colorless rarity
+fallback arms; they do not reuse the three-arm-present certificate below.
+
 * ArcaneScroll: remove the complete public starting deck multiset from the initial event's public settled deck. The one remaining identity is its grant. Native `CardFactory.CreateForReward` uses the uniform rare-only pool and NoUpgradeRoll, so it consumes one Rewards word.
 * ScrollBoxes: read both complete three-card bundles from the initial child choice owner. The unselected bundle contributes all three identity constraints. Native `GenerateRandomBundles` consumes six Rewards words for the certified Silent path, with common/common/uncommon order in each bundle and the native cross-bundle ID exclusions. The Defect Claw branch is not certified.
 * Kaleidoscope: read all three candidates in each of the initial primary and extra offers, before any selection or refresh. Each identity must belong to exactly one of the four other character pools. Each offer requires three distinct pools; that prefix fixes the complete four-pool permutation. The proposal conditions both native Niche shuffles and all six native base-rarity/index draws. The six upgrade words remain ordinary Rewards oracle draws. All three rarity arms must exist in each certified catalog pool; unsupported fallback shapes fail closed.

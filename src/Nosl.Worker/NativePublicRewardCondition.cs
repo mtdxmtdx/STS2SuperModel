@@ -10,7 +10,8 @@ using Sts2Sim.Core.Runs;
 namespace Nosl.Worker;
 
 internal sealed record NativePublicRewardTarget(int CombatIndex, int ActIndex, int Floor,
-    long OfferEventOrdinal, IReadOnlyList<string> BaseCardIds, NativeRewardPoolCertificate Certificate);
+    long OfferEventOrdinal, IReadOnlyList<string> BaseCardIds, NativeRewardPoolCertificate Certificate,
+    NativePublicRewardHistoryTarget? PublicHistory = null);
 
 /// <summary>
 /// Detached public evidence only. Each first displayed primary offer identifies three
@@ -86,6 +87,7 @@ internal sealed class NativePublicRewardCondition
                     entry.EventOrdinal, Array.AsReadOnly(ids), certificate));
             }
         }
+        NativePublicRewardHistoryCertificate.Tighten(evidence, targets, character);
         return new(start.Character, targets);
     }
 }
@@ -98,6 +100,7 @@ internal sealed class NativePublicRewardCondition
 internal sealed class NativeRewardPoolCertificate
 {
     private readonly IReadOnlyList<CardModel[]>[] _remainingBySlot;
+    private IReadOnlyList<LabelCardRarityThresholds>? _publicThresholds;
     internal IReadOnlyList<ShuffleRational> SlotBounds { get; }
     internal ShuffleRational Envelope { get; }
 
@@ -146,6 +149,26 @@ internal sealed class NativeRewardPoolCertificate
         return new(perSlot, bounds);
     }
 
+    internal static NativeRewardPoolCertificate FromPublicHistory(CardModel[] pool,
+        IReadOnlyList<string> targets, IReadOnlyList<LabelCardRarityThresholds> thresholds, int bits = 53)
+    {
+        if (targets.Count != thresholds.Count || pool.Select(c => c.GetType().Name).Distinct().Count() != pool.Length)
+            throw new ArgumentException("Exact public reward history requires one canonical model per identity");
+        var certificate = FromPools([pool], targets, bits);
+        var bounds = new ShuffleRational[targets.Count];
+        for (int slot = 0; slot < targets.Count; slot++)
+        {
+            var remaining = certificate._remainingBySlot[slot].Single();
+            var branches = new[] { CardRarity.Rare, CardRarity.Uncommon, CardRarity.Common }
+                .Select(rarity => new LabelRewardCardBranch(rarity, remaining.Where(c => c.Rarity == rarity).ToArray())).ToArray();
+            var mass = NativeRewardIdentityMath.Arms(branches, thresholds[slot], targets[slot], bits)
+                .Aggregate(BigInteger.Zero, (total, arm) => total + arm.Mass);
+            if (mass.IsZero) throw new NativePublicConstraintMismatchException("Public primary card has no certified history mass");
+            bounds[slot] = new(mass, BigInteger.One << (2 * bits));
+        }
+        return new(certificate._remainingBySlot, bounds) { _publicThresholds = thresholds };
+    }
+
     internal void Validate(LabelRewardCardSelectionContext context)
     {
         if (context.Kind != LabelRewardCardSelectionKind.LegacyCombat || context.Thresholds is null
@@ -155,6 +178,9 @@ internal sealed class NativeRewardPoolCertificate
             throw new InvalidOperationException("Primary reward departed from the certified native overload");
         if (!_remainingBySlot[context.SelectionIndex].Any(pool => pool.SequenceEqual(context.RemainingCards)))
             throw new InvalidOperationException("Native reward pool is outside the root-wide catalog certificate");
+        if (_publicThresholds is not null && (context.OddsType != CardRarityOddsType.RegularEncounter
+            || context.Thresholds != _publicThresholds[context.SelectionIndex]))
+            throw new NativePublicConstraintMismatchException("Native rarity thresholds differ from the complete public offer history");
         foreach (var branch in context.Branches)
             if (!context.RemainingCards.Where(card => card.Rarity == branch.RolledRarity).SequenceEqual(branch.Candidates))
                 throw new InvalidOperationException("Legacy native reward branch or exclusion policy changed");
@@ -164,7 +190,7 @@ internal sealed class NativeRewardPoolCertificate
 /// <summary>One owned hypothetical replay. The caller supplies its Rewards oracle and independent proposal words.</summary>
 internal sealed class NativePublicRewardProposal(NativePublicRewardCondition condition,
     Func<LabelRandomAddressV1, bool> wasVisited, Action<LabelRandomAddressV1, ulong> forceFresh,
-    Func<ulong> nextProposalWord)
+    Func<ulong> nextProposalWord, Action<Exception>? captureFailure = null)
 {
     private NativePublicRewardTarget? _active;
     private Rng? _rewards;
@@ -177,23 +203,28 @@ internal sealed class NativePublicRewardProposal(NativePublicRewardCondition con
 
     internal IDisposable? BeginCombatReward(LabelCombatRewardContext context, int combatIndex)
     {
-        if (!condition.Targets.TryGetValue(combatIndex, out var target)) return null;
-        if (_active is not null || _completed.Contains(combatIndex))
-            throw new InvalidOperationException("Public primary reward boundary repeated or nested");
-        if (context.Player.RunState is not RunState run || run.Players.Count != 1
-            || !ReferenceEquals(context.Rng, context.Player.PlayerRng.Rewards))
-            throw new InvalidOperationException("Primary reward boundary requires the owned solo native Rewards RNG");
-        if (run.CurrentActIndex != target.ActIndex || run.TotalFloor != target.Floor
-            || context.Player.Character.GetType().Name != condition.Character)
-            throw new NativePublicConstraintMismatchException("Native reward boundary differs from its public combat owner");
-        _active = target; _rewards = context.Rng; _slot = 0; _failed = false;
-        return new Completion(() =>
+        try
         {
-            _active = null; _rewards = null;
-            if (_failed) return;
-            if (_slot != 3) throw new InvalidOperationException("Native primary reward did not execute all three certified base slots");
-            _completed.Add(combatIndex);
-        });
+            if (!condition.Targets.TryGetValue(combatIndex, out var target)) return null;
+            if (_active is not null || _completed.Contains(combatIndex))
+                throw new InvalidOperationException("Public primary reward boundary repeated or nested");
+            if (context.Player.RunState is not RunState run || run.Players.Count != 1
+                || !ReferenceEquals(context.Rng, context.Player.PlayerRng.Rewards))
+                throw new InvalidOperationException("Primary reward boundary requires the owned solo native Rewards RNG");
+            if (run.CurrentActIndex != target.ActIndex || run.TotalFloor != target.Floor
+                || context.Player.Character.GetType().Name != condition.Character)
+                throw new NativePublicConstraintMismatchException("Native reward boundary differs from its public combat owner");
+            _active = target; _rewards = context.Rng; _slot = 0; _failed = false;
+            return new Completion(error => { _failed = true; captureFailure?.Invoke(error); }, () =>
+            {
+                _active = null; _rewards = null;
+                if (_failed) return;
+                if (_slot != 3) throw new InvalidOperationException("Native primary reward did not execute all three certified base slots");
+                _completed.Add(combatIndex);
+            });
+
+        }
+        catch (Exception error) { _failed = true; captureFailure?.Invoke(error); throw; }
     }
 
     internal IDisposable? BeginSelection(LabelRewardCardSelectionContext context)
@@ -216,7 +247,7 @@ internal sealed class NativePublicRewardProposal(NativePublicRewardCondition con
             forceFresh(address, plan.RawWords[0]); forceFresh(second, plan.RawWords[1]);
             NativeToProposalRatio = NativeToProposalRatio.Multiply(plan.NativeToProposalRatio.Numerator, plan.NativeToProposalRatio.Denominator);
             _slot++; ConditionedCardCount++;
-            return new Completion(() =>
+            return new Completion(error => { _failed = true; captureFailure?.Invoke(error); }, () =>
             {
                 var after = Address(context.Rng);
                 if (after != address with { RawCursor = checked(address.RawCursor + 3) }
@@ -224,7 +255,7 @@ internal sealed class NativePublicRewardProposal(NativePublicRewardCondition con
                     throw new InvalidOperationException("Native primary generation restored, skipped or added Rewards draws");
             });
         }
-        catch { _failed = true; throw; }
+        catch (Exception error) { _failed = true; captureFailure?.Invoke(error); throw; }
     }
 
     internal void AbortActiveBoundary() => _failed = true;
@@ -246,15 +277,16 @@ internal sealed class NativePublicRewardProposal(NativePublicRewardCondition con
     private static LabelRandomAddressV1 Address(Rng rng)
     {
         var p = rng.ToSerializable().LabelProvenance;
-        if (p is not { Law: LabelRandomProvenance.LawId, Partition: LabelRandomProvenance.RewardsPartition,
+        if (p is not { Law: LabelRandomProvenance.LawId or LabelRandomProvenance.MapLawId,
+            Partition: LabelRandomProvenance.RewardsPartition,
             OriginFamily: LabelRandomProvenance.RewardsOrigin, InitialSeed: { } seed, RawCursor: { } cursor })
             throw new InvalidOperationException("Primary reward identity conditioning requires tagged native Rewards provenance");
         return new(LabelRandomProvenance.RewardsOrigin, seed, cursor);
     }
 
-    private sealed class Completion(Action action) : IDisposable
+    private sealed class Completion(Action<Exception> failure, Action action) : IDisposable
     {
         private bool _disposed;
-        public void Dispose() { if (_disposed) return; _disposed = true; action(); }
+        public void Dispose() { if (_disposed) return; _disposed = true; try { action(); } catch (Exception error) { failure(error); throw; } }
     }
 }

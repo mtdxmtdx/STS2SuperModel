@@ -1,9 +1,9 @@
-# Exact public weak-slime opening formation
+# Exact public weak-slime formation
 
 `NativePublicWeakSlimeFormationCondition` is a detached optional proposal for the
-declared independent primitive-word tape. It composes with the existing first
-normal encounter identity proposal; it does not alter encounter selection or
-expand the reviewed opening catalog. The measured v5 roots 11006 and 11007 both
+declared independent primitive-word tape. It composes with the existing normal
+weak-encounter identity proposals; it does not alter encounter selection or
+expand the reviewed catalog. The measured v5 roots 11006 and 11007 both
 start with `SLIMES_WEAK`, whose native random formation was still a source of
 initial-roster rejection after the encounter identity was fixed.
 
@@ -18,13 +18,23 @@ these weak monster types cannot change identity, disappear, or summon another
 weak family before their initial publications. This uniquely identifies the
 native Overgrowth `SLIMES_WEAK` encounter among the reviewed opening origins.
 
+For later weak pulls, it reuses `NativePublicWeakEncounterSequenceCondition`'s
+gap-free route and direct normal-combat certificate. That certificate identifies
+the first three normal selections, including publicly resolved Unknown rooms,
+while excluding event-parented fights from the normal queue. Exactly one target
+must have `SLIMES_WEAK` as its sole compatible identity in Overgrowth. The native
+weak bag cannot repeat that identity. The formation condition separately counts
+every preceding combat owner, including event fights, to identify the runtime
+combat index; a normal-slot index is not a combat index.
+
 The new condition additionally requires exactly three physical public slots in
 order `0, 1, 2`, the full ordered model roster, and the typed pre-setup entry assets.
 It reads retained public history even when the root is in a later combat or the
 current enemy array has changed. Missing or unsupported proof disables only this
 proposal. Source seeds, source graphs, private move IDs, and current/live moves
-are not condition inputs. The implementation certifies only combat index zero;
-later encounters remain outside this additional proposal.
+are not condition inputs. Unsupported later normal pulls remain native. The
+existing opening certificate remains available independently of the later-route
+certificate.
 
 `LabelSlimesWeakScope` carries the actual hypothetical run/room from
 `CombatRoom.Prepare` and encounter/RNG from `EncounterDefinition.CreateMonsters`.
@@ -87,6 +97,16 @@ Only three fresh state-addressed primitive cells are forced. The original native
 factory consumes them in its original order. All following words remain native.
 No shared sampler route or profile version is changed by this isolated helper.
 
+The inspected map-v3 source 24007 exposed the missing later owner: its public
+combat index two/floor five is the third normal weak pull, with ordered roster
+`LeafSlimeS, LeafSlimeM, TwigSlimeS`. Two previously audited hypothetical recipes
+replayed to that exact owner but produced either `TwigSlimeM` in the middle or
+the small slimes in the opposite physical order. HP and intent rejection were
+correct; the optional formation proposal had been restricted to combat zero.
+Extending its detached owner certificate removes that avoidable rejection while
+retaining the same exact quarter-mass kernel. This diagnosis used the detached
+public input and audited proposal recipes, not source hidden state.
+
 ## Focused verification
 
 Tests exhaust every reduced two-bit triple and all four native formation tickets,
@@ -104,6 +124,19 @@ missing middle consumption, and extra draws. Existing measured roots 11006 and
 words preserve the same public root, owning-tape replay copies agree at every
 continuation decision, and both settle identically. Reusing these coordinates is
 only an integration fixture, never posterior evidence or a throughput claim.
+
+Later-owner tests cover normal slots one and two, interleaved event-parented
+combat owners, publicly resolved Unknown nodes, changed current snapshots,
+native factory invocation at only the certified owner, and unchanged exact
+three-word consumption and quarter correction. A route gap, event-parented
+target, or fourth normal selection disables the optional proposal.
+
+The combined focused formation suites pass 40 tests. Both inspected source-24007
+audited hypothetical recipes that previously failed roster checks now reproduce
+the complete detached public packet with one conditioned formation. An owning
+tape replay fork of the first agrees at each of seven continuation decisions
+through `terminal_settled`. These are bounded replay fixtures; density correction
+was not used to claim posterior acceptance or improved population throughput.
 
 No new source roots, large benchmark, production data, training, or rule changes
 are part of this implementation.

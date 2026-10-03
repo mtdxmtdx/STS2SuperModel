@@ -70,7 +70,7 @@ internal sealed class NativeNeowCondition
 
     private static NativeNeowCondition Create(DecisionPacket root, NativeTapePrior prior)
     {
-        Require(prior is { SchemaVersion: NativeTapePrior.Version or NativeTapePrior.RewardsVersion,
+        Require(prior is { SchemaVersion: NativeTapePrior.Version or NativeTapePrior.RewardsVersion or NativeTapePrior.MapVersion,
             Execution: { SourcePolicyId: PublicContinuationPolicies.ReviewedId } },
             "fresh_native_run_prior_required");
         Require(prior.Execution.ResolvedOutsideCombatScript is NaturalSourceCollector.ScriptVersion

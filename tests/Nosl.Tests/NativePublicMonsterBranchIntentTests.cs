@@ -51,6 +51,7 @@ public sealed class NativePublicMonsterBranchIntentTests
         {
             "SludgeSpinner" => (MonsterModel)ModelDb.Monster<SludgeSpinner>().MutableClone(),
             "LeafSlimeS" => (MonsterModel)ModelDb.Monster<LeafSlimeS>().MutableClone(),
+            "TwigSlimeM" => (MonsterModel)ModelDb.Monster<TwigSlimeM>().MutableClone(),
             _ => throw new ArgumentException(model),
         };
         var room = new CombatRoom(Monster); run.PushRoom(room); return (run, room);
@@ -59,6 +60,7 @@ public sealed class NativePublicMonsterBranchIntentTests
     [Theory]
     [InlineData("SludgeSpinner", 2, 2, 1)]
     [InlineData("LeafSlimeS", 1, 1, 1)]
+    [InlineData("TwigSlimeM", 3, 3, 2)]
     public async Task DetachedTargetsUsePublicPublicationHistoryAndNativeRollOrdinals(string model, int turns, int rolls, int branches)
     {
         var f = await PublicRoot(model, turns);
@@ -77,6 +79,8 @@ public sealed class NativePublicMonsterBranchIntentTests
     [InlineData("SludgeSpinner", 2)]
     [InlineData("SludgeSpinner", 3)]
     [InlineData("LeafSlimeS", 1)]
+    [InlineData("TwigSlimeM", 2)]
+    [InlineData("TwigSlimeM", 4)]
     public async Task ActualOwnedNativeLifecycleConsumesExactlyOneWordPerWeightedRoll(string model, int turns)
     {
         var f = await PublicRoot(model, turns);
@@ -240,6 +244,223 @@ public sealed class NativePublicMonsterBranchIntentTests
         ulong envelope = NativePublicMonsterBranchIntentProposal.EnvelopeSize(3, 0, false);
         Assert.True(proposal.AcceptCorrection(() => 2 * envelope));
         Assert.False(proposal.AcceptCorrection(() => 2 * envelope + 1));
+    }
+
+    [Fact]
+    public async Task TwigRepeatCapKeepsNativeZeroWordSupportAndRootFixedCorrection()
+    {
+        var f = await PublicRoot("TwigSlimeM", 5, zeroTurnWord: true);
+        var condition = NativePublicMonsterBranchIntentCondition.Create(f.Root);
+        Assert.Equal([NativePublicMonsterIntentShape.Status, NativePublicMonsterIntentShape.Attack,
+            NativePublicMonsterIntentShape.Attack, NativePublicMonsterIntentShape.Attack,
+            NativePublicMonsterIntentShape.Attack], condition.Combats[0].Targets.Select(target => target.Shape));
+        var (run, room) = Owned("TwigSlimeM");
+        var tape = new NativeLabelTape(new(641, 752, 863, 0, 0));
+        var proposal = new NativePublicMonsterBranchIntentProposal(condition, new Rng(229).NextUnsignedLong, ForceTape(tape));
+        proposal.AttachHypotheticalRun(run); proposal.CombatEntering(0, f.Entry, run.Rng.Shuffle);
+        using var words = LabelRandomScope.Enter(Word(tape));
+        using var scope = LabelMonsterMoveScope.Enter(proposal.BeginRoll, proposal.BeginBranch);
+        await room.Enter(run);
+        Assert.Equal(0, run.Rng.MonsterAi.Counter);
+        for (int turn = 1; turn < 5; turn++) await room.Engine.EndPlayerTurnAsync();
+        proposal.ValidateCompletion();
+        Assert.Equal(4, run.Rng.MonsterAi.Counter);
+        Assert.Equal(new ShuffleRational(1, 1), proposal.Envelope);
+        const ulong domain = 1UL << 53;
+        ulong bothAttack = NativeFloatBranchProposal.Bucket(2f, [1f, 1f], 0).Size;
+        Assert.Equal(new ShuffleRational(bothAttack, domain).Multiply(1, domain).Multiply(1, domain),
+            proposal.NativeToProposalRatio);
+        Assert.True(proposal.AcceptCorrection(() => 0));
+        Assert.False(proposal.AcceptCorrection(() => ulong.MaxValue));
+    }
+
+    [Fact]
+    public async Task TwigNativeHistoryContextsHaveExactFiniteBucketsAndOnePublicEnvelope()
+    {
+        var (run, room) = Owned("TwigSlimeM"); await room.Enter(run);
+        var monster = room.Engine.State.Enemies.Single().Monster!;
+        var machine = monster.MoveStateMachine!;
+        var random = (RandomBranchState)machine.States["RAND"];
+        string[] ids = ["POKEY_POUNCE_MOVE", "STICKY_SHOT_MOVE"];
+        // The last-two suffix suffices for the pinned repeat law. The longer
+        // attack run is reachable through the native first-branch zero endpoint.
+        (int[] History, float[] Weights)[] contexts =
+        [([1], [1f, 0f]), ([1, 0], [1f, 1f]), ([1, 0, 0], [0f, 1f]),
+            ([1, 0, 0, 0], [0f, 1f]), ([1, 0, 1], [1f, 0f])];
+        var maxima = new Dictionary<(int Bits, int Index), ulong>();
+        foreach (var context in contexts)
+        {
+            machine.StateLog.Clear();
+            machine.StateLog.AddRange(context.History.Select(index => machine.States[ids[index]]));
+            using var observer = LabelMonsterMoveScope.Enter(_ => null, branch =>
+            {
+                Assert.Equal(context.Weights, branch.Weights);
+                Assert.Equal(context.Weights.Sum(), branch.TotalWeight);
+                return null;
+            });
+            for (int bits = 1; bits <= 8; bits++)
+            {
+                ulong domain = 1UL << bits;
+                ulong[] sizes = [0, 0];
+                for (ulong high = 0; high < domain; high++)
+                {
+                    using var raw = LabelRandomScope.Enter(_ => high << (64 - bits));
+                    string selected = random.GetNextState(monster.Creature, run.Rng.MonsterAi);
+                    int index = Array.IndexOf(ids, selected);
+                    sizes[index]++;
+                    var bucket = NativeFloatBranchProposal.Bucket(context.Weights.Sum(), context.Weights, index, bits);
+                    Assert.True(high >= bucket.Start && high - bucket.Start < bucket.Size);
+                }
+                for (int index = 0; index < 2; index++)
+                {
+                    ulong envelope = NativePublicMonsterBranchIntentProposal.TwigEnvelopeSize(index, bits);
+                    Assert.Equal(index == 0 ? domain : domain - 1, envelope);
+                    Assert.Equal(sizes[index], NativeFloatBranchProposal.Bucket(context.Weights.Sum(), context.Weights, index, bits).Size);
+                    Assert.True(sizes[index] <= envelope);
+                    maxima[(bits, index)] = Math.Max(maxima.GetValueOrDefault((bits, index)), sizes[index]);
+                }
+            }
+            for (int index = 0; index < 2; index++)
+            {
+                var bucket = NativeFloatBranchProposal.Bucket(context.Weights.Sum(), context.Weights, index);
+                if (bucket.Size == 0) continue;
+                foreach (ulong high in new[] { bucket.Start, bucket.Start + bucket.Size - 1 })
+                foreach (ulong low in new ulong[] { 0, 2047 })
+                {
+                    using var raw = LabelRandomScope.Enter(_ => (high << 11) | low);
+                    Assert.Equal(ids[index], random.GetNextState(monster.Creature, run.Rng.MonsterAi));
+                }
+            }
+            // Exhaust every conditional high-bit choice and correction residue.
+            // Uniform conditional mass 1/b times correction b/M is 1/M for all
+            // possible hidden histories, including the tiny repeat-cap bucket.
+            const int correctionBits = 4;
+            for (int index = 0; index < 2; index++)
+            {
+                ulong envelope = NativePublicMonsterBranchIntentProposal.TwigEnvelopeSize(index, correctionBits);
+                var bucket = NativeFloatBranchProposal.Bucket(context.Weights.Sum(), context.Weights, index, correctionBits);
+                if (bucket.Size == 0)
+                {
+                    Assert.Null(NativeFloatBranchProposal.Create(context.Weights.Sum(), context.Weights, index,
+                        envelope, () => throw new InvalidOperationException("No proposal word for an impossible branch"), correctionBits));
+                    continue;
+                }
+                for (ulong offset = 0; offset < bucket.Size; offset++)
+                {
+                    var samples = new Queue<ulong>();
+                    if (bucket.Size > 1) samples.Enqueue(bucket.Size + offset);
+                    samples.Enqueue(ulong.MaxValue);
+                    var plan = NativeFloatBranchProposal.Create(context.Weights.Sum(), context.Weights, index,
+                        envelope, () => samples.Dequeue(), correctionBits)!;
+                    Assert.Empty(samples);
+                    Assert.Equal(bucket.Start + offset, plan.RawWord >> (64 - correctionBits));
+                    // A reduced-precision law fixes the intervening significant
+                    // native bits to zero; production boundaries are checked above.
+                    using (LabelRandomScope.Enter(_ => (plan.RawWord >> (64 - correctionBits)) << (64 - correctionBits)))
+                        Assert.Equal(ids[index], random.GetNextState(monster.Creature, run.Rng.MonsterAi));
+                    ulong accepted = 0;
+                    for (ulong residue = 0; residue < envelope; residue++)
+                        if (plan.AcceptCorrection(() => envelope + residue)) accepted++;
+                    Assert.Equal(bucket.Size, accepted);
+                    Assert.Equal(new ShuffleRational(1, envelope), new ShuffleRational(accepted, bucket.Size * envelope));
+                }
+            }
+        }
+        foreach (var maximum in maxima)
+            Assert.Equal(NativePublicMonsterBranchIntentProposal.TwigEnvelopeSize(maximum.Key.Index, maximum.Key.Bits), maximum.Value);
+        Assert.Equal(1UL << 53, NativePublicMonsterBranchIntentProposal.TwigEnvelopeSize(0));
+        Assert.Equal((1UL << 53) - 1, NativePublicMonsterBranchIntentProposal.TwigEnvelopeSize(1));
+    }
+
+    [Fact]
+    public async Task InspectedTwigPublicStatusAfterReshuffleRemainsCertifiedAndGapBounded()
+    {
+        var prior = new NativeTapePrior
+        {
+            SchemaVersion = NativeTapePrior.MapVersion, EligibleCombats = 3, EligibleDecisionsPerCombat = 8,
+            Execution = new(MaxFloors: 8, SourceDecisionHorizon: 1024,
+                OutsideCombatScript: NaturalSourceCollector.BoundedEventScriptVersion,
+                PublicContextProfile: PublicRunContext.Version, PublicEvidenceProfile: PublicRunEvidence.CompleteMapVersion,
+                PublicMapObservationProfile: PublicMapObservationProfiles.CompleteGraphV1),
+        };
+        // This already-inspected recipe locates public evidence only. The
+        // condition receives a detached public root, never source tape/recipe.
+        var recipe = prior.Draw(new Rng(24008, "nosl-native-tape-source-draw-v1"));
+        DecisionPacket root;
+        await using (var source = await NativeRunWorld.OpenLabelTapeAsync(prior.Execution, recipe,
+            NativeLabelTape.ForDeclaredPrior(prior, recipe)))
+        {
+            Assert.NotNull(source);
+            root = PublicJson.Read<DecisionPacket>(PublicJson.Serialize(source.Observe()));
+        }
+        string before = PublicJson.Serialize(root);
+        var condition = NativePublicMonsterBranchIntentCondition.Create(root);
+        Assert.Contains(condition.Combats[1].Targets, target => target.Model == "TwigSlimeM"
+            && target.Slot == 1 && target.RollOrdinal == 3 && target.IntentEventOrdinal == 235
+            && target.Shape == NativePublicMonsterIntentShape.Status);
+        var audit = NativePublicReshuffleCondition.Create(root).CombatAudits[1];
+        Assert.All(condition.Combats[1].Targets, target => Assert.True(target.IntentEventOrdinal <= audit.ThroughEventOrdinal));
+        // Identity recipe checks native ownership and complete public equality;
+        // it is not a posterior draw or evidence for an acceptance-rate claim.
+        var tape = NativeLabelTape.ForDeclaredPrior(prior, recipe, expectedPublicEvidence: root.PublicEvidence,
+            monsterBranchCondition: condition);
+        await using (var replay = await NativeRunWorld.OpenLabelTapeAsync(prior.Execution, recipe, tape))
+        {
+            Assert.NotNull(replay);
+            tape.ValidateProposalCompletion();
+            Assert.Equal(condition.EligibleRollCount, tape.ConditionedMonsterRolls);
+            Assert.Equal(condition.EligibleBranchCount, tape.ConditionedMonsterBranches);
+            Assert.Equal(before, PublicJson.Serialize(replay.Observe()));
+        }
+        var events = root.PublicEvidence!.Events.ToArray();
+        Assert.Equal(PublicCombatFactKind.Shuffled, Assert.IsType<PublicCombatFact>(events[231].Payload).FactKind);
+        events[231] = new(231, events[231].OwnerOrdinal, new PublicEvidenceGap(PublicEvidenceGapReason.Interrupted));
+        for (int i = 232; i < events.Length; i++)
+            if (events[i].OwnerOrdinal == events[231].OwnerOrdinal && events[i].Payload is PublicCombatDecision decision)
+                events[i] = new(events[i].EventOrdinal, events[i].OwnerOrdinal,
+                    new PublicCombatDecision(decision.Status, decision.Observation, decision.Actions,
+                        decision.HistoryThroughEventOrdinal, false));
+        var gapped = root with { PublicEvidence = new(PublicRunEvidence.CompleteMapVersion, false, events.ToImmutableArray()) };
+        var bounded = NativePublicMonsterBranchIntentCondition.Create(gapped);
+        Assert.Contains(bounded.Combats[1].Targets, target => target.Model == "TwigSlimeM" && target.RollOrdinal == 2);
+        Assert.DoesNotContain(bounded.Combats[1].Targets, target => target.IntentEventOrdinal >= 231);
+        Assert.Equal(before, PublicJson.Serialize(root));
+    }
+
+    [Theory]
+    [InlineData("repeat_type")]
+    [InlineData("max_repeats")]
+    [InlineData("cooldown")]
+    [InlineData("initial_move")]
+    public async Task TwigGraphDriftIsRejectedBeforeAnyProposalWord(string change)
+    {
+        var f = await PublicRoot("TwigSlimeM", 2);
+        var condition = NativePublicMonsterBranchIntentCondition.Create(f.Root);
+        var (run, room) = Owned("TwigSlimeM");
+        int samples = 0;
+        var tape = new NativeLabelTape(new(932, 843, 754, 0, 0));
+        var proposal = new NativePublicMonsterBranchIntentProposal(condition, () => { samples++; return 0; }, ForceTape(tape));
+        proposal.AttachHypotheticalRun(run); proposal.CombatEntering(0, f.Entry, run.Rng.Shuffle);
+        using var words = LabelRandomScope.Enter(Word(tape));
+        using var scope = LabelMonsterMoveScope.Enter(context =>
+        {
+            var machine = context.Monster.MoveStateMachine!;
+            var random = (RandomBranchState)machine.States["RAND"];
+            var attack = random.States[0];
+            if (change == "repeat_type") attack.RepeatType = MoveRepeatType.CannotRepeat;
+            if (change == "max_repeats") attack.MaxTimes = 1;
+            if (change == "cooldown") attack.Cooldown = 1;
+            random.States[0] = attack;
+            if (change == "initial_move")
+            {
+                machine.StateLog[0] = machine.States["POKEY_POUNCE_MOVE"];
+                machine.ForceCurrentState(machine.StateLog[0]);
+            }
+            return proposal.BeginRoll(context);
+        }, proposal.BeginBranch);
+        await Assert.ThrowsAsync<InvalidOperationException>(() => room.Enter(run));
+        Assert.Equal(0, samples);
+        Assert.Throws<InvalidOperationException>(proposal.ValidateCompletion);
     }
 
     [Theory]

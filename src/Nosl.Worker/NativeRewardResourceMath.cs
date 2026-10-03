@@ -15,6 +15,15 @@ internal sealed record NativePotionArm(ulong Start, ulong Size, IReadOnlyList<Co
 /// <summary>Exact native float <= rarity, float &lt; presence, and double integer preimages.</summary>
 internal static class NativeRewardResourceMath
 {
+    internal static ShuffleRational DisplayMass(bool forced, float threshold, bool displayed,
+        ShuffleRational identity, int bits = 53)
+    {
+        var domain = BigInteger.One << bits;
+        var success = forced ? domain : NativeRewardIdentityMath.FloatLowerBound(threshold, bits);
+        return new(success * identity.Numerator + (displayed ? BigInteger.Zero : (domain - success) * identity.Denominator),
+            domain * identity.Denominator);
+    }
+
     internal static NativePresencePlan Presence(bool forced, float threshold, bool displayed,
         ShuffleRational identity, Func<ulong> nextWord, int bits = 53)
     {

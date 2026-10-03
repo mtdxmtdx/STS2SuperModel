@@ -99,3 +99,27 @@ The initial-map structural validator is reused only on a detached v1 slice-only
 projection with the legacy declaration. No old-law probability plan or trace
 is reused. The original v2 complete graph remains the sole reconstruction input
 and the original evidence remains the final replay target.
+
+## Owning pipeline verification
+
+The new prior dispatches both ordinary label execution and conditional-word
+scopes through Map/Rewards/state provenance. `NativeTapeReplaySource` derives
+the reconstruction condition exclusively from the detached public evidence;
+it never receives the source recipe or source map object. The old joint seed/map
+prefix proposal is disabled under this new law. Missing or unsupported capture
+uses the declared native-generation fallback, with no claimed reconstruction.
+
+`NativeCompleteMapIntegrationTests` checks native generation followed by
+zero-Map-draw reconstruction, full public packet equality, independent replay
+objects and settled continuation forks. Same-recipe fixtures isolate lifecycle
+equality; they do not establish independent posterior acceptance. A bounded
+collector check also verifies the v5 public input, v2 evidence/audit metadata,
+new prior identity, reconstruction provenance and quarantine. Fresh independent
+acceptance is tested separately under the predeclared
+[development probe](../configs/native_map_fresh_probe_v1.json).
+
+The real sequential-native raw source producer was additionally passed through
+Python v5 validation and a forward-only CPU model. This checks the cross-language
+boundary; it does not make a labeled dataset or a trained policy. Current exact
+results and artifact hashes are in
+[verification](../configs/native_map_origin_verification_v1.json).

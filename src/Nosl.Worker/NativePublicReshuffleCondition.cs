@@ -11,11 +11,15 @@ internal sealed class NativePublicReshuffleInput
     internal long WitnessEventOrdinal { get; }
     internal IReadOnlyList<string> PoolIds { get; }
     internal IReadOnlyList<string> DrawPrefixIds { get; }
+    internal IReadOnlyList<NativePublicDrawKey> PoolKeys { get; }
+    internal IReadOnlyList<NativePublicDrawKey> DrawPrefixKeys { get; }
     internal NativePublicReshuffleInput(int ordinal, long shuffleEvent, long witnessEvent,
-        IEnumerable<string> pool, IEnumerable<string> prefix)
+        IEnumerable<NativePublicDrawKey> pool, IEnumerable<NativePublicDrawKey> prefix)
     {
         ReshuffleOrdinal = ordinal; ShuffleEventOrdinal = shuffleEvent; WitnessEventOrdinal = witnessEvent;
-        PoolIds = Array.AsReadOnly(pool.ToArray()); DrawPrefixIds = Array.AsReadOnly(prefix.ToArray());
+        PoolKeys = Array.AsReadOnly(pool.ToArray()); DrawPrefixKeys = Array.AsReadOnly(prefix.ToArray());
+        PoolIds = Array.AsReadOnly(PoolKeys.Select(key => key.Id).ToArray());
+        DrawPrefixIds = Array.AsReadOnly(DrawPrefixKeys.Select(key => key.Id).ToArray());
     }
 }
 
@@ -29,7 +33,7 @@ internal sealed record NativePublicReshuffleCombatAudit(long ThroughEventOrdinal
 /// </summary>
 internal sealed class NativePublicReshuffleCondition
 {
-    internal const string Version = "nosl.public-witnessed-reshuffle.v1";
+    internal const string Version = "nosl.public-witnessed-reshuffle.v2";
     internal IReadOnlyDictionary<int, NativePublicReshuffleCombat> Combats { get; }
     internal IReadOnlyDictionary<int, NativePublicReshuffleCombatAudit> CombatAudits { get; }
     internal int EligibleShuffleCount => Combats.Values.Sum(combat => combat.Targets.Count);

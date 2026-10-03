@@ -17,7 +17,7 @@ internal sealed record NativePublicMonsterIntentInput(int CombatIndex, long Owne
 /// </summary>
 internal sealed class NativePublicMonsterBranchIntentCondition
 {
-    internal const string Version = "nosl.public-monster-branch-intents.v1";
+    internal const string Version = "nosl.public-monster-branch-intents.v2";
     internal IReadOnlyDictionary<int, NativePublicMonsterIntentInput> Combats { get; }
     internal int EligibleRollCount => Combats.Values.Sum(input => input.Targets.Count);
     internal int EligibleBranchCount => Combats.Values.Sum(input => input.Targets.Count(target =>
@@ -75,9 +75,10 @@ internal sealed class NativePublicMonsterBranchIntentCondition
                 for (int j = 0; j < facts.Length; j++)
                 {
                     var fact = facts[j];
-                    if (fact.Model is not ("SludgeSpinner" or "LeafSlimeS")) continue;
+                    if (fact.Model is not ("SludgeSpinner" or "LeafSlimeS" or "TwigSlimeM")) continue;
                     if (Shape(fact.Model, fact.Intents) is not { } shape
-                        || expectedTurn == 1 && fact.Model == "SludgeSpinner" && shape != NativePublicMonsterIntentShape.AttackDebuff)
+                        || expectedTurn == 1 && fact.Model == "SludgeSpinner" && shape != NativePublicMonsterIntentShape.AttackDebuff
+                        || expectedTurn == 1 && fact.Model == "TwigSlimeM" && shape != NativePublicMonsterIntentShape.Status)
                     { safe = false; break; }
                     batch.Add(new(fact.TargetSlot!.Value, fact.Model, expectedTurn, intents[j].EventOrdinal, shape));
                 }
@@ -100,7 +101,8 @@ internal sealed class NativePublicMonsterBranchIntentCondition
         // verifies every published numeric value, repeat count, and later fact.
         if (intents.Count == 1 && intents[0] is { Kind: "Attack", Damage: >= 0, Repeats: 1 })
             return NativePublicMonsterIntentShape.Attack;
-        if (model == "LeafSlimeS" && intents.Count == 1 && intents[0] is { Kind: "StatusCard", Damage: null, Repeats: null })
+        if (model is "LeafSlimeS" or "TwigSlimeM" && intents.Count == 1
+            && intents[0] is { Kind: "StatusCard", Damage: null, Repeats: null })
             return NativePublicMonsterIntentShape.Status;
         if (model == "SludgeSpinner" && intents.Count == 2
             && intents[0] is { Kind: "Attack", Damage: >= 0, Repeats: 1 }

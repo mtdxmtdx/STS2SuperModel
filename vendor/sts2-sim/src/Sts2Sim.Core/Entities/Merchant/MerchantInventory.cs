@@ -54,14 +54,22 @@ public sealed class MerchantInventory
         ArgumentNullException.ThrowIfNull(player);
         using IDisposable rngScope = player.PlayerRng.BeginSemanticScope(
             $"{player.CurrentSemanticLocationKey}/merchant/phase=initial_inventory");
-        Rng shopRng = player.PlayerRng.Shops;
-        List<MerchantCardEntry> cards = GenerateCardEntries(player, shopRng);
-        List<MerchantRelicEntry> relics = GenerateRelicEntries(player, shopRng);
-        List<MerchantPotionEntry> potions = GeneratePotionEntries(player, shopRng);
-        var cardRemoval = new MerchantCardRemovalEntry(
-            MerchantCardRemovalEntry.PriceFor(player.RunState.Ascension, player.CardRemovalsUsed),
-            player);
-        return new MerchantInventory(player, cards, relics, potions, cardRemoval);
+        var labelContext = new LabelMerchantInventoryContext(player);
+        using IDisposable? labelInventory = LabelMerchantScope.BeginInventory(labelContext);
+        try
+        {
+            Rng shopRng = player.PlayerRng.Shops;
+            List<MerchantCardEntry> cards = GenerateCardEntries(player, shopRng);
+            List<MerchantRelicEntry> relics = GenerateRelicEntries(player, shopRng);
+            List<MerchantPotionEntry> potions = GeneratePotionEntries(player, shopRng);
+            var cardRemoval = new MerchantCardRemovalEntry(
+                MerchantCardRemovalEntry.PriceFor(player.RunState.Ascension, player.CardRemovalsUsed),
+                player);
+            var result = new MerchantInventory(player, cards, relics, potions, cardRemoval);
+            labelContext.CompletedInventory = result;
+            return result;
+        }
+        catch { (labelInventory as IAbortableLabelRewardBoundary)?.Abort(); throw; }
     }
 
     public static MerchantInventory CreateForEvent(Player player, IEnumerable<MerchantRelicEntry> relics) =>

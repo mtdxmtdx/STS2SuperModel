@@ -73,6 +73,7 @@ public sealed class NativePublicCombatPrefixConditionTests
     [InlineData("unsafe_hook", "entry_hook_not_certified:GamblingChip.AfterSideTurnStart")]
     [InlineData("gap", "complete_combat_history_required")]
     [InlineData("owner_start", "complete_combat_history_required")]
+    [InlineData("upgrade", "initial_draw_upgrade_pool_mismatch")]
     public void MissingOrUncertifiedStartupRemainsUnconditionedWithAReason(string change, string reason)
     {
         var recorder = Recorder();
@@ -84,6 +85,7 @@ public sealed class NativePublicCombatPrefixConditionTests
             "entry" => history.Where(e => e.Kind != NativeEntryAssets.EventKind).ToArray(),
             "intents" => history.Where(e => e.Kind != "intent_published").ToArray(),
             "interrupted_draw" => [.. history.Take(4), new("shuffle", "known_positions_reset"), .. history.Skip(4)],
+            "upgrade" => [.. history.Take(2), new("draw", PublicJson.Serialize(Card("StrikeSilent") with { Upgrade = 1 })), .. history.Skip(3)],
             _ => history,
         } } };
         if (change == "gap") recorder.RecordGap(owner, PublicEvidenceGapReason.ObservationMissing);

@@ -1,0 +1,328 @@
+{
+  "schema": "nosl.native-map-origin-verification.v1",
+  "source_commit": "ff4fb0cf7b745b787569929dc73ad9c5f7de051d",
+  "status": "VERIFIED_MAP_MARGINALIZATION_PROBE_EXPOSED_REWARDS_DISPATCH_GAPS",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "new_production_dataset_rows": 0,
+  "prior": "nosl.native-map-rewards-state-tape-prior.v1",
+  "public_evidence": "nosl.public-run-evidence.v2",
+  "public_map_profile": "nosl.public-map-complete-graph.v1",
+  "student_schema": "nosl.student.public.v5",
+  "sampler": "nosl-native-map-rewards-tape-marginalized-v1-public-evidence-v2",
+  "legacy_prior_and_corpus_unchanged": true,
+  "implemented": [
+    "Explicit independent Map-origin primitive partition with native clone/reseed/restore sharing and cross-law rejection",
+    "Complete canonical public map channel with explicit Missing and strict v1/v2 isolation",
+    "Exact marginalization of a behaviorally dead act-zero map generation component under the new law",
+    "Native map reconstruction, subsequent native hooks, owning replay and continuation forks",
+    "Fail closed on same-act regeneration after map marginalization; later acts retain native fallback",
+    "Teacher/source export uses full v5 conditioning input and v2 metadata",
+    "Separate graph-aware v5 student features, identity, validation and forward-only model engineering"
+  ],
+  "law_boundary": "Exact argument is for the declared ideal independent product law. SHA256 is a reproducible deterministic instantiation, not a finite-key posterior proof. Trusted native complete-map producer and sufficient-state certificate are required; arbitrary user graphs or live-client visibility are not certified.",
+  "focused_owning": {
+    "passed": 42,
+    "failed": 0,
+    "total": 42,
+    "skipped": 0,
+    "trx": {
+      "path": "artifacts/reports/map-public/complete-map-owning.trx",
+      "bytes": 63820,
+      "sha256": "a292a4ba6c5cb95311e99facf5b1d1d6864445f8a108dfd24e8621837145e04c"
+    }
+  },
+  "focused_export_and_failure": {
+    "passed": 42,
+    "failed": 0,
+    "total": 42,
+    "skipped": 0,
+    "trx": {
+      "path": "artifacts/reports/map-public/complete-map-source-record.trx",
+      "bytes": 63952,
+      "sha256": "cc47dd199f7888877bf784f1de679a065df59881defade0d41ec7a91aba0edaa"
+    }
+  },
+  "native_to_python": {
+    "result": {
+      "records": 1,
+      "source_schema": "nosl.natural-source.v5",
+      "public_schema": "nosl.student.public.v5",
+      "evidence_schema": "nosl.public-run-evidence.v2",
+      "native_error": null,
+      "forward_keys": [
+        "value",
+        "win_probability",
+        "death_probability",
+        "expected_final_hp",
+        "potion_net_change",
+        "hp_distribution",
+        "legal_mask",
+        "ranking_score",
+        "plan"
+      ],
+      "finite_tensor_outputs": 10,
+      "optimizer_steps": 0,
+      "backward_passes": 0,
+      "trainable": false,
+      "production_admitted": false
+    },
+    "evidence": [
+      {
+        "path": "artifacts/reports/map-public/native-v5-record-request.jsonl",
+        "bytes": 484,
+        "sha256": "1ed418979cddf508d2d7fef99c60e83fa4617ce0678c93557c80a43bb11e6c27"
+      },
+      {
+        "path": "artifacts/reports/map-public/native-v5-record-response.jsonl",
+        "bytes": 109220,
+        "sha256": "fcb0506dc4fac966392ef3fed979319d6b481758e0dedf58961dacfa695b8cc6"
+      },
+      {
+        "path": "artifacts/reports/map-public/native-v5-record-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "artifacts/reports/map-public/native-v5-python-validation.json",
+        "bytes": 527,
+        "sha256": "1af18b414fca6f41ff9b2fa7657cfddd45e457586e682e94997558af1190821a"
+      },
+      {
+        "path": "artifacts/reports/map-public/native-v5-python-validation.log",
+        "bytes": 781,
+        "sha256": "fc4ceea2b13cf6c58fa59d1a24a29467c811d37792aa27d008d9a429150b1b73"
+      },
+      {
+        "path": "artifacts/reports/map-public/verify_native_v5_record.py",
+        "bytes": 1578,
+        "sha256": "4725d78505f9b470a715bcd23995243c3faef0eb6f6701db0d7e42e4dcbf0f21"
+      }
+    ]
+  },
+  "reviews": {
+    "independent_map_law": "Approved after explicit cross-law restore/nesting guard fixes",
+    "native_map_reconstruction": "Approved after same-act regeneration fails closed even if callback error was caught",
+    "owning_pipeline": "Approved after both teacher public-evidence metadata stamps use actual schema; emitted-record regression passed",
+    "student_v5": "Approved; complete-graph identity and anchor semantics retained; no backward or optimizer",
+    "probe_gates": "Reviewed before launch; every source and candidate branch retained, strong settlement criterion, new-law mechanism checked; no survivor-population claim"
+  },
+  "fresh_probe": {
+    "spec": "configs/native_map_fresh_probe_v1.json",
+    "status": "COMPLETED_GATE_FAILED",
+    "production_admission": false,
+    "analysis": {
+      "sourceDrawsRequested": 8,
+      "existingRoots": 8,
+      "recordedRoots": 8,
+      "distinctRecordedPublicRoots": 8,
+      "distinctRecordedSourceRuns": 8,
+      "acceptedPosteriorDraws": 2,
+      "allocatedCandidateWorlds": 98,
+      "settledCandidateWorlds": 14,
+      "elapsedSeconds": 25.1864608,
+      "peakWorkerMemoryBytes": 263458816,
+      "budgetExpired": false,
+      "priorIdentity": "10b8d166ee4dfe2cacd0946d5737f38de676e55b20b69acf635c3898da88e3f6",
+      "proposal_statuses": {
+        "public_constraint_mismatch": 646,
+        "proposal_engine_error": 4,
+        "accepted": 2
+      },
+      "outcome_kinds": {
+        "ComputeTruncated": 68,
+        "EngineError": 16,
+        "Win": 14
+      },
+      "fully_completed_sources": [
+        24006
+      ],
+      "engine_errors": 16,
+      "proposal_engine_or_cleanup_errors": 4,
+      "attempt_statuses": {
+        "existing_root_evaluated": 8
+      },
+      "fully_completed_multi_action_sources": [],
+      "fully_completed_combat2_multi_action_sources": [],
+      "gate_requested_denominator": 8,
+      "requested_posterior_world_slots": 16,
+      "unaccepted_requested_world_slots": 14,
+      "all_assigned_candidate_mass_accounted": true,
+      "actual_settlement_complete_outcomes": 14,
+      "collector_named_settled_field_means_true_terminal_only": true,
+      "production_admission": false,
+      "gate_passed": false,
+      "gate_interpretation": "Bounded fresh development feasibility only; censored survivor rows are not representative production samples."
+    },
+    "resources": {
+      "exit_code": 0,
+      "external_watchdog_killed": false,
+      "wall_seconds": 25.33971131299768,
+      "peak_child_rss_kib": 257284,
+      "user_seconds": 28.722084,
+      "system_seconds": 0.517863,
+      "binaries_unchanged": true
+    },
+    "artifacts": [
+      {
+        "path": "artifacts/reports/map-public/fresh-eight-request.jsonl",
+        "bytes": 933,
+        "sha256": "a5c9037037bd6e444a35031cbd82a360e32853aa5a42a0589de189711730a531"
+      },
+      {
+        "path": "artifacts/reports/map-public/fresh-eight-predeclaration.json",
+        "bytes": 4903,
+        "sha256": "b0ad0ab3b8150de5236123d36716a6ecd9757d1ed8396a735234af1c6b65182c"
+      },
+      {
+        "path": "artifacts/reports/map-public/fresh-eight-response.jsonl",
+        "bytes": 4287124,
+        "sha256": "07928277a4c2696db69ad094ee2866e288100d7603735ec7a2d4902b29969ff1"
+      },
+      {
+        "path": "artifacts/reports/map-public/fresh-eight-analysis.json",
+        "bytes": 14868,
+        "sha256": "84a4e6803cb54dd7558f97c27670911b5782d674ee0c50b1df01d2ab925128c5"
+      },
+      {
+        "path": "artifacts/reports/map-public/fresh-eight-analysis.log",
+        "bytes": 11300,
+        "sha256": "cda80c165ec14f4961ff9345c8915cb899c6b614b4f8c2a21dca3ca1bdc731f9"
+      },
+      {
+        "path": "artifacts/reports/map-public/fresh-eight-resources.json",
+        "bytes": 216,
+        "sha256": "a593b4ca77175a55bd685b1bc16aa35ae2a6a45fa402b45a72bd585b71ebf427"
+      },
+      {
+        "path": "artifacts/reports/map-public/fresh-eight-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "artifacts/reports/map-public/fresh-eight-run.log",
+        "bytes": 527,
+        "sha256": "c31ccbaec9b42df0d26e1bd63cebae8f2b3b91a025d5b70047bb437c6e81b4be"
+      },
+      {
+        "path": "artifacts/reports/map-public/run_fresh_eight.py",
+        "bytes": 2677,
+        "sha256": "102ffa6eeac6582598eab2f915d851b64dc678844194f401b84ae29e0309f0eb"
+      },
+      {
+        "path": "artifacts/reports/map-public/analyze_fresh_eight.py",
+        "bytes": 6960,
+        "sha256": "92d833d13ea20edf26515b0591c1e8c3b4bbfa5014572d38fb12ffbc614ab9b9"
+      }
+    ],
+    "finding": "Map generation was eliminated from reconstruction proposals (zero Map cells). Eight fresh roots executed in25.34s, but only the opening root24006 completed. Three stale Rewards-only guards block shared Rewards components under MapLawId; Neow grant identities and later public draws also remain unconditioned in this snapshot. Engine errors are retained, not relabeled as posterior rejection."
+  },
+  "remaining": [
+    "Repair shared Rewards compatibility guards; add public Neow grants and later draw-history proposals, then repeat the inspected diagnostic separately from fresh validation",
+    "Complete-context v5 supervised admission/preparation path remains a software gap",
+    "Resource and permanent-effect value calibration remains partially unresolved; utility masks stay explicit",
+    "No broad data enlargement or new fitting until quality gates justify it"
+  ],
+  "native_suite": {
+    "passed": 1835,
+    "failed": 0,
+    "total": 1835,
+    "skipped": 0,
+    "trx": {
+      "path": "artifacts/reports/map-public/complete-map-aggregate.trx",
+      "bytes": 2746872,
+      "sha256": "12ce09f877c5cba9c0d88a08bdd443a8ab2a28d97b13c021f7692d9c1510a210"
+    },
+    "log": {
+      "path": "artifacts/map-public-aggregate.log",
+      "bytes": 2247,
+      "sha256": "5210f7e9eecb890c59f523238a7988e5ee24792808d5e759b2c1f2bd6ae20b24"
+    }
+  },
+  "core_suite": {
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "duration_reported": "4 m 7 s",
+    "trx_duration_seconds": 248.161403,
+    "trx_counters": {
+      "total": 4496,
+      "executed": 4493,
+      "passed": 4493,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "skipped_count_source": "Three per-test NotExecuted outcomes, matching stdout and total minus executed. The test adapter leaves aggregate notExecuted at zero.",
+    "build_and_test_wall_seconds": 264.72656528899824,
+    "evidence_kind": "fresh_single_full_core_run_with_redirected_stdout_stderr_and_trx",
+    "exit_code": 0,
+    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 7 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "raw_log_available": true,
+    "trx_available": true,
+    "log_path": "artifacts/map-origin-v5-core-verification/full-core.log",
+    "log_sha256": "cf0e66f026e6488917d69df45aa8ae92f2ae37c6f33347dd0af7c04a3d0ae10b",
+    "trx_path": "artifacts/map-origin-v5-core-verification/test-results/vendor-core.trx",
+    "trx_sha256": "d6ecb5c105483ccf0a5a0d2cfb68aa113fb45db4b0959285b48b2e6575e9a420",
+    "run_record_path": "artifacts/map-origin-v5-core-verification/run-record.json",
+    "run_record_sha256": "4531d0aee192e86424005eb07efbf4da53a826266a1facc43d9526cb2c9f9f5f",
+    "invocations": 1,
+    "rerun_for_packaging": true,
+    "sdk_version": "9.0.303",
+    "source_hashes_verified_before_run": true,
+    "source_hashes_verified_after_run": true,
+    "source_worktree": "STS2SuperModel-coverage",
+    "verified_source_commit": "ff4fb0cf7b745b787569929dc73ad9c5f7de051d",
+    "build_artifacts": "artifacts/map-origin-v5-core-verification",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/map-origin-v5-core-verification --nologo -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core.trx' --results-directory artifacts/map-origin-v5-core-verification/test-results",
+    "command_note": "Portable replay command; the results directory is shown relative to the repository. The exact process argv is preserved in run-record.json. Run after sourcing the existing shared .NET 9 environment. Build and tests used the isolated artifacts path with one MSBuild worker, node reuse and shared compilation disabled, and NuGet auditing disabled. The process stdout and stderr were redirected directly to the preserved log.",
+    "started_at_utc": "2026-10-03T00:53:10.635068+00:00",
+    "finished_at_utc": "2026-10-03T00:57:35.449190+00:00",
+    "src_git_tree": "6cd2f8c1542d7092200b1be318502a4ddf7acb36",
+    "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+    "test_assembly_path": "artifacts/map-origin-v5-core-verification/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "55dc564c8aa1dfb74fc0eaab8665d0e627052c54c1a1aba254beb3e7881fa624",
+    "core_assembly_path": "artifacts/map-origin-v5-core-verification/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "499112cba150d6fad72befa1a7355bfd211e2d0f904b9d1e25e1e538c9285c35",
+    "assembly_hash_capture": "Captured from the isolated artifacts immediately after the fresh full suite; no later build or test was run there.",
+    "verified_source_manifest_sha256": "4fb1f679671bf33f7cb49d375d2eb20f9986744c81b038f853a158f7fc69ab46",
+    "source_manifest_before_path": "artifacts/map-origin-v5-core-verification/source-manifest-before.json",
+    "source_manifest_after_path": "artifacts/map-origin-v5-core-verification/source-manifest-after.json",
+    "source_manifest_before_sha256": "4fb1f679671bf33f7cb49d375d2eb20f9986744c81b038f853a158f7fc69ab46",
+    "source_manifest_after_sha256": "4fb1f679671bf33f7cb49d375d2eb20f9986744c81b038f853a158f7fc69ab46",
+    "build_warning_count": 0,
+    "build_warnings": [],
+    "build_warning_capture": "Warning lines matching compiler/MSBuild warning codes in the preserved combined stdout/stderr log."
+  },
+  "vendor_reconstruction": {
+    "upstream_commit": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
+    "verified_source_commit": "ff4fb0cf7b745b787569929dc73ad9c5f7de051d",
+    "tracked_source_and_test_files_verified": 2238,
+    "main_patch_sha256": "b5ecbe1cbc99cc6c666971acb88c9822178048e0f54246a7f00381a5aae39291",
+    "map_patch_sha256": "fad7d6a7e85ea44901da2b01227f972926a116af5398686a2628326002bcdc08",
+    "source_file_manifest_sha256": "4fb1f679671bf33f7cb49d375d2eb20f9986744c81b038f853a158f7fc69ab46",
+    "source_file_manifest_path": "artifacts/map-origin-v5-vendor-verification/vendor-reconstructed-manifest.json",
+    "all_bytes_match": true,
+    "reconstructed_file_set_matches": true,
+    "packaging_crosscheck_path": "artifacts/map-origin-v5-vendor-verification/crosscheck-verification.json",
+    "packaging_crosscheck_sha256": "edf0cda202102b4a4d17423b8484a9d052a0169754daa98ca9fe576f7b9d11a5"
+  }
+}

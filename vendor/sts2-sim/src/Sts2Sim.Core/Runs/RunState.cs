@@ -250,11 +250,12 @@ public sealed partial class RunState : IRunState
             Rng.ForSemanticKey(RunRngType.UpFront, "run_setup/relic_bag/shared"),
             SharedRelicPool.Instance.AllRelics,
             includeAllRarities: true);
-        return new RelicGrabBag(
-            Rng.ForSemanticKey(
-                RunRngType.UpFront,
-                $"run_setup/relic_bag/character={player.Character.Id.Entry}"),
-            SharedRelicPool.Instance.AllRelics.Concat(player.Character.RelicPool.AllRelics));
+        Rng playerBagRng = Rng.ForSemanticKey(RunRngType.UpFront,
+            $"run_setup/relic_bag/character={player.Character.Id.Entry}");
+        var playerBagPool = SharedRelicPool.Instance.AllRelics.Concat(player.Character.RelicPool.AllRelics).ToArray();
+        using IDisposable? labelBag = LabelMerchantScope.BeginBag(new(player, playerBagRng, playerBagPool));
+        try { return new RelicGrabBag(playerBagRng, playerBagPool); }
+        catch { (labelBag as IAbortableLabelRewardBoundary)?.Abort(); throw; }
     }
 
     private void EnsureRoomsGenerated()

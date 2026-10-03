@@ -8,7 +8,7 @@ namespace Nosl.Worker;
 /// <summary>Owns only fresh native Rewards cells for already displayed past-combat resources.</summary>
 internal sealed class NativePublicRewardResourceProposal(NativePublicRewardResourceCondition condition,
     Func<LabelRandomAddressV1, bool> wasVisited, Action<LabelRandomAddressV1, ulong> forceFresh,
-    Func<ulong> nextProposalWord)
+    Func<ulong> nextProposalWord, Action<Exception>? captureFailure = null)
 {
     private NativePublicRewardResourceTarget? _active;
     private Rng? _rng;
@@ -28,36 +28,41 @@ internal sealed class NativePublicRewardResourceProposal(NativePublicRewardResou
 
     internal IDisposable? BeginCombatReward(LabelCombatRewardContext context, int combatIndex)
     {
-        if (!condition.Targets.TryGetValue(combatIndex, out var target)) return null;
-        if (_active is not null || _completed.Contains(combatIndex)) throw new InvalidOperationException("Public resource boundary repeated or nested");
-        if (context.Player.RunState is not RunState run || run.Players.Count != 1
-            || !ReferenceEquals(context.Rng, context.Player.PlayerRng.Rewards) || context.Player.PlayerRng.UsesSemanticKeys)
-            throw new InvalidOperationException("Resource proposals require the owned solo native Rewards RNG");
-        if (run.CurrentActIndex != target.Owner.ActIndex || run.TotalFloor != target.Owner.Floor
-            || context.Player.Character.GetType().Name != condition.Character)
-            throw new NativePublicConstraintMismatchException("Native resource boundary differs from its public owner");
-        target.GoldCertificate.ValidateBoundary(context);
-        _active = target; _rng = context.Rng;
-        _presenceSeen = _goldSeen = _potionSeen = _expectsPotion = _failed = false;
-        _boundaryRatio = new(1, 1);
-        var scope = LabelRewardResourceScope.Enter(BeginPresence, BeginGold, BeginPotion);
-        return new Completion(() =>
+        try
         {
-            try
+            if (!condition.Targets.TryGetValue(combatIndex, out var target)) return null;
+            if (_active is not null || _completed.Contains(combatIndex)) throw new InvalidOperationException("Public resource boundary repeated or nested");
+            if (context.Player.RunState is not RunState run || run.Players.Count != 1
+                || !ReferenceEquals(context.Rng, context.Player.PlayerRng.Rewards) || context.Player.PlayerRng.UsesSemanticKeys)
+                throw new InvalidOperationException("Resource proposals require the owned solo native Rewards RNG");
+            if (run.CurrentActIndex != target.Owner.ActIndex || run.TotalFloor != target.Owner.Floor
+                || context.Player.Character.GetType().Name != condition.Character)
+                throw new NativePublicConstraintMismatchException("Native resource boundary differs from its public owner");
+            target.GoldCertificate.ValidateBoundary(context);
+            _active = target; _rng = context.Rng;
+            _presenceSeen = _goldSeen = _potionSeen = _expectsPotion = _failed = false;
+            _boundaryRatio = new(1, 1);
+            var scope = LabelRewardResourceScope.Enter(BeginPresence, BeginGold, BeginPotion);
+            return new Completion(() =>
             {
-                scope.Dispose();
-                if (_failed) return;
-                if (!_presenceSeen || !_goldSeen || _potionSeen != _expectsPotion)
-                    throw new InvalidOperationException("Native reward did not complete its primary resource draw contract");
-                var bound = target.GoldCertificate.Envelope;
-                if (target.Potion is not null) bound = bound.Multiply(target.PotionIdentityMass.Numerator, target.PotionIdentityMass.Denominator);
-                if (_boundaryRatio.Numerator * bound.Denominator > _boundaryRatio.Denominator * bound.Numerator)
-                    throw new InvalidOperationException("Native resource mass exceeded its root-wide envelope");
-                _completed.Add(combatIndex);
-            }
-            catch { _failed = true; throw; }
-            finally { _active = null; _rng = null; }
-        });
+                try
+                {
+                    scope.Dispose();
+                    if (_failed) return;
+                    if (!_presenceSeen || !_goldSeen || _potionSeen != _expectsPotion)
+                        throw new InvalidOperationException("Native reward did not complete its primary resource draw contract");
+                    var bound = target.GoldCertificate.Envelope;
+                    bound = bound.Multiply(target.PotionEnvelope.Numerator, target.PotionEnvelope.Denominator);
+                    if (_boundaryRatio.Numerator * bound.Denominator > _boundaryRatio.Denominator * bound.Numerator)
+                        throw new InvalidOperationException("Native resource mass exceeded its root-wide envelope");
+                    _completed.Add(combatIndex);
+                }
+                catch (Exception error) { _failed = true; captureFailure?.Invoke(error); throw; }
+                finally { _active = null; _rng = null; }
+            });
+
+        }
+        catch (Exception error) { _failed = true; captureFailure?.Invoke(error); throw; }
     }
 
     private bool PrimaryDone => _goldSeen && (!_expectsPotion || _potionSeen);
@@ -69,6 +74,8 @@ internal sealed class NativePublicRewardResourceProposal(NativePublicRewardResou
         {
             if (_presenceSeen || _goldSeen || !ReferenceEquals(context.Rng, _rng))
                 throw new InvalidOperationException("Native primary potion presence order changed");
+            if (_active.Owner.PublicHistory is { } history && (context.Forced || context.Threshold != history.PotionThreshold))
+                throw new NativePublicConstraintMismatchException("Native potion presence differs from the complete public reward history");
             // An absent display also includes any native empty-rarity branch.
             var plan = NativeRewardResourceMath.Presence(context.Forced, context.Threshold,
                 _active.Potion is not null, _active.PotionIdentityMass, nextProposalWord);
@@ -76,7 +83,7 @@ internal sealed class NativePublicRewardResourceProposal(NativePublicRewardResou
             _presenceSeen = true; ConditionedPresenceCount++;
             return Force(context.Rng, plan.Plan);
         }
-        catch { _failed = true; throw; }
+        catch (Exception error) { _failed = true; captureFailure?.Invoke(error); throw; }
     }
 
     private IDisposable? BeginGold(LabelGoldRewardContext context)
@@ -94,7 +101,7 @@ internal sealed class NativePublicRewardResourceProposal(NativePublicRewardResou
             _goldSeen = true; ConditionedGoldCount++;
             return Force(context.Rng, plan);
         }
-        catch { _failed = true; throw; }
+        catch (Exception error) { _failed = true; captureFailure?.Invoke(error); throw; }
     }
 
     private IDisposable? BeginPotion(LabelPotionSelectionContext context)
@@ -112,7 +119,7 @@ internal sealed class NativePublicRewardResourceProposal(NativePublicRewardResou
             _potionSeen = true; ConditionedPotionCount++;
             return Force(context.Rng, plan);
         }
-        catch { _failed = true; throw; }
+        catch (Exception error) { _failed = true; captureFailure?.Invoke(error); throw; }
     }
 
     private IDisposable Force(Rng rng, NativeResourcePlan plan)
@@ -133,7 +140,7 @@ internal sealed class NativePublicRewardResourceProposal(NativePublicRewardResou
                     || Enumerable.Range(0, plan.RawWords.Count).Any(i => !wasVisited(address with { RawCursor = checked(address.RawCursor + (ulong)i) })))
                     throw new InvalidOperationException("Native resource skipped, restored, or added Rewards draws");
             }
-            catch { _failed = true; throw; }
+            catch (Exception error) { _failed = true; captureFailure?.Invoke(error); throw; }
         });
     }
 
@@ -152,7 +159,7 @@ internal sealed class NativePublicRewardResourceProposal(NativePublicRewardResou
 
     private static LabelRandomAddressV1 Address(Rng rng)
     {
-        if (rng.ToSerializable().LabelProvenance is not { Law: LabelRandomProvenance.LawId,
+        if (rng.ToSerializable().LabelProvenance is not { Law: LabelRandomProvenance.LawId or LabelRandomProvenance.MapLawId,
             Partition: LabelRandomProvenance.RewardsPartition, OriginFamily: LabelRandomProvenance.RewardsOrigin,
             InitialSeed: { } seed, RawCursor: { } cursor })
             throw new InvalidOperationException("Resource conditioning requires tagged native Rewards provenance");

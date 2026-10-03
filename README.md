@@ -12,7 +12,8 @@ Silent A10 单场战斗 NOSL 独立工程。当前接入 **固定上游规则＋
 | [已确认偏好](docs/CONFIRMED_PREFERENCE_FEEDBACK.md) | 两个具体偏好约束及稀有药水的暂定倾向，不虚构统一价格 |
 | [50项验收映射](docs/M3_M6_ACCEPTANCE_MAP.md) | 原始编号逐项对应实测证据、支持边界和未完成工作 |
 | [M3–M6检查点](docs/M3_M6_ACCEPTANCE_CHECKPOINT.md) | 新实现、实测证据、数据阶段及尚未闭合的门槛 |
-| [混合采样验证](docs/NATIVE_REWARDS_TAPE.md) | 显式奖励先验、完整公开历史组合提议；8个新开发根局面的吞吐门槛未通过 |
+| [当前地图条件采样](docs/NATIVE_COMPLETE_MAP_RECONSTRUCTION.md) | 新版独立地图先验、完整公开地图重建与v5学生通道；新开发根局面已暴露可修复的奖励兼容与公开历史提议缺口 |
+| [历史混合采样验证](docs/NATIVE_REWARDS_TAPE.md) | 原奖励先验及其公开历史提议的验证边界 |
 | [当前状态](docs/STATUS.md) | 已实现范围、阶段状态和剩余缺口 |
 | [开发与协议](docs/DEVELOPMENT.md) | 构建、测试、JSONL worker 和 API |
 | [实施结果](docs/M0-M2_REPORT.md) | M0–M2 改动与证据 |
@@ -54,8 +55,8 @@ tools/                 两进程协议烟测
 
 旧源码、数据和提交历史保留在 [codex/history-2026-10-01](https://github.com/mtdxmtdx/STS2SuperModel/tree/codex/history-2026-10-01)，固定归档提交为 [b0bb07b](https://github.com/mtdxmtdx/STS2SuperModel/tree/b0bb07bdd09f8ae7833724126b18738c93d09eb4)。本次工作发布为 STS2SuperModel 的独立分支与草稿PR，未合并main；实验权重与数据单独保存，不混入源码提交。
 
-通用原生回放与原先验预算门槛见 [NATIVE_OWNED_REPLAY.md](docs/NATIVE_OWNED_REPLAY.md)。最新[条件随机带采样](docs/NATIVE_CONDITIONAL_TAPE.md)保留固定8开局的16个世界、160条结算分支；v7联合抽取原生章节/地图前缀，通过两个既有带入资产根局面的诊断门槛，22条分支结算18条。完整原生回归1,305项通过。另行预声明的16个新开发根局面中，12个多动作带入资产根局面均未完成，总计226条分支结算20条、计算截断206条、引擎错误0；广度门槛仍未通过。真实公开历史记录、独立v4学生边界及严格验证已接通；26项前向检查通过。新的混合奖励先验与组合条件提议已通过1,485项完整回归及8项加强结算检查；Core重新运行4,493项通过、3项既有可选跳过。重复8根局面的360秒诊断仅执行4个根局面，接受2个世界、结算16/56条已分配分支，另外4根明确未执行，广度吞吐门槛仍未通过。详见[混合v4证据](configs/native_rewards_hybrid_v4_verification.json)。工程继续；未扩大生产数据或再次拟合。
+当前独立地图先验将地图生成随机带与奖励、其他原生状态随机带分开，完整公开地图通过v2证据与v5学生通道传递。新版v3采样组合已补齐已定位的事件选项、Gorge公开卡牌、DaggerThrow与Fairy历史约束，并修复被捕获的原生回调错误分类。完整Worker回归**1,928/1,928通过**，v5数据、受限训练接口和模型边界**53/53通过**；Core源码未再改变，既有完整回归为4,493通过、3项可选跳过。
 
-最新v5组合通过1,547项完整C#回归，Core4,493项通过、3项既有可选跳过；公开抽牌序列、尸蛆初始意图与联合章节/地图提议已接通并复核。原8根局面的隔离复测在336秒内全部执行，接受9个世界、结算59/96条分支，4根全部完成；多动作完成2/6，战斗索引2仍未完成，广度门槛未通过。当前不增加生产数据或再次拟合。详见[v5组合与边界](docs/NATIVE_HYBRID_V5.md)。
+新的原生候选API已实际完成一个根局面的7动作×2独立世界共14条结算分支，并通过Python适配、完整公开输入/结果校验及有限的前向损失检查。没有新增反向传播、优化器步骤或入库授权；v5接口只提供辅助监督，未知资源价值与策略排序仍有掩码。相同8根的隔离复测在219秒内完成执行：5根完整、68/98条分支结算、30条计算截断，引擎错误0；第三场战斗门槛仍未通过。新定位缺口为完整公开商店库存以及后续房间/敌人入口条件。另12个新开发来源已预声明，当前保持未启动。参见[v3验证](configs/native_map_origin_verification_v3.json)、[新候选API](docs/NATIVE_COMPLETE_MAP_CANDIDATES.md)、[v5数据准备](docs/V5_NATIVE_DATA_PREPARATION.md)及[受限试训接口](docs/V5_BOUNDED_PILOT_INTERFACE.md)。历史v2为4根完整、54/98条分支结算，不能替代当前版本测量。
 
-最新v7组合通过1,792项完整回归；更新后的Core为4,493项通过、3项既有可选跳过。固定2,048个地图候选中，32个匹配首张公开切片、12个匹配全部已知切片；三根携带历史的局面各256次均未匹配完整地图，尚未放行扩大生产或新拟合。参见[v7验证](configs/native_rewards_hybrid_v7_verification.json)。
+历史原生及混合采样证据保存在[通用回放](docs/NATIVE_OWNED_REPLAY.md)、[条件随机带](docs/NATIVE_CONDITIONAL_TAPE.md)、[混合v5](docs/NATIVE_HYBRID_V5.md)和[v7验证](configs/native_rewards_hybrid_v7_verification.json)。旧先验v6的固定8根诊断曾完成5根、结算64/96条分支，但战斗索引2未通过；v7的2,048个地图候选仅12个匹配全部公开切片，三根带历史局面各256次零匹配。它们是不同版本下的历史测量，不能作为新地图先验的吞吐结果。尚未扩大生产数据或再次拟合。

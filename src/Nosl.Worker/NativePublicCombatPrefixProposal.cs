@@ -76,10 +76,11 @@ internal sealed class NativePublicCombatPrefixProposal(
         _awaitingInitialShuffle = _conditioningInitialHp = false;
         _shuffled.Add(_combatIndex);
         if (_active.Shuffle is not { } shuffle) return null;
-        var ids = cards.Select(card => card.GetType().Name).ToArray();
-        if (!shuffle.MatchesInitialPool(ids))
+        var keys = cards.Select(NativePublicDrawKey.From).ToArray();
+        if (!shuffle.MatchesPublicInitialPool(keys))
             throw new InvalidOperationException("Certified public combat entry differs from its native initial shuffle pool");
-        var plan = ConditionalShuffleProposal.Create(ids, shuffle.DrawPrefixIds, nextWord)
+        var plan = ConditionalShuffleProposal.Create(keys.Select(key => key.Signature).ToArray(),
+            shuffle.DrawPrefixKeys.Select(key => key.Signature).ToArray(), nextWord)
             ?? throw new NativePublicConstraintMismatchException("Public combat draw prefix has no permutation support");
         _shuffles.Add(plan);
         return forceStateWords(plan.RawWords, "public combat " + _combatIndex + " shuffle");

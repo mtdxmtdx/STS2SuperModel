@@ -1,0 +1,84 @@
+{
+  "schema": "nosl.development-sampler-cohort.v2",
+  "created_utc": "2026-10-03T08:03:05.917249+00:00",
+  "source_commit": "e1d1cd26e1b791ff56bbeb5c12bbd7ed8fbe75c3",
+  "role": "Predeclared new development sources, chosen before any source packet or outcome inspection; bounded sampler correctness/coverage gate, not production admission",
+  "request": {
+    "op": "native_tape_replay",
+    "options": {
+      "collectionId": "map-public-fresh-development-24101-24112-v4",
+      "prior": {
+        "schemaVersion": "nosl.native-map-rewards-state-tape-prior.v1",
+        "eligibleCombats": 3,
+        "eligibleDecisionsPerCombat": 8,
+        "execution": {
+          "maxFloors": 8,
+          "sourceDecisionHorizon": 1024,
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "outsideCombatScript": "nosl-natural-public-script-v3",
+          "publicContextProfile": "nosl.public-run-context.v1",
+          "publicEvidenceProfile": "nosl.public-run-evidence.v2",
+          "publicMapObservationProfile": "nosl.public-map-complete-graph.v1"
+        }
+      },
+      "sourceDrawSeeds": [
+        24101,
+        24102,
+        24103,
+        24104,
+        24105,
+        24106,
+        24107,
+        24108,
+        24109,
+        24110,
+        24111,
+        24112
+      ],
+      "wallBudgetSeconds": 360,
+      "compareUnconditioned": false,
+      "initialPrefixMaxTrials": 64,
+      "eventPermutationMaxTrials": 256
+    },
+    "teacherOptions": {
+      "mode": "T0",
+      "continuationPolicyId": "nosl-public-rules-v2",
+      "evaluationSeeds": [
+        701,
+        702
+      ],
+      "maxPosteriorAttempts": 64,
+      "maxDecisions": 200
+    }
+  },
+  "external_watchdog_seconds": 420,
+  "gates": {
+    "all_twelve_requested_attempts_retained": true,
+    "all_twelve_attempts_executed": true,
+    "fully_complete_requested_roots_at_least": 6,
+    "fully_complete_later_decision_roots_at_least": 4,
+    "fully_complete_combat_index2_later_decision_roots_at_least": 1,
+    "fully_complete_multi_candidate_roots_at_least": 5,
+    "engine_errors": 0,
+    "assigned_candidate_worlds_completely_accounted": true,
+    "full_completion": "Exactly two accepted posterior worlds and true terminal settlement-complete outcomes for every legal candidate; empirical nonutility masks complete",
+    "missing_required_category": "inconclusive_not_pass",
+    "production_admission": false
+  },
+  "selection_accounting": "All 12 source draws remain denominator, including absent, failed, timed out or unexecuted. No replacements, no success quota, no postinspection category selection. The prior chooses combat and local decision before execution.",
+  "time_bias": "Deadline truncation is unresolved computational mass. Completed-by-deadline rows do not establish unbiased admission.",
+  "run_precondition": "Full native aggregate, full Core regression, guarded v5 Python checks and independent composition review finish before timed launch; no concurrent build or timed experiment.",
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "production_admission": false,
+  "frozen_test": "not decoded or changed",
+  "gate_use": "Launch only if the inspected v4 integration gate passes. Passing this small diagnostic may justify a separately bounded wider validation block; it does not admit these quarantined rows, imply full-scope support, or authorize a fit.",
+  "additional_descriptive_counts": [
+    "fully complete roots with at least two candidates",
+    "fully complete later-combat roots with at least two candidates"
+  ],
+  "current_sampler": "nosl-native-map-rewards-tape-marginalized-v4-public-evidence-v2",
+  "paired_evaluation_seed_note": "Fixed within-root world seeds are reused across roots and implementations for this development comparison; accepted slots are not a claim of globally independent samples.",
+  "freshness": "The same24101\u201324112 source list was predeclared in v3 and never executed or inspected because the earlier gate failed; this remains an untouched development cohort."
+}
