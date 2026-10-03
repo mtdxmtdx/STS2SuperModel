@@ -19,6 +19,32 @@
   "bounded_pilot_authorized": true,
   "formal_training_authorized": false,
   "generation_unit": "unique_effective_decision_point_with_source_battle_counts_reported_separately",
+  "current_verified_checkpoint": {
+    "report": "configs/native_map_origin_verification_v8.json",
+    "source_commit": "650b8d9d4d284c886a7556184a352bcc3c6bad91",
+    "native_tests_passed": 2261,
+    "guarded_python_tests_passed": 72,
+    "core_tests_passed": 4493,
+    "core_opt_in_skipped": 3,
+    "core_scope": "Separate verified Core run; source and test trees unchanged at the v8 checkpoint",
+    "all_four_diagnostic_gates_passed": true,
+    "attempted_sources": 44,
+    "complete_roots": 37,
+    "production_admission": false,
+    "scope": "Frozen v8 initial-act diagnostic and full-v5 engineering closure; does not certify later constructed native-tape changes"
+  },
+  "constructed_native_tape_current_work": {
+    "status": "NATIVE_CORE_API_VERIFIED_ACTION_ADAPTER_IN_PROGRESS",
+    "source_snapshot": "a3d9895628a664c71e12b3d54af9d0edc632ce3c",
+    "interface": "docs/NATIVE_CONSTRUCTED_TAPE_RAW_API.md",
+    "python_action_label_integration": "IN_PROGRESS",
+    "scope": "Separate declared constructed setup and primitive-tape prior; not natural-run reachability or production admission",
+    "new_fit_allowed": false,
+    "native_verification": "configs/constructed_native_tape_verification_v1.json",
+    "native_tests_passed": 2288,
+    "retained_boundary_fixture": "1source/2worlds/6branches:2nativewins+4truncations"
+  },
+  "historical_evidence_note": "The evidence object and versioned report entries below retain their original checkpoint scopes, counts and outcomes. Use current_verified_checkpoint for the latest completed aggregate; later code remains under verification.",
   "evidence": {
     "bridge_integration_passed": 803,
     "frozen_upstream_core_passed": 4479,
@@ -172,7 +198,9 @@
     }
   },
   "remaining": [
-    "Version5 aggregate/review passed. Inspected8 preserves7complete roots,15/16 worlds and92/98 settled branches at293s. Inspected12 fails its360s budget gate:2/12 complete,4/24 worlds,10/50 assigned branches settled,8 requests explicitly unexecuted,zero engine errors. The unseen24201\u201324212 cohort remains untouched. Reward-history correction bounds and a later event condition require diagnosis; enlarged generation/new fitting remain closed.",
+    "All four predeclared Map v8 diagnostic gates passed: 37 complete roots across 44 retained attempts, with zero engine/cleanup errors. The latest 12-source cohort completes 9 roots and 116/146 branches; 30 unresolved branches remain counted. All 44 sources are now inspected development data. Broad source/phase/interaction coverage, useful label quality and production admission remain open.",
+    "The new constructed native-tape raw source/API passed2288combined native tests; its Python action-label integration is in progress. It has a separate declared constructed prior, explicit forced-owner/acquisition gaps and no production or fitting admission; the frozen v8 aggregate does not certify this later code.",
+    "The current protection registry excludes 2672 components, but later historical cohort metadata remain incomplete. Recover or conservatively protect the missing source aliases before any admission or fitting; do not open sealed historical target contents.",
     "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
     "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
     "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3\u2013M6 prerequisites"
@@ -194,7 +222,7 @@
   "acceptance_map": "configs/m3_m6_acceptance_progress.json",
   "continued_engineering_report": "configs/m3_m6_continued_engineering_report.json",
   "full_m3_m6_complete": false,
-  "declared_scope_engineering_complete": true,
+  "declared_scope_engineering_complete": false,
   "new_fitting_or_scale_allowed_by_quality": false,
   "native_encounter_extension": "NATIVE_ENCOUNTER_EXTENSION_SUMMARY.json",
   "owned_native_replay_verification": "configs/owned_native_replay_verification.json",

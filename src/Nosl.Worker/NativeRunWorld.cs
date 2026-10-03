@@ -34,6 +34,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
     private readonly CancellationToken _callerToken;
     private readonly CancellationTokenSource _lifetime;
     private readonly Func<RunState, RunDriver, Task>? _constructedLifecycle;
+    private readonly NativeConstructedTapePrior? _constructedPrior;
     private readonly NativeLabelTape? _labelTape;
     private readonly int? _selectedCombat;
     private int _combatIndex = -1, _localDecision;
@@ -65,14 +66,15 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
     internal string Encounter => Boundary.Room.EncounterName;
     internal CombatRoom NativeCombatRoom => Boundary.Room;
     internal PermanentChange[] StandardRewardOpportunities { get; private set; } = [];
-    internal bool IsConstructedLifecycleFixture => _constructedLifecycle is not null;
+    internal bool IsConstructedLifecycleFixture => _constructedLifecycle is not null || _constructedPrior is not null;
 
     private static TaskCompletionSource<DecisionPacket?> NewSignal() => new(TaskCreationOptions.RunContinuationsAsynchronously);
     private static T Copy<T>(T value) => PublicJson.Read<T>(PublicJson.Serialize(value));
 
     private NativeRunWorld(NativeRunExecutionOptions options, string seed, int slot, CancellationToken cancellationToken,
         Func<RunState, RunDriver, Task>? constructedLifecycle = null,
-        NativeLabelTape? labelTape = null, int? selectedCombat = null)
+        NativeLabelTape? labelTape = null, int? selectedCombat = null,
+        NativeConstructedTapePrior? constructedPrior = null)
     {
         if (options.MaxFloors <= 0 || options.SourceDecisionHorizon <= 0 || slot < 0)
             throw new ArgumentOutOfRangeException(nameof(options), "Native source horizons must be positive and the slot nonnegative");
@@ -83,13 +85,16 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         _ = options.EmitsPublicEvidence;
         _options = options; _proposalSeed = seed; _selectedSlot = slot; _callerToken = cancellationToken;
         _constructedLifecycle = constructedLifecycle;
+        _constructedPrior = constructedPrior;
         _labelTape = labelTape; _selectedCombat = selectedCombat;
         _lifetime = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         try
         {
             NaturalSourceCollector.InitializeNativeModels();
-            NativeRun = new RunState(seed, ascensionLevel: 10);
-            NativeRun.AddPlayer(Player.CreateForNewRun(ModelDb.Character<Silent>(), NativeRun));
+            NativeRun = constructedPrior is null ? new RunState(seed, ascensionLevel: 10)
+                : EncounterCoverage.CreateRun(seed, constructedPrior.Setup.Encounter, 10);
+            if (constructedPrior is null)
+                NativeRun.AddPlayer(Player.CreateForNewRun(ModelDb.Character<Silent>(), NativeRun));
             _labelTape?.AttachHypotheticalRun(NativeRun);
         }
         catch
@@ -125,16 +130,28 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         CancellationToken cancellationToken = default)
         => OpenCoreAsync(options, seed, selectedSlot, cancellationToken, lifecycle);
 
+    // Typed fresh setup is deliberately separate from both natural startup and
+    // test-only lifecycle delegates. It cannot import an existing source graph.
+    internal static Task<NativeRunWorld?> OpenConstructedLabelTapeAsync(NativeConstructedTapePrior prior,
+        NativeTapeRecipe recipe, NativeLabelTape tape, CancellationToken cancellationToken = default)
+    {
+        prior = prior.Freeze();
+        tape.ValidateConstructedPrior(prior, recipe);
+        return OpenCoreAsync(prior.Execution, recipe.IndependentRunSeed, prior.DecisionIndex,
+            cancellationToken, labelTape: tape, selectedCombat: 0, constructedPrior: prior);
+    }
+
     private static async Task<NativeRunWorld?> OpenCoreAsync(NativeRunExecutionOptions options,
         string seed, int selectedSlot, CancellationToken cancellationToken,
         Func<RunState, RunDriver, Task>? constructedLifecycle = null,
-        NativeLabelTape? labelTape = null, int? selectedCombat = null)
+        NativeLabelTape? labelTape = null, int? selectedCombat = null,
+        NativeConstructedTapePrior? constructedPrior = null)
     {
         cancellationToken.ThrowIfCancellationRequested();
         NativeRunWorld world;
         using (labelTape?.EnterScope())
             world = new NativeRunWorld(options, seed, selectedSlot, cancellationToken, constructedLifecycle,
-                labelTape, selectedCombat);
+                labelTape, selectedCombat, constructedPrior);
         try
         {
             world._execution = world.ExecuteAsync();
@@ -153,14 +170,20 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
             PublicEvidenceProfile: _options.PublicEvidenceProfile, PublicMapObservationProfile: _options.PublicMapObservationProfile);
         _bridge = new(NativeRun, sourceOptions, PublicContinuationPolicies.Create(_options.SourcePolicyId), [],
             "owned-independent-proposal", _proposalSeed, null, null, _lifetime.Token, this,
-            startsAtNativeRunBeginning: _constructedLifecycle is null);
+            startsAtNativeRunBeginning: _constructedLifecycle is null && _constructedPrior is null);
         var driver = new RunDriver(NativeRun, _bridge, recorder: _bridge, useAvailablePotions: false)
         { CombatObserverDecorator = _bridge.Decorate, AutomaticCombatSettlementCompleted = _bridge.CompleteOutcome };
         driver.OnRoomResolved += (_, _) => _bridge.FloorsResolved++;
         try
         {
             RunDriver.Result? result = null;
-            if (_constructedLifecycle is not null) await _constructedLifecycle(NativeRun, driver);
+            if (_constructedPrior is not null)
+            {
+                await _constructedPrior.Setup.ApplyAsync(NativeRun);
+                var encounter = EncounterCoverage.Find(_constructedPrior.Setup.Encounter);
+                await driver.RunOneInjectedCombatAsync(encounter.RoomType, encounter.Definition.IdEntry);
+            }
+            else if (_constructedLifecycle is not null) await _constructedLifecycle(NativeRun, driver);
             else result = await driver.RunAsync(_options.MaxFloors);
             if (_selectedBoundary is not null)
                 throw new InvalidOperationException("Native selected combat returned without a settlement notification");
@@ -204,7 +227,9 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         if (_selectedBoundary is null)
         {
             int globalSlot = _eligibleSlots++, localSlot = _localDecision++;
-            if (_selectedCombat is int combat
+            if (_constructedPrior is not null
+                ? _combatIndex != 0 || !_constructedPrior.Selects(packet, localSlot)
+                : _selectedCombat is int combat
                 ? _combatIndex != combat || localSlot != _selectedSlot
                 : globalSlot != _selectedSlot) return null;
         }
@@ -269,7 +294,8 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
             AtomicActionsExecuted = knowledge.Events.Count(e => e.Kind == "action"),
             SettlementComplete = true,
             SettlementProfileId = "AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION",
-            Detail = (_constructedLifecycle is null ? "owned_native_run" : "constructed_native_lifecycle_fixture")
+            Detail = (_constructedPrior is not null ? "constructed_native_tape"
+                : _constructedLifecycle is null ? "owned_native_run" : "constructed_native_lifecycle_fixture")
                 + "; actual offered reward counts; settlement timing covers snapshot hook only",
         };
         SettlementSeconds = timer.Elapsed.TotalSeconds;
@@ -338,7 +364,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
     {
         _ = Observe();
         var fork = await OpenCoreAsync(_options, _proposalSeed, _selectedSlot, _callerToken, _constructedLifecycle,
-            _labelTape?.ReplayCopy(), _selectedCombat)
+            _labelTape?.ReplayCopy(), _selectedCombat, _constructedPrior)
             ?? throw new InvalidOperationException("Native replay lost its previously reached proposal slot");
         try
         {

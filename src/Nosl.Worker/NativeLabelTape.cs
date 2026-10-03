@@ -58,6 +58,7 @@ internal sealed class NativeLabelTape
     private readonly PublicRunEvidence? _expectedPublicEvidence;
     private readonly NativePublicPrefixConstraint? _publicPrefixConstraint;
     private readonly NativeInitialShuffleCondition? _condition;
+    private readonly string? _constructedPriorIdentity;
     private readonly NativeInitialHpCondition? _hpCondition;
     private readonly NativeNeowCondition? _neowCondition;
     private readonly NativeFirstRewardCondition? _firstRewardCondition;
@@ -177,8 +178,10 @@ internal sealed class NativeLabelTape
         NativePublicUnknownRoomCondition? publicUnknownRoomCondition = null,
         NativePublicShopCondition? publicShopCondition = null,
         NativePublicActPrefixPlan? publicActPrefixPlan = null,
-        NativePublicEventUpgradeCondition? publicEventUpgradeCondition = null)
+        NativePublicEventUpgradeCondition? publicEventUpgradeCondition = null,
+        string? constructedPriorIdentity = null)
     {
+        _constructedPriorIdentity = constructedPriorIdentity;
         _recipe = recipe; _condition = condition; _expectedEntryJson = expectedEntryJson ?? condition?.EntryJson;
         _rewardsOracle = rewardsOracle; _mapOracle = mapOracle;
         if (mapOracle is not null && rewardsOracle is null)
@@ -390,6 +393,25 @@ internal sealed class NativeLabelTape
             expectedPublicEvidence: expectedPublicEvidence, publicOpeningEncounterCondition: publicOpeningEncounterCondition, neowCardCondition: neowCardCondition, publicResourceCondition: publicResourceCondition, slugIntentCondition: slugIntentCondition, weakFormationCondition: weakFormationCondition, publicReshuffleCondition: publicReshuffleCondition, monsterBranchCondition: monsterBranchCondition, weakEncounterCondition: weakEncounterCondition, eventPermutationCondition: eventPermutationCondition, eventPermutationPlan: eventPermutationPlan,
             mapOracle: prior.UsesMapProvenance ? new(recipe.TapeSeed) : null, mapReconstructionCondition: mapReconstructionCondition, neowPotionCondition: neowPotionCondition, publicEventCardCondition: publicEventCardCondition, publicUnknownRoomCondition: publicUnknownRoomCondition, publicShopCondition: publicShopCondition, publicActPrefixPlan: publicActPrefixPlan, publicEventUpgradeCondition: publicEventUpgradeCondition);
 
+    internal static NativeLabelTape ForConstructedPrior(NativeConstructedTapePrior prior, NativeTapeRecipe recipe,
+        NativePublicCombatPrefixCondition? publicCombatCondition = null, PublicRunEvidence? expectedPublicEvidence = null,
+        string? expectedEntryJson = null)
+    {
+        prior = prior.Freeze();
+        if (recipe.CombatIndex != 0 || recipe.DecisionIndex != prior.DecisionIndex)
+            throw new ArgumentException("Constructed recipe must retain its declared one-combat stopping rule");
+        return new(recipe, expectedEntryJson: expectedEntryJson,
+            rewardsOracle: new(recipe.TapeSeed), publicCombatCondition: publicCombatCondition,
+            expectedPublicEvidence: expectedPublicEvidence, mapOracle: new(recipe.TapeSeed),
+            constructedPriorIdentity: prior.Identity);
+    }
+
+    internal void ValidateConstructedPrior(NativeConstructedTapePrior prior, NativeTapeRecipe recipe)
+    {
+        if (_constructedPriorIdentity != prior.Identity || recipe != _recipe)
+            throw new ArgumentException("Constructed native world requires its own declared-prior tape and recipe");
+    }
+
     internal IDisposable EnterScope()
     {
         var scope = EnterTapeScope();
@@ -448,7 +470,7 @@ internal sealed class NativeLabelTape
     {
         RequireSuccessfulConditionedWords();
         return new(_recipe, _condition, _overrides, _expectedEntryJson, _hpCondition, _neowCondition,
-            _firstRewardCondition, _firstEncounterCondition, _initialPrefixPlan, _rewardsOracle?.ReplayCopy(), _publicRewardCondition, _publicCombatCondition, _expectedPublicEvidence, _publicOpeningEncounterCondition, _neowCardCondition, _publicResourceCondition, _slugIntentCondition, _weakFormationCondition, _publicReshuffleCondition, _monsterBranchCondition, _weakEncounterCondition, _eventPermutationCondition, _eventPermutationPlan, _mapOracle?.ReplayCopy(), _mapReconstructionCondition, _neowPotionCondition, _publicEventCardCondition, _publicUnknownRoomCondition, _publicShopCondition, _publicActPrefixPlan, _publicEventUpgradeCondition);
+            _firstRewardCondition, _firstEncounterCondition, _initialPrefixPlan, _rewardsOracle?.ReplayCopy(), _publicRewardCondition, _publicCombatCondition, _expectedPublicEvidence, _publicOpeningEncounterCondition, _neowCardCondition, _publicResourceCondition, _slugIntentCondition, _weakFormationCondition, _publicReshuffleCondition, _monsterBranchCondition, _weakEncounterCondition, _eventPermutationCondition, _eventPermutationPlan, _mapOracle?.ReplayCopy(), _mapReconstructionCondition, _neowPotionCondition, _publicEventCardCondition, _publicUnknownRoomCondition, _publicShopCondition, _publicActPrefixPlan, _publicEventUpgradeCondition, _constructedPriorIdentity);
     }
     private void CaptureConditionedFailure(Exception error)
     {

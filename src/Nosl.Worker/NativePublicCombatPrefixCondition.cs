@@ -40,6 +40,59 @@ internal sealed class NativePublicCombatPrefixCondition
             : new([], "public_run_evidence_required");
     }
 
+    /// <summary>
+    /// One locally complete combat under the separately declared constructed
+    /// lifecycle. The run-start gap remains in the original packet. Combat zero
+    /// follows from that lifecycle's one-combat contract, never from guessing the
+    /// number of unobserved natural combats or rewriting a PublicRunStarted event.
+    /// </summary>
+    internal static NativePublicCombatPrefixCondition CreateConstructed(DecisionPacket publicRoot,
+        NativeConstructedTapePrior prior)
+    {
+        ArgumentNullException.ThrowIfNull(publicRoot);
+        prior = prior.Freeze();
+        var evidence = publicRoot.PublicEvidence;
+        if (evidence is null || evidence.CompleteFromRunStart
+            || publicRoot.Observation?.RunContext is not { CompleteFromRunStart: false, CombatEntryIndex: null })
+            return new([], "declared_constructed_history_required");
+        var owners = evidence.Events.Where(e => e.Payload is PublicOwnerStarted
+            { OwnerKind: PublicEvidenceOwnerKind.Combat }).ToArray();
+        if (owners.Length != 1 || owners[0].OwnerOrdinal is not long owner
+            || owners[0].Payload is not PublicOwnerStarted { CompleteFromOwnerStart: true, ParentOwnerOrdinal: null } start
+            || start.ActIndex != EncounterCoverage.Find(prior.Setup.Encounter).ActIndex)
+            return new([], "one_complete_constructed_combat_owner_required");
+        var globalGaps = evidence.Events.Where(e => e.OwnerOrdinal is null && e.Payload is PublicEvidenceGap).ToArray();
+        if (evidence.Events[0] is not { EventOrdinal: 0, OwnerOrdinal: null,
+                Payload: PublicEvidenceGap { Reason: PublicEvidenceGapReason.RunStartNotObserved } }
+            || globalGaps.Length != 1 || evidence.Events.Any(e => e.Payload is PublicRunStarted))
+            return new([], "only_declared_constructed_initial_gap_required");
+        var events = evidence.Events.Where(e => e.OwnerOrdinal == owner).ToArray();
+        var first = events.FirstOrDefault(e => e.Payload is PublicCombatDecision);
+        if (first?.Payload is not PublicCombatDecision { HistoryCompleteFromCombatStart: true })
+            return new([], "complete_constructed_startup_decision_required");
+        var packet = StartupPacket("Silent", 10, events, first, out string? reason);
+        NativeInitialShuffleCondition? shuffle = null;
+        NativeInitialHpCondition? hp = null;
+        NativeCorpseSlugHpCondition? slugHp = null;
+        NativeToadpoleHpCondition? toadpoleHp = null;
+        string? shuffleReason = reason, hpReason = reason;
+        if (packet is not null)
+        {
+            NativeInitialShuffleCondition.TryCreatePublicCombatV5(packet, out shuffle, out shuffleReason);
+            if (shuffle is not null) NativeInitialHpCondition.TryCreatePublicCombatV4(packet, out hp, out hpReason);
+            else hpReason = shuffleReason;
+            if (hp is null && shuffle is not null && packet.Observation!.Enemies.Any(e => e.Id == "CorpseSlug"))
+                NativeCorpseSlugHpCondition.TryCreate(packet, out slugHp, out hpReason);
+            if (hp is null && slugHp is null && shuffle is not null && packet.Observation!.Enemies.Any(e => e.Id == "Toadpole"))
+                NativeToadpoleHpCondition.TryCreate(packet, out toadpoleHp, out hpReason);
+        }
+        NativePublicDrawPrefixAudit? drawPrefix = null;
+        if (shuffle is not null)
+            shuffle = NativePublicDrawPrefixCondition.Extend(shuffle, events, first, null, out drawPrefix);
+        return new(new() { [0] = new(0, owner, first.EventOrdinal,
+            packet?.Observation!.History[1].Detail, shuffle, hp, shuffleReason, hpReason, slugHp, drawPrefix, toadpoleHp) });
+    }
+
     internal static NativePublicCombatPrefixCondition Create(PublicRunEvidence evidence)
     {
         ArgumentNullException.ThrowIfNull(evidence);
@@ -102,6 +155,10 @@ internal sealed class NativePublicCombatPrefixCondition
 
     private static DecisionPacket? StartupPacket(PublicRunStarted runStart,
         PublicRunEvidenceEvent[] ownerEvents, PublicRunEvidenceEvent first, out string? reason)
+        => StartupPacket(runStart.Character, runStart.Ascension, ownerEvents, first, out reason);
+
+    private static DecisionPacket? StartupPacket(string character, int ascension,
+        PublicRunEvidenceEvent[] ownerEvents, PublicRunEvidenceEvent first, out string? reason)
     {
         reason = null;
         var decision = (PublicCombatDecision)first.Payload;
@@ -118,7 +175,7 @@ internal sealed class NativePublicCombatPrefixCondition
         // run startup. The schema tag is the public recorder's fixed entry codec.
         var history = new List<PublicEvent>
         {
-            new("combat_started", runStart.Character + ":A" + runStart.Ascension.ToString(CultureInfo.InvariantCulture)),
+            new("combat_started", character + ":A" + ascension.ToString(CultureInfo.InvariantCulture)),
             new(NativeEntryAssets.EventKind, PublicJson.Serialize(entry)),
         };
         int cursor = 2;

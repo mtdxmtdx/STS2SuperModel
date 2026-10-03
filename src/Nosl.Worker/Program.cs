@@ -27,6 +27,14 @@ while(Console.ReadLine() is { } line)
             result=await FiniteHuntDatasetV5.GenerateAsync(scenario,options,root.GetProperty("sourceRun").GetString()!,
                 root.GetProperty("sourceCombat").GetString()!,root.GetProperty("branchFamily").GetString()!);
         }
+        else if(op=="native_constructed_tape_runtime_identity")
+        {
+            result=NativeConstructedTapeDataset.RuntimeIdentity(root);
+        }
+        else if(op=="native_constructed_tape_candidates")
+        {
+            result=await NativeConstructedTapeDataset.CollectAsync(root);
+        }
         else if(op=="native_complete_map_runtime_identity")
         {
             result=NativeCompleteMapDataset.RuntimeIdentity(root);
