@@ -93,7 +93,7 @@ public sealed class NativeSlimeDrawClosureTests(ITestOutputHelper output)
         var root = Fixture(variation); string before = PublicJson.Serialize(root);
         var first = NativePublicCombatPrefixCondition.Create(root).Combats[0];
         Assert.Equal(7, first.Shuffle!.DrawPrefixIds.Length);
-        Assert.Equal("nosl.public-first-draw-cycle.v9", first.DrawPrefix!.CertificateVersion);
+        Assert.Equal("nosl.public-first-draw-cycle.v11", first.DrawPrefix!.CertificateVersion);
         var condition = NativePublicReshuffleCondition.Create(root);
         Assert.Equal(stop, condition.CombatAudits[0].StopReason);
         Assert.Equal(count, condition.EligibleShuffleCount);

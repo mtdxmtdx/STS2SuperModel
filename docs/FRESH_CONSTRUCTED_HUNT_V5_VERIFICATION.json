@@ -1,0 +1,217 @@
+{
+  "schema_version": "nosl.fresh-constructed-hunt-v5.verification.v1",
+  "date": "2026-10-03",
+  "base_commit": "561f9ab55ac748db15efdb6694daece83f61ac13",
+  "status": "engineering_producer_verified",
+  "scope": "fresh constructed existing-Scenario-prior evidence; not natural-native admission",
+  "checks": [
+    {
+      "command": "dotnet test tests/Nosl.Tests/Nosl.Tests.csproj -c Release --no-build --no-restore --artifacts-path artifacts/finite-v5-build -m:1 -nr:false --filter 'FullyQualifiedName~FiniteHuntV5Tests|FullyQualifiedName~FiniteHuntDatasetTests|FullyQualifiedName~AnchoredHuntTests|FullyQualifiedName~ObjectiveTests' --logger 'console;verbosity=normal'",
+      "passed": 60,
+      "failed": 0,
+      "skipped": 0,
+      "qualification": "Final combined source and tests, including true-loss case",
+      "log": "artifacts/fresh-finite-v5/csharp-focused.log"
+    },
+    {
+      "command": "python -B -m unittest discover -s tests/data -p test_finite_hunt_v5.py -v",
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/fresh-finite-v5/python-producer.log"
+    },
+    {
+      "command": "python -B -m unittest discover -s tests/python -p test_public_map_v5.py -v",
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "python -B tools/validate_finite_hunt_v5.py artifacts/fresh-finite-v5/fresh-finite-hunt-v5-loss.raw.json",
+      "status": "passed"
+    }
+  ],
+  "fresh_artifacts": [
+    {
+      "case": "success",
+      "path": "artifacts/fresh-finite-v5/fresh-finite-hunt-v5-success.raw.json",
+      "bytes": 165419,
+      "sha256": "6114ccad16233cf4539a88ad09553ac01f4185a21a90450a21e9cec29d548171",
+      "source_kind": "constructed_declared_setup",
+      "native_run": false,
+      "source_seed": "fresh-full-v5-hunt-2026-10-03",
+      "evaluation_seeds": [
+        7101,
+        7102
+      ],
+      "paired_worlds": 2,
+      "outcomes": [
+        "Win",
+        "Win",
+        "Win",
+        "Win"
+      ],
+      "plan": {
+        "label_scope": "whole_plan_from_anchor",
+        "specified_success_probability": 1,
+        "extra_net_hp_loss": 0,
+        "masks": {
+          "specified_success_probability": true,
+          "extra_net_hp_loss": true
+        },
+        "allocated_worlds": 2,
+        "success_completed_worlds": 2,
+        "paired_completed_worlds": 2
+      },
+      "action_supervision_rows": 0
+    },
+    {
+      "case": "truncated",
+      "path": "artifacts/fresh-finite-v5/fresh-finite-hunt-v5-truncated.raw.json",
+      "bytes": 160681,
+      "sha256": "23de8a12f0ac195cab8e22e32b8d8b2b789a6ff64d8d524ea4cd7422a214adef",
+      "source_kind": "constructed_declared_setup",
+      "native_run": false,
+      "source_seed": "fresh-full-v5-hunt-2026-10-03",
+      "evaluation_seeds": [
+        7101,
+        7102
+      ],
+      "paired_worlds": 2,
+      "outcomes": [
+        "ComputeTruncated",
+        "ComputeTruncated",
+        "ComputeTruncated",
+        "ComputeTruncated"
+      ],
+      "plan": {
+        "label_scope": "whole_plan_from_anchor",
+        "specified_success_probability": null,
+        "extra_net_hp_loss": null,
+        "masks": {
+          "specified_success_probability": false,
+          "extra_net_hp_loss": false
+        },
+        "allocated_worlds": 2,
+        "success_completed_worlds": 0,
+        "paired_completed_worlds": 0
+      },
+      "action_supervision_rows": 0
+    },
+    {
+      "case": "loss",
+      "path": "artifacts/fresh-finite-v5/fresh-finite-hunt-v5-loss.raw.json",
+      "bytes": 176861,
+      "sha256": "33b4d357251ffcb5b4585c74fcd026fd242edac88470b4ce328d424bf7f4c539",
+      "source_kind": "constructed_declared_setup",
+      "native_run": false,
+      "source_seed": "fresh-full-v5-hunt-2026-10-03",
+      "evaluation_seeds": [
+        7101,
+        7102
+      ],
+      "paired_worlds": 2,
+      "outcomes": [
+        "Loss",
+        "Loss",
+        "Loss",
+        "Loss"
+      ],
+      "plan": {
+        "label_scope": "whole_plan_from_anchor",
+        "specified_success_probability": 0,
+        "extra_net_hp_loss": 0,
+        "masks": {
+          "specified_success_probability": true,
+          "extra_net_hp_loss": true
+        },
+        "allocated_worlds": 2,
+        "success_completed_worlds": 2,
+        "paired_completed_worlds": 2
+      },
+      "action_supervision_rows": 0
+    }
+  ],
+  "distinct_constructed_scenarios": 3,
+  "distinct_paired_worlds": 6,
+  "repeated_verification_adds_independent_samples": false,
+  "forward": {
+    "status": "passed",
+    "check": "fresh_constructed_full_v5_forward_loss_only",
+    "raw_sha256": "6114ccad16233cf4539a88ad09553ac01f4185a21a90450a21e9cec29d548171",
+    "config_sha256": "1d745485bcdab2dd9969e92a4a144dbabfab1558c8bbdb6770cd824d16d46473",
+    "parameter_count": 1573534,
+    "model_state_before_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+    "model_state_after_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+    "parameters_unchanged": true,
+    "loss": 0.8731998801231384,
+    "terms": {
+      "value": 0.0,
+      "win_probability": 0.0,
+      "death_probability": 0.0,
+      "expected_final_hp": 0.0,
+      "hp_distribution": 0.0,
+      "potion_net_change": 0.0,
+      "pairwise": 0.0,
+      "equivalent": 0.0,
+      "plan.specified_success_probability": 0.8081371784210205,
+      "plan.extra_net_hp_loss": 0.06506272405385971
+    },
+    "plan_masks": {
+      "specified_success_probability": true,
+      "extra_net_hp_loss": true
+    },
+    "action_supervision_rows": 0,
+    "backward_calls": 0,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0,
+    "gradients_created": false,
+    "weights_saved": false,
+    "trainable": false,
+    "natural_native_admission": false,
+    "full_policy_record_admission": false,
+    "command": "python -B tools/check_finite_hunt_v5_forward.py artifacts/fresh-finite-v5/fresh-finite-hunt-v5-success.raw.json",
+    "report": "artifacts/fresh-finite-v5/forward.report.json"
+  },
+  "legacy_compatibility": {
+    "status": "passed",
+    "legacy_output_byte_identical": true,
+    "request_bytes": 333,
+    "response_bytes": 56450,
+    "request_sha256": "e370e74b597d72c794d48310140aeebd4adabfad54fbe20e64988988ca8f79b3",
+    "response_sha256": "26150bb8b33c8c506e23b8c21d0241beaec431331b6c7eebe0fe47157707c589",
+    "baseline_worker_sha256": "b05e856f087358a12718829c6fb3eb2e80cb66f69c8278bfcdf4a0c9d335095c",
+    "candidate_worker_sha256": "0d58b76797edebec2d71b678e6c99ed6fd2768ece8f74091526f1b24bc4592d8",
+    "new_distinct_evaluation_worlds": 0,
+    "qualification": "Compatibility rerun only; repeated seed schedule is not counted as additional independent evidence"
+  },
+  "claims": {
+    "legacy_labels_read": false,
+    "historical_sealed_rows_read": false,
+    "new_prior": false,
+    "new_backward_calls": 0,
+    "new_optimizer_steps": 0,
+    "new_trained_weights": false,
+    "natural_native_admission": false,
+    "full_policy_record_admission": false,
+    "formal_training_ready": false
+  },
+  "source_sha256": {
+    "src/Nosl.Worker/AnchoredHuntEvaluator.cs": "19f5904e8dc85da638b1bf1c6bcb9ecedd7b5a74f8ac09688bb617ef5fb3a19d",
+    "src/Nosl.Worker/ConstructedHuntV5View.cs": "5f6c794946fcc594eb85af46ae78222627e0a9ae8671715edf445a5622f3d445",
+    "src/Nosl.Worker/FiniteHuntDatasetV5.cs": "70029a2d2bb06ff26fa4cf55528df0e3edd8a05d61533ac273505c6c405f5a46",
+    "python/nosl/finite_hunt_v5.py": "a7c79f6923b3271f34e434520aa18a96dac39fce236d48b203db27f15cd35db0",
+    "tools/check_finite_hunt_v5_forward.py": "a2fca11461fdd3cff895e13710dcb6a15737436315ec7cdf7b571179fdb27686",
+    "tools/validate_finite_hunt_v5.py": "5e6ac994ce328a55168376c3a224f01fd263eceeb952928599d7602e4e3cb2b5"
+  },
+  "retained_evidence_sha256": {
+    "artifacts/fresh-finite-v5/csharp-focused.log": "7e4b28735e7a1767162ec76b6585d2ebc48752b0510a853855edc39666d3d167",
+    "artifacts/fresh-finite-v5/python-producer.log": "64817e0d072204e6224e2a3010b097fbf9123a2d1845b37556cda36a4e1d2446",
+    "artifacts/fresh-finite-v5/forward.report.json": "fde3c56e422ea04799c15c1e8a79f5d59fb733f11b78690d496fb083815f9349",
+    "artifacts/fresh-finite-v5/forward.stderr.log": "519a0cce137ab66a3901b14842e5410bf5f3955226c5f7f25fc3433d8e21840f",
+    "artifacts/fresh-finite-v5/legacy-compat.report.json": "fa9a9a83d1d8691f53a86174a3b80d248470a7eb3dae878010afda1e858e3031",
+    "artifacts/fresh-finite-v5/legacy-compat.request.jsonl": "e370e74b597d72c794d48310140aeebd4adabfad54fbe20e64988988ca8f79b3",
+    "artifacts/fresh-finite-v5/legacy-compat.baseline.jsonl": "26150bb8b33c8c506e23b8c21d0241beaec431331b6c7eebe0fe47157707c589",
+    "artifacts/fresh-finite-v5/legacy-compat.candidate.jsonl": "26150bb8b33c8c506e23b8c21d0241beaec431331b6c7eebe0fe47157707c589"
+  }
+}

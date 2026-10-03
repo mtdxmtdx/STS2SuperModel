@@ -32,7 +32,8 @@ from .train import atomic_save, seed_everything
 
 CHECKPOINT_FORMAT = "nosl.training.full-policy.checkpoint.v5.1"
 TRAINING_SOURCES = tuple(dict.fromkeys((*INFERENCE_SOURCES, *PREPARATION_SOURCES,
-    "native_policy_v5.py", "data_policy_v5.py", "train_policy_v5.py", "loss_v5.py", "train.py", "vocabulary.py")))
+    "native_policy_v5.py", "finite_hunt_v5.py", "finite_hunt_policy_v5.py",
+    "data_policy_v5.py", "train_policy_v5.py", "loss_v5.py", "train.py", "vocabulary.py")))
 
 
 def implementation_fingerprint():

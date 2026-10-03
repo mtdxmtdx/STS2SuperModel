@@ -32,8 +32,10 @@ slots set to negative infinity. Illegal rows remain present with null prediction
 The exact top-level record fields are `format`, `public_input`, `targets`,
 `audit_only`, and `objective`; format is
 `nosl.dataset.full-policy.record.v5.1`. `data_policy_v5.validate_record` is the
-authoritative constructor contract. There is no conversion from an auxiliary,
-legacy, raw-source, quarantined or engineering-v5 envelope.
+authoritative constructor contract. Existing auxiliary, legacy, label-free
+natural-source, quarantined or engineering-v5 envelopes are not promoted.
+Explicit producer adapters regenerate this new envelope from their own exact
+source formats.
 
 Targets retain full-v5 nullable masks and action indices. Every action explicitly
 accounts for allocated, completed, truncated, error and other worlds. Unresolved
@@ -49,6 +51,14 @@ immutable producer receipt hash (null only for an engineering fixture).
 All private provenance stays in the training audit; only `public_input` reaches
 the model. The synthetic fixtures explicitly fabricate these fields for contract
 tests and carry no real review, authorization or native-label authenticity claim.
+
+The separately validated `constructed_empirical_plan_fixture` subtype omits all
+native seed/identity fields and instead embeds its exact newly executed raw Hunt
+evidence. It has `native_run:false`, `trainable:false`, an engineering purpose and
+no producer/admission receipt. Its entire full-policy record is independently
+regenerated on validation. It supplies measured full-v5 plan heads to the real
+batch loss without enabling fitting or natural admission. See the
+[constructed producer interface](../../FRESH_CONSTRUCTED_HUNT_FULL_POLICY_V5.md).
 
 The objective attestation binds its specification, evaluator source, objective
 calibration status/evidence, independent evaluation design, automatic-settlement endpoint,

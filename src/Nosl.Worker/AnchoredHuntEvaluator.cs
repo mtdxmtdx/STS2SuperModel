@@ -34,39 +34,74 @@ public sealed record HuntEvaluationResult(HuntPlanAnchor Anchor, HuntPairedWorld
     EstimateInterval ExcessDeathProbabilityInterval, bool? SafetyAcceptable, Eligibility Eligibility,
     bool UtilityComparisonMask, double? MeanSpecifiedSuccess, HuntEvaluationMasks Masks, string[] Limitations, HuntEvaluationAudit Audit);
 
+// Internal observation/ownership seam. The public producer never replaces the
+// existing declared-setup sampling law; tests can inject owned failures here.
+internal sealed record HuntExecution
+{
+    internal Func<CombatSession, DecisionPacket> Observe { get; init; } = session => session.Observe();
+    internal Func<CombatSession, ulong, int, Task<CombatSession>> Sample { get; init; } = BeliefSampler.SampleWorldAsync;
+    internal Func<CombatSession, Task<CombatSession>> Fork { get; init; } = session => session.ForkForContinuationAsync();
+    internal Func<CombatSession, ValueTask> Dispose { get; init; } = session => session.DisposeAsync();
+    internal Action<int, DecisionPacket>? SampleAccepted { get; init; }
+    internal Action<int, bool, DecisionPacket>? TerminalObserved { get; init; }
+    internal string EvaluatorVersion { get; init; } = "nosl-anchored-hunt-evaluator-v1";
+}
+
 /// <summary>Opt-in whole-plan evaluation. Does not alter ordinary TeacherDataset schemas or choose a deployed action.</summary>
 public static class AnchoredHuntEvaluator
 {
-    public static async Task<HuntEvaluationResult> EvaluateAsync(CombatSession source, HuntEvaluationOptions? options = null)
+    public static Task<HuntEvaluationResult> EvaluateAsync(CombatSession source, HuntEvaluationOptions? options = null)
+        => EvaluateAsync(source, options, new HuntExecution());
+
+    internal static async Task<HuntEvaluationResult> EvaluateAsync(CombatSession source, HuntEvaluationOptions? options,
+        HuntExecution execution)
     {
         options ??= new(); options.Validate();
         options = options with { EvaluationSeeds = options.EvaluationSeeds.ToArray() };
-        var root = source.Observe(); ValidateScope(source, root);
+        ValidateScope(source, source.Observe());
+        var root = execution.Observe(source);
         var anchor = FiniteHuntPolicy.Anchor(root, options.HpSafetyFloor);
         var rows = new List<HuntPairedWorld>();
         for (int i = 0; i < options.EvaluationSeeds.Length; i++)
         {
-            if (PublicJson.Serialize(source.Observe()) != anchor.PublicSummary)
+            if (PublicJson.Serialize(execution.Observe(source)) != anchor.PublicSummary)
                 throw new InvalidOperationException("The public anchor changed during whole-plan evaluation");
             CombatSession? world = null;
+            HuntTrajectory? baseline = null, plan = null;
             try
             {
-                world = await BeliefSampler.SampleWorldAsync(source, options.EvaluationSeeds[i], options.MaxPosteriorAttempts);
+                world = await execution.Sample(source, options.EvaluationSeeds[i], options.MaxPosteriorAttempts);
+                var sampledRoot = execution.Observe(world);
+                if (PublicJson.Serialize(sampledRoot) != anchor.PublicSummary)
+                    throw new InvalidOperationException("Sampled world differs from the complete public anchor");
+                execution.SampleAccepted?.Invoke(i, sampledRoot);
                 // Both copies start from the same hypothetical sampled world, never the live source future.
-                var baseline = await RunCopy(world, anchor, false, options);
-                var plan = await RunCopy(world, anchor, true, options);
-                rows.Add(new(i, baseline, plan));
+                baseline = await RunCopy(world, anchor, false, options, execution, i);
+                plan = await RunCopy(world, anchor, true, options, execution, i);
             }
             catch (Exception error)
             {
-                var kind = error is PosteriorSamplingException ? TerminalKind.ComputeTruncated : TerminalKind.EngineError;
+                var kind = FailureKind(error);
                 string detail = "belief_sampling:" + error.GetType().Name + ":" + error.Message;
-                rows.Add(new(i, Incomplete(source, anchor, kind, [], detail, false),
-                    Incomplete(source, anchor, kind, [], detail, true)));
+                baseline = Incomplete(source, anchor, kind, [], detail, false);
+                plan = Incomplete(source, anchor, kind, [], detail, true);
             }
-            finally { if (world is not null) await world.DisposeAsync(); }
+            finally
+            {
+                if (world is not null)
+                    try { await execution.Dispose(world); }
+                    catch (Exception error)
+                    {
+                        string detail = "world_cleanup:" + error.GetType().Name + ":" + error.Message;
+                        baseline = Incomplete(source, anchor, FailureKind(error), baseline?.PublicTrace ?? [], detail, false);
+                        plan = Incomplete(source, anchor, FailureKind(error), plan?.PublicTrace ?? [], detail, true, plan?.Controller);
+                    }
+            }
+            // Cleanup is part of the assigned world; it cannot erase a draw or
+            // leave completed labels attached to an unreleased owned runtime.
+            rows.Add(new(i, baseline!, plan!));
         }
-        if (PublicJson.Serialize(source.Observe()) != anchor.PublicSummary)
+        if (PublicJson.Serialize(execution.Observe(source)) != anchor.PublicSummary)
             throw new InvalidOperationException("The source changed during whole-plan evaluation");
         var paired = rows.ToArray();
         if (paired.SelectMany(x => new[] { x.Baseline.Outcome, x.Plan.Outcome }).Where(x => x.IsTrueTerminal)
@@ -106,7 +141,7 @@ public static class AnchoredHuntEvaluator
             new(options.EvaluationSeeds.ToArray(), "independent_declared_setup_belief_worlds_paired_policy_execution",
                 "finite-hunt-no-healing-v1:delta-loss-in-minus-anchor-hp-to-anchor-hp", "TheHunt fatal plus actual offered extra CardReward by fixed next-player-turn deadline", false,
                 options.MaxDecisionsPerPolicy, options.MaxPosteriorAttempts, options.FamilywiseAlpha,
-                "nosl-anchored-hunt-evaluator-v1", ObjectiveProfile.Candidate.Id));
+                execution.EvaluatorVersion, ObjectiveProfile.Candidate.Id));
     }
 
     private static void ValidateScope(CombatSession source, DecisionPacket packet)
@@ -127,16 +162,20 @@ public static class AnchoredHuntEvaluator
             throw new NotSupportedException("Outside reviewed finite Hunt/no-healing support; no utility/HP bound is invented");
     }
 
-    private static async Task<HuntTrajectory> RunCopy(CombatSession world, HuntPlanAnchor anchor, bool pursuing, HuntEvaluationOptions options)
+    private static async Task<HuntTrajectory> RunCopy(CombatSession world, HuntPlanAnchor anchor, bool pursuing,
+        HuntEvaluationOptions options, HuntExecution execution, int worldIndex)
     {
         CombatSession? branch = null;
         var trace = new List<HuntDecisionTrace>();
         var policy = new FiniteHuntPolicy(anchor); var baseline = new PublicRulePolicy();
         int? fatalTurn = null;
+        HuntTrajectory? trajectory = null;
         try
         {
-            branch = await world.ForkForContinuationAsync();
-            var packet = branch.Observe();
+            branch = await execution.Fork(world);
+            var packet = execution.Observe(branch);
+            if (PublicJson.Serialize(packet) != anchor.PublicSummary)
+                throw new InvalidOperationException("Continuation branch differs from the complete public anchor");
             int eventCursor = packet.Observation!.History.Length;
             while (packet.Status is "player_decision" or "card_choice" && trace.Count < options.MaxDecisionsPerPolicy)
             {
@@ -144,41 +183,60 @@ public static class AnchoredHuntEvaluator
                 var action = pursuing ? policy.Choose(packet) : baseline.Choose(packet);
                 trace.Add(new(turn, anchor.DeadlinePlayerTurn, pursuing ? policy.Controller.Status : "baseline",
                     pursuing ? policy.Controller.ExitReason : null, action));
-                packet = await branch.StepAsync(action);
+                await branch.StepAsync(action);
+                packet = execution.Observe(branch);
                 var events = packet.Observation?.History ?? (await branch.SettleAsync()).Events;
                 if (events.Skip(eventCursor).Any(IsHuntFatal)) fatalTurn ??= turn;
                 eventCursor = events.Length;
             }
-            if (packet.Status != "terminal_settled") return Incomplete(branch, anchor,
-                packet.Status == "engine_error" ? TerminalKind.EngineError : TerminalKind.ComputeTruncated,
-                trace.ToArray(), "Policy decision budget exhausted without true terminal settlement", pursuing, policy.Controller);
-            var facts = await branch.SettleAsync();
-            int offered = branch.Room.GeneratedRewards.SelectMany(x => x.ExtraRewards).Count(x => x.GetType().Name == "CardReward");
-            bool won = facts.Result switch { "win" => true, "loss" => false, _ => throw new InvalidOperationException("Unknown engine terminal kind") };
-            var outcome = RolloutRecorder.Settled(branch, facts, pursuing ? anchor.TemplateId : anchor.BaselinePolicyId,
-                trace.LastOrDefault()?.PlayerTurn ?? anchor.StartPlayerTurn) with
+            if (packet.Status != "terminal_settled")
+                trajectory = Incomplete(branch, anchor,
+                    packet.Status == "engine_error" ? TerminalKind.EngineError : TerminalKind.ComputeTruncated,
+                    trace.ToArray(), "Policy decision budget exhausted without true terminal settlement", pursuing, policy.Controller);
+            else
             {
-                SpecifiedFinishSuccess = won && fatalTurn.HasValue,
-                EarnedBonus = won && fatalTurn.HasValue && offered > 0,
-                DeadlineMet = won && fatalTurn.HasValue && fatalTurn.Value <= anchor.DeadlinePlayerTurn,
-            };
-            var controller = pursuing ? policy.Controller : new(anchor, "baseline", null, outcome.PlayerTurnsElapsed);
-            if (pursuing && controller.Status == "active")
-            {
-                bool finished = outcome.SpecifiedFinishSuccess == true && outcome.EarnedBonus == true && outcome.DeadlineMet == true;
-                controller = finished ? controller with { Status = "finished" }
-                    : controller with { Status = "aborted", ExitReason = !won ? "terminal_loss"
-                        : fatalTurn.HasValue && outcome.DeadlineMet == false ? "terminal_deadline_missed" : "terminal_without_designated_benefit" };
+                var facts = await branch.SettleAsync();
+                execution.TerminalObserved?.Invoke(worldIndex, pursuing, packet);
+                int offered = branch.Room.GeneratedRewards.SelectMany(x => x.ExtraRewards).Count(x => x.GetType().Name == "CardReward");
+                bool won = facts.Result switch { "win" => true, "loss" => false, _ => throw new InvalidOperationException("Unknown engine terminal kind") };
+                var outcome = RolloutRecorder.Settled(branch, facts, pursuing ? anchor.TemplateId : anchor.BaselinePolicyId,
+                    trace.LastOrDefault()?.PlayerTurn ?? anchor.StartPlayerTurn) with
+                {
+                    SpecifiedFinishSuccess = won && fatalTurn.HasValue,
+                    EarnedBonus = won && fatalTurn.HasValue && offered > 0,
+                    DeadlineMet = won && fatalTurn.HasValue && fatalTurn.Value <= anchor.DeadlinePlayerTurn,
+                };
+                var controller = pursuing ? policy.Controller : new(anchor, "baseline", null, outcome.PlayerTurnsElapsed);
+                if (pursuing && controller.Status == "active")
+                {
+                    bool finished = outcome.SpecifiedFinishSuccess == true && outcome.EarnedBonus == true && outcome.DeadlineMet == true;
+                    controller = finished ? controller with { Status = "finished" }
+                        : controller with { Status = "aborted", ExitReason = !won ? "terminal_loss"
+                            : fatalTurn.HasValue && outcome.DeadlineMet == false ? "terminal_deadline_missed" : "terminal_without_designated_benefit" };
+                }
+                trajectory = new(outcome, ObjectiveEvaluator.Evaluate(outcome), trace.ToArray(), controller, fatalTurn, offered);
             }
-            return new(outcome, ObjectiveEvaluator.Evaluate(outcome), trace.ToArray(), controller, fatalTurn, offered);
         }
         catch (Exception error)
         {
-            return Incomplete(branch ?? world, anchor, TerminalKind.EngineError, trace.ToArray(),
+            trajectory = Incomplete(branch ?? world, anchor, FailureKind(error), trace.ToArray(),
                 error.GetType().Name + ":" + error.Message, pursuing, policy.Controller);
         }
-        finally { if (branch is not null) await branch.DisposeAsync(); }
+        finally
+        {
+            if (branch is not null)
+                try { await execution.Dispose(branch); }
+                catch (Exception error)
+                {
+                    trajectory = Incomplete(world, anchor, FailureKind(error), trace.ToArray(),
+                        "branch_cleanup:" + error.GetType().Name + ":" + error.Message, pursuing, policy.Controller);
+                }
+        }
+        return trajectory!;
     }
+
+    private static TerminalKind FailureKind(Exception error) => error is PosteriorSamplingException or OperationCanceledException
+        ? TerminalKind.ComputeTruncated : TerminalKind.EngineError;
 
     private static bool IsHuntFatal(PublicEvent e)
     {
@@ -196,7 +254,7 @@ public static class AnchoredHuntEvaluator
             AtomicActionsExecuted = trace.Length, PlayerTurnsElapsed = trace.LastOrDefault()?.PlayerTurn ?? anchor.StartPlayerTurn, Detail = detail };
         var finalController = pursuing ? controller ?? new(anchor, "unresolved", "evaluation_incomplete", outcome.PlayerTurnsElapsed)
             : new(anchor, "baseline", null, outcome.PlayerTurnsElapsed);
-        if (pursuing && finalController.Status == "active")
+        if (pursuing && finalController.Status is "active" or "finished")
             finalController = finalController with { Status = "unresolved", ExitReason = "evaluation_incomplete" };
         return new(outcome, ObjectiveEvaluator.Evaluate(outcome), trace, finalController, null, 0);
     }

@@ -329,21 +329,25 @@
     "seconds": 218.98334586298733
   },
   "current_native_sampler": {
-    "implementation": "nosl-native-map-rewards-tape-marginalized-v7-public-evidence-v2",
-    "status": "VERIFIED_INTEGRATION_INSPECTED_GATES_PASSED_FRESH_GATE_FAILED",
+    "implementation": "nosl-native-map-rewards-tape-marginalized-v8-public-evidence-v2",
+    "status": "FROZEN_VALIDATED_V8_PROBES_PENDING",
     "recovery_and_fix_report": "configs/recovery_verification_20261003.json",
     "latest_completed_probe_report": "configs/native_map_origin_verification_v7.json",
-    "latest_completed_probe_is_historical": false,
-    "current_implementation_probe_started": true,
+    "latest_completed_probe_is_historical": true,
+    "current_implementation_probe_started": false,
     "new_production_rows": 0,
     "new_optimizer_steps": 0,
     "new_backward_passes": 0,
     "full_readiness": false,
-    "current_report": "configs/native_map_origin_verification_v7.json",
-    "current_implementation_probe_completed": true,
-    "inspected_gate_passed": true,
-    "fresh_gate_passed": false,
-    "production_admission": false
+    "current_report": "configs/native_map_v8_validation_plan.json",
+    "current_implementation_probe_completed": false,
+    "inspected_gate_passed": null,
+    "fresh_gate_passed": null,
+    "production_admission": false,
+    "runtime_source_commit": "650b8d9d4d284c886a7556184a352bcc3c6bad91",
+    "runtime_freeze": "artifacts/reports/map-public-v8/runtime-freeze.json",
+    "native_tests_passed": 2261,
+    "guarded_python_tests_passed": 72
   },
   "native_map_origin_v4": {
     "status": "VERIFIED_COMPOSITION_INSPECTED_GATE_PASSED_FRESH_GATE_FAILED",
@@ -433,7 +437,7 @@
     "verification": "configs/student_v5_full_policy_verification.json",
     "connectivity": "configs/student_v5_full_policy_connectivity.json",
     "native_interface_verification": "docs/NATIVE_FULL_POLICY_VALUE_BRIDGE_V5_VERIFICATION.json",
-    "source_hashes_verified_after_main_integration": 39,
+    "source_hashes_verified_after_main_integration": "Historical39-file backward snapshot retained; current41-file forward/validation closure recorded separately.",
     "final_guarded_core_tests": 31,
     "final_guarded_bridge_tests": 17,
     "earlier_guarded_aggregate_tests": 87,
@@ -456,10 +460,14 @@
     "historical_protection": "Original5000 protection restored:2533components/18207aliases;10131attempt identities and current20 map sources extend to2648components. Later balanced160, policy16, natural200 and fresh-native registry remain missing; all current diagnostics remain quarantined.",
     "remaining_limits": [
       "Uncalibrated resource/permanent/reward values remain masked",
-      "No real v5 finite-plan producer labels",
       "Broad native data-quality and throughput gates remain open",
-      "No learned policy-quality claim"
-    ]
+      "No learned policy-quality claim",
+      "Fresh constructed finite-plan labels reach the full-policy loss; natural finite-plan admission and broad data readiness remain separate."
+    ],
+    "current_integration": "configs/m6_current_integration_v8.json",
+    "current_training_source_files": 41,
+    "current_guarded_python_tests": 72,
+    "historical_backward_report_unchanged": true
   },
   "native_map_origin_v7": {
     "status": "VERIFIED_INTEGRATION_INSPECTED_GATES_PASSED_FRESH_GATE_FAILED",
@@ -490,5 +498,24 @@
     "fresh_twelve_accepted_worlds": 12,
     "fresh_twelve_settled_branches": 80,
     "fresh_twelve_assigned_branches": 178
+  },
+  "public_v3_cycle_continuation": {
+    "status": "VERIFIED_OPT_IN",
+    "source_commit": "f7baa66f5048634c40b5dbde2ac8d6df4d315d8c",
+    "focused_passed": 33,
+    "aggregate_passed": 2185,
+    "defaults_changed": false,
+    "evidence": "docs/PUBLIC_CONTINUATION_V3_EVIDENCE.md"
+  },
+  "fresh_constructed_hunt_v5": {
+    "status": "PRODUCER_AND_FULL_POLICY_ENGINEERING_SEAM_VERIFIED",
+    "source_commit": "d70517f1b961c5e94cd5a947deb08673f0c5d965",
+    "verification": "docs/FRESH_CONSTRUCTED_HUNT_V5_VERIFICATION.json",
+    "quarantined": true,
+    "new_backward_passes": 0,
+    "new_optimizer_steps": 0,
+    "adapter_source_commit": "ce02e294804adc7f7fdf16872b15e86465793e80",
+    "adapter_verification": "docs/FRESH_CONSTRUCTED_HUNT_FULL_POLICY_V5_VERIFICATION.json",
+    "current_integration": "configs/m6_current_integration_v8.json"
   }
 }

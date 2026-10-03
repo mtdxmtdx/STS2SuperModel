@@ -15,13 +15,15 @@ internal sealed record NativePublicRewardHistoryTarget(IReadOnlyList<LabelCardRa
     float PotionThreshold, NativeGoldEnvelopeCertificate GoldCertificate);
 
 /// <summary>
-/// Optional source-closed PUBLIC prefix, never a sampled-world normalizer. The eleven
+/// Optional source-closed PUBLIC prefix, never a sampled-world normalizer. The thirteen
 /// reviewed Neow positives do not update either pity state. NewLeaf's default
 /// transformation uses one Niche index, with no reward rarity or potion roll.
 /// ScrollBoxes uses fixed-rarity indices, ArcaneScroll uses Uniform/Other, and
 /// Pomander upgrades one public starter. A complete unchanged shop leave is neutral.
 /// NeowsTorment adds one fixed NeowsFury; LavaRock's reward override is inactive
 /// only under the separately proved ordinary weak-combat prefix.
+/// GoldenPearl and NutritiousOyster change only their exact native gold/HP assets
+/// after Neow's A10 entry heal, with no random draw or pity update.
 /// WoodCarvings and SunkenStatue
 /// have no random reward generation; Gorge uses Source.Other/Uniform. The first three
 /// native weak encounters have no escape, summon, or extra-reward behavior. Every base
@@ -31,10 +33,10 @@ internal sealed record NativePublicRewardHistoryTarget(IReadOnlyList<LabelCardRa
 internal static class NativePublicRewardHistoryCertificate
 {
     private static readonly HashSet<string> Neow = ["FishingRod", "LostCoffer", "LeadPaperweight", "WingedBoots", "PreciseScissors", "NewLeaf",
-        "ScrollBoxes", "ArcaneScroll", "Pomander", "LavaRock", "NeowsTorment"];
+        "ScrollBoxes", "ArcaneScroll", "Pomander", "LavaRock", "NeowsTorment", "GoldenPearl", "NutritiousOyster"];
     private static readonly HashSet<string> Relics = ["RingOfTheSnake", "FishingRod", "LostCoffer",
         "LeadPaperweight", "WingedBoots", "PreciseScissors", "NewLeaf", "ScrollBoxes", "ArcaneScroll", "Pomander",
-        "LavaRock", "NeowsTorment", "SwordOfStone"];
+        "LavaRock", "NeowsTorment", "GoldenPearl", "NutritiousOyster", "SwordOfStone"];
     private static readonly string[] RewardHooks = [nameof(AbstractModel.ModifyRewards),
         nameof(AbstractModel.BeforeCombatRewardOffered), nameof(AbstractModel.ShouldForcePotionReward),
         nameof(AbstractModel.ModifyCardRewardCreationOptions), nameof(AbstractModel.ModifyCardRewardCreationOptionsLate),
@@ -192,6 +194,8 @@ internal static class NativePublicRewardHistoryCertificate
     private static bool CompleteNeutralNeowBoundary(IReadOnlyList<PublicRunEvidenceEvent> events,
         PublicEvidenceAssets before, string relic, CharacterModel character)
     {
+        if (relic is "GoldenPearl" or "NutritiousOyster")
+            return CompleteResourceNeowBoundary(events, before, relic, character);
         if (relic is not ("ScrollBoxes" or "ArcaneScroll" or "Pomander" or "LavaRock" or "NeowsTorment")) return true;
         // These additions require the native starter inventory and the complete
         // acquisition boundary. An arbitrary child or a partial public grant is
@@ -261,6 +265,39 @@ internal static class NativePublicRewardHistoryCertificate
         return SameCards(expected, after.Deck);
     }
 
+    private static bool CompleteResourceNeowBoundary(IReadOnlyList<PublicRunEvidenceEvent> events,
+        PublicEvidenceAssets before, string relic, CharacterModel character)
+    {
+        // This proof is deliberately limited to the pinned Silent A10 start.
+        // AncientEventModel.CalculateVars resets HP to zero and heals 80% of
+        // 70 before either option is chosen. GoldenPearl then gains 150 gold;
+        // NutritiousOyster gains 11 max HP and heals that actual gained amount.
+        // RelicCmd.Obtain removes the fixed relic ID from bags without a draw.
+        // The complete starter inventory has no gold-gain/acquisition modifier.
+        var starter = character.StartingDeck.Select(type =>
+            PublicCardDetailsBuilder.Card((CardModel)ModelDb.Get(type).MutableClone()))
+            .Append(PublicCardDetailsBuilder.Card((CardModel)ModelDb.Card<Sts2Sim.Core.Models.Cards.AscendersBane>().MutableClone()));
+        if (before is not { Hp: 70, MaxHp: 70, Gold: 99, MaxEnergy: 3, PotionSlots: 2,
+                OrbSlots: 0, CardRemovalsUsed: 0 }
+            || before.Potions.Any(p => p is not null) || !SameCards(starter, before.Deck)
+            || before.Relics.Length != 1 || !SameRelic(before.Relics[0], ModelDb.Relic<RingOfTheSnake>())
+            || events.Count <= 4 || events[4] is not { OwnerOrdinal: 0, Payload: PublicOwnerEnded
+                { Outcome: PublicEvidenceOwnerOutcome.Completed, Assets: not null } ended }) return false;
+        var after = ended.Assets!;
+        bool pearl = relic == "GoldenPearl";
+        return after.Hp == (pearl ? 56 : 67) && after.MaxHp == (pearl ? 70 : 81)
+            && after.Gold == (pearl ? 249 : 99) && after.MaxEnergy == before.MaxEnergy
+            && after.PotionSlots == before.PotionSlots && after.Potions.SequenceEqual(before.Potions)
+            && after.OrbSlots == before.OrbSlots && after.CardRemovalsUsed == before.CardRemovalsUsed
+            && SameCards(before.Deck, after.Deck) && after.Relics.Length == 2
+            && SameRelic(after.Relics[0], ModelDb.Relic<RingOfTheSnake>())
+            && SameRelic(after.Relics[1], pearl ? ModelDb.Relic<GoldenPearl>() : ModelDb.Relic<NutritiousOyster>());
+    }
+
+    private static bool SameRelic(PublicRelic observed, RelicModel model) =>
+        PublicJson.Serialize(observed) == PublicJson.Serialize(new PublicRelic(model.GetType().Name,
+            PublicRelicDetails.Details(model), PublicRelicDetails.Cards(model), PublicRelicDetails.SelectedModel(model)));
+
     private static bool PlainCard(PublicCard card) => card.Upgrade == 0
         && (card.Enchantments?.Length ?? 0) == 0 && card.Affliction is null;
     private static bool SameCards(IEnumerable<PublicCard> first, IEnumerable<PublicCard> second) =>
@@ -288,6 +325,8 @@ internal static class NativePublicRewardHistoryCertificate
         if (assets.Relics.Any(r => r.Id == nameof(LavaRock) && (!lavaRockInactive
             || !r.Details.TryGetValue("hasTriggered", out int triggered) || triggered != 0
             || !r.Details.TryGetValue("isUsedUp", out int used) || used != 0))) return false;
+        if (assets.Relics.Any(r => r.Id == nameof(GoldenPearl) && !SameRelic(r, ModelDb.Relic<GoldenPearl>())
+            || r.Id == nameof(NutritiousOyster) && !SameRelic(r, ModelDb.Relic<NutritiousOyster>()))) return false;
         var models = new List<AbstractModel>();
         foreach (string id in assets.Deck.Select(c => c.Id).Distinct())
         { var model = ModelDb.All<CardModel>().SingleOrDefault(c => c.GetType().Name == id); if (model is null) return false; models.Add(model); }

@@ -192,8 +192,13 @@ public static class CombatTeacher
         { public PublicAction[] Actions = actions; public int[] Visits = new int[actions.Length]; public double[] Values = new double[actions.Length]; }
         private readonly Dictionary<string, Node> _nodes = new(StringComparer.Ordinal);
         private readonly IPublicContinuationPolicy _fallback = fallback;
-        public string Id => _fallback.Id == PublicContinuationPolicies.LegacyId
-            ? "nosl-public-uct-exploration-v1" : "nosl-public-uct-exploration-v2-rules-v2";
+        public string Id => _fallback.Id switch
+        {
+            PublicContinuationPolicies.LegacyId => "nosl-public-uct-exploration-v1",
+            PublicContinuationPolicies.ReviewedId => "nosl-public-uct-exploration-v2-rules-v2",
+            PublicContinuationPolicies.ContextualReviewedId => "nosl-public-uct-exploration-v3-rules-v3",
+            _ => throw new InvalidOperationException("Unknown exploration continuation family"),
+        };
         public PublicAction Choose(DecisionPacket packet) => throw new InvalidOperationException("Exploration requires public depth and trace");
         public PublicAction Select(DecisionPacket packet, int decisionDepth, List<(string Key, int Action)> trace)
         {
@@ -226,8 +231,13 @@ public static class CombatTeacher
             var choices = _nodes.Where(x => x.Value.Visits.Any(v => v > 0)).ToDictionary(x => x.Key, x =>
             { var n = x.Value; int i = Enumerable.Range(0, n.Actions.Length).Where(i => n.Visits[i] > 0).OrderByDescending(i => n.Values[i] / n.Visits[i]).First(); return n.Actions[i]; }, StringComparer.Ordinal);
             string digest = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(string.Join("\n", choices.OrderBy(x => x.Key).Select(x => x.Key + PublicJson.Serialize(x.Value)))))).ToLowerInvariant()[..16];
-            string family = _fallback.Id == PublicContinuationPolicies.LegacyId
-                ? "nosl-public-uct-frozen-v1" : PublicContinuationPolicies.ReviewedTreeId;
+            string family = _fallback.Id switch
+            {
+                PublicContinuationPolicies.LegacyId => "nosl-public-uct-frozen-v1",
+                PublicContinuationPolicies.ReviewedId => PublicContinuationPolicies.ReviewedTreeId,
+                PublicContinuationPolicies.ContextualReviewedId => PublicContinuationPolicies.ContextualReviewedTreeId,
+                _ => throw new InvalidOperationException("Unknown frozen continuation family"),
+            };
             return new(family + ":" + digest, choices, _fallback);
         }
     }

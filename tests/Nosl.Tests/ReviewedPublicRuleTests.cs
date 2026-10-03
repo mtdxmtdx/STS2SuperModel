@@ -270,7 +270,8 @@ public sealed class ReviewedPublicRuleTests(ITestOutputHelper output)
         process.StandardInput.Close();
         using var capabilities = JsonDocument.Parse((await process.StandardOutput.ReadLineAsync())!);
         Assert.Equal("nosl.continuation-policies.v1", capabilities.RootElement.GetProperty("version").GetString());
-        Assert.Equal(new[] { PublicContinuationPolicies.LegacyId, PublicContinuationPolicies.ReviewedId },
+        Assert.Equal(new[] { PublicContinuationPolicies.LegacyId, PublicContinuationPolicies.ReviewedId,
+            PublicContinuationPolicies.ContextualReviewedId },
             capabilities.RootElement.GetProperty("supportedPolicyIds").EnumerateArray().Select(x => x.GetString()));
         using var reset = JsonDocument.Parse((await process.StandardOutput.ReadLineAsync())!);
         Assert.Equal("player_decision", reset.RootElement.GetProperty("status").GetString());

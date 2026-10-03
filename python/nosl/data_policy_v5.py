@@ -65,6 +65,12 @@ def validate_record(record, config):
     # This validates all graph, history and exact anchor data before any target
     # arithmetic or inherited mechanics encoder can strip an extension.
     validate_targets(targets, public, config)
+    if isinstance(audit, dict) and audit.get("source_kind") == "constructed_empirical_plan_fixture":
+        # Only this source-backed engineering subtype omits native seed claims.
+        # Independently revalidate exact raw evidence and regenerate every field;
+        # the caller cannot supply a trusted constructed assertion or receipt.
+        from .finite_hunt_policy_v5 import validate_record as validate_constructed_record
+        return validate_constructed_record(record, config)
     object_keys(audit, ("purpose", "trainable", "source_kind", *SOURCE_FIELDS,
         "source_artifact_sha256", "source_record_sha256", "conditioned_public_input_digest", "targets_sha256",
         "native_run", "actual_seed", "source_draw_seed", "native_source_run_identity", "producer_receipt_sha256"),

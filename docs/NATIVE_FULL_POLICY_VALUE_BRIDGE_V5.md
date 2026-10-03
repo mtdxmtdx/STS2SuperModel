@@ -148,3 +148,14 @@ ownership. Isolation correctly rejects this inspected source with
 uncalibrated `native-objective-candidate`, with `trainable=false`; no fitting or
 cohort admission was performed. Complete historical protection remains a real
 prerequisite for any future fitting work.
+
+## Serializer integration version
+
+Adapter `nosl.native-full-policy.adapter.v5.2` updates the pinned TeacherDataset
+source hash after the opt-in public-v3 continuation added its separate dataset
+identity. Objective arithmetic, the default v2 record branch, raw candidate
+validation and admission gates are unchanged. The full-policy receipt fingerprint
+changes with the adapter; a v5.1 receipt is rejected instead of silently rebuilt
+under current code. Historical native-interface/one-backward reports and source
+artifacts remain immutable. Any new adaptation writes a new record/receipt and
+does not imply new simulation, calibration, fitting or admission.

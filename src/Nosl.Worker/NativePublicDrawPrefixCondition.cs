@@ -23,7 +23,7 @@ internal sealed record NativePublicDrawPrefixAudit(string CertificateVersion, in
 /// </summary>
 internal static class NativePublicDrawPrefixCondition
 {
-    internal const string Version = "nosl.public-first-draw-cycle.v9";
+    internal const string Version = "nosl.public-first-draw-cycle.v11";
 
     // Read the complete sealed OnPlay implementations, including both upgrade branches and
     // inherited result locations. Strike/Defend's GeneratedCardSpec has no GeneratedPowerEffect.
@@ -43,8 +43,24 @@ internal static class NativePublicDrawPrefixCondition
     [nameof(StrikeSilent), nameof(DefendSilent), nameof(Neutralize), nameof(Survivor),
         nameof(Backflip), nameof(Deflect), nameof(Mirage), nameof(NeowsFury), nameof(Strangle),
         nameof(Finisher), nameof(SuckerPunch), nameof(Slimed), nameof(Peck), nameof(DaggerSpray), nameof(DaggerThrow),
-        nameof(PhantomBlades), nameof(WellLaidPlans), nameof(Blur), nameof(PoisonedStab), nameof(Tracking)];
-    // These two sealed Power cards only apply the powers reviewed below; their result
+        nameof(PhantomBlades), nameof(WellLaidPlans), nameof(Blur), nameof(PoisonedStab), nameof(Tracking),
+        nameof(DeadlyPoison), nameof(FlickFlack), nameof(Anticipate), nameof(PreciseCut), nameof(Ricochet),
+        nameof(LegSweep), nameof(NoxiousFumes)];
+    // V10: DeadlyPoison only applies reviewed Poison. PreciseCut reads the current
+    // hand count and deals damage. FlickFlack attacks all opponents; Ricochet uses
+    // the native random-target stream for repeated attacks. Both Sly cards are
+    // admitted only through an ordinary public play action: the existing Survivor
+    // and DaggerThrow guards still stop BEFORE selected-Sly discard/autoplay.
+    // Native turn flush uses plain pile Add, not CardCmd.Discard, so it does not
+    // autoplay unplayed Sly cards. All five inherit the ordinary Discard result
+    // and no-op card hooks. Upgrades alter only damage, hit count, or power amount.
+    // Anticipate applies the reviewed temporary-Dexterity lifecycle below.
+    // V11 crosses the next observed blockers in those same histories: LegSweep
+    // gains ordinary powered block and applies reviewed Weak; NoxiousFumes applies
+    // only its reviewed power below. Their upgrades change numeric amounts only.
+    // NoxiousFumes inherits the Power-card None result; the public reshuffle
+    // witness already accounts for the played card no longer being in its pool.
+    // PhantomBlades and WellLaidPlans only apply the powers reviewed below; their result
     // location is None. Neither upgrade branch upgrades another card or touches Draw.
     // Blur only gains block and applies BlurPower; PoisonedStab only attacks and
     // applies PoisonPower. Their upgrades change numeric amounts, not card identity.
@@ -80,7 +96,17 @@ internal static class NativePublicDrawPrefixCondition
     // No closure member produces an unreviewed power.
     private static readonly HashSet<string> Powers =
         [nameof(WeakPower), nameof(FrailPower), nameof(StrengthPower), nameof(RavenousPower), nameof(StranglePower), nameof(ThornsPower),
-            nameof(ShrinkPower), nameof(PhantomBladesPower), nameof(WellLaidPlansPower), nameof(BlurPower), nameof(PoisonPower), nameof(TrackingPower)];
+            nameof(ShrinkPower), nameof(PhantomBladesPower), nameof(WellLaidPlansPower), nameof(BlurPower), nameof(PoisonPower), nameof(TrackingPower),
+            nameof(AnticipatePower), nameof(DexterityPower), nameof(NoxiousFumesPower)];
+    // AnticipatePower is the sealed positive TemporaryDexterityPower: BeforeApplied
+    // adds Dexterity, later own-amount changes apply its delta, and owner side end
+    // removes the temporary power then subtracts that amount from Dexterity.
+    // Dexterity only adjusts powered block from its owner. Apply/stack/removal
+    // dispatch stay inside this listener closure; neither power moves cards,
+    // draws, generates/upgrades cards, or creates any further listener type.
+    // NoxiousFumesPower only applies already-reviewed Poison to the snapshot of
+    // hittable enemies when its owner participates in side start. All application
+    // and later Poison damage/death callbacks retain the same listener closure.
     // PhantomBladesPower only adds Retain to existing/new Shivs and modifies damage.
     // WellLaidPlansPower only vetoes its owner's hand flush. Retention affects which
     // cards reach Discard, never Draw order or upgrade levels. The post-shuffle public

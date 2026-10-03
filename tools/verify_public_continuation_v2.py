@@ -29,7 +29,7 @@ def run(worker, destination):
         try:
             capabilities = call({"op": "continuation_policies"})
             assert capabilities["version"] == "nosl.continuation-policies.v1"
-            assert capabilities["supportedPolicyIds"] == [V1, V2]
+            assert {V1, V2} <= set(capabilities["supportedPolicyIds"])
             packet = call({"op": "reset", "scenario": {"seed": "public-rules-v2-paired-fixture",
                           "deck": ["Finesse", "Finesse", "BladeDance"], "enemyHp": 12}})
             for _ in range(2):

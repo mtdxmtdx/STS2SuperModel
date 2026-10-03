@@ -1,0 +1,183 @@
+{
+  "schema": "nosl.native-map-v8-validation-plan.v1",
+  "created_utc": "2026-10-03T13:23:41.965229+00:00",
+  "status": "RUNTIME_FROZEN_NOT_STARTED",
+  "planning_commit_base": "16a6398fd2e334e1dfe5d7d7c578c0abcf97e209",
+  "runtime_commit": "650b8d9d4d284c886a7556184a352bcc3c6bad91",
+  "prior_identity": "10b8d166ee4dfe2cacd0946d5737f38de676e55b20b69acf635c3898da88e3f6",
+  "prior_law_changed": false,
+  "changes_under_validation": [
+    "Four source-backed public event first-page identities",
+    "Source-backed draw closure extension, implementation/review pending",
+    "Opt-in public-v3 continuation is validated separately; comparison source and teacher remainv2 to preserve prior/targets"
+  ],
+  "inspected_cohorts": [
+    {
+      "role": "inspected-eight",
+      "seeds": [
+        24001,
+        24002,
+        24003,
+        24004,
+        24005,
+        24006,
+        24007,
+        24008
+      ],
+      "evaluation_seeds": [
+        501,
+        502
+      ],
+      "gates": {
+        "all_eight_requested_attempts_retained": true,
+        "fully_complete_requested_roots_at_least": 4,
+        "fully_complete_decision_index_positive_roots_at_least": 3,
+        "fully_complete_combat_index2_decision_index_positive_roots_at_least": 1,
+        "engine_errors": 0,
+        "assigned_candidate_worlds_completely_accounted": true,
+        "missing_required_category": "inconclusive_not_pass",
+        "full_completion": "Exactly two outcomes per nonempty candidate action, all true terminal and settlement-complete, nonutility target completeness masks valid, and two accepted posterior worlds; costs alone do not establish settlement completion",
+        "zero_error_scope": "Source attempts, proposal engine or cleanup audit, and every continuation branch",
+        "map_reconstruction_executed": "Eligible complete-map root with exact new-law/support/profile IDs; each accepted proposal reconstructed once with zero initial Map cells",
+        "decision_index_positive_means": "An observed local decision after the first; does not imply more than one candidate action.",
+        "all_public_inputs_unchanged_from_v3": true,
+        "prior_identity_unchanged_from_v3": true
+      },
+      "request_source": "configs/native_map_inspected_probe_v7.json",
+      "requirements": "Same public inputs, prior, request order and budgets; all failure mass retained."
+    },
+    {
+      "role": "inspected-twelve",
+      "seeds": [
+        24101,
+        24102,
+        24103,
+        24104,
+        24105,
+        24106,
+        24107,
+        24108,
+        24109,
+        24110,
+        24111,
+        24112
+      ],
+      "evaluation_seeds": [
+        701,
+        702
+      ],
+      "gates": {
+        "all_twelve_requested_attempts_retained": true,
+        "all_twelve_attempts_executed": true,
+        "fully_complete_requested_roots_at_least": 6,
+        "fully_complete_later_decision_roots_at_least": 4,
+        "fully_complete_combat_index2_later_decision_roots_at_least": 1,
+        "fully_complete_multi_candidate_roots_at_least": 5,
+        "engine_errors": 0,
+        "assigned_candidate_worlds_completely_accounted": true,
+        "full_completion": "Exactly two accepted posterior worlds and true terminal settlement-complete outcomes for every legal candidate; empirical nonutility masks complete",
+        "missing_required_category": "inconclusive_not_pass",
+        "production_admission": false
+      },
+      "request_source": "configs/native_map_inspected_twelve_probe_v7.json",
+      "requirements": "Same public inputs, prior, request order and budgets; all failure mass retained."
+    },
+    {
+      "role": "previously-fresh-twelve",
+      "seeds": [
+        24201,
+        24202,
+        24203,
+        24204,
+        24205,
+        24206,
+        24207,
+        24208,
+        24209,
+        24210,
+        24211,
+        24212
+      ],
+      "evaluation_seeds": [
+        901,
+        902
+      ],
+      "gates": {
+        "all_twelve_requested_attempts_retained": true,
+        "all_twelve_attempts_executed": true,
+        "fully_complete_requested_roots_at_least": 6,
+        "fully_complete_later_decision_roots_at_least": 4,
+        "fully_complete_combat_index2_later_decision_roots_at_least": 1,
+        "fully_complete_multi_candidate_roots_at_least": 5,
+        "engine_errors": 0,
+        "assigned_candidate_worlds_completely_accounted": true,
+        "full_completion": "Exactly two accepted posterior worlds and true terminal settlement-complete outcomes for every legal candidate; empirical nonutility masks complete",
+        "missing_required_category": "inconclusive_not_pass",
+        "production_admission": false
+      },
+      "request_source": "configs/native_map_fresh_probe_v7.json",
+      "requirements": "Same public inputs, prior, request order and budgets; all failure mass retained."
+    }
+  ],
+  "new_fresh_cohort": {
+    "source_draw_seeds": [
+      24301,
+      24302,
+      24303,
+      24304,
+      24305,
+      24306,
+      24307,
+      24308,
+      24309,
+      24310,
+      24311,
+      24312
+    ],
+    "evaluation_seeds": [
+      1101,
+      1102
+    ],
+    "request_template": "configs/native_map_fresh_probe_v7.json",
+    "gates": {
+      "all_twelve_requested_attempts_retained": true,
+      "all_twelve_attempts_executed": true,
+      "fully_complete_requested_roots_at_least": 6,
+      "fully_complete_later_decision_roots_at_least": 4,
+      "fully_complete_combat_index2_later_decision_roots_at_least": 1,
+      "fully_complete_multi_candidate_roots_at_least": 5,
+      "engine_errors": 0,
+      "assigned_candidate_worlds_completely_accounted": true,
+      "full_completion": "Exactly two accepted posterior worlds and true terminal settlement-complete outcomes for every legal candidate; empirical nonutility masks complete",
+      "missing_required_category": "inconclusive_not_pass",
+      "production_admission": false
+    },
+    "launch_requires": "All three inspected cohorts pass their preserved gates under the same independently reviewed frozen runtime, zero engine/cleanup errors. These12sources have not been generated or inspected at planning time."
+  },
+  "per_cohort_budget": {
+    "posterior_worlds_per_root": 2,
+    "max_posterior_attempts_per_world": 64,
+    "max_continuation_decisions": 200,
+    "initial_prefix_max_trials": 64,
+    "event_permutation_max_trials": 256,
+    "wall_seconds": 360,
+    "external_watchdog_seconds": 420
+  },
+  "execution_preconditions": [
+    "Independent correction/ownership review and relevant focused tests pass",
+    "Complete native aggregate and affected Core regression pass; Python source is unchanged or its guarded regressions pass",
+    "Freeze worker binary and runtime source hashes; no concurrent build or timed experiment",
+    "Write exact request, specification hashes, command and start time before first source execution"
+  ],
+  "accounting": "Retain every requested source, absent boundary, error, rejection, timeout and unexecuted attempt. Count accepted posterior slots separately from candidate branch copies. A cutoff does not define an unbiased survivor population.",
+  "source_identity": "Reuse inspected source identity; do not relabel them fresh or move across protected groups. Newly generated24301\u201324312 become inspected development and are protected immediately.",
+  "scope": "Initial-act prior sampler diagnostic; no broad full-solo claim or production admission.",
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "new_production_rows": 0,
+  "production_admission": false,
+  "formal_training": false,
+  "runtime_freeze": "artifacts/reports/map-public-v8/runtime-freeze.json",
+  "native_tests_passed": 2261,
+  "guarded_python_tests_passed": 72
+}

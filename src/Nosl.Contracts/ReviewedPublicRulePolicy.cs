@@ -1,20 +1,26 @@
 namespace Nosl.Contracts;
 
-/// <summary>Explicit replay identities. Defaults stay v1; v2 is a separate data-generating policy.</summary>
+/// <summary>Explicit replay identities. Each opt-in successor is a separate data-generating policy.</summary>
 public static class PublicContinuationPolicies
 {
     public const string LegacyId = "nosl-public-rules-v1";
     public const string ReviewedId = "nosl-public-rules-v2";
     public const string ReviewedTreeId = "nosl-public-uct-frozen-v2-rules-v2";
     public const string ReviewedDatasetVersion = "nosl.teacher-data.public-rules-v2.v1";
+    public const string ContextualReviewedId = "nosl-public-rules-v3";
+    public const string ContextualReviewedTreeId = "nosl-public-uct-frozen-v3-rules-v3";
+    public const string ContextualReviewedDatasetVersion = "nosl.teacher-data.public-rules-v3.v1";
     public static IPublicContinuationPolicy Create(string id) => id switch
     {
         LegacyId => new PublicRulePolicy(),
         ReviewedId => new ReviewedPublicRulePolicy(),
+        ContextualReviewedId => new ContextualReviewedPublicRulePolicy(),
         _ => throw new ArgumentException("Unknown public continuation policy: " + id),
     };
     public static string DatasetVersion(string continuationId)
     {
+        if (continuationId == ContextualReviewedId || continuationId.StartsWith(ContextualReviewedTreeId + ":", StringComparison.Ordinal))
+            return ContextualReviewedDatasetVersion;
         if (continuationId == ReviewedId || continuationId.StartsWith(ReviewedTreeId + ":", StringComparison.Ordinal))
             return ReviewedDatasetVersion;
         if (continuationId == LegacyId || continuationId.StartsWith("nosl-public-uct-frozen-v1:", StringComparison.Ordinal))

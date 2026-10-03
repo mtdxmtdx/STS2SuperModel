@@ -1,0 +1,40 @@
+{
+  "schema": "nosl.public-event-first-page-extension.v1",
+  "status": "FOCUSED_TESTS_PASSED_INDEPENDENT_REVIEW_APPROVED",
+  "base_commit": "a753f63",
+  "source_files": {
+    "src/Nosl.Worker/NativePublicEventPermutationCondition.cs": "e390e29d08fac1d5c173d5f90bbb45a46a0f724586d42c9124b8ff41f72a6c46",
+    "tests/Nosl.Tests/NativePublicAdditionalEventIdentityTests.cs": "49d9f0b279257720c4caa95ebfdee4460af168d26ed18ed88b000bd4b2f52ee9",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/Events/AbyssalBaths.cs": "60c2d72cd5409d118d7a507f79c7a81f2c978045959a081a2983e170065d5150",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/Events/JungleMazeAdventure.cs": "bf68b27fc9ac579809610285ce4e298bd5ee7a442c0ebc7de1ca0d11922fb4d5",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/Events/ThisOrThat.cs": "e15751780383d6b7d0fb0acb982082dfd3b633bf8466a87357bd2421c7ca0f7e",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/Events/TeaMaster.cs": "698f5645e6c7ced5c5b7d31326ab82ce679a4b6b0972aaae7ca961357cb4d570"
+  },
+  "native_cases": [
+    24205,
+    24207,
+    24208
+  ],
+  "targets": [
+    "AbyssalBaths",
+    "JungleMazeAdventure",
+    "ThisOrThat",
+    "TeaMaster"
+  ],
+  "changes": "Four uniquely identified complete native first pages extend the necessary event used by the existing whole-event permutation proposal. No new prior or correction arithmetic. Event outcome randomness is unchanged and every later public event still must match.",
+  "first_page_checks": "Three fixed native setup seeds per type; first-page order, missing/extra options, lock variants and inconsistent locks, price fields and later-page signatures tested.",
+  "native_component_proof": "Each of three previously inspected roots replays the exact complete public packet under two independently generated whole-permutation proposal streams while holding the other fixture streams. This is lifecycle/identity proof, not posterior acceptance or throughput measurement. No source recipe reaches production inference.",
+  "probability_proof": "Existing finite scanner and bounded whole-permutation rejection/correction tests retained and passed; the necessary root-fixed predicate is extended, the sampler law is unchanged.",
+  "tests_passed": 26,
+  "tests_failed": 0,
+  "test_duration_seconds": 9,
+  "trx": "artifacts/reports/additional-event-v8/additional-event-v8-r4.trx",
+  "earlier_test_failure": "ThisOrThat fixture has a later TeaMaster page; conditioning only its first event left that later permutation choice unconstrained. Full suffix equality correctly rejected the replay. TeaMaster exact first-page certificate was subsequently added.",
+  "earlier_compile_failures": "Fixture used EventOption.Id instead of Key and record-copy syntax on immutable class; test code corrected, production source unaffected.",
+  "production_admission": false,
+  "new_backward_passes": 0,
+  "new_optimizer_steps": 0,
+  "trx_sha256": "f84ef09933e266e55a8bbb13d98c906e49ebeb46131022f8f9a4ea28cb92bef1",
+  "independent_review": "Parent independently checked all four native first-page implementations, literal key uniqueness across native event source, ordered page/lock/price guards and mandatory full suffix. No findings blocking scoped identity proposal. Tests not rerun by reviewer.",
+  "necessary_superset_note": "TeaMaster lock pattern(true,false) is impossible natively but remains an accepted necessary superset, never a claimed feasible history. Full native evidence equality rejects it; no hidden normalizer or reward target is inferred."
+}

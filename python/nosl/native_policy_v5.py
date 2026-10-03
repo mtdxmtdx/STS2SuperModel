@@ -25,7 +25,7 @@ from .public_identity_v5 import public_input_digest
 from .schema import integer, number, object_keys, reject
 from .schema_v5 import loads, validate_config
 
-ADAPTER_VERSION = "nosl.native-full-policy.adapter.v5.1"
+ADAPTER_VERSION = "nosl.native-full-policy.adapter.v5.2"
 RECEIPT_FORMAT = "nosl.native-full-policy.producer-receipt.v5.1"
 REVIEW_FORMAT = "nosl.native-full-policy.cohort-review.v5.1"
 RAW_REPORT_SCHEMA = "nosl.native-complete-map.raw-report.v1"
@@ -33,7 +33,7 @@ NO_RANKING = "MASKED_NO_CERTIFIED_UTILITY_SUPPORT"
 SOURCE_HASHES = {
     "src/Nosl.Objectives/ObjectiveEvaluator.cs": "a5c386188f00d096fc5c037881c4643e52cd180632e14da0a94b810cee63c494",
     "src/Nosl.Objectives/RolloutOutcome.cs": "492d066f1e0b2fddfd111c68c844c6edee5782982a7149641dfec2e03c1d2c04",
-    "src/Nosl.Worker/TeacherDataset.cs": "3c81734b9a840e267edf1731e403100356dbb9f47d9a78569cb6cffcf617c037",
+    "src/Nosl.Worker/TeacherDataset.cs": "71f95f83609d0c75232d2443baa0394cb14e28dcdc4ce9fa1a507e27437901df",
 }
 CANDIDATE_PROFILE = {
     "id": "nosl_silent_a10_terminal_v4_candidate", "defeat_cost": 1000,

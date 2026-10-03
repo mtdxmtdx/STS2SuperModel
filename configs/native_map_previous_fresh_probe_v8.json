@@ -1,0 +1,89 @@
+{
+  "schema": "nosl.development-sampler-cohort.v2",
+  "created_utc": "2026-10-03T14:03:37.562065+00:00",
+  "source_commit": "650b8d9d4d284c886a7556184a352bcc3c6bad91",
+  "role": "Previously fresh24201\u201324212, now inspected regression with unchanged requests and gates",
+  "request": {
+    "op": "native_tape_replay",
+    "options": {
+      "collectionId": "map-public-fresh-twelve-v6",
+      "prior": {
+        "schemaVersion": "nosl.native-map-rewards-state-tape-prior.v1",
+        "eligibleCombats": 3,
+        "eligibleDecisionsPerCombat": 8,
+        "execution": {
+          "maxFloors": 8,
+          "sourceDecisionHorizon": 1024,
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "outsideCombatScript": "nosl-natural-public-script-v3",
+          "publicContextProfile": "nosl.public-run-context.v1",
+          "publicEvidenceProfile": "nosl.public-run-evidence.v2",
+          "publicMapObservationProfile": "nosl.public-map-complete-graph.v1"
+        }
+      },
+      "sourceDrawSeeds": [
+        24201,
+        24202,
+        24203,
+        24204,
+        24205,
+        24206,
+        24207,
+        24208,
+        24209,
+        24210,
+        24211,
+        24212
+      ],
+      "wallBudgetSeconds": 360,
+      "compareUnconditioned": false,
+      "initialPrefixMaxTrials": 64,
+      "eventPermutationMaxTrials": 256
+    },
+    "teacherOptions": {
+      "mode": "T0",
+      "continuationPolicyId": "nosl-public-rules-v2",
+      "evaluationSeeds": [
+        901,
+        902
+      ],
+      "maxPosteriorAttempts": 64,
+      "maxDecisions": 200
+    }
+  },
+  "external_watchdog_seconds": 420,
+  "gates": {
+    "all_twelve_requested_attempts_retained": true,
+    "all_twelve_attempts_executed": true,
+    "fully_complete_requested_roots_at_least": 6,
+    "fully_complete_later_decision_roots_at_least": 4,
+    "fully_complete_combat_index2_later_decision_roots_at_least": 1,
+    "fully_complete_multi_candidate_roots_at_least": 5,
+    "engine_errors": 0,
+    "assigned_candidate_worlds_completely_accounted": true,
+    "full_completion": "Exactly two accepted posterior worlds and true terminal settlement-complete outcomes for every legal candidate; empirical nonutility masks complete",
+    "missing_required_category": "inconclusive_not_pass",
+    "production_admission": false
+  },
+  "selection_accounting": "All 12 source draws remain denominator, including absent, failed, timed out or unexecuted. No replacements, no success quota, no postinspection category selection. The prior chooses combat and local decision before execution.",
+  "time_bias": "Deadline truncation is unresolved computational mass. Completed-by-deadline rows do not establish unbiased admission.",
+  "run_precondition": "Independent component reviews and full frozen Worker/Core regressions pass. Freeze source and binaries; no concurrent builds or timed experiments. Python source is unchanged or guarded relevant checks pass.",
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "production_admission": false,
+  "frozen_test": "not decoded or changed",
+  "gate_use": "Launch only after both inspected v7 cohorts pass their preserved gates. Same fresh thresholds as v4; no production admission or fit from this diagnostic.",
+  "additional_descriptive_counts": [
+    "fully complete roots with at least two candidates",
+    "fully complete later-combat roots with at least two candidates"
+  ],
+  "current_sampler": "nosl-native-map-rewards-tape-marginalized-v8-public-evidence-v2",
+  "paired_evaluation_seed_note": "Fixed within-root world seeds are reused across roots and implementations for this development comparison; accepted slots are not a claim of globally independent samples.",
+  "freshness": "Already inspected in v7; this rerun is never fresh breadth evidence.",
+  "validation_plan": "configs/native_map_v8_validation_plan.json",
+  "baseline_response": {
+    "path": "artifacts/reports/map-public-v7/fresh-twelve-response.jsonl",
+    "sha256": "9807177a7bac7d2e3a066269043667d02d69b1784a6c47d756b174556a1bd15c"
+  }
+}

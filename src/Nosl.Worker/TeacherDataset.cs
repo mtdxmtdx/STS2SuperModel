@@ -87,11 +87,13 @@ public static class TeacherDataset
         };
         // Preserve the legacy record shape; a new continuation gets a new
         // dataset lock, so prepare_dataset refuses to append it to a v1 corpus.
+        string continuationDataset = PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion);
         if (!publicRunContext && publicSchema != HuntStudentContext.PublicSchema
-            && PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion) != PublicContinuationPolicies.ReviewedDatasetVersion)
+            && continuationDataset == "nosl.teacher-data.public-rules-v1.v1")
             return record;
         var versioned = JsonNode.Parse(PublicJson.Serialize(record))!.AsObject();
-        string datasetVersion = result.PublicRoot.PublicEvidence?.SchemaVersion == PublicRunEvidence.CompleteMapVersion
+        string datasetVersion = continuationDataset == PublicContinuationPolicies.ContextualReviewedDatasetVersion
+            ? continuationDataset : result.PublicRoot.PublicEvidence?.SchemaVersion == PublicRunEvidence.CompleteMapVersion
             ? PublicEvidenceInput.CompleteMapDatasetVersion : publicEvidence ? PublicEvidenceInput.DatasetVersion : publicRunContext ? "nosl.dataset.public-run-context.v1"
             : forcedEvent ? "nosl.dataset.forced-events.v2" : PublicContinuationPolicies.DatasetVersion(result.ContinuationVersion);
         versioned["audit_only"]!["dataset_version"] = datasetVersion;

@@ -317,7 +317,7 @@ public sealed class NativePublicDrawHistoryClosureTests(ITestOutputHelper output
     {
         string before = PublicJson.Serialize(root);
         var first = NativePublicCombatPrefixCondition.Create(root).Combats[0];
-        Assert.Equal("nosl.public-first-draw-cycle.v9", first.DrawPrefix!.CertificateVersion);
+        Assert.Equal("nosl.public-first-draw-cycle.v11", first.DrawPrefix!.CertificateVersion);
         Assert.Equal(initialCount, first.Shuffle!.DrawPrefixIds.Length);
         Assert.Equal("first_reshuffle", first.DrawPrefix.StopReason);
         var reshuffles = NativePublicReshuffleCondition.Create(root);

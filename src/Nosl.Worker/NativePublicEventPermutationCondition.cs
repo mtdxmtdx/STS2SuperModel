@@ -292,6 +292,20 @@ internal static class NativeEventSelectionCertificate
         if (keys.SequenceEqual(new[] { "GORGE", "SEARCH" })) return "RoomFullOfCheese";
         if (keys.SequenceEqual(new[] { "SHARE_KNOWLEDGE", "RIP" })
             && options.Options.All(o => !o.IsLocked)) return "BrainLeech";
+        // These complete first pages are fixed in all native branches. Their
+        // event-local random outcome draws remain native and are still checked
+        // against the complete public suffix; this identifies only the event.
+        if (options.Options.All(o => !o.IsLocked))
+        {
+            if (keys.SequenceEqual(new[] { "IMMERSE", "ABSTAIN" })) return "AbyssalBaths";
+            if (keys.SequenceEqual(new[] { "SOLO_QUEST", "JOIN_FORCES" })) return "JungleMazeAdventure";
+            if (keys.SequenceEqual(new[] { "PLAIN", "ORNATE" })) return "ThisOrThat";
+        }
+        if (keys.Length == 3 && (keys[0] is "BONE_TEA" or "BONE_TEA_LOCKED")
+            && (keys[1] is "EMBER_TEA" or "EMBER_TEA_LOCKED") && keys[2] == "TEA_OF_DISCOURTESY"
+            && options.Options[0].IsLocked == (keys[0] == "BONE_TEA_LOCKED")
+            && options.Options[1].IsLocked == (keys[1] == "EMBER_TEA_LOCKED")
+            && !options.Options[2].IsLocked) return "TeaMaster";
         if (keys.SequenceEqual(new[] { "LIGHT", "DARK" })
             && options.Options.All(o => !o.IsLocked)) return "DoorsOfLightAndDark";
         if (keys.Length == 3 && (keys[0] is "READ_THE_BACK" or "READ_THE_BACK_LOCKED")

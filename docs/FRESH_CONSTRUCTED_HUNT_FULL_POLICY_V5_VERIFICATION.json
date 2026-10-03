@@ -1,0 +1,353 @@
+{
+  "format": "nosl.constructed-hunt.full-policy.verification.v1",
+  "date": "2026-10-03",
+  "core_producer_commit": "d70517f1b961c5e94cd5a947deb08673f0c5d965",
+  "status": "engineering_record_and_actual_batch_loss_verified",
+  "purpose": "engineering-fixture",
+  "scope": "Source-backed constructed full-v5 plan measurements, no native or production admission",
+  "checks": [
+    {
+      "command": "python -B -m unittest discover -s tests/data -p test_finite_hunt_policy_v5.py -v",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/fresh-finite-v5/policy-bridge-tests.log"
+    },
+    {
+      "command": "python -B -m unittest discover -s tests/python -p test_full_policy_v5.py -v",
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/fresh-finite-v5/policy-regression-tests.log"
+    },
+    {
+      "command": "python -B -m unittest discover -s tests/data -p test_native_policy_v5.py -v",
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/fresh-finite-v5/native-policy-regression-tests.log"
+    }
+  ],
+  "forward": {
+    "status": "passed",
+    "check": "fresh_constructed_full_policy_batch_loss_forward_only",
+    "raw_sha256": "6114ccad16233cf4539a88ad09553ac01f4185a21a90450a21e9cec29d548171",
+    "record_sha256": "2f328cb4d4aa855c117c5a8cbe873370ed7d46c4913fb8d49404eb58bf68d2d1",
+    "objective": {
+      "format": "nosl.dataset.full-policy.objective-attestation.v5.1",
+      "objective_spec_sha256": "4565a502d529e104109afdb48e962497b605edc6272a2810225543f3f01e14ec",
+      "evaluator_source_sha256": "6a5fe65acc8bd25312688fd7ab3b79de5c76c73beeb1c47dee9c9fcde319b90b",
+      "calibration_evidence_sha256": null,
+      "evaluation_design_sha256": "1335a9779990003be75a491543cca7757d19c05f3ccf69bd30fcd9d5af8c7a7c",
+      "endpoint": "AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION",
+      "continuation_policy_id": "nosl-finite-hunt-next-turn-v1:hp-floor=10",
+      "independent_final_evaluation": true,
+      "public_conditioning_scope": "full_v5",
+      "objective_profile_status": "candidate",
+      "objective_calibrated": false
+    },
+    "config_sha256": "1d745485bcdab2dd9969e92a4a144dbabfab1558c8bbdb6770cd824d16d46473",
+    "parameter_count": 1573534,
+    "model_state_before_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+    "model_state_after_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+    "parameters_unchanged": true,
+    "loss": 0.8731998801231384,
+    "terms": [
+      {
+        "value": 0.0,
+        "win_probability": 0.0,
+        "death_probability": 0.0,
+        "expected_final_hp": 0.0,
+        "hp_distribution": 0.0,
+        "potion_net_change": 0.0,
+        "pairwise": 0.0,
+        "equivalent": 0.0,
+        "plan.specified_success_probability": 0.8081371784210205,
+        "plan.extra_net_hp_loss": 0.06506272405385971
+      }
+    ],
+    "plan_masks": {
+      "specified_success_probability": true,
+      "extra_net_hp_loss": true
+    },
+    "supervision_coverage": {
+      "format": "nosl.training.full-policy.supervision.v5.1",
+      "roots": 1,
+      "action_heads": {
+        "value": {
+          "masked_rows": 0,
+          "loss_rows": 0,
+          "loss_roots": 0
+        },
+        "win_probability": {
+          "masked_rows": 0,
+          "loss_rows": 0,
+          "loss_roots": 0
+        },
+        "death_probability": {
+          "masked_rows": 0,
+          "loss_rows": 0,
+          "loss_roots": 0
+        },
+        "expected_final_hp": {
+          "masked_rows": 0,
+          "loss_rows": 0,
+          "loss_roots": 0
+        },
+        "hp_distribution": {
+          "masked_rows": 0,
+          "loss_rows": 0,
+          "loss_roots": 0
+        },
+        "potion_net_change": {
+          "masked_rows": 0,
+          "loss_rows": 0,
+          "loss_roots": 0
+        }
+      },
+      "plan_heads": {
+        "specified_success_probability": {
+          "masked_roots": 1,
+          "loss_roots": 1
+        },
+        "extra_net_hp_loss": {
+          "masked_roots": 1,
+          "loss_roots": 1
+        }
+      },
+      "action_policy": {
+        "eligible_roots": 0,
+        "value_roots": 0,
+        "pairwise_roots": 0,
+        "equivalent_roots": 0,
+        "pairwise_pairs": 0
+      },
+      "policy_action_kinds": {
+        "play": 0,
+        "potion": 0,
+        "discard_potion": 0,
+        "choose": 0,
+        "end_turn": 0
+      }
+    },
+    "fit_gate": {
+      "status": "FIT_BLOCKED",
+      "accepted": false,
+      "reasons": [
+        "unadmitted_or_engineering_records_cannot_fit",
+        "enabled_objective_policy_supervision_required",
+        "exact_external_objective_review_required",
+        "exact_bounded_execution_authorization_required"
+      ],
+      "formal_training_run": false,
+      "policy_promoted": false,
+      "current_auxiliary_artifacts_eligible": false
+    },
+    "engineering_dataset_accepted": true,
+    "backward_calls": 0,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0,
+    "gradients_created": false,
+    "weights_saved": false,
+    "trainable": false,
+    "natural_native_admission": false,
+    "objective_calibrated": false
+  },
+  "source_closure": {
+    "format": "nosl.constructed-plan.full-policy.closure-comparison.v1",
+    "historical_connectivity_report": "configs/student_v5_full_policy_connectivity.json",
+    "historical_report_sha256": "5dc9e73bee7714fe54087d465e77d2993d429faf0b6869d55a371a317661633a",
+    "historical_report_byte_identical_to_base": true,
+    "historical_source_count": 39,
+    "current_source_count": 41,
+    "unchanged_source_count": 37,
+    "changed_sources": {
+      "python/nosl/data_policy_v5.py": {
+        "historical": "66b402e746d93f5bc7a971ada2c9cd0c86ad2464a2fcc25ff7835ef417f0f3ef",
+        "current": "f657fb2971ef48ac6d1cb2f3a2b205b335174e593082dac30b97b7797116e402"
+      },
+      "python/nosl/train_policy_v5.py": {
+        "historical": "7f413e0cd2294bff10ebccf86a53dc6efbcd2b38d4d01a75eb3f92ef5f4098a5",
+        "current": "6bce435f69000ffec210d1b3d7b533b3d93f62d3440629219283a8a1d7d74b9e"
+      }
+    },
+    "added_sources": {
+      "python/nosl/finite_hunt_v5.py": "a7c79f6923b3271f34e434520aa18a96dac39fce236d48b203db27f15cd35db0",
+      "python/nosl/finite_hunt_policy_v5.py": "5bff2f9268a20052da4d58149925f3f5e36920a3317a925d2e8798147f786d82"
+    },
+    "parameter_path_sources_unchanged": {
+      "python/nosl/model.py": "427c2f63fd327ed058ce92d11436e1ff7774013227a2228f1b21284028c122e1",
+      "python/nosl/schema.py": "0ea9dafdaf61dbe23809b7d7e481fef894dd45c1fa29cb1e49e411b0f4d05974",
+      "python/nosl/public_identity.py": "6dfa2d70ba31b0a62050631968e102c2c610aa487b30f95870adf84bbd243622",
+      "python/nosl/schema_v2.py": "a4e302cc1fcaf81ae44065517f73cff89f1ee531a71eb393313dc55638f2b00c",
+      "python/nosl/schema_regen.py": "36607a31514a32b1e5073008d8a01d6d20aefa82fcecbef1c41a1f629d794231",
+      "python/nosl/model_v2.py": "bd4a58b22664755b75cd52e39ace51665a46f44931261a49caf0ae421deb3d97",
+      "python/nosl/public_identity_v2.py": "a1afef0cffdcff8a775c8925cfc4ee62073e7bd70345ecdd47ec5a8be90ec1f8",
+      "python/nosl/schema_v3.py": "b4ed253cd20ed47aafbbd05bb84f95a575378241e33266009dd59fdab8a8628a",
+      "python/nosl/public_identity_v3.py": "046be31d7148e3deb8e3e6d196a0ec2e920a118728fa750018cc0f8b5658d3e2",
+      "python/nosl/model_v3.py": "a47bd529b6d7711a9117f8d9736777471266ba39020c13b03c25b0f01429f2fe",
+      "python/nosl/evidence_v4.py": "25ab527e698042997de687852945579f1522555d021ec599ffe9b782da1d0c9e",
+      "python/nosl/schema_v4.py": "7185ca543390319a956dfd87e2d0928ff3b50e7433a335d4035ec32774634bb1",
+      "python/nosl/public_identity_v4.py": "b40329088ce2597842ffbaa8e137d01bada6d80d5a68dcd9191acc2778f5e94f",
+      "python/nosl/model_v4.py": "181eeb79fa428932939e79111f7134c535dcc4473bfcd199b38e6b49ad7ddb17",
+      "python/nosl/schema_v5.py": "85bb6f36b31cfa74c9400cefccb4ed439f9e6b9ff1d1b5a59e85c08d4880f28e",
+      "python/nosl/public_identity_v5.py": "7a2965bbe6051c31fc0c1be0c43880a9568d7f9b9e188b24daed0deef20fad37",
+      "python/nosl/model_v5.py": "bca2f1183736c1c926e06aec48d71af735ea56c2478f322eb7973d36be643ce2",
+      "python/nosl/loss_v5.py": "2e14fc569c37d7640cc7b01247aa664158e4ab634e4e79a60a261539ef4469ca",
+      "python/nosl/train.py": "aa84cf1aca3c38865c92646b1843dac7a866494da57c49433fe98eb96870604e",
+      "python/nosl/vocabulary.py": "a4829c15a737bda5592576ddfa4d1380af96e1068aff70cc39a2248c6c4cdefa"
+    },
+    "batch_loss_ast_sha256": {
+      "historical": "1fc630f2d73525ceb8b5feb9309549fb5089adfdc5fda01278dbca7f0272360b",
+      "current": "1fc630f2d73525ceb8b5feb9309549fb5089adfdc5fda01278dbca7f0272360b",
+      "unchanged": true
+    },
+    "current_training_source_sha256": {
+      "python/nosl/__init__.py": "53b4c27e9d3d35511fd6382fee5a5593ff512aaf0ae9902733c840b262df80bc",
+      "python/nosl/model.py": "427c2f63fd327ed058ce92d11436e1ff7774013227a2228f1b21284028c122e1",
+      "python/nosl/schema.py": "0ea9dafdaf61dbe23809b7d7e481fef894dd45c1fa29cb1e49e411b0f4d05974",
+      "python/nosl/public_identity.py": "6dfa2d70ba31b0a62050631968e102c2c610aa487b30f95870adf84bbd243622",
+      "python/nosl/inference.py": "305424c34c80c86b94f02c329bf9ed7cd907604dcc2b2a79bc73a5bc280e89dd",
+      "python/nosl/reproducibility.py": "eb14771c6240202b391f0ce81dc0dbe00573902af3072dca5f3ba595cf574bd1",
+      "python/nosl/schema_v2.py": "a4e302cc1fcaf81ae44065517f73cff89f1ee531a71eb393313dc55638f2b00c",
+      "python/nosl/schema_regen.py": "36607a31514a32b1e5073008d8a01d6d20aefa82fcecbef1c41a1f629d794231",
+      "python/nosl/model_v2.py": "bd4a58b22664755b75cd52e39ace51665a46f44931261a49caf0ae421deb3d97",
+      "python/nosl/inference_v2.py": "34b78c713dcd7877f91f857d320d43cc66b4130f01614a4190e08a6776b7a4b0",
+      "python/nosl/public_identity_v2.py": "a1afef0cffdcff8a775c8925cfc4ee62073e7bd70345ecdd47ec5a8be90ec1f8",
+      "python/nosl/schema_v3.py": "b4ed253cd20ed47aafbbd05bb84f95a575378241e33266009dd59fdab8a8628a",
+      "python/nosl/public_identity_v3.py": "046be31d7148e3deb8e3e6d196a0ec2e920a118728fa750018cc0f8b5658d3e2",
+      "python/nosl/model_v3.py": "a47bd529b6d7711a9117f8d9736777471266ba39020c13b03c25b0f01429f2fe",
+      "python/nosl/inference_v3.py": "05515a1ce6039c869d4c2b8c56fe97eaec2a65c8cddb6deea19a6a381f61a997",
+      "python/nosl/evidence_v4.py": "25ab527e698042997de687852945579f1522555d021ec599ffe9b782da1d0c9e",
+      "python/nosl/schema_v4.py": "7185ca543390319a956dfd87e2d0928ff3b50e7433a335d4035ec32774634bb1",
+      "python/nosl/public_identity_v4.py": "b40329088ce2597842ffbaa8e137d01bada6d80d5a68dcd9191acc2778f5e94f",
+      "python/nosl/model_v4.py": "181eeb79fa428932939e79111f7134c535dcc4473bfcd199b38e6b49ad7ddb17",
+      "python/nosl/inference_v4.py": "1239ca182fe7fd75d4849c0667971eeebfd04cc30d946ddf8ec51c9f4e8decdc",
+      "python/nosl/schema_v5.py": "85bb6f36b31cfa74c9400cefccb4ed439f9e6b9ff1d1b5a59e85c08d4880f28e",
+      "python/nosl/public_identity_v5.py": "7a2965bbe6051c31fc0c1be0c43880a9568d7f9b9e188b24daed0deef20fad37",
+      "python/nosl/model_v5.py": "bca2f1183736c1c926e06aec48d71af735ea56c2478f322eb7973d36be643ce2",
+      "python/nosl/inference_v5.py": "4fbc6a60481d35eb95badba0a93d5861b01eda3f43dd8cd3a16bd0a05eac3e2f",
+      "python/nosl/policy_v5.py": "5d2f326444f515d0797e2c0c6f77d41df4235a6c85d4c16de4a9d3b03eac8cae",
+      "python/nosl/policy_applicability_v5.py": "a5aa8c8a9570c87340aafcffb1a818db4abdee57d8443709cba5409387c925f7",
+      "python/nosl/inference_policy_v5.py": "416cd0a35222fdeb7c3e213733b35efab045c53aba2a7da97bb5da1194d84ee0",
+      "python/nosl/native_v5.py": "2ec250542e543f86536136611e78687eaca64e819b5bae018b26ae1a516f7678",
+      "python/nosl/protection_v5.py": "df7e6b5496026b2a7c0e0c29ef3d610f0a00dd1cd9c0f8f541b0ebe969239bd0",
+      "python/nosl/prepare_v5.py": "c6c8210baf97e984d804aca11d97435d5f060dfb9c8c6bf3eec91c02e8215086",
+      "python/nosl/data_v5.py": "5c0945de5fa60ee24895c79d0b97cec9b0aeb8379316411f9aea364ab9d71112",
+      "python/nosl/native_pilot.py": "d04361ede5181232409941cc11eac5bb0775e56c1eec223f6c1bdefbc8fae9d1",
+      "python/nosl/data.py": "c02c588b9d5e7299311c8275e901b1c7338d0fe5e70f2c5fd88a692ea88b1568",
+      "python/nosl/native_policy_v5.py": "98e0106626fbe8960ca49a0dc2b2d481eaf9d5515f30f8f497974329aa6548cc",
+      "python/nosl/finite_hunt_v5.py": "a7c79f6923b3271f34e434520aa18a96dac39fce236d48b203db27f15cd35db0",
+      "python/nosl/finite_hunt_policy_v5.py": "5bff2f9268a20052da4d58149925f3f5e36920a3317a925d2e8798147f786d82",
+      "python/nosl/data_policy_v5.py": "f657fb2971ef48ac6d1cb2f3a2b205b335174e593082dac30b97b7797116e402",
+      "python/nosl/train_policy_v5.py": "6bce435f69000ffec210d1b3d7b533b3d93f62d3440629219283a8a1d7d74b9e",
+      "python/nosl/loss_v5.py": "2e14fc569c37d7640cc7b01247aa664158e4ab634e4e79a60a261539ef4469ca",
+      "python/nosl/train.py": "aa84cf1aca3c38865c92646b1843dac7a866494da57c49433fe98eb96870604e",
+      "python/nosl/vocabulary.py": "a4829c15a737bda5592576ddfa4d1380af96e1068aff70cc39a2248c6c4cdefa"
+    },
+    "historical_backward_count": 1,
+    "new_backward_count": 0,
+    "claim": "Historical 39-source backward proof is preserved, not relabeled as the expanded current closure. Current integration is verified forward-only."
+  },
+  "records": [
+    {
+      "case": "success",
+      "path": "artifacts/fresh-finite-v5/policy-success.record.json",
+      "file_sha256": "aaf0f84a89e0c86a1b8f187fef2f0c1bbedce53d147e3b193d9eeb054a7b8c96",
+      "record_sha256": "2f328cb4d4aa855c117c5a8cbe873370ed7d46c4913fb8d49404eb58bf68d2d1",
+      "raw_sha256": "6114ccad16233cf4539a88ad09553ac01f4185a21a90450a21e9cec29d548171",
+      "plan": {
+        "label_scope": "whole_plan_from_anchor",
+        "specified_success_probability": 1,
+        "extra_net_hp_loss": 0,
+        "masks": {
+          "specified_success_probability": true,
+          "extra_net_hp_loss": true
+        },
+        "allocated_worlds": 2,
+        "success_completed_worlds": 2,
+        "paired_completed_worlds": 2
+      },
+      "purpose": "engineering-fixture",
+      "native_run": false,
+      "trainable": false
+    },
+    {
+      "case": "loss",
+      "path": "artifacts/fresh-finite-v5/policy-loss.record.json",
+      "file_sha256": "e64f35aef5bb9b2d20f99ee2270f47beeee261092bc30350126b9f1febff6bde",
+      "record_sha256": "1db3518a2772cfe446492318e248c81d1c417551541ca8a6e7ae8af31ff2c785",
+      "raw_sha256": "33b4d357251ffcb5b4585c74fcd026fd242edac88470b4ce328d424bf7f4c539",
+      "plan": {
+        "label_scope": "whole_plan_from_anchor",
+        "specified_success_probability": 0,
+        "extra_net_hp_loss": 0,
+        "masks": {
+          "specified_success_probability": true,
+          "extra_net_hp_loss": true
+        },
+        "allocated_worlds": 2,
+        "success_completed_worlds": 2,
+        "paired_completed_worlds": 2
+      },
+      "purpose": "engineering-fixture",
+      "native_run": false,
+      "trainable": false
+    },
+    {
+      "case": "truncated",
+      "path": "artifacts/fresh-finite-v5/policy-truncated.record.json",
+      "file_sha256": "24ce9590368656ba56be3bd88960c5f2b6d178cc778205f13487de4e41265bc2",
+      "record_sha256": "ada1b1cc0e5779c42f1a72a1112c2d5e08e58acac1c5140989b91b7241e21888",
+      "raw_sha256": "23de8a12f0ac195cab8e22e32b8d8b2b789a6ff64d8d524ea4cd7422a214adef",
+      "plan": {
+        "label_scope": "whole_plan_from_anchor",
+        "specified_success_probability": null,
+        "extra_net_hp_loss": null,
+        "masks": {
+          "specified_success_probability": false,
+          "extra_net_hp_loss": false
+        },
+        "allocated_worlds": 2,
+        "success_completed_worlds": 0,
+        "paired_completed_worlds": 0
+      },
+      "purpose": "engineering-fixture",
+      "native_run": false,
+      "trainable": false
+    }
+  ],
+  "source_sha256": {
+    "python/nosl/finite_hunt_policy_v5.py": "5bff2f9268a20052da4d58149925f3f5e36920a3317a925d2e8798147f786d82",
+    "python/nosl/data_policy_v5.py": "f657fb2971ef48ac6d1cb2f3a2b205b335174e593082dac30b97b7797116e402",
+    "python/nosl/train_policy_v5.py": "6bce435f69000ffec210d1b3d7b533b3d93f62d3440629219283a8a1d7d74b9e",
+    "tests/data/test_finite_hunt_policy_v5.py": "1c074f4b0e95b640907e10a516b8b3a03016240006d9898490d4b0ae82ecd9aa",
+    "tools/check_finite_hunt_policy_v5_forward.py": "f470bbaeb16e762632344939a6e9bc7773d0fc81f83a4dc4b3132a15ef839914"
+  },
+  "evidence_sha256": {
+    "artifacts/fresh-finite-v5/policy-bridge-tests.log": "f79710dbda099ec3c120f188667b69f407c532c2190bf27f9fae0cba0fa98c6e",
+    "artifacts/fresh-finite-v5/policy-regression-tests.log": "07e8eba7920139809ae6b7d0be5df29b59b2c4190a13b5975fb2596dc9504f08",
+    "artifacts/fresh-finite-v5/native-policy-regression-tests.log": "f793b8f735a20eff4b8a659770aadf4620937efa25f93f8653e917faa6a24a54",
+    "artifacts/fresh-finite-v5/policy-forward.report.json": "eb83106476bb69906bbba0b9a073ebaa17f1c439352048ed861823cb05b5a6bb",
+    "artifacts/fresh-finite-v5/policy-forward.stderr.log": "519a0cce137ab66a3901b14842e5410bf5f3955226c5f7f25fc3433d8e21840f",
+    "artifacts/fresh-finite-v5/policy-source-closure.report.json": "0717b82ab64726c818dba76dd01d9c83624ae743f3dcbdfdc9488044311a6bf3"
+  },
+  "claims": {
+    "new_simulation_runs_for_adapter": 0,
+    "historical_connectivity_report_unchanged": true,
+    "historical_39_source_proof_is_not_current_41_source_proof": true,
+    "backward_calls": 0,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0,
+    "new_weights": false,
+    "gradients_created": false,
+    "objective_calibrated": false,
+    "production_admission": false,
+    "natural_native_admission": false,
+    "new_review_or_authorization_receipts": false,
+    "source_authenticity_proved_by_hash": false,
+    "sealed_historical_rows_read": false,
+    "all_action_and_ranking_targets_unavailable": true,
+    "engineering_dataset_and_full_policy_loss_accepted": true
+  }
+}

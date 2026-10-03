@@ -16,7 +16,16 @@ while(Console.ReadLine() is { } line)
         if(op=="continuation_policies")
         {
             result=new {status="available",version="nosl.continuation-policies.v1",
-                supportedPolicyIds=new[] {PublicContinuationPolicies.LegacyId,PublicContinuationPolicies.ReviewedId}};
+                supportedPolicyIds=new[] {PublicContinuationPolicies.LegacyId,PublicContinuationPolicies.ReviewedId,
+                    PublicContinuationPolicies.ContextualReviewedId}};
+        }
+        else if(op=="fresh_finite_hunt_v5")
+        {
+            var scenario=PublicJson.Read<Scenario>(root.GetProperty("scenario").GetRawText());
+            var options=root.TryGetProperty("options",out var huntOpt)
+                ? PublicJson.Read<HuntEvaluationOptions>(huntOpt.GetRawText()) : new HuntEvaluationOptions();
+            result=await FiniteHuntDatasetV5.GenerateAsync(scenario,options,root.GetProperty("sourceRun").GetString()!,
+                root.GetProperty("sourceCombat").GetString()!,root.GetProperty("branchFamily").GetString()!);
         }
         else if(op=="native_complete_map_runtime_identity")
         {

@@ -1,8 +1,8 @@
 {
   "schema": "nosl.m3-m6.acceptance-progress.v1",
-  "date_utc": "2026-10-02",
-  "source_head": "6501de5b35c45e96407432163a08152aa26ccfe3",
-  "snapshot_kind": "Historical scoped continuation checkpoint at source_head; original catalog and M0–M2 tracker preserved. Latest sampler evidence is linked in current_evidence_addendum.",
+  "date_utc": "2026-10-03",
+  "source_head": "561f9ab55ac748db15efdb6694daece83f61ac13",
+  "snapshot_kind": "Current scoped acceptance reconciliation at source_head. Original V4 case texts/statuses and historical M0–M2 tracker remain unchanged; historical runs are retained with their own source/version limits.",
   "authority": [
     {
       "path": "docs/spec/v4/PLAN_NOSL_FULL_COMBAT_V4.md",
@@ -22,7 +22,7 @@
     }
   ],
   "historical_tracker_policy": "configs/acceptance_progress.json is historical M0–M2 evidence and is unchanged; original catalog statuses are preserved as v4_original_status.",
-  "overall_status": "READY_FOR_PILOT_FULL_SCOPE_BLOCKED",
+  "overall_status": "PARTIAL_M3_M6_ENGINEERING_FULL_SCOPE_BLOCKED",
   "full_catalog_complete": false,
   "formal_training_run": false,
   "formal_labels_allowed": false,
@@ -35,8 +35,8 @@
   },
   "case_count": 50,
   "status_counts": {
-    "PASS_SUPPORTED_SCOPE": 35,
-    "PARTIAL": 12,
+    "PASS_SUPPORTED_SCOPE": 45,
+    "PARTIAL": 2,
     "NOT_RUN": 2,
     "BLOCKED": 1
   },
@@ -104,13 +104,44 @@
       "path": "artifacts/reports/recovery/calibration.log",
       "bytes": 7746,
       "sha256": "39da166e7391676d4298f632049afab5a47369e1ebf9649190279c9a54fdfb8a"
+    },
+    {
+      "suite": "worker_current",
+      "passed": 2175,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/map-v7-full/native/map-v7-full-native.trx",
+      "bytes": 12072285,
+      "sha256": "f46f0c76b0c45a53f352fb185fd51867d4b9ef7991f8eec4fa5ef529f908e87e",
+      "scope": "Complete current Worker aggregate; overlaps the focused evidence below."
+    },
+    {
+      "suite": "core_current_retained",
+      "passed": 4493,
+      "failed": 0,
+      "skipped": 3,
+      "path": "artifacts/reports/map-v6-full/core/map-v6-full-core.trx",
+      "bytes": 6949647,
+      "sha256": "f920fc4950ab990698421be146287b83f2f0ede1bbdc01443088d24dc196127e",
+      "scope": "Retained unchanged Core source verification; three opt-in skips."
+    },
+    {
+      "suite": "native_preference_final",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/native-preference-final/native-preference-final.trx",
+      "bytes": 8847639,
+      "sha256": "d7df097e12464aaa1b2df99a059c78016ae27f6c75b84c477316e5ba045b52c1",
+      "scope": "Six methods cover seven P01–P05/B01/B02 case IDs; included in Worker aggregate."
     }
   ],
   "regression_limits": [
     "205 Python checks excluded11 previously executed backward-related tests and guarded backward/optimizer.step; no new optimizer steps",
     "Data suite145pass+7optional live skips; all12 native metadata/live admission tests run separately against the same inspected12-root fixture",
-    "Current readonly vendor accessor additions passed a complete4480/3 Core suite and2227-file patch reconstruction",
-    "Fixed200,12-root and32-pair evidence is inspected development data; replays do not increase independent counts"
+    "Historical checkpoint readonly vendor accessor additions passed a complete 4480/3 Core suite and 2227-file patch reconstruction; the retained current Core result is listed separately below.",
+    "Fixed200,12-root and32-pair evidence is inspected development data; replays do not increase independent counts",
+    "Historical suite counts above are retained, not added to current totals. Current Worker 2175 includes the six native preference methods and two terminal-edge cases; retained unchanged Core is 4493 passed/3 opt-in skipped. This reconciliation ran no tests."
   ],
   "data_and_fit_snapshot": {
     "first_corpus": {
@@ -198,7 +229,7 @@
         "L04",
         "D05"
       ],
-      "gap": "Reviewed200/200 fixed native roots plus protected fresh collection/loading (2certified/12attempted,18settled worlds). General carry-in/content and unreviewed choice origins remain engineering/evidence gaps.",
+      "gap": "Finite laws and reviewed native histories have exact support/correction and replay evidence; this closes N12 in scope. Broader native posterior throughput, source coverage and production data admission remain separate M4/M5 gates. Frozen v6 inspected-eight completed; inspected-twelve failed its time gate. Snapshot timing equivalence is an engineering optimization, not new population evidence.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
     },
     {
@@ -226,9 +257,11 @@
         "C04",
         "C05"
       ],
-      "gap": "Native attack loops, public useful-action exit and separate finite Regen healing stall are verified. Broader planning/coverage remains open. No macro is used; macro equivalence is conditional future work.",
+      "gap": "Reviewed defensive-cycle family now accepts validated public.v3 under explicit v3 continuation identity. General unsupported effects retain legacy fallback and hard-cap unresolved mass; no full-game loop solver is claimed.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence",
-      "closed_for_reviewed_templates": true
+      "closed_for_reviewed_templates": true,
+      "current_native_packet_integration_complete": true,
+      "blocks_authorized_m3_m6_engineering_checkpoint": false
     },
     {
       "id": "ENGINEERING_ACTIVE_BONUS_CONTROL",
@@ -240,7 +273,7 @@
         "B05",
         "B06"
       ],
-      "gap": "Reviewed Hunt and Regen public anchors/deadlines/status/history, validation, encoding, masks and inference guards are implemented. No trained finite-plan execution or arbitrary conditional-budget allocator is claimed.",
+      "gap": "Reviewed Hunt/Regen public anchors and full-v5 policy/value interfaces exist. Native exact B01/B02 contracts pass in declared finite fixtures. Real full-v5 finite-plan producer labels and integration remain underway; learned execution is later M7/M8 work.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence",
       "closed_for_finite_hunt": true,
       "closed_for_reviewed_templates": true
@@ -257,7 +290,7 @@
         "E01",
         "E05"
       ],
-      "gap": "Committed private HP/potion event ledger, independent clone prefixes and real forced settlement provenance are implemented. Unknown permanent/item/reward valuations remain masked; useful full resource-action supervision still needs calibrated values.",
+      "gap": "Native HP/resource ledgers and joint P05 timing evidence are verified. Unknown item/permanent/reward values remain masked; current resource/utility-mask and consumed-supervision integration still needs closure. No price is invented and no absolute utility is inferred from same-resource cancellation.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
     },
     {
@@ -270,7 +303,7 @@
         "D05",
         "E03"
       ],
-      "gap": "All finite-plan execution costs and unresolved masses, native attempts and source profiles, and consumed supervised heads are recorded. Broader distribution/phase coverage and policy evaluation remain evidence work; historical balanced block activation was not instrumented.",
+      "gap": "All assigned outcomes and unresolved mass remain accounted for. Native v3 cycle integration is verified; broader distribution/phase label coverage remains open. E03 trained-policy source-run confidence reporting belongs to M8.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
     },
     {
@@ -287,7 +320,7 @@
         "B03",
         "E01"
       ],
-      "gap": "Two confirmed exact constraints do not identify a unique risk model or prices. FirePotion starting HP/value is unresolved; rare potion preference is tentative; permanent assets/rewards and broader item values remain open. Computation cannot invent these preferences.",
+      "gap": "The nine upgraded named cases now pass in their stated finite/native scopes. These cases do not identify unique risk coefficients or retained item/permanent/reward values. Unknown values stay masked; broader valuation evidence and formal profile admission remain separate, without requiring unique coefficients for M3 engineering.",
       "phase": "Current full-scope M3–M6 readiness or its native acceptance evidence"
     },
     {
@@ -824,14 +857,31 @@
       "title": "精确小世界概率",
       "expected": "可枚举场景中采样和精确期望一致且概率质量正确。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M2 dependency",
         "M4",
         "M6"
       ],
-      "verified_scope": "Exact three-card permutation and conditional-choice enumerations agree with the declared bounded draw posterior; the Sly revision-9 packet accepts one of six orders.",
+      "verified_scope": "The declared finite draw laws have exact support/mass checks, sampled-frequency agreement, conditional-choice rejection accounting, and exact native finite-word proposal/correction checks. All ten P01/P02 draw classes and five B01/B02 classes execute native outcomes at their declared rational weights.",
       "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ConditionalUnorderedPairShuffleProposalTests.cs",
+          "methods": [
+            "EveryFiniteNativeAtomHasTheExactProposalAndAcceptedDensity"
+          ],
+          "detail": "Literal reduced-bit native word enumeration checks every supported physical atom, exact P/Q/correction, duplicate copies and null proposal mass."
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativePreferenceAcceptanceTests.cs",
+          "methods": [
+            "P01_P02_ExactTenOrderLawScoresNativeLotteryAndCertainLosses",
+            "B02_ExactFivePositionLawAllowsAnEightLossNativeHuntWorld"
+          ],
+          "detail": "Declared finite laws with actual native settled outcomes; not setup-seed probabilities."
+        },
         {
           "kind": "native_or_production_component_test",
           "path": "tests/Nosl.Tests/M012Tests.cs",
@@ -869,10 +919,9 @@
           "detail": "Separately versioned owned native prior/execution; exact finite and lifecycle evidence, fixed-N cleanup accounting, explicit0/64 broad-probe gate. Does not upgrade unmeasured full scope."
         }
       ],
-      "unresolved_scope": "No exact enumeration of all future RNG distributions, no equivalence to the previous finite whole-setup-seed posterior, and no general natural posterior coverage.",
-      "remaining_work_kinds": [
-        "engineering"
-      ]
+      "unresolved_scope": "This pass is for the stated enumerable-law contract. It does not equate an exchangeable draw law with a whole-setup-seed posterior or establish broad natural-history sampler coverage; those remain separate M4/M5 gates.",
+      "remaining_work_kinds": [],
+      "acceptance_rationale": "V4 asks agreement with exact values in enumerable scenarios. It does not require enumeration of every future random stream or equivalence between separately declared priors."
     },
     {
       "id": "L01",
@@ -1125,14 +1174,29 @@
       "title": "胜负规则",
       "expected": "同时死亡、逃跑、延迟效果按引擎判定，不自行简化。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M1 dependency",
         "M4",
         "M5"
       ],
-      "verified_scope": "Actual loss, Fairy rescue, engine-owned terminal outcomes, native Battleworn escape/timeout and forced-event loss/return are distinguished from unfinished/error outcomes.",
+      "verified_scope": "Independent native RunDriver and CombatSession executions agree on simultaneous Thorns/Strike double-death loss and delayed Bomb victory after Regen and automatic MeatOnTheBone settlement. Existing Fairy, Battleworn escape and forced-owner return cases retain native verdicts.",
       "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativeTerminalEdgeTests.cs",
+          "methods": [
+            "L06_LethalStrikeAndNativeThornsKeepTheNativeDoubleDeathVerdict",
+            "L06_DelayedBombWaitsForRegenAndNativeVictorySettlementBeforeSealingLedger"
+          ],
+          "detail": "Real legal actions; no forced verdict or synthetic terminal vectors. Native HP/resource callbacks and repeated-settlement identity are checked."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_TERMINAL_EDGE_EVIDENCE.md",
+          "methods": [],
+          "detail": "Simultaneous death, delayed effects and automatic settlement evidence."
+        },
         {
           "kind": "native_or_production_component_test",
           "path": "tests/Nosl.Tests/M012Tests.cs",
@@ -1168,10 +1232,9 @@
           "detail": "Three native escape tiers and two actual event loss owners; escape remains native combat win with failed event tier."
         }
       ],
-      "unresolved_scope": "Dedicated adapter evidence for simultaneous death and all delayed terminal effects remains incomplete; tested native escape/forced-event branches are covered.",
-      "remaining_work_kinds": [
-        "engineering"
-      ]
+      "unresolved_scope": "Pinned simulator behavior and the named constructed interactions only; no original-client or all-content terminal-interaction claim.",
+      "remaining_work_kinds": [],
+      "acceptance_rationale": "The previously missing simultaneous-death and delayed-effect examples now execute through the engine; exhaustive proof over all card combinations is not an additional V4 case requirement."
     },
     {
       "id": "L07",
@@ -1235,12 +1298,26 @@
       "title": "低均值风险取舍",
       "expected": "60血都获胜资源相同，0/.9与30/.1优于固定8。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M3"
       ],
-      "verified_scope": "The production objective reproduces the exact 60-HP 0/.9 + 30/.1 preference over certain loss 8 with the fixed combat-start anchor.",
+      "verified_scope": "All ten declared equal-mass draw orders execute three native continuations from a fixed 60-HP anchor. The lottery has actual losses 0 in nine classes and 30 in one; production expected cost 3.3 is below certain-loss-8 cost 8.213333333333333.",
       "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativePreferenceAcceptanceTests.cs",
+          "methods": [
+            "P01_P02_ExactTenOrderLawScoresNativeLotteryAndCertainLosses"
+          ],
+          "detail": "Actual legal native continuations and recorded settlement facts; policies receive detached public DTOs."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_PREFERENCE_ACCEPTANCE_EVIDENCE.md",
+          "methods": [],
+          "detail": "Declared native preference and bonus-boundary fixtures with exact scope limits."
+        },
         {
           "kind": "native_or_production_component_test",
           "path": "tests/Nosl.Tests/ObjectiveTests.cs",
@@ -1266,11 +1343,9 @@
           "detail": ""
         }
       ],
-      "unresolved_scope": "The exact native lottery comparison is not established; broad risk calibration is not identified by this or the new 70-HP hypothetical.",
-      "remaining_work_kinds": [
-        "native_acceptance_evidence",
-        "preference_valuation"
-      ]
+      "unresolved_scope": "Exact declared exchangeable law and frozen public scripts only; no native setup-seed posterior, optimal-continuation or uniquely calibrated risk-coefficient claim.",
+      "remaining_work_kinds": [],
+      "acceptance_rationale": "The named V4 comparison now has native fixture evidence. General optimization, unique valuation calibration and learned policy strength are not additional requirements for this scoped case pass."
     },
     {
       "id": "P02",
@@ -1278,12 +1353,26 @@
       "title": "同均值稳定性",
       "expected": "同样前提固定3优于均值3的0/30波动。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M3"
       ],
-      "verified_scope": "The same production objective prefers fixed loss 3 over the authored equal-mean 0/30 lottery.",
+      "verified_scope": "The same native ten-class experiment gives both the lottery and fixed route mean loss 3. Production expected cost 3.03 for certain loss 3 is below the lottery cost 3.3.",
       "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativePreferenceAcceptanceTests.cs",
+          "methods": [
+            "P01_P02_ExactTenOrderLawScoresNativeLotteryAndCertainLosses"
+          ],
+          "detail": "Actual legal native continuations and recorded settlement facts; policies receive detached public DTOs."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_PREFERENCE_ACCEPTANCE_EVIDENCE.md",
+          "methods": [],
+          "detail": "Declared native preference and bonus-boundary fixtures with exact scope limits."
+        },
         {
           "kind": "native_or_production_component_test",
           "path": "tests/Nosl.Tests/ObjectiveTests.cs",
@@ -1301,11 +1390,9 @@
           "detail": "Authored exact distributions, not simulator samples; original 30-test report is historical."
         }
       ],
-      "unresolved_scope": "The exact native stochastic comparison is not established; candidate eta is not uniquely calibrated.",
-      "remaining_work_kinds": [
-        "native_acceptance_evidence",
-        "preference_valuation"
-      ]
+      "unresolved_scope": "The finite equal-mean preference is verified; broader risk calibration and learned policy ordering remain separate.",
+      "remaining_work_kinds": [],
+      "acceptance_rationale": "The named V4 comparison now has native fixture evidence. General optimization, unique valuation calibration and learned policy strength are not additional requirements for this scoped case pass."
     },
     {
       "id": "P03",
@@ -1313,12 +1400,26 @@
       "title": "全程保血非速杀",
       "expected": "安全无伤多回合优于仅为速度损失5血。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M3"
       ],
-      "verified_scope": "Exact contract favors no HP loss over loss 5; production scoring adds no action/turn-count penalty, and native finite attack cycles preserve that property.",
+      "verified_scope": "Native Footwork/TwigSlimeS continuations settle at 60 HP on turn 3 versus 55 HP on turn 2. Production scoring prefers the safe longer route, with no action/turn penalty.",
       "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativePreferenceAcceptanceTests.cs",
+          "methods": [
+            "P03_SafeLongerBattleBeatsFasterFiveLossBattle"
+          ],
+          "detail": "Actual legal native continuations and recorded settlement facts; policies receive detached public DTOs."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_PREFERENCE_ACCEPTANCE_EVIDENCE.md",
+          "methods": [],
+          "detail": "Declared native preference and bonus-boundary fixtures with exact scope limits."
+        },
         {
           "kind": "exact_synthetic_contract",
           "path": "docs/spec/v4/tests/test_preference_contract.py",
@@ -1344,11 +1445,9 @@
           "detail": ""
         }
       ],
-      "unresolved_scope": "No dedicated native paired multi-turn no-loss versus faster 5-loss case establishes the entire requested comparison; broad safe stalling is still incomplete.",
-      "remaining_work_kinds": [
-        "engineering",
-        "native_acceptance_evidence"
-      ]
+      "unresolved_scope": "Constructed paired continuation evidence only; no general safe-stall optimizer or learned policy-quality claim.",
+      "remaining_work_kinds": [],
+      "acceptance_rationale": "The named V4 comparison now has native fixture evidence. General optimization, unique valuation calibration and learned policy strength are not additional requirements for this scoped case pass."
     },
     {
       "id": "P04",
@@ -1356,12 +1455,26 @@
       "title": "整场非机械满防",
       "expected": "全程掉5优于眼前无伤但后面掉12。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M3"
       ],
-      "verified_scope": "Exact full-combat terminal-cost contract prefers loss 5 over loss 12; the teacher runs all candidates to actual settlement.",
+      "verified_scope": "Native CubexConstruct continuations settle at 55 HP versus 48 HP from the same 60-HP combat anchor. The latter loses zero immediately but twelve later; actual whole-combat scoring prefers total loss five.",
       "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativePreferenceAcceptanceTests.cs",
+          "methods": [
+            "P04_WholeBattleFiveLossBeatsZeroNowThenTwelveLoss"
+          ],
+          "detail": "Actual legal native continuations and recorded settlement facts; policies receive detached public DTOs."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_PREFERENCE_ACCEPTANCE_EVIDENCE.md",
+          "methods": [],
+          "detail": "Declared native preference and bonus-boundary fixtures with exact scope limits."
+        },
         {
           "kind": "exact_synthetic_contract",
           "path": "docs/spec/v4/tests/test_preference_contract.py",
@@ -1385,11 +1498,9 @@
           "detail": "Revision-14 replay exposes the actual draw/block versus Fumes ordering contrast under a separate relative profile."
         }
       ],
-      "unresolved_scope": "No dedicated native 5-versus-12 fixture proves the precise immediate-defense/whole-combat tradeoff; relative evidence remains development-only and does not establish learned ordering competence.",
-      "remaining_work_kinds": [
-        "native_acceptance_evidence",
-        "evaluation"
-      ]
+      "unresolved_scope": "The specified immediate-defense versus whole-combat contrast is verified under frozen public continuation; general policy strength remains separate.",
+      "remaining_work_kinds": [],
+      "acceptance_rationale": "The named V4 comparison now has native fixture evidence. General optimization, unique valuation calibration and learned policy strength are not additional requirements for this scoped case pass."
     },
     {
       "id": "P05",
@@ -1397,12 +1508,26 @@
       "title": "药水时机",
       "expected": "达9点可用但等待更好且安全的时机可以更优。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M3"
       ],
-      "verified_scope": "Nine HP is inclusive consideration, not compulsory use; paired native use-now/never-use B0 confirmation distinguishes below/above/inconclusive gates without pricing the potion. A32-world identical-continuation Flex timing comparison safely waits, consumes the same potion, and saves5HP in16worlds while tying16; hidden-source replacement reproduces all paired traces.",
+      "verified_scope": "The native SpinyToad joint fixture settles never-use/use-now/wait-then-use at 51/70/75 HP from combat-start 90. Current use saves 19 HP, so the nine-HP gate permits consideration; safe surviving delay saves five more with the same consumed FlexPotion. Complete ledgers support relative-cost cancellation while both absolute consuming utilities remain masked.",
       "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativePreferenceAcceptanceTests.cs",
+          "methods": [
+            "P05_EligibleCurrentPotionStillLosesToLaterSameBottleUse"
+          ],
+          "detail": "Actual legal native continuations and recorded settlement facts; policies receive detached public DTOs."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_PREFERENCE_ACCEPTANCE_EVIDENCE.md",
+          "methods": [],
+          "detail": "Declared native preference and bonus-boundary fixtures with exact scope limits."
+        },
         {
           "kind": "native_or_production_component_test",
           "path": "tests/Nosl.Tests/ObjectiveTests.cs",
@@ -1434,12 +1559,9 @@
           "detail": "Unknown identical consumed inventory cancels; both absolute utilities remain masked"
         }
       ],
-      "unresolved_scope": "This is a safe better-later existence case, not a general timing optimizer or use-versus-retain valuation. General resource-aware supervision and calibrated values remain open.",
-      "remaining_work_kinds": [
-        "engineering",
-        "preference_valuation",
-        "native_acceptance_evidence"
-      ]
+      "unresolved_scope": "Delay takes 15 HP at the root and survives; it is not a no-damage wait. This is a joint threshold-plus-timing existence case, not a general timing optimizer or a retained-potion price.",
+      "remaining_work_kinds": [],
+      "acceptance_rationale": "The named V4 comparison now has native fixture evidence. General optimization, unique valuation calibration and learned policy strength are not additional requirements for this scoped case pass."
     },
     {
       "id": "P06",
@@ -1569,14 +1691,28 @@
       "title": "5与80边界",
       "expected": "精确Delta=5,p=.8时可考虑而非强制；采样跨界是未决。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M3",
         "M4",
         "M6"
       ],
-      "verified_scope": "Production gates admit exact Delta=5,p=.8 only as eligible-not-mandatory and keep sampled threshold crossings unresolved; native TheHunt evidence has fixed-N bounds.",
+      "verified_scope": "Five declared equal-mass native Hunt positions yield attempt losses 0,0,0,0,25 against a zero-loss Strike-first baseline. Actual fatal/reward/deadline success is 4/5, extra expected loss is exactly 5, and the anchored gate returns EligibleNotMandatory. Bounds crossing the thresholds remain Unresolved in a separately identified formula regression.",
       "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativePreferenceAcceptanceTests.cs",
+          "methods": [
+            "B01_ExactJointFiveAndEightyNativeBoundaryKeepsUncertaintySeparate"
+          ],
+          "detail": "Actual legal native continuations and recorded settlement facts; policies receive detached public DTOs."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_PREFERENCE_ACCEPTANCE_EVIDENCE.md",
+          "methods": [],
+          "detail": "Declared native preference and bonus-boundary fixtures with exact scope limits."
+        },
         {
           "kind": "native_or_production_component_test",
           "path": "tests/Nosl.Tests/ObjectiveTests.cs",
@@ -1601,12 +1737,9 @@
           "detail": "Observed five-HP means and small-N success rates do not become exact expectations or eligibility proofs."
         }
       ],
-      "unresolved_scope": "The exact joint native 5/.8 boundary is not established. General bonus-plan safety/valuation and trained active-control behavior remain incomplete.",
-      "remaining_work_kinds": [
-        "native_acceptance_evidence",
-        "engineering",
-        "preference_valuation"
-      ]
+      "unresolved_scope": "The public attempt/abort and Strike-first baseline are explicitly frozen scripts, not optimal play. Enumerated support is not iid confidence evidence; unpriced extra rewards keep absolute utility unresolved.",
+      "remaining_work_kinds": [],
+      "acceptance_rationale": "The named V4 comparison now has native fixture evidence. General optimization, unique valuation calibration and learned policy strength are not additional requirements for this scoped case pass."
     },
     {
       "id": "B02",
@@ -1614,14 +1747,28 @@
       "title": "不是单轨迹上限",
       "expected": "预计额外代价上限不能误写成每个结果最多5。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M3",
         "M4",
         "M6"
       ],
-      "verified_scope": "The exact contract applies five HP to expected extra cost, and the Hunt reducer uses full paired differences with support [-anchorHP,+anchorHP].",
+      "verified_scope": "All five declared Hunt positions execute native paired continuations with extra losses 0,0,8,8,8 and actual fatal/extra-offer/deadline success in every class. Expected extra loss 24/5 is eligible despite three trajectories exceeding five.",
       "evidence": [
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/NativePreferenceAcceptanceTests.cs",
+          "methods": [
+            "B02_ExactFivePositionLawAllowsAnEightLossNativeHuntWorld"
+          ],
+          "detail": "Actual legal native continuations and recorded settlement facts; policies receive detached public DTOs."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/NATIVE_PREFERENCE_ACCEPTANCE_EVIDENCE.md",
+          "methods": [],
+          "detail": "Declared native preference and bonus-boundary fixtures with exact scope limits."
+        },
         {
           "kind": "exact_synthetic_contract",
           "path": "docs/spec/v4/tests/test_preference_contract.py",
@@ -1637,10 +1784,9 @@
           "detail": "Fixed-N paired mean interval uses every allocated world; support is not clipped at five."
         }
       ],
-      "unresolved_scope": "No dedicated native stochastic fixture with an individual cost above five but acceptable expected cost closes this precise regression.",
-      "remaining_work_kinds": [
-        "native_acceptance_evidence"
-      ]
+      "unresolved_scope": "One native witness instantiates each predeclared class before policy outcomes; seed frequencies never set weights. This is a finite draw-law acceptance example, not native setup-seed or population coverage.",
+      "remaining_work_kinds": [],
+      "acceptance_rationale": "The named V4 comparison now has native fixture evidence. General optimization, unique valuation calibration and learned policy strength are not additional requirements for this scoped case pass."
     },
     {
       "id": "B03",
@@ -1860,12 +2006,12 @@
       "title": "防够继续有益动作",
       "expected": "停无益防御循环，保留有效攻击和其他收益。",
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
-      "status": "PARTIAL",
+      "status": "PASS_SUPPORTED_SCOPE",
       "milestones": [
         "M4",
         "M5"
       ],
-      "verified_scope": "Opt-in public-rules-v2 stops the certified Finesse/Impatience defensive cycle once enough native block is present while preserving useful draw, BladeDance/Shivs and profitable attacks.",
+      "verified_scope": "Opt-in nosl-public-rules-v3 validates native public.v3 context and reuses the unchanged v2 Finesse/Impatience mechanic certificate. Paired native v2/v3 cycles stop unnecessary defense, preserve useful draws/BladeDance/Shivs and profitable FlashOfSteel, and retain all hard-cap failure mass.",
       "evidence": [
         {
           "kind": "native_or_production_component_test",
@@ -1882,13 +2028,31 @@
           "path": "docs/PUBLIC_CONTINUATION_V2_EVIDENCE.md",
           "methods": [],
           "detail": "One mixed fixture improves completion 16/48 to 48/48; all v2 empirical values tie."
+        },
+        {
+          "kind": "native_or_production_component_test",
+          "path": "tests/Nosl.Tests/ContextualReviewedPublicRuleTests.cs",
+          "methods": [],
+          "detail": "33focused tests,2185full worker tests; paired native contexts/useful actions/retained truncation mass."
+        },
+        {
+          "kind": "evidence_document",
+          "path": "docs/PUBLIC_CONTINUATION_V3_EVIDENCE.md",
+          "methods": [],
+          "detail": "Independently reviewed opt-in controller, standalone protocol and mixed-version rejection."
         }
       ],
-      "unresolved_scope": "Narrow public certificate only; v1 remains fallback/default and general defense/trigger families can still cycle. The completed 160-attempt block had no root certificate match, and continuation-wide activation was not instrumented.",
-      "remaining_work_kinds": [
-        "engineering",
-        "instrumentation"
-      ]
+      "unresolved_scope": "This is the reviewed mechanic family, not a general loop solver. Frozen v1/v2 source laws/defaults remain unchanged; any production rollout or relabel selects the new continuation identity explicitly and passes its data gates.",
+      "remaining_work_kinds": [],
+      "current_engineering_gap": {
+        "source": "src/Nosl.Contracts/ReviewedPublicRulePolicy.cs",
+        "condition": "Certified rejects o.Schema != \"nosl.public.v2\" before examining the existing closed mechanic family.",
+        "bounded_next_step": "Use a separately versioned continuation admitting valid nosl.public.v3/PublicRunContext with the unchanged mechanic guards. Verify matched v2/v3 useful-action and pure-cycle paths, unknown-context fallback, profitable loops and small-budget ComputeTruncated accounting. Do not silently change frozen v2 policy semantics.",
+        "implemented_by_this_reconciliation": false,
+        "closed_by_source_commit": "f7baa66f5048634c40b5dbde2ac8d6df4d315d8c",
+        "current_native_packet_integration_complete": true
+      },
+      "checkpoint_relevance": "Current M4/M5 continuation integration; hard caps already preserve unresolved outcomes and are not a semantic loop solution."
     },
     {
       "id": "C03",
@@ -1939,8 +2103,7 @@
       "v4_original_status": "SPECIFIED_NOT_EXECUTED",
       "status": "NOT_RUN",
       "milestones": [
-        "M4",
-        "M5"
+        "M4/M5 conditional requirement only if macro acceleration is introduced"
       ],
       "verified_scope": "Atomic native-loop replay preserves packets, RNG, assets and endpoints in current fixtures; this is precursor evidence only.",
       "evidence": [
@@ -1962,7 +2125,9 @@
       "unresolved_scope": "No macro implementation, expansion equivalence test or formal semantic/RNG/side-effect/exit proof has run. Do not relabel ordinary replay as macro acceptance.",
       "remaining_work_kinds": [
         "engineering"
-      ]
+      ],
+      "blocks_authorized_m3_m6_engineering_checkpoint": false,
+      "checkpoint_relevance": "Conditional on introducing macro acceleration. Current execution uses native atomic actions; no macro implementation or new equivalence proof is required to complete this checkpoint."
     },
     {
       "id": "C05",
@@ -2400,10 +2565,10 @@
       ],
       "unresolved_scope": "Only 16 constructed sources; these become observed diagnostics after evaluation. Broad source coverage, resource-aware quality and frozen noninferiority/improvement acceptance remain open; no promotion. Stronger play is a later policy-quality gate, not an M6 implementation prerequisite.",
       "remaining_work_kinds": [
-        "engineering",
-        "preference_valuation",
         "evaluation"
-      ]
+      ],
+      "blocks_authorized_m3_m6_engineering_checkpoint": false,
+      "checkpoint_relevance": "Current M6 public-only evaluator/inference software is implemented. The remaining independent trained-student closed-loop distribution and quality evidence belongs to M7/M8; stronger learned play is not an M6 prerequisite."
     },
     {
       "id": "E02",
@@ -2435,7 +2600,9 @@
       "unresolved_scope": "Original-client version/access and full trace differential evidence are unavailable. Mark E02 blocked for the original M8 acceptance; do not make it a new prerequisite for the user-authorized pinned-upstream M3–M6 engineering work.",
       "remaining_work_kinds": [
         "external_evidence"
-      ]
+      ],
+      "blocks_authorized_m3_m6_engineering_checkpoint": false,
+      "checkpoint_relevance": "Original-client trace differential remains blocked M8 evidence; pinned-upstream M3–M6 work does not require client access."
     },
     {
       "id": "E03",
@@ -2481,9 +2648,10 @@
       ],
       "unresolved_scope": "Required source-battle/run-group confidence intervals for actual student win rate/HP and broad independent evaluation are not established. Conditional posterior-world intervals are not substitutes.",
       "remaining_work_kinds": [
-        "engineering",
         "evaluation"
-      ]
+      ],
+      "blocks_authorized_m3_m6_engineering_checkpoint": false,
+      "checkpoint_relevance": "Current allocation/unfinished-mass accounting is implemented. Source-run confidence intervals for actual trained-student outcomes remain M8 evaluation work; conditional posterior intervals and enumerated classes cannot substitute."
     },
     {
       "id": "E04",
@@ -2618,15 +2786,17 @@
       "remaining_work_kinds": [
         "engineering",
         "evaluation"
-      ]
+      ],
+      "blocks_authorized_m3_m6_engineering_checkpoint": false,
+      "checkpoint_relevance": "Declared final deployment-format parity remains unrun M8 delivery work; current standalone inference and checkpoint tests are engineering precursors."
     }
   ],
-  "mapping_validation": "All 50 original IDs/title/expected texts retained once in original order; referenced paths and named methods checked; original catalog and historical tracker hashes unchanged. No runtime, corpus, weights or existing tracker modified by this mapping task.",
+  "mapping_validation": "All 50 original IDs/categories/titles/expected texts and original statuses retained once in original order. Reconciliation checks paths, named methods, authority hashes and qualified counts. Only this tracker and its map change; no runtime, corpus, weights, original catalog or historical tracker changes.",
   "phase_relevance": {
-    "M3": "Objective/complete outcome engineering verified in declared scope; resource values and formal calibration profiles remain unresolved.",
-    "M4": "Shared T0/T1 supports both existing fast profiles and generic owned native runs with exact replay ownership. Broad posterior throughput remains blocked at the tested budget; finite public controllers are unchanged.",
-    "M5": "Protected pipeline and versioned engineering collection exist. The new generic full-prior probe produces no usable labels at its fixed budget; broader source/valuation quality and production admission remain gated.",
-    "M6": "READY_FOR_PILOT: publicv2 contexts, protected loaders, masked bounded trainer/checkpoints and standalone inference. Stronger learned play and final export are later stages.",
+    "M3": "Named finite preference cases now have native evidence. Candidate risk coefficients need not be uniquely identified; unknown resource/permanent/reward values remain explicitly masked and formal calibration admission stays separate.",
+    "M4": "Exact finite-law and owned replay/proposal evidence is verified in named scopes. Broad posterior/source throughput and current v3-packet defensive-cycle integration remain open; no macro or full-game loop theorem is required.",
+    "M5": "Protected preparation and native bridges exist. Full source/label coverage, resource masks and production admission remain gated; inspected diagnostics are not independent training data.",
+    "M6": "Full public-v5 policy/value engineering has one recorded two-row minibatch backward and zero optimizer steps; no weights were written. Resource masks and real finite-plan producer integration are still being completed. No stronger trained-policy result is required for M6 engineering.",
     "M7": "A separately bounded 497-step experimental fit and 16-source diagnostic were completed. Formal training and promotion have not occurred.",
     "M8": "Original-client differential, source-group full quality acceptance and final deployment export parity remain later-stage requirements. Their catalog presence does not invent new prerequisites for this M3–M6 checkpoint."
   },
@@ -2642,21 +2812,92 @@
     "Native better-later Flex comparison with same continuation and strict unknown-inventory cancellation",
     "Generic owned native execution plus separately versioned public generative prior; no claim that finite matching proves broad throughput"
   ],
-  "declared_scope_engineering_complete": true,
+  "declared_scope_engineering_complete": false,
   "native_admission_version_verification": "configs/native_v7_admission_verification.json",
   "owned_native_replay_verification": "configs/owned_native_replay_verification.json",
   "generic_execution_does_not_mean_posterior_throughput": true,
   "current_evidence_addendum": {
-    "as_of_utc": "2026-10-03T10:52:00Z",
-    "source_commit": "16724af55509c862689e93971928819165296688",
-    "report": "configs/native_map_origin_verification_v5.json",
-    "interpretation": "Historical case evidence remains valid within its declared scope. Aggregate counts below are not current source totals. Latest inspected-twelve throughput gate failed; broad production admission and full milestone completion remain false.",
-    "native_passed": 2076,
+    "as_of_utc": "2026-10-03T13:03:19Z",
+    "source_commit": "561f9ab55ac748db15efdb6694daece83f61ac13",
+    "reports": [
+      "configs/native_map_origin_verification_v6.json",
+      "docs/PUBLIC_EVIDENCE_SNAPSHOT_SUMMARY.json",
+      "configs/student_v5_full_policy_verification.json",
+      "docs/NATIVE_FULL_POLICY_VALUE_BRIDGE_V5_VERIFICATION.json"
+    ],
+    "interpretation": "Current source/evidence reconciliation only. The v7 runtime is frozen for its separate gates; no broad posterior, data admission or full milestone completion is inferred. Earlier failed probes and historical reports remain valid records.",
+    "native_passed": 2175,
+    "native_failed": 0,
     "core_passed": 4493,
     "core_opt_in_skipped": 3,
-    "retained_guarded_python_checks": 57,
-    "new_production_rows": 0,
+    "native_preference_methods_passed": 6,
+    "native_preference_case_ids": 7,
+    "recorded_m6_full_v5_minibatches": 1,
+    "recorded_m6_full_v5_backward_calls": 1,
+    "recorded_m6_full_v5_optimizer_steps": 0,
+    "new_production_rows_by_reconciliation": 0,
     "new_optimizer_steps": 0,
-    "new_backward_passes": 0
+    "new_backward_passes_by_reconciliation": 0,
+    "formal_training": false,
+    "model_promoted": false,
+    "public_v3_cycle_continuation": {
+      "source_commit": "f7baa66f5048634c40b5dbde2ac8d6df4d315d8c",
+      "focused_passed": 33,
+      "full_worker_passed": 2185,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "independent_review": "approved",
+      "opt_in": true,
+      "defaults_changed": false,
+      "new_training": false
+    }
+  },
+  "historical_scoped_checkpoint": {
+    "source_head": "6501de5b35c45e96407432163a08152aa26ccfe3",
+    "status_counts": {
+      "PASS_SUPPORTED_SCOPE": 35,
+      "PARTIAL": 12,
+      "NOT_RUN": 2,
+      "BLOCKED": 1
+    },
+    "declared_scope_engineering_complete": true,
+    "interpretation": "Earlier bounded engineering checkpoint only; not current full M3–M6 completion."
+  },
+  "reconciliation": {
+    "source_commit": "561f9ab55ac748db15efdb6694daece83f61ac13",
+    "upgraded_case_ids": [
+      "N12",
+      "L06",
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "B01",
+      "B02",
+      "C02"
+    ],
+    "unchanged_open_case_ids": [
+      "C04",
+      "E01",
+      "E02",
+      "E03",
+      "E06"
+    ],
+    "rule": "Evaluate the original named contract within explicit evidence scope; do not replace finite-law checks with all-game proofs or M6 engineering with later trained-policy/client/export acceptance.",
+    "current_task_status": "PARTIAL",
+    "current_open_engineering": [
+      "Bounded native posterior/source coverage and production data-quality/admission gates",
+      "Resource/utility masks and consumed-supervision coverage",
+      "Real full-v5 finite-plan producer labels and integration evidence"
+    ],
+    "no_execution_by_reconciliation": {
+      "native_builds": 0,
+      "native_test_runs": 0,
+      "benchmarks": 0,
+      "backward_calls": 0,
+      "optimizer_steps": 0,
+      "sealed_historical_targets_opened": false
+    }
   }
 }

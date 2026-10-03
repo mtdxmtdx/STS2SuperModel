@@ -102,6 +102,18 @@ class NativePolicyBridgeTests(unittest.TestCase):
         for path, expected in SOURCE_HASHES.items():
             with self.subTest(path=path): self.assertEqual(expected, hashlib.sha256((ROOT / path).read_bytes()).hexdigest())
 
+    def test_prior_adapter_receipt_is_not_silently_reinterpreted(self):
+        _, receipt = self.adapt()
+        self.assertEqual("nosl.native-full-policy.adapter.v5.2", receipt["adapter_version"])
+        historical = deepcopy(receipt)
+        historical["adapter_version"] = "nosl.native-full-policy.adapter.v5.1"
+        historical["implementation"]["adapter_version"] = "nosl.native-full-policy.adapter.v5.1"
+        historical["objective_contract"]["source_sha256"]["src/Nosl.Worker/TeacherDataset.cs"] = (
+            "3c81734b9a840e267edf1731e403100356dbb9f47d9a78569cb6cffcf617c037")
+        with self.assertRaisesRegex(ValueError, "producer_receipt_changed"):
+            validate_policy_producer_receipt(historical, CONFIG)
+        validate_policy_producer_receipt(receipt, CONFIG)
+
     def test_lossless_full_input_native_value_masks_outcomes_and_exact_bytes(self):
         raw = source_fixture(); raw_before = deepcopy(raw); payloads = inputs(raw)
         records, receipt = adapt_native_policy_candidates(*payloads, CONFIG, legacy_protection())
