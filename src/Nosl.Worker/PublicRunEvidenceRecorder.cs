@@ -26,10 +26,11 @@ public sealed class PublicRunEvidenceRecorder
 
     // Only owned label replay supplies an observer. Ordinary source collection
     // retains the same public API and records exactly the same detached events.
-    internal PublicRunEvidenceRecorder(PublicRunStarted? observedRunStart, Action<PublicRunEvidenceEvent>? onAppended)
+    internal PublicRunEvidenceRecorder(PublicRunStarted? observedRunStart, Action<PublicRunEvidenceEvent>? onAppended,
+        string schemaVersion = PublicRunEvidence.Version)
     {
         _onAppended = onAppended;
-        _evidence = new(PublicRunEvidence.Version, observedRunStart is not null,
+        _evidence = new(schemaVersion, observedRunStart is not null,
             [new(0, null, observedRunStart is null
                 ? new PublicEvidenceGap(PublicEvidenceGapReason.RunStartNotObserved) : observedRunStart)]);
         NotifyAppended(Events[0]);

@@ -121,18 +121,9 @@ internal sealed class NativePublicInitialMapCondition
 internal static class NativePublicMapSlice
 {
     internal static PublicMapObserved Observe(ActMap map, MapPoint current, IReadOnlyList<MapPoint> choices,
-        string? mapObservationProfile = null)
+        string? mapObservationProfile = null, PublicCurrentMapCapture? currentMap = null)
     {
         PublicMapCoordinate Coord(MapPoint p) => new(p.coord.col, p.coord.row);
-        PublicMapNodeType Type(MapPoint p) => p.PointType switch
-        {
-            MapPointType.Ancient => PublicMapNodeType.Ancient, MapPointType.Boss => PublicMapNodeType.Boss,
-            MapPointType.Elite => PublicMapNodeType.Elite, MapPointType.Monster => PublicMapNodeType.Monster,
-            MapPointType.RestSite => PublicMapNodeType.Rest, MapPointType.Shop => PublicMapNodeType.Shop,
-            MapPointType.Treasure => PublicMapNodeType.Treasure, MapPointType.Unknown => PublicMapNodeType.Unknown,
-            _ when ReferenceEquals(p, map.StartingMapPoint) => PublicMapNodeType.Start,
-            _ => PublicMapNodeType.Unknown,
-        };
         var points = choices.Prepend(current).Distinct().OrderBy(p => p.coord.row).ThenBy(p => p.coord.col).ToArray();
         var included = points.ToHashSet();
         var edges = points.SelectMany(p => p.Children.Where(included.Contains).Select(c => new PublicMapEdge(Coord(p), Coord(c))))
@@ -140,7 +131,21 @@ internal static class NativePublicMapSlice
         // Sort a projection, never the native collection or the source's actions.
         IEnumerable<MapPoint> observedChoices = PublicMapObservationProfiles.UsesCoordinateOrder(mapObservationProfile)
             ? choices.OrderBy(p => p.coord.row).ThenBy(p => p.coord.col) : choices;
-        return new(Coord(current), points.Select(p => new PublicMapNode(Coord(p), Type(p))).ToImmutableArray(), edges,
-            observedChoices.Select(p => new PublicMapOption(Coord(p), current.Children.Contains(p))).ToImmutableArray());
+        bool completeGraph = PublicMapObservationProfiles.UsesCompleteGraph(mapObservationProfile);
+        if (!completeGraph && currentMap is not null)
+            throw new ArgumentException("A current map capture requires its complete-graph observation profile");
+        return new(Coord(current), points.Select(p => new PublicMapNode(Coord(p), DisplayedType(map, p))).ToImmutableArray(), edges,
+            observedChoices.Select(p => new PublicMapOption(Coord(p), current.Children.Contains(p))).ToImmutableArray(),
+            completeGraph ? currentMap ?? PublicCurrentMapCapture.Missing() : null);
     }
+
+    internal static PublicMapNodeType DisplayedType(ActMap map, MapPoint point) => point.PointType switch
+    {
+        MapPointType.Ancient => PublicMapNodeType.Ancient, MapPointType.Boss => PublicMapNodeType.Boss,
+        MapPointType.Elite => PublicMapNodeType.Elite, MapPointType.Monster => PublicMapNodeType.Monster,
+        MapPointType.RestSite => PublicMapNodeType.Rest, MapPointType.Shop => PublicMapNodeType.Shop,
+        MapPointType.Treasure => PublicMapNodeType.Treasure, MapPointType.Unknown => PublicMapNodeType.Unknown,
+        _ when ReferenceEquals(point, map.StartingMapPoint) => PublicMapNodeType.Start,
+        _ => PublicMapNodeType.Unknown,
+    };
 }

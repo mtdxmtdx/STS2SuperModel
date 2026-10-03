@@ -20,7 +20,9 @@ internal sealed class NativePublicRunEvidence(RunState run, string? mapObservati
     Action<PublicRunEvidenceEvent>? onAppended = null)
 {
     private PublicRunEvidenceRecorder? _recorder;
-    private PublicRunEvidenceRecorder Recorder => _recorder ??= new(null, onAppended);
+    private string EvidenceVersion => PublicMapObservationProfiles.UsesCompleteGraph(mapObservationProfile)
+        ? PublicRunEvidence.CompleteMapVersion : PublicRunEvidence.Version;
+    private PublicRunEvidenceRecorder Recorder => _recorder ??= new(null, onAppended, EvidenceVersion);
     private readonly Dictionary<AbstractRoom, long> _rooms = new(ReferenceEqualityComparer.Instance);
     private readonly List<(RewardsSet Set, long Owner)> _rewards = [];
     private readonly Dictionary<RewardsSet, long> _lastRewardOffers = new(ReferenceEqualityComparer.Instance);
@@ -41,7 +43,7 @@ internal sealed class NativePublicRunEvidence(RunState run, string? mapObservati
     internal void BeginRun(bool observedNativeStart)
     {
         if (_recorder is not null) { Recorder.RecordGap(null, PublicEvidenceGapReason.Interrupted); return; }
-        _recorder = new(observedNativeStart ? new("Silent", 10, Assets(run.Players.Single())) : null, onAppended);
+        _recorder = new(observedNativeStart ? new("Silent", 10, Assets(run.Players.Single())) : null, onAppended, EvidenceVersion);
     }
     internal PublicRunEvidence Capture() => Recorder.Capture();
     internal void EnterFloor() => _floorObserved = true;
@@ -164,9 +166,12 @@ internal sealed class NativePublicRunEvidence(RunState run, string? mapObservati
             Recorder.RecordGap(owner, PublicEvidenceGapReason.ObservationMissing);
             End(owner); return;
         }
-        // The declared v1 map channel is this choice slice: current node, all
-        // offered destinations, and ordinary edges between those visible nodes.
-        long observed = Recorder.Record(owner, NativePublicMapSlice.Observe(run.Map, current, choices, mapObservationProfile));
+        // Legacy channels remain choice slices. Only the separately declared
+        // complete-graph profile adds the current act's native public-view capture.
+        var currentMap = PublicMapObservationProfiles.UsesCompleteGraph(mapObservationProfile)
+            ? NativePublicCurrentMapCapture.Observe(run.Map, run.CurrentActIndex) : null;
+        long observed = Recorder.Record(owner, NativePublicMapSlice.Observe(run.Map, current, choices,
+            mapObservationProfile, currentMap));
         Recorder.Record(owner, new PublicMapChosen(observed, new(selected.coord.col, selected.coord.row))); End(owner);
     }
     internal void Rewards(RewardsSet rewards, RewardDecision selected)

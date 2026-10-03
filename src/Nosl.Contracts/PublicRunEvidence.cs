@@ -8,12 +8,13 @@ namespace Nosl.Contracts;
 public sealed class PublicRunEvidence
 {
     public const string Version = "nosl.public-run-evidence.v1";
+    public const string CompleteMapVersion = "nosl.public-run-evidence.v2";
     public const string StudentSchema = "nosl.student.public.v4";
 
     public static bool IsRequested(string? profile) => profile switch
     {
         null => false,
-        Version => true,
+        Version or CompleteMapVersion => true,
         _ => throw new ArgumentException("Unknown public run-evidence profile", nameof(profile)),
     };
 
@@ -32,16 +33,17 @@ public sealed class PublicRunEvidence
     [JsonConstructor]
     public PublicRunEvidence(string schemaVersion, bool completeFromRunStart, ImmutableArray<PublicRunEvidenceEvent> events)
     {
-        if (schemaVersion != Version) throw new ArgumentException("Unknown public run-evidence version");
+        if (schemaVersion is not (Version or CompleteMapVersion)) throw new ArgumentException("Unknown public run-evidence version");
         SchemaVersion = schemaVersion;
         Events = EvidenceGuard.Array(events, nameof(events));
+        foreach (var entry in Events) ValidateMapVersion(entry);
         _validation = PublicRunEvidenceValidation.Validate(Events, completeFromRunStart);
         CompleteFromRunStart = completeFromRunStart;
     }
 
-    private PublicRunEvidence(ImmutableArray<PublicRunEvidenceEvent> events, PublicRunEvidenceValidation validation)
+    private PublicRunEvidence(string schemaVersion, ImmutableArray<PublicRunEvidenceEvent> events, PublicRunEvidenceValidation validation)
     {
-        SchemaVersion = Version;
+        SchemaVersion = schemaVersion;
         Events = events;
         _validation = validation;
         CompleteFromRunStart = validation.CompleteFromRunStart;
@@ -51,8 +53,16 @@ public sealed class PublicRunEvidence
     public PublicRunEvidence Append(PublicRunEvidenceEvent entry)
     {
         ArgumentNullException.ThrowIfNull(entry);
+        ValidateMapVersion(entry);
         var validation = _validation.Append(Events, entry, Events.Length);
-        return new(Events.Add(entry), validation);
+        return new(SchemaVersion, Events.Add(entry), validation);
+    }
+
+    private void ValidateMapVersion(PublicRunEvidenceEvent entry)
+    {
+        if (entry.Payload is PublicMapObserved map
+            && (SchemaVersion == CompleteMapVersion) != (map.CurrentMap is not null))
+            throw new ArgumentException("The evidence version differs from its current map capture field");
     }
 }
 
@@ -342,9 +352,12 @@ public sealed class PublicMapObserved : PublicEvidencePayload
     public ImmutableArray<PublicMapNode> Nodes { get; }
     public ImmutableArray<PublicMapEdge> Edges { get; }
     public ImmutableArray<PublicMapOption> Options { get; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public PublicCurrentMapCapture? CurrentMap { get; }
     [JsonConstructor]
     public PublicMapObserved(PublicMapCoordinate? current, ImmutableArray<PublicMapNode> nodes,
-        ImmutableArray<PublicMapEdge> edges, ImmutableArray<PublicMapOption> options)
+        ImmutableArray<PublicMapEdge> edges, ImmutableArray<PublicMapOption> options,
+        PublicCurrentMapCapture? currentMap = null)
     {
         Current = current; Nodes = EvidenceGuard.Array(nodes, nameof(nodes)); Edges = EvidenceGuard.Array(edges, nameof(edges));
         Options = EvidenceGuard.Array(options, nameof(options));
@@ -357,6 +370,8 @@ public sealed class PublicMapObserved : PublicEvidencePayload
             throw new ArgumentException("Invalid public map slice");
         if (current is null || Options.Any(o => o.IsOrdinaryConnection != Edges.Any(e => e.From == current && e.To == o.Coordinate)))
             throw new ArgumentException("Map options must state the observed ordinary connections from the current node");
+        CurrentMap = currentMap;
+        CurrentMap?.ValidateSlice(this);
     }
 }
 public sealed class PublicMapChosen : PublicEvidencePayload
@@ -539,6 +554,17 @@ public static class PublicRunEvidenceJson
     {
         using var document = JsonDocument.Parse(json);
         RejectDuplicateProperties(document.RootElement);
+        // A null optional CLR property must not silently widen the frozen v1
+        // wire grammar: even an explicit currentMap:null is a v2-only field.
+        var root = document.RootElement;
+        if (root.ValueKind == JsonValueKind.Object
+            && root.TryGetProperty("schemaVersion", out var version) && version.ValueKind == JsonValueKind.String
+            && version.GetString() == PublicRunEvidence.Version
+            && root.TryGetProperty("events", out var events) && events.ValueKind == JsonValueKind.Array)
+            foreach (var entry in events.EnumerateArray())
+                if (entry.ValueKind == JsonValueKind.Object && entry.TryGetProperty("payload", out var payload)
+                    && payload.ValueKind == JsonValueKind.Object && payload.TryGetProperty("currentMap", out _))
+                    throw new JsonException("The currentMap field requires v2 public run evidence");
         return JsonSerializer.Deserialize<PublicRunEvidence>(json, Options)
             ?? throw new ArgumentException("Empty public run evidence");
     }
