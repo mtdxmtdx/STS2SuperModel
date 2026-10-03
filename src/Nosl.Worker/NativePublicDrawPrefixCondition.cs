@@ -24,6 +24,7 @@ internal sealed record NativePublicDrawPrefixAudit(string CertificateVersion, in
 internal static class NativePublicDrawPrefixCondition
 {
     internal const string Version = "nosl.public-first-draw-cycle.v11";
+    internal const string ConstructedRubyVersion = "nosl.public-first-draw-cycle.v12-constructed-ruby";
 
     // Read the complete sealed OnPlay implementations, including both upgrade branches and
     // inherited result locations. Strike/Defend's GeneratedCardSpec has no GeneratedPowerEffect.
@@ -79,6 +80,15 @@ internal static class NativePublicDrawPrefixCondition
     private static readonly HashSet<string> EnemyTurns = [nameof(CorpseSlug), nameof(SludgeSpinner), nameof(Toadpole),
         nameof(TwigSlimeS), nameof(TwigSlimeM), nameof(LeafSlimeS), nameof(LeafSlimeM),
         nameof(Seapunk), nameof(ShrinkerBeetle), nameof(FuzzyWurmCrawler), nameof(Nibbit)];
+    // Constructed Ruby v12 only: every sealed move in these five fixed graphs
+    // attacks or blocks, except Brute's self Strength and Tracker's player Frail.
+    // Both powers are already in the listener closure below. All five inherit
+    // no-op combat hooks and AfterAddedToRoom; no move generates, draws, moves,
+    // transforms, upgrades or reorders a card, or summons another listener.
+    // Keep the ordinary v11 closure unchanged unless the declared caller opts in.
+    private static readonly HashSet<string> ConstructedRubyEnemyTurns =
+        [nameof(AxeRubyRaider), nameof(AssassinRubyRaider), nameof(BruteRubyRaider),
+            nameof(CrossbowRubyRaider), nameof(TrackerRubyRaider)];
     // Nibbit's pure initial branch reads IsAlone/IsFront; every later state follows
     // butt -> slice -> hiss -> butt. Effects are damage, block and reviewed Strength.
     // Exact PowerModel implementations, including BeforeApplied/AfterApplied/AfterRemoved.
@@ -128,9 +138,9 @@ internal static class NativePublicDrawPrefixCondition
 
     internal static NativeInitialShuffleCondition Extend(NativeInitialShuffleCondition initial,
         PublicRunEvidenceEvent[] ownerEvents, PublicRunEvidenceEvent first, long? globalGap,
-        out NativePublicDrawPrefixAudit audit)
+        out NativePublicDrawPrefixAudit audit, bool allowConstructedRubyEnemyTurns = false)
     {
-        var result = Scan(initial, initial.DrawPrefixIds.Length, ownerEvents, first, globalGap, false);
+        var result = Scan(initial, initial.DrawPrefixIds.Length, ownerEvents, first, globalGap, false, allowConstructedRubyEnemyTurns);
         audit = result.Audit;
         return result.InitialPrefix.Length == initial.DrawPrefixIds.Length ? initial
             : initial.ExtendDrawPrefix(result.InitialPrefix);
@@ -140,7 +150,7 @@ internal static class NativePublicDrawPrefixCondition
         NativeInitialShuffleCondition initial, int initialDrawCount, PublicRunEvidenceEvent[] ownerEvents,
         PublicRunEvidenceEvent first, long? globalGap, out NativePublicDrawPrefixAudit audit)
     {
-        var result = Scan(initial, initialDrawCount, ownerEvents, first, globalGap, true);
+        var result = Scan(initial, initialDrawCount, ownerEvents, first, globalGap, true, false);
         audit = result.Audit;
         return result.Reshuffles;
     }
@@ -157,7 +167,8 @@ internal static class NativePublicDrawPrefixCondition
     }
 
     private static ScanResult Scan(NativeInitialShuffleCondition initial, int initialDrawCount,
-        PublicRunEvidenceEvent[] ownerEvents, PublicRunEvidenceEvent first, long? globalGap, bool allowReshuffles)
+        PublicRunEvidenceEvent[] ownerEvents, PublicRunEvidenceEvent first, long? globalGap, bool allowReshuffles,
+        bool allowConstructedRubyEnemyTurns)
     {
         var entry = PublicJson.Read<NativeEntryAssets>(initial.EntryJson);
         var prefix = initial.DrawPrefixKeys.Take(initialDrawCount).ToList();
@@ -191,7 +202,8 @@ internal static class NativePublicDrawPrefixCondition
                 through = observed.EventOrdinal;
             }
         }
-        return new(prefix.ToArray(), new(Version, initialCount, prefix.Count, through, stop ?? "observed_prefix_complete"),
+        return new(prefix.ToArray(), new(allowConstructedRubyEnemyTurns ? ConstructedRubyVersion : Version,
+            initialCount, prefix.Count, through, stop ?? "observed_prefix_complete"),
             cycles.Where(item => item.Pool is not null && item.WitnessEvent is not null && item.Prefix.Count > 0)
                 .Select(item => new NativePublicReshuffleInput(item.Ordinal, item.ShuffleEvent,
                     item.WitnessEvent!.Value, item.Pool!, item.Prefix)).ToArray());
@@ -298,7 +310,8 @@ internal static class NativePublicDrawPrefixCondition
                             activeModel = pendingCard;
                             return null;
                         case "end_turn":
-                            if (observation.Enemies.Any(enemy => !EnemyTurns.Contains(enemy.Id)))
+                            if (observation.Enemies.Any(enemy => !EnemyTurns.Contains(enemy.Id)
+                                && !(allowConstructedRubyEnemyTurns && ConstructedRubyEnemyTurns.Contains(enemy.Id))))
                                 return "draw_cycle_enemy_turn_not_certified";
                             // The protected turn-end surface is outside AbstractModel reflection.
                             // Base false/no-op proves ordinary flush or Ethereal exhaust affects

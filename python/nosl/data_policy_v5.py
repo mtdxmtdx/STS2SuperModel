@@ -65,7 +65,7 @@ def validate_record(record, config):
     # This validates all graph, history and exact anchor data before any target
     # arithmetic or inherited mechanics encoder can strip an extension.
     validate_targets(targets, public, config)
-    if isinstance(audit, dict) and audit.get("source_kind") == "constructed_native_tape_action_fixture_v1":
+    if isinstance(audit, dict) and audit.get("source_kind") in ("constructed_native_tape_action_fixture_v1", "constructed_native_event_tape_action_fixture_v1"):
         from .constructed_native_policy_v5 import validate_record as validate_constructed_tape_record
         return validate_constructed_tape_record(record, config)
     if isinstance(audit, dict) and audit.get("source_kind") == "constructed_empirical_plan_fixture":
@@ -204,7 +204,7 @@ class PolicyDatasetV5:
         self.verify_integrity()
         result = {}
         for record in self._records:
-            if record["audit_only"]["source_kind"] == "constructed_native_tape_action_fixture_v1":
+            if record["audit_only"]["source_kind"] in ("constructed_native_tape_action_fixture_v1", "constructed_native_event_tape_action_fixture_v1"):
                 from .constructed_native_policy_v5 import all_attempt_metadata
                 key = record["audit_only"]["source_artifact_sha256"]
                 metadata = all_attempt_metadata(record, self.config)

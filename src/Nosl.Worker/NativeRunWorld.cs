@@ -5,6 +5,7 @@ using Nosl.Objectives;
 using Sts2Sim.Core.Entities.Players;
 using Sts2Sim.Core.Models;
 using Sts2Sim.Core.Models.Characters;
+using Sts2Sim.Core.Models.Events;
 using Sts2Sim.Core.Rewards;
 using Sts2Sim.Core.Rooms;
 using Sts2Sim.Core.Runs;
@@ -17,6 +18,7 @@ internal interface INativeRunControl
     Action<PublicRunEvidenceEvent>? PublicEvidenceObserver => null;
     void CombatEntering(NativeEntryAssets entry) { }
     void BeforeDecision();
+    int? ChooseEventOption(IReadOnlyList<(string Key, bool IsLocked)> visibleOptions) => null;
     Task<PublicAction?> DecideAsync(DecisionPacket packet, NaturalSourceBoundary boundary);
     void Settled(PublicKnowledge knowledge);
 }
@@ -49,7 +51,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
     private RolloutOutcome? _outcome;
     private Exception? _fault;
     private bool _disposed, _stepping;
-    private int _sourceDecisions, _eligibleSlots;
+    private int _sourceDecisions, _eligibleSlots, _declaredEventChoices;
 
     public int StartHp => Boundary.StartHp;
     public int StartMaxHp => Boundary.StartMaxHp;
@@ -92,6 +94,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         {
             NaturalSourceCollector.InitializeNativeModels();
             NativeRun = constructedPrior is null ? new RunState(seed, ascensionLevel: 10)
+                : constructedPrior.EventOwner is { } owner ? owner.CreateRun(seed)
                 : EncounterCoverage.CreateRun(seed, constructedPrior.Setup.Encounter, 10);
             if (constructedPrior is null)
                 NativeRun.AddPlayer(Player.CreateForNewRun(ModelDb.Character<Silent>(), NativeRun));
@@ -180,8 +183,12 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
             if (_constructedPrior is not null)
             {
                 await _constructedPrior.Setup.ApplyAsync(NativeRun);
-                var encounter = EncounterCoverage.Find(_constructedPrior.Setup.Encounter);
-                await driver.RunOneInjectedCombatAsync(encounter.RoomType, encounter.Definition.IdEntry);
+                if (_constructedPrior.EventOwner is not null) await RunDeclaredEventAsync(driver);
+                else
+                {
+                    var encounter = EncounterCoverage.Find(_constructedPrior.Setup.Encounter);
+                    await driver.RunOneInjectedCombatAsync(encounter.RoomType, encounter.Definition.IdEntry);
+                }
             }
             else if (_constructedLifecycle is not null) await _constructedLifecycle(NativeRun, driver);
             else result = await driver.RunAsync(_options.MaxFloors);
@@ -203,6 +210,36 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
             await _bridge.ReleaseChoiceOriginAsync();
         }
     }
+
+    private async Task RunDeclaredEventAsync(RunDriver driver)
+    {
+        // The typed contract currently admits this single native owner. Its
+        // public option choices still pass through the real SourceBridge below.
+        var model = (TheLanternKey)ModelDb.Event<TheLanternKey>().MutableClone();
+        if (!model.IsAllowed(NativeRun))
+            throw new InvalidOperationException("TheLanternKey is unavailable at the declared native setup");
+        var room = new EventRoom(() => model);
+        NativeRun.PushRoom(room);
+        try
+        {
+            _bridge!.ObserveDeclaredEventEntering(room);
+            await room.Enter(NativeRun);
+            await driver.DriveEventAsync(room);
+        }
+        finally
+        {
+            try { await room.Exit(NativeRun); }
+            finally
+            {
+                // DriveEventAsync owns and unwinds its combat child, including
+                // cancellation, failed entry and the pre-reward settlement stop.
+                if (ReferenceEquals(NativeRun.CurrentRoom, room)) NativeRun.PopCurrentRoom();
+            }
+        }
+    }
+
+    int? INativeRunControl.ChooseEventOption(IReadOnlyList<(string Key, bool IsLocked)> visibleOptions) =>
+        _constructedPrior?.EventOwner is { } owner ? owner.Choose(_declaredEventChoices++, visibleOptions) : null;
 
     void INativeRunControl.CombatEntering(NativeEntryAssets entry)
     {

@@ -126,3 +126,24 @@ v6连接层相对上一打包源码`18075150`只修改9个Core文件：`Commands
 对固定源码`4c589ed0`从上游归档加两个补丁重新复现全部2,235个跟踪Core／Core.Tests文件，字节与文件集合完全一致。其余补丁段、独立地图性能补丁和Core测试树保持不变；v5与更早回归证据保留各自原始源码固定点。
 
 该v6固定源码另全新运行一次完整Core套件：4,493通过、3个既有opt-in跳过、0失败，构建加测试261.96秒。采用独立构建目录与单MSBuild worker；保留本次真实stdout／stderr、TRX、执行记录、源码清单及程序集SHA-256，运行前后源码哈希均一致。上一v5报告和原始回归记录独立保留，不计作本次新测试。准确路径、时间与哈希见[最新重建证据](../../configs/vendor_patch_verification.json)。
+
+## Constructed Ruby formation observer (2026-10-03)
+
+The constructed-only Ruby proposal adds `Random/LabelRubyRaidersScope.cs` and one
+optional scope entry each in `Overgrowth.CreateRubyRaiders`,
+`EncounterDefinition.CreateMonstersCore`, and `CombatRoom.Prepare`. The original
+three native `NextItem` calls, candidate removal, output order, RNG advancement,
+and recorder forwarding are unchanged. With no observer the scopes are inert.
+The observer supplies only the actual hypothetical factory/run/room/stream
+references; it never supplies source seeds or edits monster state. The wrapper's
+public-only conditional-word proof and verification boundary are documented in
+[the constructed Ruby proposal](../../docs/NATIVE_CONSTRUCTED_RUBY_FORMATION.md).
+The updated cumulative patch reconstructs all 2,244 tracked Core/Core.Tests
+files byte-for-byte from the provenance-derived pinned upstream baseline. Only
+these four Ruby hook files differ from the preceding package, and its remaining
+60 patch sections plus the separate map patch are unchanged. The new main patch
+SHA-256 is `64c3190b23746ac5a2c262d1b78667c5af811ce49df89f27cfc9f3ccf0f8101f`.
+The current proof is [vendor_ruby_formation_verification.json](../../configs/vendor_ruby_formation_verification.json).
+Its fresh focused Core results are 217/217 affected lifecycle/RNG/encounter
+checks and 20/20 Ruby model checks. The older full Core results above apply to
+their own source checkpoint; no new full Core result is claimed here.

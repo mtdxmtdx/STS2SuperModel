@@ -1,0 +1,70 @@
+{
+  "schema": "nosl.constructed-ruby-draw-closure-verification.v1",
+  "status": "PASS_FOCUSED_NATIVE_CLOSURE_AWAITING_COMBINED_GATE",
+  "verified_code_commit": "d6eb0a99b4944982403c4e36572ee4f17999ef89",
+  "prior_code_checkpoint": "cf925dc",
+  "native_core_tree": "e230d83d7235e89776ef79e3555eaee2ad30cbce",
+  "native_core_changed": false,
+  "source_prior_changed": false,
+  "source_generation_changed": false,
+  "old_records_rewritten": false,
+  "generic_closure_version": "nosl.public-first-draw-cycle.v11",
+  "generic_closure_behavior_unchanged": true,
+  "reshuffle_behavior_unchanged": true,
+  "constructed_ruby_closure_version": "nosl.public-first-draw-cycle.v12-constructed-ruby",
+  "sampler_version": "nosl-constructed-native-tape-ruby-draw-closure-v3-public-evidence-v2",
+  "posterior_profile": "owned-constructed-native-tape-ruby-draw-closure-v3-public-evidence-v2",
+  "scope": "Declared ordinary RubyRaiders only; all prior unknown card/power/listener/hand-end/generation/action-linkage guards retained",
+  "source_audited_files": {
+    "src/Nosl.Worker/NativeConstructedTapeSource.cs": "c11fd37893a1c85462bc9efdfcff589a735292bf84922ff08e4172740eec3d65",
+    "src/Nosl.Worker/NativePublicCombatPrefixCondition.cs": "ae655faec4d259990e8b026848bef1f4248ee1deeb041e231bce0aa2f37acdc4",
+    "src/Nosl.Worker/NativePublicDrawPrefixCondition.cs": "fe0b101b38df389a7eb3221c40d03fd888d4a4dcf1bd6d61457368f94124a882",
+    "tests/Nosl.Tests/NativeConstructedRubyDrawClosureTests.cs": "672d729219aa587e7fa718f5482dcdb34c242922ebacbd27ae761ad3d8a1c63d",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/Monsters/AxeRubyRaider.cs": "2380bf76d053e5b1ecf6dddaacbfa0ed3f34148498305c56e84855033de7e60f",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/Monsters/AssassinRubyRaider.cs": "c0e9f94b05e9e62de2e172fa4eb5be011a63aeab48f10fa1fd3f3482fe0299cd",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/Monsters/BruteRubyRaider.cs": "45fec819e20d8752f64fcc422135861234041d26c10fd2f300d956869eb97969",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/Monsters/CrossbowRubyRaider.cs": "41b28af69c3b9ae5b43070f6e25d7a72c22de36701b82bccd49640b7f4852198",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/Monsters/TrackerRubyRaider.cs": "4abe9cb18b2a3cb072c03c9a1459da5deba4464ff12457634e4760cb73cf8309",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/Powers/StrengthPower.cs": "f50db3c51466a5a3458869c9c9799f91769137246423ccd8d62b235959fa7c57",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/Powers/FrailPower.cs": "ef52e7b8c6ff8c37bc696ab0f51b56c2aad3bb4684aad759c7392dd1c8da5272",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Models/MonsterModel.cs": "bbbb73a40b01a48b3ea66d90057ac4cf22d6007489c3803aa7ec0501ccba7740",
+    "vendor/sts2-sim/src/Sts2Sim.Core/Commands/PowerCmd.cs": "9e8c15200ec5c0827c14d16546e196293a71d7ce945216d914b321f6ee9aff48"
+  },
+  "focused_tests": {
+    "passed": 204,
+    "failed": 0,
+    "total": 204,
+    "new_ruby_cases": 12,
+    "trx": "artifacts/ruby-draw-proof/ruby-draw-focused-final.trx",
+    "trx_sha256": "4e75ec4916ce226957c0c237048f3d0afb3162d756c4c32ed6ab8dbff5f113b4",
+    "log": "artifacts/ruby-draw-proof/ruby-draw-focused-final.log",
+    "log_sha256": "c986ac772973519ac773bf317c1619dc174a4924880f4d53af4819cfe464d8e5"
+  },
+  "native_effect_proof": "All five complete move cycles preserve every physical card, pile order, card metadata and shuffle RNG state; Frail application skip, decrement and removal also checked; Strength-powered later attack damage checked",
+  "sole_diagnostic_source": {
+    "source_draw_seed": 44101,
+    "root_selection": "first_player_turn_2",
+    "prior_identity": "709783dcf45ceb01218ffecc02a740048460005c99676a28fdedfbe3f92b5712",
+    "evaluation_seeds": [
+      74101,
+      74102
+    ],
+    "max_posterior_attempts": 16,
+    "legacy_prefix_cards": 8,
+    "constructed_ruby_prefix_cards": 13,
+    "sampled_worlds": 2,
+    "accepted_attempts": [
+      1,
+      1
+    ],
+    "whole_public_packet_and_fork_equality": true,
+    "source_disposed_before_posterior": true
+  },
+  "new_raw_api_runs": 0,
+  "full_worker_gate_for_this_wrapper_commit": "parent combined runtime pending",
+  "speed_claim": false,
+  "additional_optimizer_steps": 0,
+  "training": false,
+  "production_generation": false,
+  "remote_writes": false
+}

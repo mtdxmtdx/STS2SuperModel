@@ -1,0 +1,403 @@
+{
+  "format": "nosl.constructed-native-tape.ruby-draw-policy-verification.v1",
+  "status": "engineering_forward_verified",
+  "adapter_commit": "c8c9f313815db433b3b5d668568086ddec4dd10f",
+  "historical_typed_adapter_commit": "aaa740c0ced8445aa9d135a3699e24434c0c6ae0",
+  "native_source_closure_commit": "1888c597d286e3d36148c8156cb9ae4efc300853",
+  "checks": {
+    "focused_tests": {
+      "passed": 29,
+      "failed": 0,
+      "skipped": 0,
+      "historical_tests": 24,
+      "ruby_draw_tests": 5,
+      "log": "artifacts/reports/constructed-native-ruby-draw-policy-v1/tests.log"
+    },
+    "guarded_forward": {
+      "format": "nosl.constructed-native-tape.ruby-draw-forward.v1",
+      "status": "passed",
+      "adapter_commit": "c8c9f31",
+      "native_source_closure_commit": "1888c597d286e3d36148c8156cb9ae4efc300853",
+      "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-owner-ruby-v3/ruby-turn2/response.jsonl",
+      "raw_sha256": "d0821c436b9577d90f8bcb805854d4580a5b784a4fc0807e88e4aeb7030b947b",
+      "record_sha256": "0255c315c535413db44d45ca67d30b3092ecd13ff9b88ed64cf96d34b14d9a73",
+      "rows": 1,
+      "source_kind": "constructed_native_tape_action_fixture_v1",
+      "sampler": "nosl-constructed-native-tape-ruby-draw-closure-v3-public-evidence-v2",
+      "runtime_dependencies": {
+        "upstream_commit": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
+        "worker_assembly_sha256": "c4134fc48847308a9373de0909db77425fc66d07c71d83c19d262dca9e08269e",
+        "core_assembly_sha256": "915ea9e875a0cb478d8da429dbd078a4dba53f7fede8ed381bb7c114e8fa22db",
+        "runtime_version": "9.0.7",
+        "wrapper_source_sha256": "662888f0f111ec8d20a74d0dcbdc19c7432f55e3ea23d26e910f1ee41e78cb71",
+        "vendor_source_sha256": "69e05bd3e99051a119af80a903f70c1845079def1770f8816f8f91e50c14f391"
+      },
+      "all_attempts_metadata_sha256": "2f424b0b68149e003dc46126cce0acd5544a2321e486a399db87b2a6cec92386",
+      "attempt_statuses": {
+        "recorded_complete": 1
+      },
+      "actions": 16,
+      "outcome_counts": {
+        "Win": 32
+      },
+      "action_value_masks": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "objective_unresolved_reasons": {
+        "inventory_value_unresolved:FirePotion": 8,
+        "inventory_value_unresolved:BlockPotion": 4
+      },
+      "terms": [
+        {
+          "value": 0.2881038784980774,
+          "win_probability": 0.7211471199989319,
+          "death_probability": 0.7270139455795288,
+          "expected_final_hp": 0.27100712060928345,
+          "hp_distribution": 4.143482208251953,
+          "potion_net_change": 0.3040532171726227,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        }
+      ],
+      "loss": 2.8598623275756836,
+      "supervision_coverage": {
+        "format": "nosl.training.full-policy.supervision.v5.1",
+        "roots": 1,
+        "action_heads": {
+          "value": {
+            "masked_rows": 10,
+            "loss_rows": 10,
+            "loss_roots": 1
+          },
+          "win_probability": {
+            "masked_rows": 16,
+            "loss_rows": 16,
+            "loss_roots": 1
+          },
+          "death_probability": {
+            "masked_rows": 16,
+            "loss_rows": 16,
+            "loss_roots": 1
+          },
+          "expected_final_hp": {
+            "masked_rows": 16,
+            "loss_rows": 16,
+            "loss_roots": 1
+          },
+          "hp_distribution": {
+            "masked_rows": 16,
+            "loss_rows": 16,
+            "loss_roots": 1
+          },
+          "potion_net_change": {
+            "masked_rows": 16,
+            "loss_rows": 16,
+            "loss_roots": 1
+          }
+        },
+        "plan_heads": {
+          "specified_success_probability": {
+            "masked_roots": 0,
+            "loss_roots": 0
+          },
+          "extra_net_hp_loss": {
+            "masked_roots": 0,
+            "loss_roots": 0
+          }
+        },
+        "action_policy": {
+          "eligible_roots": 0,
+          "value_roots": 0,
+          "pairwise_roots": 0,
+          "equivalent_roots": 0,
+          "pairwise_pairs": 0
+        },
+        "policy_action_kinds": {
+          "play": 0,
+          "potion": 0,
+          "discard_potion": 0,
+          "choose": 0,
+          "end_turn": 0
+        }
+      },
+      "fit_gate": {
+        "status": "FIT_BLOCKED",
+        "accepted": false,
+        "reasons": [
+          "unadmitted_or_engineering_records_cannot_fit",
+          "enabled_objective_policy_supervision_required",
+          "exact_external_objective_review_required",
+          "exact_bounded_execution_authorization_required"
+        ],
+        "formal_training_run": false,
+        "policy_promoted": false,
+        "current_auxiliary_artifacts_eligible": false
+      },
+      "historical_raw_reports_revalidated": [
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-00/response.jsonl",
+          "raw_sha256": "2165f6ac262d03dec8387e82a03add3cd5f294adc302e47849a62f3b21aca09d",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-01/response.jsonl",
+          "raw_sha256": "2bca92497661026ec096e51477d886a19074131f06f75b727b6fa0ab96829755",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-02/response.jsonl",
+          "raw_sha256": "196b0a7ab71efe216a7edc92398b3934846f15682c1f24923c9a60f5a4d19d3f",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-03/response.jsonl",
+          "raw_sha256": "bc6359acea710fce925d0f07733a08a2531276bd4b66159a80cdfe0f209bf3ea",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-04/response.jsonl",
+          "raw_sha256": "ee6edd092e44b32490d1eb65f1d4173aeec720ec5af2a01cebe7ced0472b8d27",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-05/response.jsonl",
+          "raw_sha256": "bdab6dedd05da51b4da0ede06d5168ffe746ae6530c1ccd1d15fd58511a32119",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-06/response.jsonl",
+          "raw_sha256": "c7b90564a5887546b27feccb0b765701176607a36a4ebf78953d08e6684b8779",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-07/response.jsonl",
+          "raw_sha256": "7886e4dc36000120685d6236b86ae6ff4f9bc6af84146f41b810a72a39ee5ec4",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-08/response.jsonl",
+          "raw_sha256": "0e6e727d2b486a44fad855c6ad39048201a79485d603366dd5b330fb3dae8ad9",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-09/response.jsonl",
+          "raw_sha256": "dac0e93b88f9eb53a972b80f3d9b0c02b6337e9cc6b24a47969cb4e11c8551e9",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-10/response.jsonl",
+          "raw_sha256": "4b5c16a88f9634dfbfa656740cde83205da436e17db88e6889cab766f89ecdb5",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-11/response.jsonl",
+          "raw_sha256": "fca3311232c5d91f216af100b85f9b27401520bb414f541d3eff8304042be8c9",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/action-boundary/response.jsonl",
+          "raw_sha256": "94e234274ed02b012aed99d291eb2fc66e59da5fbeadaeed744785c5672522da",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "computation_truncated": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-owner-ruby-v1/lantern-boundary/response.jsonl",
+          "raw_sha256": "94c459ce681491067a714b8fb306c24f122577d39536edbdac6cc275824d5193",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-event-tape-rejection-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-ruby-startup/artifacts/ruby-proof/case-00/response.jsonl",
+          "raw_sha256": "f76e34fe8e16108ccc5c38940873f84168bd81d6d27f6d799c25f627c4c8264e",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-ruby-formation-v2-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-ruby-startup/artifacts/ruby-proof/case-01/response.jsonl",
+          "raw_sha256": "2adb3a50b8bca9bab171c2aeef894c0c0faceeaa0e18030c0597f6068b99daa3",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-ruby-formation-v2-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        }
+      ],
+      "same_root_version_comparisons": [
+        {
+          "raw_sha256": "2bca92497661026ec096e51477d886a19074131f06f75b727b6fa0ab96829755",
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "exact_public_bytes_equal": true,
+          "prior_identity_equal": true,
+          "source_generation_bytes_equal": true,
+          "canonical_source_aliases_equal": true,
+          "all_attempts_metadata_equal": true
+        },
+        {
+          "raw_sha256": "2adb3a50b8bca9bab171c2aeef894c0c0faceeaa0e18030c0597f6068b99daa3",
+          "sampler": "nosl-constructed-native-tape-ruby-formation-v2-public-evidence-v2",
+          "exact_public_bytes_equal": true,
+          "prior_identity_equal": true,
+          "source_generation_bytes_equal": true,
+          "canonical_source_aliases_equal": true,
+          "all_attempts_metadata_equal": true
+        }
+      ],
+      "exact_public_input_sha256": "509d1f685da133a9746f858f24d35275991e71e0a328fd2e1cc66525f41c531a",
+      "historical_aaa_normalized_snapshot": "rejected_changed_source_closure_without_reinterpretation",
+      "model_state_before_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+      "model_state_after_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+      "parameters_unchanged": true,
+      "model_inputs_equal_public_packets": true,
+      "backward_calls": 0,
+      "optimizer_constructions": 0,
+      "optimizer_steps": 0,
+      "gradients_created": false,
+      "weights_saved": false,
+      "trainable": false,
+      "natural_native_admission": false,
+      "protection_status": "INCOMPLETE",
+      "normalized_sha256": "6579b576d02e013aa3e01fe9b5e06e3c53cb6e68195634547ffebb62fd57dd05"
+    }
+  },
+  "artifacts": {
+    "artifacts/reports/constructed-native-ruby-draw-policy-v1/engineering.jsonl": {
+      "sha256": "6579b576d02e013aa3e01fe9b5e06e3c53cb6e68195634547ffebb62fd57dd05",
+      "bytes": 1556792
+    },
+    "artifacts/reports/constructed-native-ruby-draw-policy-v1/forward.json": {
+      "sha256": "55939711deb5f83fd8edda32eb3a0141cf2e8814b18466ad89133215845b9f9b",
+      "bytes": 12426
+    },
+    "artifacts/reports/constructed-native-ruby-draw-policy-v1/forward_ruby_draw.py": {
+      "sha256": "8e95b78012263b01496ddf546982d808549c2deac858c822aaaf16d742dd7807",
+      "bytes": 8219
+    },
+    "artifacts/reports/constructed-native-ruby-draw-policy-v1/tests.log": {
+      "sha256": "c7c0f8cbd31cae2a544dd0bdcf62493c2a6cd6f3131e062fcd3bfe98ce14a25b",
+      "bytes": 6223
+    }
+  },
+  "source_sha256": {
+    "docs/spec/v4/config/objective_profile.candidate.json": "ceda0bfc7492409d457bfd7ad9b8ee72b83138c457b0549fedb887b72fe43744",
+    "configs/objective_profile.candidate.json": "64dfdc38d5dfcf2bd0d1767ef726c3236a29f4722ef4ff49f345ea2cf0f76599",
+    "src/Nosl.Objectives/RolloutOutcome.cs": "492d066f1e0b2fddfd111c68c844c6edee5782982a7149641dfec2e03c1d2c04",
+    "src/Nosl.Objectives/ObjectiveEvaluator.cs": "a5c386188f00d096fc5c037881c4643e52cd180632e14da0a94b810cee63c494",
+    "src/Nosl.Objectives/PreferenceGates.cs": "d3a99f9f2dc7bb4ac28848fb6a0e598b9605eb679a2d6506bfcc26970dc2e921",
+    "src/Nosl.Worker/TeacherDataset.cs": "71f95f83609d0c75232d2443baa0394cb14e28dcdc4ce9fa1a507e27437901df",
+    "src/Nosl.Worker/CombatTeacher.cs": "b182a13036aa8a04983a418c77bd0f6ddd0a16a93e7eccee0e2573e8dd8add11",
+    "src/Nosl.Worker/NativeConstructedTapePrior.cs": "63f82d1852ab13844003570b405c9f0075e1996b214e41e36a4ee6c8c80d47cf",
+    "src/Nosl.Worker/NativeConstructedTapeSource.cs": "4a6326c4e27322605375689b002069228a33892fdbf443eea4078483dcd6a042",
+    "src/Nosl.Worker/NativeConstructedTapeDataset.cs": "32232108246d3c087eaa48c2ee350907ac5b78d2e83f9fa6ff35257e9b324d6a",
+    "src/Nosl.Worker/NativeConstructedEventOwnerSetup.cs": "f66172fd88455c474372ae6f7962450a987d0edf18586ef42b2e53b777dd2bfb",
+    "src/Nosl.Worker/NativePublicRubyFormationCondition.cs": "bc5cfbec15a7f02bd724aa5aea599e86bd507fa62225c46eace81a110208939d",
+    "src/Nosl.Worker/NativePublicRubyFormationProposal.cs": "d4fe35e8741fa074bcc674b1cc2c1fbc0a9eb137a336448f721c551c9b61ee3e",
+    "src/Nosl.Worker/NativePublicCombatPrefixCondition.cs": "ae655faec4d259990e8b026848bef1f4248ee1deeb041e231bce0aa2f37acdc4",
+    "src/Nosl.Worker/NativePublicCombatPrefixProposal.cs": "8a7d9482876d9d1a1bc9c56f4f74f27b572ced67039a5ab8add6d303b89d97c2",
+    "src/Nosl.Worker/NativePublicDrawPrefixCondition.cs": "fe0b101b38df389a7eb3221c40d03fd888d4a4dcf1bd6d61457368f94124a882",
+    "src/Nosl.Worker/NativeInitialShuffleCondition.cs": "740806e2cbf3b5b75f61016aff0085ccc81b1ad9fd324310304b2fd87147d66b",
+    "python/nosl/native_policy_v5.py": "452934fe4d4ab8417ec70094d17baa2b055011758bcbfb1cec4b03c45769224e",
+    "python/nosl/constructed_native_policy_v5.py": "50a8255c2a8e72baa3b40fc1a5d8d4792502a1561a37ec91785023543f656395",
+    "python/nosl/constructed_native_event_v5.py": "8597ddaab47584d9be18ebc6fcac36a7134231fae9208f199d2326dad4ecf07a",
+    "python/nosl/data_policy_v5.py": "a802d8bbe7e5b5681abca26f8dd40180159305db05fe8d132286ee0a8cb2c55e",
+    "python/nosl/train_policy_v5.py": "ccbbbee256cf969e4f37d26af54c04d1f972c228594cfc9687ab5b7fe500d134",
+    "tests/data/test_constructed_native_ruby_draw_policy_v5.py": "4bf48260a20384d6ea8a27a460314238b71c1c3ded9ed2b60d4a35399e8acd62"
+  },
+  "limits": {
+    "engineering_only": true,
+    "native_run": false,
+    "production_admission": false,
+    "natural_native_admission": false,
+    "objective_calibrated": false,
+    "protection_status": "INCOMPLETE",
+    "fit_authorized": false,
+    "backward_calls": 0,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0,
+    "weights_saved": false,
+    "plan_labels_created": false,
+    "historical_evidence_changed": false
+  },
+  "notes": [
+    "The exact Ruby v3 report passes strict validation, engineering loader and actual batch_loss forward.",
+    "The full action target projection, all 32 terminal outcomes and every source/evaluation attempt remain bound to raw bytes.",
+    "Ten action value masks are true; six remain false for unresolved native FirePotion/BlockPotion inventory values.",
+    "All 16 historical raw reports remain valid with their original sampler identifiers. The historical aaa normalized snapshot rejects the changed evaluator closure.",
+    "Public packet bytes, prior/source-generation identities, conservative source aliases and all-attempt metadata are exactly unchanged across the original v1, formation-v2 and draw-v3 turn2 reports.",
+    "Source closure explicitly includes the reviewed combat-prefix/draw-prefix certificate and initial-shuffle proposal/density dependencies. Raw build receipt separately binds original producer runtime/source bytes.",
+    "Independent reviewer reproduced all 29 focused tests with no skips and no code findings. No native execution was initiated by this Python verification."
+  ]
+}

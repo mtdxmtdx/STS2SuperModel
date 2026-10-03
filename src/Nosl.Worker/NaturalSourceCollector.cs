@@ -229,6 +229,7 @@ public static class NaturalSourceCollector
         private readonly NativePublicRunEvidence? _evidence = options.EmitsPublicEvidence
             ? new(run, options.PublicMapObservationProfile, ownedControl?.PublicEvidenceObserver) : null;
         internal PublicRunEvidence? CaptureEvidence() => _evidence?.Capture();
+        internal void ObserveDeclaredEventEntering(EventRoom room) => _evidence?.DeclaredEventEntering(room);
         private bool _beginRunObserved, _completeFromRunStart;
         private EventModel? _eventOwner;
         internal int FloorsResolved, CombatsEntered, Decisions, RootsCollected;
@@ -281,6 +282,7 @@ public static class NaturalSourceCollector
             if (_settlementReported) return;
             _settlementReported = true;
             _evidence?.CombatSettled(_knowledge.Events);
+            _evidence?.DeclaredEventReturned();
             ownedControl?.Settled(_knowledge);
             onSettlement?.Invoke(new($"{sourceRun}/combat-{CombatsEntered:D4}",
                 player.Creature.CurrentHp, CombatAssetSnapshot.Capture(player)));
@@ -441,7 +443,7 @@ public static class NaturalSourceCollector
             if (!ReferenceEquals(currentEvent, _eventOwner))
             { _eventController.BeginEvent(); _eventOwner = currentEvent; }
             var publicOptions = choices.Select(o => (o.Key, o.IsLocked)).ToArray();
-            var choice = choices[_eventController.Choose(publicOptions)];
+            var choice = choices[ownedControl?.ChooseEventOption(publicOptions) ?? _eventController.Choose(publicOptions)];
             _evidence?.EventOptions(choices, choice);
             Log("event_choice", new { options = choices.Where(o => !o.IsLocked).Select(o => o.Key).ToArray(), chosen = choice.Key });
             return Task.FromResult(choice);

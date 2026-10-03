@@ -115,13 +115,16 @@
 +            player.RemovePotionInternal(potion, PotionMutationKind.Consumed);
 --- a/src/Sts2Sim.Core/Content/Acts/Overgrowth.cs
 +++ b/src/Sts2Sim.Core/Content/Acts/Overgrowth.cs
-@@ -147,0 +148 @@
+@@ -113,0 +114 @@
++        using IDisposable? labelScope = LabelRubyRaidersScope.BeginFormation(rng);
+@@ -147,0 +149 @@
 +        using IDisposable? labelScope = LabelSlimesWeakScope.BeginFormation(rng);
 --- a/src/Sts2Sim.Core/Content/EncounterDefinition.cs
 +++ b/src/Sts2Sim.Core/Content/EncounterDefinition.cs
-@@ -135,0 +136,2 @@
+@@ -135,0 +136,3 @@
 +        using IDisposable? labelScope = Sts2Sim.Core.Random.LabelCorpseSlugScope.EnterEncounter(this, rng);
 +        using IDisposable? formationScope = Sts2Sim.Core.Random.LabelSlimesWeakScope.EnterEncounter(this, rng);
++        using IDisposable? rubyScope = Sts2Sim.Core.Random.LabelRubyRaidersScope.EnterEncounter(this, rng);
 --- a/src/Sts2Sim.Core/Entities/Creatures/Creature.cs
 +++ b/src/Sts2Sim.Core/Entities/Creatures/Creature.cs
 @@ -142,0 +143 @@
@@ -1608,6 +1611,85 @@
 +    }
 +}
 --- /dev/null
++++ b/src/Sts2Sim.Core/Random/LabelRubyRaidersScope.cs
+@@ -0,0 +1,76 @@
++using Sts2Sim.Core.Content;
++using Sts2Sim.Core.Rooms;
++using Sts2Sim.Core.Runs;
++
++namespace Sts2Sim.Core.Random;
++
++/// <summary>Actual hypothetical factory references, before the three native formation draws.</summary>
++public sealed record LabelRubyRaidersFormationContext(RunState? Run, CombatRoom? Room,
++    EncounterDefinition? Encounter, Rng? FactoryRng, Rng Rng);
++
++/// <summary>
++/// Optional label-only observation of Overgrowth's Ruby Raider factory. Its three native
++/// without-replacement calls remain unchanged. Event preparation outside
++/// CombatRoom.Prepare carries no run/room certificate.
++/// </summary>
++public static class LabelRubyRaidersScope
++{
++    private static readonly AsyncLocal<Scope?> Current = new();
++    private static readonly AsyncLocal<Factory?> CurrentFactory = new();
++    private static readonly AsyncLocal<Encounter?> CurrentEncounter = new();
++
++    public static IDisposable Enter(Func<LabelRubyRaidersFormationContext, IDisposable?> begin)
++    {
++        ArgumentNullException.ThrowIfNull(begin);
++        var scope = new Scope(Current.Value, begin);
++        Current.Value = scope;
++        return scope;
++    }
++
++    internal static IDisposable? EnterFactory(RunState run, CombatRoom room)
++    {
++        if (Current.Value is null) return null;
++        var previous = CurrentFactory.Value;
++        CurrentFactory.Value = new(run, room);
++        return new Restore(() => CurrentFactory.Value = previous);
++    }
++
++    internal static IDisposable? EnterEncounter(EncounterDefinition definition, Rng? rng)
++    {
++        if (Current.Value is null) return null;
++        var previous = CurrentEncounter.Value;
++        CurrentEncounter.Value = new(definition, rng);
++        return new Restore(() => CurrentEncounter.Value = previous);
++    }
++
++    internal static IDisposable? BeginFormation(Rng rng)
++    {
++        if (Current.Value is not { } scope) return null;
++        return LabelRandomScope.InvokeResourceCallback(() =>
++        {
++            var factory = CurrentFactory.Value;
++            var encounter = CurrentEncounter.Value;
++            return scope.Begin(new(factory?.Run, factory?.Room, encounter?.Definition, encounter?.Rng, rng));
++        });
++    }
++
++    private sealed record Factory(RunState Run, CombatRoom Room);
++    private sealed record Encounter(EncounterDefinition Definition, Rng? Rng);
++    private sealed class Restore(Action restore) : IDisposable
++    {
++        private bool _disposed;
++        public void Dispose() { if (_disposed) return; _disposed = true; restore(); }
++    }
++    private sealed class Scope(Scope? previous,
++        Func<LabelRubyRaidersFormationContext, IDisposable?> begin) : IDisposable
++    {
++        internal Scope? Previous => previous;
++        internal Func<LabelRubyRaidersFormationContext, IDisposable?> Begin => begin;
++        public void Dispose()
++        {
++            if (ReferenceEquals(Current.Value, this)) { Current.Value = previous; return; }
++            for (var scope = Current.Value; scope is not null; scope = scope.Previous)
++                if (ReferenceEquals(scope, this)) throw new InvalidOperationException("Ruby formation scopes must be disposed in nesting order");
++        }
++    }
++}
+--- /dev/null
 +++ b/src/Sts2Sim.Core/Random/LabelSlimesWeakScope.cs
 @@ -0,0 +1,76 @@
 +using Sts2Sim.Core.Content;
@@ -2069,10 +2151,11 @@
 -        return new RewardsSet(gold, potion, card, relic, extraRewards);
 --- a/src/Sts2Sim.Core/Rooms/CombatRoom.cs
 +++ b/src/Sts2Sim.Core/Rooms/CombatRoom.cs
-@@ -182,0 +183,2 @@
+@@ -182,0 +183,3 @@
 +        using IDisposable? labelScope = Sts2Sim.Core.Random.LabelCorpseSlugScope.EnterFactory(runState, this);
 +        using IDisposable? formationScope = Sts2Sim.Core.Random.LabelSlimesWeakScope.EnterFactory(runState, this);
-@@ -311,0 +314,17 @@
++        using IDisposable? rubyScope = Sts2Sim.Core.Random.LabelRubyRaidersScope.EnterFactory(runState, this);
+@@ -311,0 +315,17 @@
 +    // Reuse the actual lifecycle implementation, with fresh tasks/lock/reward containers.
 +    // Uncloneable queued rewards are explicit unsupported content, never silently discarded.
 +    internal CombatRoom CreateNoslProjection(CombatState state)
@@ -2090,7 +2173,7 @@
 +
 +    private bool _noslFinalActBoss;
 +
-@@ -372 +391 @@
+@@ -372 +392 @@
 -        RoomType == RoomType.Boss &&
 +        _noslFinalActBoss || RoomType == RoomType.Boss &&
 --- a/src/Sts2Sim.Core/Rooms/RoomFactory.cs

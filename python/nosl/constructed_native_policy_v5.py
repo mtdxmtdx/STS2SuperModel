@@ -13,6 +13,7 @@ import json
 import math
 from pathlib import Path
 
+from . import constructed_native_event_v5 as event_source
 from .data_policy_v5 import OBJECTIVE_FORMAT, RECORD_FORMAT, SOURCE_FIELDS
 from .data_v5 import validate_targets
 from .evidence_v4 import numeric_guard
@@ -34,6 +35,10 @@ EVIDENCE_FORMAT = "nosl.full-policy.constructed-native-tape.evidence.v1"
 PURPOSE = "bounded-constructed-raw"
 SAMPLER = "nosl-constructed-native-tape-conditional-v1-public-evidence-v2"
 POSTERIOR = "owned-constructed-native-tape-conditional-v1-public-evidence-v2"
+RUBY_SAMPLER = "nosl-constructed-native-tape-ruby-formation-v2-public-evidence-v2"
+RUBY_POSTERIOR = "owned-constructed-native-tape-ruby-formation-v2-public-evidence-v2"
+RUBY_DRAW_SAMPLER = "nosl-constructed-native-tape-ruby-draw-closure-v3-public-evidence-v2"
+RUBY_DRAW_POSTERIOR = "owned-constructed-native-tape-ruby-draw-closure-v3-public-evidence-v2"
 ENDPOINT = "AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION"
 UPSTREAM = "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0"
 COUNTS = ("allocated_worlds", "completed_worlds", "truncated_worlds", "error_worlds", "other_worlds")
@@ -47,7 +52,12 @@ EVALUATOR_SOURCE_FILES = (
     "src/Nosl.Objectives/PreferenceGates.cs", "src/Nosl.Worker/TeacherDataset.cs",
     "src/Nosl.Worker/CombatTeacher.cs", "src/Nosl.Worker/NativeConstructedTapePrior.cs",
     "src/Nosl.Worker/NativeConstructedTapeSource.cs", "src/Nosl.Worker/NativeConstructedTapeDataset.cs",
-    "python/nosl/native_policy_v5.py", "python/nosl/constructed_native_policy_v5.py")
+    "src/Nosl.Worker/NativeConstructedEventOwnerSetup.cs",
+    "src/Nosl.Worker/NativePublicRubyFormationCondition.cs", "src/Nosl.Worker/NativePublicRubyFormationProposal.cs",
+    "src/Nosl.Worker/NativePublicCombatPrefixCondition.cs", "src/Nosl.Worker/NativePublicCombatPrefixProposal.cs",
+    "src/Nosl.Worker/NativePublicDrawPrefixCondition.cs", "src/Nosl.Worker/NativeInitialShuffleCondition.cs",
+    "python/nosl/native_policy_v5.py", "python/nosl/constructed_native_policy_v5.py",
+    "python/nosl/constructed_native_event_v5.py")
 AUDIT_FIELDS = ("purpose", "trainable", "source_kind", *SOURCE_FIELDS,
     "source_artifact_sha256", "source_record_sha256", "conditioned_public_input_digest", "targets_sha256",
     "native_run", "producer_receipt_sha256", "objective_evaluations", "collection_summary",
@@ -113,6 +123,26 @@ def _seeds(value, name):
     return value
 
 
+
+def _profile(report):
+    """An explicit source-law and producer-version pair; no identifier upgrade."""
+    prior = report["options"]["prior"]
+    schema = prior.get("schemaVersion")
+    contract = loads(report["collection_contract_json"])
+    require(isinstance(contract, dict), "constructed_tape:collection_contract_object")
+    sampler = contract.get("sampler_version")
+    if schema == event_source.PRIOR_SCHEMA:
+        require(sampler == event_source.SAMPLER, "constructed_tape:event_sampler_profile")
+        return sampler, event_source.POSTERIOR, event_source.SOURCE_KIND
+    require(schema == PRIOR_SCHEMA, "constructed_tape:ordinary_sampler_profile")
+    ruby_profiles = {RUBY_SAMPLER: RUBY_POSTERIOR, RUBY_DRAW_SAMPLER: RUBY_DRAW_POSTERIOR}
+    if sampler in ruby_profiles:
+        require(prior["setup"]["encounter"] == "RubyRaiders", "constructed_tape:ruby_sampler_requires_declared_ruby")
+        return sampler, ruby_profiles[sampler], SOURCE_KIND
+    # Old Ruby reports retain their original sampler IDs and interpretation.
+    require(sampler == SAMPLER, "constructed_tape:ordinary_sampler_profile")
+    return sampler, POSTERIOR, SOURCE_KIND
+
 def _contract(report):
     options = object_keys(report["options"],
         ("prior", "sourceDrawSeeds", "collectionId", "enableConditioning", "wallBudgetSeconds"), "constructed options")
@@ -121,13 +151,17 @@ def _contract(report):
     _seeds(options["sourceDrawSeeds"], "source_seeds")
     boolean(options["enableConditioning"], "enable_conditioning")
     integer(options["wallBudgetSeconds"], "wall_budget", 1, 900)
-    prior = object_keys(options["prior"], ("schemaVersion", "setup", "sourcePolicyId", "sourceDecisionHorizon",
-        "rootSelection", "decisionIndex", "primitiveLaw", "primitiveImplementation", "rootLaw", "setupLaw"), "constructed prior")
-    _equal(prior["schemaVersion"], PRIOR_SCHEMA, "prior_schema")
+    prior = options["prior"]
+    require(isinstance(prior, dict) and prior.get("schemaVersion") in (PRIOR_SCHEMA, event_source.PRIOR_SCHEMA),
+        "constructed_tape:prior_schema")
+    event_owned = prior["schemaVersion"] == event_source.PRIOR_SCHEMA
+    object_keys(prior, ("schemaVersion", "setup", "sourcePolicyId", "sourceDecisionHorizon",
+        "rootSelection", "decisionIndex", "primitiveLaw", "primitiveImplementation", "rootLaw", "setupLaw",
+        *(("eventOwner",) if event_owned else ())), "constructed prior")
     _equal(prior["primitiveLaw"], "independent-map-act-seed-raw-cursor-rewards-origin-seed-raw-cursor-and-native-full-state-partitions-v1", "primitive_law")
     _equal(prior["primitiveImplementation"], "sha256-address-expansion-with-explicit-conditioned-overrides-v1", "primitive_implementation")
-    _equal(prior["rootLaw"], "one-declared-native-combat-fixed-public-stopping-rule-with-absence-v1", "root_law")
-    _equal(prior["setupLaw"], "fixed-acts-base-deck-hp-maxhp-gold-potions-then-native-relic-acquisition-v1", "setup_law")
+    _equal(prior["rootLaw"], event_source.ROOT_LAW if event_owned else "one-declared-native-combat-fixed-public-stopping-rule-with-absence-v1", "root_law")
+    _equal(prior["setupLaw"], event_source.SETUP_LAW if event_owned else "fixed-acts-base-deck-hp-maxhp-gold-potions-then-native-relic-acquisition-v1", "setup_law")
     integer(prior["sourceDecisionHorizon"], "source_horizon", 1, 100000)
     integer(prior["decisionIndex"], "decision_index", 0, 100000)
     require(prior["rootSelection"] in ("opening", "decision_index", "first_player_turn_2", "first_player_turn_3", "first_pending_choice")
@@ -136,6 +170,7 @@ def _contract(report):
     require(prior["sourcePolicyId"] in policies, "constructed_tape:source_policy")
     setup = object_keys(prior["setup"], ("encounter", "deck", "potions", "relics", "hp", "maxHp", "gold"), "constructed setup")
     _text(setup["encounter"], "encounter")
+    if event_owned: event_source.validate_owner_prior(prior)
     for key, low, high in (("deck", 1, 512), ("potions", 0, 16), ("relics", 0, 64)):
         if setup[key] is not None:
             require(isinstance(setup[key], list) and low <= len(setup[key]) <= high, "constructed_tape:setup_" + key)
@@ -166,10 +201,11 @@ def _contract(report):
     contract_text = _text(report["collection_contract_json"], "collection_contract_json")
     _equal(report["collection_contract_sha256"], _sha(contract_text.encode("utf-8")), "exact_collection_contract_hash")
     contract = loads(contract_text)
+    sampler, _, _ = _profile(report)
     _equal(contract, {"schema_version": CONTRACT_SCHEMA, "purpose": PURPOSE, "raw_schema": RAW_SCHEMA,
         "source_kind": RAW_SOURCE_KIND, "source_draw_domain": "nosl-constructed-tape-source-draw-v1",
         "source_draw_rule": "one_independent_recipe_per_requested_draw_no_replacement", "options": options,
-        "teacher_options": teacher, "sampler_version": SAMPLER, "build_receipt_sha256": report["build_receipt_sha256"],
+        "teacher_options": teacher, "sampler_version": sampler, "build_receipt_sha256": report["build_receipt_sha256"],
         "runtime_dependencies": build, "source_group_semantics": "conservative_primitive_rng_family",
         "source_generation_json": report["source_generation_json"],
         "source_generation_identity": report["source_generation_identity"]}, "frozen_collection_contract")
@@ -189,11 +225,14 @@ def _generation(report):
         "native_state_words": "sha256-u64le:4E4F534C54415031,TapeSeed,State0,State1,State2,State3",
         "rewards_words": "sha256-u64le:4E4F534C52574431,TapeSeed,InitialSeed,RawCursor",
         "map_words": "sha256-u64le:4E4F534C4D415031,TapeSeed,ActIndex,InitialSeed,RawCursor"}
-    _equal(loads(text), {"schema_version": "nosl.native-constructed-tape.source-generation.v1",
-        "source_prior_schema": PRIOR_SCHEMA, "setup": prior["setup"], "setup_law": prior["setupLaw"],
+    expected = {"schema_version": "nosl.native-constructed-tape.source-generation.v1",
+        "source_prior_schema": prior["schemaVersion"], "setup": prior["setup"], "setup_law": prior["setupLaw"],
         "source_policy": prior["sourcePolicyId"], "source_script": "nosl-natural-public-script-v3",
         "primitive_law": prior["primitiveLaw"], "primitive_implementation": prior["primitiveImplementation"],
-        "character": "Silent", "ascension": 10, "simulator": UPSTREAM, "random_domains": domains}, "source_generation_contract")
+        "character": "Silent", "ascension": 10, "simulator": UPSTREAM, "random_domains": domains}
+    if prior["schemaVersion"] == event_source.PRIOR_SCHEMA:
+        expected["event_owner"] = event_source.validate_owner_prior(prior)
+    _equal(loads(text), expected, "source_generation_contract")
     # The alias namespace is fixed by the producer's field order and ASCII
     # constants. Never derive it from caller-chosen whitespace/key order: that
     # would let the same primitive family acquire a new isolation alias.
@@ -226,12 +265,18 @@ def _public(public, config, prior):
         "constructed_tape:recorded_initial_gap_required")
     owners = [event for event in evidence["events"] if event["payload"]["kind"] == "owner_started"
         and event["payload"]["ownerKind"] == "combat"]
-    require(len(owners) == 1 and owners[0]["payload"]["completeFromOwnerStart"] is True
-        and owners[0]["payload"]["parentOwnerOrdinal"] is None, "constructed_tape:one_complete_combat_owner")
-    require(context["floor"] == owners[0]["payload"]["floor"] == 0
-        and context["actIndex"] == owners[0]["payload"]["actIndex"], "constructed_tape:constructed_combat_coordinates")
+    require(len(owners) == 1 and owners[0]["payload"]["completeFromOwnerStart"] is True,
+        "constructed_tape:one_complete_combat_owner")
+    if prior["schemaVersion"] == event_source.PRIOR_SCHEMA:
+        event_source.validate_public_owner(public, owners[0], prior)
+    else:
+        require(owners[0]["payload"]["parentOwnerOrdinal"] is None, "constructed_tape:ordinary_combat_has_no_event_parent")
+        require(context["floor"] == owners[0]["payload"]["floor"] == 0
+            and context["actIndex"] == owners[0]["payload"]["actIndex"], "constructed_tape:constructed_combat_coordinates")
     revision = public["candidate_actions"][0]["revision"]
     integer(revision, "root_revision", 0, prior["sourceDecisionHorizon"] - 1)
+    if prior["schemaVersion"] == event_source.PRIOR_SCHEMA:
+        require(revision + 3 <= prior["sourceDecisionHorizon"], "constructed_event:owner_choices_exceed_source_horizon")
     require(all(action["revision"] == revision for action in public["candidate_actions"])
         and sum(event["kind"] == "action" for event in public["observation"]["history"]) == revision,
         "constructed_tape:complete_local_action_history")
@@ -322,6 +367,9 @@ def _proposals(proposals, accounting, teacher, prior):
         _nullable_text(proposal["detail"], "proposal_detail")
         for key in ("conditionedShuffles", "conditionedHpCount", "distinctTapeCells", "conditionedTapeCells"):
             integer(proposal[key], key)
+        if prior["schemaVersion"] == event_source.PRIOR_SCHEMA:
+            require(all(proposal[key] == 0 for key in ("conditionedShuffles", "conditionedHpCount", "conditionedTapeCells")),
+                "constructed_tape:event_ordinary_rejection_only")
         recipe = object_keys(proposal["recipe"], ("runSeed", "tapeSeed", "proposalSeed", "combatIndex", "decisionIndex"), "proposal recipe")
         for key in ("runSeed", "tapeSeed", "proposalSeed"): integer(recipe[key], key, 0, 2**64 - 1)
         _equal(recipe["combatIndex"], 0, "proposal_combat_index")
@@ -476,8 +524,9 @@ def _record(raw, raw_text, report, teacher, config):
     public, audit = raw["public_input"], raw["audit_only"]
     require(isinstance(audit, dict), "constructed_tape:audit_required")
     entry, entry_text = _public(public, config, report["options"]["prior"])
+    sampler, posterior, _ = _profile(report)
     for field, value in (("source_kind", RAW_SOURCE_KIND), ("purpose", PURPOSE), ("dataset_version", RAW_SCHEMA),
-                         ("posterior_implementation", SAMPLER), ("sampler_version", SAMPLER), ("posterior_profile", POSTERIOR),
+                         ("posterior_implementation", sampler), ("sampler_version", sampler), ("posterior_profile", posterior),
                          ("teacher_cost_semantics", COST_SEMANTICS), ("label_endpoint", ENDPOINT),
                          ("objective_version", "nosl_silent_a10_terminal_v4_candidate")):
         _equal(audit.get(field), value, "raw_identity:" + field)
@@ -510,16 +559,19 @@ def _record(raw, raw_text, report, teacher, config):
     _equal(audit.get("n_exploration"), 0, "row_no_exploration")
     _equal(audit.get("n_exploration_sampling_failures"), 0, "row_no_exploration_failures")
     _equal(audit.get("n_independent_eval"), len(teacher["evaluationSeeds"]), "row_evaluation_count")
-    _equal(audit.get("versions"), {"posterior_implementation": SAMPLER, "teacher": "nosl-full-combat-teacher-v1:T0",
+    _equal(audit.get("versions"), {"posterior_implementation": sampler, "teacher": "nosl-full-combat-teacher-v1:T0",
         "continuation": teacher["continuationPolicyId"], "objective": "nosl_silent_a10_terminal_v4_candidate",
         "public_schema": "nosl.student.public.v5", "observation_schema": "nosl.public.v3", "simulator": UPSTREAM,
         "dataset": RAW_SCHEMA, "public_evidence": "nosl.public-run-evidence.v2", "rules": "0.111.0",
-        "endpoint": ENDPOINT, "controller": "nosl.controller.inactive.v1", "sampler": SAMPLER,
-        "source_prior": report["prior_identity"], "posterior_profile": POSTERIOR}, "row_versions")
+        "endpoint": ENDPOINT, "controller": "nosl.controller.inactive.v1", "sampler": sampler,
+        "source_prior": report["prior_identity"], "posterior_profile": posterior}, "row_versions")
     boolean(audit.get("conditioning_eligible"), "conditioning_eligible")
     require(report["options"]["enableConditioning"] or audit["conditioning_eligible"] is False,
         "constructed_tape:undeclared_conditioning")
     _text(audit.get("conditioning_reason"), "conditioning_reason")
+    if prior["schemaVersion"] == event_source.PRIOR_SCHEMA:
+        require(audit["conditioning_eligible"] is False and audit["conditioning_reason"] == event_source.CONDITIONING_REASON,
+            "constructed_tape:event_ordinary_rejection_only")
     public_text = _fragments(raw_text)["public_input"]
     _equal(audit["public_state_digest"], _sha(public_text.encode("utf-8")), "exact_raw_public_hash")
     _equal(audit["source_combat_id"], audit["source_run_group"] + "/public-entry:" + _sha(entry_text.encode("utf-8")), "source_combat_binding")
@@ -645,6 +697,7 @@ def _inspect(payload, config):
 
 def _normalize(payload, config):
     report, texts, inspected, metadata, summary = _inspect(payload, config)
+    _, _, source_kind = _profile(report)
     objective_identity = {"format": OBJECTIVE_FORMAT,
         "objective_spec_sha256": digest(_source_hashes(OBJECTIVE_SPEC_FILES)),
         "evaluator_source_sha256": digest(_source_hashes(EVALUATOR_SOURCE_FILES)),
@@ -657,7 +710,7 @@ def _normalize(payload, config):
     for index, (raw, raw_text, (targets, evaluations, _)) in enumerate(zip(report["records"], texts, inspected)):
         public = raw["public_input"]
         audit = {field: deepcopy(raw["audit_only"][field]) for field in SOURCE_FIELDS}
-        audit.update(purpose="engineering-fixture", trainable=False, source_kind=SOURCE_KIND, native_run=False,
+        audit.update(purpose="engineering-fixture", trainable=False, source_kind=source_kind, native_run=False,
             producer_receipt_sha256=None, source_artifact_sha256=_sha(payload),
             source_record_sha256=_sha(raw_text.encode("utf-8")), conditioned_public_input_digest=public_input_digest(public),
             targets_sha256=digest(targets), objective_evaluations=evaluations, collection_summary=deepcopy(summary),

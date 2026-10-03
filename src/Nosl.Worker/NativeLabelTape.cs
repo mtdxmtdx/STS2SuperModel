@@ -49,6 +49,8 @@ internal sealed class NativeLabelTape
     private readonly NativePublicCombatPrefixProposal? _publicCombatProposal;
     private readonly NativePublicCorpseSlugIntentCondition? _slugIntentCondition;
     private readonly NativePublicCorpseSlugIntentProposal? _slugIntentProposal;
+    private readonly NativePublicRubyFormationCondition? _rubyFormationCondition;
+    private readonly NativePublicRubyFormationProposal? _rubyFormationProposal;
     private readonly NativePublicWeakSlimeFormationCondition? _weakFormationCondition;
     private readonly NativePublicWeakSlimeFormationProposal? _weakFormationProposal;
     private readonly NativePublicReshuffleCondition? _publicReshuffleCondition;
@@ -138,6 +140,9 @@ internal sealed class NativeLabelTape
     internal int ConditionedMonsterBranches => _monsterBranchProposal?.ConditionedBranchCount ?? 0;
     internal ShuffleRational? MonsterBranchRatio => _monsterBranchProposal?.NativeToProposalRatio;
     internal ShuffleRational? MonsterBranchEnvelope => _monsterBranchProposal?.Envelope;
+    internal int ConditionedRubyFormations => _rubyFormationProposal?.ConditionedCombatCount ?? 0;
+    internal ShuffleRational? RubyFormationRatio => _rubyFormationProposal?.NativeToProposalRatio;
+    internal ShuffleRational? RubyFormationEnvelope => _rubyFormationProposal?.Envelope;
     internal int ConditionedWeakFormations => _weakFormationProposal?.ConditionedCombatCount ?? 0;
     internal ShuffleRational? WeakFormationRatio => _weakFormationProposal?.NativeToProposalRatio;
     internal ShuffleRational? WeakFormationEnvelope => _weakFormationProposal?.Envelope;
@@ -179,7 +184,7 @@ internal sealed class NativeLabelTape
         NativePublicShopCondition? publicShopCondition = null,
         NativePublicActPrefixPlan? publicActPrefixPlan = null,
         NativePublicEventUpgradeCondition? publicEventUpgradeCondition = null,
-        string? constructedPriorIdentity = null)
+        string? constructedPriorIdentity = null, NativePublicRubyFormationCondition? rubyFormationCondition = null)
     {
         _constructedPriorIdentity = constructedPriorIdentity;
         _recipe = recipe; _condition = condition; _expectedEntryJson = expectedEntryJson ?? condition?.EntryJson;
@@ -271,6 +276,14 @@ internal sealed class NativeLabelTape
                 throw new ArgumentException("Public monster branches require the explicit Rewards hybrid law");
             var random = new Rng(recipe.ProposalSeed, "nosl-public-monster-branch-intents-v2");
             _monsterBranchProposal = new(monsterBranchCondition, random.NextUnsignedLong, ForcePrefixWords);
+        }
+        _rubyFormationCondition = rubyFormationCondition;
+        if (rubyFormationCondition is not null)
+        {
+            if (constructedPriorIdentity is null || rewardsOracle is null || mapOracle is null || expectedPublicEvidence is null)
+                throw new ArgumentException("Public Ruby formation requires the declared constructed prior and full public evidence");
+            var random = new Rng(recipe.ProposalSeed, "nosl-public-ruby-formations-v1");
+            _rubyFormationProposal = new(rubyFormationCondition, random.NextUnsignedLong, ForcePrefixWords);
         }
         _weakFormationCondition = weakFormationCondition;
         if (weakFormationCondition is not null)
@@ -395,7 +408,7 @@ internal sealed class NativeLabelTape
 
     internal static NativeLabelTape ForConstructedPrior(NativeConstructedTapePrior prior, NativeTapeRecipe recipe,
         NativePublicCombatPrefixCondition? publicCombatCondition = null, PublicRunEvidence? expectedPublicEvidence = null,
-        string? expectedEntryJson = null)
+        string? expectedEntryJson = null, NativePublicRubyFormationCondition? rubyFormationCondition = null)
     {
         prior = prior.Freeze();
         if (recipe.CombatIndex != 0 || recipe.DecisionIndex != prior.DecisionIndex)
@@ -403,7 +416,7 @@ internal sealed class NativeLabelTape
         return new(recipe, expectedEntryJson: expectedEntryJson,
             rewardsOracle: new(recipe.TapeSeed), publicCombatCondition: publicCombatCondition,
             expectedPublicEvidence: expectedPublicEvidence, mapOracle: new(recipe.TapeSeed),
-            constructedPriorIdentity: prior.Identity);
+            constructedPriorIdentity: prior.Identity, rubyFormationCondition: rubyFormationCondition);
     }
 
     internal void ValidateConstructedPrior(NativeConstructedTapePrior prior, NativeTapeRecipe recipe)
@@ -435,6 +448,8 @@ internal sealed class NativeLabelTape
                 scope = new NestedScope(scope, LabelEventGenerationScope.Enter(_eventPermutationProposal.BeginGeneration));
             if (_slugIntentProposal is not null)
                 scope = new NestedScope(scope, LabelCorpseSlugScope.Enter(_slugIntentProposal.BeginInitialIntents));
+            if (_rubyFormationProposal is not null)
+                scope = new NestedScope(scope, LabelRubyRaidersScope.Enter(_rubyFormationProposal.BeginFormation));
             if (_weakFormationProposal is not null)
                 scope = new NestedScope(scope, LabelSlimesWeakScope.Enter(_weakFormationProposal.BeginFormation));
             if (_publicReshuffleProposal is not null)
@@ -470,7 +485,7 @@ internal sealed class NativeLabelTape
     {
         RequireSuccessfulConditionedWords();
         return new(_recipe, _condition, _overrides, _expectedEntryJson, _hpCondition, _neowCondition,
-            _firstRewardCondition, _firstEncounterCondition, _initialPrefixPlan, _rewardsOracle?.ReplayCopy(), _publicRewardCondition, _publicCombatCondition, _expectedPublicEvidence, _publicOpeningEncounterCondition, _neowCardCondition, _publicResourceCondition, _slugIntentCondition, _weakFormationCondition, _publicReshuffleCondition, _monsterBranchCondition, _weakEncounterCondition, _eventPermutationCondition, _eventPermutationPlan, _mapOracle?.ReplayCopy(), _mapReconstructionCondition, _neowPotionCondition, _publicEventCardCondition, _publicUnknownRoomCondition, _publicShopCondition, _publicActPrefixPlan, _publicEventUpgradeCondition, _constructedPriorIdentity);
+            _firstRewardCondition, _firstEncounterCondition, _initialPrefixPlan, _rewardsOracle?.ReplayCopy(), _publicRewardCondition, _publicCombatCondition, _expectedPublicEvidence, _publicOpeningEncounterCondition, _neowCardCondition, _publicResourceCondition, _slugIntentCondition, _weakFormationCondition, _publicReshuffleCondition, _monsterBranchCondition, _weakEncounterCondition, _eventPermutationCondition, _eventPermutationPlan, _mapOracle?.ReplayCopy(), _mapReconstructionCondition, _neowPotionCondition, _publicEventCardCondition, _publicUnknownRoomCondition, _publicShopCondition, _publicActPrefixPlan, _publicEventUpgradeCondition, _constructedPriorIdentity, _rubyFormationCondition);
     }
     private void CaptureConditionedFailure(Exception error)
     {
@@ -517,6 +532,7 @@ internal sealed class NativeLabelTape
         _publicCombatProposal?.AttachHypotheticalRun(run);
         _slugIntentProposal?.AttachHypotheticalRun(run);
         _weakFormationProposal?.AttachHypotheticalRun(run);
+        _rubyFormationProposal?.AttachHypotheticalRun(run);
         _publicReshuffleProposal?.AttachHypotheticalRun(run);
         _monsterBranchProposal?.AttachHypotheticalRun(run);
         _publicOpeningEncounterProposal?.AttachHypotheticalRun(run);
@@ -536,6 +552,7 @@ internal sealed class NativeLabelTape
         _publicCombatProposal?.CombatEntering(combatIndex, entry, initialShuffleRng);
         _slugIntentProposal?.CombatEntering(combatIndex, entry, initialShuffleRng);
         _weakFormationProposal?.CombatEntering(combatIndex, entry, initialShuffleRng);
+        _rubyFormationProposal?.CombatEntering(combatIndex, entry, initialShuffleRng);
         _publicReshuffleProposal?.CombatEntering(combatIndex, entry, initialShuffleRng);
         _monsterBranchProposal?.CombatEntering(combatIndex, entry, initialShuffleRng);
         if (combatIndex != _recipe.CombatIndex) return;
@@ -641,6 +658,7 @@ internal sealed class NativeLabelTape
         _publicCombatProposal?.ValidateCompletion();
         _slugIntentProposal?.ValidateCompletion();
         _weakFormationProposal?.ValidateCompletion();
+        _rubyFormationProposal?.ValidateCompletion();
         _publicReshuffleProposal?.ValidateCompletion();
         _monsterBranchProposal?.ValidateCompletion();
         if (_initialPrefixPlan is not null && !_prefixComplete)
@@ -682,6 +700,7 @@ internal sealed class NativeLabelTape
         if (_publicCombatProposal is not null && !_publicCombatProposal.AcceptCorrection(nextWord)) return false;
         if (_slugIntentProposal is not null && !_slugIntentProposal.AcceptCorrection(nextWord)) return false;
         if (_weakFormationProposal is not null && !_weakFormationProposal.AcceptCorrection(nextWord)) return false;
+        if (_rubyFormationProposal is not null && !_rubyFormationProposal.AcceptCorrection(nextWord)) return false;
         if (_publicReshuffleProposal is not null && !_publicReshuffleProposal.AcceptCorrection(nextWord)) return false;
         if (_monsterBranchProposal is not null && !_monsterBranchProposal.AcceptCorrection(nextWord)) return false;
         foreach (var hp in _hpPlans) if (!hp.AcceptCorrection(nextWord)) return false;

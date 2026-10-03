@@ -68,7 +68,9 @@ with the JSON receipt encoded as one string.
 Request keys are case-sensitive, duplicate keys are rejected recursively, and
 unknown members fail before any source executes. Prior input accepts only
 `schemaVersion`, `setup`, `sourcePolicyId`, `sourceDecisionHorizon`, `rootSelection`,
-and `decisionIndex`. Setup accepts only `encounter`, `deck`, `potions`, `relics`,
+and `decisionIndex`. The separate event-owner schema below additionally requires
+`eventOwner`; that member is rejected for ordinary v1 requests, even when null.
+Setup accepts only `encounter`, `deck`, `potions`, `relics`,
 `hp`, `maxHp`, and `gold`. Computed prior law metadata appears in output and is not
 an accepted override. There are no fields for seed-conditioned inference,
 private state, fixed enemy HP, fabricated maps, replacement roots, or promotion.
@@ -94,9 +96,10 @@ One independently drawn recipe is used for each requested source draw. A fixed
 setup names an encounter from the native author factory and optional public
 inventory/resources. Formation, enemy HP, AI, startup, coroutine ownership,
 automatic settlement, and reward opportunities remain native. Encounter/setup
-validation rejects unsupported content explicitly. Encounters requiring an event
-owner return `constructed_forced_owner_required`; an ordinary combat room cannot
-stand in for that owner.
+validation rejects unsupported content explicitly. Under the ordinary v1 prior,
+encounters requiring an event owner return `constructed_forced_owner_required`;
+an ordinary combat room cannot stand in for that owner. The versioned
+TheLanternKey path below owns its actual native event instead.
 
 The native run advances to the encounter's declared act before applying the base
 inventory/resources and obtaining declared relics at constructed floor 0. Relics
@@ -136,6 +139,74 @@ Public input uses the full `nosl.student.public.v5` channel with
 `completeFromRunStart=false`, and `combatEntryIndex` remains null. No map
 observations or earlier run events are invented. Complete local combat history
 does not imply complete history from a natural run start.
+
+## Separately versioned TheLanternKey owner
+
+The raw operation also accepts the distinct prior schema
+`nosl.constructed-native-event-owner-map-rewards-state-tape-prior.v1`. It requires
+this authored declaration alongside the usual setup and fixed root rule:
+
+```json
+{
+  "schemaVersion": "nosl.constructed-native-event-owner-map-rewards-state-tape-prior.v1",
+  "setup": {
+    "encounter": "MysteriousKnightEventEncounter"
+  },
+  "eventOwner": {
+    "event": "TheLanternKey",
+    "act": "Hive",
+    "fixtureFloor": 1,
+    "choiceRule": "keep-the-key-then-fight-v1"
+  },
+  "sourcePolicyId": "nosl-public-rules-v2",
+  "sourceDecisionHorizon": 48,
+  "rootSelection": "opening",
+  "decisionIndex": 0
+}
+```
+
+Only that event, act, encounter and choice rule are supported. Fixture floor is
+1 through the pinned Hive room count (14). It declares fresh native location
+state using the existing fixture positioner, with no preceding rooms simulated
+and no map observations emitted. Base inventory/resources and native relic pickup
+hooks run before the event. Omitted HP/maxHP retain native 70/70 before pickup
+effects, just as in the ordinary construction.
+
+The world enters the real EventRoom before RunDriver drives its native event and
+forced-combat lifecycle. The fixed public option rule selects KEEP_THE_KEY and
+then FIGHT through SourceBridge, retaining both actual option offers and selected
+keys. Both choices count against the source decision horizon. There is one
+locally complete event owner and one complete combat child. Admission checks the
+exact declared parent, act/floor and option history. Run-start evidence remains
+missing, the natural combat count remains null, and ordinary v1/natural guards
+retain their previous requirements.
+
+This new owner path always uses ordinary independent tape rejection, including
+when `enableConditioning` is true. Its posterior profile is
+`owned-constructed-native-event-tape-conditional-v1-public-evidence-v2`; its
+sampler version is
+`nosl-constructed-native-event-tape-rejection-v1-public-evidence-v2`. There is no
+event-owner startup-conditioning certificate or throughput claim. The full v5
+packet is still matched exactly after source disposal.
+
+Native victory stops after automatic settlement and before the first reward
+decision. The actual extra SpecialCardReward for LanternKey remains an unresolved
+opportunity; it is not silently acquired into the deck. A loss exits combat,
+resumes the real event, clears its native pending extras and records the completed
+event owner before terminal capture. The wrapper subsequently exits and releases
+its owned event room on settlement, absence, cancellation or failure. Independent
+forks replay their own complete owner graphs.
+
+The ordinary prior's `eventOwner` field is omitted from serialization. Frozen
+pre-change literal tests pin its exact prior bytes/identity, source-generation
+bytes/identity and family/battle aliases. The new source-generation contract adds
+`event_owner`; the conservative primitive family still joins identical run/tape
+keys across both setup types. Existing v1 sampler metadata is unchanged. The raw
+schema remains nonformal and nontrainable; consumers that implement only the
+ordinary prior must reject this new prior/profile until separately extended.
+
+PunchOff, FakeMerchant, the nine owner-dependent relic acquisitions and SeaGlass
+remain explicit unsupported setup cases for this increment.
 
 ## Source isolation across selected roots
 

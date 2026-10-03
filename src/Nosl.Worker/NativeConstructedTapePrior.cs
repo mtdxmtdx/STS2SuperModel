@@ -40,11 +40,16 @@ internal sealed record NativeConstructedSetup
     public int? MaxHp { get; init; }
     public int? Gold { get; init; }
 
-    internal NativeConstructedSetup Freeze()
+    internal NativeConstructedSetup Freeze() => FreezeCore(allowLanternOwner: false);
+
+    internal NativeConstructedSetup FreezeForLanternOwner() => FreezeCore(allowLanternOwner: true);
+
+    private NativeConstructedSetup FreezeCore(bool allowLanternOwner)
     {
         NaturalSourceCollector.InitializeNativeModels();
         var encounter = EncounterCoverage.Find(Encounter);
-        if (encounter.RequiresEventContext)
+        if (encounter.RequiresEventContext && !(allowLanternOwner
+                && Encounter == NativeConstructedEventOwnerSetup.EncounterName))
             throw new NotSupportedException("constructed_forced_owner_required: " + Encounter
                 + " must retain its native event owner; this declared source currently accepts ordinary named encounters only");
         if (Deck is { Length: 0 or > 512 } || Potions is { Length: > 16 } || Relics is { Length: > 64 }
@@ -131,17 +136,25 @@ internal sealed record NativeConstructedSetup
 internal sealed record NativeConstructedTapePrior
 {
     internal const string Version = "nosl.constructed-native-map-rewards-state-tape-prior.v1";
+    internal const string EventOwnerVersion = "nosl.constructed-native-event-owner-map-rewards-state-tape-prior.v1";
     internal const string SourceDrawDomain = "nosl-constructed-tape-source-draw-v1";
     public string SchemaVersion { get; init; } = Version;
     public NativeConstructedSetup Setup { get; init; } = new();
+    // Null is omitted to preserve the exact v1 prior bytes and identities.
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public NativeConstructedEventOwnerSetup? EventOwner { get; init; }
     public string SourcePolicyId { get; init; } = PublicContinuationPolicies.ReviewedId;
     public int SourceDecisionHorizon { get; init; } = 160;
     public string RootSelection { get; init; } = "opening";
     public int DecisionIndex { get; init; }
     public string PrimitiveLaw => "independent-map-act-seed-raw-cursor-rewards-origin-seed-raw-cursor-and-native-full-state-partitions-v1";
     public string PrimitiveImplementation => "sha256-address-expansion-with-explicit-conditioned-overrides-v1";
-    public string RootLaw => "one-declared-native-combat-fixed-public-stopping-rule-with-absence-v1";
-    public string SetupLaw => "fixed-acts-base-deck-hp-maxhp-gold-potions-then-native-relic-acquisition-v1";
+    public string RootLaw => EventOwner is null
+        ? "one-declared-native-combat-fixed-public-stopping-rule-with-absence-v1"
+        : "one-declared-native-event-owned-combat-fixed-public-stopping-rule-with-absence-v1";
+    public string SetupLaw => EventOwner is null
+        ? "fixed-acts-base-deck-hp-maxhp-gold-potions-then-native-relic-acquisition-v1"
+        : "fixed-acts-declared-event-location-base-inventory-native-event-owner-public-choices-v1";
 
     [JsonIgnore] internal NativeRunExecutionOptions Execution => new(MaxFloors: 1,
         SourceDecisionHorizon: SourceDecisionHorizon, SourcePolicyId: SourcePolicyId,
@@ -152,14 +165,20 @@ internal sealed record NativeConstructedTapePrior
 
     internal NativeConstructedTapePrior Freeze()
     {
-        if (SchemaVersion != Version || Setup is null || SourceDecisionHorizon is < 1 or > 100000
+        if ((SchemaVersion == Version ? EventOwner is not null
+                : SchemaVersion != EventOwnerVersion || EventOwner is null)
+            || Setup is null || SourceDecisionHorizon is < 1 or > 100000
             || DecisionIndex is < 0 or > 100000 || RootSelection is not
                 ("opening" or "decision_index" or "first_player_turn_2" or "first_player_turn_3" or "first_pending_choice")
             || RootSelection != "decision_index" && DecisionIndex != 0)
             throw new ArgumentException("Invalid constructed tape prior or public root selection");
         _ = PublicContinuationPolicies.Create(SourcePolicyId);
         _ = Execution.EmitsPublicEvidence;
-        return this with { Setup = Setup.Freeze() };
+        var owner = EventOwner?.Freeze();
+        if (owner is not null && Setup.Encounter != NativeConstructedEventOwnerSetup.EncounterName)
+            throw new ArgumentException("The declared TheLanternKey owner requires its canonical MysteriousKnightEventEncounter");
+        return this with { EventOwner = owner,
+            Setup = owner is null ? Setup.Freeze() : Setup.FreezeForLanternOwner() };
     }
 
     internal string Identity => Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(PublicJson.Serialize(this)))).ToLowerInvariant();

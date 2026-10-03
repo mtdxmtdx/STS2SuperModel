@@ -61,8 +61,14 @@ internal static class NativeConstructedTapeDataset
         // input override, even though System.Text.Json would silently ignore it.
         AllowedKeys(request.GetProperty("options"), ["prior", "sourceDrawSeeds", "collectionId", "enableConditioning", "wallBudgetSeconds"]);
         var priorJson = request.GetProperty("options").GetProperty("prior");
-        AllowedKeys(priorJson, ["schemaVersion", "setup", "sourcePolicyId", "sourceDecisionHorizon", "rootSelection", "decisionIndex"]);
+        AllowedKeys(priorJson, ["schemaVersion", "setup", "eventOwner", "sourcePolicyId", "sourceDecisionHorizon", "rootSelection", "decisionIndex"]);
         AllowedKeys(priorJson.GetProperty("setup"), ["encounter", "deck", "potions", "relics", "hp", "maxHp", "gold"]);
+        if (priorJson.TryGetProperty("eventOwner", out var ownerJson))
+        {
+            if (priorJson.GetProperty("schemaVersion").GetString() != NativeConstructedTapePrior.EventOwnerVersion)
+                throw new ArgumentException("eventOwner is accepted only by the separate declared event-owner prior schema");
+            AllowedKeys(ownerJson, ["event", "act", "fixtureFloor", "choiceRule"]);
+        }
         var options = JsonSerializer.Deserialize<NativeConstructedTapeCollectionOptions>(request.GetProperty("options"), RequestJson)
             ?? throw new ArgumentException("Constructed tape collection options required");
         var teacher = JsonSerializer.Deserialize<TeacherOptions>(request.GetProperty("teacherOptions"), RequestJson)
@@ -248,6 +254,7 @@ internal static class NativeConstructedTapeDataset
         internal NativeCompleteMapBuildReceipt Receipt { get; }
         internal string SourceGenerationJson { get; }
         internal string SourceGenerationIdentity { get; }
+        private string SamplerVersion => NativeConstructedTapeSource.ImplementationFor(Options.Prior);
         private string PrimitiveNamespaceJson { get; }
         internal string Json { get; }
         internal string Sha256 { get; }
@@ -282,6 +289,15 @@ internal static class NativeConstructedTapeDataset
                 character = "Silent", ascension = 10, simulator = NativeCompleteMapBuildReceipt.UpstreamCommit,
                 random_domains = randomDomains,
             });
+            if (options.Prior.EventOwner is not null)
+            {
+                // Preserve the old byte string verbatim for v1. This additional
+                // source-generation dependency is present only for the new law;
+                // the conservative primitive RNG family remains unchanged.
+                var generation = JsonNode.Parse(SourceGenerationJson)!.AsObject();
+                generation["event_owner"] = JsonNode.Parse(PublicJson.Serialize(options.Prior.EventOwner));
+                SourceGenerationJson = PublicJson.Serialize(generation);
+            }
             SourceGenerationIdentity = NativeCompleteMapDataset.Hash(SourceGenerationJson);
             Json = PublicJson.Serialize(new
             {
@@ -289,7 +305,7 @@ internal static class NativeConstructedTapeDataset
                 raw_schema = RawSchemaVersion, source_kind = SourceKind, source_draw_domain = SourceDrawDomain,
                 source_draw_rule = "one_independent_recipe_per_requested_draw_no_replacement",
                 source_group_semantics = "conservative_primitive_rng_family",
-                options, teacher_options = teacher, sampler_version = ImplementationVersion,
+                options, teacher_options = teacher, sampler_version = SamplerVersion,
                 source_generation_json = SourceGenerationJson, source_generation_identity = SourceGenerationIdentity,
                 build_receipt_sha256 = receipt.Sha256, runtime_dependencies = receipt.Dependencies(),
             });
@@ -385,7 +401,7 @@ internal static class NativeConstructedTapeDataset
             audit["collection_contract_sha256"] = Sha256;
             audit["build_receipt_sha256"] = Receipt.Sha256; audit["runtime_dependencies"] = Receipt.Dependencies();
             audit["teacher_options"] = JsonNode.Parse(PublicJson.Serialize(Teacher));
-            audit["posterior_implementation"] = ImplementationVersion; audit["sampler_version"] = ImplementationVersion;
+            audit["posterior_implementation"] = SamplerVersion; audit["sampler_version"] = SamplerVersion;
             audit["conditioning_eligible"] = posterior.UsesPrimitiveConditioning; audit["conditioning_reason"] = posterior.ConditioningReason;
             audit["posterior_proposals"] = JsonNode.Parse(PublicJson.Serialize(posterior.ProposalAudit));
             audit["execution_accounting"] = JsonNode.Parse(PublicJson.Serialize(accounting.Snapshot()));
@@ -408,7 +424,7 @@ internal static class NativeConstructedTapeDataset
             }
             var versions = audit["versions"]!.AsObject();
             versions["dataset"] = RawSchemaVersion; versions["source_prior"] = Options.Prior.Identity;
-            versions["sampler"] = ImplementationVersion; versions["posterior_implementation"] = ImplementationVersion;
+            versions["sampler"] = SamplerVersion; versions["posterior_implementation"] = SamplerVersion;
             versions["posterior_profile"] = result.Scope;
             return record;
         }

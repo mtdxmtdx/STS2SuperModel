@@ -88,7 +88,8 @@ internal sealed class NativePublicCombatPrefixCondition
         }
         NativePublicDrawPrefixAudit? drawPrefix = null;
         if (shuffle is not null)
-            shuffle = NativePublicDrawPrefixCondition.Extend(shuffle, events, first, null, out drawPrefix);
+            shuffle = NativePublicDrawPrefixCondition.Extend(shuffle, events, first, null, out drawPrefix,
+                allowConstructedRubyEnemyTurns: prior.Setup.Encounter == "RubyRaiders");
         return new(new() { [0] = new(0, owner, first.EventOrdinal,
             packet?.Observation!.History[1].Detail, shuffle, hp, shuffleReason, hpReason, slugHp, drawPrefix, toadpoleHp) });
     }

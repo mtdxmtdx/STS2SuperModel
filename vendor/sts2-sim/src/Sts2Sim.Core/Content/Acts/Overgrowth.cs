@@ -111,6 +111,7 @@ public sealed class Overgrowth : ActDefinition
 
     private static IReadOnlyList<(MonsterModel Monster, string? SlotName)> CreateRubyRaiders(Rng rng)
     {
+        using IDisposable? labelScope = LabelRubyRaidersScope.BeginFormation(rng);
         var candidates = new List<MonsterModel>
         {
             CreateMonster<AxeRubyRaider>(),

@@ -19,10 +19,20 @@ internal sealed class NativeConstructedTapeSource : ITeacherSource
 {
     internal const string Profile = "owned-constructed-native-tape-conditional-v1-public-evidence-v2";
     internal const string ImplementationVersion = "nosl-constructed-native-tape-conditional-v1-public-evidence-v2";
+    internal const string EventOwnerProfile = "owned-constructed-native-event-tape-conditional-v1-public-evidence-v2";
+    internal const string EventOwnerImplementationVersion = "nosl-constructed-native-event-tape-rejection-v1-public-evidence-v2";
+    internal const string RubyFormationProfile = "owned-constructed-native-tape-ruby-formation-v2-public-evidence-v2";
+    internal const string RubyFormationImplementationVersion = "nosl-constructed-native-tape-ruby-formation-v2-public-evidence-v2";
+    internal const string RubyProfile = "owned-constructed-native-tape-ruby-draw-closure-v3-public-evidence-v2";
+    internal const string RubyImplementationVersion = "nosl-constructed-native-tape-ruby-draw-closure-v3-public-evidence-v2";
+    internal static string ImplementationFor(NativeConstructedTapePrior prior) => prior.EventOwner is not null
+        ? EventOwnerImplementationVersion : prior.Setup.Encounter == "RubyRaiders"
+            ? RubyImplementationVersion : ImplementationVersion;
     internal const string ProposalDomain = "nosl-constructed-tape-independent-proposals-v1";
     private readonly string _serializedRoot;
     private readonly NativeConstructedTapePrior _prior;
     private readonly NativePublicCombatPrefixCondition? _combatCondition;
+    private readonly NativePublicRubyFormationCondition? _rubyFormationCondition;
     private readonly PublicRunEvidence _evidence;
     private readonly string _entryJson;
     private readonly string?[] _potions;
@@ -49,11 +59,15 @@ internal sealed class NativeConstructedTapeSource : ITeacherSource
             || entry.Hp <= 0 || entry.Hp > entry.MaxHp || entry.Potions is null)
             throw new ArgumentException("Invalid constructed public entry anchor");
         StartHp = entry.Hp; StartMaxHp = entry.MaxHp; _potions = entry.Potions.ToArray();
-        if (enableConditioning)
+        if (_prior.EventOwner is not null)
+            ConditioningReason = "declared_event_owner_ordinary_tape_rejection_v1";
+        else if (enableConditioning)
         {
             var condition = NativePublicCombatPrefixCondition.CreateConstructed(root, _prior);
             _combatCondition = condition.EligibleShuffleCount > 0 ? condition : null;
-            ConditioningReason = _combatCondition is not null ? "certified_declared_constructed_startup"
+            NativePublicRubyFormationCondition.TryCreateConstructed(root, _prior, out _rubyFormationCondition, out _);
+            ConditioningReason = _rubyFormationCondition is not null ? "certified_declared_constructed_ruby_startup"
+                : _combatCondition is not null ? "certified_declared_constructed_startup"
                 : condition.Reason ?? condition.Combats.Values.FirstOrDefault()?.ShuffleReason
                     ?? "uncertified_constructed_startup";
         }
@@ -70,17 +84,19 @@ internal sealed class NativeConstructedTapeSource : ITeacherSource
         context.Validate();
         if (evidence.SchemaVersion != PublicRunEvidence.CompleteMapVersion || evidence.CompleteFromRunStart
             || context.CompleteFromRunStart || context.CombatEntryIndex is not null
-            || context.ActIndex != EncounterCoverage.Find(prior.Setup.Encounter).ActIndex || context.Floor != 0
+            || context.ActIndex != (prior.EventOwner is null ? EncounterCoverage.Find(prior.Setup.Encounter).ActIndex : 1)
+            || context.Floor != (prior.EventOwner?.FixtureFloor ?? 0)
             || evidence.Events[0] is not { OwnerOrdinal: null, Payload: PublicEvidenceGap
                 { Reason: PublicEvidenceGapReason.RunStartNotObserved } }
             || evidence.Events.Any(e => e.Payload is PublicRunStarted or PublicMapObserved or PublicMapChosen))
             throw new ArgumentException("Declared construction must retain missing native run start and unobserved map history");
         var owners = evidence.Events.Where(e => e.Payload is PublicOwnerStarted
             { OwnerKind: PublicEvidenceOwnerKind.Combat }).ToArray();
-        if (owners.Length != 1 || owners[0].Payload is not PublicOwnerStarted
-                { CompleteFromOwnerStart: true, ParentOwnerOrdinal: null }
+        if (owners.Length != 1 || owners[0].Payload is not PublicOwnerStarted { CompleteFromOwnerStart: true } combat
+            || prior.EventOwner is null && combat.ParentOwnerOrdinal is not null
             || root.Observation.History.Count(e => e.Kind == NativeEntryAssets.EventKind) != 1)
             throw new ArgumentException("One complete declared combat and public entry anchor required");
+        prior.EventOwner?.ValidatePublicOwner(evidence, owners[0]);
         int decisionIndex = root.Actions[0].Revision;
         if (decisionIndex < 0 || root.Actions.Any(a => a.Revision != decisionIndex)
             || root.Observation.History.Count(e => e.Kind == "action") != decisionIndex)
@@ -100,12 +116,14 @@ internal sealed class NativeConstructedTapeSource : ITeacherSource
     public int StartMaxHp { get; }
     public string?[] StartPotions => _potions.ToArray();
     public DecisionPacket Observe() => PublicJson.Read<DecisionPacket>(_serializedRoot);
-    public string PosteriorProfile => Profile;
+    public string PosteriorProfile => _prior.EventOwner is not null ? EventOwnerProfile
+        : _prior.Setup.Encounter == "RubyRaiders" ? RubyProfile : Profile;
     public string PriorWarning => "Declared fresh constructed setup under independent Map/Rewards/native-state tapes; not natural reachability or the game's finite-seed law. Exact full-v5 public history conditions independent owned native replays. Uncertified mechanisms retain ordinary tape rejection; absence and computation failures remain unresolved.";
     public (double Lower, double Upper)? RankingSupport(ObjectiveProfile profile) => null;
     internal NativeConstructedTapePrior Prior => _prior.Freeze();
     internal NativeConstructedTapeProposalAudit[] ProposalAudit => _attempts.ToArray();
-    internal bool UsesPrimitiveConditioning => _combatCondition is not null;
+    internal bool UsesPrimitiveConditioning => _combatCondition is not null || _rubyFormationCondition is not null;
+    internal bool UsesRubyFormationConditioning => _rubyFormationCondition is not null;
     internal string ConditioningReason { get; }
 
     public async Task<ITeacherWorld> SampleWorldAsync(ulong seed, int maxAttempts)
@@ -117,7 +135,7 @@ internal sealed class NativeConstructedTapeSource : ITeacherSource
         {
             var recipe = _prior.Draw(random);
             var timer = Stopwatch.StartNew();
-            var tape = NativeLabelTape.ForConstructedPrior(_prior, recipe, _combatCondition, _evidence, _entryJson);
+            var tape = NativeLabelTape.ForConstructedPrior(_prior, recipe, _combatCondition, _evidence, _entryJson, _rubyFormationCondition);
             NativeRunWorld? world = null;
             bool accepted = false;
             Exception? operationFailure = null;

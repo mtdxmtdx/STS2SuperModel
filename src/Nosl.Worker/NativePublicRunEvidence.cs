@@ -24,6 +24,7 @@ internal sealed class NativePublicRunEvidence(RunState run, string? mapObservati
         ? PublicRunEvidence.CompleteMapVersion : PublicRunEvidence.Version;
     private PublicRunEvidenceRecorder Recorder => _recorder ??= new(null, onAppended, EvidenceVersion);
     private readonly Dictionary<AbstractRoom, long> _rooms = new(ReferenceEqualityComparer.Instance);
+    private EventRoom? _declaredEventRoom;
     private readonly List<(RewardsSet Set, long Owner)> _rewards = [];
     private readonly Dictionary<RewardsSet, long> _lastRewardOffers = new(ReferenceEqualityComparer.Instance);
     private readonly Dictionary<RewardsSet, CardReward> _rerolled = new(ReferenceEqualityComparer.Instance);
@@ -47,6 +48,25 @@ internal sealed class NativePublicRunEvidence(RunState run, string? mapObservati
     }
     internal PublicRunEvidence Capture() => Recorder.Capture();
     internal void EnterFloor() => _floorObserved = true;
+    // Explicitly observed room entry for a declared fixture does not assert a
+    // map traversal or a native run start. Call before the actual Enter hook.
+    internal void DeclaredEventEntering(EventRoom room)
+    {
+        if (!ReferenceEquals(run.CurrentRoom, room) || _rooms.ContainsKey(room) || _declaredEventRoom is not null)
+            throw new InvalidOperationException("Declared event entry must observe one newly owned native room");
+        _rooms.Add(room, Begin(PublicEvidenceOwnerKind.Event));
+        _declaredEventRoom = room;
+    }
+    internal void DeclaredEventReturned()
+    {
+        // Loss/no-reward settlement is notified after the native event resumes.
+        // A reward-enabled victory is intentionally still suspended before its
+        // first reward decision, so it must not receive a fabricated owner end.
+        if (_combat is not null || _declaredEventRoom is not { } room
+            || !ReferenceEquals(run.CurrentRoom, room) || !room.Event.IsFinished) return;
+        if (_rooms.Remove(room, out long owner)) End(owner);
+        _declaredEventRoom = null;
+    }
     private long Begin(PublicEvidenceOwnerKind kind, long? parent = null, bool complete = true) =>
         Recorder.BeginOwner(kind, run.CurrentActIndex, run.TotalFloor, parent, complete);
     private long? RoomOwner()
