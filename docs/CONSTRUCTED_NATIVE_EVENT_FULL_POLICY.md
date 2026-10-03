@@ -72,3 +72,9 @@ The retained real-owner/Ruby checks and guarded aggregate forward are recorded i
 [CONSTRUCTED_NATIVE_TYPED_POLICY_VERIFICATION.json](CONSTRUCTED_NATIVE_TYPED_POLICY_VERIFICATION.json).
 All24 focused tests passed; the guarded forward preserved every row and left the
 model state unchanged.
+
+The later explicitly enabled Lantern shuffle-v2 implementation is documented
+separately in [CONSTRUCTED_NATIVE_LANTERN_SHUFFLE_FULL_POLICY.md](CONSTRUCTED_NATIVE_LANTERN_SHUFFLE_FULL_POLICY.md).
+Its new report and source closure do not reinterpret the rejection-v1 evidence
+described here, including historical enabled=true declarations that originally
+used zero conditioning.

@@ -1,0 +1,400 @@
+{
+  "format": "nosl.constructed-native-tape.lantern-shuffle-policy-verification.v1",
+  "status": "engineering_forward_verified",
+  "adapter_commit": "39948dd923ba8e9d2e290632f12327bd45da01e3",
+  "historical_ruby_draw_adapter_commit": "c8c9f313815db433b3b5d668568086ddec4dd10f",
+  "native_source_closure_commit": "029f2c183f1069d8d32b2ce61b9ac633326e57a9",
+  "checks": {
+    "focused_tests": {
+      "passed": 37,
+      "failed": 0,
+      "skipped": 0,
+      "historical_tests": 29,
+      "lantern_shuffle_tests": 8,
+      "log": "artifacts/reports/constructed-native-lantern-shuffle-policy-v1/tests.log",
+      "initial_test_failure": "One test expected the later shuffle-count error; the new earlier native-completion guard rejected correctly. The specific expectation was corrected without weakening validation; initial log retained."
+    },
+    "guarded_forward": {
+      "format": "nosl.constructed-native-tape.lantern-shuffle-forward.v1",
+      "status": "passed",
+      "adapter_commit": "39948dd923ba8e9d2e290632f12327bd45da01e3",
+      "native_source_closure_commit": "029f2c183f1069d8d32b2ce61b9ac633326e57a9",
+      "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-final-v2/lantern-mixed/response.jsonl",
+      "raw_sha256": "7636e9d2c7c801395c31e90bf4b70c385673e1f28e186f6af6ad6669cc8d84ce",
+      "record_sha256": "1e927a2f93475eb60194795fd89b0971ff66bdcc5bec218cb304e43442dc73df",
+      "rows": 1,
+      "source_kind": "constructed_native_event_tape_action_fixture_v1",
+      "sampler": "nosl-constructed-native-event-tape-shuffle-v2-public-evidence-v2",
+      "runtime_dependencies": {
+        "upstream_commit": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
+        "worker_assembly_sha256": "663bdc8b6b9093f6a5688e32bdcd62e7f01779ff4f8e3cc34d2b4a0991976ca2",
+        "core_assembly_sha256": "90eef56ebbf9be01f5ce568cd2dec5fe9d55038b6629f463a7d3ea01e723a1c6",
+        "runtime_version": "9.0.7",
+        "wrapper_source_sha256": "2f8a163b9bbfc0bab93df909a2baf5f4af1abee1af205cbcaa51754cbf056492",
+        "vendor_source_sha256": "69e05bd3e99051a119af80a903f70c1845079def1770f8816f8f91e50c14f391"
+      },
+      "all_attempts_metadata_sha256": "bb3376aec2ae0b241fb79a483a5b35a5a8ad44d0ff3257516c26967e0738cb57",
+      "attempt_statuses": {
+        "recorded_complete": 1
+      },
+      "actions": 14,
+      "outcome_counts": {
+        "Loss": 16,
+        "Win": 12
+      },
+      "action_value_masks": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "objective_unresolved_reasons": {
+        "inventory_value_unresolved:BlockPotion": 19,
+        "inventory_value_unresolved:FirePotion": 19,
+        "permanent_future_value_unresolved:earned_extra_reward_opportunity:SpecialCardReward": 12
+      },
+      "terms": [
+        {
+          "value": 0.0,
+          "win_probability": 0.6949567794799805,
+          "death_probability": 0.6927808523178101,
+          "expected_final_hp": 0.0546664260327816,
+          "hp_distribution": 4.137675762176514,
+          "potion_net_change": 0.2344244420528412,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        }
+      ],
+      "loss": 2.535429000854492,
+      "supervision_coverage": {
+        "format": "nosl.training.full-policy.supervision.v5.1",
+        "roots": 1,
+        "action_heads": {
+          "value": {
+            "masked_rows": 0,
+            "loss_rows": 0,
+            "loss_roots": 0
+          },
+          "win_probability": {
+            "masked_rows": 14,
+            "loss_rows": 14,
+            "loss_roots": 1
+          },
+          "death_probability": {
+            "masked_rows": 14,
+            "loss_rows": 14,
+            "loss_roots": 1
+          },
+          "expected_final_hp": {
+            "masked_rows": 14,
+            "loss_rows": 14,
+            "loss_roots": 1
+          },
+          "hp_distribution": {
+            "masked_rows": 14,
+            "loss_rows": 14,
+            "loss_roots": 1
+          },
+          "potion_net_change": {
+            "masked_rows": 14,
+            "loss_rows": 14,
+            "loss_roots": 1
+          }
+        },
+        "plan_heads": {
+          "specified_success_probability": {
+            "masked_roots": 0,
+            "loss_roots": 0
+          },
+          "extra_net_hp_loss": {
+            "masked_roots": 0,
+            "loss_roots": 0
+          }
+        },
+        "action_policy": {
+          "eligible_roots": 0,
+          "value_roots": 0,
+          "pairwise_roots": 0,
+          "equivalent_roots": 0,
+          "pairwise_pairs": 0
+        },
+        "policy_action_kinds": {
+          "play": 0,
+          "potion": 0,
+          "discard_potion": 0,
+          "choose": 0,
+          "end_turn": 0
+        }
+      },
+      "fit_gate": {
+        "status": "FIT_BLOCKED",
+        "accepted": false,
+        "reasons": [
+          "unadmitted_or_engineering_records_cannot_fit",
+          "enabled_objective_policy_supervision_required",
+          "exact_external_objective_review_required",
+          "exact_bounded_execution_authorization_required"
+        ],
+        "formal_training_run": false,
+        "policy_promoted": false,
+        "current_auxiliary_artifacts_eligible": false
+      },
+      "historical_raw_reports_revalidated": [
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-00/response.jsonl",
+          "raw_sha256": "2165f6ac262d03dec8387e82a03add3cd5f294adc302e47849a62f3b21aca09d",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-01/response.jsonl",
+          "raw_sha256": "2bca92497661026ec096e51477d886a19074131f06f75b727b6fa0ab96829755",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-02/response.jsonl",
+          "raw_sha256": "196b0a7ab71efe216a7edc92398b3934846f15682c1f24923c9a60f5a4d19d3f",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-03/response.jsonl",
+          "raw_sha256": "bc6359acea710fce925d0f07733a08a2531276bd4b66159a80cdfe0f209bf3ea",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-04/response.jsonl",
+          "raw_sha256": "ee6edd092e44b32490d1eb65f1d4173aeec720ec5af2a01cebe7ced0472b8d27",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-05/response.jsonl",
+          "raw_sha256": "bdab6dedd05da51b4da0ede06d5168ffe746ae6530c1ccd1d15fd58511a32119",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-06/response.jsonl",
+          "raw_sha256": "c7b90564a5887546b27feccb0b765701176607a36a4ebf78953d08e6684b8779",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-07/response.jsonl",
+          "raw_sha256": "7886e4dc36000120685d6236b86ae6ff4f9bc6af84146f41b810a72a39ee5ec4",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-08/response.jsonl",
+          "raw_sha256": "0e6e727d2b486a44fad855c6ad39048201a79485d603366dd5b330fb3dae8ad9",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-09/response.jsonl",
+          "raw_sha256": "dac0e93b88f9eb53a972b80f3d9b0c02b6337e9cc6b24a47969cb4e11c8551e9",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-10/response.jsonl",
+          "raw_sha256": "4b5c16a88f9634dfbfa656740cde83205da436e17db88e6889cab766f89ecdb5",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/breadth/case-11/response.jsonl",
+          "raw_sha256": "fca3311232c5d91f216af100b85f9b27401520bb414f541d3eff8304042be8c9",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-tape-v1/action-boundary/response.jsonl",
+          "raw_sha256": "94e234274ed02b012aed99d291eb2fc66e59da5fbeadaeed744785c5672522da",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-conditional-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "computation_truncated": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-owner-ruby-v1/lantern-boundary/response.jsonl",
+          "raw_sha256": "94c459ce681491067a714b8fb306c24f122577d39536edbdac6cc275824d5193",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-event-tape-rejection-v1-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-ruby-startup/artifacts/ruby-proof/case-00/response.jsonl",
+          "raw_sha256": "f76e34fe8e16108ccc5c38940873f84168bd81d6d27f6d799c25f627c4c8264e",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-ruby-formation-v2-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-ruby-startup/artifacts/ruby-proof/case-01/response.jsonl",
+          "raw_sha256": "2adb3a50b8bca9bab171c2aeef894c0c0faceeaa0e18030c0597f6068b99daa3",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-ruby-formation-v2-public-evidence-v2",
+          "attempt_statuses": {
+            "posterior_exhausted": 1
+          }
+        },
+        {
+          "raw_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/constructed-owner-ruby-v3/ruby-turn2/response.jsonl",
+          "raw_sha256": "d0821c436b9577d90f8bcb805854d4580a5b784a4fc0807e88e4aeb7030b947b",
+          "accepted_records": 1,
+          "sampler": "nosl-constructed-native-tape-ruby-draw-closure-v3-public-evidence-v2",
+          "attempt_statuses": {
+            "recorded_complete": 1
+          }
+        }
+      ],
+      "exact_public_input_sha256": "f3327a758d6bf222ece1b1d42863c187354c66bf5c32aa2e243d14a185439373",
+      "historical_ruby_draw_normalized_snapshot": "rejected_changed_source_closure_without_reinterpretation",
+      "model_state_before_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+      "model_state_after_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+      "parameters_unchanged": true,
+      "model_inputs_equal_public_packets": true,
+      "backward_calls": 0,
+      "optimizer_constructions": 0,
+      "optimizer_steps": 0,
+      "gradients_created": false,
+      "weights_saved": false,
+      "trainable": false,
+      "natural_native_admission": false,
+      "protection_status": "INCOMPLETE",
+      "normalized_sha256": "993f61a1e923625f9570f20f64ca808c582c4f0ec106496cb8b0ee55c5fc1f2d"
+    }
+  },
+  "artifacts": {
+    "artifacts/reports/constructed-native-lantern-shuffle-policy-v1/engineering.jsonl": {
+      "sha256": "993f61a1e923625f9570f20f64ca808c582c4f0ec106496cb8b0ee55c5fc1f2d",
+      "bytes": 1171523
+    },
+    "artifacts/reports/constructed-native-lantern-shuffle-policy-v1/forward.json": {
+      "sha256": "5611592bcabbd4d34a54737fc2e756ada12662d577933c1d154d6b8946a2344b",
+      "bytes": 12156
+    },
+    "artifacts/reports/constructed-native-lantern-shuffle-policy-v1/forward_lantern_shuffle.py": {
+      "sha256": "eaef7361ad148db500efd3846a3db3f8ec0f9a7d37fb5093b34cfa8cca440637",
+      "bytes": 7301
+    },
+    "artifacts/reports/constructed-native-lantern-shuffle-policy-v1/tests-initial-expectation-failure.log": {
+      "sha256": "806d2874c6a34c29659ea7b8bf59bb824651ae6efed9779d31ad1ebc217a4e69",
+      "bytes": 9266
+    },
+    "artifacts/reports/constructed-native-lantern-shuffle-policy-v1/tests.log": {
+      "sha256": "d91dcd4ee19cfb3edcc797b5e9b4bfee7a73a34e7d25ed742ce62207f0a1fc25",
+      "bytes": 7841
+    }
+  },
+  "source_sha256": {
+    "docs/spec/v4/config/objective_profile.candidate.json": "ceda0bfc7492409d457bfd7ad9b8ee72b83138c457b0549fedb887b72fe43744",
+    "configs/objective_profile.candidate.json": "64dfdc38d5dfcf2bd0d1767ef726c3236a29f4722ef4ff49f345ea2cf0f76599",
+    "src/Nosl.Objectives/RolloutOutcome.cs": "492d066f1e0b2fddfd111c68c844c6edee5782982a7149641dfec2e03c1d2c04",
+    "src/Nosl.Objectives/ObjectiveEvaluator.cs": "a5c386188f00d096fc5c037881c4643e52cd180632e14da0a94b810cee63c494",
+    "src/Nosl.Objectives/PreferenceGates.cs": "d3a99f9f2dc7bb4ac28848fb6a0e598b9605eb679a2d6506bfcc26970dc2e921",
+    "src/Nosl.Worker/TeacherDataset.cs": "71f95f83609d0c75232d2443baa0394cb14e28dcdc4ce9fa1a507e27437901df",
+    "src/Nosl.Worker/CombatTeacher.cs": "b182a13036aa8a04983a418c77bd0f6ddd0a16a93e7eccee0e2573e8dd8add11",
+    "src/Nosl.Worker/NativeConstructedTapePrior.cs": "63f82d1852ab13844003570b405c9f0075e1996b214e41e36a4ee6c8c80d47cf",
+    "src/Nosl.Worker/NativeConstructedTapeSource.cs": "8433c27174bcd6fd36dc56e14254373cd5ca3214ea5f174cae83b52be24a9b32",
+    "src/Nosl.Worker/NativeConstructedTapeDataset.cs": "4d6f811bc987a7d87a383a654d72c59f2b204f1eec630d4acc13b9f15de03faa",
+    "src/Nosl.Worker/NativeConstructedEventOwnerSetup.cs": "f66172fd88455c474372ae6f7962450a987d0edf18586ef42b2e53b777dd2bfb",
+    "src/Nosl.Worker/NativePublicRubyFormationCondition.cs": "bc5cfbec15a7f02bd724aa5aea599e86bd507fa62225c46eace81a110208939d",
+    "src/Nosl.Worker/NativePublicRubyFormationProposal.cs": "d4fe35e8741fa074bcc674b1cc2c1fbc0a9eb137a336448f721c551c9b61ee3e",
+    "src/Nosl.Worker/NativePublicCombatPrefixCondition.cs": "a79fa1a4f75e6a0aad4867f734639cad1600c23feebff235c7beda252a9e6234",
+    "src/Nosl.Worker/NativePublicCombatPrefixProposal.cs": "8a7d9482876d9d1a1bc9c56f4f74f27b572ced67039a5ab8add6d303b89d97c2",
+    "src/Nosl.Worker/NativePublicDrawPrefixCondition.cs": "fe0b101b38df389a7eb3221c40d03fd888d4a4dcf1bd6d61457368f94124a882",
+    "src/Nosl.Worker/NativeInitialShuffleCondition.cs": "5f895e0257d3a9ef440e1f1d1f11d1e91856a3cbbb175cf0df6991f5c6fbd99c",
+    "src/Nosl.Worker/ConditionalShuffleProposal.cs": "784774e219fd3735cbaffd789d4aa4a1111b7681dbdd906ad3cb6b233de56a8e",
+    "src/Nosl.Worker/NativeLabelTape.cs": "13544fd002feb9db99f1fc39c86f7f2573cb0898bf68afe604ab1b47ed4c712e",
+    "python/nosl/native_policy_v5.py": "452934fe4d4ab8417ec70094d17baa2b055011758bcbfb1cec4b03c45769224e",
+    "python/nosl/constructed_native_policy_v5.py": "b80af7933d75affbd5e3221d9200ce1b54e483c4bb0dc5043f29ce6f77421148",
+    "python/nosl/constructed_native_event_v5.py": "71fb5a4ada1d69aefe435b05a4ca7980180fdf42435b1fc71618544707896543",
+    "python/nosl/data_policy_v5.py": "a802d8bbe7e5b5681abca26f8dd40180159305db05fe8d132286ee0a8cb2c55e",
+    "python/nosl/train_policy_v5.py": "ccbbbee256cf969e4f37d26af54c04d1f972c228594cfc9687ab5b7fe500d134",
+    "tests/data/test_constructed_native_event_shuffle_v5.py": "79ac68ef141a82722cd66fb099ec0ec6e967f11951c21c0a2b6c7ddc813ecfea"
+  },
+  "limits": {
+    "engineering_only": true,
+    "native_run": false,
+    "production_admission": false,
+    "natural_native_admission": false,
+    "objective_calibrated": false,
+    "protection_status": "INCOMPLETE",
+    "fit_authorized": false,
+    "backward_calls": 0,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0,
+    "weights_saved": false,
+    "plan_labels_created": false,
+    "historical_evidence_changed": false
+  },
+  "notes": [
+    "The exact Lantern shuffle-v2 report passes strict validation, engineering loader and actual batch_loss forward.",
+    "All 14 actions, 28 settled native outcomes (12 wins and 16 losses), and every proposal/source attempt remain bound to raw bytes.",
+    "Every utility value remains null and masked for unresolved native FirePotion/BlockPotion inventory or SpecialCardReward opportunity values. Auxiliary terminal heads retain their original masks and values.",
+    "The two accepted proposals each retain one initial shuffle, zero HP conditioning and 15 conditioned words from the 16-card entry. No later-draw certificate is invented by Python.",
+    "All 17 historical raw reports remain valid with exact original sampler identifiers; the previous Ruby-v3 normalized snapshot rejects the changed evaluator closure.",
+    "Historical event rejection-v1 enabled=true metadata retains its older zero-conditioning interpretation; event shuffle-v2 is accepted only with an explicitly enabled declaration.",
+    "The evaluator closure now also binds ConditionalShuffleProposal.cs and NativeLabelTape.cs. Raw receipts separately bind original producer runtime and source bytes.",
+    "Independent review requested and confirmed the unique-global-gap and completed-shuffle guards. No native execution was initiated by this Python verification."
+  ]
+}

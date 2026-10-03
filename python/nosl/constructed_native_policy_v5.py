@@ -56,6 +56,7 @@ EVALUATOR_SOURCE_FILES = (
     "src/Nosl.Worker/NativePublicRubyFormationCondition.cs", "src/Nosl.Worker/NativePublicRubyFormationProposal.cs",
     "src/Nosl.Worker/NativePublicCombatPrefixCondition.cs", "src/Nosl.Worker/NativePublicCombatPrefixProposal.cs",
     "src/Nosl.Worker/NativePublicDrawPrefixCondition.cs", "src/Nosl.Worker/NativeInitialShuffleCondition.cs",
+    "src/Nosl.Worker/ConditionalShuffleProposal.cs", "src/Nosl.Worker/NativeLabelTape.cs",
     "python/nosl/native_policy_v5.py", "python/nosl/constructed_native_policy_v5.py",
     "python/nosl/constructed_native_event_v5.py")
 AUDIT_FIELDS = ("purpose", "trainable", "source_kind", *SOURCE_FIELDS,
@@ -132,8 +133,7 @@ def _profile(report):
     require(isinstance(contract, dict), "constructed_tape:collection_contract_object")
     sampler = contract.get("sampler_version")
     if schema == event_source.PRIOR_SCHEMA:
-        require(sampler == event_source.SAMPLER, "constructed_tape:event_sampler_profile")
-        return sampler, event_source.POSTERIOR, event_source.SOURCE_KIND
+        return sampler, event_source.sampler_profile(sampler, report["options"].get("enableConditioning")), event_source.SOURCE_KIND
     require(schema == PRIOR_SCHEMA, "constructed_tape:ordinary_sampler_profile")
     ruby_profiles = {RUBY_SAMPLER: RUBY_POSTERIOR, RUBY_DRAW_SAMPLER: RUBY_DRAW_POSTERIOR}
     if sampler in ruby_profiles:
@@ -348,7 +348,7 @@ def _accounting(value, seeds, actions=None, *, max_decisions):
 
 
 
-def _proposals(proposals, accounting, teacher, prior):
+def _proposals(proposals, accounting, teacher, prior, sampler, entry):
     require(isinstance(proposals, list), "constructed_tape:proposal_ledger")
     by_call = {}
     for proposal in proposals:
@@ -368,8 +368,7 @@ def _proposals(proposals, accounting, teacher, prior):
         for key in ("conditionedShuffles", "conditionedHpCount", "distinctTapeCells", "conditionedTapeCells"):
             integer(proposal[key], key)
         if prior["schemaVersion"] == event_source.PRIOR_SCHEMA:
-            require(all(proposal[key] == 0 for key in ("conditionedShuffles", "conditionedHpCount", "conditionedTapeCells")),
-                "constructed_tape:event_ordinary_rejection_only")
+            event_source.validate_proposal_conditioning(proposal, sampler, entry)
         recipe = object_keys(proposal["recipe"], ("runSeed", "tapeSeed", "proposalSeed", "combatIndex", "decisionIndex"), "proposal recipe")
         for key in ("runSeed", "tapeSeed", "proposalSeed"): integer(recipe[key], key, 0, 2**64 - 1)
         _equal(recipe["combatIndex"], 0, "proposal_combat_index")
@@ -570,8 +569,7 @@ def _record(raw, raw_text, report, teacher, config):
         "constructed_tape:undeclared_conditioning")
     _text(audit.get("conditioning_reason"), "conditioning_reason")
     if prior["schemaVersion"] == event_source.PRIOR_SCHEMA:
-        require(audit["conditioning_eligible"] is False and audit["conditioning_reason"] == event_source.CONDITIONING_REASON,
-            "constructed_tape:event_ordinary_rejection_only")
+        event_source.validate_conditioning_audit(public, audit, sampler)
     public_text = _fragments(raw_text)["public_input"]
     _equal(audit["public_state_digest"], _sha(public_text.encode("utf-8")), "exact_raw_public_hash")
     _equal(audit["source_combat_id"], audit["source_run_group"] + "/public-entry:" + _sha(entry_text.encode("utf-8")), "source_combat_binding")
@@ -646,8 +644,9 @@ def _inspect(payload, config):
         _equal(audit["source_run_group"], family, "source_run_group")
         _equal(audit["source_random_family_alias"], family, "source_random_family_alias")
         _equal(audit["underlying_battle_alias"], battle, "underlying_battle_alias")
+        entry = None
         if attempt["root_observed"]:
-            _, entry_text = _public(provenance["public_input"], config, options["prior"])
+            entry, entry_text = _public(provenance["public_input"], config, options["prior"])
             public_text = _fragments(_fragments(attempt_texts[index])["provenance"])["public_input"]
             _equal(audit["public_state_digest"], _sha(public_text.encode("utf-8")), "attempt_exact_public_hash")
             _equal(audit["public_root_alias"], "constructed-native-tape-public-root-v1:" + audit["public_state_digest"], "attempt_public_root_alias")
@@ -661,7 +660,7 @@ def _inspect(payload, config):
         if attempt["posterior_proposals"] is None:
             require(accounting is None, "constructed_tape:missing_posterior_ledger")
         else:
-            _proposals(attempt["posterior_proposals"], accounting, teacher, options["prior"])
+            _proposals(attempt["posterior_proposals"], accounting, teacher, options["prior"], _profile(report)[0], entry)
         raw_index = attempt["raw_record_index"]
         if raw_index is None:
             require(attempt["status"] != "recorded_complete", "constructed_tape:missing_complete_record")

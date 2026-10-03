@@ -21,16 +21,20 @@ internal sealed class NativeConstructedTapeSource : ITeacherSource
     internal const string ImplementationVersion = "nosl-constructed-native-tape-conditional-v1-public-evidence-v2";
     internal const string EventOwnerProfile = "owned-constructed-native-event-tape-conditional-v1-public-evidence-v2";
     internal const string EventOwnerImplementationVersion = "nosl-constructed-native-event-tape-rejection-v1-public-evidence-v2";
+    internal const string EventOwnerShuffleProfile = "owned-constructed-native-event-tape-shuffle-v2-public-evidence-v2";
+    internal const string EventOwnerShuffleImplementationVersion = "nosl-constructed-native-event-tape-shuffle-v2-public-evidence-v2";
     internal const string RubyFormationProfile = "owned-constructed-native-tape-ruby-formation-v2-public-evidence-v2";
     internal const string RubyFormationImplementationVersion = "nosl-constructed-native-tape-ruby-formation-v2-public-evidence-v2";
     internal const string RubyProfile = "owned-constructed-native-tape-ruby-draw-closure-v3-public-evidence-v2";
     internal const string RubyImplementationVersion = "nosl-constructed-native-tape-ruby-draw-closure-v3-public-evidence-v2";
-    internal static string ImplementationFor(NativeConstructedTapePrior prior) => prior.EventOwner is not null
-        ? EventOwnerImplementationVersion : prior.Setup.Encounter == "RubyRaiders"
+    internal static string ImplementationFor(NativeConstructedTapePrior prior, bool enableConditioning = true) => prior.EventOwner is not null
+        ? enableConditioning ? EventOwnerShuffleImplementationVersion : EventOwnerImplementationVersion
+        : prior.Setup.Encounter == "RubyRaiders"
             ? RubyImplementationVersion : ImplementationVersion;
     internal const string ProposalDomain = "nosl-constructed-tape-independent-proposals-v1";
     private readonly string _serializedRoot;
     private readonly NativeConstructedTapePrior _prior;
+    private readonly bool _enableConditioning;
     private readonly NativePublicCombatPrefixCondition? _combatCondition;
     private readonly NativePublicRubyFormationCondition? _rubyFormationCondition;
     private readonly PublicRunEvidence _evidence;
@@ -47,7 +51,7 @@ internal sealed class NativeConstructedTapeSource : ITeacherSource
         Func<NativeConstructedTapePrior, NativeTapeRecipe, NativeLabelTape, CancellationToken,
             Task<NativeRunWorld?>>? nativeOpenerForTests = null)
     {
-        _prior = prior.Freeze(); _cancellation = cancellationToken;
+        _prior = prior.Freeze(); _cancellation = cancellationToken; _enableConditioning = enableConditioning;
         _openWorld = nativeOpenerForTests ?? NativeRunWorld.OpenConstructedLabelTapeAsync;
         _serializedRoot = PublicJson.Serialize(publicRoot);
         var root = PublicJson.Read<DecisionPacket>(_serializedRoot);
@@ -60,7 +64,17 @@ internal sealed class NativeConstructedTapeSource : ITeacherSource
             throw new ArgumentException("Invalid constructed public entry anchor");
         StartHp = entry.Hp; StartMaxHp = entry.MaxHp; _potions = entry.Potions.ToArray();
         if (_prior.EventOwner is not null)
-            ConditioningReason = "declared_event_owner_ordinary_tape_rejection_v1";
+        {
+            if (enableConditioning)
+            {
+                var condition = NativePublicCombatPrefixCondition.CreateConstructedLanternStartup(root, _prior);
+                _combatCondition = condition.EligibleShuffleCount > 0 ? condition : null;
+                ConditioningReason = _combatCondition is not null ? "certified_declared_lantern_initial_shuffle_v2"
+                    : condition.Reason ?? condition.Combats.Values.FirstOrDefault()?.ShuffleReason
+                        ?? "uncertified_declared_lantern_startup";
+            }
+            else ConditioningReason = "declared_event_owner_ordinary_tape_rejection_v1";
+        }
         else if (enableConditioning)
         {
             var condition = NativePublicCombatPrefixCondition.CreateConstructed(root, _prior);
@@ -116,7 +130,8 @@ internal sealed class NativeConstructedTapeSource : ITeacherSource
     public int StartMaxHp { get; }
     public string?[] StartPotions => _potions.ToArray();
     public DecisionPacket Observe() => PublicJson.Read<DecisionPacket>(_serializedRoot);
-    public string PosteriorProfile => _prior.EventOwner is not null ? EventOwnerProfile
+    public string PosteriorProfile => _prior.EventOwner is not null
+        ? _enableConditioning ? EventOwnerShuffleProfile : EventOwnerProfile
         : _prior.Setup.Encounter == "RubyRaiders" ? RubyProfile : Profile;
     public string PriorWarning => "Declared fresh constructed setup under independent Map/Rewards/native-state tapes; not natural reachability or the game's finite-seed law. Exact full-v5 public history conditions independent owned native replays. Uncertified mechanisms retain ordinary tape rejection; absence and computation failures remain unresolved.";
     public (double Lower, double Upper)? RankingSupport(ObjectiveProfile profile) => null;

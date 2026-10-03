@@ -2,6 +2,8 @@
 
 本工程复用锁定版本的 sts2-sim 副本，实现 Silent A10 单场战斗适配、独立分支终局、公共知识和有限支持机制的 belief 采样。不是旧 Mod，不连接实机。当前已加入离线公共信息教师及数据/学生工程；尚未正式训练或晋升模型。
 
+本页保留基线 worker API 的构建与调用说明。后续自然局、事件所有者、版本化条件采样与完整 v5 学生入口，以及最终验收边界，见[最终交接](M3_M6_FINAL_HANDOFF.md)。下文早期 API 的限制不替代各新入口的独立契约。
+
 ## 构建与测试
 
 在仓库根目录执行。首次还原需要可访问 NuGet 或已有相同版本的包缓存。
@@ -12,7 +14,7 @@ dotnet test .\tests\Nosl.Tests\Nosl.Tests.csproj -c Release -m:1 -nr:false -p:Us
 python -B .\tools\protocol_smoke.py
 ```
 
-SDK 锁定 .NET 9.0.303。NuGetAudit=false 仅避免离线审计请求，不改依赖版本。所有规则委托 C# 引擎，Python 仅承担证据与协议测试。
+SDK 锁定 .NET 9.0.303。NuGetAudit=false 仅避免离线审计请求，不改依赖版本。所有战斗规则委托 C# 引擎；Python 承担证据、协议测试、数据准备与学生模型工程。
 
 ## 持久 JSONL worker
 

@@ -1,6 +1,6 @@
 {
   "schema_version": "nosl.readiness.v1",
-  "status": "READY_FOR_PILOT_FULL_SCOPE_BLOCKED",
+  "status": "ENGINEERING_VERIFIED_FULL_SCOPE_AND_DATA_ADMISSION_BLOCKED",
   "milestones": {
     "M3": "OBJECTIVE_AND_OUTCOME_ENGINEERING_VERIFIED_CALIBRATION_PARTIAL",
     "M4": "SHARED_T0_T1_OWNED_NATIVE_AND_PUBLIC_FINITE_PLAN_ENGINEERING_VERIFIED",
@@ -20,38 +20,33 @@
   "formal_training_authorized": false,
   "generation_unit": "unique_effective_decision_point_with_source_battle_counts_reported_separately",
   "current_verified_checkpoint": {
-    "report": "configs/m6_current_integration_constructed_v1.json",
-    "native_source_commit": "a3d9895628a664c71e12b3d54af9d0edc632ce3c",
-    "native_tests_passed": 2288,
-    "guarded_python_tests_passed": 85,
+    "report": "configs/m3_m6_final_engineering_verification.json",
+    "native_source_commit": "029f2c183f1069d8d32b2ce61b9ac633326e57a9",
+    "python_source_commit": "aefeed59d54523a72b0dea7eb2c47275f38468ba",
+    "native_tests_passed": 2362,
+    "guarded_python_tests_passed": 109,
     "core_tests_passed": 4493,
     "core_opt_in_skipped": 3,
-    "core_scope": "Separate verified Core run; source and test trees unchanged for constructedv1 checkpoint",
-    "map_v8_report": "configs/native_map_origin_verification_v8.json",
-    "map_v8_complete_roots": 37,
-    "map_v8_attempted_sources": 44,
-    "constructed_breadth_report": "configs/native_constructed_breadth_verification_v1.json",
-    "constructed_breadth_complete_roots": 6,
-    "constructed_breadth_attempted_roots": 12,
-    "constructed_breadth_source_families": 6,
+    "core_scope": "Fresh full Core run on the final unchanged Core tree e230d83d7235e89776ef79e3555eaee2ad30cbce",
+    "protection_components": 2681,
+    "protection_tokens": 20501,
     "production_admission": false,
-    "scope": "Frozen ordinary constructed native-tape v1 source-to-loss plus previous v8 map diagnostics; does not certify pending event-owner/Ruby proposal changes"
+    "scope": "Final scoped M3\u2013M6 engineering; broad coverage, calibrated resource values and complete historical source protection remain unresolved"
   },
   "constructed_native_tape_current_work": {
-    "status": "ORDINARY_NATIVE_V1_AND_ACTION_ADAPTER_VERIFIED",
-    "source_snapshot": "a3d9895628a664c71e12b3d54af9d0edc632ce3c",
-    "interface": "docs/NATIVE_CONSTRUCTED_TAPE_RAW_API.md",
-    "python_action_label_integration": "GUARDED_SOURCE_TO_LOSS_PASSED",
-    "scope": "Separate declared constructed setup and primitive-tape prior; not natural-run reachability or production admission",
-    "new_fit_allowed": false,
-    "native_verification": "configs/constructed_native_tape_verification_v1.json",
-    "native_tests_passed": 2288,
-    "retained_boundary_fixture": "1source/2worlds/6branches:2nativewins+4truncations",
-    "guarded_python_tests_passed": 85,
-    "full_policy_verification": "configs/m6_current_integration_constructed_v1.json",
-    "breadth_verification": "configs/native_constructed_breadth_verification_v1.json"
+    "status": "FINAL_SCOPED_ENGINEERING_VERIFIED",
+    "native_source_commit": "029f2c183f1069d8d32b2ce61b9ac633326e57a9",
+    "python_source_commit": "aefeed59d54523a72b0dea7eb2c47275f38468ba",
+    "report": "configs/m3_m6_final_engineering_verification.json",
+    "full_policy_verification": "configs/m6_current_integration_final.json",
+    "source_scope": "Declared fresh ordinary encounters and typed TheLanternKey owner; historical source priors/IDs preserved, exact public-only conditional proposals, independent owned continuations",
+    "all_retained_reports": 18,
+    "distinct_random_families": 9,
+    "distinct_public_roots": 15,
+    "report_inventory_includes_inspected_versioned_reruns": true,
+    "new_fit_allowed": false
   },
-  "historical_evidence_note": "The evidence object and versioned report entries below retain their original checkpoint scopes, counts and outcomes. Use current_verified_checkpoint for the latest completed aggregate; later code remains under verification.",
+  "historical_evidence_note": "Versioned evidence objects below retain their original counts, source/runtime versions and outcomes. Use current_verified_checkpoint and the final handoff for the current aggregate; old failures remain preserved.",
   "evidence": {
     "bridge_integration_passed": 803,
     "frozen_upstream_core_passed": 4479,
@@ -205,12 +200,12 @@
     }
   },
   "remaining": [
-    "All four predeclared Map v8 diagnostic gates passed: 37 complete roots across 44 retained attempts, with zero engine/cleanup errors. The latest 12-source cohort completes 9 roots and 116/146 branches; 30 unresolved branches remain counted. All 44 sources are now inspected development data. Broad source/phase/interaction coverage, useful label quality and production admission remain open.",
-    "The ordinary constructed native-tape source/API and action-label integration passed2288native/85guarded Python tests and the real mixed-deck source-to-loss check. It has a separate declared constructed prior, explicit forced-owner/acquisition gaps and no production or fitting admission; new event-owner and Ruby proposal work remains outside this frozen checkpoint.",
-    "The current protection registry excludes 2679 components, but later historical cohort metadata remain incomplete. Recover or conservatively protect the missing source aliases before any admission or fitting; do not open sealed historical target contents.",
-    "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
-    "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
-    "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3\u2013M6 prerequisites"
+    "Broad natural and constructed source, phase, interaction and effective-posterior coverage remain partial. Declared initial-act Map v8 gates and targeted constructed improvements are scoped evidence, not full production readiness.",
+    "The new constructed producer still lacks PunchOff/FakeMerchant owner setups, nine owner-dependent relic acquisitions and meaningful SeaGlass selection. Other preserved native event evidence does not certify these new producer paths.",
+    "Resource/permanent/reward prices and formal objective-profile admission remain unresolved. Existing preference cases constrain their original situations; unknown values remain masked and unique risk coefficients are not an engineering prerequisite.",
+    "The current2681-component protection registry retains all18current reports and the original494-row test metadata, but later historical cohort identities remain missing. It stays INCOMPLETE; no sealed target contents are opened.",
+    "The failed data-quality/learning diagnosis keeps enlarged production and new fitting closed. Original5000root/497step trial is unchanged;100k and million-root milestones were not reached.",
+    "The full-v5 engineering interface is verified. Strong learned play, original-client differential and final deployment-format parity are laterM7/M8 acceptance, not additional M6 engineering prerequisites."
   ],
   "pilot_training_completed": true,
   "first_pilot_report": "configs/m5_first_pilot_report.json",
@@ -492,16 +487,16 @@
     "native_interface_cohort_admitted": false,
     "formal_training": false,
     "model_promoted": false,
-    "historical_protection": "Original 5000 metadata restored: 2533 components/18207 aliases; 10131 attempt identities and 44 map diagnostics extended 2672 components. The 13 constructed attempts in seven families now extend 2679 components. Later historical cohorts remain missing; all new diagnostics are excluded and quarantined.",
+    "historical_protection": "Original metadata/seal and all prior owners are unchanged. Current diagnostics extend2681components; later historical identities remain missing and every new diagnostic is quarantined.",
     "remaining_limits": [
       "Uncalibrated resource/permanent/reward values remain masked",
       "Broad native data-quality and throughput gates remain open",
       "No learned policy-quality claim",
       "Fresh constructed finite-plan labels reach the full-policy loss; natural finite-plan admission and broad data readiness remain separate."
     ],
-    "current_integration": "configs/m6_current_integration_constructed_v1.json",
-    "current_training_source_files": 42,
-    "current_guarded_python_tests": 85,
+    "current_integration": "configs/m6_current_integration_final.json",
+    "current_training_source_files": 43,
+    "current_guarded_python_tests": 109,
     "historical_backward_report_unchanged": true
   },
   "native_map_origin_v7": {
@@ -551,10 +546,10 @@
     "new_optimizer_steps": 0,
     "adapter_source_commit": "ce02e294804adc7f7fdf16872b15e86465793e80",
     "adapter_verification": "docs/FRESH_CONSTRUCTED_HUNT_FULL_POLICY_V5_VERIFICATION.json",
-    "current_integration": "configs/m6_current_integration_constructed_v1.json",
-    "current_training_source_files": 42,
-    "current_guarded_python_tests": 85,
-    "historical_protection": "Original 5000 metadata restored: 2533 components/18207 aliases; 10131 attempt identities and 44 map diagnostics extended 2672 components. The 13 constructed attempts in seven families now extend 2679 components. Later historical cohorts remain missing; all new diagnostics are excluded and quarantined."
+    "current_integration": "configs/m6_current_integration_final.json",
+    "current_training_source_files": 43,
+    "current_guarded_python_tests": 109,
+    "historical_protection": "Original metadata/seal and all prior owners are unchanged. Current diagnostics extend2681components; later historical identities remain missing and every new diagnostic is quarantined."
   },
   "native_map_origin_v8": {
     "status": "ALL_FOUR_PREDECLARED_DIAGNOSTIC_GATES_PASSED",
@@ -604,5 +599,12 @@
       "external_seconds": 30.1610862790003
     }
   },
-  "current_protection_extension": "configs/protection_metadata_constructed_v1_extension.json"
+  "current_protection_extension": "configs/protection_metadata_constructed_final_extension.json",
+  "final_handoff": "docs/M3_M6_FINAL_HANDOFF.md",
+  "milestone_disposition": {
+    "M3": "MATH_AND_LEDGER_VERIFIED_RESOURCE_CALIBRATION_PARTIAL",
+    "M4": "TEACHER_AND_SCOPED_POSTERIOR_VERIFIED_BROAD_COVERAGE_PARTIAL",
+    "M5": "PIPELINE_VERIFIED_PRODUCTION_ADMISSION_BLOCKED",
+    "M6": "ENGINEERING_VERIFIED_NO_NEW_FIT"
+  }
 }

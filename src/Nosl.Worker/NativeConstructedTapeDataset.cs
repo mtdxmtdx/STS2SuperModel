@@ -254,7 +254,7 @@ internal static class NativeConstructedTapeDataset
         internal NativeCompleteMapBuildReceipt Receipt { get; }
         internal string SourceGenerationJson { get; }
         internal string SourceGenerationIdentity { get; }
-        private string SamplerVersion => NativeConstructedTapeSource.ImplementationFor(Options.Prior);
+        private string SamplerVersion => NativeConstructedTapeSource.ImplementationFor(Options.Prior, Options.EnableConditioning);
         private string PrimitiveNamespaceJson { get; }
         internal string Json { get; }
         internal string Sha256 { get; }

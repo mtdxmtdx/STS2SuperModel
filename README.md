@@ -2,23 +2,24 @@
 
 Silent A10 单场战斗 NOSL 独立工程。当前接入 **固定上游规则＋最小 NOSL 连接层**：真实 C# 规则引擎适配、独立分支终局、公共知识和后验采样。M3–M6 的终局评价、公共信息教师、数据管线与独立学生工程已进入可审查检查点；已完成5,000个去重有效决策点和1轮、497步的受限试训。16场独立构造测试中双方均全胜，学生多消耗4瓶药水，尚不能声称策略更强；资源标定、后验覆盖和后续数据质量门槛仍未闭合。不是游戏 Mod；不连接客户端；尚未正式训练或晋升模型。
 
-最新构造原生数据路径通过 **2,288项原生测试、85项受保护的Python检查**，真实模拟器动作标签已接入完整v5学生损失。预先声明的混合牌组诊断保留12个根、6个成对来源：172/356条分支结算（88胜、84负），184条后验不足分支仍保留；32个动作价值可用，未知资源价格继续遮罩。全部检查保持参数不变，新增反向/优化器步骤均为0。详见[构造实测](configs/native_constructed_breadth_verification_v1.json)、[完整动作接口](docs/CONSTRUCTED_NATIVE_TAPE_FULL_POLICY.md)与[M6合并验证](configs/m6_current_integration_constructed_v1.json)。
+当前交付通过 **2,362 项 Worker 原生测试、4,493 项 Core 测试（3 项既有可选跳过）及 109 项受保护的 Python 检查**。真实原生动作、分支结果和未知资源掩码已接入完整 v5 学生损失。Ruby 开局／第二回合条件采样及 TheLanternKey 的真实所有者和初始洗牌已分别验证；原先失败的记录和来源身份保留。最终整合阶段新增反向、优化器步骤和训练权重均为 0。
 
-地图v8的四组预先规定诊断门槛也已通过，共44次尝试、37个完整根；首次运行的12根组完成9根及116/146条分支。构造和自然开局诊断均保留各自先验、失败记录与隔离边界。完整来源覆盖、资源标定及历史隔离仍不完整，尚未开启大规模生产；当前事件所有者和Ruby阵型扩展另行验证。
+**M3–M6 全范围尚未全部验收，正式 M7 未启动。** 原生场景与长历史覆盖、资源价表、完整历史隔离和数据质量仍有限制；不是用注册表规模、测试数量或受控案例宣称全面就绪。当前诊断全部隔离，未达到 10 万或百万根目标。请先读[最终交接](docs/M3_M6_FINAL_HANDOFF.md)、[逐项实测](configs/m3_m6_final_engineering_verification.json)与[当前 M6 验证](configs/m6_current_integration_final.json)。
 
 ## 从这里开始
 
 | 入口 | 内容 |
 |---|---|
+| [最终交接与剩余工作](docs/M3_M6_FINAL_HANDOFF.md) | 当前源码、最终验证、逐阶段交付与明确未闭合的验收条件 |
 | [早期工程检查点](docs/M3_M6_ENGINEERING_CONTINUATION.md) | 原生事件、自然局入库、有限回血与学生工程已验证；完整覆盖/资源标定仍有门槛 |
 | [首轮试点结果](docs/FIRST_BOUNDED_PILOT.md) | 数据、实际试训、闭环结果、错误诊断和未闭合门槛 |
 | [后续160次验证](docs/BALANCED_VALIDATION_BLOCK.md) | 40场构造战斗、73个有效决策点、超时与标签稳定性；扩大规模门槛未通过 |
 | [已确认偏好](docs/CONFIRMED_PREFERENCE_FEEDBACK.md) | 两个具体偏好约束及稀有药水的暂定倾向，不虚构统一价格 |
 | [50项验收映射](docs/M3_M6_ACCEPTANCE_MAP.md) | 原始编号逐项对应实测证据、支持边界和未完成工作 |
 | [M3–M6检查点](docs/M3_M6_ACCEPTANCE_CHECKPOINT.md) | 新实现、实测证据、数据阶段及尚未闭合的门槛 |
-| [当前地图条件采样](docs/NATIVE_COMPLETE_MAP_RECONSTRUCTION.md) | 新版独立地图先验、完整公开地图重建与v5学生通道；新开发根局面已暴露可修复的奖励兼容与公开历史提议缺口 |
+| [地图条件采样](docs/NATIVE_COMPLETE_MAP_RECONSTRUCTION.md) | 独立地图先验、完整公开地图重建与 v5 学生通道；当前 Map v8 诊断结果见最终交接 |
 | [历史混合采样验证](docs/NATIVE_REWARDS_TAPE.md) | 原奖励先验及其公开历史提议的验证边界 |
-| [当前状态](docs/STATUS.md) | 已实现范围、阶段状态和剩余缺口 |
+| [当前状态](NOSL_STATUS.md) | 已实现范围、阶段状态和剩余缺口 |
 | [开发与协议](docs/DEVELOPMENT.md) | 构建、测试、JSONL worker 和 API |
 | [实施结果](docs/M0-M2_REPORT.md) | M0–M2 改动与证据 |
 | [验证记录](docs/VERIFICATION.md) | 实施与发布副本检查 |

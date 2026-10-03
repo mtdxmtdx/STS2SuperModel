@@ -162,14 +162,21 @@ internal sealed class NativeInitialShuffleCondition
         out NativeInitialShuffleCondition? condition, out string? reason)
         => TryCreate(publicRoot, 5, out condition, out reason);
 
-    private static bool TryCreate(DecisionPacket publicRoot, int publicCombatVersion,
+    // Explicit startup-only opt-in, used only after the separately declared
+    // TheLanternKey owner boundary has been validated. Generic v1-v5 closures
+    // retain their original roster, power and room-owner requirements.
+    internal static bool TryCreateLanternStartup(DecisionPacket publicRoot,
         out NativeInitialShuffleCondition? condition, out string? reason)
+        => TryCreate(publicRoot, 5, out condition, out reason, lanternStartup: true);
+
+    private static bool TryCreate(DecisionPacket publicRoot, int publicCombatVersion,
+        out NativeInitialShuffleCondition? condition, out string? reason, bool lanternStartup = false)
     {
         condition = null;
         reason = null;
         try
         {
-            condition = Create(publicRoot, publicCombatVersion);
+            condition = Create(publicRoot, publicCombatVersion, lanternStartup);
             return true;
         }
         catch (Ineligible exception) { reason = exception.Message; return false; }
@@ -177,7 +184,8 @@ internal sealed class NativeInitialShuffleCondition
         catch (ArgumentException) { reason = "invalid_public_entry"; return false; }
     }
 
-    private static NativeInitialShuffleCondition Create(DecisionPacket root, int publicCombatVersion)
+    private static NativeInitialShuffleCondition Create(DecisionPacket root, int publicCombatVersion,
+        bool lanternStartup = false)
     {
         bool publicCombatV2 = publicCombatVersion >= 2;
         Require(root is { Status: "player_decision" or "card_choice", Observation: not null, Actions.Length: > 0 }, "active_decision_required");
@@ -229,9 +237,10 @@ internal sealed class NativeInitialShuffleCondition
             while (index < observation.History.Length && observation.History[index].Kind == "power_changed")
             {
                 var power = PublicJson.Read<StartupPower>(observation.History[index++].Detail);
-                Require(power is { Target: nameof(CorpseSlug), Id: nameof(RavenousPower), Amount: 5,
-                    TargetSlot: >= 0, SourceSlot: >= 0 } && power.TargetSlot == power.SourceSlot,
-                    "startup_power_not_certified");
+                if (!lanternStartup)
+                    Require(power is { Target: nameof(CorpseSlug), Id: nameof(RavenousPower), Amount: 5,
+                        TargetSlot: >= 0, SourceSlot: >= 0 } && power.TargetSlot == power.SourceSlot,
+                        "startup_power_not_certified");
                 startupPowers.Add(power);
             }
         while (index < observation.History.Length && observation.History[index].Kind == "draw")
@@ -250,8 +259,46 @@ internal sealed class NativeInitialShuffleCondition
             .SequenceEqual(Enumerable.Range(0, startupEnemies.Length))
             && startupEnemies.All(enemy => enemy.Id is not null && Models.TryGetValue(enemy.Id, out Type[]? types)
                 && types.Any(type => type.IsSealed && (ReviewedStartupMonsters.Contains(type)
-                    || (publicCombatV2 && type == typeof(CorpseSlug))))), "startup_monster_not_certified");
-        if (publicCombatV2)
+                    || (publicCombatV2 && type == typeof(CorpseSlug))
+                    || (lanternStartup && type == typeof(MysteriousKnight))))), "startup_monster_not_certified");
+        if (lanternStartup)
+        {
+            // Pinned TheLanternKey keeps the key as a pending SpecialCardReward;
+            // it never adds it to the deck. EventRoom.Prepare creates the Knight
+            // before the combat observer is attached. CombatEngine then performs
+            // PopulateCombatState's ordinary shuffle before AfterAddedToRoom and
+            // the first draw. MysteriousKnight's sealed hook calls the no-op base,
+            // then adds only self Strength 6 and Plating 6. In solo play Plating's
+            // AfterApplied preserves its amount; its first player-side hook gains
+            // enemy block 6. Neither power nor inherited FlailKnight's fixed RAM
+            // startup moves cards or consumes shuffle words. The existing entry
+            // listener guards above remain required for all dispatched hooks.
+            Require(root.Status == "player_decision" && observation.Turn == 1
+                && root.Actions.All(action => action.Revision == 0)
+                && observation.Powers.Length == 0 && observation.Enemies.Length == 1,
+                "lantern_initial_decision_required");
+            var lanternIntent = PublicJson.Read<LanternStartupIntent>(observation.History[index + 1].Detail);
+            Require(startupEnemies is [{ Slot: 0, Id: nameof(MysteriousKnight) }]
+                && lanternIntent is { Slot: 0, Id: nameof(MysteriousKnight), Intents: { } intents }
+                && intents.SequenceEqual(new[] { new PublicIntent("Attack", 17, 1) }),
+                "lantern_fixed_ram_startup_required");
+            Require(startupPowers.SequenceEqual(new[]
+            {
+                new StartupPower(nameof(MysteriousKnight), 0, 0, nameof(StrengthPower), 6),
+                new StartupPower(nameof(MysteriousKnight), 0, 0, nameof(PlatingPower), 6),
+            }), "lantern_exact_startup_powers_required");
+            var knight = observation.Enemies[0];
+            Require(knight is { Slot: 0, Id: nameof(MysteriousKnight), Hp: 108, MaxHp: 108, Block: 6 }
+                && knight.Intents.SequenceEqual(new[] { new PublicIntent("Attack", 17, 1) })
+                && knight.Powers.OrderBy(power => power.Id, StringComparer.Ordinal).SequenceEqual(new[]
+                {
+                    new PublicPower(nameof(PlatingPower), 6, ApplierSlot: 0),
+                    new PublicPower(nameof(StrengthPower), 6, ApplierSlot: 0),
+                }), "lantern_exact_startup_snapshot_required");
+            RequireSafeHooks(nameof(StrengthPower), typeof(PowerModel), lanternStartup: true);
+            RequireSafeHooks(nameof(PlatingPower), typeof(PowerModel), lanternStartup: true);
+        }
+        else if (publicCombatV2)
         {
             var slugSlots = startupEnemies.Where(enemy => enemy.Id == nameof(CorpseSlug)).Select(enemy => enemy.Slot);
             Require(startupPowers.Select(power => power.TargetSlot!.Value).SequenceEqual(slugSlots),
@@ -270,7 +317,8 @@ internal sealed class NativeInitialShuffleCondition
                 RequireSafeHooks(nameof(RavenousPower), typeof(PowerModel), ravenousV2: true);
             }
             Require(type.GetMethod(nameof(MonsterModel.AfterAddedToRoom))!.DeclaringType == typeof(MonsterModel)
-                || (publicCombatV2 && type == typeof(CorpseSlug)),
+                || (publicCombatV2 && type == typeof(CorpseSlug))
+                || (lanternStartup && type == typeof(MysteriousKnight)),
                 "startup_monster_hook_not_certified:" + enemy.Id);
         }
         // The requested draw count may depend on an unpublished room type or a safe relic
@@ -299,7 +347,7 @@ internal sealed class NativeInitialShuffleCondition
     }
 
     private static void RequireSafeHooks(string id, Type category, bool ravenousV2 = false, bool publicCombatV3 = false,
-        bool publicCombatV4 = false)
+        bool publicCombatV4 = false, bool lanternStartup = false)
     {
         Require(Models.TryGetValue(id, out Type[]? matches), "unknown_entry_model:" + id);
         Type[] candidates = matches.Where(type => category.IsAssignableFrom(type)).ToArray();
@@ -323,6 +371,10 @@ internal sealed class NativeInitialShuffleCondition
                 && hook.Name == nameof(AbstractModel.ModifyRewards)) continue;
             if (ravenousV2 && type == typeof(RavenousPower) && implementation.DeclaringType == typeof(RavenousPower)
                 && hook.Name == nameof(AbstractModel.AfterDeath)) continue;
+            if (lanternStartup && implementation.DeclaringType == type
+                && (type == typeof(StrengthPower) && hook.Name == nameof(AbstractModel.ModifyDamageAdditive)
+                    || type == typeof(PlatingPower) && hook.Name is nameof(AbstractModel.BeforeSideTurnStart)
+                        or nameof(AbstractModel.BeforeSideTurnEndEarly) or nameof(AbstractModel.AfterSideTurnStart))) continue;
             // CombatRoom.CompleteCombatOnceAsync/ResolveVictoryOnceAsync dispatch these only
             // after combat ends, so their earlier-run effects are already in the entry anchor.
             // In particular FishingRod.AfterCombatEnd cannot run before this initial draw prefix.
@@ -340,6 +392,7 @@ internal sealed class NativeInitialShuffleCondition
     private static void Require([DoesNotReturnIf(false)] bool value, string reason)
     { if (!value) throw new Ineligible(reason); }
     private sealed record StartupIntent(int Slot, string Id);
+    private sealed record LanternStartupIntent(int Slot, string Id, PublicIntent[] Intents);
     private sealed record StartupPower(string Target, int? TargetSlot, int? SourceSlot, string Id, decimal Amount);
     private sealed class Ineligible(string message) : Exception(message);
 }

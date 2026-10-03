@@ -1,5 +1,9 @@
 # M3–M6 engineering checkpoint
 
+The current final handoff and milestone disposition are in [M3_M6_FINAL_HANDOFF.md](M3_M6_FINAL_HANDOFF.md):2,362Worker/4,493Core(+3opt-in)/109guardedPython checks, with full-scope readiness still false. The following checkpoint text preserves earlier verified stages and must not override the final report.
+
+## Preserved constructed-v1 checkpoint
+
 Latest ordinary constructed native-tape source/API and strict full-policy action
 adapter pass **2,288 native tests and 85 guarded Python tests**. Core remains the
 separate unchanged-source result of4,493 passes/3opt-in skips. The actual native

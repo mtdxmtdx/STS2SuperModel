@@ -94,6 +94,51 @@ internal sealed class NativePublicCombatPrefixCondition
             packet?.Observation!.History[1].Detail, shuffle, hp, shuffleReason, hpReason, slugHp, drawPrefix, toadpoleHp) });
     }
 
+    /// <summary>
+    /// Startup-only certificate for the one typed TheLanternKey lifecycle. This
+    /// does not relax the ordinary/natural owner guards above or extend the
+    /// later Plating/Knight transition closure. Its fixed HP is created during
+    /// EventRoom.Prepare, before CombatEntering, and remains entirely native.
+    /// </summary>
+    internal static NativePublicCombatPrefixCondition CreateConstructedLanternStartup(DecisionPacket publicRoot,
+        NativeConstructedTapePrior prior)
+    {
+        ArgumentNullException.ThrowIfNull(publicRoot);
+        prior = prior.Freeze();
+        if (prior.EventOwner is not { } declared || prior.SchemaVersion != NativeConstructedTapePrior.EventOwnerVersion
+            || publicRoot.PublicEvidence is not { CompleteFromRunStart: false } evidence
+            || publicRoot.Observation?.RunContext is not { CompleteFromRunStart: false,
+                CombatEntryIndex: null, ActIndex: 1 } context || context.Floor != declared.FixtureFloor)
+            return new([], "declared_lantern_owner_required");
+        try { PublicEvidenceInput.ValidateProfile(prior.Execution, publicRoot); }
+        catch (ArgumentException) { return new([], "declared_lantern_public_profile_required"); }
+        var owners = evidence.Events.Where(e => e.Payload is PublicOwnerStarted
+            { OwnerKind: PublicEvidenceOwnerKind.Combat }).ToArray();
+        if (owners.Length != 1 || owners[0].OwnerOrdinal is not long owner)
+            return new([], "one_complete_lantern_combat_owner_required");
+        try { declared.ValidatePublicOwner(evidence, owners[0]); }
+        catch (ArgumentException) { return new([], "exact_lantern_public_owner_choices_required"); }
+        var globalGaps = evidence.Events.Where(e => e.OwnerOrdinal is null && e.Payload is PublicEvidenceGap).ToArray();
+        if (evidence.Events[0] is not { EventOrdinal: 0, OwnerOrdinal: null,
+                Payload: PublicEvidenceGap { Reason: PublicEvidenceGapReason.RunStartNotObserved } }
+            || globalGaps.Length != 1
+            || evidence.Events.Any(e => e.Payload is PublicRunStarted or PublicMapObserved or PublicMapChosen))
+            return new([], "only_declared_lantern_initial_gap_required");
+        var events = evidence.Events.Where(e => e.OwnerOrdinal == owner).ToArray();
+        var first = events.FirstOrDefault(e => e.Payload is PublicCombatDecision);
+        if (first?.Payload is not PublicCombatDecision { HistoryCompleteFromCombatStart: true })
+            return new([], "complete_lantern_startup_decision_required");
+        var packet = StartupPacket("Silent", 10, events, first, out string? reason);
+        NativeInitialShuffleCondition? shuffle = null;
+        if (packet is not null) NativeInitialShuffleCondition.TryCreateLanternStartup(packet, out shuffle, out reason);
+        // The original typed facts and parent stay untouched. No HP plan is
+        // armed after its native preparation has already occurred, and no later
+        // draw fact is admitted merely because the initial shuffle is safe.
+        return new(new() { [0] = new(0, owner, first.EventOrdinal,
+            packet?.Observation!.History[1].Detail, shuffle, null, reason,
+            "lantern_fixed_hp_prepared_before_combat_entry") });
+    }
+
     internal static NativePublicCombatPrefixCondition Create(PublicRunEvidence evidence)
     {
         ArgumentNullException.ThrowIfNull(evidence);

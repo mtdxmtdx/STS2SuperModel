@@ -181,13 +181,17 @@ exact declared parent, act/floor and option history. Run-start evidence remains
 missing, the natural combat count remains null, and ordinary v1/natural guards
 retain their previous requirements.
 
-This new owner path always uses ordinary independent tape rejection, including
-when `enableConditioning` is true. Its posterior profile is
-`owned-constructed-native-event-tape-conditional-v1-public-evidence-v2`; its
-sampler version is
-`nosl-constructed-native-event-tape-rejection-v1-public-evidence-v2`. There is no
-event-owner startup-conditioning certificate or throughput claim. The full v5
-packet is still matched exactly after source disposal.
+With `enableConditioning=true`, this owner path uses the separately versioned
+`owned-constructed-native-event-tape-shuffle-v2-public-evidence-v2` profile and
+`nosl-constructed-native-event-tape-shuffle-v2-public-evidence-v2` sampler. Its
+narrow [Lantern startup certificate](NATIVE_CONSTRUCTED_LANTERN_SHUFFLE.md) can
+condition only the initial shuffle. Fixed native HP and later draws remain
+unconditioned. Uncertified starts retain ordinary rejection under this version.
+With `enableConditioning=false`, the historical rejection profile
+`owned-constructed-native-event-tape-conditional-v1-public-evidence-v2` and sampler
+`nosl-constructed-native-event-tape-rejection-v1-public-evidence-v2` remain the
+reference path. These versions are bound before execution, not selected from
+successful samples. The full v5 packet is matched exactly after source disposal.
 
 Native victory stops after automatic settlement and before the first reward
 decision. The actual extra SpecialCardReward for LanternKey remains an unresolved

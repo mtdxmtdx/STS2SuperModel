@@ -66,6 +66,7 @@ public sealed class NativeConstructedLanternOwnerTests
         return NativeConstructedTapeDataset.CollectionContract.Create(new()
         {
             Prior = prior, CollectionId = "lantern-v1-compatibility-fixture", SourceDrawSeeds = [18001], WallBudgetSeconds = 30,
+            EnableConditioning = false,
         }, new()
         {
             Mode = "T0", ContinuationPolicyId = PublicContinuationPolicies.ReviewedId,
@@ -243,8 +244,8 @@ public sealed class NativeConstructedLanternOwnerTests
         var prior = OwnerPrior(victory);
         var packet = await DetachedRoot(prior);
         AssertOwnerEvidence(packet);
-        var source = new NativeConstructedTapeSource(packet, prior);
-        var detachedSource = new NativeConstructedTapeSource(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)), prior);
+        var source = new NativeConstructedTapeSource(packet, prior, enableConditioning: false);
+        var detachedSource = new NativeConstructedTapeSource(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)), prior, enableConditioning: false);
         Assert.False(source.UsesPrimitiveConditioning);
         Assert.False(detachedSource.UsesPrimitiveConditioning);
         Assert.Equal("owned-constructed-native-event-tape-conditional-v1-public-evidence-v2", source.PosteriorProfile);
@@ -327,7 +328,7 @@ public sealed class NativeConstructedLanternOwnerTests
             Deck = ["StrikeSilent", "DefendSilent", "Neutralize", "Survivor", "DaggerThrow", "CloakAndDagger", "Backflip", "PoisonedStab"],
         } };
         var packet = await DetachedRoot(prior);
-        var source = new NativeConstructedTapeSource(packet, prior);
+        var source = new NativeConstructedTapeSource(packet, prior, enableConditioning: false);
         Assert.False(source.UsesPrimitiveConditioning);
         var failure = await Assert.ThrowsAsync<PosteriorSamplingException>(() => source.SampleWorldAsync(101, 4));
         Assert.Equal(4, failure.Attempts);

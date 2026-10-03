@@ -1,0 +1,79 @@
+{
+  "schema": "nosl.constructed-lantern-shuffle.mixed-deck-diagnostic.v1",
+  "native_source_commit": "029f2c183f1069d8d32b2ce61b9ac633326e57a9",
+  "scope": "One fixed16-card declared owner setup already inspected in native unit tests; mixed-deck source-to-loss proof, not a fresh cohort, natural reachability, or admission",
+  "external_watchdog_seconds": 45,
+  "invocation_limit": 1,
+  "source_replacements": 0,
+  "formal_training": false,
+  "quarantined": true,
+  "expected_conditioning": "One initial native shuffle only; zero HP conditioning, no later draw extension; all failures retained",
+  "request": {
+    "op": "native_constructed_tape_candidates",
+    "purpose": "bounded-constructed-raw",
+    "options": {
+      "collectionId": "constructed-lantern-mixed-shuffle-v2-20261003",
+      "sourceDrawSeeds": [
+        44121
+      ],
+      "wallBudgetSeconds": 30,
+      "enableConditioning": true,
+      "prior": {
+        "schemaVersion": "nosl.constructed-native-event-owner-map-rewards-state-tape-prior.v1",
+        "eventOwner": {
+          "event": "TheLanternKey",
+          "act": "Hive",
+          "fixtureFloor": 1,
+          "choiceRule": "keep-the-key-then-fight-v1"
+        },
+        "setup": {
+          "encounter": "MysteriousKnightEventEncounter",
+          "deck": [
+            "StrikeSilent",
+            "StrikeSilent+",
+            "StrikeSilent",
+            "DefendSilent",
+            "DefendSilent+",
+            "DefendSilent",
+            "Neutralize+",
+            "Survivor",
+            "DeadlyPoison",
+            "BladeDance+",
+            "DaggerThrow",
+            "Backflip",
+            "Acrobatics",
+            "DodgeAndRoll",
+            "Dash",
+            "PoisonedStab"
+          ],
+          "potions": [
+            "FirePotion",
+            "BlockPotion"
+          ],
+          "relics": [
+            "BagOfPreparation"
+          ],
+          "hp": 70,
+          "maxHp": 70,
+          "gold": 110
+        },
+        "sourcePolicyId": "nosl-public-rules-v2",
+        "sourceDecisionHorizon": 48,
+        "rootSelection": "opening",
+        "decisionIndex": 0
+      }
+    },
+    "teacherOptions": {
+      "mode": "T0",
+      "continuationPolicyId": "nosl-public-rules-v2",
+      "explorationSeeds": [],
+      "evaluationSeeds": [
+        74121,
+        74122
+      ],
+      "maxPosteriorAttempts": 16,
+      "maxDecisions": 80,
+      "formalLabels": false
+    }
+  }
+}
