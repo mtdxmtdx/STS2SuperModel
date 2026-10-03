@@ -215,7 +215,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         }
         else if (!ReferenceEquals(Boundary.Room, boundary.Room))
             throw new InvalidOperationException("Native continuation crossed the selected combat settlement boundary");
-        _packet = Copy(packet);
+        _packet = PublicDecisionSnapshot.Copy(packet);
         var pending = _pendingAction = new(TaskCreationOptions.RunContinuationsAsynchronously);
         _next.TrySetResult(_packet);
         return await pending.Task.WaitAsync(_lifetime.Token);
@@ -304,7 +304,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (_fault is not null) ExceptionDispatchInfo.Capture(_fault).Throw();
         if (_stepping || _packet is null) throw new InvalidOperationException("No paused native decision boundary");
-        return Copy(_packet);
+        return PublicDecisionSnapshot.Copy(_packet);
     }
 
     public async Task<DecisionPacket> StepAsync(PublicAction action)
@@ -329,7 +329,7 @@ internal sealed class NativeRunWorld : ITeacherWorld, INativeRunControl
                 if (_fault is not null) ExceptionDispatchInfo.Capture(_fault).Throw();
             }
             _packets.Add(PublicJson.Serialize(next));
-            return Copy(next);
+            return PublicDecisionSnapshot.Copy(next);
         }
         finally { _stepping = false; }
     }

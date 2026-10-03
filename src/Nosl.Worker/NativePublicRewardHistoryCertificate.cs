@@ -4,6 +4,7 @@ using Sts2Sim.Core.Entities.Cards;
 using Sts2Sim.Core.Entities.Players;
 using Sts2Sim.Core.Models;
 using Sts2Sim.Core.Models.PotionPools;
+using Sts2Sim.Core.Models.Relics;
 using Sts2Sim.Core.Odds;
 using Sts2Sim.Core.Random;
 using Sts2Sim.Core.Runs;
@@ -14,11 +15,13 @@ internal sealed record NativePublicRewardHistoryTarget(IReadOnlyList<LabelCardRa
     float PotionThreshold, NativeGoldEnvelopeCertificate GoldCertificate);
 
 /// <summary>
-/// Optional source-closed PUBLIC prefix, never a sampled-world normalizer. The nine
+/// Optional source-closed PUBLIC prefix, never a sampled-world normalizer. The eleven
 /// reviewed Neow positives do not update either pity state. NewLeaf's default
 /// transformation uses one Niche index, with no reward rarity or potion roll.
 /// ScrollBoxes uses fixed-rarity indices, ArcaneScroll uses Uniform/Other, and
 /// Pomander upgrades one public starter. A complete unchanged shop leave is neutral.
+/// NeowsTorment adds one fixed NeowsFury; LavaRock's reward override is inactive
+/// only under the separately proved ordinary weak-combat prefix.
 /// WoodCarvings and SunkenStatue
 /// have no random reward generation; Gorge uses Source.Other/Uniform. The first three
 /// native weak encounters have no escape, summon, or extra-reward behavior. Every base
@@ -28,14 +31,16 @@ internal sealed record NativePublicRewardHistoryTarget(IReadOnlyList<LabelCardRa
 internal static class NativePublicRewardHistoryCertificate
 {
     private static readonly HashSet<string> Neow = ["FishingRod", "LostCoffer", "LeadPaperweight", "WingedBoots", "PreciseScissors", "NewLeaf",
-        "ScrollBoxes", "ArcaneScroll", "Pomander"];
+        "ScrollBoxes", "ArcaneScroll", "Pomander", "LavaRock", "NeowsTorment"];
     private static readonly HashSet<string> Relics = ["RingOfTheSnake", "FishingRod", "LostCoffer",
-        "LeadPaperweight", "WingedBoots", "PreciseScissors", "NewLeaf", "ScrollBoxes", "ArcaneScroll", "Pomander", "SwordOfStone"];
+        "LeadPaperweight", "WingedBoots", "PreciseScissors", "NewLeaf", "ScrollBoxes", "ArcaneScroll", "Pomander",
+        "LavaRock", "NeowsTorment", "SwordOfStone"];
     private static readonly string[] RewardHooks = [nameof(AbstractModel.ModifyRewards),
         nameof(AbstractModel.BeforeCombatRewardOffered), nameof(AbstractModel.ShouldForcePotionReward),
         nameof(AbstractModel.ModifyCardRewardCreationOptions), nameof(AbstractModel.ModifyCardRewardCreationOptionsLate),
         nameof(AbstractModel.TryModifyCardRewardOptions), nameof(AbstractModel.TryModifyCardRewardOptionsLate),
-        nameof(AbstractModel.TryModifyCardRewardOptionLate), nameof(AbstractModel.TryEnableCardRewardReroll)];
+        nameof(AbstractModel.TryModifyCardRewardOptionLate), nameof(AbstractModel.AfterModifyingCardRewardOptions),
+        nameof(AbstractModel.TryModifyCardRewardAlternatives), nameof(AbstractModel.TryEnableCardRewardReroll)];
 
     internal static bool TryRarityOffsetBeforeOwner(PublicRunEvidence evidence, long ownerOrdinal, out float offset)
     {
@@ -113,12 +118,23 @@ internal static class NativePublicRewardHistoryCertificate
 
         bool ClosedPrefix(long through)
         {
-            foreach (var e in events.Take(checked((int)through + 1)))
+            var prefix = events.Take(checked((int)through + 1)).ToArray();
+            // LavaRock.ModifyRewards returns before any draw unless BOTH the
+            // supplied room type and native current room are Act0 Boss. Every
+            // combat in this prefix must instead have the public direct-map
+            // first-three weak proof; the runtime gold boundary independently
+            // validates Monster/current room/encounter/act before conditioning.
+            // This is an explicit context exception, never a registry-wide waiver.
+            bool lavaRockInactive = choice.Key == nameof(LavaRock) && prefix
+                .Where(e => e.Payload is PublicOwnerStarted { OwnerKind: PublicEvidenceOwnerKind.Combat })
+                .All(e => e.Payload is PublicOwnerStarted { ActIndex: 0, ParentOwnerOrdinal: null, CompleteFromOwnerStart: true }
+                    && weakOwners.ContainsKey(e.OwnerOrdinal!.Value));
+            foreach (var e in prefix)
             {
                 if (e.Payload is PublicEvidenceGap) return false;
                 PublicEvidenceAssets? assets = e.Payload switch { PublicRunStarted r => r.Assets,
                     PublicOwnerEnded end => end.Assets, PublicCombatFact f => f.Assets, _ => null };
-                if (assets is not null && !NeutralInventory(assets)) return false;
+                if (assets is not null && !NeutralInventory(assets, lavaRockInactive)) return false;
                 if (e.Payload is PublicOffersObserved offer && (offer.ReplacesOfferEventOrdinal is not null
                     || offer.Groups.Any(g => g.GroupKind != PublicOfferGroupKind.Primary))) return false;
                 if (e.Payload is PublicOptionChosen selected && selected.Key == "card:reroll") return false;
@@ -176,7 +192,7 @@ internal static class NativePublicRewardHistoryCertificate
     private static bool CompleteNeutralNeowBoundary(IReadOnlyList<PublicRunEvidenceEvent> events,
         PublicEvidenceAssets before, string relic, CharacterModel character)
     {
-        if (relic is not ("ScrollBoxes" or "ArcaneScroll" or "Pomander")) return true;
+        if (relic is not ("ScrollBoxes" or "ArcaneScroll" or "Pomander" or "LavaRock" or "NeowsTorment")) return true;
         // These additions require the native starter inventory and the complete
         // acquisition boundary. An arbitrary child or a partial public grant is
         // not evidence that the initial pity states survived unchanged.
@@ -185,7 +201,7 @@ internal static class NativePublicRewardHistoryCertificate
         if (!before.Relics.Select(r => r.Id).SequenceEqual(new[] { "RingOfTheSnake" })
             || !before.Deck.Select(c => c.Id).Order(StringComparer.Ordinal).SequenceEqual(starter.Order(StringComparer.Ordinal))
             || before.Deck.Any(c => !PlainCard(c))) return false;
-        int end = relic == "ArcaneScroll" ? 4 : 8;
+        int end = relic is "ArcaneScroll" or "LavaRock" or "NeowsTorment" ? 4 : 8;
         if (events.Count <= end || events[end] is not { OwnerOrdinal: 0, Payload: PublicOwnerEnded
                 { Outcome: PublicEvidenceOwnerOutcome.Completed, Assets: not null } ended }) return false;
         var after = ended.Assets!;
@@ -195,6 +211,12 @@ internal static class NativePublicRewardHistoryCertificate
             || before.PotionSlots != after.PotionSlots || !before.Potions.SequenceEqual(after.Potions)
             || before.OrbSlots != after.OrbSlots || before.CardRemovalsUsed != after.CardRemovalsUsed) return false;
         var pool = character.CardPool.GetUnlockedCards(PlayerUnlockState.AllUnlocked(), false).ToArray();
+        if (relic == "LavaRock") return SameCards(before.Deck, after.Deck);
+        if (relic == "NeowsTorment")
+        {
+            var fury = (CardModel)ModelDb.Card<Sts2Sim.Core.Models.Cards.NeowsFury>().MutableClone();
+            return SameCards(before.Deck.Append(PublicCardDetailsBuilder.Card(fury)), after.Deck);
+        }
         if (relic == "ArcaneScroll")
         {
             var additions = after.Deck.ToList();
@@ -255,12 +277,17 @@ internal static class NativePublicRewardHistoryCertificate
         return true;
     }
 
-    private static bool NeutralInventory(PublicEvidenceAssets assets)
+    private static bool NeutralInventory(PublicEvidenceAssets assets, bool lavaRockInactive)
     {
         if (assets.Relics.Any(r => !Relics.Contains(r.Id) || r.Details is null
             || !r.Details.TryGetValue("isWax", out int wax) || wax != 0
             || !r.Details.TryGetValue("isMelted", out int melted) || melted != 0
             || !r.Details.TryGetValue("stackCount", out int count) || count != 1)) return false;
+        // A used or missing LavaRock state is outside the reviewed pre-boss
+        // history, even though the native used-up branch is also an early return.
+        if (assets.Relics.Any(r => r.Id == nameof(LavaRock) && (!lavaRockInactive
+            || !r.Details.TryGetValue("hasTriggered", out int triggered) || triggered != 0
+            || !r.Details.TryGetValue("isUsedUp", out int used) || used != 0))) return false;
         var models = new List<AbstractModel>();
         foreach (string id in assets.Deck.Select(c => c.Id).Distinct())
         { var model = ModelDb.All<CardModel>().SingleOrDefault(c => c.GetType().Name == id); if (model is null) return false; models.Add(model); }
@@ -269,6 +296,8 @@ internal static class NativePublicRewardHistoryCertificate
         foreach (string id in assets.Potions.OfType<string>())
         { var model = ModelDb.All<PotionModel>().SingleOrDefault(c => c.GetType().Name == id); if (model is null) return false; models.Add(model); }
         return models.All(m => m.GetType().GetMethods().Where(method => RewardHooks.Contains(method.Name))
-            .All(method => method.DeclaringType == typeof(AbstractModel)));
+            .All(method => method.DeclaringType == typeof(AbstractModel)
+                || lavaRockInactive && m is LavaRock && method.Name == nameof(AbstractModel.ModifyRewards)
+                    && method.DeclaringType == typeof(LavaRock)));
     }
 }

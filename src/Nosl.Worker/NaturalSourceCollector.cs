@@ -305,7 +305,7 @@ public static class NaturalSourceCollector
             if (choice is null) await ReleaseChoiceOriginAsync();
             else if (_choiceOrigin is not null) _choicePackets.Add(PublicJson.Serialize(packet));
             var room = (CombatRoom)run.CurrentRoom!;
-            NaturalSourceRoot SnapshotRoot() => new(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)),
+            NaturalSourceRoot SnapshotRoot() => new(PublicDecisionSnapshot.Copy(packet),
                 sourceRun, $"{sourceRun}/combat-{CombatsEntered:D4}", _combatDecision,
                 run.CurrentActIndex, run.TotalFloor, room.RoomType.ToString(), room.EncounterName, actualSeed,
                 _startHp, _startMaxHp, _startGold, _permanentDeck.ToArray(), Trace.ToArray(), policy.Id, options.OutsideCombatScript, options.PublicMapObservationProfile);
@@ -322,10 +322,10 @@ public static class NaturalSourceCollector
                 if (onRoot is not null)
                     await onRoot(root, Boundary());
             }
-            // JSON boundary prevents a policy from receiving or mutating native objects.
+            // Mutable policy DTOs are detached; the evidence prefix is already immutable.
             var selected = ownedControl is null ? null
-                : await ownedControl.DecideAsync(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)), Boundary());
-            selected ??= policy.Choose(PublicJson.Read<DecisionPacket>(PublicJson.Serialize(packet)));
+                : await ownedControl.DecideAsync(PublicDecisionSnapshot.Copy(packet), Boundary());
+            selected ??= policy.Choose(PublicDecisionSnapshot.Copy(packet));
             string token = PublicJson.Serialize(selected);
             var valid = actions.SingleOrDefault(a => PublicJson.Serialize(a) == token)
                 ?? throw new InvalidOperationException("Natural policy returned an illegal public action");

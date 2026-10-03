@@ -1,0 +1,339 @@
+{
+  "format": "nosl.protection-metadata-recovery-receipt.v1",
+  "date": "2026-10-03",
+  "documentation_base_commit": "561f9ab55ac748db15efdb6694daece83f61ac13",
+  "recovery_validation_commit": "3ae74c74f292dc3215b3398d38e7ca9b191655f3",
+  "original_archive_source_commit": "8ad033030205f064946f7ac42572fe640edf23fc",
+  "status": {
+    "first5000_prepared_protection_restored": true,
+    "original_targets_restored_or_inspected": false,
+    "historical_protection_complete": false,
+    "can_admit_or_train": false,
+    "later_observed_history_still_missing": true
+  },
+  "artifact_root": "artifacts/recovery-protection-metadata",
+  "original": {
+    "all_protected_public_aliases": 5304,
+    "all_tokens": 18207,
+    "base_registry_sha256": "11018097f16541154db11908163c2bd7e79ee94f5217932fbbb43ec7eab0b4f4",
+    "component_splits": {
+      "test": 244,
+      "train": 2022,
+      "validation": 267
+    },
+    "components": 2533,
+    "cross_split_conflicts": 0,
+    "frozen_test_digests": 494,
+    "frozen_test_shards": [
+      {
+        "bytes": 10704382,
+        "rows": 494,
+        "sha256": "8c684b1c0bba7be4e97d8e5ce5151a835404b2d7d18cc84f71d7af1a2590de72"
+      }
+    ],
+    "manifest_sha256": "4346cb9643900138fe12fa6bd64cacb17b01bd383a178ef3e90b29bac3dbe997",
+    "protected_test_public_aliases": 524,
+    "seal_verification": "Original manifest/stage/state checksums and descriptor agreement verified. Test member name/size verified via ZIP central directory only; test payload never opened or hashed separately.",
+    "seen_public_digests": 5000,
+    "split_state_sha256": "243a5c58e591dfcda2fa75bc008526f1ceccf4e8d214b4b1638b0a962034237b",
+    "state_cumulative_attempts": 5311
+  },
+  "archive_verification": {
+    "standalone_volumes": [
+      {
+        "bytes": 9003342,
+        "name": "nosl-first-pilot-data-5000-volume-1-of-3(1).zip",
+        "sha256": "924dfa8c858c3ced0d04ca5a66e71710100b443a41af15b46f9e747d2e4c6ba0"
+      },
+      {
+        "bytes": 9035449,
+        "name": "nosl-first-pilot-data-5000-volume-2-of-3(1).zip",
+        "sha256": "3a04f9e370c74fa37c64ec00c0ffb881100f6de36470f7e1fc68da0326bd5ea7"
+      },
+      {
+        "bytes": 7675173,
+        "name": "nosl-first-pilot-data-5000-volume-3-of-3(1).zip",
+        "sha256": "fe4586e9cc283145dc413eef8df57f8ef0d72348d827fe289f4741176358c8d6"
+      }
+    ],
+    "concatenated": false,
+    "recovery_manifest_references": 621,
+    "all_referenced_names_present": true,
+    "all_central_directory_sizes_match": true,
+    "selected_metadata_crc32_and_sha256_verified": true,
+    "nonmetadata_payload_crc_or_sha_verified": false,
+    "scope": "Whole-volume SHA256 and selected metadata CRC32/SHA256 only. Frozen test seal checked through metadata agreement; target payload not opened or rehashed."
+  },
+  "attempts": {
+    "journal_files": 7,
+    "rows": 10131,
+    "unique_source_indices": 10131,
+    "statuses": {
+      "accepted": 5311,
+      "failed_attempt": 4813,
+      "interrupted_attempt": 7
+    },
+    "source_battles": 2628,
+    "prepared_component_count": 2533,
+    "journal_only_source_groups_added": 95,
+    "distinct_public_digests": 5304,
+    "all_journal_public_digests_in_original_state": true,
+    "source_alias_derivation": "Conservative source-only run/combat/family aliases derived from archived seed_prefix and source_battle_index using the repository journal-provenance naming contract. Every journal public digest cross-checks against its original component and all three derived aliases. The old v3 generator is not executed; its unsupported current-importer version is not bypassed.",
+    "state_cumulative_attempts_meaning": "5311 records supplied to preparation; not the 10131 complete generation-attempt denominator"
+  },
+  "map_diagnostics": {
+    "response_files": 11,
+    "distinct_public_source_metadata_rows": 20,
+    "distinct_attempt_draw_metadata_rows": 20,
+    "source_draw_seeds": [
+      24001,
+      24002,
+      24003,
+      24004,
+      24005,
+      24006,
+      24007,
+      24008,
+      24101,
+      24102,
+      24103,
+      24104,
+      24105,
+      24106,
+      24107,
+      24108,
+      24109,
+      24110,
+      24111,
+      24112
+    ],
+    "cohorts": "Explicitly available inspected map v4/v5/v6 responses only; development sources, not fresh holdout"
+  },
+  "extended_registry": {
+    "all_historical_aliases_and_owners_preserved": true,
+    "base_frozen_test_seals_preserved": true,
+    "canonical_object_sha256": "fc54217445b59bcea5427b16b13f3ef9fa9f1b5ca6dc1298244fc0b77ae9af10",
+    "components": 2648,
+    "owner_meaning": "New source-only/diagnostic components use train solely as a conservative observed/excluded owner, not a claim of training or original assigned split. Existing split owners remain exact.",
+    "path": "INCOMPLETE-current-protection-v5.json",
+    "sha256": "fff4b77ea36e1ac36dfabfc9edf9d9ad70bf150bd7f820c7d9028a211acfd559"
+  },
+  "ownership_safety": {
+    "diagnostic_owner": "train",
+    "meaning": "Opaque observed-source exclusion tag for 95 journal-only and 20 map groups; no historical train assignment inferred",
+    "original_owners_preserved": true,
+    "original_frozen_seal_preserved": true,
+    "all_2648_actual_component_probes_excluded": true,
+    "all_three_owner_tags_excluded": true,
+    "generic_legacy_importer_rejects_v5_wrapper": true,
+    "generic_legacy_unwrap_or_relabel_forbidden": true,
+    "completeness_flag_location": "This receipt and local sidecar; strict registry schema does not encode historical completeness. Structural validity does not authorize admission."
+  },
+  "missing_later_metadata": [
+    {
+      "collection": "balanced 160-attempt / 40-battle block, 81 decisions / 73 effective roots",
+      "known_manifest_sha256": "adf545cd6ddd13d00a1323ae42318cea4b24797c2d59928b199fb9a3b7ed7db1",
+      "reason": "Not contained in these first5000 volumes or current artifact filename inventory",
+      "required": "current40-development-protected-final manifest/split_state/protection plus complete 160-attempt source identity metadata"
+    },
+    {
+      "collection": "16-source constructed policy evaluation",
+      "reason": "Aggregate documentation is not a source identity registry",
+      "required": "All observed public/source identities including failures and evaluation-only source aliases"
+    },
+    {
+      "collection": "fixed natural 200-root cohort",
+      "reason": "Not contained in these first5000 volumes or current artifact filename inventory",
+      "required": "All 200 inspected public/source metadata and raw failed-attempt aliases"
+    },
+    {
+      "collection": "fresh-native regression 12 roots / 3 recorded runs plus earlier unsupported attempts",
+      "reason": "Published documentation describes it but registry/source metadata files are absent",
+      "required": "Historical 2579-component registry and later regression source metadata; new validation ownership must come from actual split state"
+    },
+    {
+      "collection": "other earlier native/constructed development diagnostics",
+      "reason": "Only explicitly available map v4/v5/v6 responses are projected; archive and local inventory cannot establish omitted histories",
+      "required": "Complete metadata-only source and public alias inventory, with prior split ownership where assigned"
+    }
+  ],
+  "surviving_archive_search": {
+    "method": "ZIP central-directory names and sizes only; ZipFile.open overridden to raise during scan",
+    "zip_archives_inspected": 14,
+    "archive_inventory": [
+      {
+        "workspace_root": "scratch",
+        "path": "nosl-authorized-original-archive/STS2SuperModel-map-origin-v3-4d888e5-recovery(1).zip",
+        "bytes": 5165100,
+        "file_members": 57,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "scratch",
+        "path": "nosl-authorized-original-archive/verified-package/source.zip",
+        "bytes": 4366090,
+        "file_members": 2741,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "scratch",
+        "path": "nosl-authorized-pilot-metadata/archives/nosl-first-pilot-data-5000-volume-1-of-3(1).zip",
+        "bytes": 9003342,
+        "file_members": 16,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "scratch",
+        "path": "nosl-authorized-pilot-metadata/archives/nosl-first-pilot-data-5000-volume-2-of-3(1).zip",
+        "bytes": 9035449,
+        "file_members": 179,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "scratch",
+        "path": "nosl-authorized-pilot-metadata/archives/nosl-first-pilot-data-5000-volume-3-of-3(1).zip",
+        "bytes": 7675173,
+        "file_members": 430,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "shared",
+        "path": "nosl-component-recovery/STS2SuperModel-unpublished-components-recovery-20261003.zip",
+        "bytes": 68350,
+        "file_members": 6,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "shared",
+        "path": "nosl-recovery-checkpoint-f72b551/STS2SuperModel-recovered-map-foundation-f72b551.zip",
+        "bytes": 3827789,
+        "file_members": 9,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "shared",
+        "path": "nosl-v4-complete-backup/STS2SuperModel-map-v4-2e4a33d-recovery.zip",
+        "bytes": 7550993,
+        "file_members": 63,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "shared",
+        "path": "nosl-v4-complete-backup/source.zip",
+        "bytes": 4449249,
+        "file_members": 2764,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "shared",
+        "path": "nosl-v5-completed-backup/STS2SuperModel-v5-completed-e17eac6-recovery.zip",
+        "bytes": 8010499,
+        "file_members": 68,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "shared",
+        "path": "nosl-v5-component-backup/STS2SuperModel-v5-components-a6ee771-recovery.zip",
+        "bytes": 4044931,
+        "file_members": 5,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "shared",
+        "path": "nosl-v5-component-backup/source.zip",
+        "bytes": 4479334,
+        "file_members": 2771,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "shared",
+        "path": "nosl-v5-verified-backup/STS2SuperModel-v5-verified-0ef7bba-recovery.zip",
+        "bytes": 7845731,
+        "file_members": 64,
+        "metadata_payloads_opened_during_inventory": 0
+      },
+      {
+        "workspace_root": "shared",
+        "path": "nosl-v5-verified-backup/source.zip",
+        "bytes": 4512337,
+        "file_members": 2781,
+        "metadata_payloads_opened_during_inventory": 0
+      }
+    ],
+    "named_missing_cohort_identity_files_found": false,
+    "potential_additional_diagnostic_metadata": {
+      "archive": "nosl-authorized-original-archive/STS2SuperModel-map-origin-v3-4d888e5-recovery(1).zip",
+      "members": [
+        "evidence/reports/map-public-v3/candidate-boundary/fresh-source24006-eval601-602-v2/bound-attempts.json",
+        "evidence/reports/map-public-v3/candidate-boundary/fresh-source24006-eval601-602-v2/raw-attempts.json"
+      ],
+      "payloads_opened": false,
+      "source_draw_seed_already_excluded": 24006,
+      "qualification": "Filename candidates only. Contents and additional aliases were not inspected or restored by this audit."
+    },
+    "limits": [
+      "Nested archive payloads were not opened; separately materialized source.zip files were inventoried",
+      "Compressed TAR archives were not decompressed; this is not a claim about all possible payloads in every surviving archive",
+      "Denied old Library references were not retried and no alternative access route was used"
+    ]
+  },
+  "validation": {
+    "original_metadata_registry": true,
+    "v5_registry": true,
+    "all_original_aliases_and_owners_preserved": true,
+    "focused_synthetic_regressions": {
+      "passed": 5,
+      "failed": 0,
+      "new_run_during_receipt_documentation": false
+    },
+    "exclusion_sources_sha256": {
+      "python/nosl/data.py": "c02c588b9d5e7299311c8275e901b1c7338d0fe5e70f2c5fd88a692ea88b1568",
+      "python/nosl/data_v5.py": "5c0945de5fa60ee24895c79d0b97cec9b0aeb8379316411f9aea364ab9d71112",
+      "python/nosl/native_policy_v5.py": "98e0106626fbe8960ca49a0dc2b2d481eaf9d5515f30f8f497974329aa6548cc",
+      "python/nosl/prepare_v5.py": "c6c8210baf97e984d804aca11d97435d5f060dfb9c8c6bf3eec91c02e8215086",
+      "python/nosl/protection_v5.py": "df7e6b5496026b2a7c0e0c29ef3d610f0a00dd1cd9c0f8f541b0ebe969239bd0",
+      "tools/prepare_dataset.py": "d5a9d23d96fddf46d093e7db943e53c3617940e53e04d67f5fc3e92b5a5e58a0"
+    },
+    "exclusion_sources_unchanged_at_documentation_base": {
+      "python/nosl/data.py": true,
+      "python/nosl/data_v5.py": true,
+      "python/nosl/native_policy_v5.py": true,
+      "python/nosl/prepare_v5.py": true,
+      "python/nosl/protection_v5.py": true,
+      "tools/prepare_dataset.py": true
+    },
+    "documentation_checks": [
+      "JSON parsing",
+      "cross-check receipt constants against local verification report",
+      "git diff --check"
+    ],
+    "build_or_cpu_heavy_run_during_timed_probe": false
+  },
+  "local_evidence": [
+    "README.md",
+    "verification-report.json",
+    "exclusion-guard-verification.json",
+    "archive-filename-inventory.json",
+    "first5000-base-protection.json",
+    "first5000-with-attempts-protection-v5.json",
+    "INCOMPLETE-current-protection-v5.json",
+    "first5000-attempt-identity-status.jsonl",
+    "first5000-attempt-source-metadata.jsonl",
+    "map-v4-v5-v6-source-metadata.jsonl",
+    "original-metadata/",
+    "protection-focused-tests.log",
+    "recover_metadata.py",
+    "verify_exclusion_guards.py"
+  ],
+  "operations": {
+    "target_or_outcome_payloads_opened": false,
+    "checkpoint_opened": false,
+    "volumes_testzip_called": false,
+    "data_generation": false,
+    "new_backward_calls": 0,
+    "new_optimizer_steps": 0,
+    "model_or_corpus_modified": false,
+    "shared_main_worktree_modified": false,
+    "multi_megabyte_registry_or_archive_tracked": false
+  }
+}
