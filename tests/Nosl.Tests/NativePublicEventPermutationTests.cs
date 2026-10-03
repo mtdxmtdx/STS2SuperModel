@@ -14,6 +14,20 @@ namespace Nosl.Tests;
 
 public sealed class NativePublicEventPermutationTests
 {
+    [Theory]
+    [InlineData("BIRD,TORUS", "WoodCarvings")]
+    [InlineData("BIRD,SNAKE,TORUS", "WoodCarvings")]
+    [InlineData("GRAB_SWORD,DIVE_INTO_WATER", "SunkenStatue")]
+    [InlineData("GORGE,SEARCH", "RoomFullOfCheese")]
+    public void RecoveredEventSignaturesRequireTheWholeNativeFirstPage(string keys, string expected)
+    {
+        var options = keys.Split(',').Select(key => new PublicVisibleOption(key, false)).ToImmutableArray();
+        Assert.Equal(expected, NativeEventSelectionCertificate.Identify(new(options)));
+        Assert.Null(NativeEventSelectionCertificate.Identify(new(options.Reverse().ToImmutableArray())));
+        Assert.Null(NativeEventSelectionCertificate.Identify(new(options.RemoveAt(options.Length - 1))));
+        Assert.Null(NativeEventSelectionCertificate.Identify(new(options.SetItem(0, new(options[0].Key, false, 1)))));
+    }
+
     private static NativeTapePrior Prior => new()
     {
         SchemaVersion = NativeTapePrior.RewardsVersion,

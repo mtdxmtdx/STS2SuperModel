@@ -276,13 +276,17 @@ internal static class NativeEventSelectionCertificate
     }
 
     // Exhaustive candidate exclusion is source-pinned to GenerateInitialOptions
-    // of every entry in the two pools above. These three first-page key sequences
+    // of every entry in the two pools above. These six first-page key families
     // are unique, including all dynamic keys/locked variants of their competitors.
     // NO_OPTIONS alone is intentionally ambiguous and never identifies SelfHelpBook.
     internal static string? Identify(PublicOptionsObserved options)
     {
         if (options.Options.Any(o => o.Price is not null)) return null;
         string[] keys = options.Options.Select(o => o.Key).ToArray();
+        if (keys.SequenceEqual(new[] { "BIRD", "TORUS" })
+            || keys.SequenceEqual(new[] { "BIRD", "SNAKE", "TORUS" })) return "WoodCarvings";
+        if (keys.SequenceEqual(new[] { "GRAB_SWORD", "DIVE_INTO_WATER" })) return "SunkenStatue";
+        if (keys.SequenceEqual(new[] { "GORGE", "SEARCH" })) return "RoomFullOfCheese";
         if (keys.SequenceEqual(new[] { "DECIPHER", "SMASH" })) return "TabletOfTruth";
         if (keys.SequenceEqual(new[] { "BLOODY_INK", "TENTACLE_QUILL", "PRICKLY_SPONGE" })) return "WaterloggedScriptorium";
         if (keys.Length == 3 && (keys[0] is "READ_THE_BACK" or "READ_THE_BACK_LOCKED")

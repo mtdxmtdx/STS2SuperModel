@@ -31,7 +31,7 @@ internal static class NativeTapeReplayDataset
         ? ImplementationVersion + "-public-evidence-v1" : ImplementationVersion;
 
     internal static string ImplementationFor(NativeTapePrior prior) => prior.UsesRewardsProvenance
-        ? "nosl-native-rewards-state-tape-conditional-v7-public-evidence-v1" : ImplementationFor(prior.Execution);
+        ? "nosl-native-rewards-state-tape-conditional-v10-public-evidence-v1" : ImplementationFor(prior.Execution);
     internal static string DatasetFor(NativeTapePrior prior) => prior.UsesRewardsProvenance
         ? "nosl.native-rewards-tape-replay-development.v1" : DatasetVersion;
 
