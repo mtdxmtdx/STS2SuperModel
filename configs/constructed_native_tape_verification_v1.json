@@ -1,6 +1,6 @@
 {
   "schema": "nosl.constructed-native-tape.verification.v1",
-  "status": "NATIVE_CORE_API_VERIFIED_ACTION_ADAPTER_IN_PROGRESS",
+  "status": "NATIVE_CORE_API_AND_FULL_POLICY_ENGINEERING_VERIFIED",
   "native_source_commit": "a3d9895628a664c71e12b3d54af9d0edc632ce3c",
   "native_source_tree": "05fd53d48d5906a880c62e24a91b4d96314c89cf",
   "runtime_artifacts": "artifacts/constructed-tape-v1-build",
@@ -100,5 +100,7 @@
   "new_fitting_loops": 0,
   "production_admission": false,
   "quarantined": true,
-  "formal_training": false
+  "formal_training": false,
+  "full_policy_verification": "configs/m6_current_integration_constructed_v1.json",
+  "mixed_deck_verification": "configs/native_constructed_breadth_verification_v1.json"
 }

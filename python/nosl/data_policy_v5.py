@@ -65,6 +65,9 @@ def validate_record(record, config):
     # This validates all graph, history and exact anchor data before any target
     # arithmetic or inherited mechanics encoder can strip an extension.
     validate_targets(targets, public, config)
+    if isinstance(audit, dict) and audit.get("source_kind") == "constructed_native_tape_action_fixture_v1":
+        from .constructed_native_policy_v5 import validate_record as validate_constructed_tape_record
+        return validate_constructed_tape_record(record, config)
     if isinstance(audit, dict) and audit.get("source_kind") == "constructed_empirical_plan_fixture":
         # Only this source-backed engineering subtype omits native seed claims.
         # Independently revalidate exact raw evidence and regenerate every field;
@@ -196,21 +199,35 @@ class PolicyDatasetV5:
             result[key] = policy_producer_metadata(receipt, self.config)
         return result
 
+    def engineering_source_metadata(self):
+        """All-attempt engineering aliases, without native receipt authority."""
+        self.verify_integrity()
+        result = {}
+        for record in self._records:
+            if record["audit_only"]["source_kind"] == "constructed_native_tape_action_fixture_v1":
+                from .constructed_native_policy_v5 import all_attempt_metadata
+                key = record["audit_only"]["source_artifact_sha256"]
+                metadata = all_attempt_metadata(record, self.config)
+                require(key not in result or result[key] == metadata, "constructed_source_metadata_changed")
+                result[key] = metadata
+        return [row for rows in result.values() for row in rows]
+
 
 def validate_isolation(datasets, protection):
     """Union all source/public aliases before eligibility; protect all old splits."""
     validate_protection(protection)
-    rows, splits, producer_metadata = [], [], {}
+    rows, splits, producer_metadata, engineering_metadata = [], [], {}, []
     for split in ("train", "validation"):
         dataset = datasets[split]
         dataset.verify_integrity()
         rows.extend(dataset.records); splits.extend([split] * len(dataset))
+        engineering_metadata.extend(dataset.engineering_source_metadata())
         for key, metadata in dataset.producer_metadata(protection).items():
             require(key not in producer_metadata or producer_metadata[key] == metadata, "inconsistent_producer_metadata")
             producer_metadata[key] = metadata
     # Metadata from failed, excluded and unexecuted attempts has no new split
     # owner, but participates in every transitive source/public alias union.
-    metadata = [row for items in producer_metadata.values() for row in items]
+    metadata = [*engineering_metadata, *(row for items in producer_metadata.values() for row in items)]
     groups, tokens, historical = group_records([*rows, *metadata], protection["components"])
     require(all(len(owners) == 1 for owners in historical.values()), "historical_cross_split_bridge")
     protected = {token for component in protection["components"].values() for token in component["tokens"]}

@@ -1,0 +1,839 @@
+{
+  "schema": "nosl.constructed-native-tape.breadth-verification.v1",
+  "status": "BOUNDED_MIXED_DECK_DIAGNOSTIC_COMPLETE_NOT_PRODUCTION_ADMISSION",
+  "native_source_commit": "a3d9895628a664c71e12b3d54af9d0edc632ce3c",
+  "predeclared_spec": "configs/native_constructed_breadth_probe_v1.json",
+  "predeclared_spec_sha256": "c0c279e52812b237f0b33cf19e67d2d89f5bb6f4827c74673af2b2b37821abd8",
+  "bound_request_list_sha256": "d3119334e8abd606daa08c94622264117e3d12e5e58a210da219bb0695518d06",
+  "source_attempts": 12,
+  "distinct_configured_families": 6,
+  "distinct_public_roots": 12,
+  "all_attempt_statuses": {
+    "posterior_exhausted": 6,
+    "recorded_complete": 6
+  },
+  "source_replacements": 0,
+  "independent_worlds_requested": 24,
+  "sampled_worlds_returned": 12,
+  "candidate_actions": 178,
+  "requested_outcome_slots": 356,
+  "candidate_worlds_returned": 172,
+  "candidate_branches_started": 172,
+  "settled_outcomes": 172,
+  "terminal_kind_counts": {
+    "ComputeTruncated": 184,
+    "Win": 88,
+    "Loss": 84
+  },
+  "enabled_head_action_counts": {
+    "value": 32,
+    "win_probability": 86,
+    "death_probability": 86,
+    "expected_final_hp": 86,
+    "hp_distribution": 86,
+    "potion_net_change": 86
+  },
+  "objective_unresolved_reasons": {
+    "ComputeTruncated": 184,
+    "inventory_value_unresolved:PoisonPotion": 48,
+    "inventory_value_unresolved:DexterityPotion": 36,
+    "inventory_value_unresolved:BlockPotion": 84,
+    "inventory_value_unresolved:EnergyPotion": 24
+  },
+  "roots_with_two_or_more_distinct_empirical_values": 2,
+  "all_pairs_preserve_family_and_configured_identity": true,
+  "all_pairs_have_distinct_root_rule_prior_identity": true,
+  "external_wall_seconds_sum": 83.4557058190112,
+  "peak_child_rss_kib_max": 330156,
+  "timing_context": {
+    "exclusive_benchmark": false,
+    "overlap": "Lantern baseline identity build with one MSBuild worker15:32:59\u201315:34:22UTC; guarded Python tests/forward approximately15:33:32\u201315:33:40UTC. These are observed run costs, not isolated throughput or A/B speed evidence."
+  },
+  "quality_interpretation": "Real mixed-deck opening/later-turn/choice/resource supervision is usable in bounded strata; six roots exhaust the exact posterior budget, bosses lose under the declared continuation, and unknown retained-resource values stay masked. Two-world empirical values do not certify rankings or general strength.",
+  "next_obstacles": [
+    "Ruby joint roster and initial intents",
+    "Unreviewed later draw/monster transitions",
+    "Uncertified Aeonglass startup",
+    "Unknown retained resource/permanent/reward prices",
+    "Incomplete historical source protection"
+  ],
+  "new_fit": false,
+  "new_backward": false,
+  "formal_training": false,
+  "production_admission": false,
+  "quarantined": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "pair_index": 0,
+      "scenario": "overgrowth_ruby_raiders",
+      "root_rule": "opening",
+      "source_status": "posterior_exhausted",
+      "raw_sha256": "2165f6ac262d03dec8387e82a03add3cd5f294adc302e47849a62f3b21aca09d",
+      "request_sha256": "7dec03511ccf1f406b64b0f2583b2d6735a69fdb4f4444b83f60f42a45991c4c",
+      "source_run_group": "constructed-native-tape-random-family-v1:57961dd2d13dacf6a799d6812404e9dba8ba32b4d225b5602cccd8f6e70673b2",
+      "configured_alias": "constructed-native-tape-configured-source-v1:35e36058c70b8be8a25deebdc0a3e92a6661c938ac932557935f7214c8c169c3/combat:0",
+      "source_generation_identity": "9a11c4ef94511671f40208e16e2b9333db483d5a56c77d0433d632920c3d9b85",
+      "prior_identity": "94802a54afa00656d57285c9c7d025332923dc138aadaf28c5226d35c3eae326",
+      "public_state_digest": "b2152b66add9f0666e5431bb85d584929c1fdcf8fa6fdfd3b67489678357fbf2",
+      "actual_turn": 1,
+      "is_pending_choice": false,
+      "entry_hp": 70,
+      "root_hp": 70,
+      "max_hp": 70,
+      "root_gold": 110,
+      "candidate_actions": 22,
+      "requested_outcome_slots": 44,
+      "sampled_worlds_returned": 0,
+      "candidate_worlds_returned": 0,
+      "candidate_branches_started": 0,
+      "settled_outcomes": 0,
+      "terminal_kind_counts": {
+        "ComputeTruncated": 44
+      },
+      "enabled_head_action_counts": {},
+      "enabled_value_min": null,
+      "enabled_value_max": null,
+      "enabled_value_spread": null,
+      "value_distinct_count": 0,
+      "enabled_value_actions_in_ties": 0,
+      "enabled_hp_spread": null,
+      "resource_event_kind_counts": {},
+      "resource_provenance_complete_outcomes": 0,
+      "objective_unresolved_reasons": {
+        "ComputeTruncated": 44
+      },
+      "conditioning_eligible": true,
+      "conditioning_reason": "certified_declared_constructed_startup",
+      "proposal_outcomes": [
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 12 (combat_fact:IntentPublished)",
+          "count": 7
+        },
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Native initial monster roster differs from the public opening",
+          "count": 24
+        },
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 13 (combat_fact:IntentPublished)",
+          "count": 1
+        }
+      ],
+      "external_wall_seconds": 3.6262038339991705,
+      "peak_child_rss_kib": 96328,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    },
+    {
+      "case_index": 1,
+      "pair_index": 0,
+      "scenario": "overgrowth_ruby_raiders",
+      "root_rule": "first_player_turn_2",
+      "source_status": "posterior_exhausted",
+      "raw_sha256": "2bca92497661026ec096e51477d886a19074131f06f75b727b6fa0ab96829755",
+      "request_sha256": "5c087c94b1dae8c486f47805b709050e40db5dc6ce73cf8577163b19d941b544",
+      "source_run_group": "constructed-native-tape-random-family-v1:57961dd2d13dacf6a799d6812404e9dba8ba32b4d225b5602cccd8f6e70673b2",
+      "configured_alias": "constructed-native-tape-configured-source-v1:35e36058c70b8be8a25deebdc0a3e92a6661c938ac932557935f7214c8c169c3/combat:0",
+      "source_generation_identity": "9a11c4ef94511671f40208e16e2b9333db483d5a56c77d0433d632920c3d9b85",
+      "prior_identity": "709783dcf45ceb01218ffecc02a740048460005c99676a28fdedfbe3f92b5712",
+      "public_state_digest": "509d1f685da133a9746f858f24d35275991e71e0a328fd2e1cc66525f41c531a",
+      "actual_turn": 2,
+      "is_pending_choice": false,
+      "entry_hp": 70,
+      "root_hp": 62,
+      "max_hp": 70,
+      "root_gold": 110,
+      "candidate_actions": 16,
+      "requested_outcome_slots": 32,
+      "sampled_worlds_returned": 0,
+      "candidate_worlds_returned": 0,
+      "candidate_branches_started": 0,
+      "settled_outcomes": 0,
+      "terminal_kind_counts": {
+        "ComputeTruncated": 32
+      },
+      "enabled_head_action_counts": {},
+      "enabled_value_min": null,
+      "enabled_value_max": null,
+      "enabled_value_spread": null,
+      "value_distinct_count": 0,
+      "enabled_value_actions_in_ties": 0,
+      "enabled_hp_spread": null,
+      "resource_event_kind_counts": {},
+      "resource_provenance_complete_outcomes": 0,
+      "objective_unresolved_reasons": {
+        "ComputeTruncated": 32
+      },
+      "conditioning_eligible": true,
+      "conditioning_reason": "certified_declared_constructed_startup",
+      "proposal_outcomes": [
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 12 (combat_fact:IntentPublished)",
+          "count": 7
+        },
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Native initial monster roster differs from the public opening",
+          "count": 24
+        },
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 13 (combat_fact:IntentPublished)",
+          "count": 1
+        }
+      ],
+      "external_wall_seconds": 2.6240942889999133,
+      "peak_child_rss_kib": 100940,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    },
+    {
+      "case_index": 2,
+      "pair_index": 1,
+      "scenario": "underdocks_corpse_slugs",
+      "root_rule": "opening",
+      "source_status": "recorded_complete",
+      "raw_sha256": "196b0a7ab71efe216a7edc92398b3934846f15682c1f24923c9a60f5a4d19d3f",
+      "request_sha256": "56516fca09eebb3751442961e91553a23e206418e7737ffc3bc9316fceb188d0",
+      "source_run_group": "constructed-native-tape-random-family-v1:7c842e47d609eb0ba1b9f2095a1e2172bbe133d02cfe490ca29231e21d7aa598",
+      "configured_alias": "constructed-native-tape-configured-source-v1:100c436cb6bfe0b594f3789607df93939fb9a9e0c474ceebc7fd14c37bfe21e2/combat:0",
+      "source_generation_identity": "bcfc761bc9555db8bc03a0f8bd7734e4b8d65ea46f565144ab800b33658fba4a",
+      "prior_identity": "4594f0ed47c6462da76397f6130549d1b111fdb007fc39239a3b54dbd86e6f25",
+      "public_state_digest": "e6672bffa9873fee4fe930ecd43ca6a3f6cb9b39f93739c5c285c036e4721610",
+      "actual_turn": 1,
+      "is_pending_choice": false,
+      "entry_hp": 70,
+      "root_hp": 70,
+      "max_hp": 70,
+      "root_gold": 180,
+      "candidate_actions": 24,
+      "requested_outcome_slots": 48,
+      "sampled_worlds_returned": 2,
+      "candidate_worlds_returned": 48,
+      "candidate_branches_started": 48,
+      "settled_outcomes": 48,
+      "terminal_kind_counts": {
+        "Win": 48
+      },
+      "enabled_head_action_counts": {
+        "value": 18,
+        "win_probability": 24,
+        "death_probability": 24,
+        "expected_final_hp": 24,
+        "hp_distribution": 24,
+        "potion_net_change": 24
+      },
+      "enabled_value_min": -41.52428571428571,
+      "enabled_value_max": -5.604285714285714,
+      "enabled_value_spread": 35.919999999999995,
+      "value_distinct_count": 9,
+      "enabled_value_actions_in_ties": 13,
+      "enabled_hp_spread": 35.5,
+      "resource_event_kind_counts": {
+        "consumed": 8,
+        "discarded": 4
+      },
+      "resource_provenance_complete_outcomes": 48,
+      "objective_unresolved_reasons": {
+        "inventory_value_unresolved:PoisonPotion": 8,
+        "inventory_value_unresolved:DexterityPotion": 4
+      },
+      "conditioning_eligible": true,
+      "conditioning_reason": "certified_declared_constructed_startup",
+      "proposal_outcomes": [
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 17 (combat_fact:IntentPublished)",
+          "count": 13
+        },
+        {
+          "status": "exact_proposal_density_correction_rejected",
+          "detail": null,
+          "count": 2
+        },
+        {
+          "status": "accepted",
+          "detail": null,
+          "count": 2
+        }
+      ],
+      "external_wall_seconds": 14.26092381500348,
+      "peak_child_rss_kib": 233860,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    },
+    {
+      "case_index": 3,
+      "pair_index": 1,
+      "scenario": "underdocks_corpse_slugs",
+      "root_rule": "first_player_turn_2",
+      "source_status": "recorded_complete",
+      "raw_sha256": "bc6359acea710fce925d0f07733a08a2531276bd4b66159a80cdfe0f209bf3ea",
+      "request_sha256": "e08b9954de5952e2bd5093294d682eccec1b2b327af9d11f30270831a085465d",
+      "source_run_group": "constructed-native-tape-random-family-v1:7c842e47d609eb0ba1b9f2095a1e2172bbe133d02cfe490ca29231e21d7aa598",
+      "configured_alias": "constructed-native-tape-configured-source-v1:100c436cb6bfe0b594f3789607df93939fb9a9e0c474ceebc7fd14c37bfe21e2/combat:0",
+      "source_generation_identity": "bcfc761bc9555db8bc03a0f8bd7734e4b8d65ea46f565144ab800b33658fba4a",
+      "prior_identity": "bea39d527b223722c844ffad556f33df72e5ad34058e9c4c9f99e0c1667bce8e",
+      "public_state_digest": "16704dbbe5c280bb647b3f25837f67976e3be3cffa6e38acd6d25d097d1347d1",
+      "actual_turn": 2,
+      "is_pending_choice": false,
+      "entry_hp": 70,
+      "root_hp": 64,
+      "max_hp": 70,
+      "root_gold": 180,
+      "candidate_actions": 20,
+      "requested_outcome_slots": 40,
+      "sampled_worlds_returned": 2,
+      "candidate_worlds_returned": 40,
+      "candidate_branches_started": 40,
+      "settled_outcomes": 40,
+      "terminal_kind_counts": {
+        "Win": 40
+      },
+      "enabled_head_action_counts": {
+        "value": 14,
+        "win_probability": 20,
+        "death_probability": 20,
+        "expected_final_hp": 20,
+        "hp_distribution": 20,
+        "potion_net_change": 20
+      },
+      "enabled_value_min": -45.19285714285714,
+      "enabled_value_max": -6.102857142857143,
+      "enabled_value_spread": 39.09,
+      "value_distinct_count": 5,
+      "enabled_value_actions_in_ties": 13,
+      "enabled_hp_spread": 34.5,
+      "resource_event_kind_counts": {
+        "consumed": 8,
+        "discarded": 4
+      },
+      "resource_provenance_complete_outcomes": 40,
+      "objective_unresolved_reasons": {
+        "inventory_value_unresolved:PoisonPotion": 8,
+        "inventory_value_unresolved:DexterityPotion": 4
+      },
+      "conditioning_eligible": true,
+      "conditioning_reason": "certified_declared_constructed_startup",
+      "proposal_outcomes": [
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 17 (combat_fact:IntentPublished)",
+          "count": 13
+        },
+        {
+          "status": "exact_proposal_density_correction_rejected",
+          "detail": null,
+          "count": 2
+        },
+        {
+          "status": "accepted",
+          "detail": null,
+          "count": 2
+        }
+      ],
+      "external_wall_seconds": 12.04296313800296,
+      "peak_child_rss_kib": 211308,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    },
+    {
+      "case_index": 4,
+      "pair_index": 2,
+      "scenario": "hive_ovicopter",
+      "root_rule": "opening",
+      "source_status": "recorded_complete",
+      "raw_sha256": "ee6edd092e44b32490d1eb65f1d4173aeec720ec5af2a01cebe7ced0472b8d27",
+      "request_sha256": "fa8c432a5df022c7bda9dca24964d75168cd3af245a047212914f5baffee0529",
+      "source_run_group": "constructed-native-tape-random-family-v1:b13576453333d4aa2f34c4d0a60c91efab822792924d07eb99c9ef5e6cd6c305",
+      "configured_alias": "constructed-native-tape-configured-source-v1:b81b1a1ff88f20b4283d694d3b5fb4a9a4fed10b06ba2940efb158dfc27594b2/combat:0",
+      "source_generation_identity": "a2e0ac8a78f10d05e8e8157556f18f19830e5c6ed119cee3419f3cb35e36fe2d",
+      "prior_identity": "841df5450db99213438f6258b2d509fa86a97d61e39a8ce24ea9e23b060a7b18",
+      "public_state_digest": "3d09aa02a21cc46690571192edbf5318184465b3dfe147ca7004ba3443bb80f5",
+      "actual_turn": 1,
+      "is_pending_choice": false,
+      "entry_hp": 70,
+      "root_hp": 70,
+      "max_hp": 70,
+      "root_gold": 200,
+      "candidate_actions": 12,
+      "requested_outcome_slots": 24,
+      "sampled_worlds_returned": 2,
+      "candidate_worlds_returned": 24,
+      "candidate_branches_started": 24,
+      "settled_outcomes": 24,
+      "terminal_kind_counts": {
+        "Loss": 24
+      },
+      "enabled_head_action_counts": {
+        "win_probability": 12,
+        "death_probability": 12,
+        "expected_final_hp": 12,
+        "hp_distribution": 12,
+        "potion_net_change": 12
+      },
+      "enabled_value_min": null,
+      "enabled_value_max": null,
+      "enabled_value_spread": null,
+      "value_distinct_count": 0,
+      "enabled_value_actions_in_ties": 0,
+      "enabled_hp_spread": 0,
+      "resource_event_kind_counts": {
+        "consumed": 4,
+        "discarded": 4
+      },
+      "resource_provenance_complete_outcomes": 24,
+      "objective_unresolved_reasons": {
+        "inventory_value_unresolved:BlockPotion": 24,
+        "inventory_value_unresolved:EnergyPotion": 24
+      },
+      "conditioning_eligible": true,
+      "conditioning_reason": "certified_declared_constructed_startup",
+      "proposal_outcomes": [
+        {
+          "status": "accepted",
+          "detail": null,
+          "count": 2
+        }
+      ],
+      "external_wall_seconds": 9.09710286000336,
+      "peak_child_rss_kib": 225164,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    },
+    {
+      "case_index": 5,
+      "pair_index": 2,
+      "scenario": "hive_ovicopter",
+      "root_rule": "first_player_turn_2",
+      "source_status": "posterior_exhausted",
+      "raw_sha256": "bdab6dedd05da51b4da0ede06d5168ffe746ae6530c1ccd1d15fd58511a32119",
+      "request_sha256": "1cfa82e1389f4c7885138bfcdad3be4bf6e3fa5c3a9ab86917163bfc9197d877",
+      "source_run_group": "constructed-native-tape-random-family-v1:b13576453333d4aa2f34c4d0a60c91efab822792924d07eb99c9ef5e6cd6c305",
+      "configured_alias": "constructed-native-tape-configured-source-v1:b81b1a1ff88f20b4283d694d3b5fb4a9a4fed10b06ba2940efb158dfc27594b2/combat:0",
+      "source_generation_identity": "a2e0ac8a78f10d05e8e8157556f18f19830e5c6ed119cee3419f3cb35e36fe2d",
+      "prior_identity": "2c0c9b1dc011bc3389108f5fbadb71c8af2c0baabef991eba3fa5be83366b4c8",
+      "public_state_digest": "d3b117655ab5c18d887f20b8fd2f6577c5f339ac1e8b653ed38131c1252d7e00",
+      "actual_turn": 2,
+      "is_pending_choice": false,
+      "entry_hp": 70,
+      "root_hp": 70,
+      "max_hp": 70,
+      "root_gold": 200,
+      "candidate_actions": 22,
+      "requested_outcome_slots": 44,
+      "sampled_worlds_returned": 0,
+      "candidate_worlds_returned": 0,
+      "candidate_branches_started": 0,
+      "settled_outcomes": 0,
+      "terminal_kind_counts": {
+        "ComputeTruncated": 44
+      },
+      "enabled_head_action_counts": {},
+      "enabled_value_min": null,
+      "enabled_value_max": null,
+      "enabled_value_spread": null,
+      "value_distinct_count": 0,
+      "enabled_value_actions_in_ties": 0,
+      "enabled_hp_spread": null,
+      "resource_event_kind_counts": {},
+      "resource_provenance_complete_outcomes": 0,
+      "objective_unresolved_reasons": {
+        "ComputeTruncated": 44
+      },
+      "conditioning_eligible": true,
+      "conditioning_reason": "certified_declared_constructed_startup",
+      "proposal_outcomes": [
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 44 (combat_fact:CardDrawn)",
+          "count": 28
+        },
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 45 (combat_fact:CardDrawn)",
+          "count": 4
+        }
+      ],
+      "external_wall_seconds": 4.077788242000679,
+      "peak_child_rss_kib": 105740,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    },
+    {
+      "case_index": 6,
+      "pair_index": 3,
+      "scenario": "hive_knowledge_choice",
+      "root_rule": "opening",
+      "source_status": "recorded_complete",
+      "raw_sha256": "c7b90564a5887546b27feccb0b765701176607a36a4ebf78953d08e6684b8779",
+      "request_sha256": "3b9fc7bacc27e60c23993648612175ac353f146cc7d8f55beacdccfaeaa1d9cb",
+      "source_run_group": "constructed-native-tape-random-family-v1:5d1d7117a10c5f4f215de15a52758ee0f588646928f84631a9b0b6fdef9360f2",
+      "configured_alias": "constructed-native-tape-configured-source-v1:1f188b55e21a03dabbe0f4a9e0e37f1ee5c90992c05d78ab2e0c2d5a473b5a29/combat:0",
+      "source_generation_identity": "19716b57b5c2ba34c57240213a13c95a350d11f574cbfcfdb15754180a12c936",
+      "prior_identity": "417bb02d97feb2d12cb630b311c5db431eeb6ed2edd9f0245cebff8a6935eeb0",
+      "public_state_digest": "2a9fdda8320c0a8c6ca8282fe386f99c68782d60ff36bd782b7260de5db724fe",
+      "actual_turn": 1,
+      "is_pending_choice": false,
+      "entry_hp": 70,
+      "root_hp": 70,
+      "max_hp": 70,
+      "root_gold": 250,
+      "candidate_actions": 14,
+      "requested_outcome_slots": 28,
+      "sampled_worlds_returned": 2,
+      "candidate_worlds_returned": 28,
+      "candidate_branches_started": 28,
+      "settled_outcomes": 28,
+      "terminal_kind_counts": {
+        "Loss": 28
+      },
+      "enabled_head_action_counts": {
+        "win_probability": 14,
+        "death_probability": 14,
+        "expected_final_hp": 14,
+        "hp_distribution": 14,
+        "potion_net_change": 14
+      },
+      "enabled_value_min": null,
+      "enabled_value_max": null,
+      "enabled_value_spread": null,
+      "value_distinct_count": 0,
+      "enabled_value_actions_in_ties": 0,
+      "enabled_hp_spread": 0,
+      "resource_event_kind_counts": {
+        "consumed": 4,
+        "discarded": 4
+      },
+      "resource_provenance_complete_outcomes": 28,
+      "objective_unresolved_reasons": {
+        "inventory_value_unresolved:BlockPotion": 28,
+        "inventory_value_unresolved:PoisonPotion": 28
+      },
+      "conditioning_eligible": true,
+      "conditioning_reason": "certified_declared_constructed_startup",
+      "proposal_outcomes": [
+        {
+          "status": "accepted",
+          "detail": null,
+          "count": 2
+        }
+      ],
+      "external_wall_seconds": 10.104039461002685,
+      "peak_child_rss_kib": 249156,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    },
+    {
+      "case_index": 7,
+      "pair_index": 3,
+      "scenario": "hive_knowledge_choice",
+      "root_rule": "first_pending_choice",
+      "source_status": "recorded_complete",
+      "raw_sha256": "7886e4dc36000120685d6236b86ae6ff4f9bc6af84146f41b810a72a39ee5ec4",
+      "request_sha256": "c770b626004503ac97f8fd233843ffa2aade401fe45e8e650042336ac184f5c4",
+      "source_run_group": "constructed-native-tape-random-family-v1:5d1d7117a10c5f4f215de15a52758ee0f588646928f84631a9b0b6fdef9360f2",
+      "configured_alias": "constructed-native-tape-configured-source-v1:1f188b55e21a03dabbe0f4a9e0e37f1ee5c90992c05d78ab2e0c2d5a473b5a29/combat:0",
+      "source_generation_identity": "19716b57b5c2ba34c57240213a13c95a350d11f574cbfcfdb15754180a12c936",
+      "prior_identity": "40972455bbdd2351f9d07a040bca92cbde1a42c9d17df9e98f3b2e476453c00c",
+      "public_state_digest": "658ca386aa54937e5ee051f732440892d7be741795076835405ce0894b46128f",
+      "actual_turn": 1,
+      "is_pending_choice": true,
+      "entry_hp": 70,
+      "root_hp": 70,
+      "max_hp": 70,
+      "root_gold": 250,
+      "candidate_actions": 2,
+      "requested_outcome_slots": 4,
+      "sampled_worlds_returned": 2,
+      "candidate_worlds_returned": 4,
+      "candidate_branches_started": 4,
+      "settled_outcomes": 4,
+      "terminal_kind_counts": {
+        "Loss": 4
+      },
+      "enabled_head_action_counts": {
+        "win_probability": 2,
+        "death_probability": 2,
+        "expected_final_hp": 2,
+        "hp_distribution": 2,
+        "potion_net_change": 2
+      },
+      "enabled_value_min": null,
+      "enabled_value_max": null,
+      "enabled_value_spread": null,
+      "value_distinct_count": 0,
+      "enabled_value_actions_in_ties": 0,
+      "enabled_hp_spread": 0,
+      "resource_event_kind_counts": {},
+      "resource_provenance_complete_outcomes": 4,
+      "objective_unresolved_reasons": {
+        "inventory_value_unresolved:BlockPotion": 4,
+        "inventory_value_unresolved:PoisonPotion": 4
+      },
+      "conditioning_eligible": true,
+      "conditioning_reason": "certified_declared_constructed_startup",
+      "proposal_outcomes": [
+        {
+          "status": "accepted",
+          "detail": null,
+          "count": 2
+        }
+      ],
+      "external_wall_seconds": 3.828491168002074,
+      "peak_child_rss_kib": 218364,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    },
+    {
+      "case_index": 8,
+      "pair_index": 4,
+      "scenario": "glory_owl_magistrate",
+      "root_rule": "opening",
+      "source_status": "recorded_complete",
+      "raw_sha256": "0e6e727d2b486a44fad855c6ad39048201a79485d603366dd5b330fb3dae8ad9",
+      "request_sha256": "a4874716cfee449bfb51c2e4af8859853c3f72123525e6cde4c08bc50016ad12",
+      "source_run_group": "constructed-native-tape-random-family-v1:d6247805f803b6a5c62708ba3e3281374124ac27595b3a0bc77e49372d243183",
+      "configured_alias": "constructed-native-tape-configured-source-v1:25c8130237b8abe069623f62115ba6f8221bccb4413a0ab6ff78fe1f9686b7a8/combat:0",
+      "source_generation_identity": "17e2a8c2a2586515539839c008deea5e5d6afcfdbab736689a14ea37f03b3859",
+      "prior_identity": "d3efe319a53136558ec7ab0dcf0814c1036de3dc636973dce293f3ef03aeaab6",
+      "public_state_digest": "98e279aceb714ac29719e7b77143d8158e226f4c38792836aba3fef0c6d4e945",
+      "actual_turn": 1,
+      "is_pending_choice": false,
+      "entry_hp": 70,
+      "root_hp": 70,
+      "max_hp": 70,
+      "root_gold": 320,
+      "candidate_actions": 14,
+      "requested_outcome_slots": 28,
+      "sampled_worlds_returned": 2,
+      "candidate_worlds_returned": 28,
+      "candidate_branches_started": 28,
+      "settled_outcomes": 28,
+      "terminal_kind_counts": {
+        "Loss": 28
+      },
+      "enabled_head_action_counts": {
+        "win_probability": 14,
+        "death_probability": 14,
+        "expected_final_hp": 14,
+        "hp_distribution": 14,
+        "potion_net_change": 14
+      },
+      "enabled_value_min": null,
+      "enabled_value_max": null,
+      "enabled_value_spread": null,
+      "value_distinct_count": 0,
+      "enabled_value_actions_in_ties": 0,
+      "enabled_hp_spread": 0,
+      "resource_event_kind_counts": {
+        "consumed": 4,
+        "discarded": 4
+      },
+      "resource_provenance_complete_outcomes": 28,
+      "objective_unresolved_reasons": {
+        "inventory_value_unresolved:BlockPotion": 28,
+        "inventory_value_unresolved:DexterityPotion": 28
+      },
+      "conditioning_eligible": true,
+      "conditioning_reason": "certified_declared_constructed_startup",
+      "proposal_outcomes": [
+        {
+          "status": "accepted",
+          "detail": null,
+          "count": 2
+        }
+      ],
+      "external_wall_seconds": 11.253800746999332,
+      "peak_child_rss_kib": 330156,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    },
+    {
+      "case_index": 9,
+      "pair_index": 4,
+      "scenario": "glory_owl_magistrate",
+      "root_rule": "first_player_turn_3",
+      "source_status": "posterior_exhausted",
+      "raw_sha256": "dac0e93b88f9eb53a972b80f3d9b0c02b6337e9cc6b24a47969cb4e11c8551e9",
+      "request_sha256": "3ff24cf08e402a5eb28ae0bc51406564d5d7abf10f9f0e55ba401ec2463b1865",
+      "source_run_group": "constructed-native-tape-random-family-v1:d6247805f803b6a5c62708ba3e3281374124ac27595b3a0bc77e49372d243183",
+      "configured_alias": "constructed-native-tape-configured-source-v1:25c8130237b8abe069623f62115ba6f8221bccb4413a0ab6ff78fe1f9686b7a8/combat:0",
+      "source_generation_identity": "17e2a8c2a2586515539839c008deea5e5d6afcfdbab736689a14ea37f03b3859",
+      "prior_identity": "0fae88c171a087515a977256d594c4d959ed1f0bc3390f27f561f328c8d7c6c5",
+      "public_state_digest": "5a8c26c7cd5527628083b6ea10bbe88ad089b37860f59e401806c6b92b7e0ba7",
+      "actual_turn": 3,
+      "is_pending_choice": false,
+      "entry_hp": 70,
+      "root_hp": 50,
+      "max_hp": 70,
+      "root_gold": 320,
+      "candidate_actions": 10,
+      "requested_outcome_slots": 20,
+      "sampled_worlds_returned": 0,
+      "candidate_worlds_returned": 0,
+      "candidate_branches_started": 0,
+      "settled_outcomes": 0,
+      "terminal_kind_counts": {
+        "ComputeTruncated": 20
+      },
+      "enabled_head_action_counts": {},
+      "enabled_value_min": null,
+      "enabled_value_max": null,
+      "enabled_value_spread": null,
+      "value_distinct_count": 0,
+      "enabled_value_actions_in_ties": 0,
+      "enabled_hp_spread": null,
+      "resource_event_kind_counts": {},
+      "resource_provenance_complete_outcomes": 0,
+      "objective_unresolved_reasons": {
+        "ComputeTruncated": 20
+      },
+      "conditioning_eligible": true,
+      "conditioning_reason": "certified_declared_constructed_startup",
+      "proposal_outcomes": [
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 41 (combat_fact:CardDrawn)",
+          "count": 30
+        },
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 42 (combat_fact:CardDrawn)",
+          "count": 1
+        },
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 43 (combat_fact:CardDrawn)",
+          "count": 1
+        }
+      ],
+      "external_wall_seconds": 4.9837671800050884,
+      "peak_child_rss_kib": 113860,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    },
+    {
+      "case_index": 10,
+      "pair_index": 5,
+      "scenario": "glory_aeonglass_resources",
+      "root_rule": "opening",
+      "source_status": "posterior_exhausted",
+      "raw_sha256": "4b5c16a88f9634dfbfa656740cde83205da436e17db88e6889cab766f89ecdb5",
+      "request_sha256": "0717f039e0f90fb081638a191d3f0b7f2194b8eccc9770b636df8267a7512109",
+      "source_run_group": "constructed-native-tape-random-family-v1:72cb029d2be1ee30730120890a7df2acd2097a71cc940f34e363a670fb0d132d",
+      "configured_alias": "constructed-native-tape-configured-source-v1:8d4456a945711164d07f4ba7a34beb2f4fa98e3a29951a6a983ebaceb59faf91/combat:0",
+      "source_generation_identity": "c3441df80dd324084872b46f8f834b9bacde526f991da4d223164af92335faf1",
+      "prior_identity": "3b7550cf7c390d95c04bfc622f8d658fb1b5c36d5eebabfe3d605a4f0c682ac8",
+      "public_state_digest": "53f369cce6f18952edc720d21911d10891fcd12dd3f682634ec9d5a1cbddb227",
+      "actual_turn": 1,
+      "is_pending_choice": false,
+      "entry_hp": 81,
+      "root_hp": 81,
+      "max_hp": 81,
+      "root_gold": 350,
+      "candidate_actions": 12,
+      "requested_outcome_slots": 24,
+      "sampled_worlds_returned": 0,
+      "candidate_worlds_returned": 0,
+      "candidate_branches_started": 0,
+      "settled_outcomes": 0,
+      "terminal_kind_counts": {
+        "ComputeTruncated": 24
+      },
+      "enabled_head_action_counts": {},
+      "enabled_value_min": null,
+      "enabled_value_max": null,
+      "enabled_value_spread": null,
+      "value_distinct_count": 0,
+      "enabled_value_actions_in_ties": 0,
+      "enabled_hp_spread": null,
+      "resource_event_kind_counts": {},
+      "resource_provenance_complete_outcomes": 0,
+      "objective_unresolved_reasons": {
+        "ComputeTruncated": 24
+      },
+      "conditioning_eligible": false,
+      "conditioning_reason": "startup_power_not_certified",
+      "proposal_outcomes": [
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 6 (combat_fact:CardDrawn)",
+          "count": 30
+        },
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 7 (combat_fact:CardDrawn)",
+          "count": 2
+        }
+      ],
+      "external_wall_seconds": 3.5275425059953704,
+      "peak_child_rss_kib": 96488,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    },
+    {
+      "case_index": 11,
+      "pair_index": 5,
+      "scenario": "glory_aeonglass_resources",
+      "root_rule": "first_player_turn_3",
+      "source_status": "posterior_exhausted",
+      "raw_sha256": "fca3311232c5d91f216af100b85f9b27401520bb414f541d3eff8304042be8c9",
+      "request_sha256": "38e833c81eaa56e16376f66fc51c280039fc99c95b32144b2027e45fca9e81e3",
+      "source_run_group": "constructed-native-tape-random-family-v1:72cb029d2be1ee30730120890a7df2acd2097a71cc940f34e363a670fb0d132d",
+      "configured_alias": "constructed-native-tape-configured-source-v1:8d4456a945711164d07f4ba7a34beb2f4fa98e3a29951a6a983ebaceb59faf91/combat:0",
+      "source_generation_identity": "c3441df80dd324084872b46f8f834b9bacde526f991da4d223164af92335faf1",
+      "prior_identity": "3606fbde026df36e34d3b99adb2f1345dc75a64777400300a109eccaee86725f",
+      "public_state_digest": "a73dc51616626c56af7211efff8cac4ef94d146cc0548207573cf3dea9d9a89e",
+      "actual_turn": 3,
+      "is_pending_choice": false,
+      "entry_hp": 81,
+      "root_hp": 38,
+      "max_hp": 81,
+      "root_gold": 350,
+      "candidate_actions": 10,
+      "requested_outcome_slots": 20,
+      "sampled_worlds_returned": 0,
+      "candidate_worlds_returned": 0,
+      "candidate_branches_started": 0,
+      "settled_outcomes": 0,
+      "terminal_kind_counts": {
+        "ComputeTruncated": 20
+      },
+      "enabled_head_action_counts": {},
+      "enabled_value_min": null,
+      "enabled_value_max": null,
+      "enabled_value_spread": null,
+      "value_distinct_count": 0,
+      "enabled_value_actions_in_ties": 0,
+      "enabled_hp_spread": null,
+      "resource_event_kind_counts": {},
+      "resource_provenance_complete_outcomes": 0,
+      "objective_unresolved_reasons": {
+        "ComputeTruncated": 20
+      },
+      "conditioning_eligible": false,
+      "conditioning_reason": "startup_power_not_certified",
+      "proposal_outcomes": [
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 6 (combat_fact:CardDrawn)",
+          "count": 30
+        },
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 7 (combat_fact:CardDrawn)",
+          "count": 2
+        }
+      ],
+      "external_wall_seconds": 4.028988578997087,
+      "peak_child_rss_kib": 112356,
+      "budget_expired": false,
+      "external_watchdog_killed": false
+    }
+  ]
+}

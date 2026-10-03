@@ -1,6 +1,32 @@
 # M3–M6 engineering checkpoint
 
-Current verified Map v8 passes **2,261 native tests** and **72 guarded Python integration tests**. Core source/test trees remain unchanged from **4,493 passes and three opt-in skips**. All four predeclared diagnostic gates pass: inspected8 completes8 roots/16worlds/98branches; inspected12 completes11/22/150; previously fresh12 improves from5 to9 complete roots,18worlds and140/178 settled branches. The new untouched24301–24312 cohort executes all12 attempts in30.161seconds, with9complete roots,18/24worlds and116/146settled branches. Thirty unresolved branches remain counted; three third-combat later decisions complete. All44 attempts are retained with zero engine/cleanup errors.
+Latest ordinary constructed native-tape source/API and strict full-policy action
+adapter pass **2,288 native tests and 85 guarded Python tests**. Core remains the
+separate unchanged-source result of4,493 passes/3opt-in skips. The actual native
+source → all-action/outcome export → strict full-v5 loader → `batch_loss` path is
+verified with unchanged parameters, zero new backward/optimizer calls and no fit.
+The earlier single authorized backward report remains immutable; the current
+42-file training source closure has separate forward-only evidence.
+
+A frozen ordinary-HP/mixed-deck matrix retains12attempts in6paired source families,
+178actions and356outcome slots. Six roots complete:172settled outcomes split into
+88wins/84losses;184slots from six exhausted roots remain unresolved.32action
+values have real differences in one family's opening/later roots.86actions retain
+probability/HP/potion heads. Unpriced resource values remain masked and complete
+action-policy root coverage is zero; this does not establish a deployable policy.
+Every raw report passes the guarded full-policy forward without dropping roots.
+See [native matrix](../configs/native_constructed_breadth_verification_v1.json),
+[full-policy boundary](CONSTRUCTED_NATIVE_TAPE_FULL_POLICY.md) and
+[current M6 integration](../configs/m6_current_integration_constructed_v1.json).
+
+LanternKey owner support and Ruby formation conditioning are being checked as
+separate increments. They are not certified by these counts. Historical source
+protection and resource valuation remain incomplete, so inspected diagnostics
+stay quarantined and enlarged production/fitting remain closed.
+
+## Preserved Map v8 and earlier engineering evidence
+
+The frozen Map v8 checkpoint passes **2,261 native tests** and **72 guarded Python integration tests**. Core source/test trees remain unchanged from **4,493 passes and three opt-in skips**. All four predeclared diagnostic gates pass: inspected8 completes8 roots/16worlds/98branches; inspected12 completes11/22/150; previously fresh12 improves from5 to9 complete roots,18worlds and140/178 settled branches. The new untouched24301–24312 cohort executes all12 attempts in30.161seconds, with9complete roots,18/24worlds and116/146settled branches. Thirty unresolved branches remain counted; three third-combat later decisions complete. All44 attempts are retained with zero engine/cleanup errors.
 
 This is the declared initial-act diagnostic distribution. Two worlds per root and these gates do not establish rare-risk confidence, broad full-solo coverage or production admission. The new12 sources are now inspected development data. See the [v8 report](../configs/native_map_origin_verification_v8.json).
 
@@ -8,7 +34,7 @@ The full public-v5 policy pipeline, native empirical-value adapter and fresh con
 Fresh constructed full-v5 success, true loss and truncation records now reach `PolicyDatasetV5` and the actual `batch_loss`. Their native fatal/reward and paired HP evidence is recomputed, all action heads stay masked, and fitting/natural admission remain blocked. The earlier one-backward report is unchanged; the current41-source closure has separate forward-only evidence. Adapterv5.2 explicitly rejects old serializer receipts instead of rewriting them. The opt-in public-v3 continuation closes the reviewed defensive-cycle schema gap without changing old source priors or defaults.
 
 
-New constructed native cases cover P01–P05/B01–B02, including exact declared finite draw laws and actual potion timing; their frozen scripts do not establish optimal play. Simultaneous death and delayed settlement have direct native-oracle comparisons. Earlier counts and finite-profile measurements below remain historical. Original5000 manifests/split metadata are restored without opening sealed test contents; the extended registry now contains2,672 excluded components, but later historical cohort metadata remain missing. Broad source throughput, data quality and unpriced resources remain open gates.
+New constructed native cases cover P01–P05/B01–B02, including exact declared finite draw laws and actual potion timing; their frozen scripts do not establish optimal play. Simultaneous death and delayed settlement have direct native-oracle comparisons. Earlier counts and finite-profile measurements below remain historical. Original5000 manifests/split metadata are restored without opening sealed test contents; the extended registry now contains2,679 excluded components, but later historical cohort metadata remain missing. Broad source throughput, data quality and unpriced resources remain open gates.
 
 The declared pilot engineering paths are implemented and reviewed. **Full-scope
 READY_FOR_TRAINING remains false.** The remaining limits are broader native
@@ -21,7 +47,9 @@ coverage and calibrated resource/permanent/reward values, while current-schema c
 | M5 | Immutable source-group protection;5,000 constructed roots; complete attempted-block accounting; protected fresh-native collection/preparation/loading | Failed data-quality gate still pauses expanded generation and another fit |
 | M6 | Full public-v5 model/loss/loader; bounded training/resume/checkpoints; strict native value bridge; guarded standalone inference; one backward connectivity check | Fresh constructed v5 plan labels reach the actual loss; broad natural admission remains open, with no new learned weights |
 
-The unchanged fixed native diagnostic cohort now supports **200/200 roots**,
+## Earlier fixed-profile and replay measurements
+
+The unchanged fixed native diagnostic cohort supports **200/200 roots**,
 with **2,692/2,692 candidate-world continuations settled**. Dispatcher v7 adds
 CorpseSlugsWeak, TwoTailedRatsNormal and RubyRaiders at reviewed boundaries.
 All 200 public inputs/source traces and the prior 174 target payloads remain exact.

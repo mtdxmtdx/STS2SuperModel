@@ -1,0 +1,902 @@
+{
+  "format": "nosl.constructed-native-tape.breadth-policy-verification.v1",
+  "status": "engineering_forward_verified_all_declared_reports_retained",
+  "adapter_commit": "b7d598f",
+  "native_runtime_commit": "a3d9895",
+  "adapter_source_sha256": "0fd31c2b237480577b035468e7585d7b63ec2b4048fbe388d63c397f09ddc872",
+  "reports_requested": 12,
+  "reports_accepted": 12,
+  "reports_rejected": 0,
+  "cases": [
+    {
+      "case": "case-00",
+      "raw_sha256": "2165f6ac262d03dec8387e82a03add3cd5f294adc302e47849a62f3b21aca09d",
+      "raw_bytes": 215435,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "posterior_exhausted": 1
+      },
+      "outcome_counts": {
+        "ComputeTruncated": 44
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 22,
+      "value_rows": 0,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-00/response.jsonl"
+    },
+    {
+      "case": "case-01",
+      "raw_sha256": "2bca92497661026ec096e51477d886a19074131f06f75b727b6fa0ab96829755",
+      "raw_bytes": 381444,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "posterior_exhausted": 1
+      },
+      "outcome_counts": {
+        "ComputeTruncated": 32
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 16,
+      "value_rows": 0,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-01/response.jsonl"
+    },
+    {
+      "case": "case-02",
+      "raw_sha256": "196b0a7ab71efe216a7edc92398b3934846f15682c1f24923c9a60f5a4d19d3f",
+      "raw_bytes": 1740953,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "recorded_complete": 1
+      },
+      "outcome_counts": {
+        "Win": 48
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 24,
+      "value_rows": 18,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-02/response.jsonl"
+    },
+    {
+      "case": "case-03",
+      "raw_sha256": "bc6359acea710fce925d0f07733a08a2531276bd4b66159a80cdfe0f209bf3ea",
+      "raw_bytes": 1691155,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "recorded_complete": 1
+      },
+      "outcome_counts": {
+        "Win": 40
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 20,
+      "value_rows": 14,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-03/response.jsonl"
+    },
+    {
+      "case": "case-04",
+      "raw_sha256": "ee6edd092e44b32490d1eb65f1d4173aeec720ec5af2a01cebe7ced0472b8d27",
+      "raw_bytes": 913300,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "recorded_complete": 1
+      },
+      "outcome_counts": {
+        "Loss": 24
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 12,
+      "value_rows": 0,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-04/response.jsonl"
+    },
+    {
+      "case": "case-05",
+      "raw_sha256": "bdab6dedd05da51b4da0ede06d5168ffe746ae6530c1ccd1d15fd58511a32119",
+      "raw_bytes": 418804,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "posterior_exhausted": 1
+      },
+      "outcome_counts": {
+        "ComputeTruncated": 44
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 22,
+      "value_rows": 0,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-05/response.jsonl"
+    },
+    {
+      "case": "case-06",
+      "raw_sha256": "c7b90564a5887546b27feccb0b765701176607a36a4ebf78953d08e6684b8779",
+      "raw_bytes": 1064042,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "recorded_complete": 1
+      },
+      "outcome_counts": {
+        "Loss": 28
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 14,
+      "value_rows": 0,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-06/response.jsonl"
+    },
+    {
+      "case": "case-07",
+      "raw_sha256": "7886e4dc36000120685d6236b86ae6ff4f9bc6af84146f41b810a72a39ee5ec4",
+      "raw_bytes": 431795,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "recorded_complete": 1
+      },
+      "outcome_counts": {
+        "Loss": 4
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 2,
+      "value_rows": 0,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-07/response.jsonl"
+    },
+    {
+      "case": "case-08",
+      "raw_sha256": "0e6e727d2b486a44fad855c6ad39048201a79485d603366dd5b330fb3dae8ad9",
+      "raw_bytes": 1165888,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "recorded_complete": 1
+      },
+      "outcome_counts": {
+        "Loss": 28
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 14,
+      "value_rows": 0,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-08/response.jsonl"
+    },
+    {
+      "case": "case-09",
+      "raw_sha256": "dac0e93b88f9eb53a972b80f3d9b0c02b6337e9cc6b24a47969cb4e11c8551e9",
+      "raw_bytes": 541699,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "posterior_exhausted": 1
+      },
+      "outcome_counts": {
+        "ComputeTruncated": 20
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 10,
+      "value_rows": 0,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-09/response.jsonl"
+    },
+    {
+      "case": "case-10",
+      "raw_sha256": "4b5c16a88f9634dfbfa656740cde83205da436e17db88e6889cab766f89ecdb5",
+      "raw_bytes": 210485,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "posterior_exhausted": 1
+      },
+      "outcome_counts": {
+        "ComputeTruncated": 24
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 12,
+      "value_rows": 0,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-10/response.jsonl"
+    },
+    {
+      "case": "case-11",
+      "raw_sha256": "fca3311232c5d91f216af100b85f9b27401520bb414f541d3eff8304042be8c9",
+      "raw_bytes": 583550,
+      "raw_records": 1,
+      "attempt_statuses": {
+        "posterior_exhausted": 1
+      },
+      "outcome_counts": {
+        "ComputeTruncated": 20
+      },
+      "status": "accepted_engineering_only",
+      "normalized_records": 1,
+      "actions": 10,
+      "value_rows": 0,
+      "source_path": "artifacts/reports/constructed-tape-v1/breadth/case-11/response.jsonl"
+    }
+  ],
+  "forward": {
+    "format": "nosl.constructed-native-tape.breadth-forward.v1",
+    "status": "passed",
+    "adapter_commit": "b7d598f",
+    "native_runtime_commit": "a3d9895",
+    "rows": 12,
+    "actions": 178,
+    "outcome_counts": {
+      "ComputeTruncated": 184,
+      "Win": 88,
+      "Loss": 84
+    },
+    "all_attempts_retained": 12,
+    "source_metadata_sha256": "330a84903ab5fd194fe0e6ce9b39a30fc243e46a264ab6a528405430048c73dd",
+    "cases": [
+      {
+        "case": "case-00",
+        "raw_sha256": "2165f6ac262d03dec8387e82a03add3cd5f294adc302e47849a62f3b21aca09d",
+        "record_sha256": "125f49e611aa7d7b752af7ad6b7edecd8e8f3cfa3e25dee49dd659684bb3ff92",
+        "actions": 22,
+        "status": "posterior_exhausted",
+        "terms": {
+          "value": 0.0,
+          "win_probability": 0.0,
+          "death_probability": 0.0,
+          "expected_final_hp": 0.0,
+          "hp_distribution": 0.0,
+          "potion_net_change": 0.0,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "outcome_counts": {
+          "ComputeTruncated": 44
+        },
+        "objective_status_counts": {
+          "Incomplete": 44
+        },
+        "objective_unresolved_reasons": {}
+      },
+      {
+        "case": "case-01",
+        "raw_sha256": "2bca92497661026ec096e51477d886a19074131f06f75b727b6fa0ab96829755",
+        "record_sha256": "f58613c0583aed2218c4a5d72be016b81a83cb902e5e0e701137eff312ab6930",
+        "actions": 16,
+        "status": "posterior_exhausted",
+        "terms": {
+          "value": 0.0,
+          "win_probability": 0.0,
+          "death_probability": 0.0,
+          "expected_final_hp": 0.0,
+          "hp_distribution": 0.0,
+          "potion_net_change": 0.0,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "outcome_counts": {
+          "ComputeTruncated": 32
+        },
+        "objective_status_counts": {
+          "Incomplete": 32
+        },
+        "objective_unresolved_reasons": {}
+      },
+      {
+        "case": "case-02",
+        "raw_sha256": "196b0a7ab71efe216a7edc92398b3934846f15682c1f24923c9a60f5a4d19d3f",
+        "record_sha256": "384acb842d6ef73327e3c3295fd87b06b511289b366dc3fd2226f3c2258c093c",
+        "actions": 24,
+        "status": "recorded_complete",
+        "terms": {
+          "value": 0.0772799700498581,
+          "win_probability": 0.7536360621452332,
+          "death_probability": 0.7289789319038391,
+          "expected_final_hp": 0.4846510589122772,
+          "hp_distribution": 4.153502464294434,
+          "potion_net_change": 0.21090076863765717,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "outcome_counts": {
+          "Win": 48
+        },
+        "objective_status_counts": {
+          "Scored": 36,
+          "ObjectiveValueUnresolved": 12
+        },
+        "objective_unresolved_reasons": {
+          "inventory_value_unresolved:PoisonPotion": 8,
+          "inventory_value_unresolved:DexterityPotion": 4
+        }
+      },
+      {
+        "case": "case-03",
+        "raw_sha256": "bc6359acea710fce925d0f07733a08a2531276bd4b66159a80cdfe0f209bf3ea",
+        "record_sha256": "4eca1e021cbffc65ef9c145a2154e6fbc525f2161c9cb5f742cd847ce316b253",
+        "actions": 20,
+        "status": "recorded_complete",
+        "terms": {
+          "value": 0.06704460829496384,
+          "win_probability": 0.7462919354438782,
+          "death_probability": 0.7356048822402954,
+          "expected_final_hp": 0.5049952268600464,
+          "hp_distribution": 4.152311325073242,
+          "potion_net_change": 0.24876895546913147,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "outcome_counts": {
+          "Win": 40
+        },
+        "objective_status_counts": {
+          "Scored": 28,
+          "ObjectiveValueUnresolved": 12
+        },
+        "objective_unresolved_reasons": {
+          "inventory_value_unresolved:PoisonPotion": 8,
+          "inventory_value_unresolved:DexterityPotion": 4
+        }
+      },
+      {
+        "case": "case-04",
+        "raw_sha256": "ee6edd092e44b32490d1eb65f1d4173aeec720ec5af2a01cebe7ced0472b8d27",
+        "record_sha256": "b20fd9f66f4a45a71950273c5809f53027261ef755cea87a106ea80ff066d42e",
+        "actions": 12,
+        "status": "recorded_complete",
+        "terms": {
+          "value": 0.0,
+          "win_probability": 0.6574833989143372,
+          "death_probability": 0.6680564284324646,
+          "expected_final_hp": 0.011470464058220387,
+          "hp_distribution": 4.17426061630249,
+          "potion_net_change": 0.24845479428768158,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "outcome_counts": {
+          "Loss": 24
+        },
+        "objective_status_counts": {
+          "ObjectiveValueUnresolved": 24
+        },
+        "objective_unresolved_reasons": {
+          "inventory_value_unresolved:BlockPotion": 24,
+          "inventory_value_unresolved:EnergyPotion": 24
+        }
+      },
+      {
+        "case": "case-05",
+        "raw_sha256": "bdab6dedd05da51b4da0ede06d5168ffe746ae6530c1ccd1d15fd58511a32119",
+        "record_sha256": "18a553c07ba9e34e31c2e068f25f29470f5d5d9af9b5e781a1c2805d926aa2b2",
+        "actions": 22,
+        "status": "posterior_exhausted",
+        "terms": {
+          "value": 0.0,
+          "win_probability": 0.0,
+          "death_probability": 0.0,
+          "expected_final_hp": 0.0,
+          "hp_distribution": 0.0,
+          "potion_net_change": 0.0,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "outcome_counts": {
+          "ComputeTruncated": 44
+        },
+        "objective_status_counts": {
+          "Incomplete": 44
+        },
+        "objective_unresolved_reasons": {}
+      },
+      {
+        "case": "case-06",
+        "raw_sha256": "c7b90564a5887546b27feccb0b765701176607a36a4ebf78953d08e6684b8779",
+        "record_sha256": "897fe9306d4669da6f33f2c48c32e797b77fc89dc700912e98bbf4ed6e9b1ad5",
+        "actions": 14,
+        "status": "recorded_complete",
+        "terms": {
+          "value": 0.0,
+          "win_probability": 0.6606051325798035,
+          "death_probability": 0.6682911515235901,
+          "expected_final_hp": 0.011038058437407017,
+          "hp_distribution": 4.154336452484131,
+          "potion_net_change": 0.21802572906017303,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "outcome_counts": {
+          "Loss": 28
+        },
+        "objective_status_counts": {
+          "ObjectiveValueUnresolved": 28
+        },
+        "objective_unresolved_reasons": {
+          "inventory_value_unresolved:BlockPotion": 28,
+          "inventory_value_unresolved:PoisonPotion": 28
+        }
+      },
+      {
+        "case": "case-07",
+        "raw_sha256": "7886e4dc36000120685d6236b86ae6ff4f9bc6af84146f41b810a72a39ee5ec4",
+        "record_sha256": "59a2a527086a588c1106d95071a5478f094a34d5dad906a6481f5383bce85ee6",
+        "actions": 2,
+        "status": "recorded_complete",
+        "terms": {
+          "value": 0.0,
+          "win_probability": 0.6481273174285889,
+          "death_probability": 0.6743030548095703,
+          "expected_final_hp": 0.03726477548480034,
+          "hp_distribution": 4.208241939544678,
+          "potion_net_change": 0.03545703738927841,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          false,
+          false
+        ],
+        "outcome_counts": {
+          "Loss": 4
+        },
+        "objective_status_counts": {
+          "ObjectiveValueUnresolved": 4
+        },
+        "objective_unresolved_reasons": {
+          "inventory_value_unresolved:BlockPotion": 4,
+          "inventory_value_unresolved:PoisonPotion": 4
+        }
+      },
+      {
+        "case": "case-08",
+        "raw_sha256": "0e6e727d2b486a44fad855c6ad39048201a79485d603366dd5b330fb3dae8ad9",
+        "record_sha256": "ba4fccf6acac75adbd20c23797e3adadd9bb7a1b42295819adfe0709845c95ab",
+        "actions": 14,
+        "status": "recorded_complete",
+        "terms": {
+          "value": 0.0,
+          "win_probability": 0.6441106200218201,
+          "death_probability": 0.6549980044364929,
+          "expected_final_hp": 0.012317388318479061,
+          "hp_distribution": 4.148849010467529,
+          "potion_net_change": 0.21874715387821198,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "outcome_counts": {
+          "Loss": 28
+        },
+        "objective_status_counts": {
+          "ObjectiveValueUnresolved": 28
+        },
+        "objective_unresolved_reasons": {
+          "inventory_value_unresolved:BlockPotion": 28,
+          "inventory_value_unresolved:DexterityPotion": 28
+        }
+      },
+      {
+        "case": "case-09",
+        "raw_sha256": "dac0e93b88f9eb53a972b80f3d9b0c02b6337e9cc6b24a47969cb4e11c8551e9",
+        "record_sha256": "30e6376282f5733250884ebd5ceb460056607dd7a25f2dd0136e1a05dc872859",
+        "actions": 10,
+        "status": "posterior_exhausted",
+        "terms": {
+          "value": 0.0,
+          "win_probability": 0.0,
+          "death_probability": 0.0,
+          "expected_final_hp": 0.0,
+          "hp_distribution": 0.0,
+          "potion_net_change": 0.0,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "outcome_counts": {
+          "ComputeTruncated": 20
+        },
+        "objective_status_counts": {
+          "Incomplete": 20
+        },
+        "objective_unresolved_reasons": {}
+      },
+      {
+        "case": "case-10",
+        "raw_sha256": "4b5c16a88f9634dfbfa656740cde83205da436e17db88e6889cab766f89ecdb5",
+        "record_sha256": "c082c90113a3a3cc12d7b3b593289b347ff9409676e9779c1ccf3adb67fdd12b",
+        "actions": 12,
+        "status": "posterior_exhausted",
+        "terms": {
+          "value": 0.0,
+          "win_probability": 0.0,
+          "death_probability": 0.0,
+          "expected_final_hp": 0.0,
+          "hp_distribution": 0.0,
+          "potion_net_change": 0.0,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "outcome_counts": {
+          "ComputeTruncated": 24
+        },
+        "objective_status_counts": {
+          "Incomplete": 24
+        },
+        "objective_unresolved_reasons": {}
+      },
+      {
+        "case": "case-11",
+        "raw_sha256": "fca3311232c5d91f216af100b85f9b27401520bb414f541d3eff8304042be8c9",
+        "record_sha256": "e2efb71adf7c0ed7e4b5491bc3bd36aa4ea91c7a99b056fe0a26a27154485087",
+        "actions": 10,
+        "status": "posterior_exhausted",
+        "terms": {
+          "value": 0.0,
+          "win_probability": 0.0,
+          "death_probability": 0.0,
+          "expected_final_hp": 0.0,
+          "hp_distribution": 0.0,
+          "potion_net_change": 0.0,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        },
+        "source_value_masks": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "outcome_counts": {
+          "ComputeTruncated": 20
+        },
+        "objective_status_counts": {
+          "Incomplete": 20
+        },
+        "objective_unresolved_reasons": {}
+      }
+    ],
+    "supervision_coverage": {
+      "format": "nosl.training.full-policy.supervision.v5.1",
+      "roots": 12,
+      "action_heads": {
+        "value": {
+          "masked_rows": 32,
+          "loss_rows": 32,
+          "loss_roots": 2
+        },
+        "win_probability": {
+          "masked_rows": 86,
+          "loss_rows": 86,
+          "loss_roots": 6
+        },
+        "death_probability": {
+          "masked_rows": 86,
+          "loss_rows": 86,
+          "loss_roots": 6
+        },
+        "expected_final_hp": {
+          "masked_rows": 86,
+          "loss_rows": 86,
+          "loss_roots": 6
+        },
+        "hp_distribution": {
+          "masked_rows": 86,
+          "loss_rows": 86,
+          "loss_roots": 6
+        },
+        "potion_net_change": {
+          "masked_rows": 86,
+          "loss_rows": 86,
+          "loss_roots": 6
+        }
+      },
+      "plan_heads": {
+        "specified_success_probability": {
+          "masked_roots": 0,
+          "loss_roots": 0
+        },
+        "extra_net_hp_loss": {
+          "masked_roots": 0,
+          "loss_roots": 0
+        }
+      },
+      "action_policy": {
+        "eligible_roots": 0,
+        "value_roots": 0,
+        "pairwise_roots": 0,
+        "equivalent_roots": 0,
+        "pairwise_pairs": 0
+      },
+      "policy_action_kinds": {
+        "play": 0,
+        "potion": 0,
+        "discard_potion": 0,
+        "choose": 0,
+        "end_turn": 0
+      }
+    },
+    "loss": 1.3216350078582764,
+    "fit_gate": {
+      "status": "FIT_BLOCKED",
+      "accepted": false,
+      "reasons": [
+        "unadmitted_or_engineering_records_cannot_fit",
+        "enabled_objective_policy_supervision_required",
+        "exact_external_objective_review_required",
+        "exact_bounded_execution_authorization_required"
+      ],
+      "formal_training_run": false,
+      "policy_promoted": false,
+      "current_auxiliary_artifacts_eligible": false
+    },
+    "model_state_before_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+    "model_state_after_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+    "parameters_unchanged": true,
+    "model_inputs_equal_public_packets": true,
+    "backward_calls": 0,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0,
+    "gradients_created": false,
+    "weights_saved": false,
+    "trainable": false,
+    "natural_native_admission": false,
+    "protection_status": "INCOMPLETE",
+    "normalized_sha256": "a24777f02928958f9f667e9d6f9f99b56e221c2385f0257ab2ef9e9bc71b3ef1"
+  },
+  "artifacts": {
+    "artifacts/reports/constructed-native-policy-v1/breadth/b7-baseline-validation.json": {
+      "sha256": "cdc8e741b1be1e1d116ea50b487dd9e85e6c2dbfa93a496653cdb1ef65f15805",
+      "bytes": 6940
+    },
+    "artifacts/reports/constructed-native-policy-v1/breadth/engineering.jsonl": {
+      "sha256": "a24777f02928958f9f667e9d6f9f99b56e221c2385f0257ab2ef9e9bc71b3ef1",
+      "bytes": 12066804
+    },
+    "artifacts/reports/constructed-native-policy-v1/breadth/forward.json": {
+      "sha256": "124a45ea247d7e11d265cdef50142c09715b52863f24326708a1fc224711bacf",
+      "bytes": 16815
+    },
+    "artifacts/reports/constructed-native-policy-v1/breadth/forward_matrix.py": {
+      "sha256": "5f916154d2722ae172b7036f14f3b7c372ef7564ee7b35b475ab7bbebc9f9a6c",
+      "bytes": 5172
+    },
+    "artifacts/reports/constructed-native-policy-v1/breadth/validate_matrix.py": {
+      "sha256": "6df98187cb2aa11d251b25d0d0852d17d31eb3fa3d1f9856fc502b9f98acdd76",
+      "bytes": 1572
+    }
+  },
+  "verification_commands": [
+    "../.venv-nosl/bin/python -B artifacts/reports/constructed-native-policy-v1/breadth/validate_matrix.py",
+    "../.venv-nosl/bin/python -B artifacts/reports/constructed-native-policy-v1/breadth/forward_matrix.py"
+  ],
+  "limits": {
+    "engineering_only": true,
+    "production_admission": false,
+    "natural_native_admission": false,
+    "protection_status": "INCOMPLETE",
+    "fit_authorized": false,
+    "backward_calls": 0,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0,
+    "weights_saved": false,
+    "plan_labels_created": false,
+    "raw_reports_changed": false,
+    "adapter_code_changed": false
+  },
+  "notes": [
+    "The frozen adapter accepted all twelve exact reports without a repair or source substitution.",
+    "Every posterior-exhausted source remains a normalized engineering row with all action masks false and zero loss terms.",
+    "172 settled outcomes comprise 88 wins and 84 true losses; 184 incomplete outcome slots remain distinct.",
+    "32 action value rows are resolved, but no root has complete objective value coverage across all legal actions.",
+    "All otherwise completed false value masks reflect unresolved named potion prices under the Candidate objective.",
+    "This aggregate forward creates no source admission, natural-run claim, calibration, backward evidence, optimizer or weights."
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "format": "nosl.constructed-native-tape.full-policy-engineering-verification.v1",
+  "status": "engineering_forward_verified",
+  "native_source_commit": "a3d9895",
+  "source_kind": "constructed_native_tape_action_fixture_v1",
+  "raw_source_kind": "constructed_under_explicit_label_tape_prior",
+  "raw_report": {
+    "path": "artifacts/reports/constructed-tape-v1/action-boundary/response.jsonl",
+    "sha256": "94e234274ed02b012aed99d291eb2fc66e59da5fbeadaeed744785c5672522da",
+    "bytes": 66789
+  },
+  "raw_denominator": {
+    "source_draws_requested": 1,
+    "recorded_roots": 1,
+    "sampled_worlds_returned": 2,
+    "candidate_branches_started": 6,
+    "settled_candidate_outcomes": 2,
+    "budget_expired": false
+  },
+  "outcome_counts": {
+    "Win": 2,
+    "Loss": 0,
+    "ComputeTruncated": 4,
+    "EngineError": 0,
+    "PolicyNonterminating": 0
+  },
+  "checks": {
+    "constructed_bridge_tests": {
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/reports/constructed-native-policy-v1/tests.log"
+    },
+    "existing_native_bridge_guarded_regression": {
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0
+    },
+    "actual_full_policy_batch_loss": {
+      "status": "passed",
+      "check": "constructed_native_tape_full_policy_batch_loss_forward_only",
+      "raw_report_sha256": "94e234274ed02b012aed99d291eb2fc66e59da5fbeadaeed744785c5672522da",
+      "record_sha256": [
+        "c307e3b70fa2af39e8c0714bd68bc84cbc07b8f5c903c92058fd5dbaf4b56936"
+      ],
+      "source_kind": "constructed_native_tape_action_fixture_v1",
+      "collection_summary": {
+        "requested_sources": 1,
+        "retained_records": 1,
+        "status_counts": {
+          "computation_truncated": 1
+        },
+        "exclusions": [],
+        "source_run_groups": [
+          "constructed-native-tape-random-family-v1:e5157d785dace9de36a17763de164152b3ce8a0b205585138f446ea6c0bc0cfc"
+        ],
+        "selection": "predeclared_all_attempts_no_replacement",
+        "protection_status": "INCOMPLETE",
+        "admitted": false
+      },
+      "objectives": [
+        {
+          "format": "nosl.dataset.full-policy.objective-attestation.v5.1",
+          "objective_spec_sha256": "4565a502d529e104109afdb48e962497b605edc6272a2810225543f3f01e14ec",
+          "evaluator_source_sha256": "23ce735dbe1bbd2e6bed9ade44e8a256cdebaa5ceb2183701c2bcced32909e55",
+          "calibration_evidence_sha256": null,
+          "endpoint": "AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION",
+          "continuation_policy_id": "nosl-public-rules-v2",
+          "independent_final_evaluation": true,
+          "public_conditioning_scope": "full_v5",
+          "objective_profile_status": "candidate",
+          "objective_calibrated": false,
+          "evaluation_design_sha256": "d2b2e3c25347e3fbc6854f76bc1d200b2840afec3e956c985af8a8abaa722ab3"
+        }
+      ],
+      "config_sha256": "1d745485bcdab2dd9969e92a4a144dbabfab1558c8bbdb6770cd824d16d46473",
+      "parameter_count": 1573534,
+      "model_state_before_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+      "model_state_after_sha256": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+      "parameters_unchanged": true,
+      "loss": 2.9340085983276367,
+      "terms": [
+        {
+          "value": 0.02644006721675396,
+          "win_probability": 0.6828387975692749,
+          "death_probability": 0.6575052738189697,
+          "expected_final_hp": 0.5051624178886414,
+          "hp_distribution": 4.335299491882324,
+          "potion_net_change": 0.008133011870086193,
+          "pairwise": 0.0,
+          "equivalent": 0.0,
+          "plan.specified_success_probability": -0.0,
+          "plan.extra_net_hp_loss": 0.0
+        }
+      ],
+      "action_masks": [
+        [
+          {
+            "value": false,
+            "win_probability": false,
+            "death_probability": false,
+            "expected_final_hp": false,
+            "hp_distribution": false,
+            "potion_net_change": false
+          },
+          {
+            "value": true,
+            "win_probability": true,
+            "death_probability": true,
+            "expected_final_hp": true,
+            "hp_distribution": true,
+            "potion_net_change": true
+          },
+          {
+            "value": false,
+            "win_probability": false,
+            "death_probability": false,
+            "expected_final_hp": false,
+            "hp_distribution": false,
+            "potion_net_change": false
+          }
+        ]
+      ],
+      "supervision_coverage": {
+        "format": "nosl.training.full-policy.supervision.v5.1",
+        "roots": 1,
+        "action_heads": {
+          "value": {
+            "masked_rows": 1,
+            "loss_rows": 1,
+            "loss_roots": 1
+          },
+          "win_probability": {
+            "masked_rows": 1,
+            "loss_rows": 1,
+            "loss_roots": 1
+          },
+          "death_probability": {
+            "masked_rows": 1,
+            "loss_rows": 1,
+            "loss_roots": 1
+          },
+          "expected_final_hp": {
+            "masked_rows": 1,
+            "loss_rows": 1,
+            "loss_roots": 1
+          },
+          "hp_distribution": {
+            "masked_rows": 1,
+            "loss_rows": 1,
+            "loss_roots": 1
+          },
+          "potion_net_change": {
+            "masked_rows": 1,
+            "loss_rows": 1,
+            "loss_roots": 1
+          }
+        },
+        "plan_heads": {
+          "specified_success_probability": {
+            "masked_roots": 0,
+            "loss_roots": 0
+          },
+          "extra_net_hp_loss": {
+            "masked_roots": 0,
+            "loss_roots": 0
+          }
+        },
+        "action_policy": {
+          "eligible_roots": 0,
+          "value_roots": 0,
+          "pairwise_roots": 0,
+          "equivalent_roots": 0,
+          "pairwise_pairs": 0
+        },
+        "policy_action_kinds": {
+          "play": 0,
+          "potion": 0,
+          "discard_potion": 0,
+          "choose": 0,
+          "end_turn": 0
+        }
+      },
+      "fit_gate": {
+        "status": "FIT_BLOCKED",
+        "accepted": false,
+        "reasons": [
+          "unadmitted_or_engineering_records_cannot_fit",
+          "enabled_objective_policy_supervision_required",
+          "exact_external_objective_review_required",
+          "exact_bounded_execution_authorization_required"
+        ],
+        "formal_training_run": false,
+        "policy_promoted": false,
+        "current_auxiliary_artifacts_eligible": false
+      },
+      "engineering_dataset_accepted": true,
+      "backward_calls": 0,
+      "optimizer_constructions": 0,
+      "optimizer_steps": 0,
+      "gradients_created": false,
+      "weights_saved": false,
+      "trainable": false,
+      "natural_native_admission": false,
+      "objective_calibrated": false
+    }
+  },
+  "artifacts": {
+    "artifacts/reports/constructed-native-policy-v1/engineering.jsonl": {
+      "sha256": "3b1dee4b5a523ed5d9db8a65eaabfdfb3b6d1850ca1bf625950ed25a86ffd49f",
+      "bytes": 90367
+    },
+    "artifacts/reports/constructed-native-policy-v1/forward.json": {
+      "sha256": "5b4bb0c5569b9f88a8a57c8e1571836747e1edaff044a67e1906e7844f155023",
+      "bytes": 5037
+    },
+    "artifacts/reports/constructed-native-policy-v1/tests.log": {
+      "sha256": "53cb36b7a073593c4b6345fdd1ecbf237c7fad30e4ba80f2b361124a87d93fbd",
+      "bytes": 3147
+    }
+  },
+  "source_sha256": {
+    "docs/spec/v4/config/objective_profile.candidate.json": "ceda0bfc7492409d457bfd7ad9b8ee72b83138c457b0549fedb887b72fe43744",
+    "configs/objective_profile.candidate.json": "64dfdc38d5dfcf2bd0d1767ef726c3236a29f4722ef4ff49f345ea2cf0f76599",
+    "src/Nosl.Objectives/RolloutOutcome.cs": "492d066f1e0b2fddfd111c68c844c6edee5782982a7149641dfec2e03c1d2c04",
+    "src/Nosl.Objectives/ObjectiveEvaluator.cs": "a5c386188f00d096fc5c037881c4643e52cd180632e14da0a94b810cee63c494",
+    "src/Nosl.Objectives/PreferenceGates.cs": "d3a99f9f2dc7bb4ac28848fb6a0e598b9605eb679a2d6506bfcc26970dc2e921",
+    "src/Nosl.Worker/TeacherDataset.cs": "71f95f83609d0c75232d2443baa0394cb14e28dcdc4ce9fa1a507e27437901df",
+    "src/Nosl.Worker/CombatTeacher.cs": "b182a13036aa8a04983a418c77bd0f6ddd0a16a93e7eccee0e2573e8dd8add11",
+    "src/Nosl.Worker/NativeConstructedTapePrior.cs": "6fd1614c2efe5f9cf98c9a4dd41458dcac5d4d08abdb1efa393dccada1b840cf",
+    "src/Nosl.Worker/NativeConstructedTapeSource.cs": "23912b1387c0664430fdbc06309adebfe52b89205028eaf6a074849868cc1691",
+    "src/Nosl.Worker/NativeConstructedTapeDataset.cs": "35806d7d43355a00774132304f64c48d692b1a94affd32a19165ad3f686a76e8",
+    "python/nosl/native_policy_v5.py": "452934fe4d4ab8417ec70094d17baa2b055011758bcbfb1cec4b03c45769224e",
+    "python/nosl/constructed_native_policy_v5.py": "0fd31c2b237480577b035468e7585d7b63ec2b4048fbe388d63c397f09ddc872",
+    "python/nosl/data_policy_v5.py": "ea3d87c3bf611545fe043d64a3b7d89bdfef3c523e33d488a04925df74c9257d",
+    "python/nosl/train_policy_v5.py": "4c073abf6477e731bfeceda8b37f7473c26c0ad720fec98f1520af82975d8d27",
+    "tests/data/test_constructed_native_policy_v5.py": "92c547dda5402e73e6f8570e728058bc7730f4eb16fff7de19e457ea16fe8e02",
+    "tools/check_constructed_native_policy_v5_forward.py": "0ebeae7657ad9b2993436e39ac6fc35002b26497659d1a6cd6cf2b716a77dd72"
+  },
+  "limits": {
+    "engineering_only": true,
+    "native_run": false,
+    "production_admission": false,
+    "natural_native_admission": false,
+    "objective_calibrated": false,
+    "protection_status": "INCOMPLETE",
+    "fit_authorized": false,
+    "backward_calls": 0,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0,
+    "weights_saved": false,
+    "plan_labels_created": false,
+    "historical_evidence_changed": false
+  },
+  "notes": [
+    "Exact report bytes retain every attempted source, every raw action value/mask/outcome and execution counter.",
+    "Only three execution-only target fields are projected out of normalized loss targets; exact raw evidence is retained.",
+    "The single positive action value row does not establish complete action-policy root coverage.",
+    "Recorded source/runtime hashes bind declarations and bytes; they are not producer authentication or training authorization."
+  ]
+}
