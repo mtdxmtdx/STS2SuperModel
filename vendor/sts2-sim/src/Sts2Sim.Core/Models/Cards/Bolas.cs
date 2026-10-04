@@ -9,6 +9,9 @@ namespace Sts2Sim.Core.Models.Cards;
 /// 偏离 #101：和 <see cref="ThrummingHatchet"/> 一样，用"记录出牌时的 TurnNumber"代替战斗历史日志。</summary>
 public sealed class Bolas : CardModel, ICombatStateDescriptionContributor, ICardDamageVariableProvider
 {
+    // Public-origin effect history, exposed without identity or private future state.
+    internal int? NoslPlayedOnTurnNumber => _playedOnTurnNumber;
+
     public bool TryGetThrashDamageVariable(out decimal amount)
     {
         amount = _damage;

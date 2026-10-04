@@ -17,6 +17,7 @@ internal static class CombatPrivateStateRegistry
         "Fetch._finishedRound", "Fetch._finishedSide", "Fetch._finishedTurnNumbers",
         "OblivionPower._amountsForPlayedCards",
         "FishingRod.<CombatsSeen>k__BackingField", "LavaRock.<HasTriggered>k__BackingField",
+        "GoldenCompass.<GoldenPathAct>k__BackingField", "ToyBox.<CombatsSeen>k__BackingField",
         "FurCoat._actIndex", "FurCoat._markedCoordinates",
         "BrilliantScarf._cardsPlayed", "IronClub._cardsPlayed", "MusicBox._wasUsedThisTurn", "MusicBox._cardBeingPlayed", "ThrowingAxe._used",
         "PaelsEye._usedThisCombat", "PaelsEye._wasOwnerPartOfLastPlayerTurn", "PaelsEye._eligibleForExtraTurn",
@@ -54,9 +55,8 @@ internal static class CombatPrivateStateRegistry
         "PaleBlueDotPower._alreadyActivatedThisTurn",
         "PanachePower._alreadyApplied", "PanachePower._cardsLeft",
         "MonologuePower._strengthApplied",
-        "RingingPower._ringingCards",
         "RitualPower._skipFirstEnemyTurnEnd", "SlowPower._cardsPlayedSinceOwnerTurnStart",
-        "SwordSagePower._grantedReplays", "TangledPower._affectedCards",
+        "SwordSagePower._grantedReplays",
         "ReattachPower._isReviving", "TenderPower._cardsPlayedThisTurn",
         "TheBombPower._damage", "TheBall._damage", "VoidFormPower._cardsPlayedThisTurn",
         "ToricToughnessPower.<StoredBlock>k__BackingField",
@@ -109,6 +109,8 @@ internal static class CombatPrivateStateRegistry
     private static readonly IReadOnlyDictionary<string, string> IgnoredFields =
         new Dictionary<string, string>(StringComparer.Ordinal)
         {
+            ["SeaGlass._characterId"] =
+                "The character choice is used only during the already-completed pickup effect and for presentation.",
             ["CeremonialBeast.<IsStunnedByPlowRemoval>k__BackingField"] =
                 "Presentation flag; the transient STUN_MOVE and its performed state encode the future transition.",
             ["CeremonialBeast.<IsInSecondPhase>k__BackingField"] =

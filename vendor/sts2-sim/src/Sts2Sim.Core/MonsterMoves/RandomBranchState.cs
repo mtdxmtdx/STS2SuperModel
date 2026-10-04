@@ -53,11 +53,13 @@ public sealed class RandomBranchState : MonsterState
 
     public override string GetNextState(Creature owner, Rng rng)
     {
-        float totalWeight = States.Sum(state => GetStateWeight(state, owner));
+        using IDisposable? labelBranch = LabelMonsterMoveScope.BeginBranch(this, owner, rng);
+        float totalWeight = States.Sum(state => LabelMonsterMoveScope.RecordWeight(GetStateWeight(state, owner)));
+        using IDisposable? labelChoice = LabelMonsterMoveScope.ConditionBranch(totalWeight);
         float randomWeight = rng.NextFloat(totalWeight);
         foreach (StateWeight state in States)
         {
-            randomWeight -= GetStateWeight(state, owner);
+            randomWeight -= LabelMonsterMoveScope.VerifyWeight(GetStateWeight(state, owner));
             if (randomWeight <= 0f)
             {
                 return state.StateId;

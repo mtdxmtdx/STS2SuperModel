@@ -15,6 +15,7 @@ public static class TransplantFieldRegistry
 {
     private static readonly HashSet<string> NativeSavedFields =
     [
+        "SeaGlass._characterId",
         "BoneTea._combatsLeft", "BookOfFiveRings._cardsAdded", "DustyTome._ancientCard",
         "EmberTea._combatsLeft", "FakeHappyFlower._turnsSeen", "FakeVenerableTeaSet._isArmed",
         "FurCoat._actIndex", "FurCoat._markedCoordinates", "GalacticDust._starsSpent",
@@ -27,6 +28,7 @@ public static class TransplantFieldRegistry
         "WongosMysteryTicket._combatsFinished", "WongosMysteryTicket._gaveRelics",
         "Dowsing._unknownRoomsEntered", "Guilty._combatsCompleted", "MadScience._type",
         "FishingRod.<CombatsSeen>k__BackingField", "LavaRock.<HasTriggered>k__BackingField",
+        "GoldenCompass.<GoldenPathAct>k__BackingField", "ToyBox.<CombatsSeen>k__BackingField",
         "PumpkinCandle.<KindleCount>k__BackingField", "SilverCrucible.<TimesUsed>k__BackingField",
         "SilverCrucible.<TreasureRoomsEntered>k__BackingField",
         "WingedBoots.<TimesUsed>k__BackingField", "SpoilsMap.<SpoilsActIndex>k__BackingField",

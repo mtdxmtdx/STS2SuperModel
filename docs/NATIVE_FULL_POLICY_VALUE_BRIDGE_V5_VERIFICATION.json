@@ -1,0 +1,137 @@
+{
+  "format": "nosl.native-full-policy.bridge-verification.v1",
+  "bridge_source_commit": "cc412d7",
+  "test_guard_commit": "1f8a304",
+  "core_source_commit": "e898383d7253d9282ed1e78f788d2ec51e37ede5",
+  "integrated_verification_commit": "ecaea0f",
+  "native_runtime_source_commit": "28cccddc44b3cbc4e91eabc7aaf5dfe48dff04a7",
+  "native_build_checkout_commit": "55fd77da9397530970f8963f30b43a59a348233f",
+  "native_runtime": "9.0.7",
+  "scope": "A predeclared single previously inspected diagnostic source regenerated through the fresh raw API for interface preservation; no new source breadth or production admission",
+  "guarded_tests": {
+    "command": "python -B -m unittest discover -s tests/data -p test_native_policy_v5.py -v",
+    "tests": 17,
+    "passed": 17,
+    "seconds": 42.066,
+    "result": "OK",
+    "learning_entry_points_guarded": true
+  },
+  "native_execution": {
+    "schema": "nosl.native-policy-v5.interface-execution.v1",
+    "request_sha256": "109e1a33f5db8544d25095928b5352b7cee885c472aac94b42cf65b1a042a0a4",
+    "source_commit": "28cccddc44b3cbc4e91eabc7aaf5dfe48dff04a7",
+    "started_utc": "2026-10-03T11:49:57.400850+00:00",
+    "elapsed_seconds": 28.42740664500161,
+    "exit_code": 0,
+    "external_watchdog_expired": false,
+    "worker_sha256": "1fed7b63245b445230f7bbdabb5b43c2c3c029c91f351ae3978b6952e05ebf78",
+    "raw_report_sha256": "058c9b5cc3bf31ad56970b3dea0308f5b1421950a072e9c6d7934f44b29ba2ab",
+    "attempted_invocations": 1,
+    "new_optimizer_steps": 0,
+    "new_backward_passes": 0,
+    "production_admission": false,
+    "historical_protection_complete": false
+  },
+  "interface_result": {
+    "format": "nosl.native-policy-v5.actual-interface-result.v1",
+    "request_sha256": "109e1a33f5db8544d25095928b5352b7cee885c472aac94b42cf65b1a042a0a4",
+    "raw_report_sha256": "058c9b5cc3bf31ad56970b3dea0308f5b1421950a072e9c6d7934f44b29ba2ab",
+    "raw_candidates_sha256": "4500ef52e7f5d46a6941c6e04e07ada277ced5131c9caa88a6ae0455f6fbdfff",
+    "raw_attempts_sha256": "6618971a6840e18633716c97e978509bb5ea7a3d1b59ef733506d79337fce299",
+    "producer_receipt_sha256": "7feb43796e5410685a3af5e954732754822249cf85d026abd6096d0581db0bfb",
+    "records": 1,
+    "attempts": 1,
+    "candidates": 7,
+    "value_masks": 7,
+    "full_public_input_preserved": true,
+    "all_original_targets_preserved": true,
+    "all_outcomes_retained_in_exact_raw_receipt": true,
+    "recomputed_values_match_native": true,
+    "completed_worlds": 14,
+    "allocated_worlds": 14,
+    "sampler_versions": [
+      "nosl-native-map-rewards-tape-marginalized-v6-public-evidence-v2"
+    ],
+    "values": [
+      [
+        -14.803921568627452,
+        -14.803921568627452,
+        -9.31764705882353,
+        -14.803921568627452,
+        -14.803921568627452,
+        -9.352941176470589,
+        -9.352941176470589
+      ]
+    ],
+    "pairwise_pairs": 0,
+    "finite_plan_labels": 0,
+    "objective_calibrated": false,
+    "historical_protection_complete": false,
+    "diagnostic_protection_subset_only": true,
+    "source_remains_protected": true,
+    "isolation_blocker": "full_policy_v5:previously_observed_source_or_public_alias",
+    "trainable": false,
+    "cohort_admitted": false,
+    "fit_authorized": false,
+    "new_backward_passes": 0,
+    "new_optimizer_steps": 0
+  },
+  "historical_registry_status": "MISSING_AFTER_ROLLBACK; incomplete diagnostic subset is explicitly marked and protects the inspected draw. Complete historic metadata and frozen test seals remain mandatory for any future admission/fit.",
+  "fit_or_admission_performed": false,
+  "native_fixture_finite_plan_evidence": false,
+  "artifact_root": "artifacts/native-policy-v5-interface",
+  "artifact_hashes": {
+    "predeclaration.json": {
+      "bytes": 3345,
+      "sha256": "aaa685f032ffafc221bce09c417f0a4e4bfa31d70742a7736903334d7c462685"
+    },
+    "request.jsonl": {
+      "bytes": 1445,
+      "sha256": "109e1a33f5db8544d25095928b5352b7cee885c472aac94b42cf65b1a042a0a4"
+    },
+    "runtime-identity.json": {
+      "bytes": 271,
+      "sha256": "e9a3757edc28dd95d704b3ddb7919c330249b9247e909907c935e2d9dab459a9"
+    },
+    "execution.json": {
+      "bytes": 703,
+      "sha256": "44cfda9502c8c254d99adf6649e368eef0e1cdb27a4787ebe3b660959f80d3cd"
+    },
+    "raw-report.json": {
+      "bytes": 1186296,
+      "sha256": "058c9b5cc3bf31ad56970b3dea0308f5b1421950a072e9c6d7934f44b29ba2ab"
+    },
+    "raw-candidates.jsonl": {
+      "bytes": 813778,
+      "sha256": "4500ef52e7f5d46a6941c6e04e07ada277ced5131c9caa88a6ae0455f6fbdfff"
+    },
+    "raw-attempts.json": {
+      "bytes": 368580,
+      "sha256": "6618971a6840e18633716c97e978509bb5ea7a3d1b59ef733506d79337fce299"
+    },
+    "policy-candidates.jsonl": {
+      "bytes": 363932,
+      "sha256": "3ba03ad21fe1b24b78fe39df708a813658420c3f2c480c3d69be265ae85ffdde"
+    },
+    "producer-receipts.json": {
+      "bytes": 3770905,
+      "sha256": "d0caa44e5615165779947ca3f2c77d4114cfda5b3a580be561b8469449c5e031"
+    },
+    "INCOMPLETE-diagnostic-protection.json": {
+      "bytes": 798,
+      "sha256": "d09a9703dd4842579394c429be70c1a293a133b2ec28afbff77130090b103b12"
+    },
+    "INCOMPLETE-protection-notice.json": {
+      "bytes": 699,
+      "sha256": "d1dfa70fa144c0b714e365824d53768816c0a596446fd991bb95a09a1bee9a67"
+    },
+    "actual-interface-result.json": {
+      "bytes": 1570,
+      "sha256": "456f706d49af2d521fb5b7ea71953f808b358942f086640888761df7f805d10e"
+    },
+    "guarded-tests-final.log": {
+      "bytes": 3689,
+      "sha256": "b14b82013f8bd8ebac4e84510ce44367c803bf6c4efbb59fb4a939388dab6960"
+    }
+  }
+}

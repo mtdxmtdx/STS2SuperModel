@@ -9,6 +9,9 @@ namespace Sts2Sim.Core.Models.Cards;
 /// Osty 不在时无效果。</summary>
 public sealed class Fetch : CardModel, ICardChoiceBaseValueProvider, ICardDamageVariableProvider
 {
+    // Public-origin effect history, exposed without identity or private future state.
+    internal bool NoslPlayedThisTurn => HasBeenPlayedThisTurn;
+
     // 原版 HasBeenPlayedThisTurn 查 CardPlayFinishedEntry(Card == this).HappenedThisTurn：
     // 这里记下本实例最近一次打出完毕时的回合键（轮次、行动方、各玩家回合数）。
     // 原版历史只认同一对象，所以 CreateClone/CreateDupe 出来的新实例不继承（AfterCloned 清空），

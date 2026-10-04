@@ -38,11 +38,17 @@ public static class RoomFactory
                 // a node whose nonempty set of outgoing paths all lead directly to shops.
                 bool excludeShop = runState.PreviousMapPointHasShop ||
                     (point.Children.Count > 0 && point.Children.All(child => child.PointType == MapPointType.Shop));
-                return runState.Odds.UnknownMapPoint.Roll(
-                    excludeShop ? new[] { RoomType.Shop } : Array.Empty<RoomType>(),
-                    runState.Rng.ForSemanticKey(
-                        RunRngType.UnknownMapPoint,
-                        $"act={runState.CurrentActIndex}/floor={runState.TotalFloor}/map_col={point.coord.col}/map_row={point.coord.row}/room_kind=unknown"));
+                Rng unknownRng = runState.Rng.ForSemanticKey(
+                    RunRngType.UnknownMapPoint,
+                    $"act={runState.CurrentActIndex}/floor={runState.TotalFloor}/map_col={point.coord.col}/map_row={point.coord.row}/room_kind=unknown");
+                var boundary = new LabelUnknownRoomContext(runState, point, unknownRng, excludeShop);
+                using (LabelUnknownRoomScope.Begin(boundary))
+                {
+                    RoomType resolved = runState.Odds.UnknownMapPoint.Roll(
+                        excludeShop ? new[] { RoomType.Shop } : Array.Empty<RoomType>(), unknownRng);
+                    boundary.CompletedRoomType = resolved;
+                    return resolved;
+                }
             default:
                 throw new ArgumentOutOfRangeException(nameof(point), point.PointType, null);
         }

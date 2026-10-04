@@ -1,0 +1,51 @@
+{
+  "schema": "nosl.constructed-native-tape.engineering-fixture.v1",
+  "purpose": "One retained native action-label boundary fixture; not breadth, natural frequency, learning, or admission evidence",
+  "source_commit": "a3d9895628a664c71e12b3d54af9d0edc632ce3c",
+  "expected_mechanics": "GrandFinale can settle a native win with an empty draw pile; other one-decision branches remain unresolved. Observed outcomes, including posterior exhaustion, are retained without replacement.",
+  "posterior_budget_rationale": "GrandFinale startup is uncertified and retains ordinary tape rejection;64fixed proposals allow sparse native HP/ordered-hand matching without a success quota or retry.",
+  "external_watchdog_seconds": 90,
+  "invocation_limit": 1,
+  "production_admission": false,
+  "formal_training": false,
+  "request": {
+    "op": "native_constructed_tape_candidates",
+    "purpose": "bounded-constructed-raw",
+    "options": {
+      "collectionId": "constructed-action-boundary-20261003-v1",
+      "sourceDrawSeeds": [
+        24401
+      ],
+      "wallBudgetSeconds": 60,
+      "enableConditioning": true,
+      "prior": {
+        "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+        "setup": {
+          "encounter": "SludgeSpinnerWeak",
+          "deck": [
+            "GrandFinale",
+            "DefendSilent"
+          ],
+          "potions": [],
+          "relics": []
+        },
+        "sourcePolicyId": "nosl-public-rules-v2",
+        "sourceDecisionHorizon": 8,
+        "rootSelection": "opening",
+        "decisionIndex": 0
+      }
+    },
+    "teacherOptions": {
+      "mode": "T0",
+      "continuationPolicyId": "nosl-public-rules-v2",
+      "explorationSeeds": [],
+      "evaluationSeeds": [
+        74402,
+        74401
+      ],
+      "maxPosteriorAttempts": 64,
+      "maxDecisions": 1,
+      "formalLabels": false
+    }
+  }
+}

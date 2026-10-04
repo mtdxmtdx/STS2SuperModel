@@ -1,0 +1,51 @@
+{
+  "schema_version": "nosl.dataset.config.v2",
+  "split_seed": "nosl-v4-provenance-split-v1",
+  "split_ratios": {
+    "train": 0.8,
+    "validation": 0.1,
+    "test": 0.1
+  },
+  "split_unit": "transitive_provenance_connected_component",
+  "source_kinds": [
+    "constructed",
+    "natural",
+    "stress_test"
+  ],
+  "required_provenance": [
+    "source_run_group",
+    "source_combat_id",
+    "branch_family",
+    "public_state_digest"
+  ],
+  "keep_unresolved_actions": true,
+  "formal_labels_enabled": false,
+  "formal_blockers": [
+    "Objective risk and resource/permanent-future value profile is not calibrated",
+    "Inspected native prototype cohorts stay quarantined; fresh certified pilot admission does not establish distribution quality or calibrated labels",
+    "Whole-plan labels do not validate learned continuation or conditional budget management",
+    "Formal training and promotion are not authorized; bounded fitting requires new exact-bound quality acceptance and authorization"
+  ],
+  "note": "Explicit fresh live native pilot admission with required old prepared and inspected native provenance protection. No collection, fitting or quality acceptance is authorized by this config.",
+  "append_policy": {
+    "freeze_initial_test": true,
+    "deduplicate_exact_public_input": true,
+    "lock_all_versions": true,
+    "quarantine_historical_split_merges": true,
+    "engineering_smoke_is_separate_corpus": true
+  },
+  "stage_targets": [
+    200,
+    5000,
+    10000,
+    30000,
+    100000
+  ],
+  "stage_target_metric": "usable_new_roots_before_holdout_exclusion",
+  "promotion": "Explicit review of quality, independent groups, content/source coverage and throughput required; this tool never generates data or starts training",
+  "rule_authority": "USER_ACCEPTED_PINNED_UPSTREAM_5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
+  "runtime_resources": "CPU-only engineering; current quality gate pauses new fitting and large-scale generation",
+  "public_schema": "nosl.student.public.v2",
+  "native_development_admission": "quarantine",
+  "native_pilot_admission": "fresh-certified-v1"
+}

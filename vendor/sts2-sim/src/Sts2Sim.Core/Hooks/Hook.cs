@@ -334,6 +334,14 @@ public static class Hook
         foreach (AbstractModel model in runState.IterateHookListeners(null))
             model.TryModifyCardRewardAlternatives(player, reward, alternatives);
     }
+
+    public static bool CanRerollCardReward(IRunState runState, Player player, CardReward reward)
+    {
+        bool canReroll = false;
+        foreach (AbstractModel model in runState.IterateHookListeners(null))
+            canReroll |= model.TryEnableCardRewardReroll(player, reward);
+        return canReroll;
+    }
     public static async Task AfterPotionUsed(IRunState runState, PotionModel potion, Player player)
     {
         foreach (AbstractModel model in runState.IterateHookListeners(null))
@@ -657,9 +665,26 @@ public static class Hook
         ICombatState combatState,
         Player player)
     {
+        // Native dispatches each phase from a fresh listener enumeration. The local listener
+        // wrapper snapshots each phase before callbacks, preserving its existing same-phase order.
+        if (combatState.IsOverOrEnding()) return;
+        foreach (AbstractModel model in IterateCombatHookListeners(combatState).ToArray())
+        {
+            await model.AfterAutoPrePlayPhaseEnteredEarly(player);
+            model.InvokeExecutionFinished();
+        }
+
+        if (combatState.IsOverOrEnding()) return;
         foreach (AbstractModel model in IterateCombatHookListeners(combatState).ToArray())
         {
             await model.AfterAutoPrePlayPhaseEntered(player);
+            model.InvokeExecutionFinished();
+        }
+
+        if (combatState.IsOverOrEnding()) return;
+        foreach (AbstractModel model in IterateCombatHookListeners(combatState).ToArray())
+        {
+            await model.AfterAutoPrePlayPhaseEnteredLate(player);
             model.InvokeExecutionFinished();
         }
     }
@@ -953,6 +978,16 @@ public static class Hook
         if (failures.Count > 0)
         {
             throw new AggregateException("One or more combat card entry compensations failed.", failures);
+        }
+    }
+
+    /// <summary>原版 <c>Hook.ModifyKeywordsInCombat</c>：由 <see cref="CardModel.GetKeywordsWithSources"/> 在需要
+    /// Global 关键字时调用，结果不写回卡牌。</summary>
+    public static void ModifyKeywordsInCombat(ICombatState combatState, CardModel card, ISet<CardKeyword> keywords)
+    {
+        foreach (AbstractModel model in IterateCombatHookListeners(combatState))
+        {
+            model.TryModifyKeywordsInCombat(card, keywords);
         }
     }
 

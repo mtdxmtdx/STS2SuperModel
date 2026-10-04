@@ -140,6 +140,7 @@ public sealed class Creature
             }
         }
 
+        using IDisposable? labelScope = LabelRandomScope.BeginMonsterHp(this, rng, min, max, usedHp);
         long availableCount = checked(rangeSize - usedHp.Count);
         int rolledHp;
         if (availableCount > 0)
@@ -223,6 +224,7 @@ public sealed class Creature
         int loss = (int)Math.Clamp(amount, 0m, 999999999m);
         CurrentHp = Math.Max(CurrentHp - loss, 0);
         CumulativeHpLost = checked(CumulativeHpLost + hpBefore - CurrentHp);
+        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.Loss, hpBefore, CurrentHp, MaxHp, MaxHp);
         return new DamageResult(this, props)
         {
             UnblockedDamage = hpBefore - CurrentHp,
@@ -243,18 +245,24 @@ public sealed class Creature
 
     public void HealInternal(decimal amount)
     {
+        int hpBefore = CurrentHp;
         CurrentHp = (int)Math.Clamp(CurrentHp + amount, 0m, MaxHp);
+        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.Heal, hpBefore, CurrentHp, MaxHp, MaxHp);
     }
 
     public void SetCurrentHpInternal(decimal amount)
     {
+        int hpBefore = CurrentHp;
         CurrentHp = (int)Math.Clamp(amount, 0m, MaxHp);
+        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.Set, hpBefore, CurrentHp, MaxHp, MaxHp);
     }
 
     public void SetMaxHpInternal(decimal amount)
     {
+        int hpBefore = CurrentHp, maxBefore = MaxHp;
         MaxHp = (int)Math.Clamp(amount, 1m, 999999999m);
         CurrentHp = Math.Min(CurrentHp, MaxHp);
+        Player?.OutcomeObserver?.HpChanged(Player, HpMutationKind.MaxCap, hpBefore, CurrentHp, maxBefore, MaxHp);
     }
 
     public void ApplyPowerInternal(PowerModel power)

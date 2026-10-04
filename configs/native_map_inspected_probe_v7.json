@@ -1,0 +1,87 @@
+{
+  "schema": "nosl.development-sampler-cohort.v2",
+  "created_utc": "2026-10-03T13:04:27.219138+00:00",
+  "source_commit": "561f9ab55ac748db15efdb6694daece83f61ac13",
+  "role": "Previously inspected eight-source integration regression after versioned public draw/grant/intent/act-prefix changes",
+  "request": {
+    "op": "native_tape_replay",
+    "options": {
+      "collectionId": "map-public-inspected-eight-v6",
+      "prior": {
+        "schemaVersion": "nosl.native-map-rewards-state-tape-prior.v1",
+        "eligibleCombats": 3,
+        "eligibleDecisionsPerCombat": 8,
+        "execution": {
+          "maxFloors": 8,
+          "sourceDecisionHorizon": 1024,
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "outsideCombatScript": "nosl-natural-public-script-v3",
+          "publicContextProfile": "nosl.public-run-context.v1",
+          "publicEvidenceProfile": "nosl.public-run-evidence.v2",
+          "publicMapObservationProfile": "nosl.public-map-complete-graph.v1"
+        }
+      },
+      "sourceDrawSeeds": [
+        24001,
+        24002,
+        24003,
+        24004,
+        24005,
+        24006,
+        24007,
+        24008
+      ],
+      "wallBudgetSeconds": 360,
+      "compareUnconditioned": false,
+      "initialPrefixMaxTrials": 64,
+      "eventPermutationMaxTrials": 256
+    },
+    "teacherOptions": {
+      "mode": "T0",
+      "continuationPolicyId": "nosl-public-rules-v2",
+      "evaluationSeeds": [
+        501,
+        502
+      ],
+      "maxPosteriorAttempts": 64,
+      "maxDecisions": 200
+    }
+  },
+  "external_watchdog_seconds": 420,
+  "gates": {
+    "all_eight_requested_attempts_retained": true,
+    "fully_complete_requested_roots_at_least": 4,
+    "fully_complete_decision_index_positive_roots_at_least": 3,
+    "fully_complete_combat_index2_decision_index_positive_roots_at_least": 1,
+    "engine_errors": 0,
+    "assigned_candidate_worlds_completely_accounted": true,
+    "missing_required_category": "inconclusive_not_pass",
+    "full_completion": "Exactly two outcomes per nonempty candidate action, all true terminal and settlement-complete, nonutility target completeness masks valid, and two accepted posterior worlds; costs alone do not establish settlement completion",
+    "zero_error_scope": "Source attempts, proposal engine or cleanup audit, and every continuation branch",
+    "map_reconstruction_executed": "Eligible complete-map root with exact new-law/support/profile IDs; each accepted proposal reconstructed once with zero initial Map cells",
+    "decision_index_positive_means": "An observed local decision after the first; does not imply more than one candidate action.",
+    "all_public_inputs_unchanged_from_v4": true,
+    "prior_identity_unchanged_from_v4": true
+  },
+  "selection_accounting": "All 8 predetermined source draws remain denominator, including absent, failed, timed out, or unexecuted. No replacement draws or success quota. Selected combat and local-decision indices are fixed by the declared source prior before execution.",
+  "time_bias": "Deadline truncation is unresolved computational mass. Completed-by-deadline rows do not establish unbiased admission.",
+  "comparison": "Same public inputs, prior, source draws, final evaluation seeds, order and budgets as Map v4; already inspected.",
+  "run_precondition": "Independent component reviews and full frozen Worker/Core regressions pass. Freeze source and binaries; no concurrent builds or timed experiments. Python source is unchanged or guarded relevant checks pass.",
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "production_admission": false,
+  "frozen_test": "not decoded or changed",
+  "baseline_response": {
+    "path": "artifacts/reports/map-public-v7/baseline-inspected-eight-v4-response.jsonl",
+    "sha256": "a2eb13805bafcaecb205af06efa8169134833c65be0208f67f83944e7a2b4762"
+  },
+  "gate_use": "The original throughput criteria are retained only for direct integration comparison. A later independent predeclared cohort is required before breadth claims; no production admission from this diagnostic.",
+  "additional_descriptive_counts": [
+    "fully complete roots with at least two candidates",
+    "fully complete later-combat roots with at least two candidates"
+  ],
+  "current_sampler": "nosl-native-map-rewards-tape-marginalized-v7-public-evidence-v2",
+  "paired_evaluation_seed_note": "Fixed within-root world seeds are reused across roots and implementations for this development comparison; accepted slots are not a claim of globally independent samples.",
+  "validation_plan": "configs/native_map_v7_validation_plan.json"
+}

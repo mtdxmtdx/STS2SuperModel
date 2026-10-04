@@ -250,11 +250,12 @@ public sealed partial class RunState : IRunState
             Rng.ForSemanticKey(RunRngType.UpFront, "run_setup/relic_bag/shared"),
             SharedRelicPool.Instance.AllRelics,
             includeAllRarities: true);
-        return new RelicGrabBag(
-            Rng.ForSemanticKey(
-                RunRngType.UpFront,
-                $"run_setup/relic_bag/character={player.Character.Id.Entry}"),
-            SharedRelicPool.Instance.AllRelics.Concat(player.Character.RelicPool.AllRelics));
+        Rng playerBagRng = Rng.ForSemanticKey(RunRngType.UpFront,
+            $"run_setup/relic_bag/character={player.Character.Id.Entry}");
+        var playerBagPool = SharedRelicPool.Instance.AllRelics.Concat(player.Character.RelicPool.AllRelics).ToArray();
+        using IDisposable? labelBag = LabelMerchantScope.BeginBag(new(player, playerBagRng, playerBagPool));
+        try { return new RelicGrabBag(playerBagRng, playerBagPool); }
+        catch { (labelBag as IAbortableLabelRewardBoundary)?.Abort(); throw; }
     }
 
     private void EnsureRoomsGenerated()
@@ -293,15 +294,22 @@ public sealed partial class RunState : IRunState
     private GeneratedActRooms GenerateActRooms(ActDefinition act, int actIndex, IReadOnlyList<Type> sharedAncients)
     {
         List<Type> events = act.EffectiveEventPool.ToList();
-        events.UnstableShuffle(Rng.ForSemanticKey(
+        Rng eventRng = Rng.ForSemanticKey(
             RunRngType.UpFront,
-            $"run_setup/act={actIndex}/events/shuffle"));
+            $"run_setup/act={actIndex}/events/shuffle");
+        using (LabelEventGenerationScope.Begin(this, act, actIndex, eventRng, events))
+        {
+            events.UnstableShuffle(eventRng);
+            LabelEventGenerationScope.Complete(events);
+        }
 
         // 真实游戏 RunManager.SetUpNewSingleplayer -> InitializeNewRun -> GenerateRooms() 在创建 run
         // 的那一刻（玩家还未看到 Neow）就用 State.Rng.UpFront 把整幕的普通/精英/Boss/先古之民
         // 遭遇战一次性抽完，按顺序存起来，房间真正被访问时只是按序取用，不再消耗随机数。
         // 偏离 #46/#179 之前遗留的实现（已修复）曾经用错了 RNG 流（CombatCardGeneration）且延迟到
         // 房间实际被访问时才抽——两个问题叠加导致抽到的遭遇战和真实游戏对不上。
+        using IDisposable? labelEncounterScope = actIndex == 0
+            ? LabelRandomScope.BeginNormalEncounter(this, act) : null;
         var normalEncounters = new List<EncounterDefinition>(act.BaseNumberOfRooms);
         for (int i = 0; i < act.BaseNumberOfRooms; i++)
         {
@@ -367,17 +375,18 @@ public sealed partial class RunState : IRunState
     private void GenerateCurrentMap()
     {
         ActDefinition act = Act;
-        var mapRng = new Rng(Rng.Seed, $"act_{CurrentActIndex + 1}_map");
-        MapPointTypeCounts pointTypeCounts = act.GetMapPointTypes(mapRng, Ascension);
-        Map = new StandardActMap(
-            mapRng,
-            act.BaseNumberOfRooms,
-            pointTypeCounts,
+        var mapRng = StandardActMap.CreateRng(Rng.Seed, CurrentActIndex);
+        using IDisposable? labelMapScope = LabelRandomScope.BeginMapGeneration(this, act, mapRng);
+        Map = LabelMapConstructionScope.TryConstruct(new(this, act, mapRng)) ?? StandardActMap.CreateFor(
+            act, mapRng, Ascension,
             hasSecondBoss: Ascension.HasLevel(AscensionLevel.DoubleBoss) && CurrentActIndex == _acts.Length - 1);
         Map = Hooks.Hook.ModifyGeneratedMap(this, Map, CurrentActIndex);
         // Run setup is synchronous; map-generated listeners contain no player-choice suspension.
         Hooks.Hook.AfterMapGenerated(this, Map, CurrentActIndex).GetAwaiter().GetResult();
     }
+
+    /// <summary>Regenerate the current act map when an obtained relic replaces its topology.</summary>
+    internal void RegenerateCurrentMap() => GenerateCurrentMap();
 
     /// <summary>按真实游戏 <c>RoomSet.NextNormalEncounter</c>/<c>NextEliteEncounter</c>/<c>NextBossEncounter</c>
     /// 的取用语义：从开局一次性抽好的序列里按访问次数取，取用即推进指针。</summary>
@@ -529,7 +538,8 @@ public sealed partial class RunState : IRunState
             // enumerate a stable listener snapshot for this dispatch.
             foreach (RelicModel relic in player.Relics.ToArray())
             {
-                yield return relic;
+                if (!relic.IsMelted)
+                    yield return relic;
             }
 
             foreach (PotionModel potion in player.PotionSlots.OfType<PotionModel>())

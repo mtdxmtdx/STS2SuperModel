@@ -1,0 +1,241 @@
+{
+  "schema": "nosl.m3-m6.continued-engineering.v1",
+  "date_utc": "2026-10-02",
+  "source_head": "6501de5b35c45e96407432163a08152aa26ccfe3",
+  "status": "READY_FOR_PILOT_FULL_SCOPE_BLOCKED",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "lifetime_experimental_optimizer_steps": 497,
+  "model_promoted": false,
+  "verified_regressions": [
+    {
+      "suite": "native",
+      "passed": 1096,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/owned-run/owned-run-final.trx",
+      "bytes": 1595102,
+      "sha256": "2fd39a4ec8c7ca5b3ade35318d37c42123b3987c4515a94b430309785dbc7176"
+    },
+    {
+      "suite": "core",
+      "passed": 4480,
+      "failed": 0,
+      "skipped": 3,
+      "path": "artifacts/owned-run-vendor-verification/vendor-core-tests.trx",
+      "bytes": 6964889,
+      "sha256": "04203b70b2fc7091da8b4e82d78dfc9aaa18885c3beb75d83776caaf0646d647"
+    },
+    {
+      "suite": "python_no_learning",
+      "passed": 205,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/native-v7/python-no-learning.log",
+      "bytes": 34348,
+      "sha256": "5ed844244afa9babb219c6ea79b734add59117832486aaa8acbba220fa294fb8"
+    },
+    {
+      "suite": "data",
+      "passed": 145,
+      "failed": 0,
+      "skipped": 7,
+      "path": "artifacts/reports/native-v7/data.log",
+      "bytes": 264,
+      "sha256": "32f2e1637bee3ad3dc991f580fc372fd7c5b27759cbb7ace059ca0f3804331fc"
+    },
+    {
+      "suite": "native_admission_live_and_metadata",
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/native-v7/native-admission-live.log",
+      "bytes": 111,
+      "sha256": "e22dff97363f3d8c37098640587a1cd4264cc4fefb1f6b876a0e4e8e52009128"
+    },
+    {
+      "suite": "generator",
+      "passed": 63,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/recovery/generator.log",
+      "bytes": 10982,
+      "sha256": "fa9ab583409e0aa7908e07eabadf19633bcdc1e7c946283e7daf98d1ba36330d"
+    },
+    {
+      "suite": "calibration",
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0,
+      "path": "artifacts/reports/recovery/calibration.log",
+      "bytes": 7746,
+      "sha256": "39da166e7391676d4298f632049afab5a47369e1ebf9649190279c9a54fdfb8a"
+    }
+  ],
+  "historical_python_regression": {
+    "passed": 185,
+    "scope": "Before the versioned production preparation/trainer delta; do not add to current suite counts",
+    "path": "artifacts/reports/m3-m6/continued-python-full.log",
+    "bytes": 29343,
+    "sha256": "96d028cf4e1ef2b657cc9f28b06d5d52552cbcfe6eb31d6a2fe713d8b133da5b"
+  },
+  "closed_engineering_gaps": [
+    "Private committed HP/healing/set/max-cap and potion generation/consumption/discard ledger with immutable branch prefixes and explicit incompleteness",
+    "All five native forced-event owner/return/reward lifecycles through the first actual reward decision",
+    "Reviewed natural carry-in, native stable-origin pending choices and untouched generation-potion closure",
+    "Public student v2 active Hunt context, native entry assets and forced-event context validation/encoding",
+    "Versioned production v2 preparation, source-group protection, bounded trainer, checkpoint/resume and standalone bundle with actual-supervision applicability guards",
+    "Protected fresh native collection/export/preparation/loading with exact historical alias registry and explicit runtime pins",
+    "Separate finite public Regen controller/context with immutable deadline and committed-history consistency guards",
+    "Native better-later Flex comparison with same continuation and strict unknown-inventory cancellation",
+    "Generic owned native run execution, fixed-slot generative posterior, same-proposal replay forks and explicit incomplete sampling accounting; useful broad throughput remains gated"
+  ],
+  "native_fixed_diagnostic_cohort": {
+    "raw_roots": 200,
+    "runs": 6,
+    "combats": 26,
+    "encounter_types": 15,
+    "supported_roots": 200,
+    "unsupported_roots": 0,
+    "settled_candidate_worlds": 2692,
+    "allocated_candidate_worlds": 2692,
+    "profiles": [
+      "native-public-entry-reviewed-memory-exchangeable-v2",
+      "native-public-entry-reviewed-memory-conditional-choice-v1",
+      "native-public-entry-generation-potions-exchangeable-v1",
+      "native-public-entry-reviewed-encounters-exchangeable-v1",
+      "native-public-entry-reviewed-encounters-conditional-choice-v1"
+    ],
+    "dispatcher": "nosl-belief-dispatch-v7",
+    "historical_150_targets_unchanged": true,
+    "all_200_public_inputs_and_source_traces_unchanged": true,
+    "empirical_action_utility_targets": 632,
+    "masked_action_utility_targets": 714,
+    "complete_ranking_roots": 0,
+    "training_admitted_roots": 0,
+    "all_records_inspected_development": true,
+    "remaining_encounters": {},
+    "generation_potion_teacher_limit": "Frozen T0 cancels optional card generation. Nonempty closure is verified separately for all 39 eligible generated cards, including actual settlement.",
+    "historical_174_targets_unchanged": true,
+    "extension_report": "NATIVE_ENCOUNTER_EXTENSION_SUMMARY.json"
+  },
+  "active_remaining_engineering": [],
+  "remaining_full_scope_gates": [
+    "Generic owned native execution removes the manual import whitelist for its new declared prior. Broad usable posterior throughput remains unverified: two opening roots yielded0accepted worlds in64proposals at the fixed budget. Older native fast profiles remain bounded; no prior/corpus is silently reinterpreted.",
+    "Candidate risk coefficients fit the declared cases and are provisional. Different retained resource/permanent/reward quantities require calibrated future values; uniqueness of coefficients is not an engineering requirement",
+    "Completed data-quality failure continues to pause enlarged generation/new fitting;100k and million-root milestones are not attained",
+    "General learned quality, original-client differential and final deployment export are laterM7/M8 acceptance, not newly imposed M3–M6 prerequisites"
+  ],
+  "frozen_assets_preserved": [
+    "Original pilot-5000-v4 corpus and its 494 sealed test targets",
+    "One-epoch 497-step experimental checkpoint and standalone legacy inference",
+    "Default worker binaries and all earlier versioned diagnostic cohorts"
+  ],
+  "vendor_packaging": "configs/vendor_patch_verification.json",
+  "independent_reviews": [
+    "Outcome/event ledger: no remaining material findings",
+    "Five forced-event lifecycle: no remaining material findings after narrow setup-proposal rejection fix",
+    "Native carry-in, pending choice and generation-potion increments: no remaining material findings",
+    "Versioned v2 production pipeline: six review findings fixed; no remaining blocking engineering issue",
+    "Reconstructed native/finite runtime: no material defects; registry closure, all4Regen spoof/rewind fixes and complete fingerprints independently checked",
+    "Native v7 source, all retained old174 targets/public200 traces,2692 settled outcomes and exact vendor packaging independently reviewed"
+  ],
+  "declared_scope_engineering_complete": true,
+  "fresh_native_admission": {
+    "status": "RECOVERY_REPLAY_VERIFIED",
+    "same_observed_roots": 12,
+    "actual_runs": 3,
+    "certified_roots": 2,
+    "raw_rejections": 10,
+    "settled_candidate_worlds": 18,
+    "protected_components": 2579,
+    "protection_sha256": "868baa56050ca0d76ba82d9b14cfd1a5f3b118151a2f559e75ab50b1254b1537",
+    "loaded": {
+      "train": 1,
+      "validation": 1
+    },
+    "preparation": {
+      "status": "ENGINEERING_SMOKE_ONLY",
+      "manifest": "artifacts/prepared/recovered-native-engineering-proof/manifest.json",
+      "stage_id": "stage-000001-31a675624adabc77",
+      "isolation_passed": true,
+      "input_attempts": 12,
+      "usable_new_roots_before_holdout_exclusion": 2,
+      "accepted_roots": 2,
+      "duplicate_attempts": 0,
+      "frozen_holdout_excluded_roots": 0,
+      "full_candidate_complete_new_roots": 1,
+      "auxiliary_only_usable_new_roots": 1
+    },
+    "formal_training": false,
+    "new_optimizer_steps": 0,
+    "backward_calls": 0,
+    "fresh_benchmark": false,
+    "v7_same_fixture_replay": {
+      "certified_roots": 2,
+      "raw_rejections": 10,
+      "settled_worlds": 18,
+      "unsupported_reasons": {
+        "native_certificate:unreviewed_entry_relic": 1,
+        "native_certificate:unreviewed_entry_card": 6,
+        "native_certificate:unreviewed_encounter": 3
+      },
+      "old_v6_prepared_loading_verified": true,
+      "new_source_count": 0,
+      "purpose": "version compatibility, not broader source selection"
+    }
+  },
+  "finite_regen": {
+    "native_tests": 8,
+    "python_forward_only_tests": 8,
+    "independently_reviewed": true,
+    "paired_worlds": 2,
+    "combat_start_hp": 50,
+    "baseline_final_hp": 50,
+    "plan_final_hp": 65,
+    "safe_end_turns": 5,
+    "fixed_deadline": 6,
+    "absolute_utility_masked": true,
+    "cross_policy_relative_mask": false,
+    "statistical_eligibility": "UNRESOLVED",
+    "record_trainable": false
+  },
+  "delayed_potion": {
+    "independent_pairs": 32,
+    "five_hp_advantage": 16,
+    "ties": 16,
+    "mean_hp_advantage": 2.5,
+    "relative_cost_interval": [
+      1.3212564526976007,
+      3.7620768806357323
+    ],
+    "both_arms_consume": "one FlexPotion",
+    "absolute_utility_masked": true,
+    "formal_labels": false,
+    "raw_reproduction_sha256": "40322f8167c33dc95bea1da5b0bac61cb4c1bfa53920e2e1d7281c2db5afc951"
+  },
+  "recovery": {
+    "event": "Cloud filesystem rolled back at2026-10-02T07:09Z",
+    "durable_source_base": "45d098d9f7a28802234ee89558b682f8a26c4150",
+    "source_reconstructed_and_revalidated": true,
+    "all_three_original_archives_exact_sha256_match": true,
+    "original_weights_sha256": "ee274ca0d67f4b082fa21f1203ae96ffc49e4e80fb94f1cb50afbe5b75566139",
+    "old_test_targets_decoded": false,
+    "same_fixed_native200_replayed": true,
+    "historical_native_protection_registry_exact_match": true,
+    "registry_sha256": "868baa56050ca0d76ba82d9b14cfd1a5f3b118151a2f559e75ab50b1254b1537",
+    "same_native12_replayed": true,
+    "new_independent_data_count_from_replays": 0
+  },
+  "verification_limits": [
+    "205 Python checks excluded11 previously executed backward-related tests and guarded backward/optimizer.step; no new optimizer steps",
+    "Data suite145pass+7optional live skips; all12 native metadata/live admission tests run separately against the same inspected12-root fixture",
+    "Current readonly vendor accessor additions passed a complete4480/3 Core suite and2227-file patch reconstruction",
+    "Fixed200,12-root and32-pair evidence is inspected development data; replays do not increase independent counts",
+    "Owned-run evidence is separately versioned; finite fixture24settled and full-prior probe0/64accepted do not increase existing production datasets or change inspected native200 counts"
+  ],
+  "native_admission_version_verification": "configs/native_v7_admission_verification.json",
+  "owned_native_replay_verification": "configs/owned_native_replay_verification.json",
+  "generic_execution_does_not_mean_posterior_throughput": true
+}

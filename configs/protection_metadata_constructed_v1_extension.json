@@ -1,0 +1,317 @@
+{
+  "alias_semantics": {
+    "current_enforced": "Unmodified record_tokens/public_metadata and native_policy_v5._closure consume canonical source run/combat/branch, raw source draw, native source, full-v5 public and recoverable legacy public tokens.",
+    "source_generation_identity": "Preserved verbatim with source_prior_identity in every ledger entry; a generation configuration alone is not a per-draw source alias.",
+    "supplemental_limit": "Exporter-only alias spellings are preserved in explicit linked rows and the full identity/status ledger. Future importers must apply the same projection to consume those spellings; arbitrary raw fields are not automatically recognized.",
+    "supplemental_projection": "underlying_battle_alias maps to source_combat_id linked to the canonical source_run_group; its configured-source prefix maps to source_run_group linked by that battle; public_root_alias maps to public_state_digest linked to the canonical family."
+  },
+  "all_13_attempts_excluded_by_current_native_policy_closure": true,
+  "all_base_components_tokens_and_owners_unchanged": true,
+  "all_standard_source_and_public_tokens_excluded": true,
+  "attempt_ledger_file_sha256": "9ee09955b154e929253de6ca6a356ce84a327700c0eb4cee40742491d36f629a",
+  "attempt_ledger_path": "artifacts/recovery-protection-metadata/constructed-v1-attempt-identity-status.jsonl",
+  "attempt_status_counts": {
+    "computation_truncated": 1,
+    "posterior_exhausted": 6,
+    "recorded_complete": 6
+  },
+  "attempts_projected": 13,
+  "base_canonical_object_sha256": "39d2518c73796d27cf9ff9b90ce26222e4c50e1405e8af1bb27bd410eaaac55f",
+  "base_components": 2672,
+  "base_file_sha256": "04966ec89198eb9c13bc15eed804b7eef6478f69c1934f8d758f101ece12d7ea",
+  "base_path": "artifacts/recovery-protection-metadata/INCOMPLETE-current-with-v8-protection-v5.json",
+  "base_tokens": 19988,
+  "base_unmodified": true,
+  "can_admit_or_train": false,
+  "cross_split_conflicts": [],
+  "distinct_primitive_rng_families": 7,
+  "files": [
+    {
+      "attempt_status": "computation_truncated",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 66789,
+      "path": "artifacts/reports/constructed-tape-v1/action-boundary/response.jsonl",
+      "prior_identity": "8e13775e7a3586df3e2a5c69d281d634caf977e15f5cf85a16d92af3c4636229",
+      "records_projected": 1,
+      "sha256": "94e234274ed02b012aed99d291eb2fc66e59da5fbeadaeed744785c5672522da",
+      "source_draw_seed": 24401
+    },
+    {
+      "attempt_status": "posterior_exhausted",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 215435,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-00/response.jsonl",
+      "prior_identity": "94802a54afa00656d57285c9c7d025332923dc138aadaf28c5226d35c3eae326",
+      "records_projected": 1,
+      "sha256": "2165f6ac262d03dec8387e82a03add3cd5f294adc302e47849a62f3b21aca09d",
+      "source_draw_seed": 44101
+    },
+    {
+      "attempt_status": "posterior_exhausted",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 381444,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-01/response.jsonl",
+      "prior_identity": "709783dcf45ceb01218ffecc02a740048460005c99676a28fdedfbe3f92b5712",
+      "records_projected": 1,
+      "sha256": "2bca92497661026ec096e51477d886a19074131f06f75b727b6fa0ab96829755",
+      "source_draw_seed": 44101
+    },
+    {
+      "attempt_status": "recorded_complete",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 1740953,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-02/response.jsonl",
+      "prior_identity": "4594f0ed47c6462da76397f6130549d1b111fdb007fc39239a3b54dbd86e6f25",
+      "records_projected": 1,
+      "sha256": "196b0a7ab71efe216a7edc92398b3934846f15682c1f24923c9a60f5a4d19d3f",
+      "source_draw_seed": 44102
+    },
+    {
+      "attempt_status": "recorded_complete",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 1691155,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-03/response.jsonl",
+      "prior_identity": "bea39d527b223722c844ffad556f33df72e5ad34058e9c4c9f99e0c1667bce8e",
+      "records_projected": 1,
+      "sha256": "bc6359acea710fce925d0f07733a08a2531276bd4b66159a80cdfe0f209bf3ea",
+      "source_draw_seed": 44102
+    },
+    {
+      "attempt_status": "recorded_complete",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 913300,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-04/response.jsonl",
+      "prior_identity": "841df5450db99213438f6258b2d509fa86a97d61e39a8ce24ea9e23b060a7b18",
+      "records_projected": 1,
+      "sha256": "ee6edd092e44b32490d1eb65f1d4173aeec720ec5af2a01cebe7ced0472b8d27",
+      "source_draw_seed": 44103
+    },
+    {
+      "attempt_status": "posterior_exhausted",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 418804,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-05/response.jsonl",
+      "prior_identity": "2c0c9b1dc011bc3389108f5fbadb71c8af2c0baabef991eba3fa5be83366b4c8",
+      "records_projected": 1,
+      "sha256": "bdab6dedd05da51b4da0ede06d5168ffe746ae6530c1ccd1d15fd58511a32119",
+      "source_draw_seed": 44103
+    },
+    {
+      "attempt_status": "recorded_complete",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 1064042,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-06/response.jsonl",
+      "prior_identity": "417bb02d97feb2d12cb630b311c5db431eeb6ed2edd9f0245cebff8a6935eeb0",
+      "records_projected": 1,
+      "sha256": "c7b90564a5887546b27feccb0b765701176607a36a4ebf78953d08e6684b8779",
+      "source_draw_seed": 44104
+    },
+    {
+      "attempt_status": "recorded_complete",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 431795,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-07/response.jsonl",
+      "prior_identity": "40972455bbdd2351f9d07a040bca92cbde1a42c9d17df9e98f3b2e476453c00c",
+      "records_projected": 1,
+      "sha256": "7886e4dc36000120685d6236b86ae6ff4f9bc6af84146f41b810a72a39ee5ec4",
+      "source_draw_seed": 44104
+    },
+    {
+      "attempt_status": "recorded_complete",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 1165888,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-08/response.jsonl",
+      "prior_identity": "d3efe319a53136558ec7ab0dcf0814c1036de3dc636973dce293f3ef03aeaab6",
+      "records_projected": 1,
+      "sha256": "0e6e727d2b486a44fad855c6ad39048201a79485d603366dd5b330fb3dae8ad9",
+      "source_draw_seed": 44105
+    },
+    {
+      "attempt_status": "posterior_exhausted",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 541699,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-09/response.jsonl",
+      "prior_identity": "0fae88c171a087515a977256d594c4d959ed1f0bc3390f27f561f328c8d7c6c5",
+      "records_projected": 1,
+      "sha256": "dac0e93b88f9eb53a972b80f3d9b0c02b6337e9cc6b24a47969cb4e11c8551e9",
+      "source_draw_seed": 44105
+    },
+    {
+      "attempt_status": "posterior_exhausted",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 210485,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-10/response.jsonl",
+      "prior_identity": "3b7550cf7c390d95c04bfc622f8d658fb1b5c36d5eebabfe3d605a4f0c682ac8",
+      "records_projected": 1,
+      "sha256": "4b5c16a88f9634dfbfa656740cde83205da436e17db88e6889cab766f89ecdb5",
+      "source_draw_seed": 44106
+    },
+    {
+      "attempt_status": "posterior_exhausted",
+      "attempts_projected": 1,
+      "build_receipt_sha256": "9507ab8f872d5457cf316c64c1c079a43bc68111fee51306ebd8e5e5a41a920e",
+      "bytes": 583550,
+      "path": "artifacts/reports/constructed-tape-v1/breadth/case-11/response.jsonl",
+      "prior_identity": "3606fbde026df36e34d3b99adb2f1345dc75a64777400300a109eccaee86725f",
+      "records_projected": 1,
+      "sha256": "fca3311232c5d91f216af100b85f9b27401520bb414f541d3eff8304042be8c9",
+      "source_draw_seed": 44106
+    }
+  ],
+  "fixture_family_count": 1,
+  "format": "nosl.protection-metadata-constructed-v1-extension-receipt.v1",
+  "generic_legacy_import_rejected": "split_protection:fields_invalid",
+  "guards": {
+    "admission": false,
+    "backward_calls": 0,
+    "current_proposals_or_execution_accounting_decoded": false,
+    "current_response_outcomes_decoded": false,
+    "current_response_targets_decoded": false,
+    "data_generation": false,
+    "fit": false,
+    "full_action_adapter_run": false,
+    "historical_target_payloads_opened": false,
+    "model_instantiated": false,
+    "old_library_files_opened": false,
+    "old_registry_or_report_modified": false,
+    "optimizer_steps": 0,
+    "simulation": false
+  },
+  "historical_protection_complete": false,
+  "metadata_file_sha256": "f0ef4e12c57fca16dffc8d8272840f2340625617014a46b4836fd0f028fc213a",
+  "metadata_path": "artifacts/recovery-protection-metadata/constructed-v1-source-metadata.jsonl",
+  "metadata_rows": 40,
+  "missing_history": "All missing later cohorts in protection_metadata_recovery_20261003.json remain missing. These 13 attempts add seven observed constructed families and do not recover historical identities.",
+  "new_tokens": 439,
+  "normal_public_alias_count": 364,
+  "normal_token_count": 412,
+  "observed_diagnostics_are_fresh": false,
+  "observed_diagnostics_quarantined": true,
+  "original_frozen_test_shards": [
+    {
+      "bytes": 10704382,
+      "rows": 494,
+      "sha256": "8c684b1c0bba7be4e97d8e5ce5151a835404b2d7d18cc84f71d7af1a2590de72"
+    }
+  ],
+  "original_test_components": 244,
+  "original_test_public_aliases": 524,
+  "owner_semantics": "New train owner tags are observed-source exclusions only. Every v5 role is protected; no training assignment or reuse is authorized. Never unwrap for legacy generic relabeling.",
+  "paired_breadth_families": [
+    {
+      "attempt_indices": [
+        1,
+        2
+      ],
+      "component": "93d036f05742d3f8d35c3d0eb62fa135955606a56f3e5f3510b499f676aaaa46",
+      "shared_configured_battle": "constructed-native-tape-configured-source-v1:35e36058c70b8be8a25deebdc0a3e92a6661c938ac932557935f7214c8c169c3/combat:0",
+      "shared_random_family": "constructed-native-tape-random-family-v1:57961dd2d13dacf6a799d6812404e9dba8ba32b4d225b5602cccd8f6e70673b2",
+      "source_draw_seed": 44101
+    },
+    {
+      "attempt_indices": [
+        3,
+        4
+      ],
+      "component": "721176e8ecf07a1bc7acce50be39312229453aa4c8ad5d7013667f76d4234c60",
+      "shared_configured_battle": "constructed-native-tape-configured-source-v1:100c436cb6bfe0b594f3789607df93939fb9a9e0c474ceebc7fd14c37bfe21e2/combat:0",
+      "shared_random_family": "constructed-native-tape-random-family-v1:7c842e47d609eb0ba1b9f2095a1e2172bbe133d02cfe490ca29231e21d7aa598",
+      "source_draw_seed": 44102
+    },
+    {
+      "attempt_indices": [
+        5,
+        6
+      ],
+      "component": "17af4ecabfe23febcef6589a4edf5aacfb36282c4e68ce2a299f4d872f05da60",
+      "shared_configured_battle": "constructed-native-tape-configured-source-v1:b81b1a1ff88f20b4283d694d3b5fb4a9a4fed10b06ba2940efb158dfc27594b2/combat:0",
+      "shared_random_family": "constructed-native-tape-random-family-v1:b13576453333d4aa2f34c4d0a60c91efab822792924d07eb99c9ef5e6cd6c305",
+      "source_draw_seed": 44103
+    },
+    {
+      "attempt_indices": [
+        7,
+        8
+      ],
+      "component": "c2ad2eee483983a3d31a883f25df31af2aef7fe1d490aa63dd954416d0896081",
+      "shared_configured_battle": "constructed-native-tape-configured-source-v1:1f188b55e21a03dabbe0f4a9e0e37f1ee5c90992c05d78ab2e0c2d5a473b5a29/combat:0",
+      "shared_random_family": "constructed-native-tape-random-family-v1:5d1d7117a10c5f4f215de15a52758ee0f588646928f84631a9b0b6fdef9360f2",
+      "source_draw_seed": 44104
+    },
+    {
+      "attempt_indices": [
+        9,
+        10
+      ],
+      "component": "7fe924dac5e3e146f7fa2f9b6a16ac255c7fd531e6498a48a94ca80d29b5ebca",
+      "shared_configured_battle": "constructed-native-tape-configured-source-v1:25c8130237b8abe069623f62115ba6f8221bccb4413a0ab6ff78fe1f9686b7a8/combat:0",
+      "shared_random_family": "constructed-native-tape-random-family-v1:d6247805f803b6a5c62708ba3e3281374124ac27595b3a0bc77e49372d243183",
+      "source_draw_seed": 44105
+    },
+    {
+      "attempt_indices": [
+        11,
+        12
+      ],
+      "component": "9b6f75a65c2f20a5c69a200edde032ca8a1b12b94b6719702a2a617750a45faf",
+      "shared_configured_battle": "constructed-native-tape-configured-source-v1:8d4456a945711164d07f4ba7a34beb2f4fa98e3a29951a6a983ebaceb59faf91/combat:0",
+      "shared_random_family": "constructed-native-tape-random-family-v1:72cb029d2be1ee30730120890a7df2acd2097a71cc940f34e363a670fb0d132d",
+      "source_draw_seed": 44106
+    }
+  ],
+  "protection_status": "INCOMPLETE",
+  "records_projected": 13,
+  "reproduce": "python tools/extend_constructed_protection_v1.py --verify-only (in the existing torch 2.6 environment; no model or learning calls)",
+  "source_draw_seeds": [
+    24401,
+    44101,
+    44101,
+    44102,
+    44102,
+    44103,
+    44103,
+    44104,
+    44104,
+    44105,
+    44105,
+    44106,
+    44106
+  ],
+  "source_sha256": {
+    "configs/student.v5.engineering.json": "1d745485bcdab2dd9969e92a4a144dbabfab1558c8bbdb6770cd824d16d46473",
+    "python/nosl/constructed_native_policy_v5.py": "0fd31c2b237480577b035468e7585d7b63ec2b4048fbe388d63c397f09ddc872",
+    "python/nosl/data.py": "c02c588b9d5e7299311c8275e901b1c7338d0fe5e70f2c5fd88a692ea88b1568",
+    "python/nosl/native_pilot.py": "d04361ede5181232409941cc11eac5bb0775e56c1eec223f6c1bdefbc8fae9d1",
+    "python/nosl/native_policy_v5.py": "452934fe4d4ab8417ec70094d17baa2b055011758bcbfb1cec4b03c45769224e",
+    "python/nosl/prepare_v5.py": "c6c8210baf97e984d804aca11d97435d5f060dfb9c8c6bf3eec91c02e8215086",
+    "python/nosl/protection_v5.py": "df7e6b5496026b2a7c0e0c29ef3d610f0a00dd1cd9c0f8f541b0ebe969239bd0",
+    "python/nosl/public_identity.py": "6dfa2d70ba31b0a62050631968e102c2c610aa487b30f95870adf84bbd243622",
+    "python/nosl/public_identity_v3.py": "046be31d7148e3deb8e3e6d196a0ec2e920a118728fa750018cc0f8b5658d3e2",
+    "python/nosl/public_identity_v4.py": "b40329088ce2597842ffbaa8e137d01bada6d80d5a68dcd9191acc2778f5e94f",
+    "python/nosl/public_identity_v5.py": "7a2965bbe6051c31fc0c1be0c43880a9568d7f9b9e188b24daed0deef20fad37",
+    "tools/extend_constructed_protection_v1.py": "e67d43656beec128b1aeab82da1a67b05c75314338676eec88688f788ff20c48",
+    "tools/native_protection.py": "ae2a82016113303bd52dc7ab3072aba8586d851327cf2d2bb6e2e2c85188f925"
+  },
+  "standard_all_attempt_rows": 13,
+  "successor_canonical_object_sha256": "298ec0fee8bbe2d6729e7d162bcc2243193baf9eb01f1065cd70b99736a24731",
+  "successor_components": 2679,
+  "successor_file_sha256": "4feefc12e17f90bb1ff5d4b95a1e1f260405c18f560d4ea8cf951caa2820ad34",
+  "successor_path": "artifacts/recovery-protection-metadata/INCOMPLETE-current-with-constructed-v1-protection-v5.json",
+  "successor_tokens": 20427,
+  "supplemental_alias_rows": 27,
+  "validation_scope": "Pinned current-report metadata, strict contract/public/source identities, immutable registry preservation, per-token alias coverage and current metadata closure only. Not a label audit or historical-completeness assertion.",
+  "verification_report_path": "artifacts/recovery-protection-metadata/constructed-v1-extension-report.json",
+  "verification_report_sha256": "8c8e7ce64565b2cb6ee0569deb9c06b7f81a37dcde8dfcea7f36c076482a65b1"
+}

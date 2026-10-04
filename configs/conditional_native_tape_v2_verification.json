@@ -1,0 +1,486 @@
+{
+  "schema": "nosl.conditional-native-tape-verification.v2",
+  "source_commit": "1b5ef014817414ffbda4ce04a6c6417bfd8c3fbe",
+  "status": "STRUCTURED_OPENING_GATE_PASSED_LATER_NATIVE_EVENT_CONTROLLER_FIX_IN_PROGRESS",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "new_production_dataset_rows": 0,
+  "prior_version": "nosl.native-state-tape-prior.v1",
+  "sampler_version": "nosl-native-tape-structured-conditional-v2",
+  "dataset_schema": "nosl.native-tape-replay-development.v1",
+  "ideal_law_boundary": "Exact proposal correction is relative to the independent state-addressed primitive-word law. SHA256 expansion is its reproducible pseudorandom implementation, not a claim of exact independent finite-seed outputs or the old native seed posterior.",
+  "new_mechanisms": [
+    "Exact public Neow positive-origin certificate for the explicit first-combat/one-floor prior; root envelope retains unequal latent pool weights across native14..16 pools",
+    "Public initial enemyHP conditioning retains native uniqueness across all earlier types and applies a root-constant envelope over creation-order possibilities",
+    "Public action revision and logged action count determine the local root coordinate, including pending choices; uniform coordinate factor cancels only because it is constant for the root",
+    "54 source-audited startup monster types and reviewed safe count/counter/terminal-only hooks accelerate initial shuffle without reducing fallback support",
+    "All required native interception/completion invariants are checked before packet rejection or any random density correction"
+  ],
+  "native_suite": {
+    "passed": 1191,
+    "failed": 0,
+    "skipped": 0,
+    "path": "artifacts/reports/conditional-tape/conditional-tape-v2-final.trx",
+    "bytes": 1777070,
+    "sha256": "2922c2a1c610b84f52a162d3c45194844376de6efde4e0a2c5937feb53bf0db6"
+  },
+  "core_suite": {
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "duration_reported": "4 m 24 s",
+    "evidence_kind": "reported_completed_tool_output_reused_after_source_equivalence_verification",
+    "reported_exit_code": 0,
+    "reported_terminal_summary": "Passed! - Failed: 0, Passed: 4493, Skipped: 3, Total: 4496, Duration: 4 m 24 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "raw_log_available": false,
+    "trx_available": false,
+    "log_path": null,
+    "trx_path": null,
+    "rerun_for_packaging": false,
+    "source_worktree": "STS2SuperModel-hp",
+    "verified_source_worktree_commit": "5e5eb1ca317fcfc735200ff5b1a74ca51491f93d",
+    "main_verified_source_commit": "d26a42019e47c1d8e832f11c34574c63366ae307",
+    "build_artifacts": "artifacts/hp-proposal-core-build",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/hp-proposal-core-build --no-build --no-restore --nologo -m:1",
+    "command_note": "Exact dotnet invocation reported by the HP author; run in STS2SuperModel-hp after sourcing the shared .NET 9 environment. The original environment setup command is retained in the reported-terminal evidence artifact.",
+    "src_git_tree": "b5de483e18cfcb39d8894594ae32bece8ce73b9e",
+    "tests_git_tree": "545e411a2718a57b0ea670a91bef5514fca0e8ac",
+    "test_assembly_path": "artifacts/conditional-hp-vendor-verification/reused-runtime-assemblies/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "8c3cb8c7176683dee483b034d16ea83184de02f31dbe9e6d6989c3458866dfee",
+    "core_assembly_path": "artifacts/conditional-hp-vendor-verification/reused-runtime-assemblies/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "01fa15a7cd99651042a6730f3a0d25581397f019021ea2918bdaa266f4500a13",
+    "assembly_hash_capture": "Independently captured after the reported full-suite completion; author states no subsequent build or test was run.",
+    "verified_source_manifest_sha256": "9612b9d8b70f1d92377ee1a7a1d9e47ea6cc12ac79d3a3a64859b5406e9c0eeb",
+    "source_equivalence_evidence_path": "artifacts/conditional-hp-vendor-verification/reused-hp-suite-source-equivalence.json",
+    "source_equivalence_evidence_sha256": "708c2dfab8448ba041ad0a73261ee881fea12d0bf02a414c0be42a7b50757f13",
+    "reported_terminal_evidence_path": "artifacts/conditional-hp-vendor-verification/reused-full-core-terminal-report.json",
+    "reported_terminal_evidence_sha256": "e37aeb6648bff6efefe6bfc1efe4efff224a3fa0b3155bfced612243caa132ca"
+  },
+  "core_evidence_note": "The current4493pass/3skip Core suite was completed by the HP author; original stdout log/TRX was not saved. The qualified vendor report verifies exact source/assembly identity and does not fabricate a raw test artifact.",
+  "opening_probe": {
+    "priorIdentity": "741c8af9d875fafb3fe565ac6ae535ffdbbba589823ba9609de4860f493fea78",
+    "sourceDrawsRequested": 8,
+    "existingRoots": 8,
+    "recordedRoots": 8,
+    "distinctRecordedPublicRoots": 8,
+    "distinctRecordedSourceRuns": 8,
+    "acceleratedRoots": 8,
+    "acceptedPosteriorDraws": 16,
+    "allocatedCandidateWorlds": 160,
+    "settledCandidateWorlds": 160,
+    "elapsedSeconds": 24.812523,
+    "peakWorkerMemoryBytes": 147881984,
+    "budgetExpired": false,
+    "prior": {
+      "schemaVersion": "nosl.native-state-tape-prior.v1",
+      "execution": {
+        "maxFloors": 1,
+        "sourceDecisionHorizon": 64,
+        "sourcePolicyId": "nosl-public-rules-v2"
+      },
+      "eligibleCombats": 1,
+      "eligibleDecisionsPerCombat": 1,
+      "primitiveLaw": "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1",
+      "primitiveImplementation": "sha256-address-expansion-with-explicit-conditioned-overrides-v1",
+      "rootLaw": "independent-uniform-fixed-combat-and-local-decision-indices-v1",
+      "outsideCombatScript": "nosl-natural-public-script-v2"
+    },
+    "proposal_statuses": {
+      "public_constraint_mismatch": 226,
+      "accepted": 16,
+      "exact_proposal_density_correction_rejected": 2,
+      "public_packet_mismatch": 5
+    },
+    "outcome_kinds": {
+      "Win": 160
+    },
+    "source_breakdown": [
+      {
+        "source_draw_seed": 8001,
+        "combat_index": 0,
+        "decision_index": 0,
+        "relics": [
+          "RingOfTheSnake",
+          "NutritiousOyster"
+        ],
+        "enemies": [
+          "Seapunk"
+        ],
+        "shuffle": true,
+        "hp": true,
+        "neow": true,
+        "accepted_worlds": 2,
+        "distinct_accepted_recipes_within_root": 2,
+        "proposals": 33,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 31,
+          "accepted": 2
+        }
+      },
+      {
+        "source_draw_seed": 8002,
+        "combat_index": 0,
+        "decision_index": 0,
+        "relics": [
+          "RingOfTheSnake",
+          "FishingRod"
+        ],
+        "enemies": [
+          "Nibbit"
+        ],
+        "shuffle": true,
+        "hp": true,
+        "neow": true,
+        "accepted_worlds": 2,
+        "distinct_accepted_recipes_within_root": 2,
+        "proposals": 17,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 15,
+          "accepted": 2
+        }
+      },
+      {
+        "source_draw_seed": 8003,
+        "combat_index": 0,
+        "decision_index": 0,
+        "relics": [
+          "RingOfTheSnake",
+          "BoomingConch"
+        ],
+        "enemies": [
+          "LeafSlimeS",
+          "LeafSlimeM",
+          "TwigSlimeS"
+        ],
+        "shuffle": true,
+        "hp": true,
+        "neow": true,
+        "accepted_worlds": 2,
+        "distinct_accepted_recipes_within_root": 2,
+        "proposals": 10,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 8,
+          "accepted": 2
+        }
+      },
+      {
+        "source_draw_seed": 8004,
+        "combat_index": 0,
+        "decision_index": 0,
+        "relics": [
+          "RingOfTheSnake",
+          "WingedBoots"
+        ],
+        "enemies": [
+          "Nibbit"
+        ],
+        "shuffle": true,
+        "hp": true,
+        "neow": true,
+        "accepted_worlds": 2,
+        "distinct_accepted_recipes_within_root": 2,
+        "proposals": 25,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 22,
+          "accepted": 2,
+          "exact_proposal_density_correction_rejected": 1
+        }
+      },
+      {
+        "source_draw_seed": 8005,
+        "combat_index": 0,
+        "decision_index": 0,
+        "relics": [
+          "RingOfTheSnake",
+          "Pomander"
+        ],
+        "enemies": [
+          "ShrinkerBeetle"
+        ],
+        "shuffle": true,
+        "hp": true,
+        "neow": true,
+        "accepted_worlds": 2,
+        "distinct_accepted_recipes_within_root": 2,
+        "proposals": 109,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 102,
+          "public_packet_mismatch": 5,
+          "accepted": 2
+        }
+      },
+      {
+        "source_draw_seed": 8006,
+        "combat_index": 0,
+        "decision_index": 0,
+        "relics": [
+          "RingOfTheSnake",
+          "PreciseScissors"
+        ],
+        "enemies": [
+          "LeafSlimeS",
+          "LeafSlimeM",
+          "TwigSlimeS"
+        ],
+        "shuffle": true,
+        "hp": true,
+        "neow": true,
+        "accepted_worlds": 2,
+        "distinct_accepted_recipes_within_root": 2,
+        "proposals": 10,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 8,
+          "accepted": 2
+        }
+      },
+      {
+        "source_draw_seed": 8007,
+        "combat_index": 0,
+        "decision_index": 0,
+        "relics": [
+          "RingOfTheSnake",
+          "WingedBoots"
+        ],
+        "enemies": [
+          "LeafSlimeS",
+          "LeafSlimeM",
+          "TwigSlimeS"
+        ],
+        "shuffle": true,
+        "hp": true,
+        "neow": true,
+        "accepted_worlds": 2,
+        "distinct_accepted_recipes_within_root": 2,
+        "proposals": 10,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 8,
+          "accepted": 2
+        }
+      },
+      {
+        "source_draw_seed": 8008,
+        "combat_index": 0,
+        "decision_index": 0,
+        "relics": [
+          "RingOfTheSnake",
+          "FishingRod"
+        ],
+        "enemies": [
+          "ShrinkerBeetle"
+        ],
+        "shuffle": true,
+        "hp": true,
+        "neow": true,
+        "accepted_worlds": 2,
+        "distinct_accepted_recipes_within_root": 2,
+        "proposals": 35,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 32,
+          "exact_proposal_density_correction_rejected": 1,
+          "accepted": 2
+        }
+      }
+    ]
+  },
+  "later_probe": {
+    "priorIdentity": "f12471f0c28821e3da1322145cf4656c56f997671589916b53446f3aa83ba519",
+    "sourceDrawsRequested": 4,
+    "existingRoots": 4,
+    "recordedRoots": 4,
+    "distinctRecordedPublicRoots": 4,
+    "distinctRecordedSourceRuns": 4,
+    "acceleratedRoots": 3,
+    "acceptedPosteriorDraws": 0,
+    "allocatedCandidateWorlds": 22,
+    "settledCandidateWorlds": 0,
+    "elapsedSeconds": 10.081598,
+    "peakWorkerMemoryBytes": 107282432,
+    "budgetExpired": false,
+    "prior": {
+      "schemaVersion": "nosl.native-state-tape-prior.v1",
+      "execution": {
+        "maxFloors": 8,
+        "sourceDecisionHorizon": 1024,
+        "sourcePolicyId": "nosl-public-rules-v2"
+      },
+      "eligibleCombats": 3,
+      "eligibleDecisionsPerCombat": 8,
+      "primitiveLaw": "ideal-independent-uint64-by-native-predraw-state-with-equal-state-aliases-v1",
+      "primitiveImplementation": "sha256-address-expansion-with-explicit-conditioned-overrides-v1",
+      "rootLaw": "independent-uniform-fixed-combat-and-local-decision-indices-v1",
+      "outsideCombatScript": "nosl-natural-public-script-v2"
+    },
+    "proposal_statuses": {
+      "public_constraint_mismatch": 120,
+      "proposal_engine_error": 8
+    },
+    "outcome_kinds": {
+      "EngineError": 22
+    },
+    "source_breakdown": [
+      {
+        "source_draw_seed": 9001,
+        "combat_index": 1,
+        "decision_index": 1,
+        "relics": [
+          "RingOfTheSnake",
+          "WingedBoots"
+        ],
+        "enemies": [
+          "FuzzyWurmCrawler"
+        ],
+        "shuffle": true,
+        "hp": false,
+        "neow": false,
+        "accepted_worlds": 0,
+        "distinct_accepted_recipes_within_root": 0,
+        "proposals": 32,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 30,
+          "proposal_engine_error": 2
+        }
+      },
+      {
+        "source_draw_seed": 9002,
+        "combat_index": 2,
+        "decision_index": 6,
+        "relics": [
+          "RingOfTheSnake",
+          "Kaleidoscope"
+        ],
+        "enemies": [
+          "Seapunk"
+        ],
+        "shuffle": false,
+        "hp": false,
+        "neow": false,
+        "accepted_worlds": 0,
+        "distinct_accepted_recipes_within_root": 0,
+        "proposals": 32,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 30,
+          "proposal_engine_error": 2
+        }
+      },
+      {
+        "source_draw_seed": 9003,
+        "combat_index": 0,
+        "decision_index": 4,
+        "relics": [
+          "RingOfTheSnake",
+          "PreciseScissors"
+        ],
+        "enemies": [
+          "Nibbit"
+        ],
+        "shuffle": true,
+        "hp": false,
+        "neow": false,
+        "accepted_worlds": 0,
+        "distinct_accepted_recipes_within_root": 0,
+        "proposals": 32,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 30,
+          "proposal_engine_error": 2
+        }
+      },
+      {
+        "source_draw_seed": 9004,
+        "combat_index": 1,
+        "decision_index": 4,
+        "relics": [
+          "RingOfTheSnake",
+          "LeadPaperweight"
+        ],
+        "enemies": [
+          "SludgeSpinner"
+        ],
+        "shuffle": true,
+        "hp": false,
+        "neow": false,
+        "accepted_worlds": 0,
+        "distinct_accepted_recipes_within_root": 0,
+        "proposals": 32,
+        "proposal_statuses": {
+          "public_constraint_mismatch": 30,
+          "proposal_engine_error": 2
+        }
+      }
+    ]
+  },
+  "opening_predeclaration": {
+    "path": "artifacts/reports/conditional-tape/opening-v2-predeclaration.json",
+    "bytes": 716,
+    "sha256": "84b8cbe22ff4ca42e9a74518418e98b983a04ae475021217534e630f2cc99539"
+  },
+  "opening_request": {
+    "path": "artifacts/reports/conditional-tape/opening-v2-request.jsonl",
+    "bytes": 584,
+    "sha256": "a0269413a781ac9de51b81a86e39a01b5bcba5cc4c512f45c0243a1cc643a3d0"
+  },
+  "opening_response": {
+    "path": "artifacts/reports/conditional-tape/opening-v2-final-response.jsonl",
+    "bytes": 4166129,
+    "sha256": "31b924304ef63bef40e22d463ede643bd0608be1e4e81882baf84cca2e61f11b"
+  },
+  "initial_v2_response": {
+    "path": "artifacts/reports/conditional-tape/opening-v2-response.jsonl",
+    "bytes": 4168408,
+    "sha256": "a61b90c538f8343754bfa0bf4c1fca339a6f2c3a068b062a374424b7dcb1c668"
+  },
+  "later_predeclaration": {
+    "path": "artifacts/reports/conditional-tape/later-v2-predeclaration.json",
+    "bytes": 553,
+    "sha256": "25c44b4e19b420f0828da38d6f391d8e8782120fd610a014d65032951d76296e"
+  },
+  "later_request": {
+    "path": "artifacts/reports/conditional-tape/later-v2-request.jsonl",
+    "bytes": 538,
+    "sha256": "d2db028953b695bbaf619270c0059a92c2805fb78db12d65b7248b765d0491a9"
+  },
+  "later_response": {
+    "path": "artifacts/reports/conditional-tape/later-v2-response.jsonl",
+    "bytes": 236154,
+    "sha256": "028c8c5df17ac72c9992d4ad69e930fb95a37cc2b7ea9c09051e0bdd10e97524"
+  },
+  "fixed_opening_public_roots_unchanged_from_v1": true,
+  "completion_guard_fix_preserves_all_initial_v2_targets_and_outcomes": true,
+  "opening_gate": {
+    "required_complete_roots": 4,
+    "actual_complete_roots": 8,
+    "passed": true,
+    "engine_errors": 0,
+    "allocated_and_settled_branches": 160
+  },
+  "later_gate": {
+    "passed": false,
+    "complete_later_roots": 0,
+    "cause": "A proposed native run repeats event choices under outside scriptv2 and hits the native maximum-event-choices guard; firstfailed proposal is preserved and never silently retried",
+    "interpretation": "recoverable source-controller defect, not a measured zero posterior acceptance rate",
+    "source_attempts_accounted": 4,
+    "assigned_action_world_error_mass": 22,
+    "posterior_calls_terminated_by_engine_error": 8,
+    "raw_proposal_attempts": 128
+  },
+  "production_quarantine": {
+    "checked": 12,
+    "rejected": 12,
+    "reasons": [
+      "only explicitly non-trainable native development teacher records are supported"
+    ]
+  },
+  "reviews": "Independent density/envelope, public-only origin, runtime alias, startup closure and final adapter review cleared after completion-validation ordering fix",
+  "next_work": [
+    "Preserve outside scriptv2 and introduce a separately versioned public option-based controller that leaves repeatable event loops",
+    "Rerun only a bounded later-combat probe under the new explicit source law before drawing any broad throughput conclusion",
+    "Retain resource masks and data-quality gates; no production admission or fit follows from the opening diagnostic gate alone"
+  ]
+}

@@ -1,0 +1,700 @@
+{
+  "schema": "nosl.native-map-origin-verification.v3",
+  "source_commit": "fd890ce60e18d45ca86a82f6fa4049b2aa37b80b",
+  "status": "VERIFIED_COMPOSITION_INSPECTED_GATE_NOT_MET",
+  "full_m3_m6_complete": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "new_production_rows": 0,
+  "formal_training": false,
+  "prior_identity": "10b8d166ee4dfe2cacd0946d5737f38de676e55b20b69acf635c3898da88e3f6",
+  "prior_unchanged_from_map_v1": true,
+  "source_channel_unchanged_from_map_v1": true,
+  "sampler": "nosl-native-map-rewards-tape-marginalized-v3-public-evidence-v2",
+  "rewards_sampler": "nosl-native-rewards-state-tape-conditional-v9-public-evidence-v1",
+  "implemented": [
+    "Source-verified public SunkenStatue, WoodCarvings and RoomFullOfCheese option signatures with all prior ownership guards retained",
+    "Exact public Gorge eight-card identity proposal under native NoUpgradeRoll with fixed root likelihood/envelope and owning tape composition",
+    "Public DaggerThrow staged draw/choice/discard closure and Fairy-only startup V4 plus draw closure v7 inventory/consumption accounting",
+    "Sticky fatal callback failures survive later absence, mismatch, cancellation, cleanup and replay; legitimate public mismatch retains its category",
+    "Separate fresh native complete-map raw candidate API with exact build receipt, every attempt/outcome and runtime/version binding",
+    "Protected auxiliary-only v5 adaptation, reviewed admission, immutable preparation/loading and explicit later Missing-map handling",
+    "Bounded v5 pilot interface with zero-step resume guards, serialized optimizer identity/moment checks and default FIT_BLOCKED behavior"
+  ],
+  "independent_reviews": {
+    "gorge_and_failure_latching": "Approved after sticky component, incomplete-prefix disposal and owning wrapper fixes",
+    "fairy_draw_closure": "Approved narrow native boundary; no prior/kernel/correction or utility changes",
+    "v5_optimizer_restore": "Approved after raw moment dtype/shape/IDs and postload finiteness fixes; learned resume unverified",
+    "fresh_candidate_api": "Approved after preflight and cleanup root-accounting fixes",
+    "v5_preparation": "Approved after source/provenance closure and exclusion-replay fixes; later Missing map verified with23 preparation tests"
+  },
+  "native_suite": {
+    "counts": {
+      "total": 1928,
+      "passed": 1928,
+      "failed": 0,
+      "notExecuted": 0
+    },
+    "trx": {
+      "path": "artifacts/reports/map-public-v3/map-public-v3-aggregate.trx",
+      "bytes": 2865781,
+      "sha256": "fd80ad2406383e81ab89914bfddc42c216962424a8a22acee70534500de7980e"
+    },
+    "log": {
+      "path": "artifacts/map-public-v3-aggregate.log",
+      "bytes": 536,
+      "sha256": "f081579b7fd1caf0e269119865964b636f9756c6662993e02998126067f076c6"
+    }
+  },
+  "focused_final_failure_regression": {
+    "counts": {
+      "total": 9,
+      "passed": 9,
+      "failed": 0,
+      "notExecuted": 0
+    },
+    "trx": {
+      "path": "artifacts/reports/map-public-v3/map-v3-final-sticky.trx",
+      "bytes": 14711,
+      "sha256": "434e6e975f750724b025f3099ef4dd588ac9a7014aea3a15e876206069581929"
+    }
+  },
+  "python_guarded": {
+    "status": "PASS",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=python:tests/python:tests/data /workspace/scratch/b3c7487cea34/.venv-nosl/bin/python artifacts/reports/map-public-v3/python/run_v5_guarded_regression.py",
+    "working_directory": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage",
+    "commit_before": "d55e878c189a1396d592a756a9f4a95a2d91c055",
+    "commit_after": "fd890ce60e18d45ca86a82f6fa4049b2aa37b80b",
+    "completed_at_utc": "2026-10-03T02:44:16.741658+00:00",
+    "tests_run": 53,
+    "module_counts": {
+      "test_prepare_v5": 23,
+      "test_pilot_v5": 16,
+      "test_public_map_v5": 14
+    },
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "expected_failures": 0,
+    "unexpected_successes": 0,
+    "hard_guards": {
+      "torch.Tensor.backward": 0,
+      "torch.autograd.backward": 0,
+      "torch.optim.asgd.ASGD.step": 0,
+      "torch.optim.adadelta.Adadelta.step": 0,
+      "torch.optim.Adafactor.step": 0,
+      "torch.optim.adagrad.Adagrad.step": 0,
+      "torch.optim.adam.Adam.step": 0,
+      "torch.optim.adamw.AdamW.step": 0,
+      "torch.optim.adamax.Adamax.step": 0,
+      "torch.optim.lbfgs.LBFGS.step": 0,
+      "torch.optim.nadam.NAdam.step": 0,
+      "torch.optim.optimizer.Optimizer.step": 0,
+      "torch.optim.radam.RAdam.step": 0,
+      "torch.optim.rmsprop.RMSprop.step": 0,
+      "torch.optim.rprop.Rprop.step": 0,
+      "torch.optim.sgd.SGD.step": 0,
+      "torch.optim.sparse_adam.SparseAdam.step": 0,
+      "test_pilot_v5.inner_guard": 0
+    },
+    "guard_calls_total": 0,
+    "global_no_grad": true,
+    "python_sources_unchanged": true,
+    "source_sha256": {
+      "python/nosl/__init__.py": "53b4c27e9d3d35511fd6382fee5a5593ff512aaf0ae9902733c840b262df80bc",
+      "python/nosl/data.py": "c02c588b9d5e7299311c8275e901b1c7338d0fe5e70f2c5fd88a692ea88b1568",
+      "python/nosl/data_v2.py": "be021a855a413f002a949664a5417f9ae5f8e4a4c4485db30f3003665fb01443",
+      "python/nosl/data_v3.py": "e41f4402a51a4df1a926a32eb2bb808290873cee1513350292bdcff4ac70e7d6",
+      "python/nosl/data_v4.py": "1c94554d6c8aa2e70fd63a1e543f0bf25978710dea8fcdcc0fc120344af98549",
+      "python/nosl/data_v5.py": "95d6840398a822a60fa549fd1ca90e65031ae9a2cc88f0ab28e8f72e08fb2b23",
+      "python/nosl/evidence_v4.py": "25ab527e698042997de687852945579f1522555d021ec599ffe9b782da1d0c9e",
+      "python/nosl/experimental_policy.py": "5194d362fcdb1dfcfc1cc49105d2795915657bf250fa611f25df2cef6cb7179f",
+      "python/nosl/inference.py": "305424c34c80c86b94f02c329bf9ed7cd907604dcc2b2a79bc73a5bc280e89dd",
+      "python/nosl/inference_v2.py": "34b78c713dcd7877f91f857d320d43cc66b4130f01614a4190e08a6776b7a4b0",
+      "python/nosl/inference_v3.py": "05515a1ce6039c869d4c2b8c56fe97eaec2a65c8cddb6deea19a6a381f61a997",
+      "python/nosl/inference_v4.py": "1239ca182fe7fd75d4849c0667971eeebfd04cc30d946ddf8ec51c9f4e8decdc",
+      "python/nosl/inference_v5.py": "4fbc6a60481d35eb95badba0a93d5861b01eda3f43dd8cd3a16bd0a05eac3e2f",
+      "python/nosl/loss_v5.py": "2e14fc569c37d7640cc7b01247aa664158e4ab634e4e79a60a261539ef4469ca",
+      "python/nosl/model.py": "427c2f63fd327ed058ce92d11436e1ff7774013227a2228f1b21284028c122e1",
+      "python/nosl/model_v2.py": "bd4a58b22664755b75cd52e39ace51665a46f44931261a49caf0ae421deb3d97",
+      "python/nosl/model_v3.py": "a47bd529b6d7711a9117f8d9736777471266ba39020c13b03c25b0f01429f2fe",
+      "python/nosl/model_v4.py": "181eeb79fa428932939e79111f7134c535dcc4473bfcd199b38e6b49ad7ddb17",
+      "python/nosl/model_v5.py": "bca2f1183736c1c926e06aec48d71af735ea56c2478f322eb7973d36be643ce2",
+      "python/nosl/native_pilot.py": "d04361ede5181232409941cc11eac5bb0775e56c1eec223f6c1bdefbc8fae9d1",
+      "python/nosl/native_v5.py": "72bc2b78ca6d3fb61680ccee14f07cf84d9a62dff025f139c5a8662feeabdae1",
+      "python/nosl/pilot_v5.py": "05050fb94a64d0f4ca046a623f2545895fb4308db343636776e82cb1e7fbb8f4",
+      "python/nosl/prepare_v5.py": "c6c8210baf97e984d804aca11d97435d5f060dfb9c8c6bf3eec91c02e8215086",
+      "python/nosl/protection_v5.py": "df7e6b5496026b2a7c0e0c29ef3d610f0a00dd1cd9c0f8f541b0ebe969239bd0",
+      "python/nosl/public_identity.py": "6dfa2d70ba31b0a62050631968e102c2c610aa487b30f95870adf84bbd243622",
+      "python/nosl/public_identity_v2.py": "a1afef0cffdcff8a775c8925cfc4ee62073e7bd70345ecdd47ec5a8be90ec1f8",
+      "python/nosl/public_identity_v3.py": "046be31d7148e3deb8e3e6d196a0ec2e920a118728fa750018cc0f8b5658d3e2",
+      "python/nosl/public_identity_v4.py": "b40329088ce2597842ffbaa8e137d01bada6d80d5a68dcd9191acc2778f5e94f",
+      "python/nosl/public_identity_v5.py": "7a2965bbe6051c31fc0c1be0c43880a9568d7f9b9e188b24daed0deef20fad37",
+      "python/nosl/reproducibility.py": "eb14771c6240202b391f0ce81dc0dbe00573902af3072dca5f3ba595cf574bd1",
+      "python/nosl/schema.py": "0ea9dafdaf61dbe23809b7d7e481fef894dd45c1fa29cb1e49e411b0f4d05974",
+      "python/nosl/schema_regen.py": "36607a31514a32b1e5073008d8a01d6d20aefa82fcecbef1c41a1f629d794231",
+      "python/nosl/schema_v2.py": "a4e302cc1fcaf81ae44065517f73cff89f1ee531a71eb393313dc55638f2b00c",
+      "python/nosl/schema_v3.py": "b4ed253cd20ed47aafbbd05bb84f95a575378241e33266009dd59fdab8a8628a",
+      "python/nosl/schema_v4.py": "7185ca543390319a956dfd87e2d0928ff3b50e7433a335d4035ec32774634bb1",
+      "python/nosl/schema_v5.py": "85bb6f36b31cfa74c9400cefccb4ed439f9e6b9ff1d1b5a59e85c08d4880f28e",
+      "python/nosl/smoke_v2.py": "587d927b0880337602ce335d30afcadc3111bece3b4d4a2f01635f7017db6161",
+      "python/nosl/train.py": "aa84cf1aca3c38865c92646b1843dac7a866494da57c49433fe98eb96870604e",
+      "python/nosl/train_v2.py": "04a97d4c69f89e610ee6baf6ceee9b7e4d666fdf75d4ad8ad113d1218198cab4",
+      "python/nosl/vocabulary.py": "a4829c15a737bda5592576ddfa4d1380af96e1068aff70cc39a2248c6c4cdefa",
+      "tests/data/test_prepare_v5.py": "8fa1e956d7dabe5dbf9269d3b080f0654a5b264aded0158f28e1d77556ff1f69",
+      "tests/python/test_pilot_v5.py": "55016c27047e9335c79fd0cd877ee7bb22548bea6f46c478c6fd8caf2127543a",
+      "tests/python/test_public_map_v5.py": "2c9f494360b159f838b0787b9ab02c37202bc0ea1fd87f49422d5e677357a9d2"
+    },
+    "elapsed_seconds": 119.70157797700085,
+    "formal_training_run": false,
+    "learned_execution_tested": false,
+    "historical_frozen_test_targets_read": false,
+    "native_builds_run": false,
+    "log_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/map-public-v3/python/v5_guarded_regression-e7a54f3.log",
+    "report_path": "/workspace/scratch/b3c7487cea34/STS2SuperModel-coverage/artifacts/reports/map-public-v3/python/v5_guarded_regression-e7a54f3.json"
+  },
+  "unchanged_vendor_core": {
+    "report": "configs/native_map_origin_verification_v2.json",
+    "source_commit": "50edac4a28edb488f522668aab64057affdb5b3b",
+    "passed": 4493,
+    "existing_opt_in_skipped": 3,
+    "note": "No vendor source or test changes since this full Core run; exact vendored content compared before this report"
+  },
+  "fresh_native_to_python_boundary": {
+    "report": {
+      "path": "artifacts/reports/map-public-v3/candidate-boundary/fresh-source24006-eval601-602-v2/verification-summary.json",
+      "bytes": 7780,
+      "sha256": "b3fb38eb2d470144f47931fa7ef5a1574675179e2bcc241093893d16897d30a6"
+    },
+    "source_draws": 1,
+    "recorded_roots": 1,
+    "source_combat_index": 0,
+    "source_decision_index": 0,
+    "independent_evaluation_worlds": 2,
+    "candidate_actions": 7,
+    "settlement_complete_worlds": 14,
+    "adapter_public_and_outcome_roundtrip": true,
+    "finite_forward_and_masked_loss": true,
+    "backward_passes": 0,
+    "optimizer_steps": 0,
+    "quality_admission": false,
+    "scope": "A fresh API invocation of inspected source24006; engineering correctness only, not a fresh source or throughput claim"
+  },
+  "probe": {
+    "spec": "configs/native_map_inspected_probe_v3.json",
+    "status": "COMPLETED_GATE_FAILED",
+    "production_admission": false,
+    "analysis": {
+      "sourceDrawsRequested": 8,
+      "existingRoots": 8,
+      "recordedRoots": 8,
+      "distinctRecordedPublicRoots": 8,
+      "distinctRecordedSourceRuns": 8,
+      "acceptedPosteriorDraws": 10,
+      "allocatedCandidateWorlds": 98,
+      "settledCandidateWorlds": 68,
+      "elapsedSeconds": 218.7979788,
+      "peakWorkerMemoryBytes": 297873408,
+      "budgetExpired": false,
+      "priorIdentity": "10b8d166ee4dfe2cacd0946d5737f38de676e55b20b69acf635c3898da88e3f6",
+      "source_breakdown": [
+        {
+          "sourceDrawSeed": 24001,
+          "recipe": {
+            "runSeed": 17121101481748048595,
+            "tapeSeed": 18231632559819090378,
+            "proposalSeed": 942577430791348732,
+            "combatIndex": 0,
+            "decisionIndex": 4
+          },
+          "status": "existing_root_evaluated",
+          "usesConditionalShuffle": false,
+          "usesConditionalHp": false,
+          "usesConditionalNeow": true,
+          "usesConditionalFirstReward": false,
+          "usesConditionalFirstEncounter": false,
+          "usesConditionalInitialPrefix": false,
+          "conditioningReason": "certified_public_initial_draw_prefix",
+          "acceptedPosteriorDraws": 2,
+          "proposalAttempts": 8,
+          "allocatedWorlds": 18,
+          "settledWorlds": 18,
+          "seconds": 14.8386288,
+          "candidate_count": 9,
+          "settled_complete_outcomes": 18,
+          "true_terminal_outcomes": 18,
+          "incomplete_settlement_outcomes": 0,
+          "outcome_kinds": {
+            "Win": 18
+          },
+          "proposal_statuses": {
+            "public_constraint_mismatch": 5,
+            "accepted": 2,
+            "exact_proposal_density_correction_rejected": 1
+          },
+          "rejection_causes": {
+            "Native act differs from the certified weak encounter sequence": 5,
+            "accepted": 2,
+            "exact_proposal_density_correction_rejected": 1
+          },
+          "fully_complete": true,
+          "map_reconstruction_mechanism_verified": true,
+          "n_error": 0,
+          "n_unresolved": 0,
+          "map_reconstruction_eligible": true,
+          "map_cells": 0,
+          "reconstructed_maps": 8
+        },
+        {
+          "sourceDrawSeed": 24002,
+          "recipe": {
+            "runSeed": 17705482121430937980,
+            "tapeSeed": 15407729405233607668,
+            "proposalSeed": 12060993782571565730,
+            "combatIndex": 2,
+            "decisionIndex": 3
+          },
+          "status": "existing_root_evaluated",
+          "usesConditionalShuffle": false,
+          "usesConditionalHp": false,
+          "usesConditionalNeow": true,
+          "usesConditionalFirstReward": false,
+          "usesConditionalFirstEncounter": false,
+          "usesConditionalInitialPrefix": false,
+          "conditioningReason": "certified_public_initial_draw_prefix",
+          "acceptedPosteriorDraws": 0,
+          "proposalAttempts": 128,
+          "allocatedWorlds": 10,
+          "settledWorlds": 0,
+          "seconds": 63.8287493,
+          "candidate_count": 5,
+          "settled_complete_outcomes": 0,
+          "true_terminal_outcomes": 0,
+          "incomplete_settlement_outcomes": 0,
+          "outcome_kinds": {
+            "ComputeTruncated": 10
+          },
+          "proposal_statuses": {
+            "public_constraint_mismatch": 118,
+            "exact_proposal_density_correction_rejected": 10
+          },
+          "rejection_causes": {
+            "Published run evidence differs at event 145 (PublicOwnerStarted)": 8,
+            "Native act differs from the public event-pool certificate": 59,
+            "Published run evidence differs at event 289 (PublicOwnerStarted)": 44,
+            "Published run evidence differs at event 146 (PublicOptionsObserved)": 7,
+            "exact_proposal_density_correction_rejected": 10
+          },
+          "fully_complete": false,
+          "map_reconstruction_mechanism_verified": true,
+          "n_error": 0,
+          "n_unresolved": 10,
+          "map_reconstruction_eligible": true,
+          "map_cells": 0,
+          "reconstructed_maps": 128
+        },
+        {
+          "sourceDrawSeed": 24003,
+          "recipe": {
+            "runSeed": 18338905086229549903,
+            "tapeSeed": 6333630095272133984,
+            "proposalSeed": 10379486968282825502,
+            "combatIndex": 0,
+            "decisionIndex": 5
+          },
+          "status": "existing_root_evaluated",
+          "usesConditionalShuffle": false,
+          "usesConditionalHp": false,
+          "usesConditionalNeow": true,
+          "usesConditionalFirstReward": false,
+          "usesConditionalFirstEncounter": false,
+          "usesConditionalInitialPrefix": false,
+          "conditioningReason": "certified_public_initial_draw_prefix",
+          "acceptedPosteriorDraws": 2,
+          "proposalAttempts": 8,
+          "allocatedWorlds": 20,
+          "settledWorlds": 20,
+          "seconds": 12.6075774,
+          "candidate_count": 10,
+          "settled_complete_outcomes": 20,
+          "true_terminal_outcomes": 20,
+          "incomplete_settlement_outcomes": 0,
+          "outcome_kinds": {
+            "Win": 20
+          },
+          "proposal_statuses": {
+            "public_constraint_mismatch": 5,
+            "accepted": 2,
+            "exact_proposal_density_correction_rejected": 1
+          },
+          "rejection_causes": {
+            "Native act differs from the certified weak encounter sequence": 5,
+            "accepted": 2,
+            "exact_proposal_density_correction_rejected": 1
+          },
+          "fully_complete": true,
+          "map_reconstruction_mechanism_verified": true,
+          "n_error": 0,
+          "n_unresolved": 0,
+          "map_reconstruction_eligible": true,
+          "map_cells": 0,
+          "reconstructed_maps": 8
+        },
+        {
+          "sourceDrawSeed": 24004,
+          "recipe": {
+            "runSeed": 3167451626540400375,
+            "tapeSeed": 636608482649053365,
+            "proposalSeed": 11503878947518486078,
+            "combatIndex": 1,
+            "decisionIndex": 1
+          },
+          "status": "existing_root_evaluated",
+          "usesConditionalShuffle": false,
+          "usesConditionalHp": false,
+          "usesConditionalNeow": true,
+          "usesConditionalFirstReward": false,
+          "usesConditionalFirstEncounter": false,
+          "usesConditionalInitialPrefix": false,
+          "conditioningReason": "certified_public_initial_draw_prefix",
+          "acceptedPosteriorDraws": 2,
+          "proposalAttempts": 82,
+          "allocatedWorlds": 14,
+          "settledWorlds": 14,
+          "seconds": 46.1496232,
+          "candidate_count": 7,
+          "settled_complete_outcomes": 14,
+          "true_terminal_outcomes": 14,
+          "incomplete_settlement_outcomes": 0,
+          "outcome_kinds": {
+            "Win": 14
+          },
+          "proposal_statuses": {
+            "public_constraint_mismatch": 40,
+            "exact_proposal_density_correction_rejected": 40,
+            "accepted": 2
+          },
+          "rejection_causes": {
+            "Native act differs from the certified weak encounter sequence": 40,
+            "exact_proposal_density_correction_rejected": 40,
+            "accepted": 2
+          },
+          "fully_complete": true,
+          "map_reconstruction_mechanism_verified": true,
+          "n_error": 0,
+          "n_unresolved": 0,
+          "map_reconstruction_eligible": true,
+          "map_cells": 0,
+          "reconstructed_maps": 82
+        },
+        {
+          "sourceDrawSeed": 24005,
+          "recipe": {
+            "runSeed": 11273249308478022275,
+            "tapeSeed": 9451753246840789016,
+            "proposalSeed": 10358771927961435855,
+            "combatIndex": 0,
+            "decisionIndex": 4
+          },
+          "status": "existing_root_evaluated",
+          "usesConditionalShuffle": false,
+          "usesConditionalHp": false,
+          "usesConditionalNeow": true,
+          "usesConditionalFirstReward": false,
+          "usesConditionalFirstEncounter": false,
+          "usesConditionalInitialPrefix": false,
+          "conditioningReason": "certified_public_initial_draw_prefix",
+          "acceptedPosteriorDraws": 2,
+          "proposalAttempts": 10,
+          "allocatedWorlds": 2,
+          "settledWorlds": 2,
+          "seconds": 1.1993636,
+          "candidate_count": 1,
+          "settled_complete_outcomes": 2,
+          "true_terminal_outcomes": 2,
+          "incomplete_settlement_outcomes": 0,
+          "outcome_kinds": {
+            "Win": 2
+          },
+          "proposal_statuses": {
+            "public_constraint_mismatch": 7,
+            "exact_proposal_density_correction_rejected": 1,
+            "accepted": 2
+          },
+          "rejection_causes": {
+            "Native act differs from the certified weak encounter sequence": 7,
+            "exact_proposal_density_correction_rejected": 1,
+            "accepted": 2
+          },
+          "fully_complete": true,
+          "map_reconstruction_mechanism_verified": true,
+          "n_error": 0,
+          "n_unresolved": 0,
+          "map_reconstruction_eligible": true,
+          "map_cells": 0,
+          "reconstructed_maps": 10
+        },
+        {
+          "sourceDrawSeed": 24006,
+          "recipe": {
+            "runSeed": 10592992848398767372,
+            "tapeSeed": 17024241803494584293,
+            "proposalSeed": 3808288708747230955,
+            "combatIndex": 0,
+            "decisionIndex": 0
+          },
+          "status": "existing_root_evaluated",
+          "usesConditionalShuffle": false,
+          "usesConditionalHp": false,
+          "usesConditionalNeow": true,
+          "usesConditionalFirstReward": false,
+          "usesConditionalFirstEncounter": false,
+          "usesConditionalInitialPrefix": false,
+          "conditioningReason": "certified_public_initial_draw_prefix",
+          "acceptedPosteriorDraws": 2,
+          "proposalAttempts": 2,
+          "allocatedWorlds": 14,
+          "settledWorlds": 14,
+          "seconds": 7.2358719,
+          "candidate_count": 7,
+          "settled_complete_outcomes": 14,
+          "true_terminal_outcomes": 14,
+          "incomplete_settlement_outcomes": 0,
+          "outcome_kinds": {
+            "Win": 14
+          },
+          "proposal_statuses": {
+            "accepted": 2
+          },
+          "rejection_causes": {
+            "accepted": 2
+          },
+          "fully_complete": true,
+          "map_reconstruction_mechanism_verified": true,
+          "n_error": 0,
+          "n_unresolved": 0,
+          "map_reconstruction_eligible": true,
+          "map_cells": 0,
+          "reconstructed_maps": 2
+        },
+        {
+          "sourceDrawSeed": 24007,
+          "recipe": {
+            "runSeed": 4035576323057333117,
+            "tapeSeed": 2710254668653408006,
+            "proposalSeed": 6658374296782099071,
+            "combatIndex": 2,
+            "decisionIndex": 6
+          },
+          "status": "existing_root_evaluated",
+          "usesConditionalShuffle": false,
+          "usesConditionalHp": false,
+          "usesConditionalNeow": true,
+          "usesConditionalFirstReward": false,
+          "usesConditionalFirstEncounter": false,
+          "usesConditionalInitialPrefix": false,
+          "conditioningReason": "certified_public_initial_draw_prefix",
+          "acceptedPosteriorDraws": 0,
+          "proposalAttempts": 128,
+          "allocatedWorlds": 8,
+          "settledWorlds": 0,
+          "seconds": 55.4552841,
+          "candidate_count": 4,
+          "settled_complete_outcomes": 0,
+          "true_terminal_outcomes": 0,
+          "incomplete_settlement_outcomes": 0,
+          "outcome_kinds": {
+            "ComputeTruncated": 8
+          },
+          "proposal_statuses": {
+            "public_constraint_mismatch": 115,
+            "exact_proposal_density_correction_rejected": 13
+          },
+          "rejection_causes": {
+            "Published run evidence differs at event 120 (PublicOwnerStarted)": 11,
+            "Native act differs from the public event-pool certificate": 58,
+            "Native initial monster roster differs from the public opening": 31,
+            "Native initial intent roster differs from the public roster": 11,
+            "exact_proposal_density_correction_rejected": 13,
+            "Published run evidence differs at event 121 (PublicOptionsObserved)": 4
+          },
+          "fully_complete": false,
+          "map_reconstruction_mechanism_verified": true,
+          "n_error": 0,
+          "n_unresolved": 8,
+          "map_reconstruction_eligible": true,
+          "map_cells": 0,
+          "reconstructed_maps": 128
+        },
+        {
+          "sourceDrawSeed": 24008,
+          "recipe": {
+            "runSeed": 1516948868812925454,
+            "tapeSeed": 6242608598545386925,
+            "proposalSeed": 2164577420055027048,
+            "combatIndex": 2,
+            "decisionIndex": 7
+          },
+          "status": "existing_root_evaluated",
+          "usesConditionalShuffle": false,
+          "usesConditionalHp": false,
+          "usesConditionalNeow": true,
+          "usesConditionalFirstReward": false,
+          "usesConditionalFirstEncounter": false,
+          "usesConditionalInitialPrefix": false,
+          "conditioningReason": "entry_hook_not_certified:FairyInABottle.ShouldDie",
+          "acceptedPosteriorDraws": 0,
+          "proposalAttempts": 128,
+          "allocatedWorlds": 12,
+          "settledWorlds": 0,
+          "seconds": 17.4802492,
+          "candidate_count": 6,
+          "settled_complete_outcomes": 0,
+          "true_terminal_outcomes": 0,
+          "incomplete_settlement_outcomes": 0,
+          "outcome_kinds": {
+            "ComputeTruncated": 12
+          },
+          "proposal_statuses": {
+            "public_constraint_mismatch": 128
+          },
+          "rejection_causes": {
+            "Published run evidence differs at event 133 (PublicOwnerStarted)": 10,
+            "Native act differs from the public event-pool certificate": 59,
+            "Published run evidence differs at event 146 (PublicOffersObserved)": 57,
+            "Published run evidence differs at event 134 (PublicOptionsObserved)": 2
+          },
+          "fully_complete": false,
+          "map_reconstruction_mechanism_verified": true,
+          "n_error": 0,
+          "n_unresolved": 12,
+          "map_reconstruction_eligible": true,
+          "map_cells": 0,
+          "reconstructed_maps": 128
+        }
+      ],
+      "proposal_statuses": {
+        "public_constraint_mismatch": 418,
+        "accepted": 10,
+        "exact_proposal_density_correction_rejected": 66
+      },
+      "rejection_causes": {
+        "Native act differs from the certified weak encounter sequence": 57,
+        "accepted": 10,
+        "exact_proposal_density_correction_rejected": 66,
+        "Published run evidence differs at event 145 (PublicOwnerStarted)": 8,
+        "Native act differs from the public event-pool certificate": 176,
+        "Published run evidence differs at event 289 (PublicOwnerStarted)": 44,
+        "Published run evidence differs at event 146 (PublicOptionsObserved)": 7,
+        "Published run evidence differs at event 120 (PublicOwnerStarted)": 11,
+        "Native initial monster roster differs from the public opening": 31,
+        "Native initial intent roster differs from the public roster": 11,
+        "Published run evidence differs at event 121 (PublicOptionsObserved)": 4,
+        "Published run evidence differs at event 133 (PublicOwnerStarted)": 10,
+        "Published run evidence differs at event 146 (PublicOffersObserved)": 57,
+        "Published run evidence differs at event 134 (PublicOptionsObserved)": 2
+      },
+      "outcome_kinds": {
+        "Win": 68,
+        "ComputeTruncated": 30
+      },
+      "fully_completed_sources": [
+        24001,
+        24003,
+        24004,
+        24005,
+        24006
+      ],
+      "engine_errors": 0,
+      "proposal_engine_or_cleanup_errors": 0,
+      "attempt_statuses": {
+        "existing_root_evaluated": 8
+      },
+      "fully_completed_later_decision_sources": [
+        24001,
+        24003,
+        24004,
+        24005
+      ],
+      "fully_completed_combat2_later_decision_sources": [],
+      "fully_completed_multi_candidate_sources": [
+        24001,
+        24003,
+        24004,
+        24006
+      ],
+      "fully_completed_later_combat_multi_candidate_sources": [
+        24004
+      ],
+      "gate_requested_denominator": 8,
+      "requested_posterior_world_slots": 16,
+      "unaccepted_requested_world_slots": 6,
+      "all_assigned_candidate_mass_accounted": true,
+      "actual_settlement_complete_outcomes": 68,
+      "collector_named_settled_field_means_true_terminal_only": true,
+      "production_admission": false,
+      "all_public_inputs_unchanged": true,
+      "prior_identity_unchanged": true,
+      "gate_passed": false,
+      "gate_interpretation": "Inspected-root integration diagnostic only; same root inputs, no fresh breadth or survivor-population claim."
+    },
+    "resources": {
+      "exit_code": 0,
+      "external_watchdog_killed": false,
+      "wall_seconds": 218.98334586298733,
+      "peak_child_rss_kib": 290892,
+      "user_seconds": 223.681719,
+      "system_seconds": 4.074472,
+      "binaries_unchanged": true
+    },
+    "artifacts": [
+      {
+        "path": "artifacts/reports/map-public-v3/inspected-eight-analysis.json",
+        "bytes": 15324,
+        "sha256": "4e2263fdf8fba96d66d8a90277ef976b081fb75735d6e1bb535a1c318c2e9aaa"
+      },
+      {
+        "path": "artifacts/reports/map-public-v3/inspected-eight-analysis.log",
+        "bytes": 11804,
+        "sha256": "b37f66830433efa47cf9a8b2a9284efef6f15e97ca8a912b416af6ed78e8cd80"
+      },
+      {
+        "path": "artifacts/reports/map-public-v3/inspected-eight-predeclaration.json",
+        "bytes": 5904,
+        "sha256": "3e4e2c05c32d86f43cd5a1ababd15b34749c30573a97736b77b37be2d08c9d35"
+      },
+      {
+        "path": "artifacts/reports/map-public-v3/inspected-eight-request.jsonl",
+        "bytes": 937,
+        "sha256": "976ed0c468658d48d1c29823ee37ba6ef0fdcc0dde986fc46cc27b32528f26e8"
+      },
+      {
+        "path": "artifacts/reports/map-public-v3/inspected-eight-resources.json",
+        "bytes": 218,
+        "sha256": "85214868cafb048ef5faa0e6604a9ba7688a1ab53310d207899bb87f6a1eca7e"
+      },
+      {
+        "path": "artifacts/reports/map-public-v3/inspected-eight-response.jsonl",
+        "bytes": 6022548,
+        "sha256": "29c0da3db7996ea02bc48be6d183a3c91e69c06fec59f688e27031e638e30d59"
+      },
+      {
+        "path": "artifacts/reports/map-public-v3/inspected-eight-run.log",
+        "bytes": 531,
+        "sha256": "8aebb2dd3e808cfb35a367d2c2e8e553ae8d2161cb3d2a2940261ba8ca0e49d4"
+      },
+      {
+        "path": "artifacts/reports/map-public-v3/inspected-eight-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "next_issue": "Source24008 passes Gorge but fails complete public shop inventory at event146; source24007 fails later monster/intent roster, and source24002 fails later combat owner boundary at event289. Separate bounded code diagnosis is active. Fresh12 remains unstarted because the inspected gate failed."
+  },
+  "remaining": [
+    "Inspected carry-in gate still fails: implement exact public shop and later room/roster proposals before launching the predeclared fresh development cohort",
+    "No real v5 cohort has passed bounded-pilot quality admission; auxiliary targets do not establish learned action preferences",
+    "Resource/permanent/reward utility calibration remains partial; unknown labels remain masked",
+    "Full solo-content useful posterior throughput remains unverified; native fallback preserves unresolved failure mass"
+  ]
+}

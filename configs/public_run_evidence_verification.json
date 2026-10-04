@@ -1,0 +1,184 @@
+{
+  "schema": "nosl.public-run-evidence-verification.v1",
+  "source_commit": "bf0e85c58a22a0c61b76446620ea5f00fed2cefd",
+  "status": "PUBLIC_PRODUCER_STUDENT_ENGINEERING_VERIFIED_BROAD_INFERENCE_STILL_IN_PROGRESS",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "new_production_dataset_rows": 0,
+  "public_evidence_schema": "nosl.public-run-evidence.v1",
+  "student_schema": "nosl.student.public.v4",
+  "native_suite": {
+    "passed": 1305,
+    "failed": 0,
+    "skipped": 0,
+    "path": "artifacts/reports/evidence/evidence-provenance-aggregate.trx",
+    "bytes": 1933594,
+    "sha256": "7d94b570e40bbabdf1f465fd50c8a4f92536d789687b631fb006e4c824807001"
+  },
+  "core_suite": {
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "duration_reported": "4 m 12 s",
+    "trx_duration_seconds": 253.906207,
+    "trx_counters": {
+      "total": 4496,
+      "executed": 4493,
+      "passed": 4493,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "skipped_count_source": "Three per-test NotExecuted outcomes, matching stdout and total minus executed. The test adapter leaves aggregate notExecuted at zero.",
+    "build_and_test_wall_seconds": 271.49090605499805,
+    "evidence_kind": "fresh_single_full_core_run_with_redirected_stdout_stderr_and_trx",
+    "exit_code": 0,
+    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 12 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "raw_log_available": true,
+    "trx_available": true,
+    "log_path": "artifacts/provenance-core-verification/full-core.log",
+    "log_sha256": "8bd6ea2aec56c5064937c0437c7296ef483742351658e8758c0ed7e1d4a13c59",
+    "trx_path": "artifacts/provenance-core-verification/test-results/vendor-core.trx",
+    "trx_sha256": "26be88e5877658135ee53854ce45729ceb71ec487721092a637a3e8d6cec4bee",
+    "run_record_path": "artifacts/provenance-core-verification/run-record.json",
+    "run_record_sha256": "8ea5d6dca1a10a39b38d321946b05a388f82c53312208abdbd4470fc6405e669",
+    "invocations": 1,
+    "rerun_for_packaging": true,
+    "sdk_version": "9.0.303",
+    "source_hashes_verified_before_run": true,
+    "source_hashes_verified_after_run": true,
+    "source_worktree": "STS2SuperModel-coverage",
+    "verified_source_commit": "b8f2b4c2dd5e68e661162f6709302056f8018ca0",
+    "build_artifacts": "artifacts/provenance-core-verification",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/provenance-core-verification --nologo -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core.trx' --results-directory artifacts/provenance-core-verification/test-results",
+    "command_note": "Portable replay command; the results directory is shown relative to the repository. The exact process argv is preserved in run-record.json. Run after sourcing the existing shared .NET 9 environment. Build and tests used the isolated artifacts path with one MSBuild worker, node reuse and shared compilation disabled, and NuGet auditing disabled. The process stdout and stderr were redirected directly to the preserved log.",
+    "started_at_utc": "2026-10-02T15:35:13.023286+00:00",
+    "finished_at_utc": "2026-10-02T15:39:44.660819+00:00",
+    "src_git_tree": "1845f5df3762468a03e6a3616537a5812d3c5f39",
+    "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+    "test_assembly_path": "artifacts/provenance-core-verification/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "cc1b22eb7d558bbf91943edf02ed8509270e7a0353f603aa0a95bc97c0ee2205",
+    "core_assembly_path": "artifacts/provenance-core-verification/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "e726c26e9dcce8ecddd21a3d8b675b7d8b3d5ac5d00e4be834421f60d14408b3",
+    "assembly_hash_capture": "Captured from the isolated artifacts immediately after the fresh full suite; no later build or test was run there.",
+    "verified_source_manifest_sha256": "4043b64cdb430b32d7559c4e59b3706057923dda43d11dda1f7519b368aa32b3"
+  },
+  "vendor_reconstruction": {
+    "path": "configs/vendor_patch_verification.json",
+    "bytes": 9911,
+    "sha256": "d200b800c4599971b6e1de7be220f36848ce36fa1f6f1820a22e07445e15bc4c"
+  },
+  "student_forward_only": {
+    "tests": 26,
+    "failed": 0,
+    "actual_native_sample_checked": true,
+    "backward_calls": 0,
+    "optimizer_steps": 0,
+    "path": "artifacts/reports/evidence/student-v4-final.log",
+    "bytes": 4937,
+    "sha256": "d3624120fbed02ffb8a66a679602b3ad3efc63f8f4367d8097a768b85dd2c9c6"
+  },
+  "legacy_v3_compatibility": {
+    "tests": 15,
+    "passed": 14,
+    "skipped": 1,
+    "skip_reason": "Previously consumed opt-in single-batch backward check remains disabled",
+    "path": "artifacts/reports/evidence/student-v3-compatibility.log",
+    "bytes": 2993,
+    "sha256": "e5b47baa159823d3cd9ebd0ec120c93d7b94453e704aeb352b9db1b225c0aa30"
+  },
+  "native_fixture": {
+    "seed": "owned-native-opening:0",
+    "first_and_later_root_events": [
+      26,
+      129
+    ],
+    "evidence_utf8_bytes": [
+      47087,
+      207775
+    ],
+    "full_later_source_record": {
+      "path": "artifacts/reports/evidence/native-v4-sample.json",
+      "bytes": 266969,
+      "sha256": "275e861328566cd030e11a1621cac317f374b82dd525e05ce133c3b8f6114fcb"
+    },
+    "source_hypothetical_replay_and_fork_equality": true,
+    "absent_optional_field_matches_legacy_v3_packets": true,
+    "producer_visibility_review": "Explicit asset, visible option/candidate, displayed reward group and public map-slice projection; no raw trace, original seed, hidden generated identity, RNG/pity or private ledger exported",
+    "limitations": [
+      "Native callback-channel visibility, not live-client screen-timing validation",
+      "Unsupported custom-event screens, automatic outside selections and ambiguous duplicate keys carry explicit gaps",
+      "Only new evidence profile fixes post-settlement card selections; old profile retains frozen behavior",
+      "This fixture is already inspected development evidence, not independent breadth or throughput proof"
+    ]
+  },
+  "recorder_optimization": {
+    "method": "Immutable validated incremental Append and cached Capture; external strict decoding still validates all events",
+    "matching_before_after_source_record_sha256": "275e861328566cd030e11a1621cac317f374b82dd525e05ce133c3b8f6114fcb",
+    "matching_samples": 19,
+    "fresh_process_enabled_median_seconds_before": 0.817,
+    "fresh_process_enabled_median_seconds_after": 0.765,
+    "warmed_fixed_tiering_enabled_median_seconds_before": 0.257,
+    "warmed_fixed_tiering_enabled_median_seconds_after": 0.191,
+    "timing_interpretation": "Same two-combat correctness fixture; matched 6% cold and26% warmed reduction, substantial overhead remains, not broad production throughput"
+  },
+  "strictness_review_fixes": [
+    "Recursive duplicate JSON keys and case-sensitive embedded history",
+    "One-use chronological action echo reconciliation and malformed-history gaps",
+    "Stable combat decision requires a start or explicit gap",
+    "Complete public combat count reconciles with recorded combat owners",
+    "V4 native enemy/pet HP and power source-slot invariants",
+    "Numeric overflow becomes schema rejection and inference abstention; next valid CLI request still processes"
+  ],
+  "student_boundary": {
+    "complete_evidence_and_finite_anchor_identity": true,
+    "all_events_encoded_or_explicit_model_limit_rejection": true,
+    "untrained_model_abstains": true,
+    "old_weights_not_upgraded": true,
+    "native_source_records_keep_empty_targets": true,
+    "native_teacher_development_envelopes_not_automatically_admitted": true,
+    "production_admission": "quarantined"
+  },
+  "rewards_hybrid_primitive": {
+    "law_id": "native-rewards-provenance-tape-v1",
+    "status": "REVIEWED_CORE_INFRASTRUCTURE_ONLY_WORKER_PRIOR_AND_REWARD_PROPOSALS_NOT_IN_THIS_SNAPSHOT",
+    "changed_dependency": "Only player Rewards lineage uses origin/initial-seed/raw-cursor words independent of untagged full-state words; clone/reset/source-partition restore sharing preserved",
+    "old_sequential_and_state_tape_behavior_unchanged": true,
+    "metadata": "Explicit versioned full_state or rewards_lineage marker only in new hypothetical mode; no provenance inferred from numeric state",
+    "finite_and_compatibility_focused_tests": 18,
+    "evidence": {
+      "path": "artifacts/reports/evidence/primitive-provenance/native-provenance-focused.trx",
+      "bytes": 27183,
+      "sha256": "b813a72c7efc90377ab4e0ef86a4b4596a2e2ebae59be5f9c16a46ae21ffba86"
+    },
+    "limitations": [
+      "Ideal-oracle law, not exact inference over finite SHA seeds",
+      "Does not certify freshness of reward positions, tight likelihood envelopes or broad posterior throughput",
+      "Existing native CombatStateDescription omits provenance and cannot be used as a complete hybrid cache identity"
+    ]
+  },
+  "remaining": [
+    "Wire explicit Rewards hybrid prior into owned worker source/replay without changing old priors",
+    "Implement and review generic displayed primary-card identity proposal with exact latent-rarity likelihood and root-wide correction bound",
+    "Measure the full public-history path on a predeclared development cohort before any production enlargement or new fit",
+    "Retain resource utility masks and previous failed broader source-quality gate until evidence resolves them"
+  ]
+}

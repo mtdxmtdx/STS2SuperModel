@@ -14,6 +14,7 @@ using Sts2Sim.Core.Models.Powers;
 using Sts2Sim.Core.Models.Relics;
 using Sts2Sim.Core.Rooms;
 using Sts2Sim.Core.Runs;
+using Sts2Sim.Core.Models.Afflictions;
 
 [Collection("ModelDb")]
 public sealed class CardEntryAtomicityTests : IDisposable
@@ -26,8 +27,16 @@ public sealed class CardEntryAtomicityTests : IDisposable
 
         public override PowerStackType StackType => PowerStackType.Single;
 
-        public override Task AfterCardEnteredCombat(CardModel card) =>
+        public CardModel? ObservedCard { get; private set; }
+
+        public CardModel[] ObservedPileCards { get; private set; } = [];
+
+        public override Task AfterCardEnteredCombat(CardModel card)
+        {
+            ObservedCard = card;
+            ObservedPileCards = card.Pile?.Cards.ToArray() ?? [];
             throw new InvalidOperationException(EntryFailureMessage);
+        }
     }
 
     private sealed class AbortTrackingPower : PowerModel
@@ -60,7 +69,7 @@ public sealed class CardEntryAtomicityTests : IDisposable
         {
             typeof(Regent), typeof(StrikeRegent), typeof(DefendRegent), typeof(FallingStar), typeof(Venerate),
             typeof(DivineRight), typeof(WanderingGrunt), typeof(SovereignBlade),
-            typeof(WeakPower), typeof(VulnerablePower), typeof(TangledPower), typeof(ThrowingEntryPower),
+            typeof(WeakPower), typeof(VulnerablePower), typeof(TangledPower), typeof(Entangled), typeof(ThrowingEntryPower),
             typeof(AbortTrackingPower),
         });
     }
@@ -142,13 +151,19 @@ public sealed class CardEntryAtomicityTests : IDisposable
     {
         (Player player, CombatRoom room) = await CreateCombatAsync("entry-rollback-transform");
         Creature enemy = room.Engine.State.HittableEnemies.Single();
+        DefendRegent leftPeer = CreateOwned<DefendRegent>(player);
         DefendRegent original = CreateOwned<DefendRegent>(player);
+        DefendRegent rightPeer = CreateOwned<DefendRegent>(player);
+        CardPileCmd.Add(leftPeer, PileType.Hand);
         CardPileCmd.Add(original, PileType.Hand);
-        CardPileCmd.Add(CreateOwned<DefendRegent>(player), PileType.Hand);
+        CardPileCmd.Add(rightPeer, PileType.Hand);
         Dictionary<CardPile, CardModel[]> pilesBefore = SnapshotPiles(player);
+        CardPile originalPile = original.Pile!;
+        int originalIndex = Array.IndexOf(pilesBefore[originalPile], original);
         var replacement = (SovereignBlade)ModelDb.Card<SovereignBlade>().MutableClone();
         await PowerCmd.Apply<TangledPower>(room.Engine.State, player.Creature, 1m, enemy, null);
         await PowerCmd.Apply<ThrowingEntryPower>(room.Engine.State, player.Creature, 1m, enemy, null);
+        ThrowingEntryPower throwing = Assert.Single(player.Creature.Powers.OfType<ThrowingEntryPower>());
         Creature? originalCombatStateOwner = original.Owner.Creature;
         int generatedBefore = player.PlayerCombatState!.CardsGeneratedThisCombat;
         if (useBatch) replacement.AssignOwner(player);
@@ -163,6 +178,13 @@ public sealed class CardEntryAtomicityTests : IDisposable
             });
 
         Assert.Equal(EntryFailureMessage, exception.Message);
+        Assert.Same(replacement, throwing.ObservedCard);
+        CardModel[] expectedEntryCards = pilesBefore[originalPile].ToArray();
+        expectedEntryCards[originalIndex] = replacement;
+        Assert.True(expectedEntryCards.SequenceEqual(throwing.ObservedPileCards, ReferenceEqualityComparer.Instance),
+            $"entry-rollback-transform useBatch={useBatch}: entry hook must observe replacement at original index {originalIndex} between the same peers.");
+        Assert.Same(leftPeer, throwing.ObservedPileCards[originalIndex - 1]);
+        Assert.Same(rightPeer, throwing.ObservedPileCards[originalIndex + 1]);
         AssertPilesEqual(pilesBefore);
         Assert.Same(player, original.Owner);
         Assert.Same(originalCombatStateOwner, original.Owner.Creature);

@@ -1,0 +1,104 @@
+[
+  {
+    "index": 0,
+    "step": 0,
+    "category": "starter_constructed",
+    "scenario": {
+      "enemy": "TwigSlimeS",
+      "enemyHp": 26,
+      "hp": 68,
+      "seed": "nosl-m5-engineering-200-v2:source:0"
+    },
+    "rootSha": "04223851e56e1df778a41b4a74772a2e63c435e7f6b469f25d884fffbaae0d5a"
+  },
+  {
+    "index": 8,
+    "step": 2,
+    "category": "starter_constructed",
+    "scenario": {
+      "enemy": "Nibbit",
+      "enemyHp": 40,
+      "hp": 46,
+      "seed": "nosl-m5-engineering-200-v2:source:2"
+    },
+    "rootSha": "1663c8a4b49399a4711a994fb9b6d1ca73b23d8f0ac3546a053cab45a2984d41"
+  },
+  {
+    "index": 42,
+    "step": 0,
+    "category": "single_card_constructed",
+    "scenario": {
+      "deck": [
+        "Adrenaline",
+        "StrikeSilent",
+        "StrikeSilent",
+        "DefendSilent"
+      ],
+      "enemy": "Nibbit",
+      "enemyHp": 44,
+      "hp": 55,
+      "seed": "nosl-m5-engineering-200-v2:source:14"
+    },
+    "rootSha": "96ebe4d713252f64985f58d9a812fec6545652f32ae71c0c3fde58226a173b56"
+  },
+  {
+    "index": 89,
+    "step": 2,
+    "category": "relic_constructed",
+    "scenario": {
+      "deck": [
+        "BouncingFlask",
+        "StrikeSilent",
+        "StrikeSilent",
+        "DefendSilent"
+      ],
+      "enemy": "LeafSlimeS",
+      "enemyHp": 33,
+      "hp": 44,
+      "relics": [
+        "AmethystAubergine"
+      ],
+      "seed": "nosl-m5-engineering-200-v2:source:29"
+    },
+    "rootSha": "3f67c6f3122a86c436d953133c1a0ed667b539953e01fedd031f11e485ebbfd6"
+  },
+  {
+    "index": 145,
+    "step": 1,
+    "category": "potion_constructed",
+    "scenario": {
+      "deck": [
+        "DaggerSpray+",
+        "StrikeSilent",
+        "StrikeSilent",
+        "DefendSilent"
+      ],
+      "enemy": "TwigSlimeS",
+      "enemyHp": 62,
+      "hp": 24,
+      "potions": [
+        "BlessingOfTheForge"
+      ],
+      "seed": "nosl-m5-engineering-200-v2:source:48"
+    },
+    "rootSha": "df5cbaa02eef1033dee553b5a607738bb18e3912c5187a3bd489f375fb3af899"
+  },
+  {
+    "index": 196,
+    "step": 1,
+    "category": "single_card_constructed",
+    "scenario": {
+      "deck": [
+        "Deflect",
+        "StrikeSilent",
+        "StrikeSilent",
+        "DefendSilent"
+      ],
+      "enemy": "LeafSlimeS",
+      "enemyHp": 52,
+      "hp": 69,
+      "seed": "nosl-m5-engineering-200-v2:source:65"
+    },
+    "rootSha": "c2b72e2781bed8a32ef64eb3963e01cc5e3260ad67b705d1b05f77e7c46e083e"
+  }
+]

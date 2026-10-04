@@ -1,0 +1,121 @@
+{
+  "schema_version": "nosl.public-evidence-snapshot-result.v1",
+  "runtime_source_commit": "8aab8d9e478f28dd301a346f3280243136d9fded",
+  "baseline_runtime_source_commit": "28cccddc44b3cbc4e91eabc7aaf5dfe48dff04a7",
+  "runtime_changed_files": [
+    "src/Nosl.Worker/NativeRunWorld.cs",
+    "src/Nosl.Worker/NaturalSourceCollector.cs",
+    "src/Nosl.Worker/PublicDecisionSnapshot.cs"
+  ],
+  "runtime_worker_sha256": "b05e856f087358a12718829c6fb3eb2e80cb66f69c8278bfcdf4a0c9d335095c",
+  "baseline_worker_sha256": "1fed7b63245b445230f7bbdabb5b43c2c3c029c91f351ae3978b6952e05ebf78",
+  "request_sha256": "1055ce701b921300949167b16f92f6e1f3d0f0e83802d8948dce5183911d6e6e",
+  "optimized_invocations": 1,
+  "source_replacements": 0,
+  "focused_tests_passed": 136,
+  "comparison": {
+    "semantic_equal": true,
+    "changed_paths": [],
+    "excluded_json_paths": [
+      "/elapsedSeconds",
+      "/peakWorkerMemoryBytes",
+      "/attempts/*/seconds",
+      "/records/*/audit_only/costs/elapsed_seconds",
+      "/records/*/audit_only/costs/clone_seconds",
+      "/records/*/audit_only/costs/settlement_seconds",
+      "/records/*/audit_only/costs/peak_worker_memory_bytes",
+      "/records/*/audit_only/posterior_proposals/*/elapsedSeconds"
+    ],
+    "baseline_normalized_sha256": "09170db0024f1c865ac15157a73b2a4d9d867e5979462eb38e9a27e5fdb47d9c",
+    "optimized_normalized_sha256": "09170db0024f1c865ac15157a73b2a4d9d867e5979462eb38e9a27e5fdb47d9c",
+    "baseline_response_sha256": "663c5e2e1c6e0f940da592822c2a93200d7dab90844c431eb69d9264bf7b45f6",
+    "optimized_response_sha256": "55147d51407f8d5261ec317518fad29e6b56e53f7b41592740c41a465aeed0c3",
+    "baseline_worker_elapsed_seconds": 167.7037479,
+    "optimized_worker_elapsed_seconds": 22.2385994,
+    "source_draws_requested": 8,
+    "accepted_posterior_draws": 16,
+    "allocated_candidate_worlds": 98,
+    "settled_candidate_worlds": 98,
+    "budget_expired": false,
+    "formal_training": false,
+    "production_admission": false
+  },
+  "baseline_resources": {
+    "exit_code": 0,
+    "external_watchdog_killed": false,
+    "wall_seconds": 167.92718547099867,
+    "peak_child_rss_kib": 418992,
+    "user_seconds": 172.458426,
+    "system_seconds": 2.446134,
+    "binaries_unchanged": true
+  },
+  "optimized_resources": {
+    "exit_code": 0,
+    "external_watchdog_killed": false,
+    "wall_seconds": 22.43235649199778,
+    "user_seconds": 26.350248,
+    "system_seconds": 0.798531,
+    "peak_child_rss_kib": 362684,
+    "binaries_unchanged": true
+  },
+  "worker_elapsed_speedup": 7.541111060258588,
+  "external_wall_speedup": 7.485936019735723,
+  "trace_comparison": {
+    "exact_trace_bytes_equal": true,
+    "baseline_sha256": "33b5874e1f998d8ed783f68ea808b73aaaadab4b9c89b8dd70ac0830ef06acc6",
+    "optimized_sha256": "33b5874e1f998d8ed783f68ea808b73aaaadab4b9c89b8dd70ac0830ef06acc6",
+    "decision_frames": 44,
+    "settled_fixtures": 4,
+    "trajectories_per_binary": 8,
+    "scope": "Fixed direct source continuations and native forks; not the full posterior-branch population",
+    "timed_probe_separate": true
+  },
+  "trace_binary_sets_unchanged": {
+    "baseline": true,
+    "optimized": true
+  },
+  "trace_harness_sha256": "6e8eb60ed8059d696ebe57a0a0d5e20c00cd9567159d6c61e2ceb2a4f19b91c5",
+  "artifacts": {
+    "baseline-response.jsonl": "663c5e2e1c6e0f940da592822c2a93200d7dab90844c431eb69d9264bf7b45f6",
+    "baseline-trace.jsonl": "33b5874e1f998d8ed783f68ea808b73aaaadab4b9c89b8dd70ac0830ef06acc6",
+    "baseline-trace.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "comparison.json": "8dbbda4e1245a4345355505e63f18a40376c84621db7cd49073bb28892f26829",
+    "launch.json": "69f375f690620e14fc7f82b1c31f25a79e030de1e6c0b19db7a7f3125ec5b31b",
+    "optimized-trace.jsonl": "33b5874e1f998d8ed783f68ea808b73aaaadab4b9c89b8dd70ac0830ef06acc6",
+    "optimized-trace.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "predeclaration.json": "0d6492bdc8d3b95159107a024bc4b77c7d9d5bd2d696b27a99733b5dcaf7c860",
+    "request.jsonl": "1055ce701b921300949167b16f92f6e1f3d0f0e83802d8948dce5183911d6e6e",
+    "resources.json": "94a3998612775aa27b970beb2455285c84fc9a4b0ca43ec12e9af0be9aaabaa4",
+    "response.jsonl": "55147d51407f8d5261ec317518fad29e6b56e53f7b41592740c41a465aeed0c3",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "trace-comparison.json": "67beb26533aa7c3b8812a60863f0042f19829f770a1efa104c01c8843fa3a57b",
+    "trace-predeclaration.json": "dfee880d18d4c97db4b917960263a3a0c2e8169013519e5fa796bd95c6a9ac6f",
+    "exact-numeric-comparison.json": "503d00513aaf182253aa62a30700d348b47571c40a2d2ea1706031254c957ff0"
+  },
+  "limitations": [
+    "One optimized invocation compared with a previously recorded frozen baseline on shared cloud CPU; not an interleaved repeated benchmark",
+    "Already inspected source recipes; no fresh coverage or population throughput claim",
+    "Exact full-report comparison covers 98 candidate outcomes; separate private trace proof covers eight direct-source/fork fixture trajectories per binary, not 98 posterior trajectories",
+    "Private-state comparison uses existing native combat-state digest and exact stated RNG/tape projections, not full serialized native heaps",
+    "No production data admission or learning experiment"
+  ],
+  "formal_training": false,
+  "production_admission": false,
+  "new_source_data": false,
+  "new_optimizer_steps": 0,
+  "exact_numeric_comparison": {
+    "exact_decimal_semantic_equal": true,
+    "numeric_parser": "decimal.Decimal for every JSON non-integer numeric token; no binary-float rounding in this independent equality check",
+    "excluded_json_paths": [
+      "/attempts/*/seconds",
+      "/elapsedSeconds",
+      "/peakWorkerMemoryBytes",
+      "/records/*/audit_only/costs/clone_seconds",
+      "/records/*/audit_only/costs/elapsed_seconds",
+      "/records/*/audit_only/costs/peak_worker_memory_bytes",
+      "/records/*/audit_only/costs/settlement_seconds",
+      "/records/*/audit_only/posterior_proposals/*/elapsedSeconds"
+    ],
+    "extra_semantic_exclusions": 0
+  }
+}

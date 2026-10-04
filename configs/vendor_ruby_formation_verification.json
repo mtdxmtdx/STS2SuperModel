@@ -1,0 +1,67 @@
+{
+  "schema": "nosl.constructed-ruby-vendor-verification.v1",
+  "status": "PASS_FULL_FILE_RECONSTRUCTION_AND_FOCUSED_NATIVE_CORE",
+  "verified_source_commit": "ddc25c47c758de5461a21a1a1123df22bb5c5764",
+  "upstream_commit": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
+  "core_src_git_tree": "e230d83d7235e89776ef79e3555eaee2ad30cbce",
+  "core_tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+  "tracked_source_and_test_files_verified": 2244,
+  "all_bytes_match": true,
+  "reconstructed_file_set_matches": true,
+  "main_patch_sha256": "64c3190b23746ac5a2c262d1b78667c5af811ce49df89f27cfc9f3ccf0f8101f",
+  "map_patch_sha256": "fad7d6a7e85ea44901da2b01227f972926a116af5398686a2628326002bcdc08",
+  "main_patch_sections": 64,
+  "previous_main_patch_sections": 63,
+  "delta_from_previous_package": [
+    "src/Sts2Sim.Core/Content/Acts/Overgrowth.cs",
+    "src/Sts2Sim.Core/Content/EncounterDefinition.cs",
+    "src/Sts2Sim.Core/Random/LabelRubyRaidersScope.cs",
+    "src/Sts2Sim.Core/Rooms/CombatRoom.cs"
+  ],
+  "unchanged_previous_patch_sections": 60,
+  "ordinary_native_calls_and_rng_draw_order_unchanged": true,
+  "crosscheck": {
+    "path": "artifacts/reports/ruby-formation-vendor-verification/crosscheck-verification.json",
+    "sha256": "dcd888a7e91d0e65a5b556d8085d5817d1ffdb1ed724d7dc0dc923d066445cc1"
+  },
+  "source_manifest": {
+    "path": "artifacts/reports/ruby-formation-vendor-verification/vendor-reconstructed-manifest.json",
+    "sha256": "613a75f4ffe0ecf6b27834cb79386755f50ef333641b486379801c873c3a8295"
+  },
+  "reconstruction_script": {
+    "path": "artifacts/reports/ruby-formation-vendor-verification/verify_reconstruction.py",
+    "sha256": "4a19db03c34331eccf70ea079c7ad7b2ec25b03c8ff37e9addce8d5cf4718e13"
+  },
+  "reproduce_command": "python artifacts/reports/ruby-formation-vendor-verification/verify_reconstruction.py --repository . --original-archive-directory <authorized-original-archive-directory> --output <new-repository-local-verification-directory>",
+  "baseline_limit": "The upstream pin is inherited from the verified historical package. This run proves the patch reconstruction from its source bytes and does not claim an independent fresh upstream download.",
+  "direct_upstream_snapshot_fetched_in_this_run": false,
+  "previous_full_core_evidence": {
+    "path": "artifacts/reports/ruby-formation-vendor-verification/previous-vendor-patch-verification.json",
+    "sha256": "4ff9122726db198a6a89c557d75fbcac29e06787c3bd9d5b262ad2291a07c111",
+    "applies_to_previous_core_tree_only": true
+  },
+  "fresh_native_core_tests": [
+    {
+      "filter": "FullyQualifiedName~Random|FullyQualifiedName~Encounter|FullyQualifiedName~CombatRoom|FullyQualifiedName~RunDriver",
+      "passed": 217,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/ruby-proof/ruby-startup-core.log",
+      "log_sha256": "72b26bb33e21c67526b52063c2e235a5540fc073f7dadbc51ce898d5795d0502"
+    },
+    {
+      "filter": "FullyQualifiedName~RubyRaider",
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/ruby-proof/ruby-startup-native-models.log",
+      "log_sha256": "ca70c8e696380cc13dab7db468989b61db0c9a4d434d461cdb63c408bedebed4"
+    }
+  ],
+  "fresh_full_core_run": false,
+  "remote_writes": false,
+  "production_generation": false,
+  "training": false,
+  "code_commit": "b8d36e2a4738b419bc63fc7330a346f92956127d",
+  "native_source_identical_to_code_commit": true
+}

@@ -1,0 +1,106 @@
+{
+  "schema": "nosl.constructed-native-tape.verification.v1",
+  "status": "NATIVE_CORE_API_AND_FULL_POLICY_ENGINEERING_VERIFIED",
+  "native_source_commit": "a3d9895628a664c71e12b3d54af9d0edc632ce3c",
+  "native_source_tree": "05fd53d48d5906a880c62e24a91b4d96314c89cf",
+  "runtime_artifacts": "artifacts/constructed-tape-v1-build",
+  "runtime_manifest": "artifacts/reports/constructed-tape-v1/action-boundary/predeclaration.json",
+  "runtime_manifest_sha256": "0581b3dde34e3910815c622c46a8d48c3cab2d513433e17cc19a5505d74b1d83",
+  "native_source_files": 2510,
+  "native_source_unchanged_during_fixture": true,
+  "focused_native": {
+    "path": "artifacts/reports/constructed-tape-v1/constructed-tape-focused.trx",
+    "sha256": "b0c27ea3f668603d685004cc0fbac1801ef5226a8fdf97e400b4cb6bd9d6cf46",
+    "passed": 27,
+    "failed": 0,
+    "not_executed": 0,
+    "total": 27
+  },
+  "combined_native": {
+    "path": "artifacts/reports/constructed-tape-v1/constructed-tape-full.trx",
+    "sha256": "3e0ac6f6731aa6b9bb3bb2df0fbad91b396dc73686e02114b94f81594f023695",
+    "passed": 2288,
+    "failed": 0,
+    "not_executed": 0,
+    "total": 2288
+  },
+  "core_evidence": {
+    "source_tree_unchanged": true,
+    "test_tree_unchanged": true,
+    "passed": 4493,
+    "opt_in_skipped": 3,
+    "note": "Previous full Core result retained because no Core source or test changes in this component"
+  },
+  "independent_reviews": {
+    "core_and_api": "Approved native lifecycle, detached public-only posterior, unchanged tape law/correction, explicit unsupported setups, all failures retained",
+    "source_isolation": "Reviewed057abd3 canonical RNG-family groups across setup/policy/root/horizon/teacher/ProposalSeed variants and root alias capture before source disposal",
+    "runner": "Reviewed exact SHA053475184de2ec0e9257a3a5a8fba9bcb03fe0103c7252ffec4def1d8776d1c0; bounded watchdog, interruption cleanup, retained identity failures/spec/response, no replacement"
+  },
+  "action_boundary_fixture": {
+    "spec": "configs/constructed_tape_action_fixture_v1.json",
+    "raw": "artifacts/reports/constructed-tape-v1/action-boundary/response.jsonl",
+    "raw_sha256": "94e234274ed02b012aed99d291eb2fc66e59da5fbeadaeed744785c5672522da",
+    "request_sha256": "a16e45e8f1c61203ec9b1501a72b5300071ca9aee9442dd6ac9ce2c42237e93c",
+    "resources": {
+      "exit_code": 0,
+      "external_watchdog_killed": false,
+      "interruption": null,
+      "raw_report_valid": true,
+      "raw_report_error": null,
+      "wall_seconds": 2.421693567004695,
+      "user_seconds": 2.595072,
+      "system_seconds": 0.04937,
+      "peak_child_rss_kib": 93948,
+      "binaries_unchanged": true,
+      "native_sources_unchanged": true,
+      "response_sha256": "94e234274ed02b012aed99d291eb2fc66e59da5fbeadaeed744785c5672522da"
+    },
+    "attempt_statuses": [
+      "computation_truncated"
+    ],
+    "source_draws_requested": 1,
+    "recorded_roots": 1,
+    "sampled_worlds_returned": 2,
+    "candidate_worlds_returned": 6,
+    "candidate_branches_started": 6,
+    "settled_candidate_outcomes": 2,
+    "unresolved_candidate_outcomes": 4,
+    "actual_terminal_kind_counts": {
+      "Win": 2,
+      "Loss": 0,
+      "ComputeTruncated": 4
+    },
+    "enabled_head_actions": 1,
+    "fully_masked_actions": 2,
+    "inference": "Engineering boundary fixture, not representative distribution or learning evidence"
+  },
+  "explicit_setup_gaps": {
+    "forced_encounters": [
+      "PunchOffEventEncounter",
+      "MysteriousKnightEventEncounter",
+      "FakeMerchantEventEncounter"
+    ],
+    "owner_dependent_relics": [
+      "NeowsBones",
+      "LostCoffer",
+      "SmallCapsule",
+      "Kaleidoscope",
+      "CallingBell",
+      "Cauldron",
+      "Orrery",
+      "GlassEye",
+      "ToyBox"
+    ],
+    "selected_character_relics": [
+      "SeaGlass"
+    ]
+  },
+  "new_backward_calls": 0,
+  "new_optimizer_steps": 0,
+  "new_fitting_loops": 0,
+  "production_admission": false,
+  "quarantined": true,
+  "formal_training": false,
+  "full_policy_verification": "configs/m6_current_integration_constructed_v1.json",
+  "mixed_deck_verification": "configs/native_constructed_breadth_verification_v1.json"
+}

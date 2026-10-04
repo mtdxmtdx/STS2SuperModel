@@ -14,6 +14,9 @@ public sealed class TwoTailedRat : MonsterModel
     private int _turnsUntilSummonable = 2;
     private int _callForBackupCount;
 
+    // Read-only bridge for NOSL's public-history certificate; no rule mutation.
+    internal int NoslTurnsUntilSummonable => _turnsUntilSummonable;
+
     public override int MinInitialHp => Value(AscensionLevel.ToughEnemies, 18, 17);
     public override int MaxInitialHp => Value(AscensionLevel.ToughEnemies, 22, 21);
     private int ScratchDamage => Value(AscensionLevel.DeadlyEnemies, 9, 8);

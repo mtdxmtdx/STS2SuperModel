@@ -1,6 +1,8 @@
 using System.Linq;
 using Sts2Sim.Core.Helpers;
 using Sts2Sim.Core.Random;
+using Sts2Sim.Core.Content;
+using Sts2Sim.Core.Entities.Ascension;
 
 namespace Sts2Sim.Core.Map;
 
@@ -11,8 +13,20 @@ namespace Sts2Sim.Core.Map;
 /// <c>ActModel actModel</c> 参数。偏离 #51：无 <c>isMultiplayer</c>/
 /// <c>shouldReplaceTreasureWithElites</c>（固定单人、宝箱不换精英）。
 /// </summary>
-public sealed class StandardActMap : ActMap
+public sealed partial class StandardActMap : ActMap
 {
+    /// <summary>The native per-act map RNG, including its original stream name.</summary>
+    public static Rng CreateRng(ulong runSeed, int actIndex) =>
+        new Rng(runSeed, $"act_{actIndex + 1}_map").WithLabelMapProvenance(actIndex);
+
+    /// <summary>Pure native generation, including randomized point counts and every map pass.</summary>
+    public static StandardActMap CreateFor(ActDefinition act, Rng mapRng, AscensionManager ascension,
+        bool hasSecondBoss = false)
+    {
+        MapPointTypeCounts counts = act.GetMapPointTypes(mapRng, ascension);
+        return new StandardActMap(mapRng, act.BaseNumberOfRooms, counts, hasSecondBoss);
+    }
+
     private const int Iterations = 7;
     private const int MapWidth = 7;
 

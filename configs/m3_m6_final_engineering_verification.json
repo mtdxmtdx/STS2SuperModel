@@ -1,0 +1,211 @@
+{
+  "schema": "nosl.final-constructed-engineering-verification.v1",
+  "status": "VERIFIED_ENGINEERING_CHECKPOINT_FULL_SCOPE_DATA_READINESS_BLOCKED",
+  "native_source_commit": "029f2c183f1069d8d32b2ce61b9ac633326e57a9",
+  "python_source_commit": "aefeed59d54523a72b0dea7eb2c47275f38468ba",
+  "native_core_source_tree": "e230d83d7235e89776ef79e3555eaee2ad30cbce",
+  "native_core_test_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+  "worker_tests": {
+    "path": "artifacts/reports/constructed-final-v2/constructed-final-full.trx",
+    "sha256": "ae4d1bd13ce3c561f2fa1da313f375d7cf883ca3030e5eb16c2b1d58a55de26a",
+    "passed": 2362,
+    "failed": 0,
+    "skipped": 0,
+    "total": 2362
+  },
+  "core_tests": {
+    "path": "artifacts/reports/constructed-ruby-core-full/constructed-ruby-core-full.trx",
+    "sha256": "4ceeead00c00d1bad0db702e0b57ab5ab8e8f4636eb27607e5e9ef74421c8561",
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496
+  },
+  "focused_worker_tests": {
+    "path": "artifacts/reports/constructed-final-v2/constructed-final-focused.trx",
+    "sha256": "1d3624954f38b45a1fd1470e700fcd766d383853cc35a4561012090ccf416b9e",
+    "passed": 208,
+    "failed": 0,
+    "skipped": 0,
+    "total": 208
+  },
+  "guarded_python_tests": {
+    "passed": 109,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_seconds": 73.751,
+    "log": "artifacts/reports/constructed-final-v2/python/aggregate.log",
+    "sha256": "97d5f31fee8a6f910f3157ab8268daff21c375c9dcc65ed93996285a6e550a4f",
+    "breakdown": {
+      "full_policy": 31,
+      "old_native_bridge": 18,
+      "finite_hunt_producer": 13,
+      "finite_hunt_policy": 10,
+      "constructed_ordinary": 13,
+      "lantern_rejection": 7,
+      "ruby_formation": 4,
+      "ruby_draw": 5,
+      "lantern_shuffle": 8
+    },
+    "initial_harness_note": "The first invocation omitted two explicit retained-fixture environment variables:103checks passed and two integration classes skipped. No source failed; the corrected preflight-bound invocation passed all109. Initial log/runner remain retained."
+  },
+  "all_retained_constructed_runs": {
+    "reports": 18,
+    "attempt_status_counts": {
+      "computation_truncated": 1,
+      "posterior_exhausted": 7,
+      "recorded_complete": 10
+    },
+    "distinct_primitive_families": 9,
+    "distinct_exact_public_roots": 15,
+    "requested_independent_world_slots": 36,
+    "sampled_worlds_returned": 22,
+    "requested_candidate_slots": 506,
+    "candidate_branches_started": 290,
+    "settled_candidate_runs": 286,
+    "terminal_counts": {
+      "ComputeTruncated": 220,
+      "Win": 186,
+      "Loss": 100
+    },
+    "interpretation": "An evidence inventory across versioned diagnostic reruns, not an independently sampled corpus or18new effective decision points. Earlier exhausted outcomes remain intact; repaired versions do not replace them.",
+    "files": [
+      {
+        "path": "artifacts/reports/constructed-tape-v1/action-boundary/response.jsonl",
+        "sha256": "94e234274ed02b012aed99d291eb2fc66e59da5fbeadaeed744785c5672522da",
+        "bytes": 66789
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-00/response.jsonl",
+        "sha256": "2165f6ac262d03dec8387e82a03add3cd5f294adc302e47849a62f3b21aca09d",
+        "bytes": 215435
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-01/response.jsonl",
+        "sha256": "2bca92497661026ec096e51477d886a19074131f06f75b727b6fa0ab96829755",
+        "bytes": 381444
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-02/response.jsonl",
+        "sha256": "196b0a7ab71efe216a7edc92398b3934846f15682c1f24923c9a60f5a4d19d3f",
+        "bytes": 1740953
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-03/response.jsonl",
+        "sha256": "bc6359acea710fce925d0f07733a08a2531276bd4b66159a80cdfe0f209bf3ea",
+        "bytes": 1691155
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-04/response.jsonl",
+        "sha256": "ee6edd092e44b32490d1eb65f1d4173aeec720ec5af2a01cebe7ced0472b8d27",
+        "bytes": 913300
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-05/response.jsonl",
+        "sha256": "bdab6dedd05da51b4da0ede06d5168ffe746ae6530c1ccd1d15fd58511a32119",
+        "bytes": 418804
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-06/response.jsonl",
+        "sha256": "c7b90564a5887546b27feccb0b765701176607a36a4ebf78953d08e6684b8779",
+        "bytes": 1064042
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-07/response.jsonl",
+        "sha256": "7886e4dc36000120685d6236b86ae6ff4f9bc6af84146f41b810a72a39ee5ec4",
+        "bytes": 431795
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-08/response.jsonl",
+        "sha256": "0e6e727d2b486a44fad855c6ad39048201a79485d603366dd5b330fb3dae8ad9",
+        "bytes": 1165888
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-09/response.jsonl",
+        "sha256": "dac0e93b88f9eb53a972b80f3d9b0c02b6337e9cc6b24a47969cb4e11c8551e9",
+        "bytes": 541699
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-10/response.jsonl",
+        "sha256": "4b5c16a88f9634dfbfa656740cde83205da436e17db88e6889cab766f89ecdb5",
+        "bytes": 210485
+      },
+      {
+        "path": "artifacts/reports/constructed-tape-v1/breadth/case-11/response.jsonl",
+        "sha256": "fca3311232c5d91f216af100b85f9b27401520bb414f541d3eff8304042be8c9",
+        "bytes": 583550
+      },
+      {
+        "path": "artifacts/reports/constructed-owner-ruby-v1/lantern-boundary/response.jsonl",
+        "sha256": "94c459ce681491067a714b8fb306c24f122577d39536edbdac6cc275824d5193",
+        "bytes": 123139
+      },
+      {
+        "path": "artifacts/ruby-proof/case-00/response.jsonl",
+        "sha256": "f76e34fe8e16108ccc5c38940873f84168bd81d6d27f6d799c25f627c4c8264e",
+        "bytes": 1409191
+      },
+      {
+        "path": "artifacts/ruby-proof/case-01/response.jsonl",
+        "sha256": "2adb3a50b8bca9bab171c2aeef894c0c0faceeaa0e18030c0597f6068b99daa3",
+        "bytes": 381727
+      },
+      {
+        "path": "artifacts/reports/constructed-owner-ruby-v3/ruby-turn2/response.jsonl",
+        "sha256": "d0821c436b9577d90f8bcb805854d4580a5b784a4fc0807e88e4aeb7030b947b",
+        "bytes": 1242719
+      },
+      {
+        "path": "artifacts/reports/constructed-final-v2/lantern-mixed/response.jsonl",
+        "sha256": "7636e9d2c7c801395c31e90bf4b70c385673e1f28e186f6af6ad6669cc8d84ce",
+        "bytes": 972248
+      }
+    ]
+  },
+  "source_to_loss_evidence": [
+    "docs/CONSTRUCTED_NATIVE_TAPE_FULL_POLICY_VERIFICATION.json",
+    "docs/CONSTRUCTED_NATIVE_TAPE_BREADTH_POLICY_VERIFICATION.json",
+    "docs/CONSTRUCTED_NATIVE_TYPED_POLICY_VERIFICATION.json",
+    "docs/CONSTRUCTED_NATIVE_RUBY_DRAW_POLICY_VERIFICATION.json",
+    "docs/CONSTRUCTED_NATIVE_LANTERN_SHUFFLE_POLICY_VERIFICATION.json"
+  ],
+  "scoped_conditional_laws": {
+    "ordinary_constructed": "Declared fresh setup under independent Map/Rewards/state tapes, not a natural carry-in reachability claim",
+    "ruby": "Exact finite-native ordered formation plus separately reviewed card-pile-preserving Ruby enemy turns; same prior/public roots and independent final worlds",
+    "lantern": "Strict real event-to-combat ownership and initial native shuffle only; fixed108HP, native Strength6/Plating6/block6, no HP or later-draw conditioning",
+    "unknown_hooks": "All existing unknown card/relic/power/listener gaps retain ordinary rejection or explicit unsupported setup; no global catalog gate is silently claimed closed"
+  },
+  "remaining_full_scope_gates": [
+    "Broad natural/constructed source, phase and interaction coverage; other observed exhausted strata remain unresolved",
+    "Two other constructed forced owners, nine acquisition-owner relic contexts and meaningful SeaGlass setup remain explicit gaps",
+    "Item/permanent/reward valuation and formal objective-profile admission remain unresolved; unknown values stay masked",
+    "Historical source-protection registry is still incomplete, so new production admission and fitting remain closed"
+  ],
+  "historical_backward_report_sha256": "5dc9e73bee7714fe54087d465e77d2993d429faf0b6869d55a371a317661633a",
+  "historical_authorized_backward_calls": 1,
+  "new_backward_calls": 0,
+  "new_optimizer_steps": 0,
+  "new_fitting_loops": 0,
+  "new_trained_weights": false,
+  "formal_training": false,
+  "production_admission": false,
+  "full_m3_m6_complete": false,
+  "final_export_or_client_fidelity_required_for_this_engineering_gate": false,
+  "metadata_protection_verification": {
+    "report": "configs/protection_metadata_constructed_final_extension.json",
+    "sha256": "8d0aacce6a3d6a6b6035a8c33165ac3b7549f953b2efc01b0f1a6198b338a8d2",
+    "focused_tests_passed": 3,
+    "focused_tests_log": "artifacts/recovery-protection-metadata/constructed-final-focused-checks.log",
+    "exact_verify_only": "artifacts/recovery-protection-metadata/constructed-final-extension-verify-only.log",
+    "components": 2681,
+    "tokens": 20501,
+    "registry_complete": false,
+    "admission": false
+  },
+  "independent_final_review": {
+    "status": "APPROVED",
+    "scope": "Read-only recomputation of retained report counters, hashes, source closures, final test logs, metadata preservation and milestone/status consistency. No new simulation, learning or sealed historical outcome access.",
+    "checked_at_utc": "2026-10-03T17:43:59Z",
+    "blocking_findings": []
+  }
+}

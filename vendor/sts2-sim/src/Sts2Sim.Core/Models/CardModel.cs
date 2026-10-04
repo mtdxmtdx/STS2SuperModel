@@ -57,6 +57,11 @@ public abstract class CardModel : AbstractModel, ICombatStateDescriptionContribu
     private int _energyCostThisTurnDelta;
     private List<LocalEnergyModifier> _localEnergyModifiers = [];
 
+    // A narrow read-only snapshot of publicly applied cost effects. No card identities,
+    // RNG, private state-description machinery or rule execution is exposed here.
+    internal IReadOnlyList<(string Kind, int Amount)> NoslPublicEnergyModifiers =>
+        _localEnergyModifiers.Select(x => (x.Kind.ToString(), x.Amount)).ToArray();
+
     private enum LocalEnergyModifierKind
     {
         FreeThisTurn,
@@ -92,6 +97,10 @@ public abstract class CardModel : AbstractModel, ICombatStateDescriptionContribu
     /// <summary>Energy cost after ordered card-local changes, before combat-wide cost hooks.</summary>
     public int LocalEnergyCost => ResolveLocalEnergyCost();
 
+    /// <summary>Upgraded base costs, excluding card-local changes and combat-wide hooks.</summary>
+    internal bool HasPositiveBaseEnergyOrStarCost =>
+        (!IsXEnergyCost && CanonicalEnergyCost - _energyCostUpgradeDelta > 0) || CanonicalStarCost > 0;
+
     private int ResolveEnergyCost(out bool hookModified)
     {
         hookModified = false;
@@ -124,16 +133,20 @@ public abstract class CardModel : AbstractModel, ICombatStateDescriptionContribu
         return Math.Max(0, cost);
     }
 
-    public virtual int StarCost => ResolveStarCost(out _);
+    public virtual int StarCost => ResolveStarCost();
 
     /// <summary>Card-local star cost before combat-wide hooks are applied.</summary>
     public int LocalStarCost => TemporaryStarCostOverrideThisTurn ??
         (TemporaryFreeThisTurn || TemporaryFreeUntilPlayed || TemporaryFreeThisCombat
             ? 0 : CanonicalStarCost);
 
-    private int ResolveStarCost(out bool hookModified)
+    private int ResolveStarCost()
     {
-        hookModified = false;
+        // Native GetStarCostWithModifiers returns current stars for X before consulting
+        // temporary star costs or combat-wide cost hooks.
+        if (IsXStarCost)
+            return Owner?.PlayerCombatState?.Stars ?? 0;
+
         int resolvedCost = LocalStarCost;
         if (CombatState is not ICombatState combatState)
         {
@@ -141,7 +154,7 @@ public abstract class CardModel : AbstractModel, ICombatStateDescriptionContribu
         }
 
         decimal modified = Hook.ModifyStarCostInCombat(
-            combatState, this, resolvedCost, out hookModified);
+            combatState, this, resolvedCost, out bool hookModified);
         return hookModified ? (int)Math.Max(0m, modified) : resolvedCost;
     }
 
@@ -402,23 +415,54 @@ public abstract class CardModel : AbstractModel, ICombatStateDescriptionContribu
 
     private AfflictionModel? _affliction;
 
-    /// <summary>卡牌自身的关键字，不含苦难（如 Hexed 附加的虚无）。对应原版
-    /// <c>GetKeywordsWithSources(KeywordSources.Local)</c>；增删关键字都以它为基准，避免把苦难效果固化进卡牌。</summary>
+    [ThreadStatic]
+    private static HashSet<CardKeyword>? _globalKeywordScratch;
+
+    /// <summary>卡牌自身的关键字，不含战斗中其他模型给的全局关键字（如 HexPower 给 Hexed 卡的虚无）。对应原版
+    /// <c>GetKeywordsWithSources(KeywordSources.Local)</c>；增删关键字都以它为基准，避免把全局关键字固化进卡牌。</summary>
     internal IReadOnlyCollection<CardKeyword> LocalKeywords =>
         (IReadOnlyCollection<CardKeyword>?)_keywordOverride ?? CanonicalKeywords;
 
-    public IReadOnlyCollection<CardKeyword> Keywords
-    {
-        get
-        {
-            IReadOnlyCollection<CardKeyword> keywords = LocalKeywords;
-            if (_affliction is null)
-            {
-                return keywords;
-            }
+    /// <summary>本地加全局关键字（原版 <c>KeywordSources.All</c>）。</summary>
+    public IReadOnlyCollection<CardKeyword> Keywords => GetKeywordsWithSources(KeywordSources.All);
 
-            var modifiedKeywords = new HashSet<CardKeyword>(keywords);
-            return _affliction.TryModifyKeywords(modifiedKeywords) ? modifiedKeywords : keywords;
+    /// <summary>
+    /// 原版 <c>CardModel.GetKeywordsWithSources</c>：规范实例或不在战斗中时只有本地关键字；否则把本地关键字交给
+    /// <see cref="Hook.ModifyKeywordsInCombat"/> 按需计算全局关键字，结果不写回卡牌。
+    /// </summary>
+    /// <remarks>
+    /// 已构造类型仅包含原版 HexPower 覆写时，无 Hexed 的卡不可能获得全局关键字，直接返回本地集合。
+    /// 其它情况仍逐次派发；为了不在每次读取时新建集合，这里借用线程内的临时集合；
+    /// 全局关键字没有改变结果时直接返回本地集合，有改变时才复制。监听者在修改过程中如果重入读取关键字，
+    /// 会拿到新的临时集合，不会互相覆盖。
+    /// </remarks>
+    public IReadOnlyCollection<CardKeyword> GetKeywordsWithSources(KeywordSources sources)
+    {
+        IReadOnlyCollection<CardKeyword> local = sources.HasFlag(KeywordSources.Local)
+            ? LocalKeywords
+            : Array.Empty<CardKeyword>();
+        if (!sources.HasFlag(KeywordSources.Global) || IsCanonical || CombatState is not ICombatState combatState)
+        {
+            return local;
+        }
+
+        if (Affliction is not Hexed && GlobalKeywordsRequireHexed)
+        {
+            return local;
+        }
+
+        HashSet<CardKeyword> scratch = _globalKeywordScratch ?? new HashSet<CardKeyword>();
+        _globalKeywordScratch = null;
+        try
+        {
+            scratch.UnionWith(local);
+            Hook.ModifyKeywordsInCombat(combatState, this, scratch);
+            return scratch.SetEquals(local) ? local : new HashSet<CardKeyword>(scratch);
+        }
+        finally
+        {
+            scratch.Clear();
+            _globalKeywordScratch = scratch;
         }
     }
 
@@ -611,6 +655,9 @@ public abstract class CardModel : AbstractModel, ICombatStateDescriptionContribu
         _energyCostUpgradeDelta += amount;
     }
 
+    /// <summary>Permanent energy-cost upgrade used by card enchantments such as TezcatarasEmber.</summary>
+    internal void ReduceEnergyCostFromEnchantment(int amount) => ReduceEnergyCost(amount);
+
     protected void AddKeyword(CardKeyword keyword)
     {
         AssertMutable();
@@ -728,8 +775,7 @@ public abstract class CardModel : AbstractModel, ICombatStateDescriptionContribu
 
     private (int energySpent, int starsSpent) SpendResources(
         int resolvedEnergyCost,
-        int resolvedStarCost,
-        bool starHookModified)
+        int resolvedStarCost)
     {
         AssertMutable();
         PlayerCombatState combatState = Owner.PlayerCombatState!;
@@ -740,11 +786,7 @@ public abstract class CardModel : AbstractModel, ICombatStateDescriptionContribu
             concreteState.IsLiveCombat())
             concreteState.SemanticHistory.RecordEnergySpent(concreteState, Owner, energyToSpend);
         combatState.LoseEnergy(energyToSpend);
-        bool hasTemporaryStarFree = TemporaryStarCostOverrideThisTurn.HasValue ||
-            TemporaryFreeThisTurn || TemporaryFreeUntilPlayed || TemporaryFreeThisCombat;
-        int starsToSpend = IsXStarCost && !hasTemporaryStarFree && !starHookModified
-            ? combatState.Stars
-            : Math.Max(0, Math.Min(resolvedStarCost, combatState.Stars));
+        int starsToSpend = Math.Max(0, Math.Min(resolvedStarCost, combatState.Stars));
         combatState.LoseStars(starsToSpend);
         return (energyToSpend, starsToSpend);
     }
@@ -763,12 +805,8 @@ public abstract class CardModel : AbstractModel, ICombatStateDescriptionContribu
             ? playerState.Energy
             : Math.Max(0, Math.Min(resolvedEnergyCost, playerState.Energy));
         // Native SpendResources resolves both amounts before either spending hook runs.
-        int resolvedStarCost = ResolveStarCost(out bool starHookModified);
-        bool hasTemporaryStarFree = TemporaryStarCostOverrideThisTurn.HasValue ||
-            TemporaryFreeThisTurn || TemporaryFreeUntilPlayed || TemporaryFreeThisCombat;
-        int starsToSpend = IsXStarCost && !hasTemporaryStarFree && !starHookModified
-            ? playerState.Stars
-            : Math.Max(0, Math.Min(resolvedStarCost, playerState.Stars));
+        int resolvedStarCost = ResolveStarCost();
+        int starsToSpend = Math.Max(0, Math.Min(resolvedStarCost, playerState.Stars));
         if (energyToSpend > 0 && combatState is CombatState concreteState && concreteState.IsLiveCombat())
             concreteState.SemanticHistory.RecordEnergySpent(concreteState, Owner, energyToSpend);
         playerState.LoseEnergy(energyToSpend);
@@ -905,22 +943,17 @@ public abstract class CardModel : AbstractModel, ICombatStateDescriptionContribu
 
         PlayerCombatState playerCombatState = Owner.PlayerCombatState!;
         int resolvedEnergyCost = ResolveEnergyCost(out _);
-        int resolvedStarCost = ResolveStarCost(out bool starHookModified);
-        bool hasTemporaryStarCost = TemporaryStarCostOverrideThisTurn.HasValue ||
-            TemporaryFreeThisTurn || TemporaryFreeUntilPlayed || TemporaryFreeThisCombat;
+        int resolvedStarCost = ResolveStarCost();
         int energyValue = IsXEnergyCost
             ? playerCombatState.Energy
             : Math.Max(0, resolvedEnergyCost);
-        int starValue = IsXStarCost && !hasTemporaryStarCost && !starHookModified
-            ? playerCombatState.Stars
-            : Math.Max(0, resolvedStarCost);
+        int starValue = Math.Max(0, resolvedStarCost);
         CardPileCmd.Add(this, PileType.Play);
         (int energySpent, int starsSpent) = isAutoPlay && !spendResources
             ? (0, 0)
             : SpendResources(
                 resolvedEnergyCost,
-                resolvedStarCost,
-                starHookModified);
+                resolvedStarCost);
         if (energySpent > 0)
         {
             await Hook.AfterEnergySpent(combatState, this, energySpent);

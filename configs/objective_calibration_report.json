@@ -1,0 +1,332 @@
+{
+  "schema": "nosl.objective-calibration-evidence.v1",
+  "method": "exact_synthetic_distributions_no_parameter_fitting",
+  "contract_source": "docs/spec/v4/contracts/preference_contract.py",
+  "contract_sha256": "9afa538365ea3e58eff065fff94cb804207b57b461f787a7c233e23ea19321a1",
+  "candidate": {
+    "defeat_cost": 1000,
+    "downside_coefficient": 0.2,
+    "calibrated": false
+  },
+  "confirmed_examples_preserved": true,
+  "formal_label_gate_blocks_candidate": true,
+  "eta_sensitivity": [
+    {
+      "eta": 0,
+      "mixture_cost": 3.0,
+      "fixed3_cost": 3.0,
+      "fixed8_cost": 8.0,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": false
+    },
+    {
+      "eta": 0.01,
+      "mixture_cost": 3.015,
+      "fixed3_cost": 3.0015,
+      "fixed8_cost": 8.010666666666667,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 0.1,
+      "mixture_cost": 3.1500000000000004,
+      "fixed3_cost": 3.015,
+      "fixed8_cost": 8.106666666666667,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 0.2,
+      "mixture_cost": 3.3000000000000003,
+      "fixed3_cost": 3.03,
+      "fixed8_cost": 8.213333333333333,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 0.5,
+      "mixture_cost": 3.75,
+      "fixed3_cost": 3.075,
+      "fixed8_cost": 8.533333333333333,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 1,
+      "mixture_cost": 4.5,
+      "fixed3_cost": 3.15,
+      "fixed8_cost": 9.066666666666666,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 2,
+      "mixture_cost": 6.0,
+      "fixed3_cost": 3.3,
+      "fixed8_cost": 10.133333333333333,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 5,
+      "mixture_cost": 10.5,
+      "fixed3_cost": 3.75,
+      "fixed8_cost": 13.333333333333332,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 10,
+      "mixture_cost": 18.0,
+      "fixed3_cost": 4.5,
+      "fixed8_cost": 18.666666666666664,
+      "mixture_preferred_to_fixed8": true,
+      "fixed3_preferred_to_mixture": true
+    },
+    {
+      "eta": 12,
+      "mixture_cost": 21.0,
+      "fixed3_cost": 4.8,
+      "fixed8_cost": 20.8,
+      "mixture_preferred_to_fixed8": false,
+      "fixed3_preferred_to_mixture": true
+    }
+  ],
+  "identified_family_constraints": {
+    "eta_strict_lower": 0,
+    "eta_strict_upper": 11.538461538461538,
+    "K_identified_by_two_all_win_examples": false,
+    "interpretation": "Within this proposed quadratic family only: 0 < eta < 150/13 preserves both strict examples; it does not choose a coefficient or validate the family"
+  },
+  "fixed_sample_success_illustrations": [
+    {
+      "successes": 4,
+      "n": 4,
+      "alpha": 0.05,
+      "hoeffding_lower": 0.3209492421296902,
+      "hoeffding_upper": 1,
+      "exact_probability_claimed": false
+    },
+    {
+      "successes": 80,
+      "n": 100,
+      "alpha": 0.05,
+      "hoeffding_lower": 0.6641898484259381,
+      "hoeffding_upper": 0.935810151574062,
+      "exact_probability_claimed": false
+    }
+  ],
+  "micro_death_risk_sensitivity_not_user_calibration": [
+    {
+      "defeat_cost": 100,
+      "death_probability": 0.0001,
+      "risky_cost": 0.0172,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 100,
+      "death_probability": 0.001,
+      "risky_cost": 0.17200000000000001,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 100,
+      "death_probability": 0.01,
+      "risky_cost": 1.72,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 1000,
+      "death_probability": 0.0001,
+      "risky_cost": 0.1072,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 1000,
+      "death_probability": 0.001,
+      "risky_cost": 1.072,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 1000,
+      "death_probability": 0.01,
+      "risky_cost": 10.72,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": false,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 10000,
+      "death_probability": 0.0001,
+      "risky_cost": 1.0072,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": true,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 10000,
+      "death_probability": 0.001,
+      "risky_cost": 10.072000000000001,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": false,
+      "user_preference_known": false
+    },
+    {
+      "defeat_cost": 10000,
+      "death_probability": 0.01,
+      "risky_cost": 100.72,
+      "safe_fixed8_cost": 8.213333333333333,
+      "provisional_prefers_risky": false,
+      "user_preference_known": false
+    }
+  ],
+  "boundary_checks": [
+    {
+      "case": "potion",
+      "hp_saved_interval": [
+        9,
+        9
+      ],
+      "status": "eligible_not_mandatory"
+    },
+    {
+      "case": "potion",
+      "hp_saved_interval": [
+        8.99,
+        8.99
+      ],
+      "status": "ineligible"
+    },
+    {
+      "case": "potion",
+      "hp_saved_interval": [
+        8.9,
+        9.1
+      ],
+      "status": "unresolved"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        5,
+        5
+      ],
+      "success_interval": [
+        0.8,
+        0.8
+      ],
+      "safety": true,
+      "status": "eligible_not_mandatory"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        5.01,
+        5.01
+      ],
+      "success_interval": [
+        1,
+        1
+      ],
+      "safety": true,
+      "status": "ineligible"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        4,
+        4
+      ],
+      "success_interval": [
+        0.799,
+        0.799
+      ],
+      "safety": true,
+      "status": "ineligible"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        4.9,
+        5.1
+      ],
+      "success_interval": [
+        0.8,
+        0.9
+      ],
+      "safety": true,
+      "status": "unresolved"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        4,
+        4
+      ],
+      "success_interval": [
+        0.79,
+        0.81
+      ],
+      "safety": true,
+      "status": "unresolved"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        4,
+        4
+      ],
+      "success_interval": [
+        0.9,
+        0.9
+      ],
+      "safety": null,
+      "status": "unresolved"
+    },
+    {
+      "case": "anchored_specified_finish",
+      "extra_loss_interval": [
+        4,
+        4
+      ],
+      "success_interval": [
+        0.9,
+        0.9
+      ],
+      "safety": false,
+      "status": "ineligible"
+    }
+  ],
+  "boundary_check_count": 10,
+  "calibration_status": "BLOCKED_PENDING_PREFERENCE_AND_RESOURCE_EVIDENCE",
+  "finite_sample_rule": "fixed-predeclared-N Hoeffding intervals require valid support; exact .8 is eligible but sampled 80/100 remains unresolved",
+  "simulator_evidence": {
+    "test_source": "tests/Nosl.Tests/ObjectiveTests.cs",
+    "tests_declared": [
+      "RealSimulator_FiveHpWholePlanDifferenceAndSamePotionTimingCancel",
+      "RealSimulator_AutomaticHealingAndMaxHpRemainSeparateFromFutureValue",
+      "RealSimulator_RescueBelowNineIsConsiderationAndActualLossIsDistinct"
+    ],
+    "execution_status": "NOT_ASSERTED_BY_THIS_SYNTHETIC_TOOL_SEE_BUILD_TEST_REPORT"
+  },
+  "unresolved": [
+    "K and eta are engineering candidates; examples do not identify unique risk preferences",
+    "all potion inventory and permanent-future values require versioned evidence; 9 is not a universal liquidation price",
+    "micro-death-risk tradeoffs have no confirmed target",
+    "safe multi-turn healing templates require their own value/safety evidence",
+    "arbitrary conditional bonus-budget allocation and general loop macros are unsupported",
+    "original-client differential fidelity and full Silent A10 coverage remain separate gates"
+  ],
+  "formal_labels_allowed": false,
+  "formal_training_started": false
+}

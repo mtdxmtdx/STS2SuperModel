@@ -4,6 +4,9 @@ namespace Sts2Sim.Core.Models.Cards;
 
 public sealed class Guilty : CardModel
 {
+    // Public-origin effect history, exposed without identity or private future state.
+    internal int NoslCombatsCompleted => _combatsCompleted;
+
     private int _combatsCompleted;
 
     public override CardType Type => CardType.Curse;

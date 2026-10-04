@@ -1,0 +1,85 @@
+{
+  "schema_version": "nosl.m5.engineering-evidence.v1",
+  "status": "ENGINEERING_STAGE_PASSED_WITH_EXPLICIT_SOURCE_LIMITS",
+  "source_kind": "constructed",
+  "target_unit": "unique_public_decision_points",
+  "attempts": 209,
+  "accepted_unique_roots": 200,
+  "source_battles_attempted": 70,
+  "complete_utility_roots": 177,
+  "auxiliary_only_roots": 23,
+  "computational_timeouts": 5,
+  "ended_before_requested_boundary": 4,
+  "wall_seconds": 1413.8693521469995,
+  "strict_schema_invalid_roots": 0,
+  "duplicate_roots": 0,
+  "independent_eval_world_draws": 800,
+  "action_world_copies": 4164,
+  "terminal_completed_action_worlds": 4164,
+  "rollout_decisions": 46317,
+  "peak_worker_memory_bytes": 148922368,
+  "clone_or_posterior_seconds": 1096.9364487,
+  "accepted_worker_seconds": 1131.7644322,
+  "source_distribution": {
+    "input_attempts": {
+      "constructed": 200
+    },
+    "accepted": {
+      "constructed": 200
+    },
+    "natural_distribution_claimed": false
+  },
+  "split": {
+    "unit": "transitive_provenance_connected_component",
+    "fields": [
+      "source_run_group",
+      "source_combat_id",
+      "branch_family",
+      "public_state_digest",
+      "prepared_public_input_digest"
+    ],
+    "ratio_targets": {
+      "train": 0.8,
+      "validation": 0.1,
+      "test": 0.1
+    },
+    "new_roots": {
+      "train": 171,
+      "validation": 20,
+      "test": 9
+    },
+    "cumulative_components": {
+      "validation": 7,
+      "train": 58,
+      "test": 3
+    },
+    "historical_cross_split_merges": {},
+    "audit_passed": true,
+    "frozen_test_root_count": 9,
+    "note": "Provenance is unioned before filtering. Existing split assignments and initial test roots are immutable; correlated appends inherit split. Conflicts cannot be repaired by discarding a bridge and are a permanent readiness blocker."
+  },
+  "quality_gate": {
+    "isolation_passed": true,
+    "independent_three_way_split_available": true,
+    "all_versions_match": true,
+    "no_invalid_roots": true,
+    "throughput_measurements_complete": true,
+    "nonzero_elapsed_measurement": true,
+    "all_candidate_trajectory_complete_fraction": 1.0,
+    "full_candidate_target_complete_fraction": 0.885,
+    "effective_sample_rate": 1.0,
+    "automatic_generation_or_training_authorized": false,
+    "stage_promotion": "REQUIRES_EXPLICIT_REVIEW_OF_QUALITY_THROUGHPUT_AND_SOURCE_COVERAGE"
+  },
+  "native_raw_proof": {
+    "runs": 6,
+    "combats": 26,
+    "encounters": 15,
+    "raw_roots": 200,
+    "teacher_labels": 0,
+    "source_errors": 0
+  },
+  "next_stage": "Bounded pilot constructed corpus may proceed with sparse-posterior/distribution limits retained; natural training readiness remains blocked",
+  "formal_training_run": false,
+  "pilot_training_run": false
+}

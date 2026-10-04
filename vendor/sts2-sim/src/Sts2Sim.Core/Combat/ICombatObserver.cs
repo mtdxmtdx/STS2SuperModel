@@ -19,6 +19,7 @@ internal interface ICombatObserver
     // Notifications only: no RNG, hooks, or card rules are changed.
     void CardMoved(CardModel card, PileType? from, PileType to, CardPilePosition position) { }
     void CardsShuffled(Sts2Sim.Core.Entities.Players.Player player) { }
+    void CardEnteredCombat(CardModel card, PileType to, CardPilePosition position) { }
 
     void CardPlayStarted(CardModel card, Creature? target);
 

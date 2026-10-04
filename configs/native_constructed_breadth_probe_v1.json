@@ -1,0 +1,861 @@
+{
+  "schema_version": "nosl.constructed-native-tape.breadth-probe.v1",
+  "status": "PREDECLARED_NOT_EXECUTED",
+  "created_utc": "2026-10-03T15:21:00Z",
+  "required_api": "constructed raw API including core 9f90963 and exporter isolation fix 057abd3 or their reviewed integrated descendants",
+  "declaration": {
+    "source_kind": "constructed_under_explicit_label_tape_prior",
+    "coverage_claim": "Twelve declared source attempts across six constructed configurations, not twelve independent natural runs or natural content coverage.",
+    "trainable": false,
+    "formal_labels": false,
+    "source_attempts_total": 12,
+    "distinct_configured_source_pairs": 6,
+    "evaluation_worlds_per_root": 2,
+    "maximum_posterior_proposals_total": 384,
+    "source_decision_horizon": 48,
+    "max_decisions_per_candidate_branch": 80,
+    "per_request_wall_budget_seconds": 30,
+    "sum_of_request_wall_budgets_seconds": 360,
+    "candidate_rule": "All legal actions; no candidate capping, success quotas, retries with new seeds or replacement source draws.",
+    "schedule": "Sequential requests in listed order; retain a cancelled or unexecuted entry if an external stop/freeze prevents any request.",
+    "resource_semantics": "Deck replaces the fresh native Silent deck. Listed potions and relics are additional declared acquisitions; native RingOfTheSnake remains. HP and maxHp are omitted in every request, retaining native fresh Silent 70/70 before pickup effects. Gold is an explicit base value before native pickup effects. Act progression is fresh setup, not prior-act carry-in."
+  },
+  "binding": {
+    "steps": [
+      "Query native_constructed_tape_runtime_identity on the exact reviewed worker binary; bind the exact build receipt.",
+      "Bind the same exact generated runtime receipt JSON in all twelve requests; scenario, seed, policy and budget fields stay unchanged.",
+      "Serialize and hash the bound complete request list before any source Draw/Open; preserve this proposal and final request bytes.",
+      "Freeze all twelve requests before executing the first. Reconcile source_run_group/source_random_family_alias, configured aliases and public-root aliases under 057abd3."
+    ]
+  },
+  "pair_checks": [
+    "Within each pair, source draw seed, setup, source policy, source horizon and evaluation seed order are identical; only the prior root selection and collection ID change.",
+    "Both roots are expected to share source_run_group and underlying_battle_alias while prior identities differ. Six pairs are six configured source families, with twelve source executions.",
+    "Opening and later roots must preserve completeFromRunStart=false, null combatEntryIndex and unobserved map history.",
+    "Every accepted request contributes one attempt, including absence, posterior exhaustion, truncation, error and not_executed.",
+    "Report source roots reached, sampled worlds actually returned, candidate branches actually started, settled outcomes and all proposal reasons independently. Do not infer executed work from requested outcome slots.",
+    "No success rate or timing from these twelve attempts is an admission criterion, training authorization or proof of complete content support."
+  ],
+  "scenarios": [
+    {
+      "id": "overgrowth_ruby_raiders",
+      "encounter": "RubyRaiders",
+      "act": "Overgrowth",
+      "act_index": 0,
+      "seed": 44101,
+      "later": "first_player_turn_2",
+      "reason": "Native randomized three-raider formation and multi-target legal actions; paired turn-2 root retains the first enemy turn, upgraded cards, draw and discard choices.",
+      "expectation": "Startup may be certified; formation/HP and all unconditioned history still require exact equality. Enemy-turn extension is outside the current narrow draw-prefix closure."
+    },
+    {
+      "id": "underdocks_corpse_slugs",
+      "encounter": "CorpseSlugsNormal",
+      "act": "Underdocks",
+      "act_index": 0,
+      "seed": 44102,
+      "later": "first_player_turn_2",
+      "reason": "Joint slug factory/start state, Ravenous death-trigger history, ordinary poison/block effects, opening-hand modifier and actual potion candidates. This is the comparatively favorable paired later-turn control.",
+      "expectation": "Existing joint-slug HP and upgraded initial shuffle certificates may apply; already-reviewed poison/discard transitions can extend only while their precise guards remain satisfied."
+    },
+    {
+      "id": "hive_ovicopter",
+      "encounter": "OvicopterNormal",
+      "act": "Hive",
+      "act_index": 1,
+      "seed": 44103,
+      "later": "first_player_turn_2",
+      "reason": "Opening and post-first-enemy-turn comparison: Ovicopter lays three native ToughEgg minions through CreatureCmd.Add, retaining slots, fresh enemy HP and power ownership.",
+      "expectation": "Initial Ovicopter startup is reviewed, but summons and unreviewed draw/discard plays remain ordinary full-history rejection beyond the certified prefix."
+    },
+    {
+      "id": "hive_knowledge_choice",
+      "encounter": "KnowledgeDemonBoss",
+      "act": "Hive",
+      "act_index": 1,
+      "seed": 44104,
+      "later": "first_pending_choice",
+      "reason": "Native boss initial Curse move offers Disintegration or MindRot. This mixed deck has no card-play selections or extra draw, making that enemy-owned pending choice the intended first choice without forcing it or overriding the public policy.",
+      "expectation": "Opening shuffle/HP may be certified. Choice and private curse counter still come from owned native replay; absence is retained if the root is not reached. Later fork settlement exercises non-final boss reward behavior."
+    },
+    {
+      "id": "glory_owl_magistrate",
+      "encounter": "OwlMagistrateNormal",
+      "act": "Glory",
+      "act_index": 2,
+      "seed": 44105,
+      "later": "first_player_turn_3",
+      "reason": "A normal Glory encounter with a deterministic public move cycle; turn 3 follows Scrutiny and six-hit Peck Assault. The deck mixes damage, block, permanent Dexterity, draw/discard and upgraded copies.",
+      "expectation": "Startup may be certified, but the current draw-prefix transition closure does not certify Owl enemy turns or every selected card. Paired completion differences measure real posterior limitations."
+    },
+    {
+      "id": "glory_aeonglass_resources",
+      "encounter": "AeonglassBoss",
+      "act": "Glory",
+      "act_index": 2,
+      "seed": 44106,
+      "later": "first_player_turn_3",
+      "reason": "Explicit uncertified fallback pair in the final boss lifecycle, including Withering Presence, mixed generated/retained/selected-card mechanisms and native acquisition effects. Omitted HP/maxHp retains native 70/70 before pickups; GoldenPearl and NutritiousOyster produce actual combat-entry 81/81 HP and 350 gold from base 200 gold.",
+      "expectation": "Aeonglass startup and pickup hooks are outside the acceleration certificate. Ordinary exact rejection is expected to be sparse with this real mixed deck; exhaustion at 16 proposals is valid evidence, not failure of the native model or permission to simplify/reseed."
+    }
+  ],
+  "requests": [
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-overgrowth_ruby_raiders-opening",
+        "sourceDrawSeeds": [
+          44101
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "RubyRaiders",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "Survivor",
+              "DeadlyPoison",
+              "BladeDance+",
+              "DaggerThrow",
+              "Backflip",
+              "Acrobatics",
+              "DodgeAndRoll",
+              "Dash",
+              "PoisonedStab"
+            ],
+            "potions": [
+              "FirePotion",
+              "BlockPotion"
+            ],
+            "relics": [],
+            "gold": 110
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "opening",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74101,
+          74102
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    },
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-overgrowth_ruby_raiders-phase",
+        "sourceDrawSeeds": [
+          44101
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "RubyRaiders",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "Survivor",
+              "DeadlyPoison",
+              "BladeDance+",
+              "DaggerThrow",
+              "Backflip",
+              "Acrobatics",
+              "DodgeAndRoll",
+              "Dash",
+              "PoisonedStab"
+            ],
+            "potions": [
+              "FirePotion",
+              "BlockPotion"
+            ],
+            "relics": [],
+            "gold": 110
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "first_player_turn_2",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74101,
+          74102
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    },
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-underdocks_corpse_slugs-opening",
+        "sourceDrawSeeds": [
+          44102
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "CorpseSlugsNormal",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "Survivor",
+              "DeadlyPoison",
+              "DeadlyPoison+",
+              "PoisonedStab",
+              "PoisonedStab+",
+              "DaggerThrow",
+              "Backflip",
+              "Backflip+",
+              "LegSweep",
+              "NoxiousFumes",
+              "Deflect"
+            ],
+            "potions": [
+              "PoisonPotion",
+              "DexterityPotion"
+            ],
+            "relics": [
+              "BagOfPreparation"
+            ],
+            "gold": 180
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "opening",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74111,
+          74112
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    },
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-underdocks_corpse_slugs-phase",
+        "sourceDrawSeeds": [
+          44102
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "CorpseSlugsNormal",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "Survivor",
+              "DeadlyPoison",
+              "DeadlyPoison+",
+              "PoisonedStab",
+              "PoisonedStab+",
+              "DaggerThrow",
+              "Backflip",
+              "Backflip+",
+              "LegSweep",
+              "NoxiousFumes",
+              "Deflect"
+            ],
+            "potions": [
+              "PoisonPotion",
+              "DexterityPotion"
+            ],
+            "relics": [
+              "BagOfPreparation"
+            ],
+            "gold": 180
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "first_player_turn_2",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74111,
+          74112
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    },
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-hive_ovicopter-opening",
+        "sourceDrawSeeds": [
+          44103
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "OvicopterNormal",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "Survivor",
+              "Acrobatics",
+              "Acrobatics+",
+              "Prepared",
+              "BladeDance+",
+              "DaggerThrow",
+              "Backflip",
+              "Backflip+",
+              "Dash",
+              "PoisonedStab",
+              "Footwork"
+            ],
+            "potions": [
+              "EnergyPotion",
+              "BlockPotion"
+            ],
+            "relics": [],
+            "gold": 200
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "opening",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74121,
+          74122
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    },
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-hive_ovicopter-phase",
+        "sourceDrawSeeds": [
+          44103
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "OvicopterNormal",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "Survivor",
+              "Acrobatics",
+              "Acrobatics+",
+              "Prepared",
+              "BladeDance+",
+              "DaggerThrow",
+              "Backflip",
+              "Backflip+",
+              "Dash",
+              "PoisonedStab",
+              "Footwork"
+            ],
+            "potions": [
+              "EnergyPotion",
+              "BlockPotion"
+            ],
+            "relics": [],
+            "gold": 200
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "first_player_turn_2",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74121,
+          74122
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    },
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-hive_knowledge_choice-opening",
+        "sourceDrawSeeds": [
+          44104
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "KnowledgeDemonBoss",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "StrikeSilent+",
+              "DefendSilent+",
+              "DeadlyPoison",
+              "DeadlyPoison+",
+              "PoisonedStab",
+              "PoisonedStab+",
+              "Dash",
+              "DodgeAndRoll",
+              "Footwork+",
+              "LegSweep",
+              "NoxiousFumes"
+            ],
+            "potions": [
+              "PoisonPotion",
+              "BlockPotion"
+            ],
+            "relics": [
+              "BagOfPreparation"
+            ],
+            "gold": 250
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "opening",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74131,
+          74132
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    },
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-hive_knowledge_choice-phase",
+        "sourceDrawSeeds": [
+          44104
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "KnowledgeDemonBoss",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "StrikeSilent+",
+              "DefendSilent+",
+              "DeadlyPoison",
+              "DeadlyPoison+",
+              "PoisonedStab",
+              "PoisonedStab+",
+              "Dash",
+              "DodgeAndRoll",
+              "Footwork+",
+              "LegSweep",
+              "NoxiousFumes"
+            ],
+            "potions": [
+              "PoisonPotion",
+              "BlockPotion"
+            ],
+            "relics": [
+              "BagOfPreparation"
+            ],
+            "gold": 250
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "first_pending_choice",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74131,
+          74132
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    },
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-glory_owl_magistrate-opening",
+        "sourceDrawSeeds": [
+          44105
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "OwlMagistrateNormal",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "StrikeSilent+",
+              "DefendSilent+",
+              "Survivor",
+              "DaggerThrow",
+              "Backflip",
+              "Backflip+",
+              "DodgeAndRoll",
+              "DodgeAndRoll+",
+              "Dash",
+              "Footwork",
+              "LegSweep",
+              "PoisonedStab",
+              "DeadlyPoison"
+            ],
+            "potions": [
+              "DexterityPotion",
+              "BlockPotion"
+            ],
+            "relics": [
+              "BagOfPreparation"
+            ],
+            "gold": 320
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "opening",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74141,
+          74142
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    },
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-glory_owl_magistrate-phase",
+        "sourceDrawSeeds": [
+          44105
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "OwlMagistrateNormal",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "StrikeSilent+",
+              "DefendSilent+",
+              "Survivor",
+              "DaggerThrow",
+              "Backflip",
+              "Backflip+",
+              "DodgeAndRoll",
+              "DodgeAndRoll+",
+              "Dash",
+              "Footwork",
+              "LegSweep",
+              "PoisonedStab",
+              "DeadlyPoison"
+            ],
+            "potions": [
+              "DexterityPotion",
+              "BlockPotion"
+            ],
+            "relics": [
+              "BagOfPreparation"
+            ],
+            "gold": 320
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "first_player_turn_3",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74141,
+          74142
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    },
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-glory_aeonglass_resources-opening",
+        "sourceDrawSeeds": [
+          44106
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "AeonglassBoss",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "StrikeSilent+",
+              "DefendSilent+",
+              "Nightmare+",
+              "Acrobatics",
+              "Prepared",
+              "BladeDance+",
+              "DaggerThrow",
+              "Backflip",
+              "Dash",
+              "Footwork+",
+              "WellLaidPlans",
+              "DeadlyPoison+",
+              "PoisonedStab+"
+            ],
+            "potions": [
+              "EnergyPotion",
+              "PoisonPotion"
+            ],
+            "relics": [
+              "GoldenPearl",
+              "NutritiousOyster"
+            ],
+            "gold": 200
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "opening",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74151,
+          74152
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    },
+    {
+      "op": "native_constructed_tape_candidates",
+      "purpose": "bounded-constructed-raw",
+      "options": {
+        "collectionId": "constructed-breadth-probe-20261003-glory_aeonglass_resources-phase",
+        "sourceDrawSeeds": [
+          44106
+        ],
+        "wallBudgetSeconds": 30,
+        "enableConditioning": true,
+        "prior": {
+          "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+          "setup": {
+            "encounter": "AeonglassBoss",
+            "deck": [
+              "StrikeSilent",
+              "StrikeSilent+",
+              "StrikeSilent",
+              "DefendSilent",
+              "DefendSilent+",
+              "DefendSilent",
+              "Neutralize+",
+              "StrikeSilent+",
+              "DefendSilent+",
+              "Nightmare+",
+              "Acrobatics",
+              "Prepared",
+              "BladeDance+",
+              "DaggerThrow",
+              "Backflip",
+              "Dash",
+              "Footwork+",
+              "WellLaidPlans",
+              "DeadlyPoison+",
+              "PoisonedStab+"
+            ],
+            "potions": [
+              "EnergyPotion",
+              "PoisonPotion"
+            ],
+            "relics": [
+              "GoldenPearl",
+              "NutritiousOyster"
+            ],
+            "gold": 200
+          },
+          "sourcePolicyId": "nosl-public-rules-v2",
+          "sourceDecisionHorizon": 48,
+          "rootSelection": "first_player_turn_3",
+          "decisionIndex": 0
+        }
+      },
+      "teacherOptions": {
+        "mode": "T0",
+        "continuationPolicyId": "nosl-public-rules-v2",
+        "explorationSeeds": [],
+        "evaluationSeeds": [
+          74151,
+          74152
+        ],
+        "maxPosteriorAttempts": 16,
+        "maxDecisions": 80,
+        "formalLabels": false
+      }
+    }
+  ],
+  "diagnostics": [
+    "Report every scenario/root stratum separately and aggregate six paired source families, never twelve independent battles.",
+    "For every root record, report all legal candidate counts, enabled value/probability heads, resource-provenance and target masks; keep unavailable or incomplete heads null with false masks.",
+    "Report action-value minimum/maximum/spread and tied-action counts only among sufficiently resolved comparable targets; do not impute missing slots as zero or infer utility ranking from two worlds.",
+    "Retain every requested source attempt, evaluation slot, proposal reason and actual allocation/step/settlement count, with wall time, peak memory and request cap/cancellation status.",
+    "Report any observed card-choice type, boss/public phase, potion consumption, pickup-modified entry values and generated/summoned entities using actual public/native output; intended strata are not claimed reached when absent."
+  ],
+  "native_runtime_source_commit": "a3d9895628a664c71e12b3d54af9d0edc632ce3c",
+  "external_watchdog_seconds_per_request": 45,
+  "runner": "tools/run_constructed_tape_probe.py",
+  "quality_gate": "Engineering diagnostic only: preserve all attempts/slots, demonstrate real mixed-deck phase/resource limitations and enabled-head diversity, no production pass inferred from a completion fraction.",
+  "source_seed_replacements": 0,
+  "invocations_per_request": 1,
+  "no_posthoc_extra_draws": true,
+  "formal_training": false,
+  "quarantined": true
+}

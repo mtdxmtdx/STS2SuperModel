@@ -1,0 +1,1130 @@
+{
+  "schema": "nosl-common-inventory-native-regression-v1",
+  "sourceRecordSha256": "06c406e40cff166f91c4259dcbec9afe6d8296d357f5b6f9ad0084891f56a6a9",
+  "sourcePlanSha256": "91f7985caff2d1b813cec97e2dffd87b5bc88f37812a88c90736f5b525dffa8c",
+  "sourceWorkerSha256": "9f8232685cdfb027d0b3b44c1a6934049f8be6e4e426a6a7bc7b92ee7dac9644",
+  "sourceSimulatorSha256": "520b62ac298ecaee24eab42683203306b0c466497348747bc6832169463ef231",
+  "description": "Exact lossless deduplication of the five repeated native outcome rows, preserving all 80 action-world assignments and original order; no new simulation or imputation. Public scenario selected before the original diagnostic. Not training data.",
+  "publicRoot": {
+    "actions": [
+      {
+        "kind": "play",
+        "revision": 14,
+        "selection": null,
+        "slot": 0,
+        "target": -2
+      },
+      {
+        "kind": "play",
+        "revision": 14,
+        "selection": null,
+        "slot": 1,
+        "target": -1
+      },
+      {
+        "kind": "play",
+        "revision": 14,
+        "selection": null,
+        "slot": 2,
+        "target": -2
+      },
+      {
+        "kind": "play",
+        "revision": 14,
+        "selection": null,
+        "slot": 3,
+        "target": -1
+      },
+      {
+        "kind": "end_turn",
+        "revision": 14,
+        "selection": null,
+        "slot": -1,
+        "target": -1
+      }
+    ],
+    "observation": {
+      "ascension": 10,
+      "block": 0,
+      "choice": null,
+      "counters": {
+        "attackOrSkillStarts": 1,
+        "attacksPlayed": 0,
+        "attacksStarted": 0,
+        "cardsDiscarded": 0,
+        "cardsDrawnCombat": 23,
+        "cardsGeneratedCombat": 2,
+        "cardsPlayed": 1,
+        "cardsPlayedCombat": 10,
+        "firstInSeriesStarts": 1,
+        "manualCardsPlayed": 1,
+        "playsStarted": 1,
+        "shivsPlayed": 0,
+        "skillsPlayed": 1,
+        "starsGained": 0,
+        "zeroCostAttacksStarted": 0
+      },
+      "discard": [
+        {
+          "affliction": null,
+          "cost": 1,
+          "details": {
+            "baseReplayCount": 0,
+            "costsXEnergy": false,
+            "costsXStar": false,
+            "energyModifiers": [],
+            "exhaustOnNextPlay": false,
+            "freeThisCombat": false,
+            "freeThisTurn": false,
+            "freeUntilPlayed": false,
+            "localEnergyCost": 1,
+            "localStarCost": -1,
+            "retainThisTurn": false,
+            "slyThisTurn": false,
+            "starCostThisTurn": null
+          },
+          "enchantments": [],
+          "id": "DeadlyPoison",
+          "keywords": [],
+          "publicState": {
+            "tags": "",
+            "targetType": "AnyEnemy"
+          },
+          "starCost": -1,
+          "type": "Skill",
+          "upgrade": 0
+        }
+      ],
+      "drawCount": 2,
+      "enemies": [
+        {
+          "block": 0,
+          "hp": 33,
+          "id": "TwigSlimeM",
+          "intents": [
+            {
+              "damage": 12,
+              "kind": "Attack",
+              "repeats": 1
+            }
+          ],
+          "maxHp": 60,
+          "powers": [
+            {
+              "amount": 17,
+              "amountOnTurnStart": 13,
+              "applierSlot": -2,
+              "id": "PoisonPower",
+              "selectedCard": null,
+              "selectedUpgrade": null,
+              "skipNextDurationTick": false
+            }
+          ],
+          "slot": 0
+        }
+      ],
+      "energy": 2,
+      "exhaust": [],
+      "gold": 99,
+      "hand": [
+        {
+          "affliction": null,
+          "cost": 1,
+          "details": {
+            "baseReplayCount": 0,
+            "costsXEnergy": false,
+            "costsXStar": false,
+            "energyModifiers": [],
+            "exhaustOnNextPlay": false,
+            "freeThisCombat": false,
+            "freeThisTurn": false,
+            "freeUntilPlayed": false,
+            "localEnergyCost": 1,
+            "localStarCost": -1,
+            "retainThisTurn": false,
+            "slyThisTurn": false,
+            "starCostThisTurn": null
+          },
+          "enchantments": [],
+          "id": "Backflip",
+          "keywords": [],
+          "publicState": {
+            "tags": "",
+            "targetType": "Self"
+          },
+          "starCost": -1,
+          "type": "Skill",
+          "upgrade": 0
+        },
+        {
+          "affliction": null,
+          "cost": 1,
+          "details": {
+            "baseReplayCount": 0,
+            "costsXEnergy": false,
+            "costsXStar": false,
+            "energyModifiers": [],
+            "exhaustOnNextPlay": false,
+            "freeThisCombat": false,
+            "freeThisTurn": false,
+            "freeUntilPlayed": false,
+            "localEnergyCost": 1,
+            "localStarCost": -1,
+            "retainThisTurn": false,
+            "slyThisTurn": false,
+            "starCostThisTurn": null
+          },
+          "enchantments": [],
+          "id": "Slimed",
+          "keywords": [
+            "Exhaust"
+          ],
+          "publicState": {
+            "tags": "",
+            "targetType": "None"
+          },
+          "starCost": -1,
+          "type": "Status",
+          "upgrade": 0
+        },
+        {
+          "affliction": null,
+          "cost": 1,
+          "details": {
+            "baseReplayCount": 0,
+            "costsXEnergy": false,
+            "costsXStar": false,
+            "energyModifiers": [],
+            "exhaustOnNextPlay": false,
+            "freeThisCombat": false,
+            "freeThisTurn": false,
+            "freeUntilPlayed": false,
+            "localEnergyCost": 1,
+            "localStarCost": -1,
+            "retainThisTurn": false,
+            "slyThisTurn": false,
+            "starCostThisTurn": null
+          },
+          "enchantments": [],
+          "id": "NoxiousFumes",
+          "keywords": [],
+          "publicState": {
+            "tags": "",
+            "targetType": "Self"
+          },
+          "starCost": -1,
+          "type": "Power",
+          "upgrade": 0
+        },
+        {
+          "affliction": null,
+          "cost": 1,
+          "details": {
+            "baseReplayCount": 0,
+            "costsXEnergy": false,
+            "costsXStar": false,
+            "energyModifiers": [],
+            "exhaustOnNextPlay": false,
+            "freeThisCombat": false,
+            "freeThisTurn": false,
+            "freeUntilPlayed": false,
+            "localEnergyCost": 1,
+            "localStarCost": -1,
+            "retainThisTurn": false,
+            "slyThisTurn": false,
+            "starCostThisTurn": null
+          },
+          "enchantments": [],
+          "id": "Slimed",
+          "keywords": [
+            "Exhaust"
+          ],
+          "publicState": {
+            "tags": "",
+            "targetType": "None"
+          },
+          "starCost": -1,
+          "type": "Status",
+          "upgrade": 0
+        }
+      ],
+      "history": [
+        {
+          "detail": "Silent:A10",
+          "kind": "combat_started"
+        },
+        {
+          "detail": "{\"id\":\"Backflip\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"NoxiousFumes\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Power\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"Footwork\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Power\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "1",
+          "kind": "player_turn"
+        },
+        {
+          "detail": "{\"slot\":0,\"id\":\"TwigSlimeM\",\"intents\":[{\"kind\":\"StatusCard\",\"damage\":null,\"repeats\":null}]}",
+          "kind": "intent_published"
+        },
+        {
+          "detail": "{\"revision\":0,\"kind\":\"potion\",\"slot\":0,\"target\":-2,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "SwiftPotion",
+          "kind": "potion_used"
+        },
+        {
+          "detail": "{\"revision\":1,\"kind\":\"play\",\"slot\":2,\"target\":0,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}}",
+          "kind": "card_started"
+        },
+        {
+          "detail": "{\"target\":\"TwigSlimeM\",\"targetSlot\":0,\"sourceSlot\":-2,\"id\":\"PoisonPower\",\"amount\":5}",
+          "kind": "power_changed"
+        },
+        {
+          "detail": "{\"card\":{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}},\"energySpent\":1,\"starsSpent\":0,\"resultPile\":\"Discard\"}",
+          "kind": "card_played"
+        },
+        {
+          "detail": "{\"revision\":2,\"kind\":\"play\",\"slot\":3,\"target\":-2,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"id\":\"Footwork\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Power\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}}",
+          "kind": "card_started"
+        },
+        {
+          "detail": "{\"target\":\"player\",\"targetSlot\":-2,\"sourceSlot\":-2,\"id\":\"DexterityPower\",\"amount\":2}",
+          "kind": "power_changed"
+        },
+        {
+          "detail": "{\"card\":{\"id\":\"Footwork\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Power\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}},\"energySpent\":1,\"starsSpent\":0,\"resultPile\":\"None\"}",
+          "kind": "card_played"
+        },
+        {
+          "detail": "{\"revision\":3,\"kind\":\"play\",\"slot\":2,\"target\":-2,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}}",
+          "kind": "card_started"
+        },
+        {
+          "detail": "{\"card\":{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}},\"energySpent\":1,\"starsSpent\":0,\"resultPile\":\"Discard\"}",
+          "kind": "card_played"
+        },
+        {
+          "detail": "{\"revision\":4,\"kind\":\"end_turn\",\"slot\":-1,\"target\":-1,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"target\":\"TwigSlimeM\",\"targetSlot\":0,\"sourceSlot\":null,\"blocked\":0,\"unblocked\":5,\"overkill\":0,\"hpAfter\":55,\"killed\":false}",
+          "kind": "damage"
+        },
+        {
+          "detail": "{\"target\":\"TwigSlimeM\",\"targetSlot\":0,\"sourceSlot\":null,\"id\":\"PoisonPower\",\"amount\":-1}",
+          "kind": "power_changed"
+        },
+        {
+          "detail": "{\"id\":\"Slimed\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Status\",\"keywords\":[\"Exhaust\"],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"None\"}}",
+          "kind": "card_generated"
+        },
+        {
+          "detail": "",
+          "kind": "player_turn_ended"
+        },
+        {
+          "detail": "known_positions_reset",
+          "kind": "shuffle"
+        },
+        {
+          "detail": "{\"id\":\"Backflip\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"NoxiousFumes\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Power\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "2",
+          "kind": "player_turn"
+        },
+        {
+          "detail": "{\"slot\":0,\"id\":\"TwigSlimeM\",\"intents\":[{\"kind\":\"Attack\",\"damage\":12,\"repeats\":1}]}",
+          "kind": "intent_published"
+        },
+        {
+          "detail": "{\"revision\":5,\"kind\":\"play\",\"slot\":2,\"target\":0,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}}",
+          "kind": "card_started"
+        },
+        {
+          "detail": "{\"target\":\"TwigSlimeM\",\"targetSlot\":0,\"sourceSlot\":-2,\"id\":\"PoisonPower\",\"amount\":5}",
+          "kind": "power_changed"
+        },
+        {
+          "detail": "{\"card\":{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}},\"energySpent\":1,\"starsSpent\":0,\"resultPile\":\"Discard\"}",
+          "kind": "card_played"
+        },
+        {
+          "detail": "{\"revision\":6,\"kind\":\"play\",\"slot\":2,\"target\":-2,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}}",
+          "kind": "card_started"
+        },
+        {
+          "detail": "{\"card\":{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}},\"energySpent\":1,\"starsSpent\":0,\"resultPile\":\"Discard\"}",
+          "kind": "card_played"
+        },
+        {
+          "detail": "{\"revision\":7,\"kind\":\"play\",\"slot\":2,\"target\":-2,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}}",
+          "kind": "card_started"
+        },
+        {
+          "detail": "{\"card\":{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}},\"energySpent\":1,\"starsSpent\":0,\"resultPile\":\"Discard\"}",
+          "kind": "card_played"
+        },
+        {
+          "detail": "{\"revision\":8,\"kind\":\"end_turn\",\"slot\":-1,\"target\":-1,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"target\":\"TwigSlimeM\",\"targetSlot\":0,\"sourceSlot\":null,\"blocked\":0,\"unblocked\":9,\"overkill\":0,\"hpAfter\":46,\"killed\":false}",
+          "kind": "damage"
+        },
+        {
+          "detail": "{\"target\":\"TwigSlimeM\",\"targetSlot\":0,\"sourceSlot\":null,\"id\":\"PoisonPower\",\"amount\":-1}",
+          "kind": "power_changed"
+        },
+        {
+          "detail": "{\"target\":\"player\",\"targetSlot\":-2,\"sourceSlot\":0,\"blocked\":12,\"unblocked\":0,\"overkill\":0,\"hpAfter\":12,\"killed\":false}",
+          "kind": "damage"
+        },
+        {
+          "detail": "",
+          "kind": "player_turn_ended"
+        },
+        {
+          "detail": "{\"id\":\"Slimed\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Status\",\"keywords\":[\"Exhaust\"],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"None\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "known_positions_reset",
+          "kind": "shuffle"
+        },
+        {
+          "detail": "{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"Backflip\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"NoxiousFumes\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Power\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "3",
+          "kind": "player_turn"
+        },
+        {
+          "detail": "{\"slot\":0,\"id\":\"TwigSlimeM\",\"intents\":[{\"kind\":\"StatusCard\",\"damage\":null,\"repeats\":null}]}",
+          "kind": "intent_published"
+        },
+        {
+          "detail": "{\"revision\":9,\"kind\":\"play\",\"slot\":1,\"target\":0,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}}",
+          "kind": "card_started"
+        },
+        {
+          "detail": "{\"target\":\"TwigSlimeM\",\"targetSlot\":0,\"sourceSlot\":-2,\"id\":\"PoisonPower\",\"amount\":5}",
+          "kind": "power_changed"
+        },
+        {
+          "detail": "{\"card\":{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}},\"energySpent\":1,\"starsSpent\":0,\"resultPile\":\"Discard\"}",
+          "kind": "card_played"
+        },
+        {
+          "detail": "{\"revision\":10,\"kind\":\"play\",\"slot\":3,\"target\":-2,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}}",
+          "kind": "card_started"
+        },
+        {
+          "detail": "{\"card\":{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}},\"energySpent\":1,\"starsSpent\":0,\"resultPile\":\"Discard\"}",
+          "kind": "card_played"
+        },
+        {
+          "detail": "{\"revision\":11,\"kind\":\"play\",\"slot\":1,\"target\":-2,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"id\":\"Backflip\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}}",
+          "kind": "card_started"
+        },
+        {
+          "detail": "{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "known_positions_reset",
+          "kind": "shuffle"
+        },
+        {
+          "detail": "{\"id\":\"DefendSilent\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"Defend\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"card\":{\"id\":\"Backflip\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}},\"energySpent\":1,\"starsSpent\":0,\"resultPile\":\"Discard\"}",
+          "kind": "card_played"
+        },
+        {
+          "detail": "{\"revision\":12,\"kind\":\"end_turn\",\"slot\":-1,\"target\":-1,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"target\":\"TwigSlimeM\",\"targetSlot\":0,\"sourceSlot\":null,\"blocked\":0,\"unblocked\":13,\"overkill\":0,\"hpAfter\":33,\"killed\":false}",
+          "kind": "damage"
+        },
+        {
+          "detail": "{\"target\":\"TwigSlimeM\",\"targetSlot\":0,\"sourceSlot\":null,\"id\":\"PoisonPower\",\"amount\":-1}",
+          "kind": "power_changed"
+        },
+        {
+          "detail": "{\"id\":\"Slimed\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Status\",\"keywords\":[\"Exhaust\"],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"None\"}}",
+          "kind": "card_generated"
+        },
+        {
+          "detail": "",
+          "kind": "player_turn_ended"
+        },
+        {
+          "detail": "{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "known_positions_reset",
+          "kind": "shuffle"
+        },
+        {
+          "detail": "{\"id\":\"Backflip\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"Slimed\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Status\",\"keywords\":[\"Exhaust\"],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"None\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"NoxiousFumes\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Power\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"Self\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "{\"id\":\"Slimed\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Status\",\"keywords\":[\"Exhaust\"],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"None\"}}",
+          "kind": "draw"
+        },
+        {
+          "detail": "4",
+          "kind": "player_turn"
+        },
+        {
+          "detail": "{\"slot\":0,\"id\":\"TwigSlimeM\",\"intents\":[{\"kind\":\"Attack\",\"damage\":12,\"repeats\":1}]}",
+          "kind": "intent_published"
+        },
+        {
+          "detail": "{\"revision\":13,\"kind\":\"play\",\"slot\":0,\"target\":0,\"selection\":null}",
+          "kind": "action"
+        },
+        {
+          "detail": "{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}}",
+          "kind": "card_started"
+        },
+        {
+          "detail": "{\"target\":\"TwigSlimeM\",\"targetSlot\":0,\"sourceSlot\":-2,\"id\":\"PoisonPower\",\"amount\":5}",
+          "kind": "power_changed"
+        },
+        {
+          "detail": "{\"card\":{\"id\":\"DeadlyPoison\",\"upgrade\":0,\"cost\":1,\"starCost\":-1,\"type\":\"Skill\",\"keywords\":[],\"details\":{\"costsXEnergy\":false,\"costsXStar\":false,\"localEnergyCost\":1,\"localStarCost\":-1,\"retainThisTurn\":false,\"slyThisTurn\":false,\"baseReplayCount\":0,\"exhaustOnNextPlay\":false,\"freeThisTurn\":false,\"freeUntilPlayed\":false,\"freeThisCombat\":false,\"starCostThisTurn\":null,\"energyModifiers\":[]},\"enchantments\":[],\"affliction\":null,\"publicState\":{\"tags\":\"\",\"targetType\":\"AnyEnemy\"}},\"energySpent\":1,\"starsSpent\":0,\"resultPile\":\"Discard\"}",
+          "kind": "card_played"
+        }
+      ],
+      "hp": 12,
+      "knownDraw": [],
+      "maxHp": 70,
+      "orbCapacity": 0,
+      "orbs": [],
+      "pets": [],
+      "potions": [
+        null,
+        null
+      ],
+      "powers": [
+        {
+          "amount": 2,
+          "amountOnTurnStart": 2,
+          "applierSlot": -2,
+          "id": "DexterityPower",
+          "selectedCard": null,
+          "selectedUpgrade": null,
+          "skipNextDurationTick": false
+        }
+      ],
+      "relicStates": [
+        {
+          "cards": [],
+          "details": {
+            "isMelted": 0,
+            "isUsedUp": 0,
+            "isWax": 0,
+            "stackCount": 1
+          },
+          "id": "RingOfTheSnake",
+          "selectedModel": null
+        }
+      ],
+      "relics": [
+        "RingOfTheSnake"
+      ],
+      "schema": "nosl.public.v2",
+      "stars": 0,
+      "startGold": 99,
+      "startHp": 12,
+      "turn": 4,
+      "unidentifiedDrawCount": 0,
+      "unknownDraw": [
+        {
+          "card": {
+            "affliction": null,
+            "cost": 1,
+            "details": {
+              "baseReplayCount": 0,
+              "costsXEnergy": false,
+              "costsXStar": false,
+              "energyModifiers": [],
+              "exhaustOnNextPlay": false,
+              "freeThisCombat": false,
+              "freeThisTurn": false,
+              "freeUntilPlayed": false,
+              "localEnergyCost": 1,
+              "localStarCost": -1,
+              "retainThisTurn": false,
+              "slyThisTurn": false,
+              "starCostThisTurn": null
+            },
+            "enchantments": [],
+            "id": "DefendSilent",
+            "keywords": [],
+            "publicState": {
+              "tags": "Defend",
+              "targetType": "Self"
+            },
+            "starCost": -1,
+            "type": "Skill",
+            "upgrade": 0
+          },
+          "count": 2
+        }
+      ]
+    },
+    "status": "player_decision"
+  },
+  "scenario": {
+    "deck": [
+      "NoxiousFumes",
+      "DeadlyPoison",
+      "Backflip",
+      "Footwork",
+      "DefendSilent",
+      "DefendSilent"
+    ],
+    "enemy": "TwigSlimeM",
+    "enemyHp": 60,
+    "hp": 12,
+    "potions": [
+      "SwiftPotion"
+    ],
+    "seed": "NOSL-OFFLINE-HOLDOUT-v4-FIRST-TRIAL:low-hp-poison:1"
+  },
+  "prefixActions": [
+    {
+      "kind": "potion",
+      "revision": 0,
+      "selection": null,
+      "slot": 0,
+      "target": -2
+    },
+    {
+      "kind": "play",
+      "revision": 1,
+      "selection": null,
+      "slot": 2,
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "revision": 2,
+      "selection": null,
+      "slot": 3,
+      "target": -2
+    },
+    {
+      "kind": "play",
+      "revision": 3,
+      "selection": null,
+      "slot": 2,
+      "target": -2
+    },
+    {
+      "kind": "end_turn",
+      "revision": 4,
+      "selection": null,
+      "slot": -1,
+      "target": -1
+    },
+    {
+      "kind": "play",
+      "revision": 5,
+      "selection": null,
+      "slot": 2,
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "revision": 6,
+      "selection": null,
+      "slot": 2,
+      "target": -2
+    },
+    {
+      "kind": "play",
+      "revision": 7,
+      "selection": null,
+      "slot": 2,
+      "target": -2
+    },
+    {
+      "kind": "end_turn",
+      "revision": 8,
+      "selection": null,
+      "slot": -1,
+      "target": -1
+    },
+    {
+      "kind": "play",
+      "revision": 9,
+      "selection": null,
+      "slot": 1,
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "revision": 10,
+      "selection": null,
+      "slot": 3,
+      "target": -2
+    },
+    {
+      "kind": "play",
+      "revision": 11,
+      "selection": null,
+      "slot": 1,
+      "target": -2
+    },
+    {
+      "kind": "end_turn",
+      "revision": 12,
+      "selection": null,
+      "slot": -1,
+      "target": -1
+    },
+    {
+      "kind": "play",
+      "revision": 13,
+      "selection": null,
+      "slot": 0,
+      "target": 0
+    }
+  ],
+  "worldIds": [
+    "6362743721440463913",
+    "9182032516164907409",
+    "3509883083391086985",
+    "9376623538522066141",
+    "1391956596364611120",
+    "864871468249804443",
+    "17778478631634513995",
+    "4927760333451195967",
+    "7244998185173166922",
+    "14553536395146992496",
+    "5385760178972000274",
+    "10986677250040638843",
+    "13366839466735019868",
+    "6798841556137821735",
+    "4178713822003681183",
+    "16168657366747227773"
+  ],
+  "anchor": "diagnostic:low-hp-poison-1",
+  "samplerProfile": "reviewed-stable-exchangeable-v1",
+  "persistentAssetsJson": "{\"gold\":99,\"maxHp\":70,\"deck\":[\"{\\u0022id\\u0022:\\u0022Backflip\\u0022,\\u0022upgrade\\u0022:0,\\u0022cost\\u0022:1,\\u0022starCost\\u0022:-1,\\u0022type\\u0022:\\u0022Skill\\u0022,\\u0022keywords\\u0022:[],\\u0022details\\u0022:{\\u0022costsXEnergy\\u0022:false,\\u0022costsXStar\\u0022:false,\\u0022localEnergyCost\\u0022:1,\\u0022localStarCost\\u0022:-1,\\u0022retainThisTurn\\u0022:false,\\u0022slyThisTurn\\u0022:false,\\u0022baseReplayCount\\u0022:0,\\u0022exhaustOnNextPlay\\u0022:false,\\u0022freeThisTurn\\u0022:false,\\u0022freeUntilPlayed\\u0022:false,\\u0022freeThisCombat\\u0022:false,\\u0022starCostThisTurn\\u0022:null,\\u0022energyModifiers\\u0022:[]},\\u0022enchantments\\u0022:[],\\u0022affliction\\u0022:null,\\u0022publicState\\u0022:{\\u0022tags\\u0022:\\u0022\\u0022,\\u0022targetType\\u0022:\\u0022Self\\u0022}}\",\"{\\u0022id\\u0022:\\u0022DeadlyPoison\\u0022,\\u0022upgrade\\u0022:0,\\u0022cost\\u0022:1,\\u0022starCost\\u0022:-1,\\u0022type\\u0022:\\u0022Skill\\u0022,\\u0022keywords\\u0022:[],\\u0022details\\u0022:{\\u0022costsXEnergy\\u0022:false,\\u0022costsXStar\\u0022:false,\\u0022localEnergyCost\\u0022:1,\\u0022localStarCost\\u0022:-1,\\u0022retainThisTurn\\u0022:false,\\u0022slyThisTurn\\u0022:false,\\u0022baseReplayCount\\u0022:0,\\u0022exhaustOnNextPlay\\u0022:false,\\u0022freeThisTurn\\u0022:false,\\u0022freeUntilPlayed\\u0022:false,\\u0022freeThisCombat\\u0022:false,\\u0022starCostThisTurn\\u0022:null,\\u0022energyModifiers\\u0022:[]},\\u0022enchantments\\u0022:[],\\u0022affliction\\u0022:null,\\u0022publicState\\u0022:{\\u0022tags\\u0022:\\u0022\\u0022,\\u0022targetType\\u0022:\\u0022AnyEnemy\\u0022}}\",\"{\\u0022id\\u0022:\\u0022DefendSilent\\u0022,\\u0022upgrade\\u0022:0,\\u0022cost\\u0022:1,\\u0022starCost\\u0022:-1,\\u0022type\\u0022:\\u0022Skill\\u0022,\\u0022keywords\\u0022:[],\\u0022details\\u0022:{\\u0022costsXEnergy\\u0022:false,\\u0022costsXStar\\u0022:false,\\u0022localEnergyCost\\u0022:1,\\u0022localStarCost\\u0022:-1,\\u0022retainThisTurn\\u0022:false,\\u0022slyThisTurn\\u0022:false,\\u0022baseReplayCount\\u0022:0,\\u0022exhaustOnNextPlay\\u0022:false,\\u0022freeThisTurn\\u0022:false,\\u0022freeUntilPlayed\\u0022:false,\\u0022freeThisCombat\\u0022:false,\\u0022starCostThisTurn\\u0022:null,\\u0022energyModifiers\\u0022:[]},\\u0022enchantments\\u0022:[],\\u0022affliction\\u0022:null,\\u0022publicState\\u0022:{\\u0022tags\\u0022:\\u0022Defend\\u0022,\\u0022targetType\\u0022:\\u0022Self\\u0022}}\",\"{\\u0022id\\u0022:\\u0022DefendSilent\\u0022,\\u0022upgrade\\u0022:0,\\u0022cost\\u0022:1,\\u0022starCost\\u0022:-1,\\u0022type\\u0022:\\u0022Skill\\u0022,\\u0022keywords\\u0022:[],\\u0022details\\u0022:{\\u0022costsXEnergy\\u0022:false,\\u0022costsXStar\\u0022:false,\\u0022localEnergyCost\\u0022:1,\\u0022localStarCost\\u0022:-1,\\u0022retainThisTurn\\u0022:false,\\u0022slyThisTurn\\u0022:false,\\u0022baseReplayCount\\u0022:0,\\u0022exhaustOnNextPlay\\u0022:false,\\u0022freeThisTurn\\u0022:false,\\u0022freeUntilPlayed\\u0022:false,\\u0022freeThisCombat\\u0022:false,\\u0022starCostThisTurn\\u0022:null,\\u0022energyModifiers\\u0022:[]},\\u0022enchantments\\u0022:[],\\u0022affliction\\u0022:null,\\u0022publicState\\u0022:{\\u0022tags\\u0022:\\u0022Defend\\u0022,\\u0022targetType\\u0022:\\u0022Self\\u0022}}\",\"{\\u0022id\\u0022:\\u0022Footwork\\u0022,\\u0022upgrade\\u0022:0,\\u0022cost\\u0022:1,\\u0022starCost\\u0022:-1,\\u0022type\\u0022:\\u0022Power\\u0022,\\u0022keywords\\u0022:[],\\u0022details\\u0022:{\\u0022costsXEnergy\\u0022:false,\\u0022costsXStar\\u0022:false,\\u0022localEnergyCost\\u0022:1,\\u0022localStarCost\\u0022:-1,\\u0022retainThisTurn\\u0022:false,\\u0022slyThisTurn\\u0022:false,\\u0022baseReplayCount\\u0022:0,\\u0022exhaustOnNextPlay\\u0022:false,\\u0022freeThisTurn\\u0022:false,\\u0022freeUntilPlayed\\u0022:false,\\u0022freeThisCombat\\u0022:false,\\u0022starCostThisTurn\\u0022:null,\\u0022energyModifiers\\u0022:[]},\\u0022enchantments\\u0022:[],\\u0022affliction\\u0022:null,\\u0022publicState\\u0022:{\\u0022tags\\u0022:\\u0022\\u0022,\\u0022targetType\\u0022:\\u0022Self\\u0022}}\",\"{\\u0022id\\u0022:\\u0022NoxiousFumes\\u0022,\\u0022upgrade\\u0022:0,\\u0022cost\\u0022:1,\\u0022starCost\\u0022:-1,\\u0022type\\u0022:\\u0022Power\\u0022,\\u0022keywords\\u0022:[],\\u0022details\\u0022:{\\u0022costsXEnergy\\u0022:false,\\u0022costsXStar\\u0022:false,\\u0022localEnergyCost\\u0022:1,\\u0022localStarCost\\u0022:-1,\\u0022retainThisTurn\\u0022:false,\\u0022slyThisTurn\\u0022:false,\\u0022baseReplayCount\\u0022:0,\\u0022exhaustOnNextPlay\\u0022:false,\\u0022freeThisTurn\\u0022:false,\\u0022freeUntilPlayed\\u0022:false,\\u0022freeThisCombat\\u0022:false,\\u0022starCostThisTurn\\u0022:null,\\u0022energyModifiers\\u0022:[]},\\u0022enchantments\\u0022:[],\\u0022affliction\\u0022:null,\\u0022publicState\\u0022:{\\u0022tags\\u0022:\\u0022\\u0022,\\u0022targetType\\u0022:\\u0022Self\\u0022}}\"],\"relics\":[\"{\\u0022id\\u0022:\\u0022RingOfTheSnake\\u0022,\\u0022details\\u0022:{\\u0022isMelted\\u0022:0,\\u0022isUsedUp\\u0022:0,\\u0022isWax\\u0022:0,\\u0022stackCount\\u0022:1},\\u0022cards\\u0022:[],\\u0022selectedModel\\u0022:null}\"],\"maxEnergy\":3,\"potionSlots\":2,\"orbSlots\":0,\"cardRemovalsUsed\":0}",
+  "samples": [
+    {
+      "actionIndex": 0,
+      "outcome": {
+        "terminalKind": "Win",
+        "playerAlive": true,
+        "hpAtCombatStart": 12,
+        "hpAfterSettlement": 12,
+        "maxHpStart": 70,
+        "maxHpAfterSettlement": 70,
+        "cumulativeHpDamage": 0,
+        "healingReceived": null,
+        "hpEventDiagnosticsComplete": false,
+        "inventorySnapshotsComplete": true,
+        "inventoryStart": [
+          {
+            "resourceId": "SwiftPotion",
+            "count": 1
+          }
+        ],
+        "inventoryEnd": [],
+        "resourceEvents": [
+          {
+            "kind": "consumed",
+            "resourceId": "SwiftPotion",
+            "quantity": 1,
+            "publicSource": "public_potion_used"
+          }
+        ],
+        "resourceProvenanceComplete": false,
+        "permanentChanges": [],
+        "permanentChangesComplete": true,
+        "specifiedFinishSuccess": null,
+        "earnedBonus": null,
+        "deadlineMet": null,
+        "playerTurnsElapsed": 5,
+        "atomicActionsExecuted": 21,
+        "settlementComplete": true,
+        "settlementProfileId": "AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION",
+        "continuationPolicyId": "nosl-public-rules-v1",
+        "detail": null,
+        "isTrueTerminal": true
+      },
+      "worldIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "actionIndex": 1,
+      "outcome": {
+        "terminalKind": "Win",
+        "playerAlive": true,
+        "hpAtCombatStart": 12,
+        "hpAfterSettlement": 7,
+        "maxHpStart": 70,
+        "maxHpAfterSettlement": 70,
+        "cumulativeHpDamage": 5,
+        "healingReceived": null,
+        "hpEventDiagnosticsComplete": false,
+        "inventorySnapshotsComplete": true,
+        "inventoryStart": [
+          {
+            "resourceId": "SwiftPotion",
+            "count": 1
+          }
+        ],
+        "inventoryEnd": [],
+        "resourceEvents": [
+          {
+            "kind": "consumed",
+            "resourceId": "SwiftPotion",
+            "quantity": 1,
+            "publicSource": "public_potion_used"
+          }
+        ],
+        "resourceProvenanceComplete": false,
+        "permanentChanges": [],
+        "permanentChangesComplete": true,
+        "specifiedFinishSuccess": null,
+        "earnedBonus": null,
+        "deadlineMet": null,
+        "playerTurnsElapsed": 5,
+        "atomicActionsExecuted": 21,
+        "settlementComplete": true,
+        "settlementProfileId": "AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION",
+        "continuationPolicyId": "nosl-public-rules-v1",
+        "detail": null,
+        "isTrueTerminal": true
+      },
+      "worldIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "actionIndex": 2,
+      "outcome": {
+        "terminalKind": "Win",
+        "playerAlive": true,
+        "hpAtCombatStart": 12,
+        "hpAfterSettlement": 7,
+        "maxHpStart": 70,
+        "maxHpAfterSettlement": 70,
+        "cumulativeHpDamage": 5,
+        "healingReceived": null,
+        "hpEventDiagnosticsComplete": false,
+        "inventorySnapshotsComplete": true,
+        "inventoryStart": [
+          {
+            "resourceId": "SwiftPotion",
+            "count": 1
+          }
+        ],
+        "inventoryEnd": [],
+        "resourceEvents": [
+          {
+            "kind": "consumed",
+            "resourceId": "SwiftPotion",
+            "quantity": 1,
+            "publicSource": "public_potion_used"
+          }
+        ],
+        "resourceProvenanceComplete": false,
+        "permanentChanges": [],
+        "permanentChangesComplete": true,
+        "specifiedFinishSuccess": null,
+        "earnedBonus": null,
+        "deadlineMet": null,
+        "playerTurnsElapsed": 5,
+        "atomicActionsExecuted": 21,
+        "settlementComplete": true,
+        "settlementProfileId": "AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION",
+        "continuationPolicyId": "nosl-public-rules-v1",
+        "detail": null,
+        "isTrueTerminal": true
+      },
+      "worldIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "actionIndex": 3,
+      "outcome": {
+        "terminalKind": "Win",
+        "playerAlive": true,
+        "hpAtCombatStart": 12,
+        "hpAfterSettlement": 7,
+        "maxHpStart": 70,
+        "maxHpAfterSettlement": 70,
+        "cumulativeHpDamage": 5,
+        "healingReceived": null,
+        "hpEventDiagnosticsComplete": false,
+        "inventorySnapshotsComplete": true,
+        "inventoryStart": [
+          {
+            "resourceId": "SwiftPotion",
+            "count": 1
+          }
+        ],
+        "inventoryEnd": [],
+        "resourceEvents": [
+          {
+            "kind": "consumed",
+            "resourceId": "SwiftPotion",
+            "quantity": 1,
+            "publicSource": "public_potion_used"
+          }
+        ],
+        "resourceProvenanceComplete": false,
+        "permanentChanges": [],
+        "permanentChangesComplete": true,
+        "specifiedFinishSuccess": null,
+        "earnedBonus": null,
+        "deadlineMet": null,
+        "playerTurnsElapsed": 5,
+        "atomicActionsExecuted": 21,
+        "settlementComplete": true,
+        "settlementProfileId": "AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION",
+        "continuationPolicyId": "nosl-public-rules-v1",
+        "detail": null,
+        "isTrueTerminal": true
+      },
+      "worldIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "actionIndex": 4,
+      "outcome": {
+        "terminalKind": "Loss",
+        "playerAlive": false,
+        "hpAtCombatStart": 12,
+        "hpAfterSettlement": 0,
+        "maxHpStart": 70,
+        "maxHpAfterSettlement": 70,
+        "cumulativeHpDamage": 12,
+        "healingReceived": null,
+        "hpEventDiagnosticsComplete": false,
+        "inventorySnapshotsComplete": true,
+        "inventoryStart": [
+          {
+            "resourceId": "SwiftPotion",
+            "count": 1
+          }
+        ],
+        "inventoryEnd": [],
+        "resourceEvents": [
+          {
+            "kind": "consumed",
+            "resourceId": "SwiftPotion",
+            "quantity": 1,
+            "publicSource": "public_potion_used"
+          }
+        ],
+        "resourceProvenanceComplete": false,
+        "permanentChanges": [],
+        "permanentChangesComplete": true,
+        "specifiedFinishSuccess": null,
+        "earnedBonus": null,
+        "deadlineMet": null,
+        "playerTurnsElapsed": 4,
+        "atomicActionsExecuted": 15,
+        "settlementComplete": true,
+        "settlementProfileId": "AFTER_AUTOMATIC_SETTLEMENT_BEFORE_FIRST_POSTCOMBAT_DECISION",
+        "continuationPolicyId": "nosl-public-rules-v1",
+        "detail": null,
+        "isTrueTerminal": true
+      },
+      "worldIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    }
+  ]
+}

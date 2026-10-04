@@ -1,0 +1,181 @@
+{
+  "schema": "nosl.owned-native-replay-verification.v1",
+  "source_commit": "6501de5b35c45e96407432163a08152aa26ccfe3",
+  "status": "GENERIC_NATIVE_EXECUTION_VERIFIED_BROAD_PRIOR_BUDGET_GATE_FAILED",
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "lifetime_experimental_optimizer_steps": 497,
+  "new_production_dataset_rows": 0,
+  "model_promoted": false,
+  "source_prior": "nosl.native-run-slot-prior.v1",
+  "posterior_profile": "owned-native-run-slot-rejection-v1",
+  "posterior_implementation": "nosl-owned-native-run-replay-v1",
+  "dataset_schema": "nosl.native-owned-replay-development.v1",
+  "runtime_boundaries": [
+    "Only detached public packet plus frozen declared prior enters posterior inference; actual source graph is disposed first",
+    "Source and proposal use the same seed times fixed-slot law; no first-match scan, no source-specific audit trace/floor conditioning",
+    "Engine/cancellation/cleanup failures retain one unresolved outcome per assigned world; no failure-conditioned retry",
+    "Owned replay preserves native pending choices, event owners, boss phases and hidden pools without projection or content-family reconstruction",
+    "Standard reward offers remain diagnostics outside terminal utility; actual extras/event returns are unpriced benefits",
+    "Existing fast profiles, old corpora and checkpoints keep their original identities"
+  ],
+  "native_suite": {
+    "passed": 1096,
+    "failed": 0,
+    "skipped": 0,
+    "path": "artifacts/reports/owned-run/owned-run-final.trx",
+    "bytes": 1595102,
+    "sha256": "2fd39a4ec8c7ca5b3ade35318d37c42123b3987c4515a94b430309785dbc7176"
+  },
+  "vendor_core_suite": {
+    "passed": 4480,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4483,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "build_artifacts": "artifacts/owned-run-core-build",
+    "command": "source ../.dotnet-nosl-env.sh && dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/owned-run-core-build -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core-tests.trx' --results-directory artifacts/owned-run-vendor-verification",
+    "run_times": {
+      "creation": "2026-10-02T18:17:45.2533782+09:00",
+      "queuing": "2026-10-02T18:17:45.2533782+09:00",
+      "start": "2026-10-02T18:17:43.4336746+09:00",
+      "finish": "2026-10-02T18:21:52.4612393+09:00"
+    },
+    "log_path": "artifacts/owned-run-vendor-verification/vendor-core-tests.log",
+    "log_sha256": "ab7f25cd0827f79b88f270149e844d81798591f3774291865115247fd1cda2a9",
+    "trx_path": "artifacts/owned-run-vendor-verification/vendor-core-tests.trx",
+    "trx_sha256": "04203b70b2fc7091da8b4e82d78dfc9aaa18885c3beb75d83776caaf0646d647",
+    "test_assembly_path": "artifacts/owned-run-core-build/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "3aa15ae6198dacbadb45861fcb44e031f97929663ea7f3d5923c34aab9d8781a",
+    "core_assembly_path": "artifacts/owned-run-core-build/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "415e658a50505590a03785f8d331f15e3f34d0ea9bfc49a6bf8edaf2959f98af"
+  },
+  "vendor_packaging": "configs/vendor_patch_verification.json",
+  "probes": {
+    "finite": {
+      "priorIdentity": "ce9bdbd03bfb340d847b70c6762309a5c1a00a8b6e40eac0603cf21d1b0e858b",
+      "sourceDrawsRequested": 1,
+      "existingRoots": 1,
+      "recordedRoots": 1,
+      "distinctRecordedPublicRoots": 1,
+      "distinctRecordedSourceRuns": 1,
+      "acceptedPosteriorDraws": 2,
+      "acceptedIndependentEvaluationDraws": 2,
+      "allocatedCandidateWorlds": 24,
+      "settledCandidateWorlds": 24,
+      "elapsedSeconds": 3.1796657,
+      "peakWorkerMemoryBytes": 98619392,
+      "prior": {
+        "schemaVersion": "nosl.native-run-slot-prior.v1",
+        "execution": {
+          "maxFloors": 1,
+          "sourceDecisionHorizon": 64,
+          "sourcePolicyId": "nosl-public-rules-v2"
+        },
+        "eligibleSlots": 1,
+        "finiteSeedSupport": [
+          11,
+          22
+        ],
+        "seedLaw": "uniform-declared-finite-seeds-v1",
+        "slotLaw": "uniform-fixed-combat-decision-slot-including-choices-v1",
+        "outsideCombatScript": "nosl-natural-public-script-v2"
+      },
+      "proposal_statuses": {
+        "public_packet_mismatch": 3,
+        "accepted": 2
+      },
+      "distinct_accepted_recipes": 1,
+      "outcome_kinds": {
+        "Win": 24
+      },
+      "targets_and_public_packets_unchanged_on_final_runtime_replay": true,
+      "request": {
+        "path": "artifacts/reports/owned-run/finite-native-request.jsonl",
+        "bytes": 444,
+        "sha256": "dcfb937f6aca498432946433d6a1c8fd7dd0b17ac4bae2549153a86254298590"
+      },
+      "response": {
+        "path": "artifacts/reports/owned-run/finite-native-final-response.jsonl",
+        "bytes": 568040,
+        "sha256": "f81ead0187187fbd362278daec4ebe7d9e288b64cd33eee8948fa08c74d178fc"
+      }
+    },
+    "uniform": {
+      "priorIdentity": "8c76321b4290967a1a53a9955ad5656b7ef799bd0ca34f3e6ba0bdc86fc63a3a",
+      "sourceDrawsRequested": 2,
+      "existingRoots": 2,
+      "recordedRoots": 2,
+      "distinctRecordedPublicRoots": 2,
+      "distinctRecordedSourceRuns": 2,
+      "acceptedPosteriorDraws": 0,
+      "acceptedIndependentEvaluationDraws": 0,
+      "allocatedCandidateWorlds": 30,
+      "settledCandidateWorlds": 0,
+      "elapsedSeconds": 4.1131754,
+      "peakWorkerMemoryBytes": 95064064,
+      "prior": {
+        "schemaVersion": "nosl.native-run-slot-prior.v1",
+        "execution": {
+          "maxFloors": 1,
+          "sourceDecisionHorizon": 64,
+          "sourcePolicyId": "nosl-public-rules-v2"
+        },
+        "eligibleSlots": 1,
+        "finiteSeedSupport": null,
+        "seedLaw": "uniform-uint64-hex-v1",
+        "slotLaw": "uniform-fixed-combat-decision-slot-including-choices-v1",
+        "outsideCombatScript": "nosl-natural-public-script-v2"
+      },
+      "proposal_statuses": {
+        "public_packet_mismatch": 64
+      },
+      "distinct_accepted_recipes": 0,
+      "outcome_kinds": {
+        "ComputeTruncated": 30
+      },
+      "targets_and_public_packets_unchanged_on_final_runtime_replay": true,
+      "request": {
+        "path": "artifacts/reports/owned-run/uniform-native-request.jsonl",
+        "bytes": 428,
+        "sha256": "229311567657f739766962a450903327e6d9cc0b0209275d81983b0359267ec0"
+      },
+      "response": {
+        "path": "artifacts/reports/owned-run/uniform-native-final-response.jsonl",
+        "bytes": 103099,
+        "sha256": "967da8c6f9ea7c5f496de6c01c5f1007861ff80228b356a48444ba19d62be8b6"
+      }
+    }
+  },
+  "production_admission_guard": {
+    "checked_records": 3,
+    "rejected_records": 3,
+    "reasons": [
+      "only explicitly non-trainable native development teacher records are supported"
+    ]
+  },
+  "reviews": {
+    "owned_lifecycle": "cleared after cancellation race and forced-owner no-offer settlement fixes",
+    "prior_and_admission": "cleared after cleanup audit, seed-array freezing and fixed-N cleanup fixes",
+    "cleanup_cancellation": "same ComputeTruncated discriminator applied with two regression cases"
+  },
+  "limits": [
+    "Finite prior matching selected one of two predeclared seeds; two independent draws yielded one distinct accepted recipe, not diverse future evidence",
+    "The full prior probe is only two opening roots and64 proposals; failure at the declared budget is not an estimated zero probability or proof every larger budget fails",
+    "No broad native/boss-distribution throughput, dataset quality or student-strength acceptance is claimed",
+    "Constructed boss/Nightmare/event lifecycle fixtures prove execution paths, not natural-prior coverage",
+    "The new engineering envelope is quarantined; a useful validated source prior, sampling throughput and resource-label quality must precede production admission",
+    "Resource/permanent/extra-reward valuation and prior data-quality failures remain independent gates; a unique K/eta is not required"
+  ],
+  "next_viable_options": [
+    "Develop a structured conditional proposal and validate its sampling law and compute-failure accounting",
+    "Predeclare a different limited source prior with explicit coverage and source-group isolation",
+    "Use the current reviewed pilot scope; keep full readiness false",
+    "Consider a larger fixed-budget feasibility study only with declared acceptance/resource limits; do not launch a broad seed search or fit to hide empty sampling"
+  ]
+}

@@ -10,6 +10,7 @@ using Sts2Sim.Core.Models.Relics;
 using Sts2Sim.Core.MonsterMoves;
 using Sts2Sim.Core.MonsterMoves.Intents;
 using Sts2Sim.Core.Rooms;
+using Sts2Sim.Core.Random;
 using Sts2Sim.Core.Runs;
 
 namespace Sts2Sim.Core.Tests.Entities.Creatures;
@@ -56,6 +57,53 @@ public sealed class MonsterHpRollingTests : IDisposable
         Assert.Equal(1, runState.Rng.Niche.Counter);
         Assert.Equal(0, runState.Rng.MonsterAi.Counter);
         Assert.Equal(0, creature.Monster!.Rng.Counter);
+    }
+
+    [Theory]
+    [InlineData(false, 0UL, 10)]
+    [InlineData(false, ulong.MaxValue, 14)]
+    [InlineData(true, 0UL, 10)]
+    [InlineData(true, ulong.MaxValue, 14)]
+    public void LabelHpScope_PreservesNativeUniqueSelectionFallbackAndGeneratorAdvancement(
+        bool exhausted, ulong word, int expectedHp)
+    {
+        int[] used = exhausted ? [10, 11, 12, 13, 14] : [11, 13];
+        var earlier = used.Select(hp =>
+        {
+            var creature = new Creature(Clone<WideRangeMonster>(), CombatSide.Enemy);
+            creature.SetMaxHpInternal(hp);
+            return creature;
+        }).ToArray();
+        var target = new Creature(Clone<WideRangeMonster>(), CombatSide.Enemy);
+        var observed = new List<string>();
+        var rng = Rng.CreateObserved(73, (_, operation, _) => observed.Add(operation));
+        var native = new Rng(73);
+        var proposalRng = new Rng(84);
+        var nativeProposal = new Rng(84);
+        int outerCalls = 0, hpCalls = 0, primitiveCalls = 0;
+        using (LabelRandomScope.Enter(_ => { outerCalls++; return 0; }, beginMonsterHp: context =>
+        {
+            hpCalls++;
+            Assert.Same(target, context.Creature);
+            Assert.Same(rng, context.Rng);
+            Assert.Equal(10, context.MinHp);
+            Assert.Equal(14, context.MaxHp);
+            Assert.Equal(used, context.UsedHp);
+            Assert.Equal(nativeProposal.NextUnsignedLong(), proposalRng.NextUnsignedLong());
+            return LabelRandomScope.Enter(_ => { primitiveCalls++; return word; });
+        }))
+            target.SetUniqueMonsterHpValue(earlier, rng);
+
+        Assert.Equal(expectedHp, target.MaxHp);
+        Assert.Equal(expectedHp, target.CurrentHp);
+        Assert.Equal(1, hpCalls);
+        Assert.Equal(1, primitiveCalls);
+        Assert.Equal(0, outerCalls);
+        Assert.Equal(1, rng.Counter);
+        Assert.Equal(exhausted ? "NextInt(minInclusive=10,maxExclusive=15)"
+            : "NextInt(minInclusive=0,maxExclusive=3)", Assert.Single(observed));
+        native.NextUnsignedLong();
+        Assert.Equal(native.NextUnsignedLong(), rng.NextUnsignedLong());
     }
 
     [Fact]

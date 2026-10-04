@@ -1,0 +1,73 @@
+{
+  "schema": "nosl.constructed-ruby-draw-closure.retained-diagnostic.v1",
+  "native_source_commit": "1888c597d286e3d36148c8156cb9ae4efc300853",
+  "scope": "One already inspected turn2 source under its original source/evaluation seeds and16proposal/80decision/30s budgets; different reviewed proposal implementation, not a fresh cohort or replacement sample",
+  "original_raw": "artifacts/reports/constructed-tape-v1/breadth/case-01/response.jsonl",
+  "formation_only_raw": "artifacts/ruby-proof/case-01/response.jsonl",
+  "expected_public_and_prior_unchanged": true,
+  "expected_sampler": "nosl-constructed-native-tape-ruby-draw-closure-v3-public-evidence-v2",
+  "external_watchdog_seconds": 45,
+  "invocation_limit": 1,
+  "source_replacements": 0,
+  "new_fit": false,
+  "formal_training": false,
+  "quarantined": true,
+  "request": {
+    "op": "native_constructed_tape_candidates",
+    "purpose": "bounded-constructed-raw",
+    "options": {
+      "collectionId": "constructed-breadth-probe-20261003-overgrowth_ruby_raiders-phase-ruby-draw-closure-v3",
+      "sourceDrawSeeds": [
+        44101
+      ],
+      "wallBudgetSeconds": 30,
+      "enableConditioning": true,
+      "prior": {
+        "schemaVersion": "nosl.constructed-native-map-rewards-state-tape-prior.v1",
+        "setup": {
+          "encounter": "RubyRaiders",
+          "deck": [
+            "StrikeSilent",
+            "StrikeSilent+",
+            "StrikeSilent",
+            "DefendSilent",
+            "DefendSilent+",
+            "DefendSilent",
+            "Neutralize+",
+            "Survivor",
+            "DeadlyPoison",
+            "BladeDance+",
+            "DaggerThrow",
+            "Backflip",
+            "Acrobatics",
+            "DodgeAndRoll",
+            "Dash",
+            "PoisonedStab"
+          ],
+          "potions": [
+            "FirePotion",
+            "BlockPotion"
+          ],
+          "relics": [],
+          "gold": 110
+        },
+        "sourcePolicyId": "nosl-public-rules-v2",
+        "sourceDecisionHorizon": 48,
+        "rootSelection": "first_player_turn_2",
+        "decisionIndex": 0
+      }
+    },
+    "teacherOptions": {
+      "mode": "T0",
+      "continuationPolicyId": "nosl-public-rules-v2",
+      "explorationSeeds": [],
+      "evaluationSeeds": [
+        74101,
+        74102
+      ],
+      "maxPosteriorAttempts": 16,
+      "maxDecisions": 80,
+      "formalLabels": false
+    }
+  }
+}

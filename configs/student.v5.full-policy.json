@@ -1,0 +1,16 @@
+{
+  "format": "nosl.training.full-policy.config.v5.1",
+  "student_config_sha256": "08eec9691c6c9cda760bbda4bcdcd26601aaf18f47ac4dd030158d146237bb3c",
+  "seed": 1729,
+  "torch_threads": 1,
+  "batch_size": 8,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.01,
+  "gradient_clip_norm": 1.0,
+  "max_optimizer_steps": 700,
+  "max_training_roots": 5000,
+  "max_validation_roots": 5000,
+  "max_epochs": 1,
+  "formal_training": false,
+  "promotion": false
+}

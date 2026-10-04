@@ -1,0 +1,173 @@
+{
+  "schema": "nosl.constructed-ruby-formation-verification.v1",
+  "status": "PASS_EXACT_STARTUP_CORRECTION_LATER_DRAW_REJECTION_RETAINED",
+  "verified_code_commit": "b8d36e2a4738b419bc63fc7330a346f92956127d",
+  "baseline_code_commit": "23590da",
+  "original_prior_unchanged": true,
+  "sampler_implementation": "nosl-constructed-native-tape-ruby-formation-v2-public-evidence-v2",
+  "evidence_scope": "Source-pinned exact formation law and already-viewed bounded development roots; no fresh-cohort, speed, production, training or full-coverage claim",
+  "exact_finite_proof": {
+    "native_raw_word_worlds": 512,
+    "precision_bits": 3,
+    "native_ordered_formation_tickets": 60,
+    "native_masses_unequal": true,
+    "all_conditional_finite_preimages_enumerated": true,
+    "actual_native_precision_bits": 53,
+    "all_three_words_discarded_low_bits": 11,
+    "real_precision_bucket_endpoint_checks": true,
+    "all_low_bit_endpoint_combinations_checked": true,
+    "density_ratio": "product of exact IEEE-aware 5,4,3 bucket widths divided by 2^159",
+    "envelope": "same fixed-public-roster mass",
+    "extra_formation_correction": "none; ratio equals root-constant envelope"
+  },
+  "native_test_evidence": {
+    "full_worker": {
+      "passed": 2307,
+      "failed": 0,
+      "skipped": 0,
+      "start_utc": "2026-10-03T15:50:48.251922+00:00",
+      "finish_utc": "2026-10-03T15:56:32.350475+00:00",
+      "trx": "artifacts/ruby-proof/ruby-worker.trx",
+      "trx_sha256": "38f584a3e86fe41ac5c24f6c438f1b44637c0ba3b6122f19cf75673e788bd642",
+      "log": "artifacts/ruby-proof/ruby-startup-worker-full.log",
+      "log_sha256": "530fc1138891240d6e44cd2b0d226c4632ead2961fd75877e64ffda015462417"
+    },
+    "affected_core_passed": 217,
+    "ruby_model_core_passed": 20,
+    "fresh_full_core_run": false
+  },
+  "bounded_diagnostics": [
+    {
+      "case_index": 0,
+      "root_selection": "opening",
+      "source_draw_seed": 44101,
+      "evaluation_seeds": [
+        74101,
+        74102
+      ],
+      "max_posterior_attempts_per_world": 16,
+      "max_decisions": 80,
+      "wall_budget_seconds": 30,
+      "watchdog_seconds": 45,
+      "old_report_path": "artifacts/reports/constructed-tape-v1/breadth/case-00/response.jsonl",
+      "old_report_sha256": "2165f6ac262d03dec8387e82a03add3cd5f294adc302e47849a62f3b21aca09d",
+      "report_path": "artifacts/ruby-proof/case-00/response.jsonl",
+      "report_sha256": "f76e34fe8e16108ccc5c38940873f84168bd81d6d27f6d799c25f627c4c8264e",
+      "launch_utc": "2026-10-03T15:53:43.820252+00:00",
+      "exact_serialized_public_input_bytes_unchanged": true,
+      "public_input_sha256": "b2152b66add9f0666e5431bb85d584929c1fdcf8fa6fdfd3b67489678357fbf2",
+      "prior_identity_unchanged": true,
+      "prior_identity": "94802a54afa00656d57285c9c7d025332923dc138aadaf28c5226d35c3eae326",
+      "source_generation_json_bytes_unchanged": true,
+      "source_generation_identity": "9a11c4ef94511671f40208e16e2b9333db483d5a56c77d0433d632920c3d9b85",
+      "source_family_aliases_unchanged": true,
+      "source_family_aliases": {
+        "branch_family": "constructed-native-tape-random-family-v1:57961dd2d13dacf6a799d6812404e9dba8ba32b4d225b5602cccd8f6e70673b2/public-entry:d8c0e3e9ffca3866fc7323e85ef4c19d9ef228d5a93a4b4e25876fe00f2150d5/tape-root-family",
+        "underlying_battle_alias": "constructed-native-tape-configured-source-v1:35e36058c70b8be8a25deebdc0a3e92a6661c938ac932557935f7214c8c169c3/combat:0",
+        "source_random_family_alias": "constructed-native-tape-random-family-v1:57961dd2d13dacf6a799d6812404e9dba8ba32b4d225b5602cccd8f6e70673b2",
+        "public_root_alias": "constructed-native-tape-public-root-v1:b2152b66add9f0666e5431bb85d584929c1fdcf8fa6fdfd3b67489678357fbf2"
+      },
+      "sampler_version": "nosl-constructed-native-tape-ruby-formation-v2-public-evidence-v2",
+      "status": "recorded_complete",
+      "sampled_worlds_returned": 2,
+      "candidate_worlds_returned": 44,
+      "candidate_branches_started": 44,
+      "settled_candidate_outcomes": 44,
+      "budget_expired": false,
+      "proposal_outcomes": [
+        {
+          "status": "accepted",
+          "detail": null,
+          "count": 2
+        }
+      ],
+      "proposal_count": 2,
+      "all_attempts_retained": true,
+      "invocations": 1,
+      "replacements": 0,
+      "trainable": false,
+      "formal_labels": false,
+      "timing": {
+        "exclusive": false,
+        "worker_elapsed_seconds": 9.9331769,
+        "wall_seconds": 10.297765515999345,
+        "overlap": "Entire probe overlaps full Worker regression below; timings are retained audit data only, with no A/B speed claim"
+      },
+      "frozen_runtime_and_sources_unchanged": true,
+      "resources_path": "artifacts/ruby-proof/case-00/resources.json",
+      "resources_sha256": "a792e4dbdabecb070088c9e28d0dab09024b68503e1ac95b67ea39afb106e95e"
+    },
+    {
+      "case_index": 1,
+      "root_selection": "first_player_turn_2",
+      "source_draw_seed": 44101,
+      "evaluation_seeds": [
+        74101,
+        74102
+      ],
+      "max_posterior_attempts_per_world": 16,
+      "max_decisions": 80,
+      "wall_budget_seconds": 30,
+      "watchdog_seconds": 45,
+      "old_report_path": "artifacts/reports/constructed-tape-v1/breadth/case-01/response.jsonl",
+      "old_report_sha256": "2bca92497661026ec096e51477d886a19074131f06f75b727b6fa0ab96829755",
+      "report_path": "artifacts/ruby-proof/case-01/response.jsonl",
+      "report_sha256": "2adb3a50b8bca9bab171c2aeef894c0c0faceeaa0e18030c0597f6068b99daa3",
+      "launch_utc": "2026-10-03T15:54:22.591444+00:00",
+      "exact_serialized_public_input_bytes_unchanged": true,
+      "public_input_sha256": "509d1f685da133a9746f858f24d35275991e71e0a328fd2e1cc66525f41c531a",
+      "prior_identity_unchanged": true,
+      "prior_identity": "709783dcf45ceb01218ffecc02a740048460005c99676a28fdedfbe3f92b5712",
+      "source_generation_json_bytes_unchanged": true,
+      "source_generation_identity": "9a11c4ef94511671f40208e16e2b9333db483d5a56c77d0433d632920c3d9b85",
+      "source_family_aliases_unchanged": true,
+      "source_family_aliases": {
+        "branch_family": "constructed-native-tape-random-family-v1:57961dd2d13dacf6a799d6812404e9dba8ba32b4d225b5602cccd8f6e70673b2/public-entry:d8c0e3e9ffca3866fc7323e85ef4c19d9ef228d5a93a4b4e25876fe00f2150d5/tape-root-family",
+        "underlying_battle_alias": "constructed-native-tape-configured-source-v1:35e36058c70b8be8a25deebdc0a3e92a6661c938ac932557935f7214c8c169c3/combat:0",
+        "source_random_family_alias": "constructed-native-tape-random-family-v1:57961dd2d13dacf6a799d6812404e9dba8ba32b4d225b5602cccd8f6e70673b2",
+        "public_root_alias": "constructed-native-tape-public-root-v1:509d1f685da133a9746f858f24d35275991e71e0a328fd2e1cc66525f41c531a"
+      },
+      "sampler_version": "nosl-constructed-native-tape-ruby-formation-v2-public-evidence-v2",
+      "status": "posterior_exhausted",
+      "sampled_worlds_returned": 0,
+      "candidate_worlds_returned": 0,
+      "candidate_branches_started": 0,
+      "settled_candidate_outcomes": 0,
+      "budget_expired": false,
+      "proposal_outcomes": [
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 42 (combat_fact:CardDrawn)",
+          "count": 21
+        },
+        {
+          "status": "public_constraint_mismatch",
+          "detail": "Published run evidence differs at event 43 (combat_fact:CardDrawn)",
+          "count": 11
+        }
+      ],
+      "proposal_count": 32,
+      "all_attempts_retained": true,
+      "invocations": 1,
+      "replacements": 0,
+      "trainable": false,
+      "formal_labels": false,
+      "timing": {
+        "exclusive": false,
+        "worker_elapsed_seconds": 3.100304,
+        "wall_seconds": 3.4788764619952417,
+        "overlap": "Entire probe overlaps full Worker regression below; timings are retained audit data only, with no A/B speed claim"
+      },
+      "frozen_runtime_and_sources_unchanged": true,
+      "resources_path": "artifacts/ruby-proof/case-01/resources.json",
+      "resources_sha256": "6d360c04e79b47618686131964aeb75d0a6e3a580d5e29acdf18af1ca90e558b"
+    }
+  ],
+  "distinct_underlying_battle_aliases": 1,
+  "remaining_obstacle": "Turn-2 draw history is not accelerated: all 32 retained proposals reject at public CardDrawn event42 or43. This is posterior budget exhaustion, not an impossible root or game loss.",
+  "vendor_reconstruction": "configs/vendor_ruby_formation_verification.json",
+  "additional_optimizer_steps": 0,
+  "production_generation": false,
+  "training": false,
+  "remote_writes": false
+}

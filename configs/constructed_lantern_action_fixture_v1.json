@@ -1,0 +1,60 @@
+{
+  "schema": "nosl.constructed-native-event-tape.engineering-fixture.v1",
+  "purpose": "One retained typed native LanternKey owner-to-action boundary proof; not representative deck/phase coverage or production admission",
+  "native_source_commit": "8b2c99775cfde5c3cd17861c4429deeffb9b3051",
+  "expected_mechanics": "Native KEEP_THE_KEY then FIGHT preserves the real event owner, combat and unresolved SpecialCardReward opportunity. Three GrandFinale cards are a deliberate settlement fixture; outcomes and all failures remain observed without replacement.",
+  "external_watchdog_seconds": 45,
+  "invocation_limit": 1,
+  "source_replacements": 0,
+  "formal_training": false,
+  "production_admission": false,
+  "request": {
+    "op": "native_constructed_tape_candidates",
+    "purpose": "bounded-constructed-raw",
+    "options": {
+      "collectionId": "constructed-lantern-owner-boundary-20261003-v1",
+      "sourceDrawSeeds": [
+        24501
+      ],
+      "wallBudgetSeconds": 30,
+      "enableConditioning": true,
+      "prior": {
+        "schemaVersion": "nosl.constructed-native-event-owner-map-rewards-state-tape-prior.v1",
+        "eventOwner": {
+          "event": "TheLanternKey",
+          "act": "Hive",
+          "fixtureFloor": 1,
+          "choiceRule": "keep-the-key-then-fight-v1"
+        },
+        "setup": {
+          "encounter": "MysteriousKnightEventEncounter",
+          "deck": [
+            "GrandFinale",
+            "GrandFinale",
+            "GrandFinale"
+          ],
+          "potions": [],
+          "relics": [],
+          "hp": 70,
+          "maxHp": 70
+        },
+        "sourcePolicyId": "nosl-public-rules-v2",
+        "sourceDecisionHorizon": 16,
+        "rootSelection": "opening",
+        "decisionIndex": 0
+      }
+    },
+    "teacherOptions": {
+      "mode": "T0",
+      "continuationPolicyId": "nosl-public-rules-v2",
+      "explorationSeeds": [],
+      "evaluationSeeds": [
+        74502,
+        74501
+      ],
+      "maxPosteriorAttempts": 8,
+      "maxDecisions": 3,
+      "formalLabels": false
+    }
+  }
+}

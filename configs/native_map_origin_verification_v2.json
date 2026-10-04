@@ -1,0 +1,308 @@
+{
+  "schema": "nosl.native-map-origin-verification.v2",
+  "source_commit": "92853224a9299d020e7fc6eaf4005b00a5dffaa5",
+  "status": "VERIFIED_GRANT_COMPOSITION_INSPECTED_CARRY_IN_GATE_NOT_MET",
+  "full_m3_m6_complete": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "new_production_rows": 0,
+  "formal_training": false,
+  "prior_identity": "10b8d166ee4dfe2cacd0946d5737f38de676e55b20b69acf635c3898da88e3f6",
+  "prior_unchanged_from_map_v1": true,
+  "source_channel_unchanged_from_map_v1": true,
+  "sampler": "nosl-native-map-rewards-tape-marginalized-v2-public-evidence-v2",
+  "rewards_sampler": "nosl-native-rewards-state-tape-conditional-v8-public-evidence-v1",
+  "implemented": [
+    "Shared Neow/card/resource reward guards recognize MapLawId with the same Rewards partition and origin; no probability or alias guard weakened",
+    "Exact native PhialHolster joint rarity/index and without-replacement potion grants from immediate public Neow settlement",
+    "Exact LostCoffer three-card base-rarity/identity selection and displayed potion, leaving upgrade words untouched",
+    "Source-backed v5 draw closure for Seapunk, ShrinkerBeetle/ShrinkPower, FuzzyWurmCrawler, Peck and DaggerSpray",
+    "Owning proposal composition forwards independent detached evidence, correction, fresh-cell checks, replay and failure accounting"
+  ],
+  "focused": {
+    "passed": 188,
+    "failed": 0,
+    "skipped": 0,
+    "trx": {
+      "path": "artifacts/reports/map-public-v2/map-public-v2-focused-fixed.trx",
+      "bytes": 290169,
+      "sha256": "a773f5554fc31019cb01a1b63acd7f246441eaa681eb3dc46e8573232eeb0589"
+    },
+    "log": {
+      "path": "artifacts/map-public-v2-focused-fixed.log",
+      "bytes": 1517,
+      "sha256": "c92ac168e79ede31699fbee0e249ae1e9188aed1d6ef49b687d0b70e520e9bfa"
+    },
+    "note": "Full combined focused suite before the test-only Phial owning integration cherry-pick; full aggregate includes those later two tests."
+  },
+  "native_to_python_v1_probe": {
+    "records_valid": 8,
+    "admitted": false,
+    "evidence": [
+      {
+        "path": "artifacts/reports/map-public/verify_fresh_v5.py",
+        "bytes": 1157,
+        "sha256": "bfee0a2bed1d9a4ebe56e6ec0efb0582ff9d7dc1ec2afecac622ac2b84f0c2af"
+      },
+      {
+        "path": "artifacts/reports/map-public/fresh-eight-python-validation.json",
+        "bytes": 1379,
+        "sha256": "eab62d2fcb0bc96add5425d2902b466b7d2996533ddb5c694c0cdd8d03050718"
+      },
+      {
+        "path": "artifacts/reports/map-public/fresh-eight-python-validation.log",
+        "bytes": 1379,
+        "sha256": "eab62d2fcb0bc96add5425d2902b466b7d2996533ddb5c694c0cdd8d03050718"
+      }
+    ]
+  },
+  "independent_reviews": {
+    "lost_coffer_and_shared_guards": "No correctness blocker; two nonblocking test omissions subsequently covered by explicit upgrade-word checks and removal of an unpicked card",
+    "phial_and_draw_history": "No concrete blocker in public condition, native batch seam, owning scope/correction/replay, or full native draw/power/card implementation review"
+  },
+  "probe": {
+    "spec": "configs/native_map_inspected_probe_v2.json",
+    "status": "COMPLETED_GATE_FAILED",
+    "production_admission": false,
+    "role": "Same inspected eight roots; targeted integration comparison, not fresh breadth validation",
+    "analysis": {
+      "sourceDrawsRequested": 8,
+      "existingRoots": 8,
+      "recordedRoots": 8,
+      "distinctRecordedPublicRoots": 8,
+      "distinctRecordedSourceRuns": 8,
+      "acceptedPosteriorDraws": 8,
+      "allocatedCandidateWorlds": 98,
+      "settledCandidateWorlds": 54,
+      "elapsedSeconds": 90.2380234,
+      "peakWorkerMemoryBytes": 260845568,
+      "budgetExpired": false,
+      "priorIdentity": "10b8d166ee4dfe2cacd0946d5737f38de676e55b20b69acf635c3898da88e3f6",
+      "proposal_statuses": {
+        "public_constraint_mismatch": 528,
+        "accepted": 8,
+        "exact_proposal_density_correction_rejected": 4
+      },
+      "outcome_kinds": {
+        "Win": 54,
+        "ComputeTruncated": 44
+      },
+      "fully_completed_sources": [
+        24001,
+        24003,
+        24005,
+        24006
+      ],
+      "engine_errors": 0,
+      "proposal_engine_or_cleanup_errors": 0,
+      "attempt_statuses": {
+        "existing_root_evaluated": 8
+      },
+      "fully_completed_multi_action_sources": [
+        24001,
+        24003,
+        24005
+      ],
+      "fully_completed_combat2_multi_action_sources": [],
+      "gate_requested_denominator": 8,
+      "requested_posterior_world_slots": 16,
+      "unaccepted_requested_world_slots": 8,
+      "all_assigned_candidate_mass_accounted": true,
+      "actual_settlement_complete_outcomes": 54,
+      "collector_named_settled_field_means_true_terminal_only": true,
+      "production_admission": false,
+      "all_public_inputs_unchanged": true,
+      "prior_identity_unchanged": true,
+      "gate_passed": false,
+      "gate_interpretation": "Inspected-root integration diagnostic only; same root inputs, no fresh breadth or survivor-population claim."
+    },
+    "resources": {
+      "exit_code": 0,
+      "external_watchdog_killed": false,
+      "wall_seconds": 90.38949941899045,
+      "peak_child_rss_kib": 254732,
+      "user_seconds": 95.078924,
+      "system_seconds": 1.2438609999999999,
+      "binaries_unchanged": true
+    },
+    "artifacts": [
+      {
+        "path": "artifacts/reports/map-public-v2/inspected-eight-request.jsonl",
+        "bytes": 937,
+        "sha256": "00989ccd64623609a877b06342d670902e30e8306311071e84ac6d69d48ba46a"
+      },
+      {
+        "path": "artifacts/reports/map-public-v2/inspected-eight-predeclaration.json",
+        "bytes": 5511,
+        "sha256": "18af61c82a414660636a00f7ac1e5c771afe1a774e64ef7c175b0f70ab97136e"
+      },
+      {
+        "path": "artifacts/reports/map-public-v2/inspected-eight-response.jsonl",
+        "bytes": 5399114,
+        "sha256": "458757b87e69e4ff66690905f35128ec5bb2485b4deb923d195736b4605b1b2f"
+      },
+      {
+        "path": "artifacts/reports/map-public-v2/inspected-eight-analysis.json",
+        "bytes": 15746,
+        "sha256": "23174dec92d0c4ca7c54888a20bfec369c602ab2ae03a4a5f01c7a22e430eb9f"
+      },
+      {
+        "path": "artifacts/reports/map-public-v2/inspected-eight-analysis.log",
+        "bytes": 11833,
+        "sha256": "95fd78a6f0211bb80195bcef3e7cdd7709979d88539516502abeb4296585a6fd"
+      },
+      {
+        "path": "artifacts/reports/map-public-v2/inspected-eight-resources.json",
+        "bytes": 226,
+        "sha256": "bd82516f9f044f6ac95ea99142b5dad8f8d6e3295b5b4c7a2982139003b8f397"
+      },
+      {
+        "path": "artifacts/reports/map-public-v2/inspected-eight-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "artifacts/reports/map-public-v2/inspected-eight-run.log",
+        "bytes": 537,
+        "sha256": "44a59e31b8b825e918cf4419dcd3815cf8216cb26e682ffd76b6d4df72a5a043"
+      },
+      {
+        "path": "artifacts/reports/map-public-v2/run_inspected_eight.py",
+        "bytes": 2713,
+        "sha256": "090eb6489a539da071f7671ccf9ed860f152617b2aff47672d947b9b89234029"
+      },
+      {
+        "path": "artifacts/reports/map-public-v2/analyze_inspected_eight.py",
+        "bytes": 7450,
+        "sha256": "21f94e17812d0398e733a76fde36245b2b367bb8cb2717915187ebadbf1554ef"
+      }
+    ],
+    "next_issue": "Existing event extraction recognizes only three public option signatures. The retained SunkenStatue, WoodCarvings and RoomFullOfCheese signatures are outside that list. Native initial-map, complete-map and opening certificates all succeed; no map-boundary routing change is needed. Root24004 additionally stops at DaggerThrow draw/discard. All sources and failures remain retained."
+  },
+  "remaining": [
+    "Extend source-verified public event signatures without weakening existing map or eligibility guards; verify staged DaggerThrow draw/hand-discard history",
+    "Run separately predeclared new development roots before breadth conclusions if the inspected integration gate passes",
+    "Complete reviewed v5 data admission/preparation API and full-context loader without promoting failed diagnostics",
+    "Resource and permanent-effect utility calibration remains partial; unavailable targets stay masked"
+  ],
+  "native_suite": {
+    "source_commit": "92853224a9299d020e7fc6eaf4005b00a5dffaa5",
+    "first_full_run": {
+      "passed": 1874,
+      "failed": 2,
+      "skipped": 0,
+      "total": 1876,
+      "trx": {
+        "path": "artifacts/reports/map-public-v2/map-public-v2-aggregate.trx",
+        "bytes": 2804536,
+        "sha256": "9c58a8d39156f3419bf91dacc9c9ff30bc382cc2c7a9aafc98e3e6797399a568"
+      },
+      "log": {
+        "path": "artifacts/map-public-v2-aggregate.log",
+        "bytes": 4093,
+        "sha256": "c03ade428e36d9cb52213acc8aefd2aed10eefdce394c241ed54cdf5dc7923cc"
+      }
+    },
+    "failure_cause": "Two existing composition test rows expected old sampler metadata v7 while runtime now deliberately declares v8. No other test failed.",
+    "corrected_expectation_recheck": {
+      "passed": 2,
+      "failed": 0,
+      "trx": {
+        "path": "artifacts/reports/map-public-v2/map-public-v2-version-recheck.trx",
+        "bytes": 4565,
+        "sha256": "9d84f0a33b108d662b0ff60e59157340d8b103b149647005c49a9dee78da2792"
+      },
+      "log": {
+        "path": "artifacts/map-public-v2-version-recheck.log",
+        "bytes": 2273,
+        "sha256": "af692877a35ffa88b221101b6db73332797fd0e1f183ef0b32c83a8ab4b6465b"
+      }
+    },
+    "runtime_unchanged_between_full_run_and_recheck": true,
+    "final_full_suite_after_candidate_api": "NOT_RUN"
+  },
+  "core_suite": {
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "duration_reported": "4 m 17 s",
+    "trx_duration_seconds": 258.683629,
+    "trx_counters": {
+      "total": 4496,
+      "executed": 4493,
+      "passed": 4493,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "skipped_count_source": "Three per-test NotExecuted outcomes, matching stdout and total minus executed. The test adapter leaves aggregate notExecuted at zero.",
+    "build_and_test_wall_seconds": 276.3172064620012,
+    "evidence_kind": "fresh_single_full_core_run_with_redirected_stdout_stderr_and_trx",
+    "exit_code": 0,
+    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 17 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "raw_log_available": true,
+    "trx_available": true,
+    "log_path": "artifacts/map-origin-v2-core-verification/full-core.log",
+    "log_sha256": "cba8d9c54860b9ff23d46b99c960ab24a53d6488d8f655fa33d8c4cb56a7652c",
+    "trx_path": "artifacts/map-origin-v2-core-verification/test-results/vendor-core.trx",
+    "trx_sha256": "b4c8bcef3ffd1a88b45f185013d31ab7738ffc2e4106bb13a69d3c7702e2ec58",
+    "run_record_path": "artifacts/map-origin-v2-core-verification/run-record.json",
+    "run_record_sha256": "d7e4dda674a0014034e6b9d4b7a5a62361878452f8f98ed52eeb14f65d158a22",
+    "invocations": 1,
+    "rerun_for_packaging": true,
+    "sdk_version": "9.0.303",
+    "source_hashes_verified_before_run": true,
+    "source_hashes_verified_after_run": true,
+    "source_worktree": "STS2SuperModel-coverage",
+    "verified_source_commit": "50edac4a28edb488f522668aab64057affdb5b3b",
+    "build_artifacts": "artifacts/map-origin-v2-core-verification",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/map-origin-v2-core-verification --nologo -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core.trx' --results-directory artifacts/map-origin-v2-core-verification/test-results",
+    "command_note": "Portable replay command; the results directory is shown relative to the repository. The exact process argv is preserved in run-record.json. Run after sourcing the existing shared .NET 9 environment. Build and tests used the isolated artifacts path with one MSBuild worker, node reuse and shared compilation disabled, and NuGet auditing disabled. The process stdout and stderr were redirected directly to the preserved log.",
+    "started_at_utc": "2026-10-03T01:19:04.409511+00:00",
+    "finished_at_utc": "2026-10-03T01:23:40.825957+00:00",
+    "src_git_tree": "0234af20eaca2cf5e30d06fc695947f5dbc3b6f4",
+    "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+    "test_assembly_path": "artifacts/map-origin-v2-core-verification/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "d659e3454e805f4354981766e498b38f81b6a210362ae2be38756e9ca30025e1",
+    "core_assembly_path": "artifacts/map-origin-v2-core-verification/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "8c0eab5aca297cac045c0992dadeb142859be2601efee81242ae6d6a1cef2b0c",
+    "assembly_hash_capture": "Captured from the isolated artifacts immediately after the fresh full suite; no later build or test was run there.",
+    "verified_source_manifest_sha256": "ae651194d3b41780d803d4be8b9464692a69f24fdc5b572f27e206599006e936",
+    "source_manifest_before_path": "artifacts/map-origin-v2-core-verification/source-manifest-before.json",
+    "source_manifest_after_path": "artifacts/map-origin-v2-core-verification/source-manifest-after.json",
+    "source_manifest_before_sha256": "ae651194d3b41780d803d4be8b9464692a69f24fdc5b572f27e206599006e936",
+    "source_manifest_after_sha256": "ae651194d3b41780d803d4be8b9464692a69f24fdc5b572f27e206599006e936",
+    "build_warning_count": 0,
+    "build_warnings": [],
+    "build_warning_capture": "Warning lines matching compiler/MSBuild warning codes in the preserved combined stdout/stderr log."
+  },
+  "vendor_reconstruction": {
+    "upstream_commit": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
+    "verified_source_commit": "50edac4a28edb488f522668aab64057affdb5b3b",
+    "tracked_source_and_test_files_verified": 2239,
+    "main_patch_sha256": "44c968d14bd712c7fb752741aeaa883a80c6feb198dd653363f6447c94a3790d",
+    "map_patch_sha256": "fad7d6a7e85ea44901da2b01227f972926a116af5398686a2628326002bcdc08",
+    "source_file_manifest_sha256": "ae651194d3b41780d803d4be8b9464692a69f24fdc5b572f27e206599006e936",
+    "source_file_manifest_path": "artifacts/map-origin-v2-vendor-verification/vendor-reconstructed-manifest.json",
+    "all_bytes_match": true,
+    "reconstructed_file_set_matches": true,
+    "packaging_crosscheck_path": "artifacts/map-origin-v2-vendor-verification/crosscheck-verification.json",
+    "packaging_crosscheck_sha256": "26668d6a461653b0c3bb819cd542458bb568b10730de2a4475d93bf1a62b84d2"
+  }
+}

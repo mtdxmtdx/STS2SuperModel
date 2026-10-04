@@ -1,0 +1,79 @@
+{
+  "schema": "nosl.m3.acceptance-disposition.v1",
+  "objective_profile_id": "nosl_silent_a10_terminal_v4_candidate",
+  "contract_implementation_status": "BOUNDED_CONTRACT_AND_ACCOUNTING_EVIDENCE_PASSED",
+  "production_calibration_status": "PARTIAL_CONFIRMED_CONSTRAINTS_RESOURCE_VALUES_UNRESOLVED",
+  "calibrated": false,
+  "formal_label_profiles_admitted": [],
+  "formal_labels_allowed": false,
+  "training_authorized_by_report": false,
+  "archived_corpus": "artifacts/data/engineering-200-v2",
+  "archived_corpus_current_training_admitted": false,
+  "evidence_report": "configs/objective_calibration_engineering200.json",
+  "tests": {
+    "earlier_original_checkout_objective_csharp": 21,
+    "earlier_real_simulator_integrations": 3,
+    "original_contract_python_rerun": 30,
+    "evidence_tool_mutation_tests": 16,
+    "archived_record_checks": 21180,
+    "bounded_hunt_real_integrations": 12,
+    "calibration_evidence_tests_current": 46,
+    "native_potion_paired_cases": 4,
+    "native_potion_independent_root_world_draws": 128,
+    "native_potion_selected_endpoints": 256
+  },
+  "criteria": [
+    {
+      "id": "confirmed_preferences_not_reversed",
+      "status": "BOUNDED_CONFIRMED_RISK_PASS_FIRE_VALUE_BOUND",
+      "evidence": "Original contracts and exact candidate sensitivity; original 0<eta<150/13 plus confirmed death-case K<1930+(3510/7)*eta; K1000 eta0.2 agrees. Confirmed FirePotion preference supplies a parameterized value upper bound, without assigned price.",
+      "remaining": "Two new comparisons do not establish a universal risk budget or full resource valuation. A unique K/eta is not required for empirical pilot diagnostics."
+    },
+    {
+      "id": "potion_nine_consideration_only",
+      "status": "BOUNDED_NATIVE_PAIRED_GATE_EVIDENCE_GENERAL_CALIBRATION_OPEN",
+      "evidence": "Four guarded native fixed-policy comparisons, 32 disjoint confirmation worlds each: five HP below general gate, empirical nine inconclusive, fifteen eligible-not-mandatory; independent support/interval/provenance audit passed",
+      "remaining": "General scenarios, rescue-need certification and item-specific future values remain unresolved; no universal price or full utility ranking inferred"
+    },
+    {
+      "id": "whole_anchored_five_no_reset",
+      "status": "BOUNDED_THE_HUNT_TEMPLATE_INTEGRATED",
+      "evidence": "12 real Hunt integrations: paired full baseline/plan outcomes; immutable next-turn deadline; exact observed5HP delay; anchor after prior HP loss; irreversible failure exit; independent hidden replacement",
+      "remaining": "Reviewed Hunt and separate finite Regen public controllers have native evidence; arbitrary finite plans and learned active control remain outside the verified templates."
+    },
+    {
+      "id": "exact_eighty_vs_sampling_uncertainty",
+      "status": "CONTRACT_AND_REAL_BONUS_MASKS_VERIFIED",
+      "evidence": "Exact.8 contract boundary; actual fatal/earned CardReward/deadline outcomes with fixed-N intervals and retained missing mass",
+      "remaining": "Small-N intervals and equal observed death rates remain inconclusive; no fabricated eligibility or calibrated resource value"
+    },
+    {
+      "id": "settlement_resource_accounting",
+      "status": "CURRENT_COMMITTED_LEDGER_AND_NATIVE_EVENTS_VERIFIED",
+      "evidence": "Committed HP/healing/direct adjustments/max-cap, potion use/discard/generation, immutable branch prefixes, complete terminal asset snapshots and all five native forced-event owner lifecycles are verified; see configs/m3_m6_continued_engineering_report.json.",
+      "remaining": "Unreviewed native carry-in content still rejects explicitly; item-specific future resource/permanent/reward values remain uncalibrated rather than missing event instrumentation."
+    },
+    {
+      "id": "formal_profile_admission",
+      "status": "NONE_ADMITTED",
+      "evidence": "Candidate stays calibrated=false; no item prices invented",
+      "remaining": "Versioned defensible preference and future-resource calibration"
+    }
+  ],
+  "distinct_nonpreference_blockers": [
+    "Archived engineering-200 corpus has an old public-boundary fingerprint; corrected runtime and later versioned pilot archives are separate evidence",
+    "General native carry-in, generated pending-choice and unreviewed content remain bounded software/evidence coverage limits",
+    "Hunt and finite Regen public context/controller engineering is verified; learned bonus-aware policy quality is later evaluation",
+    "Prior selected-coverage and resource-supervision failures keep enlarged generation and another fit paused"
+  ],
+  "preference_and_valuation_blockers": [
+    "General risk calibration beyond the exact confirmed comparisons remains partial; no unique coefficient or universal 1% budget is claimed",
+    "Item-specific future inventory and permanent/reward values remain unresolved; rare-potion answer is tentative"
+  ],
+  "client_differential": "Not independently measured; informational under user-accepted pinned upstream rule authority, not a new prerequisite",
+  "native_potion_evidence": "docs/POTION_PAIRED_EVIDENCE.md",
+  "confirmed_preference_feedback": "configs/preference_feedback_2026_10_02.json",
+  "confirmed_hard_preference_cases": 2,
+  "numerically_evaluated_hard_cases": 1,
+  "current_engineering_report": "configs/m3_m6_continued_engineering_report.json"
+}

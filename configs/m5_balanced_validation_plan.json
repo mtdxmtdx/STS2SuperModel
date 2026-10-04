@@ -1,0 +1,1046 @@
+{
+  "schema": "nosl.balanced-validation-block.v1",
+  "status": "PREDECLARED_IMMUTABLE_PLAN",
+  "purpose": "Validate corrected allocation, versioned continuation, complete attempted-block accounting and 16-world label support before further scale",
+  "source_kind": "constructed",
+  "natural_distribution_claimed": false,
+  "seed_prefix": "nosl-balanced-v5-rules-v2-validation-40-20261002",
+  "recipe_version": "balanced-category-v5",
+  "generator_version": "nosl-real-pilot-generation-v7",
+  "generator_sha256": "fe417b42b55015ee61af25f625056ad2b10e97cbc3d0c2379a061435842beb1a",
+  "battle_interval": {
+    "start": 0,
+    "count": 40,
+    "end_exclusive": 40
+  },
+  "phase_requests": 160,
+  "requested_phases": [
+    "opening",
+    "first_player_turn_2",
+    "first_player_turn_3",
+    "first_pending_choice"
+  ],
+  "planned_battle_category_enemy": {
+    "potion_constructed|LeafSlimeS": 1,
+    "potion_constructed|Nibbit": 1,
+    "potion_constructed|TwigSlimeM": 1,
+    "potion_constructed|TwigSlimeS": 1,
+    "relic_constructed|LeafSlimeS": 1,
+    "relic_constructed|Nibbit": 1,
+    "relic_constructed|TwigSlimeM": 1,
+    "relic_constructed|TwigSlimeS": 1,
+    "single_card_constructed|LeafSlimeS": 4,
+    "single_card_constructed|Nibbit": 4,
+    "single_card_constructed|TwigSlimeM": 4,
+    "single_card_constructed|TwigSlimeS": 4,
+    "starter_constructed|LeafSlimeS": 4,
+    "starter_constructed|Nibbit": 4,
+    "starter_constructed|TwigSlimeM": 4,
+    "starter_constructed|TwigSlimeS": 4
+  },
+  "allocations": [
+    {
+      "battle_index": 0,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:c51b0baeca80156551ef953498ed25e7b80bf921acdf2d529fb73d97ee70d6fe",
+        "enemy": "TwigSlimeM",
+        "hp": 9,
+        "enemyHp": 41
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 0,
+        "primary_id": "starter",
+        "primary_epoch": 0,
+        "primary_position": 0,
+        "enemy": "TwigSlimeM",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 1,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:7c0a06bf8211c9853f6a6a41aa48970fae44a03f880e5d1e7108ba3a840c8b25",
+        "enemy": "LeafSlimeS",
+        "hp": 69,
+        "enemyHp": 24
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 1,
+        "primary_id": "starter",
+        "primary_epoch": 1,
+        "primary_position": 0,
+        "enemy": "LeafSlimeS",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 2,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:291ab1db69d6a31662da5409dad219c93ffaea7f2dbf9465b29d1e02268c0c3c",
+        "enemy": "Nibbit",
+        "hp": 36,
+        "enemyHp": 16
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 2,
+        "primary_id": "starter",
+        "primary_epoch": 2,
+        "primary_position": 0,
+        "enemy": "Nibbit",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 3,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:9dfcda75b6657f4d9a693b584520f36d1e3d70b5646884ef33f7c8e2a8005faf",
+        "enemy": "TwigSlimeS",
+        "hp": 59,
+        "enemyHp": 27
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 3,
+        "primary_id": "starter",
+        "primary_epoch": 3,
+        "primary_position": 0,
+        "enemy": "TwigSlimeS",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 4,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:9fba0685ec68effa2aa51c43082aec8239c072003850213000dbd1a1338c9c10",
+        "enemy": "TwigSlimeM",
+        "hp": 55,
+        "enemyHp": 65,
+        "deck": [
+          "Speedster+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 0,
+        "primary_id": "Speedster",
+        "primary_epoch": 0,
+        "primary_position": 0,
+        "enemy": "TwigSlimeM",
+        "primary_upgrade": 1
+      }
+    },
+    {
+      "battle_index": 5,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:a15329fae1a732c4a550a5a24a7c4291ca71d7a633fc3ff22e01613eeae56da1",
+        "enemy": "LeafSlimeS",
+        "hp": 31,
+        "enemyHp": 44,
+        "deck": [
+          "Mirage",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 1,
+        "primary_id": "Mirage",
+        "primary_epoch": 0,
+        "primary_position": 1,
+        "enemy": "LeafSlimeS",
+        "primary_upgrade": 0
+      }
+    },
+    {
+      "battle_index": 6,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:efdeb3337165a3a537f3f3afe06b4262403e65610a22a88ce74051981f62e8df",
+        "enemy": "Nibbit",
+        "hp": 22,
+        "enemyHp": 60,
+        "deck": [
+          "CloakAndDagger+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 2,
+        "primary_id": "CloakAndDagger",
+        "primary_epoch": 0,
+        "primary_position": 2,
+        "enemy": "Nibbit",
+        "primary_upgrade": 1
+      }
+    },
+    {
+      "battle_index": 7,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:08411cd6b6f427309c0578809879e578b60406eb2899a6972eb2aa6d5ed6acc1",
+        "enemy": "TwigSlimeS",
+        "hp": 3,
+        "enemyHp": 20,
+        "deck": [
+          "Reflex+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 3,
+        "primary_id": "Reflex",
+        "primary_epoch": 0,
+        "primary_position": 3,
+        "enemy": "TwigSlimeS",
+        "primary_upgrade": 1
+      }
+    },
+    {
+      "battle_index": 8,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:041972d419486272c3511653f98c10234ee97a5ba330942fd38f282e83af051b",
+        "enemy": "TwigSlimeM",
+        "hp": 27,
+        "enemyHp": 56,
+        "potions": [
+          "EnergyPotion"
+        ],
+        "deck": [
+          "WellLaidPlans",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "potion_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 0,
+        "primary_id": "EnergyPotion",
+        "primary_epoch": 0,
+        "primary_position": 0,
+        "enemy": "TwigSlimeM",
+        "primary_upgrade": null,
+        "supporting_card": "WellLaidPlans",
+        "supporting_upgrade": 0,
+        "supporting_cycle": 0
+      }
+    },
+    {
+      "battle_index": 9,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:90a8e5a86f2df5f92c49acbfd46f3fbda6ab7856b435305b59cde6dcccd440f6",
+        "enemy": "TwigSlimeM",
+        "hp": 20,
+        "enemyHp": 55,
+        "relics": [
+          "SilverCrucible"
+        ],
+        "deck": [
+          "WraithForm",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "relic_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 0,
+        "primary_id": "SilverCrucible",
+        "primary_epoch": 0,
+        "primary_position": 0,
+        "enemy": "TwigSlimeM",
+        "primary_upgrade": null,
+        "supporting_card": "WraithForm",
+        "supporting_upgrade": 0,
+        "supporting_cycle": 0
+      }
+    },
+    {
+      "battle_index": 10,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:04b0b6271dc23bf35613f5dbf6bfaff536a15de013e6cd1ed961bd96ad304e5d",
+        "enemy": "TwigSlimeM",
+        "hp": 70,
+        "enemyHp": 39
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 4,
+        "primary_id": "starter",
+        "primary_epoch": 4,
+        "primary_position": 0,
+        "enemy": "TwigSlimeM",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 11,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:b536bade27596c9f612cf6282a1fb35a5fd091bbc7e6602bcad8ba0cda48d71d",
+        "enemy": "LeafSlimeS",
+        "hp": 68,
+        "enemyHp": 50
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 5,
+        "primary_id": "starter",
+        "primary_epoch": 5,
+        "primary_position": 0,
+        "enemy": "LeafSlimeS",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 12,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:57ca1b235856daa48d04a1336496ca55abba47014e5a6935b31d10391568beb2",
+        "enemy": "Nibbit",
+        "hp": 34,
+        "enemyHp": 28
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 6,
+        "primary_id": "starter",
+        "primary_epoch": 6,
+        "primary_position": 0,
+        "enemy": "Nibbit",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 13,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:8cab3273b2f0e863ec8aa673812b85ffe0aafcb9efb6f061bd3569663a03a924",
+        "enemy": "TwigSlimeS",
+        "hp": 48,
+        "enemyHp": 40
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 7,
+        "primary_id": "starter",
+        "primary_epoch": 7,
+        "primary_position": 0,
+        "enemy": "TwigSlimeS",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 14,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:2fffea1961db80702e17b7cf7c86d8ff3652dcc472eec9fa93f99944db1e83ef",
+        "enemy": "TwigSlimeM",
+        "hp": 12,
+        "enemyHp": 54,
+        "deck": [
+          "Anticipate+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 4,
+        "primary_id": "Anticipate",
+        "primary_epoch": 0,
+        "primary_position": 4,
+        "enemy": "TwigSlimeM",
+        "primary_upgrade": 1
+      }
+    },
+    {
+      "battle_index": 15,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:eb982e5ebb68fac46055373a9d0ae442699f2eb960c91848618a89b3e4507e80",
+        "enemy": "LeafSlimeS",
+        "hp": 66,
+        "enemyHp": 39,
+        "deck": [
+          "Adrenaline+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 5,
+        "primary_id": "Adrenaline",
+        "primary_epoch": 0,
+        "primary_position": 5,
+        "enemy": "LeafSlimeS",
+        "primary_upgrade": 1
+      }
+    },
+    {
+      "battle_index": 16,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:6782a3af5087150a7e1acf3d545351f32c095e1b8a106b167d96c7a8907b0353",
+        "enemy": "Nibbit",
+        "hp": 15,
+        "enemyHp": 27,
+        "deck": [
+          "Suppress",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 6,
+        "primary_id": "Suppress",
+        "primary_epoch": 0,
+        "primary_position": 6,
+        "enemy": "Nibbit",
+        "primary_upgrade": 0
+      }
+    },
+    {
+      "battle_index": 17,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:4b589bd318b59970a66634af8d535f90b19e2625228f82cf4d8575b9e31212dd",
+        "enemy": "TwigSlimeS",
+        "hp": 34,
+        "enemyHp": 62,
+        "deck": [
+          "BladeOfInk",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 7,
+        "primary_id": "BladeOfInk",
+        "primary_epoch": 0,
+        "primary_position": 7,
+        "enemy": "TwigSlimeS",
+        "primary_upgrade": 0
+      }
+    },
+    {
+      "battle_index": 18,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:80a1a73be8404e94a4fe59fdaa48a1d0cda20aa2a545b885f7cd6e3cbb4e8f73",
+        "enemy": "LeafSlimeS",
+        "hp": 47,
+        "enemyHp": 52,
+        "potions": [
+          "DropletOfPrecognition"
+        ],
+        "deck": [
+          "CorrosiveWave+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "potion_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 1,
+        "primary_id": "DropletOfPrecognition",
+        "primary_epoch": 0,
+        "primary_position": 1,
+        "enemy": "LeafSlimeS",
+        "primary_upgrade": null,
+        "supporting_card": "CorrosiveWave",
+        "supporting_upgrade": 1,
+        "supporting_cycle": 0
+      }
+    },
+    {
+      "battle_index": 19,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:886f09b29dd13bfd2d3dc9e6a8b4e06cfb4ecb2747483170433137346e0d6c8d",
+        "enemy": "LeafSlimeS",
+        "hp": 24,
+        "enemyHp": 14,
+        "relics": [
+          "MealTicket"
+        ],
+        "deck": [
+          "Sidestep+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "relic_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 1,
+        "primary_id": "MealTicket",
+        "primary_epoch": 0,
+        "primary_position": 1,
+        "enemy": "LeafSlimeS",
+        "primary_upgrade": null,
+        "supporting_card": "Sidestep",
+        "supporting_upgrade": 1,
+        "supporting_cycle": 0
+      }
+    },
+    {
+      "battle_index": 20,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:2be30553edb5c7bca3c9a5a5538eaab443432efc55bd3861aa5908c27e30f778",
+        "enemy": "TwigSlimeM",
+        "hp": 67,
+        "enemyHp": 52
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 8,
+        "primary_id": "starter",
+        "primary_epoch": 8,
+        "primary_position": 0,
+        "enemy": "TwigSlimeM",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 21,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:e5c63c36fd06fead7a1938df5edf039caa9ab791b4e3e41e6019bca77560fb08",
+        "enemy": "LeafSlimeS",
+        "hp": 6,
+        "enemyHp": 26
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 9,
+        "primary_id": "starter",
+        "primary_epoch": 9,
+        "primary_position": 0,
+        "enemy": "LeafSlimeS",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 22,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:1677e102154e0c36768e285e81c01c2404a85604a447f504db4b91c778dca76f",
+        "enemy": "Nibbit",
+        "hp": 37,
+        "enemyHp": 43
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 10,
+        "primary_id": "starter",
+        "primary_epoch": 10,
+        "primary_position": 0,
+        "enemy": "Nibbit",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 23,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:41e8540edf72ae5a93b83503382014ebfc7af52a6f202cc8a029bcde14307b97",
+        "enemy": "TwigSlimeS",
+        "hp": 37,
+        "enemyHp": 36
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 11,
+        "primary_id": "starter",
+        "primary_epoch": 11,
+        "primary_position": 0,
+        "enemy": "TwigSlimeS",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 24,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:a171b81a40058c0b515eb2fcca3185ff4cec64d32b88c05060774385d92daabd",
+        "enemy": "TwigSlimeM",
+        "hp": 13,
+        "enemyHp": 54,
+        "deck": [
+          "SerpentForm+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 8,
+        "primary_id": "SerpentForm",
+        "primary_epoch": 0,
+        "primary_position": 8,
+        "enemy": "TwigSlimeM",
+        "primary_upgrade": 1
+      }
+    },
+    {
+      "battle_index": 25,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:b1435520af3e32313275b4f259319230b726a9bfbe7ede51358d77454ec69582",
+        "enemy": "LeafSlimeS",
+        "hp": 53,
+        "enemyHp": 45,
+        "deck": [
+          "Afterimage+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 9,
+        "primary_id": "Afterimage",
+        "primary_epoch": 0,
+        "primary_position": 9,
+        "enemy": "LeafSlimeS",
+        "primary_upgrade": 1
+      }
+    },
+    {
+      "battle_index": 26,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:67dd023b17a8a174f51cc1145168cbde54042c52facecb44d2346f42abbdf416",
+        "enemy": "Nibbit",
+        "hp": 57,
+        "enemyHp": 32,
+        "deck": [
+          "MasterPlanner",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 10,
+        "primary_id": "MasterPlanner",
+        "primary_epoch": 0,
+        "primary_position": 10,
+        "enemy": "Nibbit",
+        "primary_upgrade": 0
+      }
+    },
+    {
+      "battle_index": 27,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:9f30a864f8956b35bca2de64ccda68b30e54f85831e60ddbec409eb454a564d0",
+        "enemy": "TwigSlimeS",
+        "hp": 56,
+        "enemyHp": 43,
+        "deck": [
+          "FanOfKnives+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 11,
+        "primary_id": "FanOfKnives",
+        "primary_epoch": 0,
+        "primary_position": 11,
+        "enemy": "TwigSlimeS",
+        "primary_upgrade": 1
+      }
+    },
+    {
+      "battle_index": 28,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:57ebdeebdc14c3596bef08de17b15e310fd3735bb6f634f9bcdd1bf532687cb8",
+        "enemy": "Nibbit",
+        "hp": 12,
+        "enemyHp": 20,
+        "potions": [
+          "ShipInABottle"
+        ],
+        "deck": [
+          "LegSweep",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "potion_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 2,
+        "primary_id": "ShipInABottle",
+        "primary_epoch": 0,
+        "primary_position": 2,
+        "enemy": "Nibbit",
+        "primary_upgrade": null,
+        "supporting_card": "LegSweep",
+        "supporting_upgrade": 0,
+        "supporting_cycle": 0
+      }
+    },
+    {
+      "battle_index": 29,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:6a8effb517ead1d22d982eedbf8f3313170648a4e9b35e6c33eb0ecac3a2002c",
+        "enemy": "Nibbit",
+        "hp": 15,
+        "enemyHp": 35,
+        "relics": [
+          "TanxsWhistle"
+        ],
+        "deck": [
+          "Acrobatics",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "relic_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 2,
+        "primary_id": "TanxsWhistle",
+        "primary_epoch": 0,
+        "primary_position": 2,
+        "enemy": "Nibbit",
+        "primary_upgrade": null,
+        "supporting_card": "Acrobatics",
+        "supporting_upgrade": 0,
+        "supporting_cycle": 0
+      }
+    },
+    {
+      "battle_index": 30,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:fed257000ad1578d020edf2e40501f8b3d69a65b402d5f8cc36eb823dc057768",
+        "enemy": "TwigSlimeM",
+        "hp": 53,
+        "enemyHp": 32
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 12,
+        "primary_id": "starter",
+        "primary_epoch": 12,
+        "primary_position": 0,
+        "enemy": "TwigSlimeM",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 31,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:aca4070b8bfbbf987e16c3aece3a3f391266c621f97908cf5f0e92183eb62f1a",
+        "enemy": "LeafSlimeS",
+        "hp": 18,
+        "enemyHp": 36
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 13,
+        "primary_id": "starter",
+        "primary_epoch": 13,
+        "primary_position": 0,
+        "enemy": "LeafSlimeS",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 32,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:07cf254fabe2006136fa58662e5313aa895aaa843d1e9f9e2fa59a3f7bb19fe9",
+        "enemy": "Nibbit",
+        "hp": 48,
+        "enemyHp": 46
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 14,
+        "primary_id": "starter",
+        "primary_epoch": 14,
+        "primary_position": 0,
+        "enemy": "Nibbit",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 33,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:2118bd2bb79ab0762d422334fcafaa9ad562a8703443f4b99b0cfe8657876415",
+        "enemy": "TwigSlimeS",
+        "hp": 12,
+        "enemyHp": 23
+      },
+      "category": "starter_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 15,
+        "primary_id": "starter",
+        "primary_epoch": 15,
+        "primary_position": 0,
+        "enemy": "TwigSlimeS",
+        "primary_upgrade": null
+      }
+    },
+    {
+      "battle_index": 34,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:48e8e4e3f0ca250fe5cc2d01dbf8cb7c1fa869477cfdf794b9181dbad5e53021",
+        "enemy": "TwigSlimeM",
+        "hp": 41,
+        "enemyHp": 22,
+        "deck": [
+          "LeadingStrike+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 12,
+        "primary_id": "LeadingStrike",
+        "primary_epoch": 0,
+        "primary_position": 12,
+        "enemy": "TwigSlimeM",
+        "primary_upgrade": 1
+      }
+    },
+    {
+      "battle_index": 35,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:44372650099bf292da6e2e1b4c162734a67157ce2aea48fba260086a6aea781b",
+        "enemy": "LeafSlimeS",
+        "hp": 2,
+        "enemyHp": 23,
+        "deck": [
+          "HandTrick",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 13,
+        "primary_id": "HandTrick",
+        "primary_epoch": 0,
+        "primary_position": 13,
+        "enemy": "LeafSlimeS",
+        "primary_upgrade": 0
+      }
+    },
+    {
+      "battle_index": 36,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:5eb448e2b0c029237a150a4fbe495c7f8f90e66b8e998ee02f586f61bf0bdadf",
+        "enemy": "Nibbit",
+        "hp": 45,
+        "enemyHp": 53,
+        "deck": [
+          "LegSweep",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 14,
+        "primary_id": "LegSweep",
+        "primary_epoch": 0,
+        "primary_position": 14,
+        "enemy": "Nibbit",
+        "primary_upgrade": 0
+      }
+    },
+    {
+      "battle_index": 37,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:e75daea7ff569815d2d45124688d6c6079ba6dc6e6c30d0b7b93ba5ceb0106c6",
+        "enemy": "TwigSlimeS",
+        "hp": 31,
+        "enemyHp": 16,
+        "deck": [
+          "Deflect",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "single_card_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 15,
+        "primary_id": "Deflect",
+        "primary_epoch": 0,
+        "primary_position": 15,
+        "enemy": "TwigSlimeS",
+        "primary_upgrade": 0
+      }
+    },
+    {
+      "battle_index": 38,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:f20fedde73656c394c0a11e60fe4e1ae144f551ef1cc50f885b805091b607ba6",
+        "enemy": "TwigSlimeS",
+        "hp": 34,
+        "enemyHp": 16,
+        "potions": [
+          "GhostInAJar"
+        ],
+        "deck": [
+          "Untouchable+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "potion_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 3,
+        "primary_id": "GhostInAJar",
+        "primary_epoch": 0,
+        "primary_position": 3,
+        "enemy": "TwigSlimeS",
+        "primary_upgrade": null,
+        "supporting_card": "Untouchable",
+        "supporting_upgrade": 1,
+        "supporting_cycle": 0
+      }
+    },
+    {
+      "battle_index": 39,
+      "scenario": {
+        "seed": "nosl-balanced-v5-rules-v2-validation-40-20261002:balanced-source:36bce7612e601dc06974b4e1b261e38568223cd418c5253a514dcf7fe802f0b6",
+        "enemy": "TwigSlimeS",
+        "hp": 54,
+        "enemyHp": 48,
+        "relics": [
+          "PotionBelt"
+        ],
+        "deck": [
+          "Accelerant+",
+          "StrikeSilent",
+          "StrikeSilent",
+          "DefendSilent"
+        ]
+      },
+      "category": "relic_constructed",
+      "allocation": {
+        "recipe_version": "balanced-category-v5",
+        "category_ordinal": 3,
+        "primary_id": "PotionBelt",
+        "primary_epoch": 0,
+        "primary_position": 3,
+        "enemy": "TwigSlimeS",
+        "primary_upgrade": null,
+        "supporting_card": "Accelerant",
+        "supporting_upgrade": 1,
+        "supporting_cycle": 0
+      }
+    }
+  ],
+  "teacher": {
+    "mode": "T0",
+    "continuation_policy_id": "nosl-public-rules-v2",
+    "independent_worlds_per_root": 16,
+    "max_decisions": 200,
+    "native_max_posterior_attempts": 256,
+    "formal_labels": false
+  },
+  "resources": {
+    "workers": 4,
+    "one_cpu_per_worker": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "attempt_deadline_seconds": 120,
+    "max_source_decisions": 160,
+    "max_worker_rss_mib_sampled": 768,
+    "nominal_all_timeout_worker_seconds": 19200,
+    "nominal_parallel_wall_seconds": 4800,
+    "per_process_guard_wall_seconds": 5400,
+    "per_process_cpu_limit_seconds": 5400,
+    "virtual_address_limit_kib": 17179869184,
+    "virtual_limit_is_not_physical_memory_limit": true,
+    "physical_memory_scope": "worker RSS checked during nonblocking reads; process peak RSS reported; no GPU",
+    "no_paid_resources": true
+  },
+  "stop_rule": "Attempt every assigned phase once within the immutable block; no accepted-root quota, no replacing unavailable phases, no new block/fit authorized by reaching a count",
+  "quality_gates": {
+    "integrity": "Zero accepted invalid/orphan/misversioned records; every raw archive checksum and attempted index accounted for",
+    "allocation": "Exact predeclared category/enemy/phase marginal counts; report phase-unavailable/timeouts/unsupported separately instead of success-only frequencies",
+    "labels": "Report full/partial/auxiliary-only/diagnostic roots; all legal candidates retained; no fabricated strong preference from unequal sample means",
+    "sampling": "All16 final worlds independently predeclared; complete or masked whole outcomes; do not renormalize completion subsets",
+    "usefulness": "Measure non-end-turn complete-label contrasts and fixed first4 versus disjoint remaining12 empirical label stability where objective facts allow exact recomputation; no universal pass threshold asserted",
+    "isolation": "First pilot test494 remains frozen; no model fitting or test-target evaluation; a future different-version preparation must exclude existing held-out semantic/provenance groups before training",
+    "further_fit": "Separate bounded fit only after useful supervision and adequate source-group-isolated validation are demonstrated; no automatic fit or promotion"
+  },
+  "runtime_files": {
+    "Nosl.Contracts.dll": "0647622fb3087c3ef4b011ec11c50f3accb1a091d1b45c6885722f493f58d91c",
+    "Nosl.Objectives.dll": "8330a4087cc7047aeaa718caa80f4789f0b15065c6b8afad021e6b6c8a8d9333",
+    "Nosl.Worker.deps.json": "630bf3c29f9ba1ba9db5d6300f406056aebca9ce482a4664f65fcc74c67a5c4f",
+    "Nosl.Worker.dll": "6d834409e42ed28ab26cb8c950f7d105da3221fa1d14b8e8a711c2dbb820b553",
+    "Nosl.Worker.runtimeconfig.json": "4719954ee973dde9617a64d30002c1df89df2f75ab40e6b01db8b3126388ce5f",
+    "Sts2Sim.Core.dll": "d7457ea1cc5e5970eb50b77a57abfdc4474a6e9c6349bff37a1a9c2ba40e2c18",
+    "System.IO.Hashing.dll": "fbe8c2fcb4adc01da5c3c8ed0d727903b8fda1e6b84da3c447c9794615f30664"
+  },
+  "first_pilot_optimizer_steps_unchanged": 497,
+  "new_optimizer_steps_planned": 0,
+  "formal_training": false,
+  "execution_status_record": "artifacts/data/balanced-v5-rules-v2-validation-40/execution.json"
+}

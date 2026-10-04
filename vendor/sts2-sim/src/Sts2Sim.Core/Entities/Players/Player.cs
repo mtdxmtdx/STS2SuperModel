@@ -65,6 +65,8 @@ public sealed class Player
 
     public IReadOnlyList<PotionModel?> PotionSlots => _potionSlots;
 
+    internal IPlayerOutcomeObserver? OutcomeObserver { get; set; }
+
     public int MaxPotionCount => _potionSlots.Count;
 
     public void GrowPotionSlots(int count)
@@ -231,15 +233,19 @@ public sealed class Player
 
         ownedPotion.AssignOwner(this);
         _potionSlots[emptyIndex] = ownedPotion;
+        OutcomeObserver?.PotionChanged(this, ownedPotion.GetType().Name, PotionMutationKind.Acquired);
         return ownedPotion;
     }
 
-    public void RemovePotionInternal(PotionModel potion)
+    public void RemovePotionInternal(PotionModel potion) => RemovePotionInternal(potion, PotionMutationKind.Removed);
+
+    internal void RemovePotionInternal(PotionModel potion, PotionMutationKind kind)
     {
         int index = _potionSlots.IndexOf(potion);
         if (index >= 0)
         {
             _potionSlots[index] = null;
+            OutcomeObserver?.PotionChanged(this, potion.GetType().Name, kind);
         }
     }
     public void ResetCombatState()

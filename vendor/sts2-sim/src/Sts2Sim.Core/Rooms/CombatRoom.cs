@@ -180,6 +180,9 @@ public sealed class CombatRoom : AbstractRoom
             return;
         }
 
+        using IDisposable? labelScope = Sts2Sim.Core.Random.LabelCorpseSlugScope.EnterFactory(runState, this);
+        using IDisposable? formationScope = Sts2Sim.Core.Random.LabelSlimesWeakScope.EnterFactory(runState, this);
+        using IDisposable? rubyScope = Sts2Sim.Core.Random.LabelRubyRaidersScope.EnterFactory(runState, this);
         IReadOnlyList<(MonsterModel Monster, string? SlotName)>? generated;
         if (_encounterFactory is not null)
         {

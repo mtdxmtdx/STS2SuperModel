@@ -24,6 +24,12 @@ public class Rng
 {
     public int Counter { get; private set; }
 
+    /// <summary>Next Rewards oracle cell, present only in the opt-in hybrid label law.</summary>
+    public LabelRandomAddressV1? LabelRewardAddress => _random.LabelRewardAddress;
+
+    /// <summary>Next Map cell, present only in the separately versioned Map hybrid law.</summary>
+    public LabelMapRandomAddressV1? LabelMapAddress => _random.LabelMapAddress;
+
     /// <summary>Diagnostic identity for RNGs outside the run/player stream sets.</summary>
     public string? DiagnosticStreamName { get; private set; }
 
@@ -57,6 +63,20 @@ public class Rng
     {
         if (RngDiagnostics.DrawObserver is not null)
             DiagnosticStreamName = "content." + modelId;
+        return this;
+    }
+
+    /// <summary>Bind the native Rewards role at construction, only in the hybrid label scope.</summary>
+    internal Rng WithLabelRewardsProvenance()
+    {
+        _random.WithLabelRewardsProvenance();
+        return this;
+    }
+
+    /// <summary>Bind only the genuine native per-act map generator at construction.</summary>
+    internal Rng WithLabelMapProvenance(int actIndex)
+    {
+        _random.WithLabelMapProvenance(actIndex);
         return this;
     }
 
@@ -128,6 +148,7 @@ public class Rng
     public Rng CloneReseeded(ulong branchSeed)
     {
         var clone = new Rng(branchSeed);
+        clone._random.PreserveLabelOriginForReseed(_random, branchSeed);
         if (RngDiagnostics.DrawObserver is not null) clone.DiagnosticStreamName = "nongameplay";
         return clone;
     }
@@ -139,6 +160,8 @@ public class Rng
     public Rng CloneReseeded(ulong branchSeed, string streamName)
     {
         var clone = new Rng(branchSeed, streamName);
+        clone._random.PreserveLabelOriginForReseed(_random,
+            branchSeed + StringHelper.GetDeterministicHashCode(streamName));
         if (RngDiagnostics.DrawObserver is not null) clone.DiagnosticStreamName = "nongameplay";
         return clone;
     }
@@ -149,8 +172,8 @@ public class Rng
     /// </summary>
     public void LoadFromSerializable(SerializableRng serializable)
     {
-        Counter = serializable.counter;
         _random.Reinitialise(serializable);
+        Counter = serializable.counter;
     }
 
     /// <summary>
@@ -492,15 +515,37 @@ public class Rng
     /// <typeparam name="T">Type of items in the list.</typeparam>
     public void Shuffle<T>(IList<T> list)
     {
-        for (int num = list.Count - 1; num > 0; num--)
+        IDisposable? labelScope = LabelRandomScope.BeginShuffle(this, list);
+        Exception? failure = null;
+        try
         {
-            int num2 = NextInt(num + 1);
-            int index = num;
-            int index2 = num2;
-            T value = list[num2];
-            T value2 = list[num];
-            list[index] = value;
-            list[index2] = value2;
+            for (int num = list.Count - 1; num > 0; num--)
+            {
+                int num2 = NextInt(num + 1);
+                int index = num;
+                int index2 = num2;
+                T value = list[num2];
+                T value2 = list[num];
+                list[index] = value;
+                list[index2] = value2;
+            }
+        }
+        catch (Exception error)
+        {
+            failure = error;
+            if (labelScope is IAbortableLabelShuffleBoundary abortable)
+                try { abortable.Abort(error); } catch { /* Preserve the native exception. */ }
+            throw;
+        }
+        finally
+        {
+            if (failure is not null && labelScope is IAbortableLabelShuffleBoundary)
+            {
+                // The participating proposal has already been notified. Cleanup
+                // cannot replace the original native failure while unwinding.
+                try { labelScope.Dispose(); } catch { }
+            }
+            else labelScope?.Dispose();
         }
     }
 

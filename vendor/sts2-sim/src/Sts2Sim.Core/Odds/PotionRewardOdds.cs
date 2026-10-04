@@ -30,12 +30,14 @@ public class PotionRewardOdds : AbstractOdds
     {
         ArgumentNullException.ThrowIfNull(rng);
         float currentValue = CurrentValue;
-        if (_hooks.ShouldForcePotionReward(roomType))
+        bool forced = _hooks.ShouldForcePotionReward(roomType);
+        float bonus = roomType == RoomType.Elite ? eliteBonus : 0f;
+        float threshold = currentValue + bonus * 0.5f;
+        using IDisposable? labelScope = LabelRewardResourceScope.BeginPresence(new(rng, roomType, forced, threshold));
+        if (forced)
         {
             return true;
         }
-        float bonus = roomType == RoomType.Elite ? eliteBonus : 0f;
-        float threshold = currentValue + bonus * 0.5f;
         float roll = rng.NextFloat();
         if (roll < threshold)
         {

@@ -1,0 +1,413 @@
+{
+  "schema": "nosl.m5.phase-gate-summary.v1",
+  "stage": "pilot-5000-v4-initial-203",
+  "status": "PASS_FOR_BOUNDED_EMPIRICAL_PILOT_DATA_EXPANSION",
+  "runtime_checkpoint": "5ef76a558afd54bc38a78ff6635c3b50ce3c0c6f",
+  "report_sha256": "21ca86e7590d14ee6c27a218e0d8d7a0814a42147bb01d3dc3a1753b2590d643",
+  "source_kind": "constructed",
+  "natural_distribution_claimed": false,
+  "report_file": "artifacts/reports/m3-m6/pilot-v4-gate-203.json",
+  "configuration": {
+    "stable_config_sha256": "a3164d4fe6fbe22827c2bd3b153a386ea622494453c6e030425e1fb8e4698a91",
+    "versions": {
+      "continuation": "nosl-public-rules-v1",
+      "generation_config": "a3164d4fe6fbe22827c2bd3b153a386ea622494453c6e030425e1fb8e4698a91",
+      "objective": "nosl_silent_a10_terminal_v4_candidate",
+      "observation_schema": "nosl.public.v2",
+      "posterior_implementation": "nosl-belief-dispatch-v2",
+      "public_schema": "nosl.student.public.v1",
+      "simulator": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
+      "teacher": "nosl-full-combat-teacher-v1:T0"
+    }
+  },
+  "counts": {
+    "accepted_duplicate_record_journals": 0,
+    "accepted_journal_without_valid_record": 0,
+    "after_hp_change_roots": 56,
+    "after_hp_gain_roots": 0,
+    "after_hp_loss_roots": 56,
+    "all_head_complete_roots": 187,
+    "attempt_journal_rows": 407,
+    "auxiliary_only_no_value_roots": 2,
+    "completed_whole_candidate_roots": 203,
+    "decision_rows": 211,
+    "diagnostic_only_decision_rows": 8,
+    "diagnostic_only_public_roots": 8,
+    "duplicate_public_roots": 0,
+    "duplicate_usable_public_roots": 0,
+    "empirical_value_only_roots": 201,
+    "equivalent_set_roots": 0,
+    "failed_memory_budget": 0,
+    "failed_other_failure": 0,
+    "failed_process_interruption": 0,
+    "failed_reset_engine_error": 0,
+    "failed_reset_terminal_boundary": 0,
+    "failed_reset_unclassified": 0,
+    "failed_reset_unsupported": 4,
+    "failed_source_budget_exhausted": 0,
+    "failed_source_phase_absent": 132,
+    "failed_source_snapshot_unclassified": 0,
+    "failed_timeout": 60,
+    "full_utility_roots": 187,
+    "hp_unchanged_from_start_roots": 147,
+    "invalid_attempt_rows": 0,
+    "invalid_decision_rows": 0,
+    "journal_accepted": 211,
+    "journal_duplicate_public_input": 0,
+    "journal_failed_attempt": 196,
+    "journal_interrupted_attempt": 0,
+    "journal_measured_elapsed_rows": 407,
+    "journal_missing_elapsed_rows": 0,
+    "journal_recovered_attempts": 0,
+    "journal_recovered_partial_rows": 0,
+    "journal_recovered_unknown_rows": 0,
+    "later_turn_after_hp_loss_roots": 56,
+    "later_turn_roots": 98,
+    "not_full_utility_usable_roots": 16,
+    "objective_calibrated_roots": 0,
+    "objective_uncalibrated_or_undeclared_roots": 203,
+    "partial_value_roots": 14,
+    "pending_choice_roots": 10,
+    "root_candidates": 1177,
+    "strong_pair_labels": 0,
+    "strong_pair_roots": 0,
+    "turn_one_roots": 105,
+    "unique_effective_public_roots": 203,
+    "unique_valid_public_roots": 211,
+    "usable_decision_rows": 203,
+    "valid_decision_rows": 211,
+    "valid_records_without_accepted_journal": 0
+  },
+  "source_identities": {
+    "attempts": {
+      "battles": 112
+    },
+    "unique_effective_roots": {
+      "battles": 102,
+      "branch_families": 102,
+      "runs": 102
+    },
+    "valid_records": {
+      "battles": 104,
+      "branch_families": 104,
+      "runs": 104
+    }
+  },
+  "source_distributions": {
+    "attempts": {
+      "source_category": {
+        "potion_constructed": 41,
+        "relic_constructed": 39,
+        "single_card_constructed": 159,
+        "starter_constructed": 168
+      }
+    },
+    "unique_effective_roots": {
+      "posterior_profile": {
+        "reviewed-stable-exchangeable-v1": 138,
+        "reviewed-stable-origin-conditional-choice-v1": 10,
+        "whole-setup-rejection-v1": 55
+      },
+      "ranking_evidence": {
+        "FIXED_N_PAIRED_HOEFFDING_BONFERRONI": 138,
+        "MASKED_NO_CERTIFIED_UTILITY_SUPPORT": 65
+      },
+      "source_category": {
+        "potion_constructed": 15,
+        "relic_constructed": 10,
+        "single_card_constructed": 65,
+        "starter_constructed": 113
+      },
+      "source_kind": {
+        "constructed": 203
+      }
+    },
+    "unique_valid_roots": {
+      "posterior_profile": {
+        "reviewed-stable-exchangeable-v1": 138,
+        "reviewed-stable-origin-conditional-choice-v1": 10,
+        "whole-setup-rejection-v1": 63
+      }
+    }
+  },
+  "root_state_distribution": {
+    "population": "globally_deduplicated_usable_public_roots",
+    "roots": 203,
+    "turn_histogram": {
+      "1": 105,
+      "2": 63,
+      "3": 35
+    },
+    "source_step_histogram": {
+      "0": 99,
+      "1": 59,
+      "2": 35,
+      "3": 10
+    },
+    "decision_index_histogram": {
+      "0": 99,
+      "1": 1,
+      "10": 3,
+      "3": 4,
+      "4": 36,
+      "5": 19,
+      "6": 7,
+      "7": 6,
+      "8": 17,
+      "9": 11
+    },
+    "action_revision_histogram": {
+      "0": 99,
+      "1": 1,
+      "10": 3,
+      "3": 4,
+      "4": 36,
+      "5": 19,
+      "6": 7,
+      "7": 6,
+      "8": 17,
+      "9": 11
+    },
+    "hp_comparison_to_combat_start": {
+      "after_hp_change_roots": {
+        "roots": 56,
+        "fraction": 0.27586206896551724
+      },
+      "after_hp_loss_roots": {
+        "roots": 56,
+        "fraction": 0.27586206896551724
+      },
+      "after_hp_gain_roots": {
+        "roots": 0,
+        "fraction": 0.0
+      },
+      "hp_unchanged_from_start_roots": {
+        "roots": 147,
+        "fraction": 0.7241379310344828
+      }
+    },
+    "current_hp_over_current_max_hp_buckets": {
+      "[0,0.10]": {
+        "roots": 18,
+        "fraction": 0.08866995073891626,
+        "after_net_hp_loss_roots": 4
+      },
+      "(0.10,0.25]": {
+        "roots": 24,
+        "fraction": 0.11822660098522167,
+        "after_net_hp_loss_roots": 7
+      },
+      "(0.25,0.50]": {
+        "roots": 65,
+        "fraction": 0.32019704433497537,
+        "after_net_hp_loss_roots": 20
+      },
+      "(0.50,0.75]": {
+        "roots": 38,
+        "fraction": 0.18719211822660098,
+        "after_net_hp_loss_roots": 15
+      },
+      "(0.75,1.00]": {
+        "roots": 58,
+        "fraction": 0.2857142857142857,
+        "after_net_hp_loss_roots": 10
+      }
+    },
+    "pending_choice": {
+      "roots": 10,
+      "fraction": 0.04926108374384237
+    },
+    "pile_sizes": {
+      "hand": {
+        "roots": 203,
+        "min": 2,
+        "max": 7,
+        "mean": 4.8817733990147785,
+        "histogram": {
+          "2": 2,
+          "3": 10,
+          "4": 82,
+          "5": 67,
+          "7": 42
+        }
+      },
+      "discard": {
+        "roots": 203,
+        "min": 0,
+        "max": 10,
+        "mean": 1.4532019704433496,
+        "histogram": {
+          "0": 159,
+          "3": 4,
+          "6": 8,
+          "7": 23,
+          "8": 8,
+          "10": 1
+        }
+      },
+      "exhaust": {
+        "roots": 203,
+        "min": 0,
+        "max": 1,
+        "mean": 0.19704433497536947,
+        "histogram": {
+          "0": 163,
+          "1": 40
+        }
+      },
+      "draw": {
+        "roots": 203,
+        "min": 0,
+        "max": 9,
+        "mean": 2.58128078817734,
+        "histogram": {
+          "0": 90,
+          "1": 40,
+          "6": 46,
+          "7": 11,
+          "8": 13,
+          "9": 3
+        }
+      }
+    },
+    "adequacy_indicators": {
+      "verdict": "TASK_SPECIFIC_DISTRIBUTION_REVIEW_REQUIRED",
+      "universal_pass_threshold_applied": false,
+      "turn_one_fraction": 0.5172413793103449,
+      "later_turn_roots": 98,
+      "later_turn_fraction": 0.4827586206896552,
+      "later_turn_after_net_hp_loss_roots": 56,
+      "observed_absences": [],
+      "actual_decision_index_missing_roots": 0,
+      "source_step_missing_roots": 0,
+      "actual_decision_index_invalid_roots": 0,
+      "source_step_invalid_roots": 0
+    },
+    "definitions": [
+      "HP-change/loss are net comparisons of current hp with combat-start hp, not evidence of every historical damage/healing event. Low initial HP alone does not count as combat HP loss.",
+      "HP ratio buckets use current hp/current maxHp. Their boundaries are descriptive display bins, not universal adequacy or safety cutoffs.",
+      "generation_source_step is a declared requested source step; generation_decision_index is a separately declared actual within-combat decision count. Missing actual counts are not inferred from a recipe index.",
+      "Action revision is reported as the public anti-stale token separately, without claiming it equals a curriculum step or actual decision count.",
+      "Integer turn/index histograms are exact through 1000, with an explicit 1001_plus display bin; this is not a game horizon cap. Pile summaries use public array lengths and drawCount, including unidentified draw cards.",
+      "A clean structural/label audit does not establish phase, health, history, or choice-distribution adequacy. Zero-support observations and concentration ratios require task-specific review, not an invented universal pass threshold."
+    ]
+  },
+  "worlds": {
+    "allocated_worlds": 4708,
+    "completed_worlds": 4708,
+    "error_worlds": 0,
+    "failed_uncommitted_requested_action_worlds": 1400,
+    "other_worlds": 0,
+    "truncated_worlds": 0,
+    "unique_root_exploration_worlds": 0,
+    "unique_root_independent_eval_worlds": 812,
+    "committed_population": "globally_deduplicated_usable_public_roots",
+    "committed_unique_action_world_completion_fraction": 1.0,
+    "failed_requested_action_worlds_total_if_complete": 1400,
+    "interrupted_requested_action_worlds_total_if_complete": 0
+  },
+  "saved_outcome_accounting": {
+    "valid_records": {
+      "allocated_worlds": 4876,
+      "completed_worlds": 4834,
+      "decision_records": 211,
+      "error_worlds": 0,
+      "other_worlds": 0,
+      "root_exploration_worlds": 0,
+      "root_independent_eval_worlds": 844,
+      "truncated_worlds": 42
+    },
+    "diagnostic_only_records": {
+      "allocated_worlds": 168,
+      "completed_worlds": 126,
+      "decision_records": 8,
+      "error_worlds": 0,
+      "other_worlds": 0,
+      "root_exploration_worlds": 0,
+      "root_independent_eval_worlds": 32,
+      "truncated_worlds": 42
+    },
+    "unique_valid_public_roots": {
+      "allocated_worlds": 4876,
+      "completed_worlds": 4834,
+      "decision_records": 211,
+      "error_worlds": 0,
+      "other_worlds": 0,
+      "root_exploration_worlds": 0,
+      "root_independent_eval_worlds": 844,
+      "truncated_worlds": 42
+    }
+  },
+  "failures_by_reason": {
+    "reset:unsupported_capability": 4,
+    "source_snapshot_unavailable:terminal_before_requested_phase": 132,
+    "worker_response_deadline": 60
+  },
+  "timing": {
+    "journal_accepted_seconds": 1352.3676955300034,
+    "journal_failed_attempt_seconds": 2836.325297956999,
+    "valid_record_clone_seconds": 1057.3050760999995,
+    "valid_record_elapsed_seconds": 1164.9868628,
+    "valid_record_rollout_decisions": 46336,
+    "valid_record_settlement_seconds": 6.685039099999997,
+    "journal_accepted_measured_seconds": 1352.3676955300034,
+    "journal_failed_attempt_measured_seconds": 2836.325297956999,
+    "journal_duplicate_public_input_measured_seconds": 0,
+    "journal_duplicate_public_input_seconds": 0,
+    "journal_interrupted_attempt_measured_seconds": 0,
+    "journal_interrupted_attempt_seconds": 0,
+    "journal_timing_complete": true,
+    "journal_total_service_seconds": 4188.692993487002,
+    "journal_measured_service_seconds": 4188.692993487002,
+    "journal_total_service_lower_bound_seconds": 4188.692993487002,
+    "unique_effective_roots_per_service_second": 0.04846380489466395,
+    "completed_whole_candidate_roots_per_service_second": 0.04846380489466395,
+    "clone_fraction_of_teacher_elapsed": 0.9075682394896785,
+    "settlement_fraction_of_teacher_elapsed": 0.005738295695397603,
+    "wall_clock_seconds": null
+  },
+  "resources": {
+    "peak_reported_worker_rss_bytes": 122236928,
+    "missing_valid_record_costs": {
+      "elapsed_seconds": 0,
+      "clone_seconds": 0,
+      "settlement_seconds": 0,
+      "rollout_decisions": 0,
+      "peak_worker_memory_bytes": 0
+    },
+    "failed_attempt_peak_rss": null,
+    "failed_attempts_missing_requested_world_counts": 0,
+    "interrupted_attempts_missing_requested_world_counts": 0,
+    "attempts_missing_elapsed_by_status": {
+      "accepted": 0,
+      "failed_attempt": 0,
+      "duplicate_public_input": 0,
+      "interrupted_attempt": 0
+    },
+    "temporary_sqlite_index_bytes": 249856,
+    "max_jsonl_line_bytes": 67108864,
+    "max_raw_outcome_bytes": 67108864,
+    "record_storage": "One JSONL record and optionally one bounded raw-outcome member; global indices use temporary SQLite with 4 MiB page cache"
+  },
+  "raw_outcomes": {
+    "verification_requested": true,
+    "verified_records_by_storage": {
+      "gzip_reference": 211
+    },
+    "status": "VERIFIED_FOR_VALID_ROWS"
+  },
+  "integrity": {
+    "source_files_stable": true,
+    "error_counts": {},
+    "examples": [],
+    "passed": true
+  },
+  "limits": [
+    "N=4 empirical value targets have no statistically certified strong-pair labels",
+    "Candidate objective is uncalibrated and missing resource values remain masked",
+    "Only four simple enemies and constructed source recipes; not general native carry-in posterior coverage",
+    "Timeouts and all-masked diagnostic roots are retained, excluded from effective counts, and are not losses",
+    "Gate authorizes continued bounded data generation only; no formal-training readiness claim"
+  ],
+  "next_stage": "Resume identical frozen generation configuration toward 5000 globally unique usable roots, audit, then bounded experimental fit with frozen heldout test"
+}

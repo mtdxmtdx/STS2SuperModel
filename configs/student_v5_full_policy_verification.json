@@ -1,0 +1,57 @@
+{
+  "format": "nosl.m6.full-policy-engineering-verification.v1",
+  "status": "M6_FULL_V5_ENGINEERING_VERIFIED_NO_FIT",
+  "source_commit": "e898383d7253d9282ed1e78f788d2ec51e37ede5",
+  "source_parent_commit": "16724af55509c862689e93971928819165296688",
+  "backward_authorization_consumed": true,
+  "guarded_test_runs": [
+    {
+      "name": "guarded_core_and_legacy",
+      "tests": 87,
+      "failures": 0,
+      "errors": 0,
+      "elapsed_seconds": 138.836,
+      "log_sha256": "607c7dc689d441ce3a3c3eb959011f85909a0f075a0879b3e46f3fcf1de50ba4",
+      "backward_calls": 0,
+      "optimizer_steps": 0
+    },
+    {
+      "name": "final_core",
+      "tests": 31,
+      "failures": 0,
+      "errors": 0,
+      "elapsed_seconds": 17.448,
+      "log_sha256": "4051ce0cf3c5f46e61c1e710632f80e459e246bd2dac5807658d4716d7f2c0bc",
+      "backward_calls": 0,
+      "optimizer_steps": 0
+    },
+    {
+      "name": "final_native_bridge",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "elapsed_seconds": 42.066,
+      "log_sha256": "b14b82013f8bd8ebac4e84510ce44367c803bf6c4efbb59fb4a939388dab6960",
+      "backward_calls": 0,
+      "optimizer_steps": 0
+    }
+  ],
+  "connectivity_report": "configs/student_v5_full_policy_connectivity.json",
+  "connectivity_report_sha256": "5dc9e73bee7714fe54087d465e77d2993d429faf0b6869d55a371a317661633a",
+  "connectivity_captured_output": "/workspace/scratch/b3c7487cea34/.venv-nosl/lib/python3.12/site-packages/torch/_subclasses/functional_tensor.py:275: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:81.)\n  cpu = _conversion_method_template(device=torch.device(\"cpu\"))\n{\"status\": \"SINGLE_SYNTHETIC_FULL_V5_CONNECTIVITY_PASS\", \"backward_calls\": 1, \"optimizer_steps\": 0, \"weights_written\": false, \"parameters_changed\": false}\n",
+  "source_hashes_rechecked": true,
+  "legacy_auxiliary_paths_modified": false,
+  "tests_used_only_synthetic_or_public_fixtures": true,
+  "roundtrip_tests": "temporary random-initialization states only; no learned weight artifact",
+  "limits": {
+    "optimizer_steps": 0,
+    "fit_loops": 0,
+    "learned_weights_saved": 0,
+    "formal_training_run": false,
+    "policy_promoted": false,
+    "full_content_readiness_established": false,
+    "objective_global_calibration_established": false,
+    "native_finite_plan_labels_available": false,
+    "native_candidate_requires_external_review_and_separate_fit_authorization": true
+  }
+}

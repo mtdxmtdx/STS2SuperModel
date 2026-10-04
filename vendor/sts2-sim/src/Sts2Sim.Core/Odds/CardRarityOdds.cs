@@ -84,12 +84,13 @@ public class CardRarityOdds : AbstractOdds
     {
         ArgumentNullException.ThrowIfNull(rng);
         float num = rng.NextFloat();
-        float num2 = GetBaseOdds(type, CardRarity.Rare) + offset;
+        LabelCardRarityThresholds thresholds = GetThresholds(type, offset);
+        float num2 = thresholds.RareUpperExclusive;
         if (num < num2)
         {
             return CardRarity.Rare;
         }
-        if (num < GetBaseOdds(type, CardRarity.Uncommon) + num2)
+        if (num < thresholds.UncommonUpperExclusive)
         {
             return CardRarity.Uncommon;
         }
@@ -103,15 +104,26 @@ public class CardRarityOdds : AbstractOdds
     {
         ArgumentNullException.ThrowIfNull(rng);
         float num = rng.NextFloat();
-        if (num < GetBaseOdds(type, CardRarity.Rare))
+        LabelCardRarityThresholds thresholds = GetThresholds(type, 0f);
+        if (num < thresholds.RareUpperExclusive)
         {
             return CardRarity.Rare;
         }
-        if (num < GetBaseOdds(type, CardRarity.Rare) + GetBaseOdds(type, CardRarity.Uncommon))
+        if (num < thresholds.UncommonUpperExclusive)
         {
             return CardRarity.Uncommon;
         }
         return CardRarity.Common;
+    }
+
+    /// <summary>Read-only thresholds for the next native Roll or RollWithBaseOdds call.</summary>
+    public LabelCardRarityThresholds GetLabelRollThresholds(CardRarityOddsType type, bool changesFutureOdds) =>
+        GetThresholds(type, changesFutureOdds && type != CardRarityOddsType.BossEncounter ? CurrentValue : 0f);
+
+    private LabelCardRarityThresholds GetThresholds(CardRarityOddsType type, float offset)
+    {
+        float rare = GetBaseOdds(type, CardRarity.Rare) + offset;
+        return new(rare, GetBaseOdds(type, CardRarity.Uncommon) + rare);
     }
 
     private float GetBaseOdds(CardRarityOddsType type, CardRarity rarity)

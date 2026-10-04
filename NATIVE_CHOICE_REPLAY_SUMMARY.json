@@ -1,0 +1,189 @@
+{
+  "schema_version": "nosl.native-belief-prototype-report.v3",
+  "status": "bounded_native_development_evidence_not_formal_labels",
+  "posteriorProfiles": [
+    "native-public-entry-reviewed-memory-exchangeable-v2",
+    "native-public-entry-reviewed-memory-conditional-choice-v1"
+  ],
+  "posteriorImplementation": "nosl-belief-dispatch-v5",
+  "sourceOptions": {
+    "runs": 100,
+    "maxFloors": 12,
+    "maxRoots": 200,
+    "maxRootsPerCombat": 8,
+    "decisionStride": 1,
+    "maxDecisionsPerRun": 10000,
+    "seedPrefix": "nosl-m5-natural-proof-20261001",
+    "sourceRunPrefix": "natural-proof20261001",
+    "continuationPolicyId": "nosl-public-rules-v1"
+  },
+  "teacherOptions": {
+    "mode": "T0",
+    "continuationPolicyId": "nosl-public-rules-v1",
+    "explorationSeeds": [],
+    "evaluationSeeds": [
+      101,
+      102
+    ],
+    "maxDecisions": 200,
+    "treeDepth": 4,
+    "maxPosteriorAttempts": 256,
+    "uctExploration": 10,
+    "formalLabels": false
+  },
+  "naturalSourceRoots": 200,
+  "naturalLabeledRoots": 150,
+  "rawUnlabeledRoots": 50,
+  "worldsAllocated": 1844,
+  "worldsCompleted": 1844,
+  "sourceDistribution": {
+    "natural": 200,
+    "constructed": 0
+  },
+  "encounterDistribution": {
+    "ToadpolesWeak": 16,
+    "SeapunkWeak": 16,
+    "SludgeSpinnerWeak": 24,
+    "HauntedShipNormal": 16,
+    "ShrinkerBeetle": 24,
+    "SlimesWeak": 16,
+    "FuzzyWurmCrawler": 24,
+    "CubexConstruct": 8,
+    "ShrinkerBeetleAndFuzzyWurmCrawler": 8,
+    "LoneNibbit": 8,
+    "VineShambler": 8,
+    "CorpseSlugsWeak": 16,
+    "TwoTailedRatsNormal": 8,
+    "SkulkingColonyElite": 6,
+    "RubyRaiders": 2
+  },
+  "unsupportedPosteriorReasons": {
+    "native_certificate:unreviewed_entry_potion": 24,
+    "native_certificate:unreviewed_encounter": 26
+  },
+  "comparison": {
+    "baseline_dispatcher": "nosl-belief-dispatch-v4",
+    "baseline_supported_roots": 145,
+    "current_supported_roots": 150,
+    "baseline_worlds_completed": 1806,
+    "current_worlds_completed": 1844,
+    "unchanged_public_inputs": 200,
+    "unchanged_source_traces": 200,
+    "unchanged_previously_supported_target_payloads": 145,
+    "new_pending_roots": 5,
+    "new_pending_candidates": 19,
+    "new_pending_worlds_completed": 38,
+    "baseline_records_sha256": "a64a2f23e2bef0c78dbc5a1c71945c0e08a1154b63c6de6490f6d1b5fd607986"
+  },
+  "accepted_pending_roots": [
+    {
+      "source_combat_id": "natural-proof20261001-000002/combat-0002",
+      "decision_index": 7,
+      "encounter": "FuzzyWurmCrawler",
+      "choice": "Acrobatics",
+      "candidates": 5,
+      "worlds_completed": 10,
+      "posterior_profile": "native-public-entry-reviewed-memory-conditional-choice-v1"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000002/combat-0004",
+      "decision_index": 7,
+      "encounter": "VineShambler",
+      "choice": "Survivor",
+      "candidates": 3,
+      "worlds_completed": 6,
+      "posterior_profile": "native-public-entry-reviewed-memory-conditional-choice-v1"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000003/combat-0003",
+      "decision_index": 4,
+      "encounter": "SludgeSpinnerWeak",
+      "choice": "Survivor",
+      "candidates": 3,
+      "worlds_completed": 6,
+      "posterior_profile": "native-public-entry-reviewed-memory-conditional-choice-v1"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000003/combat-0004",
+      "decision_index": 4,
+      "encounter": "HauntedShipNormal",
+      "choice": "Prepared",
+      "candidates": 4,
+      "worlds_completed": 8,
+      "posterior_profile": "native-public-entry-reviewed-memory-conditional-choice-v1"
+    },
+    {
+      "source_combat_id": "natural-proof20261001-000004/combat-0002",
+      "decision_index": 6,
+      "encounter": "SeapunkWeak",
+      "choice": "Survivor",
+      "candidates": 4,
+      "worlds_completed": 8,
+      "posterior_profile": "native-public-entry-reviewed-memory-conditional-choice-v1"
+    }
+  ],
+  "blocked_pending_roots": [
+    {
+      "encounter": "CorpseSlugsWeak",
+      "reason": "native_certificate:unreviewed_encounter"
+    },
+    {
+      "encounter": "TwoTailedRatsNormal",
+      "reason": "native_certificate:unreviewed_encounter"
+    }
+  ],
+  "action_target_quality": {
+    "complete": 461,
+    "objective_value_unresolved": 461
+  },
+  "source_errors": [],
+  "engineering_tests": {
+    "full_nosl_suite": {
+      "passed": 985,
+      "failed": 0,
+      "skipped": 0
+    },
+    "protocol_smoke": "PROTOCOL PASS reset=real_silent_a10 sample=public_invariant stale=rejected decisions=2 result=win final_hp=70 reward_choices=0 policy=separate_process",
+    "native_exact_shuffle": {
+      "prior_distinct_orders": 1120,
+      "conditional_distinct_orders": 420,
+      "acceptance_mass": 0.375,
+      "sample_seeds": 128,
+      "checks": "accepted residual orders, first-card marginals, one-attempt rejection mass; exhausted teacher budget retains ComputeTruncated candidates"
+    },
+    "isolation": "owned stable origin, exact suffix, hidden origin replacement, accepted RNG retained, sampled-origin resampling, source run invariance, independent coroutine/origin/ledger disposal",
+    "native_sly": "actual Seapunk Survivor root selects Reflex and reproduces two native Sly draws in independent branches",
+    "outcome_event_diagnostics": {
+      "hp_complete": 1844,
+      "resource_provenance_complete": 1844,
+      "settlement_complete": 1844
+    }
+  },
+  "implementation_base_commit": "191fb5c",
+  "artifacts": {
+    "request.jsonl": {
+      "path": "artifacts/native-choice-proof-200-v5/request.jsonl",
+      "sha256": "f819ef713a1ae6a1d094302841eea6d45fdd9ebf7e306ac5622d4101a9191758"
+    },
+    "response.jsonl": {
+      "path": "artifacts/native-choice-proof-200-v5/response.jsonl",
+      "sha256": "4c78e129e2b2d025172cee5c90a8a8d4252eff1fc22e6d0a71daaaa5f084f360"
+    },
+    "natural-source-records.jsonl": {
+      "path": "artifacts/native-choice-proof-200-v5/natural-source-records.jsonl",
+      "sha256": "b21943f2988d4a5e9e57a62d3b9ce8ec42620e2311dd383db3007f6502a50238"
+    },
+    "report.json": {
+      "path": "artifacts/native-choice-proof-200-v5/report.json",
+      "sha256": "1faea80e96b39c718a5059f4bec8f487988b1353d97c35677ecfa90d4eae2399"
+    },
+    "full-tests.log": {
+      "path": "artifacts/native-choice-proof-200-v5/full-tests.log",
+      "sha256": "552001e9b22b6b70863c0d027e4ba48a57a8a804c56a5258db6c0e315ed78e82"
+    },
+    "protocol-smoke.log": {
+      "path": "artifacts/native-choice-proof-200-v5/protocol-smoke.log",
+      "sha256": "9ce1d668196198c294b8e085e0f94d851ddfc79b25b75112be8521ec92410344"
+    }
+  }
+}

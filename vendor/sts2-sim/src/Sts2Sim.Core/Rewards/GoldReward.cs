@@ -67,6 +67,7 @@ public sealed class GoldReward : TakeableReward
         // The native reward set calls Populate even on a fixed reward that was already
         // populated by its constructor. An omitted zero-proportion slot is different:
         // #310 retains its object for the simulator but upstream has no reward to populate.
+        using IDisposable? labelScope = LabelRewardResourceScope.BeginGold(new(Player, rng, _min, _max, _representsOmittedReward));
         Amount = _representsOmittedReward ? 0 : rng.NextInt(_min, _max + 1);
     }
 

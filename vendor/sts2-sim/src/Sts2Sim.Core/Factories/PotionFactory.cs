@@ -52,7 +52,10 @@ public static class PotionFactory
     {
         ArgumentNullException.ThrowIfNull(player);
         ArgumentNullException.ThrowIfNull(rng);
-        return CreateRandomFromPool(RollRarity(rng), rng, GetOutOfCombatPool(player));
+        // This fixed pool has no hooks or draws. Snapshot it for the optional label seam.
+        var pool = GetOutOfCombatPool(player);
+        using IDisposable? labelScope = LabelRewardResourceScope.BeginPotion(new(player, rng, pool));
+        return CreateRandomFromPool(RollRarity(rng), rng, pool);
     }
 
     /// <summary>出战斗池抽取，并额外过滤（例如保证同一批次内不重复）。

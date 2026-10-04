@@ -12,6 +12,10 @@ public sealed class NightmarePower : PowerModel
     private ModelId _selectedCardId = ModelId.none;
     private int _selectedCardUpgradeLevel;
 
+    // This payload originates in an explicit public card choice, not hidden draw order.
+    internal CardModel? NoslSelectedCard => _hasSelectedCard ? ModelDb.GetById<CardModel>(_selectedCardId) : null;
+    internal int? NoslSelectedUpgrade => _hasSelectedCard ? _selectedCardUpgradeLevel : null;
+
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;

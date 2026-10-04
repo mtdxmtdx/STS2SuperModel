@@ -1,0 +1,98 @@
+{
+  "schema_version": "nosl.constructed-sly-proof.v1",
+  "base_commit": "399d4103ca9a687d2391d36b7c56c05a053696be",
+  "source_kind": "constructed diagnostic replay of the original revision-9 timeout root",
+  "posterior_model": "ideal conditional-permutation / independent-future-RNG",
+  "finite_whole_setup_seed_posterior_equivalence": false,
+  "posterior_implementation": "nosl-belief-dispatch-v3",
+  "stable_profile": "reviewed-constructed-reflex-tactician-exchangeable-v1",
+  "conditional_profile": "reviewed-constructed-reflex-tactician-conditional-choice-v1",
+  "original_24_card_profile_names_preserved": true,
+  "training": false,
+  "optimizer": false,
+  "remote_writes": false,
+  "broad_cohort_generated": false,
+  "new_corpus_rows": 0,
+  "native_certificate_changed": false,
+  "public_schema_changed": false,
+  "ranking_change": "conservative new-family exclusion only; formulas and bounds unchanged",
+  "exact_draw_enumeration": {
+    "origin_revision": 8,
+    "permutations": 6,
+    "accepted_complete_packets": 1,
+    "acceptance_mass": "1/6",
+    "root_revision": 9,
+    "ordered_root_candidates": 30,
+    "conditioned_suffix_draws": [
+      "DefendSilent",
+      "Acrobatics"
+    ],
+    "remaining_draw": [
+      "DaggerThrow"
+    ],
+    "future_rng_distribution_proof": false
+  },
+  "baseline": {
+    "teacher_request_timeout_seconds": 120,
+    "unknown_requested_world_copies": 480,
+    "posterior_profile": "whole-setup-rejection-v1"
+  },
+  "bounded_probe": {
+    "scenario_seed": "NOSL-OFFLINE-HOLDOUT-v4-FIRST-TRIAL:discard-draw:0",
+    "root_sha256": "4515bbccc3d72d1d5a7ab6a023f577a8fd114732659e159202004a1ba195eea1",
+    "observed_actions_replayed": 9,
+    "all_original_public_packets_equal": true,
+    "all_original_evaluation_seeds_reused": true,
+    "independent_evaluation_worlds": 16,
+    "candidates": 30,
+    "allocated_action_worlds": 480,
+    "completed_action_worlds": 480,
+    "terminal_outcomes": {
+      "Win": 480
+    },
+    "new_incomplete_action_worlds": 0,
+    "request_seconds": 12.302355779997015,
+    "total_seconds": 13.16525901699788,
+    "sampled_combined_peak_rss_mib": 120.3125,
+    "cpu_affinity": [
+      6
+    ],
+    "active_generator_runtime_unchanged": true,
+    "original_baseline_artifact_unchanged": true,
+    "ranking_evidence": "MASKED_NO_CERTIFIED_UTILITY_SUPPORT",
+    "certified_pairs": 0,
+    "student_action_index": 23,
+    "student_action": "DefendSilent > Slimed",
+    "student_empirical_value": 0,
+    "student_empirical_final_hp": 18,
+    "empirical_top_value_ties": 5,
+    "interpretation": "Empirical diagnostic under the new prior, not a ranking/equivalence certificate or an old-prior preservation claim"
+  },
+  "verification": {
+    "focused_nosl_tests_passed": 48,
+    "strengthened_final_sly_tests_passed": 15,
+    "full_nosl_tests_passed_before_final_assertion_strengthening": 944,
+    "final_full_nosl_tests": {
+      "passed": 944,
+      "failed": 0,
+      "skipped": 0,
+      "duration": "1m35s"
+    },
+    "mixed_dispatch_v2_v3_same_batch": "rejected",
+    "mixed_dispatch_v2_v3_append": "rejected",
+    "record_schema_validation": "passed",
+    "independent_source_review": "passed: source, tests, predeclared driver, original inputs, retained outcomes and post-run hash checks"
+  },
+  "artifacts_sha256": {
+    "execution-report.json": "6ceba6bcb064587840084c0ec35e0117f375a4d646783be6ca003207a6cc5ab5",
+    "plan.json": "92ca8b5406c4b8bef602a20bd3ca8f7f4c451731639822af48dcfb047782d2ce",
+    "record-validation.json": "d80472ec15ef2033231dc5eeba4e27089dc1ae3fb0e8dc6bf97ab4ec30734a4d",
+    "replay-verification.json": "df51340fc45763bf8614ee451a451e805b9f2ecdc7e17aef8fc33aad6f1d870b",
+    "run_probe.py": "2fc9c7f09d583cc21abee42d22082174ca1863e2ebaa248befa4f920e225b99d",
+    "summary.json": "1dc3b1ded2c9f524350f6836a5adb5e9c075f0c4d7117aaf4ceef94795f0ee23",
+    "teacher-record.json": "c4b612a098a93466e57a14624ee6159378880ebd139fa85b32b54d441ae619c2",
+    "version-gate-check.json": "813eea0b29d6cfbc29a5a5a48ad47dc8bf9d45ab0ca5c4aaf542094616459330",
+    "sly-final-full-test.log": "0da4256f0cb0cdc55c8ddd0ad93dddb7eb9474e7cdd3beb2dec77a70b283dca8",
+    "sly-final-focused-test.log": "108d76b720a3424c64e3e039ef6c810e16ea36097887d4d7751fe1b121c08e99"
+  }
+}

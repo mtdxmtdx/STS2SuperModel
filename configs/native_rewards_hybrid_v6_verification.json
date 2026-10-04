@@ -1,0 +1,246 @@
+{
+  "schema": "nosl.native-rewards-hybrid-verification.v6",
+  "source_commit": "4134427f08f72f89727f261554725ccd561ca282",
+  "status": "VERIFIED_V6_COMPOSITION_REUSED_GATE_NOT_MET",
+  "full_m3_m6_complete": false,
+  "formal_training": false,
+  "new_optimizer_steps": 0,
+  "new_backward_passes": 0,
+  "new_production_dataset_rows": 0,
+  "new_unique_source_roots": 0,
+  "sampler_version": "nosl-native-rewards-state-tape-conditional-v6-public-evidence-v1",
+  "prior_identity": "d61db05514950173d55dd38593253f23c9b93c910767f8d12c742e830b767ff7",
+  "prior_unchanged_from_hybrid_v1": true,
+  "default_public_map_channel_unchanged": true,
+  "implemented": [
+    "Joint public pool/prefix reshuffle witnesses with exact physical permutations and native-success marker",
+    "Captured-original weighted monster branch evaluations with exact float preimages and fixed-root envelopes",
+    "Public first weak-slime formation tickets preserving all three calls",
+    "Shared draw closure v3 for four additional observed cards and Toadpole/Thorns",
+    "Ordered two-Toadpole HP proposals using unchanged exact native primitive",
+    "Owning scopes, replay copies, correction/completion and explicit optional audit metadata",
+    "Sticky original conditioned-word failures protected before prefix/null/mismatch/component/cancellation classification"
+  ],
+  "native_suite": {
+    "passed": 1689,
+    "failed": 0,
+    "skipped": 0,
+    "source_commit": "4134427f08f72f89727f261554725ccd561ca282",
+    "path": "artifacts/reports/hybrid-v6/hybrid-v6-aggregate.trx",
+    "bytes": 2499871,
+    "sha256": "55cfb8dcf3e56b4b9b51691bc3ffe35627491e4ee5ab0e039559c52ee86cb4e3",
+    "log": {
+      "path": "artifacts/hybrid-v6-aggregate.log",
+      "bytes": 2196,
+      "sha256": "5248074a47ce3eef05930f53fc17c596933c7702b8f90e7b7a1a87e64c6e8ce8"
+    }
+  },
+  "component_integration": {
+    "passed": 77,
+    "failed": 0,
+    "source_note": "Compiled after helper commits3750b45 with the then-uncommitted formation/sticky integration; preceded reshuffle wiring.",
+    "path": "artifacts/reports/hybrid-v6/preintegration-components.trx",
+    "bytes": 117713,
+    "sha256": "5cf846d9ced55329ce06603d7f2a0dae84e477343d0b6a807f567386ee3808ac"
+  },
+  "owning_integration": {
+    "passed": 29,
+    "failed": 0,
+    "source_equivalent_commit": "9bffce4",
+    "source_note": "Build launched from7334261 plus exact integration subsequently committed9bffce4; before endpoint bridge/closure expansion.",
+    "path": "artifacts/reports/hybrid-v6/owning-v6-integration.trx",
+    "bytes": 44686,
+    "sha256": "4d10f6e5b5e9ad05e2dc0afe5ec40f2092f14375ffaa3a83398fe8ea3327fbd6"
+  },
+  "failure_classification": {
+    "first_focused_passed": 14,
+    "final_failure_cases_passed": 9,
+    "source_equivalent_commit": "8fcd46e503196d41ac043ff5e5cdd97ba8679212",
+    "finding": "A caught final-word failure could previously be classified as a later public mismatch before completion; repaired and independently reproduced as unresolved engine error.",
+    "source_loop_cases": [
+      "prefix",
+      "mismatch",
+      "null",
+      "cancellation",
+      "component_budget"
+    ],
+    "genuine_absence_control": true,
+    "path": "artifacts/reports/hybrid-v6/failure-classification-final.trx",
+    "bytes": 15010,
+    "sha256": "a68582dc9d45b8d26fad27f4c5bbdbc7ff50adf1d0d717c45c441f9e10472aeb"
+  },
+  "core_suite": {
+    "passed": 4493,
+    "failed": 0,
+    "skipped": 3,
+    "total": 4496,
+    "skipped_opt_in_cases": [
+      "Sts2Sim.Core.Tests.Content.Acts.UnderdocksFullRunAcceptanceTests.A10Silent_CompletesTwentyRunsThroughEachActOneVariant",
+      "Sts2Sim.Core.Tests.Runs.AscensionTenBaselineTests.MeasureNeutralBaselineAtA0AndA10",
+      "Sts2Sim.Core.Tests.Runs.RunInvariantProbeTests.UnkillableRuns_SatisfyEngineInvariants"
+    ],
+    "duration_reported": "4 m 4 s",
+    "trx_duration_seconds": 245.178758,
+    "trx_counters": {
+      "total": 4496,
+      "executed": 4493,
+      "passed": 4493,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "skipped_count_source": "Three per-test NotExecuted outcomes, matching stdout and total minus executed. The test adapter leaves aggregate notExecuted at zero.",
+    "build_and_test_wall_seconds": 261.9577333799971,
+    "evidence_kind": "fresh_single_full_core_run_with_redirected_stdout_stderr_and_trx",
+    "exit_code": 0,
+    "terminal_summary": "Passed!  - Failed:     0, Passed:  4493, Skipped:     3, Total:  4496, Duration: 4 m 4 s - Sts2Sim.Core.Tests.dll (net9.0)",
+    "raw_log_available": true,
+    "trx_available": true,
+    "log_path": "artifacts/hybrid-v6-core-verification/full-core.log",
+    "log_sha256": "bd941eafe06f13632f84768a8301bdd566b9bd3049482de86122f535be738d83",
+    "trx_path": "artifacts/hybrid-v6-core-verification/test-results/vendor-core.trx",
+    "trx_sha256": "dc640d7e7a125381239b00e1b9d04ac16bfe78cfe52a8163c6f9bcffdb83246d",
+    "run_record_path": "artifacts/hybrid-v6-core-verification/run-record.json",
+    "run_record_sha256": "989c206d979d0f1a4616e25765ee4efff98362c69e89acc5fc6a2d59bd200079",
+    "invocations": 1,
+    "rerun_for_packaging": true,
+    "sdk_version": "9.0.303",
+    "source_hashes_verified_before_run": true,
+    "source_hashes_verified_after_run": true,
+    "source_worktree": "STS2SuperModel-coverage",
+    "verified_source_commit": "4c589ed06237f3c782bfbaeb560eb10b201277fe",
+    "build_artifacts": "artifacts/hybrid-v6-core-verification",
+    "command": "dotnet test vendor/sts2-sim/tests/Sts2Sim.Core.Tests/Sts2Sim.Core.Tests.csproj -c Release --artifacts-path artifacts/hybrid-v6-core-verification --nologo -m:1 -nr:false -p:UseSharedCompilation=false -p:NuGetAudit=false --logger 'trx;LogFileName=vendor-core.trx' --results-directory artifacts/hybrid-v6-core-verification/test-results",
+    "command_note": "Portable replay command; the results directory is shown relative to the repository. The exact process argv is preserved in run-record.json. Run after sourcing the existing shared .NET 9 environment. Build and tests used the isolated artifacts path with one MSBuild worker, node reuse and shared compilation disabled, and NuGet auditing disabled. The process stdout and stderr were redirected directly to the preserved log.",
+    "started_at_utc": "2026-10-02T20:56:25.131167+00:00",
+    "finished_at_utc": "2026-10-02T21:00:47.218096+00:00",
+    "src_git_tree": "2cf8f5f598b6b5a7124037b1d5d6f35b519997ba",
+    "tests_git_tree": "2f0adb0d57ab9b7c1cc54a2f6ceaf495e9cc55f1",
+    "test_assembly_path": "artifacts/hybrid-v6-core-verification/bin/Sts2Sim.Core.Tests/release/Sts2Sim.Core.Tests.dll",
+    "test_assembly_sha256": "a26e7fdc33fa46ca78e022d342cfcc3b2a90c3526626df5b6b7dfce5b9c82c6f",
+    "core_assembly_path": "artifacts/hybrid-v6-core-verification/bin/Sts2Sim.Core/release/Sts2Sim.Core.dll",
+    "core_assembly_sha256": "57e047cea8353a9ebd9b45086d86aa271170c4cd87f7f86e67fa782075e8b7e7",
+    "assembly_hash_capture": "Captured from the isolated artifacts immediately after the fresh full suite; no later build or test was run there.",
+    "verified_source_manifest_sha256": "0443970962a3405ff561a54a18b4b13784b59dfdbc20b712d84f52f2e47ffad0"
+  },
+  "vendor_reconstruction": {
+    "path": "configs/vendor_patch_verification.json",
+    "bytes": 15866,
+    "sha256": "af01ffdc3ebb7f289d1a623a93f318a6093e198c177f91adb9686ffc5455d81b"
+  },
+  "core_runtime_unchanged_since_source_pin": "4c589ed06237f3c782bfbaeb560eb10b201277fe",
+  "independent_reviews": [
+    "Reshuffle joint witness, physical variants, root-fixed envelope and native marker: clear after explicit successful-completion fix",
+    "Weighted branch math/native scopes/public target history: clear",
+    "Weak formation helper reviewed independently by lead, including native hooks/tickets/guards and33/77 TRX evidence",
+    "Monster/reshuffle endpoint dependency: clear",
+    "Four-card/StranglePower closure: clear",
+    "Toadpole factory/order/HP/Thorns closure: clear",
+    "Owning v6 integration: guard-classification finding fixed and independently rechecked; no remaining blocker"
+  ],
+  "reused_eight_probe": {
+    "status": "completed_gate_not_met",
+    "worker_source_commit": "4134427f08f72f89727f261554725ccd561ca282",
+    "predeclaration": {
+      "path": "artifacts/reports/hybrid-v6/reused-eight-predeclaration.json",
+      "bytes": 2202,
+      "sha256": "0b828e678ef673bfdabbb0e5b8451d8129aaa498379640fb734d07dc5d5ac747"
+    },
+    "request": {
+      "path": "artifacts/reports/hybrid-v6/reused-eight-request.jsonl",
+      "bytes": 836,
+      "sha256": "d7b471cafce74827489860d27ee022056d87259766ebc2f63e7c8dc4bd82f82b"
+    },
+    "not_a_fresh_breadth_validation": true,
+    "production_admission_allowed": false,
+    "source_roots_requested": 8,
+    "source_roots_executed": 8,
+    "accepted_worlds": 10,
+    "settled_candidate_worlds": 64,
+    "allocated_candidate_worlds": 96,
+    "compute_truncated_candidate_worlds": 32,
+    "engine_errors": 0,
+    "proposal_attempts": 422,
+    "proposal_statuses": {
+      "exact_proposal_density_correction_rejected": 7,
+      "accepted": 10,
+      "component_budget_exhausted": 175,
+      "public_constraint_mismatch": 230
+    },
+    "completed_initial_prefix_trials": 17307,
+    "callback_words": 2419818,
+    "elapsed_seconds": 292.5594886,
+    "wall_seconds": 292.7056858510041,
+    "peak_worker_memory_bytes": 234749952,
+    "budget_expired": false,
+    "public_inputs_equal_v1": true,
+    "prior_identity_equal_v1": true,
+    "fully_completed_sources": [
+      11001,
+      11002,
+      11003,
+      11005,
+      11008
+    ],
+    "multi_action_completed": 3,
+    "multi_action_denominator": 6,
+    "multi_action_half_threshold_met": true,
+    "combat_index2_completed": false,
+    "gate_passed": false,
+    "worker_sha256": "e39e367cbedc3ad6d9ddbbea50ece999072edf31e7a6f195d4791b756e37acdf",
+    "response": {
+      "path": "artifacts/reports/hybrid-v6/reused-eight-response.jsonl",
+      "bytes": 4718099,
+      "sha256": "599e331603211f235ac1eb8d126161783e5dc62e3bd95a8bd3f64cf4fa646eca"
+    },
+    "analysis": {
+      "path": "artifacts/reports/hybrid-v6/reused-eight-analysis.json",
+      "bytes": 17616,
+      "sha256": "1dc2054b9c24333fb25aeb4268450fc6cc00adad490e54b39bc672be99607f39"
+    },
+    "resources": {
+      "path": "artifacts/reports/hybrid-v6/reused-eight-resources.json",
+      "bytes": 149,
+      "sha256": "b48f474fa2f0ebab8e432b62ca0315cf5c2a1ff5b399fc8862e42659883f04e2"
+    },
+    "stderr": {
+      "path": "artifacts/reports/hybrid-v6/reused-eight-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "runner": {
+      "path": "artifacts/reports/hybrid-v6/run_reused_eight.py",
+      "bytes": 3051,
+      "sha256": "19747acbdb498cdf2bfa38ea451fc8caab2275807a8ba867157669d63f732465"
+    },
+    "analyzer": {
+      "path": "artifacts/reports/hybrid-v6/analyze_reused_eight.py",
+      "bytes": 3154,
+      "sha256": "473f3578a3a36cecbf3ffd56db099cee903b9769f346bcb0ca06e6b119a39f93"
+    },
+    "remaining_rejection_evidence": [
+      "11004: 79 initial-prefix budget exhaustions and 49 public combat-entry mismatches before combat1; the current stable-decision check cannot localize intervening reward/map/event differences.",
+      "11006: 59 initial-prefix budget exhaustions and69 mismatches at first-combat CardDrawn events53-55.",
+      "11007:16 initial-prefix budget exhaustions and112 first-combat CardDrawn mismatches, mostly events45-48."
+    ],
+    "comparison_limit": "All inputs are previously inspected development roots. V6 ran without requested concurrent builds/tests; v4 timings overlapped tests, so those timings are not a controlled speed comparison."
+  },
+  "boundaries": [
+    "No source support/catalog filtering when optional certificates fail",
+    "Full public packet/history equality and all unresolved failure mass retained",
+    "No fresh source population or full-scope readiness claim from reused diagnostics",
+    "New data remain quarantined; no production enlargement or fit",
+    "Original corpus, sealed494test and experimental weights unchanged",
+    "All simulator changes local and vendored; simulator remotes read-only"
+  ]
+}

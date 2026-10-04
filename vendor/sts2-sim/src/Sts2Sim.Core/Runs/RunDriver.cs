@@ -106,6 +106,11 @@ public sealed class RunDriver
 
     public event Action<MapPoint, RoomType>? OnRoomResolved;
 
+    // Read-only NOSL observation adapter, installed before native room entry. The
+    // decorator must forward the original observer; it may not mutate state or RNG.
+    internal Func<ICombatObserver, ICombatObserver>? CombatObserverDecorator { get; set; }
+    internal Action? AutomaticCombatSettlementCompleted { get; set; }
+
     public async Task<Result> RunAsync(int maxFloors)
     {
         _recorder?.BeginRun(_runState);
@@ -476,7 +481,7 @@ public sealed class RunDriver
         }
 
         var observer = new CombatRecordingObserver(_recorder, _runState, combatRoom);
-        combatRoom.ConfigureObserver(observer);
+        combatRoom.ConfigureObserver(CombatObserverDecorator?.Invoke(observer) ?? observer);
         return observer;
     }
 
@@ -484,7 +489,8 @@ public sealed class RunDriver
         CombatRoom combatRoom,
         bool generateRewards = true,
         bool resolveRewards = true,
-        CombatRecordingObserver? combatObserver = null)
+        CombatRecordingObserver? combatObserver = null,
+        Func<bool>? deferOutcomeNotification = null)
     {
         CombatEngine engine = combatRoom.Engine;
         Player player = engine.State.Players[0];
@@ -534,6 +540,7 @@ public sealed class RunDriver
         }
 
         await combatRoom.ResolveOutcomeAsync(generateRewards);
+        if (deferOutcomeNotification?.Invoke() != true) AutomaticCombatSettlementCompleted?.Invoke();
         combatObserver?.CaptureFinalState();
         if (resolveRewards)
         {
@@ -613,8 +620,7 @@ public sealed class RunDriver
 
             if (eventRoom.Event.IsAwaitingForcedCombat)
             {
-                ForcedCombatOutcome outcome = await DrivePendingForcedCombatAsync(eventRoom);
-                eventRoom.Event.ResumeAfterForcedCombat(outcome);
+                await DrivePendingForcedCombatAsync(eventRoom, resumeOwner: true);
                 await DrainEventRewardOffersAsync(eventRoom);
                 continue;
             }
@@ -660,7 +666,7 @@ public sealed class RunDriver
             effectiveBefore!.DescribeChangesTo(eventRoom.Event.Owner));
     }
 
-    private async Task<ForcedCombatOutcome> DrivePendingForcedCombatAsync(EventRoom eventRoom)
+    private async Task<ForcedCombatOutcome> DrivePendingForcedCombatAsync(EventRoom eventRoom, bool resumeOwner = false)
     {
         if (!eventRoom.Event.HasPendingForcedCombat)
         {
@@ -672,6 +678,7 @@ public sealed class RunDriver
         CombatRecordingObserver? combatObserver = ConfigureCombatObserver(combatRoom);
         _runState.PushRoom(combatRoom);
         bool entered = false;
+        bool notifyAfterOwnerReturn = false;
         var outcome = new ForcedCombatOutcome(Victory: false, TimedOut: false);
         try
         {
@@ -697,7 +704,11 @@ public sealed class RunDriver
                 combatRoom,
                 generateRewards: eventRoom.Event.GenerateForcedCombatRewards,
                 resolveRewards: eventRoom.Event.GenerateForcedCombatRewards,
-                combatObserver: combatObserver);
+                combatObserver: combatObserver,
+                // Configuration alone does not imply a reward decision: losses
+                // and suppressed/empty offers must finish automatic owner return.
+                deferOutcomeNotification: () => notifyAfterOwnerReturn =
+                    !combatRoom.GeneratedRewards.Any(HasUnresolvedRewards));
             bool timedOut = combatRoom.Engine.State.EscapedCreatures.Any(forcedEnemies.Contains)
                 || forcedTimeoutPowers.Any(power => power.HasExpired);
             outcome = new ForcedCombatOutcome(Victory: combatRoom.Won, TimedOut: timedOut);
@@ -721,6 +732,8 @@ public sealed class RunDriver
             }
         }
 
+        if (resumeOwner) eventRoom.Event.ResumeAfterForcedCombat(outcome);
+        if (notifyAfterOwnerReturn) AutomaticCombatSettlementCompleted?.Invoke();
         return outcome;
     }
 

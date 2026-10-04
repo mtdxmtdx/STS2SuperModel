@@ -15,10 +15,10 @@ public static class BranchDiagnostics
         var rows=actions.Select(_=>new List<ProbeSample>()).ToArray();
         foreach(var seed in samplerSeeds)
         {
-            await using var world=BeliefSampler.SampleWorld(source,seed);
+            await using var world=await BeliefSampler.SampleWorldAsync(source,seed);
             for(int i=0;i<actions.Length;i++)
             {
-                await using var branch=world.ForkExact();
+                await using var branch=await world.ForkForContinuationAsync();
                 try
                 {
                     var packet=await branch.StepAsync(actions[i]); int steps=1;

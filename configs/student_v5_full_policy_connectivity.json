@@ -1,0 +1,180 @@
+{
+  "status": "SINGLE_SYNTHETIC_FULL_V5_CONNECTIVITY_PASS",
+  "public_schema": "nosl.student.public.v5",
+  "config_version": "nosl.student.config.v5",
+  "model_version": "nosl.student.model.v5",
+  "student_config_sha256": "08eec9691c6c9cda760bbda4bcdcd26601aaf18f47ac4dd030158d146237bb3c",
+  "student_config_file_sha256": "1d745485bcdab2dd9969e92a4a144dbabfab1558c8bbdb6770cd824d16d46473",
+  "implementation": {
+    "format": "nosl.training.full-policy.implementation.v5.1",
+    "source_sha256": {
+      "python/nosl/__init__.py": "53b4c27e9d3d35511fd6382fee5a5593ff512aaf0ae9902733c840b262df80bc",
+      "python/nosl/model.py": "427c2f63fd327ed058ce92d11436e1ff7774013227a2228f1b21284028c122e1",
+      "python/nosl/schema.py": "0ea9dafdaf61dbe23809b7d7e481fef894dd45c1fa29cb1e49e411b0f4d05974",
+      "python/nosl/public_identity.py": "6dfa2d70ba31b0a62050631968e102c2c610aa487b30f95870adf84bbd243622",
+      "python/nosl/inference.py": "305424c34c80c86b94f02c329bf9ed7cd907604dcc2b2a79bc73a5bc280e89dd",
+      "python/nosl/reproducibility.py": "eb14771c6240202b391f0ce81dc0dbe00573902af3072dca5f3ba595cf574bd1",
+      "python/nosl/schema_v2.py": "a4e302cc1fcaf81ae44065517f73cff89f1ee531a71eb393313dc55638f2b00c",
+      "python/nosl/schema_regen.py": "36607a31514a32b1e5073008d8a01d6d20aefa82fcecbef1c41a1f629d794231",
+      "python/nosl/model_v2.py": "bd4a58b22664755b75cd52e39ace51665a46f44931261a49caf0ae421deb3d97",
+      "python/nosl/inference_v2.py": "34b78c713dcd7877f91f857d320d43cc66b4130f01614a4190e08a6776b7a4b0",
+      "python/nosl/public_identity_v2.py": "a1afef0cffdcff8a775c8925cfc4ee62073e7bd70345ecdd47ec5a8be90ec1f8",
+      "python/nosl/schema_v3.py": "b4ed253cd20ed47aafbbd05bb84f95a575378241e33266009dd59fdab8a8628a",
+      "python/nosl/public_identity_v3.py": "046be31d7148e3deb8e3e6d196a0ec2e920a118728fa750018cc0f8b5658d3e2",
+      "python/nosl/model_v3.py": "a47bd529b6d7711a9117f8d9736777471266ba39020c13b03c25b0f01429f2fe",
+      "python/nosl/inference_v3.py": "05515a1ce6039c869d4c2b8c56fe97eaec2a65c8cddb6deea19a6a381f61a997",
+      "python/nosl/evidence_v4.py": "25ab527e698042997de687852945579f1522555d021ec599ffe9b782da1d0c9e",
+      "python/nosl/schema_v4.py": "7185ca543390319a956dfd87e2d0928ff3b50e7433a335d4035ec32774634bb1",
+      "python/nosl/public_identity_v4.py": "b40329088ce2597842ffbaa8e137d01bada6d80d5a68dcd9191acc2778f5e94f",
+      "python/nosl/model_v4.py": "181eeb79fa428932939e79111f7134c535dcc4473bfcd199b38e6b49ad7ddb17",
+      "python/nosl/inference_v4.py": "1239ca182fe7fd75d4849c0667971eeebfd04cc30d946ddf8ec51c9f4e8decdc",
+      "python/nosl/schema_v5.py": "85bb6f36b31cfa74c9400cefccb4ed439f9e6b9ff1d1b5a59e85c08d4880f28e",
+      "python/nosl/public_identity_v5.py": "7a2965bbe6051c31fc0c1be0c43880a9568d7f9b9e188b24daed0deef20fad37",
+      "python/nosl/model_v5.py": "bca2f1183736c1c926e06aec48d71af735ea56c2478f322eb7973d36be643ce2",
+      "python/nosl/inference_v5.py": "4fbc6a60481d35eb95badba0a93d5861b01eda3f43dd8cd3a16bd0a05eac3e2f",
+      "python/nosl/policy_v5.py": "5d2f326444f515d0797e2c0c6f77d41df4235a6c85d4c16de4a9d3b03eac8cae",
+      "python/nosl/policy_applicability_v5.py": "a5aa8c8a9570c87340aafcffb1a818db4abdee57d8443709cba5409387c925f7",
+      "python/nosl/inference_policy_v5.py": "416cd0a35222fdeb7c3e213733b35efab045c53aba2a7da97bb5da1194d84ee0",
+      "python/nosl/native_v5.py": "2ec250542e543f86536136611e78687eaca64e819b5bae018b26ae1a516f7678",
+      "python/nosl/protection_v5.py": "df7e6b5496026b2a7c0e0c29ef3d610f0a00dd1cd9c0f8f541b0ebe969239bd0",
+      "python/nosl/prepare_v5.py": "c6c8210baf97e984d804aca11d97435d5f060dfb9c8c6bf3eec91c02e8215086",
+      "python/nosl/data_v5.py": "5c0945de5fa60ee24895c79d0b97cec9b0aeb8379316411f9aea364ab9d71112",
+      "python/nosl/native_pilot.py": "d04361ede5181232409941cc11eac5bb0775e56c1eec223f6c1bdefbc8fae9d1",
+      "python/nosl/data.py": "c02c588b9d5e7299311c8275e901b1c7338d0fe5e70f2c5fd88a692ea88b1568",
+      "python/nosl/native_policy_v5.py": "98e0106626fbe8960ca49a0dc2b2d481eaf9d5515f30f8f497974329aa6548cc",
+      "python/nosl/data_policy_v5.py": "66b402e746d93f5bc7a971ada2c9cd0c86ad2464a2fcc25ff7835ef417f0f3ef",
+      "python/nosl/train_policy_v5.py": "7f413e0cd2294bff10ebccf86a53dc6efbcd2b38d4d01a75eb3f92ef5f4098a5",
+      "python/nosl/loss_v5.py": "2e14fc569c37d7640cc7b01247aa664158e4ab634e4e79a60a261539ef4469ca",
+      "python/nosl/train.py": "aa84cf1aca3c38865c92646b1843dac7a866494da57c49433fe98eb96870604e",
+      "python/nosl/vocabulary.py": "a4829c15a737bda5592576ddfa4d1380af96e1068aff70cc39a2248c6c4cdefa"
+    },
+    "runtime": {
+      "python_implementation": "CPython",
+      "python_version": "3.12.14",
+      "torch_version": "2.6.0+cpu",
+      "torch_git_version": "2236df1770800ffea5697b11b0bb0d910b2e59e1",
+      "torch_build_sha256": "7e0305bf5875b2359d81529e09004eaba80fef4e1adf6177ed2b0553c9b31e27",
+      "machine": "x86_64",
+      "cpu_capability": "AVX512"
+    },
+    "cpu_settings": {
+      "deterministic_algorithms": true,
+      "deterministic_warn_only": false,
+      "intraop_threads": 1,
+      "interop_threads": 9,
+      "mkldnn_enabled": true,
+      "mkldnn_deterministic": false,
+      "float32_matmul_precision": "highest",
+      "default_dtype": "torch.float32",
+      "default_device": "cpu"
+    }
+  },
+  "minibatches": 1,
+  "records": 2,
+  "fixture_records_sha256": "6f6f06ef95ce0069b4af7a715d30769a51218db719050ba40abcb8b250fd850a",
+  "backward_calls": 1,
+  "autograd_engine_entries": 1,
+  "optimizer_steps": 0,
+  "fit_loops": 0,
+  "weights_written": false,
+  "parameters_changed": false,
+  "parameter_state_sha256_before": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+  "parameter_state_sha256_after": "505ce1ee9fdc1f1dcbf5702bfbf83309133060bb672f91da96ff0f906f712753",
+  "parameter_count": 1573534,
+  "loss": 5.147193908691406,
+  "loss_terms": [
+    {
+      "value": 0.07571205496788025,
+      "win_probability": 0.7069173455238342,
+      "death_probability": 0.6889798641204834,
+      "expected_final_hp": 0.14959248900413513,
+      "hp_distribution": 4.252007007598877,
+      "potion_net_change": 0.00876613613218069,
+      "pairwise": 0.5089712738990784,
+      "equivalent": 2.396138906478882,
+      "plan.specified_success_probability": -0.0,
+      "plan.extra_net_hp_loss": 0.0
+    },
+    {
+      "value": 0.010680897161364555,
+      "win_probability": 0.6973971128463745,
+      "death_probability": 0.6845118403434753,
+      "expected_final_hp": 0.16399632394313812,
+      "hp_distribution": 4.268612861633301,
+      "potion_net_change": 0.001341640600003302,
+      "pairwise": 0.5252612233161926,
+      "equivalent": 0.7003482580184937,
+      "plan.specified_success_probability": 0.7973291873931885,
+      "plan.extra_net_hp_loss": 0.1336231231689453
+    }
+  ],
+  "gradient_groups": {
+    "map_nodes": {
+      "tensors": 2,
+      "nonzero_entries": 1792,
+      "finite": true
+    },
+    "map_edges": {
+      "tensors": 2,
+      "nonzero_entries": 2816,
+      "finite": true
+    },
+    "map_chronology": {
+      "tensors": 4,
+      "nonzero_entries": 49920,
+      "finite": true
+    },
+    "value_ranking": {
+      "tensors": 2,
+      "nonzero_entries": 79,
+      "finite": true
+    },
+    "win_probability": {
+      "tensors": 2,
+      "nonzero_entries": 79,
+      "finite": true
+    },
+    "death_probability": {
+      "tensors": 2,
+      "nonzero_entries": 79,
+      "finite": true
+    },
+    "expected_final_hp": {
+      "tensors": 2,
+      "nonzero_entries": 79,
+      "finite": true
+    },
+    "hp_distribution": {
+      "tensors": 2,
+      "nonzero_entries": 5135,
+      "finite": true
+    },
+    "potion_net_change": {
+      "tensors": 2,
+      "nonzero_entries": 79,
+      "finite": true
+    },
+    "specified_success_probability": {
+      "tensors": 2,
+      "nonzero_entries": 201,
+      "finite": true
+    },
+    "extra_net_hp_loss": {
+      "tensors": 2,
+      "nonzero_entries": 201,
+      "finite": true
+    },
+    "inherited_mechanics": {
+      "tensors": 106,
+      "nonzero_entries": 743556,
+      "finite": true
+    }
+  },
+  "all_gradients_finite": true,
+  "fixture_source_sha256": "90cae7bd2496d3be0bbd0efb45f65c056375e433e3447c45636e85b83107cd27",
+  "check_source_sha256": "0578fdfe7b508f20a82214c724d8b33c80bc87271ffcecd1c8f3fe5484612357",
+  "formal_training_run": false,
+  "trained_model_created": false,
+  "policy_promoted": false,
+  "claim_limit": "synthetic graph connectivity only; no real labels, calibration or student-performance evidence"
+}

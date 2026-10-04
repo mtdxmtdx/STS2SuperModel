@@ -1,6 +1,6 @@
 {
-  "repository": "mtdxmtdx/sts2-sim",
-  "commit": "a3a66276ee79bf9f75e8af32e9ef5a51592b26f8",
+  "repository": "iRyougi/sts2-sim",
+  "commit": "5a9576b9cc7b4c4fe98bde6d73890c76c947a3d0",
   "game_version": "0.111.0",
   "game_release_commit": "41cef1ea",
   "assembly_hash": "222455745",
@@ -12,8 +12,18 @@
   "original_checkout_modified": false,
   "baseline_build": "PASS",
   "baseline_tests": 45,
-  "modified_integration_tests": 31,
-  "modified_core_regression_tests": 93,
   "runtime_build_verified": true,
-  "client_fidelity": "NOT_RUN"
+  "client_fidelity": "NOT_RUN",
+  "previous_fork_repository": "mtdxmtdx/sts2-sim",
+  "previous_fork_commit": "a3a66276ee79bf9f75e8af32e9ef5a51592b26f8",
+  "rule_authority": "USER_ACCEPTED_PINNED_UPSTREAM",
+  "upstream_refresh": {
+    "changed_files": 77,
+    "insertions": 1540,
+    "deletions": 317,
+    "license_unchanged": true,
+    "game_version_unchanged": true
+  },
+  "integration_test_status": "PASS_803_OF_803",
+  "modified_integration_tests": 803
 }

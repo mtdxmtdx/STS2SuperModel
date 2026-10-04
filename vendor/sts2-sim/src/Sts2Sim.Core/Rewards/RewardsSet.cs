@@ -64,54 +64,67 @@ public sealed class RewardsSet
         Random.Rng potionOddsRng = player.PlayerRng.ForSemanticKey(
             PlayerRngType.Rewards,
             $"{rewardKey}/slot=potion_presence");
+        using IDisposable? labelRewardScope = Random.LabelRandomScope.BeginCombatReward(
+            player, potionOddsRng, roomType, encounter, fixedGoldAmount, goldProportion);
 
-        PotionReward? potion = null;
-        if (player.Odds.PotionReward.Roll(roomType, potionOddsRng))
+        try
         {
-            potion = new PotionReward(player);
+            PotionReward? potion = null;
+            if (player.Odds.PotionReward.Roll(roomType, potionOddsRng))
+            {
+                potion = new PotionReward(player);
 
-        }
+            }
 
-        // Upstream constructs the reward list (including the potion roll) before populating it.
-        gold.Populate(
-            runState,
-            player.PlayerRng.ForSemanticKey(PlayerRngType.Rewards, $"{rewardKey}/slot=gold"));
-        potion?.Populate(
-            runState,
-            player.PlayerRng.ForSemanticKey(PlayerRngType.Rewards, $"{rewardKey}/slot=potion"));
-
-        CardRarityOddsType oddsType = roomType switch
-        {
-            RoomType.Elite => CardRarityOddsType.EliteEncounter,
-            RoomType.Boss => CardRarityOddsType.BossEncounter,
-            _ => CardRarityOddsType.RegularEncounter,
-        };
-        CardReward card = keyed
-            ? new CardReward(
-                player,
-                new CardCreationOptions(
-                        [player.Character.CardPool],
-                        CardCreationSource.Encounter,
-                        oddsType)
-                    .WithRngOverride(player.PlayerRng.ForSemanticKey(
-                        PlayerRngType.Rewards,
-                        $"{rewardKey}/slot=card")))
-            : new CardReward(player, oddsType);
-        card.Populate(runState);
-
-        RelicReward? relic = null;
-        if (roomType == RoomType.Elite)
-        {
-            relic = new RelicReward(player);
-            relic.Populate(
+            // Upstream constructs the reward list (including the potion roll) before populating it.
+            gold.Populate(
                 runState,
-                player.PlayerRng.ForSemanticKey(PlayerRngType.Rewards, $"{rewardKey}/slot=relic"));
+                player.PlayerRng.ForSemanticKey(PlayerRngType.Rewards, $"{rewardKey}/slot=gold"));
+            potion?.Populate(
+                runState,
+                player.PlayerRng.ForSemanticKey(PlayerRngType.Rewards, $"{rewardKey}/slot=potion"));
+
+            CardRarityOddsType oddsType = roomType switch
+            {
+                RoomType.Elite => CardRarityOddsType.EliteEncounter,
+                RoomType.Boss => CardRarityOddsType.BossEncounter,
+                _ => CardRarityOddsType.RegularEncounter,
+            };
+            CardReward card = keyed
+                ? new CardReward(
+                    player,
+                    new CardCreationOptions(
+                            [player.Character.CardPool],
+                            CardCreationSource.Encounter,
+                            oddsType)
+                        .WithRngOverride(player.PlayerRng.ForSemanticKey(
+                            PlayerRngType.Rewards,
+                            $"{rewardKey}/slot=card")))
+                : new CardReward(player, oddsType);
+            card.Populate(runState);
+
+            RelicReward? relic = null;
+            if (roomType == RoomType.Elite)
+            {
+                relic = new RelicReward(player);
+                relic.Populate(
+                    runState,
+                    player.PlayerRng.ForSemanticKey(PlayerRngType.Rewards, $"{rewardKey}/slot=relic"));
+            }
+
+            var extraRewards = pendingExtraRewards?.ToList() ?? new List<Reward>();
+            Hooks.Hook.ModifyRewards(runState, player, extraRewards, roomType);
+
+            return new RewardsSet(gold, potion, card, relic, extraRewards);
+        }
+        catch
+        {
+            // Opt-in label-only validation must not replace the original native
+            // error with a dependent missing-slot failure during scope disposal.
+            if (labelRewardScope is Random.IAbortableLabelRewardBoundary boundary) boundary.Abort();
+            throw;
         }
 
-        var extraRewards = pendingExtraRewards?.ToList() ?? new List<Reward>();
-        Hooks.Hook.ModifyRewards(runState, player, extraRewards, roomType);
-
-        return new RewardsSet(gold, potion, card, relic, extraRewards);
     }
 
     public static RewardsSet CreateCustom(

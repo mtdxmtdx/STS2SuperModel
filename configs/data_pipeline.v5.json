@@ -1,0 +1,9 @@
+{
+  "schema_version": "nosl.dataset.config.v5",
+  "admission_profile": "complete-map-auxiliary-pilot-v1",
+  "public_identity_scheme": "nosl.public-identity.student-v5.v1",
+  "split_seed": "nosl-complete-map-v5-provenance-v1",
+  "split_ratios": {"train": 0.8, "validation": 0.1, "test": 0.1},
+  "split_unit": "transitive_provenance_connected_component",
+  "formal_labels_enabled": false
+}

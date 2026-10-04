@@ -1,0 +1,894 @@
+{
+  "schema": "nosl.first-bounded-pilot-evidence.v1",
+  "date_utc": "2026-10-02",
+  "status": "COMPLETED_MIXED_DIAGNOSTICS_NO_POLICY_PROMOTION",
+  "trained_source_commit": "8ad033030205f064946f7ac42572fe640edf23fc",
+  "native_data_runtime_source_commit": "5ef76a558afd54bc38a78ff6635c3b50ce3c0c6f",
+  "source_kind": "declared_constructed_curriculum",
+  "natural_distribution_claimed": false,
+  "formal_training_run": false,
+  "model_promoted": false,
+  "objective_calibrated": false,
+  "data_counts": {
+    "accepted_duplicate_record_journals": 0,
+    "accepted_journal_without_valid_record": 0,
+    "after_hp_change_roots": 1236,
+    "after_hp_gain_roots": 3,
+    "after_hp_loss_roots": 1233,
+    "all_head_complete_roots": 4585,
+    "attempt_journal_rows": 10131,
+    "auxiliary_only_no_value_roots": 56,
+    "completed_whole_candidate_roots": 5000,
+    "decision_rows": 5311,
+    "diagnostic_only_decision_rows": 304,
+    "diagnostic_only_public_roots": 304,
+    "duplicate_public_roots": 7,
+    "duplicate_usable_public_roots": 7,
+    "empirical_value_only_roots": 4944,
+    "equivalent_set_roots": 0,
+    "failed_memory_budget": 0,
+    "failed_other_failure": 1,
+    "failed_process_interruption": 7,
+    "failed_reset_engine_error": 0,
+    "failed_reset_terminal_boundary": 0,
+    "failed_reset_unclassified": 36,
+    "failed_reset_unsupported": 76,
+    "failed_source_budget_exhausted": 0,
+    "failed_source_phase_absent": 3522,
+    "failed_source_snapshot_unclassified": 0,
+    "failed_timeout": 1178,
+    "full_utility_roots": 4585,
+    "hp_unchanged_from_start_roots": 3764,
+    "invalid_attempt_rows": 0,
+    "invalid_decision_rows": 0,
+    "journal_accepted": 5311,
+    "journal_duplicate_public_input": 0,
+    "journal_failed_attempt": 4813,
+    "journal_interrupted_attempt": 7,
+    "journal_measured_elapsed_rows": 10124,
+    "journal_missing_elapsed_rows": 7,
+    "journal_recovered_attempts": 7,
+    "journal_recovered_partial_rows": 6,
+    "journal_recovered_unknown_rows": 1,
+    "later_turn_after_hp_loss_roots": 1232,
+    "later_turn_roots": 2438,
+    "not_full_utility_usable_roots": 415,
+    "objective_calibrated_roots": 0,
+    "objective_uncalibrated_or_undeclared_roots": 5000,
+    "partial_value_roots": 359,
+    "pending_choice_roots": 211,
+    "root_candidates": 29021,
+    "strong_pair_labels": 0,
+    "strong_pair_roots": 0,
+    "turn_one_roots": 2562,
+    "unique_effective_public_roots": 5000,
+    "unique_valid_public_roots": 5304,
+    "usable_decision_rows": 5007,
+    "valid_decision_rows": 5311,
+    "valid_records_without_accepted_journal": 0
+  },
+  "source_identities": {
+    "attempts": {
+      "battles": 2628
+    },
+    "unique_effective_roots": {
+      "battles": 2513,
+      "branch_families": 2513,
+      "runs": 2513
+    },
+    "valid_records": {
+      "battles": 2533,
+      "branch_families": 2533,
+      "runs": 2533
+    }
+  },
+  "worlds": {
+    "allocated_worlds": 116084,
+    "completed_worlds": 116084,
+    "error_worlds": 0,
+    "failed_uncommitted_requested_action_worlds": 27228,
+    "interrupted_uncommitted_requested_action_worlds": 144,
+    "other_worlds": 0,
+    "truncated_worlds": 0,
+    "unique_root_exploration_worlds": 0,
+    "unique_root_independent_eval_worlds": 20000,
+    "committed_population": "globally_deduplicated_usable_public_roots",
+    "committed_unique_action_world_completion_fraction": 1.0,
+    "failed_requested_action_worlds_total_if_complete": 27228,
+    "interrupted_requested_action_worlds_total_if_complete": 144
+  },
+  "data_integrity": {
+    "source_files_stable": true,
+    "error_counts": {},
+    "examples": [],
+    "passed": true
+  },
+  "splits": {
+    "train": 3976,
+    "validation": 530,
+    "test": 494,
+    "test_targets_evaluated": false,
+    "prepared_manifest_sha256": "4346cb9643900138fe12fa6bd64cacb17b01bd383a178ef3e90b29bac3dbe997"
+  },
+  "trial": {
+    "parameters": 976838,
+    "optimizer_steps": 497,
+    "epochs_completed": 1,
+    "lifetime_budget": {
+      "max_steps": 700,
+      "max_epochs": 1,
+      "max_roots": 5000
+    },
+    "budget_exhausted": true,
+    "first_step_checkpoint_resumed": true,
+    "independent_random_initialization_reference_matched": true,
+    "cpu_only": true,
+    "active_wall_seconds": 274.91187562799314,
+    "cpu_seconds": 274.530953,
+    "peak_child_rss_mib": 872.1640625,
+    "hard_virtual_memory_mib": 4096,
+    "weights_sha256": "ee274ca0d67f4b082fa21f1203ae96ffc49e4e80fb94f1cb50afbe5b75566139",
+    "manifest_sha256": "e22804ff8c405555d1a33fc71c9fa6abd433e686a4cb68fb4eae792a5ca26f51"
+  },
+  "validation_comparison": {
+    "loss": {
+      "before_fit": 3.2981296588789744,
+      "final": 1.0520475703590322,
+      "count": 530,
+      "final_minus_before_fit": -2.246082088519942
+    },
+    "win_brier": {
+      "before_fit": 0.24822086731184528,
+      "final": 0.03900954444672607,
+      "count": 3073,
+      "final_minus_before_fit": -0.2092113228651192
+    },
+    "death_brier": {
+      "before_fit": 0.24343187800577165,
+      "final": 0.039044407041682716,
+      "count": 3073,
+      "final_minus_before_fit": -0.20438747096408894
+    },
+    "hp_mae": {
+      "before_fit": 29.83281960195792,
+      "final": 4.12620109479221,
+      "count": 3073,
+      "final_minus_before_fit": -25.706618507165707
+    },
+    "value_mae": {
+      "before_fit": 91.75550924407882,
+      "final": 99.78890686506371,
+      "count": 2936,
+      "final_minus_before_fit": 8.033397620984886
+    },
+    "value_mse": {
+      "before_fit": 72959.43514487076,
+      "final": 39844.979201684335,
+      "count": 2936,
+      "final_minus_before_fit": -33114.455943186425
+    },
+    "equivalent_set_agreement": {
+      "before_fit": null,
+      "final": null,
+      "count": 0,
+      "final_minus_before_fit": null
+    },
+    "empirical_teacher_mean_regret": {
+      "before_fit": 12.1721621901975,
+      "final": 10.54459896701873,
+      "count": 481,
+      "final_minus_before_fit": -1.62756322317877
+    },
+    "empirical_teacher_best_action_agreement": {
+      "before_fit": 0.8316008316008316,
+      "final": 0.83991683991684,
+      "count": 481,
+      "final_minus_before_fit": 0.008316008316008316
+    },
+    "pairwise_agreement": {
+      "before_fit": null,
+      "final": null,
+      "count": 0,
+      "final_minus_before_fit": null
+    }
+  },
+  "validation_support": {
+    "roots": 530,
+    "distinct_source_battles": 267,
+    "distinct_source_run_groups": 267,
+    "distinct_branch_families": 267,
+    "full_utility_roots": 481,
+    "partial_utility_roots": 40,
+    "auxiliary_only_roots": 9,
+    "missing_utility_and_auxiliary_roots": 0,
+    "legal_candidates": 3073,
+    "value_candidates": 2936,
+    "zero_weight_value_candidates": 0,
+    "missing_value_candidates": 137,
+    "no_value_roots": 9,
+    "positive_weight_pairwise_labels": 0,
+    "roots_with_positive_weight_pairs": 0,
+    "single_action_roots_skipped": 0,
+    "incomplete_value_roots": 49,
+    "incomplete_value_roots_skipped": 49,
+    "empirical_ranking_label_support": {
+      "eligible_roots": 481,
+      "all_equal_mean_roots": 97,
+      "nonzero_spread_roots": 384,
+      "roots_with_best_mean_ties": 426,
+      "utility_spread": {
+        "min": 0.0,
+        "mean": 109.31555377808755,
+        "max": 1018,
+        "count": 481
+      },
+      "legal_candidate_count_distribution": {
+        "2": 9,
+        "3": 9,
+        "4": 4,
+        "5": 233,
+        "6": 121,
+        "7": 49,
+        "8": 56
+      },
+      "best_mean_candidate_count_distribution": {
+        "1": 55,
+        "2": 26,
+        "3": 88,
+        "4": 121,
+        "5": 111,
+        "6": 51,
+        "7": 21,
+        "8": 8
+      }
+    },
+    "non_end_turn_empirical_contrast": {
+      "complete_roots_with_two_or_more_non_end_turn_candidates": 481,
+      "all_equal_non_end_turn_mean_roots": 302,
+      "nonzero_non_end_turn_spread_roots": 179,
+      "non_end_turn_utility_spread": {
+        "min": 0.0,
+        "mean": 26.07310044743681,
+        "max": 1004.8,
+        "count": 481
+      },
+      "full_policy_empirical_teacher_mean_regret": {
+        "value": 28.3349279504805,
+        "count": 179
+      },
+      "full_policy_empirical_teacher_best_action_agreement": {
+        "value": 0.5698324022346368,
+        "count": 179
+      }
+    },
+    "learned": {
+      "value_mae": {
+        "value": 99.78890686506371,
+        "count": 2936
+      },
+      "value_mse": {
+        "value": 39844.979201684335,
+        "count": 2936
+      },
+      "normalized_root_weighted_value_mae": 98.37804024369551,
+      "normalized_root_weighted_value_mse": 39496.36050965166,
+      "root_mean_weighted_value_mse": 38825.667595336825,
+      "effective_coefficient_sum": 521.0
+    },
+    "train_constant": {
+      "value_mae": {
+        "value": 129.97678417321708,
+        "count": 2936
+      },
+      "value_mse": {
+        "value": 64742.79710734297,
+        "count": 2936
+      },
+      "normalized_root_weighted_value_mae": 129.12082544116748,
+      "normalized_root_weighted_value_mse": 63865.85627547793,
+      "root_mean_weighted_value_mse": 62781.34173495094,
+      "effective_coefficient_sum": 521.0
+    },
+    "empirical_teacher_mean_regret": {
+      "value": 10.54459896701873,
+      "count": 481
+    },
+    "empirical_teacher_best_action_agreement": {
+      "value": 0.83991683991684,
+      "count": 481
+    },
+    "selected_action_empirical_mean_rank": {
+      "value": 1.3097713097713097,
+      "count": 481
+    },
+    "nonzero_spread_empirical_teacher_mean_regret": {
+      "value": 13.20820860191669,
+      "count": 384
+    },
+    "nonzero_spread_empirical_teacher_best_action_agreement": {
+      "value": 0.7994791666666666,
+      "count": 384
+    }
+  },
+  "error_decomposition": {
+    "sampled_death_target_counts": {
+      "0": 2653,
+      "0.25": 48,
+      "0.5": 25,
+      "0.75": 35,
+      "1": 175
+    },
+    "candidate_absolute_error_change_counts": {
+      "improved": 910,
+      "worsened": 2026,
+      "unchanged": 0
+    },
+    "empirical_choice": {
+      "eligible_roots": 481,
+      "selected_index_changed": 383,
+      "improved_empirical_regret": 34,
+      "worsened_empirical_regret": 30,
+      "equal_empirical_regret": 417,
+      "initial_mean_regret": 12.1721621901975,
+      "final_mean_regret": 10.54459896701873
+    },
+    "interpretation": {
+      "finding": "Same-support fitted predictions reduce large negative-utility errors but worsen errors for most empirically no-death candidates; MSE and MAE disagree because they weight error magnitudes differently.",
+      "mechanism_supported_by_code_and_labels": "Utility training uses squared loss, whose population optimum is the conditional arithmetic mean. The candidate objective has defeat cost 1000, while 90.36% of valued validation candidates have sampled death target zero and their mean utility is -5.62. A shift toward the negative tail can lower MSE while moving away from typical labels. This explains the measured direction; it does not prove the fitted model is optimal or calibrated.",
+      "measured_tail_vs_majority_tradeoff": {
+        "zero_death_global_mae_change": 37.81662816692279,
+        "mixed_death_global_mae_change": -7.970555300687021,
+        "all_death_global_mae_change": -21.812675245250865,
+        "zero_death_global_mse_change": 8790.084432895692,
+        "mixed_death_global_mse_change": -7039.7302938031935,
+        "all_death_global_mse_change": -34864.81008227893
+      },
+      "not_only_average_shift": "The fitted model beats the train-only constant on both validation MAE (99.79 vs 129.98) and MSE (39844.98 vs 64742.80); final mean predictions differ across sampled death groups. This is descriptive evidence of useful fitting beyond one global constant, not causal or policy-strength certification.",
+      "remaining_bias": "For empirical death target 1, the final mean prediction is -357.65 versus mean target -1012.01. For target 0, mean prediction is -35.33 versus mean target -5.62. Tail severity remains underestimated and pessimistic errors appear among sampled no-death cases.",
+      "noise_and_selection": "Every valued candidate in both parsed splits has 4 allocated worlds. Empirical death zero is not true zero risk. Same records, hashes and reconstructed metrics rule out population changes or reporter drift as the cause of the measured delta; finite-N label noise and source selection remain unestimated. All four marginal phase groups show worse MAE and better MSE, so phase reweighting did not create the sign reversal.",
+      "potion_limit": "All 193 valued potion validation candidates belong to 40 partial roots and are play/end_turn actions with sampled death zero. Across 44 potion roots, all 44 potion and all 44 discard_potion actions have missing utility; no potion root supports complete-case ranking. The observed potion regression cannot establish performance on use/discard decisions.",
+      "policy_limit": "On complete-value validation roots, 34 improve and 30 worsen in empirical regret, with 417 equal; category and phase results are heterogeneous. These are teacher-mean comparisons, not measured student rollouts or certified preferences."
+    }
+  },
+  "closed_loop": {
+    "actual_rollout_count": 32,
+    "baseline_wins_student_loses": 0,
+    "bundle_manifest_sha256": "e22804ff8c405555d1a33fc71c9fa6abd433e686a4cb68fb4eae792a5ca26f51",
+    "claims": "actual closed-loop settled simulator outcomes, not predicted teacher heads; small finite constructed sample, no performance significance claim",
+    "combined_peak_rss_mib": 334.26953125,
+    "cpu_affinity": [
+      8
+    ],
+    "declared_source_battles": 16,
+    "mean_student_minus_baseline_final_hp_both_completed": 2.8125,
+    "natural_distribution_claimed": false,
+    "paired_comparisons": [
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "starter:0",
+        "student_minus_baseline_final_hp": 0,
+        "student_minus_baseline_net_hp_loss": 0,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "starter:1",
+        "student_minus_baseline_final_hp": 0,
+        "student_minus_baseline_net_hp_loss": 0,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "low-hp-basic:0",
+        "student_minus_baseline_final_hp": 0,
+        "student_minus_baseline_net_hp_loss": 0,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "low-hp-basic:1",
+        "student_minus_baseline_final_hp": 0,
+        "student_minus_baseline_net_hp_loss": 0,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "poison-guard:0",
+        "student_minus_baseline_final_hp": 6,
+        "student_minus_baseline_net_hp_loss": -6,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "poison-guard:1",
+        "student_minus_baseline_final_hp": 6,
+        "student_minus_baseline_net_hp_loss": -6,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "discard-draw:0",
+        "student_minus_baseline_final_hp": -5,
+        "student_minus_baseline_net_hp_loss": 5,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "discard-draw:1",
+        "student_minus_baseline_final_hp": 7,
+        "student_minus_baseline_net_hp_loss": -7,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "shivs-relic:0",
+        "student_minus_baseline_final_hp": 5,
+        "student_minus_baseline_net_hp_loss": -5,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "shivs-relic:1",
+        "student_minus_baseline_final_hp": 10,
+        "student_minus_baseline_net_hp_loss": -10,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "low-hp-poison:0",
+        "student_minus_baseline_final_hp": 0,
+        "student_minus_baseline_net_hp_loss": 0,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "low-hp-poison:1",
+        "student_minus_baseline_final_hp": -5,
+        "student_minus_baseline_net_hp_loss": 5,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "multi-enemy-draw:0",
+        "student_minus_baseline_final_hp": 0,
+        "student_minus_baseline_net_hp_loss": 0,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "multi-enemy-draw:1",
+        "student_minus_baseline_final_hp": 0,
+        "student_minus_baseline_net_hp_loss": 0,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "block-carry:0",
+        "student_minus_baseline_final_hp": 14,
+        "student_minus_baseline_net_hp_loss": -14,
+        "student_status": "WIN"
+      },
+      {
+        "baseline_status": "WIN",
+        "both_completed": true,
+        "source_battle_id": "block-carry:1",
+        "student_minus_baseline_final_hp": 7,
+        "student_minus_baseline_net_hp_loss": -7,
+        "student_status": "WIN"
+      }
+    ],
+    "paired_completed_count": 16,
+    "paired_unresolved_count": 0,
+    "plan_sha256": "46877f0f173727bb489cd01967d385b01feefa626b4ba72e9e714a7bdc23c263",
+    "policies": {
+      "baseline": {
+        "actual_deaths": 0,
+        "attempted": 16,
+        "declared_source_battles": 16,
+        "mean_final_hp_completed": 23.5625,
+        "mean_net_hp_loss_completed": 3.3125,
+        "mean_potion_net_count_completed": 0.0,
+        "status_counts": {
+          "WIN": 16
+        },
+        "unresolved_or_failed_sources": 0,
+        "wins_over_all_declared_is_lower_bound_when_unresolved": false,
+        "wins_over_all_declared_sources": 1.0,
+        "wins_over_completed_game_outcomes": 1.0
+      },
+      "student": {
+        "actual_deaths": 0,
+        "attempted": 16,
+        "declared_source_battles": 16,
+        "mean_final_hp_completed": 26.375,
+        "mean_net_hp_loss_completed": 0.5,
+        "mean_potion_net_count_completed": -0.25,
+        "status_counts": {
+          "WIN": 16
+        },
+        "unresolved_or_failed_sources": 0,
+        "wins_over_all_declared_is_lower_bound_when_unresolved": false,
+        "wins_over_all_declared_sources": 1.0,
+        "wins_over_completed_game_outcomes": 1.0
+      }
+    },
+    "promotion": false,
+    "resource_guard_limit": "RSS sampled, not kernel-hard RSS cap; native calls may delay Python signal handling",
+    "schema": "nosl-offline-pilot-policy-evaluation-v1",
+    "setup_wall_seconds": 1.3583424129974446,
+    "source_kind": "constructed",
+    "student_wins_baseline_loses": 0,
+    "total_wall_seconds": 36.578232242995,
+    "training_run": false
+  },
+  "artifacts": [
+    {
+      "path": "artifacts/reports/m3-m6/pilot-v4-final-5000.json",
+      "sha256": "5fd7a9226b57e01bc33d1fc3612caaf0f0477af424c36e883dd4ff717192f8da",
+      "bytes": 39680
+    },
+    {
+      "path": "artifacts/experiments/pilot-v4-first-trial/manifest.json",
+      "sha256": "e22804ff8c405555d1a33fc71c9fa6abd433e686a4cb68fb4eae792a5ca26f51",
+      "bytes": 7767
+    },
+    {
+      "path": "artifacts/experiments/pilot-v4-first-trial/checkpoint.pt",
+      "sha256": "dbf2081b59eec5f32247af93a41bf0fa56e1a57c23031f75a4b61afacd4a8b19",
+      "bytes": 11796078
+    },
+    {
+      "path": "artifacts/experiments/pilot-v4-first-trial/first-step-checkpoint.pt",
+      "sha256": "f1665df4843e1ef6de5382c2070487b746741201def8eac3b8128827c788b026",
+      "bytes": 11796798
+    },
+    {
+      "path": "artifacts/experiments/pilot-v4-first-trial/weights.pt",
+      "sha256": "ee274ca0d67f4b082fa21f1203ae96ffc49e4e80fb94f1cb50afbe5b75566139",
+      "bytes": 3923746
+    },
+    {
+      "path": "artifacts/experiments/pilot-v4-first-trial/metrics.json",
+      "sha256": "aa58c43f9ea9c73e3a8d8d8d39283ddbb2ce18a698f721fd7b55da793e001ccd",
+      "bytes": 3850
+    },
+    {
+      "path": "artifacts/experiments/pilot-v4-initial-reference.json",
+      "sha256": "82476f670273369ccec725aca42fc5ccfb4d58b57b836ae69d95144d4ce95250",
+      "bytes": 4804003
+    },
+    {
+      "path": "artifacts/reports/m3-m6/pilot-v4-learning-report.json",
+      "sha256": "7e049938b3df16ceb3d4dcc86c51d01f081f2c9a76746f1404493eed8ee9d47a",
+      "bytes": 9996398
+    },
+    {
+      "path": "artifacts/reports/m3-m6/pilot-v4-error-decomposition.json",
+      "sha256": "f11a9b4052f895ec6344d7431f3f4201447faf83b595fbc5b0273812ad23b3a2",
+      "bytes": 178009
+    },
+    {
+      "path": "artifacts/evaluation/pilot-v4-first-holdout/plan.json",
+      "sha256": "67d9d8b2383375ed9969c40b9a1162fcdc9c3032f28b9e9fb75d4ba38a0aa5b7",
+      "bytes": 6612
+    },
+    {
+      "path": "artifacts/evaluation/pilot-v4-first-policy-result/report.json",
+      "sha256": "f845545bb2d5c34d24c18e90a873812f0e320b5699da71a39f54042283fe8268",
+      "bytes": 4882
+    },
+    {
+      "path": "artifacts/evaluation/pilot-v4-first-policy-result/outcomes.json",
+      "sha256": "d2b564c9c7ce90eb4b23e6563827691276a41db10ac699c9a0f93a259ddf3bf2",
+      "bytes": 1461298
+    },
+    {
+      "path": "artifacts/evaluation/pilot-v4-potion-diagnostic/report.json",
+      "sha256": "64723c01ce40a42e664dc8dfb46de757f574031a45c0771b72c9d0347615d532",
+      "bytes": 4530
+    },
+    {
+      "path": "artifacts/evaluation/pilot-v4-potion-diagnostic/predeclared.json",
+      "sha256": "e520d2adc1cfb4823fb3f5d57a45f98b4a68c5a1ef7fd067d0a265e8a2b95cc1",
+      "bytes": 8682
+    },
+    {
+      "path": "artifacts/evaluation/pilot-v4-potion-diagnostic/diagnose.py",
+      "sha256": "7e2a5dbbe59ff21d6ad8f44e11e182fe1b8cda2556ee897f8458e39e3957fecb",
+      "bytes": 14346
+    },
+    {
+      "path": "artifacts/evaluation/pilot-v4-potion-diagnostic/verification.json",
+      "sha256": "cdc447bb7b1d929265fb93f7483f7b7a55f34f0d21d3c5df4f1e81a841f1781b",
+      "bytes": 416
+    },
+    {
+      "path": "artifacts/evaluation/pilot-v4-potion-diagnostic/supervisor.json",
+      "sha256": "d1ac488115dcdadace3f0a316f87eebfca2b88f642626974fe80a931057cf06a",
+      "bytes": 247
+    },
+    {
+      "path": "artifacts/reports/m3-m6/pilot-v4-first-step-resources.json",
+      "sha256": "6c84feabc047c40f14b58190b37416f0fd6d977bb3d166b37380686423976bca",
+      "bytes": 997
+    },
+    {
+      "path": "artifacts/reports/m3-m6/pilot-v4-resumed-trial-resources.json",
+      "sha256": "a051fbeadf10034567b539cb072c3a77a0f94d06e9fd799f256faaeb218ec2ea",
+      "bytes": 991
+    },
+    {
+      "path": "artifacts/experiments/pilot-v4-first-trial/config.json",
+      "sha256": "4ae365791770d22917f3ce87298c76baecafb2b4a5e2cd2b57d8716bd50f974f",
+      "bytes": 115806
+    },
+    {
+      "path": "artifacts/experiments/pilot-v4-first-trial/first-step-manifest.json",
+      "sha256": "d5e27f4316568de5ede17e5f5d0679a87e834e194f095c130d8a9210711ac836",
+      "bytes": 7766
+    },
+    {
+      "path": "artifacts/experiments/pilot-v4-first-trial/inputs.json",
+      "sha256": "2cf89cbaa036bc3be9b7a637c316b23713f4e65a6b6d98492d47480dbb91531f",
+      "bytes": 3339
+    },
+    {
+      "path": "artifacts/prepared/pilot-5000-v4/manifest.json",
+      "sha256": "4346cb9643900138fe12fa6bd64cacb17b01bd383a178ef3e90b29bac3dbe997",
+      "bytes": 1832
+    },
+    {
+      "path": "artifacts/reports/m3-m6/experimental-policy-tests.log",
+      "sha256": "ac3c4cf53d4c45485ec4e8f848a32e3427039e5dca8069b37feb53550d30fa54",
+      "bytes": 26213
+    },
+    {
+      "path": "artifacts/reports/m3-m6/experimental-policy-revision14-proof.json",
+      "sha256": "681f310f5f88819042765f8662901ab9555330bd49720bcde9438139a846f62e",
+      "bytes": 3754
+    },
+    {
+      "path": "artifacts/reports/m3-m6/balanced-integrated-generation-tests.log",
+      "sha256": "408b44ee099ee50c2a7efdea3da1f89afdbef075f21b38766446d8133d49dcf2",
+      "bytes": 8906
+    },
+    {
+      "path": "artifacts/reports/m3-m6/balanced-integrated-data-tests.log",
+      "sha256": "29e1cc08a98ee8c6ecccfe85fb973d816c8c524652fe2f4c6c096a812bb02999",
+      "bytes": 16341
+    }
+  ],
+  "next_stage_gates": [
+    "No increase to 30k/100k solely because this 5k count passed",
+    "Correct outcome-independent category/enemy allocation and predeclare complete attempted-battle blocks",
+    "Abstain from utility ranking where legal potion decisions lack calibrated resource supervision; diagnostic predictions are not applicable policy",
+    "Resolve missing resource values without arbitrary prices; keep utility masks and explicit consideration labels",
+    "Investigate pending-choice/loop continuation and distinguish teacher weaknesses from student approximation error",
+    "Use additional independent paired teacher worlds and complete legal contrasts where they add information",
+    "Keep sealed test targets unused and old observed closed-loop sources diagnostic after intervention"
+  ],
+  "posthoc_potion_intervention": {
+    "status": "POSTHOC_DIAGNOSTIC",
+    "training": false,
+    "optimizer_steps": 0,
+    "new_native_rollouts": 4,
+    "all_inputs_unchanged_verified": true,
+    "complete_original_candidates_scored": true,
+    "cpu_affinity": [
+      7
+    ],
+    "combined_peak_rss_mib_sampled": 314.35546875,
+    "wall_seconds": 6.166519209997205,
+    "comparisons": [
+      {
+        "source_battle_id": "poison-guard:0",
+        "policies": {
+          "baseline_recorded": {
+            "status": "WIN",
+            "final_hp": 18,
+            "final_max_hp": 70,
+            "potions": [
+              "FirePotion",
+              null
+            ],
+            "decisions": 34
+          },
+          "student_recorded": {
+            "status": "WIN",
+            "final_hp": 24,
+            "final_max_hp": 70,
+            "potions": [
+              null,
+              null
+            ],
+            "decisions": 15
+          },
+          "posthoc_preserve_potions": {
+            "status": "WIN",
+            "final_hp": 21,
+            "final_max_hp": 70,
+            "potions": [
+              "FirePotion",
+              null
+            ],
+            "decisions": 23
+          }
+        },
+        "intervention_count": 19
+      },
+      {
+        "source_battle_id": "poison-guard:1",
+        "policies": {
+          "baseline_recorded": {
+            "status": "WIN",
+            "final_hp": 18,
+            "final_max_hp": 70,
+            "potions": [
+              "FirePotion",
+              null
+            ],
+            "decisions": 30
+          },
+          "student_recorded": {
+            "status": "WIN",
+            "final_hp": 24,
+            "final_max_hp": 70,
+            "potions": [
+              null,
+              null
+            ],
+            "decisions": 25
+          },
+          "posthoc_preserve_potions": {
+            "status": "WIN",
+            "final_hp": 24,
+            "final_max_hp": 70,
+            "potions": [
+              "FirePotion",
+              null
+            ],
+            "decisions": 29
+          }
+        },
+        "intervention_count": 25
+      },
+      {
+        "source_battle_id": "low-hp-poison:0",
+        "policies": {
+          "baseline_recorded": {
+            "status": "WIN",
+            "final_hp": 12,
+            "final_max_hp": 70,
+            "potions": [
+              "SwiftPotion",
+              null
+            ],
+            "decisions": 24
+          },
+          "student_recorded": {
+            "status": "WIN",
+            "final_hp": 12,
+            "final_max_hp": 70,
+            "potions": [
+              null,
+              null
+            ],
+            "decisions": 21
+          },
+          "posthoc_preserve_potions": {
+            "status": "WIN",
+            "final_hp": 12,
+            "final_max_hp": 70,
+            "potions": [
+              "SwiftPotion",
+              null
+            ],
+            "decisions": 20
+          }
+        },
+        "intervention_count": 20
+      },
+      {
+        "source_battle_id": "low-hp-poison:1",
+        "policies": {
+          "baseline_recorded": {
+            "status": "WIN",
+            "final_hp": 12,
+            "final_max_hp": 70,
+            "potions": [
+              "SwiftPotion",
+              null
+            ],
+            "decisions": 23
+          },
+          "student_recorded": {
+            "status": "WIN",
+            "final_hp": 7,
+            "final_max_hp": 70,
+            "potions": [
+              null,
+              null
+            ],
+            "decisions": 21
+          },
+          "posthoc_preserve_potions": {
+            "status": "WIN",
+            "final_hp": 12,
+            "final_max_hp": 70,
+            "potions": [
+              "SwiftPotion",
+              null
+            ],
+            "decisions": 20
+          }
+        },
+        "intervention_count": 20
+      }
+    ],
+    "limitations": [
+      "Cases selected after examining outcomes; these four are diagnostic, no longer fresh holdout.",
+      "No population or expected-benefit claim from four deterministic results.",
+      "Same initial seeds do not imply coupled RNG after policies diverge.",
+      "Preserving a potion changes later public features/history as well as actions; this is a whole-policy intervention.",
+      "HP and potion preservation remain separate axes; no arbitrary potion price.",
+      "No optimizer steps, training, promotion, source/default binary edits or sealed-test inspection."
+    ],
+    "outcome_semantics": "Room.ResolveOutcomeAsync(generateRewards:true), automatic native settlement complete, before first postcombat decision; rewardSelectionsMade=0. final HP/max HP and potion slots are measured facts. No HP-equivalent potion price or complete permanent-resource utility.",
+    "predeclared_sha256": "e520d2adc1cfb4823fb3f5d57a45f98b4a68c5a1ef7fd067d0a265e8a2b95cc1",
+    "external_resource_monitor": {
+      "exit_code": 0,
+      "kill_reason": null,
+      "wall_seconds": 6.52866917099891,
+      "combined_process_tree_peak_rss_mib": 328.6640625,
+      "rss_sampling_seconds": 0.05,
+      "rss_limit_mib": 1024,
+      "kill_at_seconds": 175,
+      "cpu_affinity": [
+        7
+      ]
+    },
+    "verification": {
+      "all_full_candidates_preserved": true,
+      "all_selected_actions_highest_eligible_frozen_score": true,
+      "native_trace_decision_counts": {
+        "low-hp-poison-0-no-potions.trace.jsonl": 20,
+        "low-hp-poison-1-no-potions.trace.jsonl": 20,
+        "poison-guard-0-no-potions.trace.jsonl": 23,
+        "poison-guard-1-no-potions.trace.jsonl": 29
+      },
+      "terminal_results": [
+        "win",
+        "win",
+        "win",
+        "win"
+      ]
+    }
+  },
+  "postpilot_engineering": {
+    "balanced_allocation": "balanced-category-v5; optional and not executed",
+    "attempted_blocks": "immutable global intervals, all scheduled phases counted independently of successes",
+    "generation_tests_passed": 51,
+    "data_tests_passed": 104,
+    "student_tests_passed": 165,
+    "policy_guard_tests_passed": 17,
+    "policy_guard": "nosl.experimental-resource-guard.v1",
+    "policy_guard_behavior": "whole-decision abstention for legal or historical potion use/discard and observed gold delta; no fallback or pricing",
+    "policy_guard_independent_review": "PASS; original frozen sources and weights unchanged",
+    "guarded_policy_strength_evaluated": false
+  }
+}

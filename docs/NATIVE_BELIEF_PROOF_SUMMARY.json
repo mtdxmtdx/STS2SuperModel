@@ -1,0 +1,66 @@
+{
+  "schema_version": "nosl.native-belief-prototype-report.v1",
+  "status": "bounded_native_development_evidence_not_formal_labels",
+  "posteriorProfile": "native-ring-conch-toadpole-seapunk-exchangeable-v1",
+  "naturalSourceRoots": 200,
+  "naturalLabeledRoots": 16,
+  "rawUnlabeledRoots": 184,
+  "worldsAllocated": 174,
+  "worldsCompleted": 174,
+  "sourceDistribution": {
+    "natural": 200,
+    "constructed": 0
+  },
+  "encounterDistribution": {
+    "ToadpolesWeak": 16,
+    "SeapunkWeak": 16,
+    "SludgeSpinnerWeak": 24,
+    "HauntedShipNormal": 16,
+    "ShrinkerBeetle": 24,
+    "SlimesWeak": 16,
+    "FuzzyWurmCrawler": 24,
+    "CubexConstruct": 8,
+    "ShrinkerBeetleAndFuzzyWurmCrawler": 8,
+    "LoneNibbit": 8,
+    "VineShambler": 8,
+    "CorpseSlugsWeak": 16,
+    "TwoTailedRatsNormal": 8,
+    "SkulkingColonyElite": 6,
+    "RubyRaiders": 2
+  },
+  "unsupportedPosteriorReasons": {
+    "native_certificate:unreviewed_encounter": 162,
+    "native_certificate:stable_complete_history_required": 7,
+    "native_certificate:unreviewed_entry_relic": 8,
+    "native_certificate:unreviewed_entry_card": 7
+  },
+  "source_sequence_validation": "All 200 source trajectories unchanged;170 public inputs identical;30 differ only by moving the combat-start marker before automatic setup effects",
+  "candidate_actions": 87,
+  "strong_pair_labels": 0,
+  "formal_labels": false,
+  "training_performed": false,
+  "proof_options": {
+    "runs": 100,
+    "maxFloors": 12,
+    "maxRoots": 200,
+    "maxRootsPerCombat": 8,
+    "decisionStride": 1,
+    "maxDecisionsPerRun": 10000,
+    "seedPrefix": "nosl-m5-natural-proof-20261001",
+    "sourceRunPrefix": "natural-proof20261001"
+  },
+  "evaluation_seeds": [
+    101,
+    102
+  ],
+  "source_input_sha256": "3bf9980aea94de8d9008154278e2f755be6e45145db7d438075ff2039f224542",
+  "prototype_records_sha256": "86b1bff66bbec2028b3381be5f1fc564ef6effff1b1ba39f1b5ea00ff982b93d",
+  "source_input_validation": {
+    "source_trajectories_equal": 200,
+    "public_inputs_unchanged": 170,
+    "public_inputs_with_only_start_marker_reordered": 30,
+    "raw_source_sha256": "3bf9980aea94de8d9008154278e2f755be6e45145db7d438075ff2039f224542",
+    "new_records_sha256": "86b1bff66bbec2028b3381be5f1fc564ef6effff1b1ba39f1b5ea00ff982b93d"
+  },
+  "artifact_version": "native-belief-proof-200-v2-explicit-combat-boundary"
+}

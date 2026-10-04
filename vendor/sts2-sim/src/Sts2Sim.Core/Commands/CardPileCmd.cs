@@ -53,13 +53,19 @@ public static class CardPileCmd
         CardPilePosition position = CardPilePosition.Bottom) =>
         EnterCombatInternal(combatState, card, pileType, position, beforeEntryHook: null, rollbackBeforeEntryHook: null);
 
+    /// <summary>Inserts a transformed card at its original index before entry listeners observe it.</summary>
+    internal static Task EnterCombatAtIndex(ICombatState combatState, CardModel card, PileType pileType, int index) =>
+        EnterCombatInternal(combatState, card, pileType, CardPilePosition.Bottom,
+            beforeEntryHook: null, rollbackBeforeEntryHook: null, insertionIndex: index);
+
     private static async Task EnterCombatInternal(
         ICombatState combatState,
         CardModel card,
         PileType pileType,
         CardPilePosition position,
         Action? beforeEntryHook,
-        Action? rollbackBeforeEntryHook)
+        Action? rollbackBeforeEntryHook,
+        int? insertionIndex = null)
     {
         ArgumentNullException.ThrowIfNull(combatState);
         ArgumentNullException.ThrowIfNull(card);
@@ -99,11 +105,14 @@ public static class CardPileCmd
         bool beforeEntryApplied = false;
         try
         {
-            destination.AddInternal(card, GetInsertionIndex(card, destination, position));
+            destination.AddInternal(card, insertionIndex ?? GetInsertionIndex(card, destination, position));
             listeners = Hook.SnapshotCardEnteredCombatListeners(combatState);
             beforeEntryHook?.Invoke();
             beforeEntryApplied = beforeEntryHook is not null;
             await Hook.AfterCardEnteredCombat(listeners, card, invokedListeners);
+            // Read-only entry observation; does not consume randomness or change hook ordering.
+            if (card.Pile is { } enteredPile)
+                (combatState as CombatState)?.Observer?.CardEnteredCombat(card, enteredPile.Type, position);
         }
         catch (Exception entryException)
         {
@@ -303,7 +312,9 @@ public static class CardPileCmd
             throw new InvalidOperationException("Eternal cards cannot be removed from the persistent deck.");
         }
 
+        PileType? previous=card.Pile?.Type;
         card.Pile?.RemoveInternal(card);
+        (card.Owner.Creature.CombatState as CombatState)?.Observer?.CardMoved(card,previous,PileType.None,CardPilePosition.None);
     }
 
     /// <summary>Adds a newly created card to a live combat pile, then notifies combat listeners.</summary>
@@ -381,7 +392,11 @@ public static class CardPileCmd
         Rng shuffleRng = combatState is CombatState concreteState
             ? concreteState.NextShuffleRng()
             : combatState.RunState.Rng.Shuffle;
-        combined.StableShuffle(shuffleRng);
+        using (var labelBoundary = LabelCombatReshuffleScope.Mark(combatState, player, shuffleRng, combined))
+        {
+            combined.StableShuffle(shuffleRng);
+            labelBoundary?.Complete();
+        }
         foreach (EnchantmentModel enchantment in combined.SelectMany(card => card.Enchantments).ToList())
         {
             enchantment.ModifyShuffleOrder(player, combined, isInitialShuffle: false);

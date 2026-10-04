@@ -9,6 +9,9 @@ namespace Sts2Sim.Core.Models.Cards;
 /// </summary>
 public sealed class Dowsing : CardModel
 {
+    // Public-origin effect history, exposed without identity or private future state.
+    internal int NoslUnknownRoomsEntered => _unknownRoomsEntered;
+
     private int _unknownRoomsEntered;
 
     public override CardType Type => CardType.Quest;

@@ -1,3 +1,5 @@
+> 历史基线记录：本文的11卡等数量属于 d01c5f8e 的原始 M0–M2 检查点。当前上游接入与验证请看 [COVERAGE_BRIDGE](../docs/COVERAGE_BRIDGE.md) 和 coverage_manifest.json；不要把历史数量视为现有目录限制。
+
 # M0 实现审计
 
 基线：mtdxmtdx/sts2-sim a3a66276ee79bf9f75e8af32e9ef5a51592b26f8；规则声明 0.111.0 / 41cef1ea / 222455745；.NET SDK 9.0.303。实际客户端版本 client_version_unverified，不把源码声明当作客户端匹配证明。
